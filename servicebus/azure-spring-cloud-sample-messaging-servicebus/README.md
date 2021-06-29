@@ -84,4 +84,4 @@ dependency `azure-spring-cloud-messaging`.
 [create-subscription]: https://docs.microsoft.com/azure/service-bus-messaging/service-bus-quickstart-topics-subscriptions-portal#create-subscriptions-to-the-topic
 [annotation-azure-message-listener]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-cloud-messaging/src/main/java/com/azure/spring/messaging/annotation/AzureMessageListener.java
 [environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
-[application.yaml]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-samples/azure-spring-cloud-sample-servicebus-operation/src/main/resources/application.yaml
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/azure-spring-cloud-sample-servicebus-operation/src/main/resources/application.yaml

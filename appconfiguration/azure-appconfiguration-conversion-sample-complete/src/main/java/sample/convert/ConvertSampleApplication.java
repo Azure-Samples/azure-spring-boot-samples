@@ -23,7 +23,7 @@ public class ConvertSampleApplication implements CommandLineRunner {
     private static final Logger LOGGER = LoggerFactory.getLogger(ConvertSampleApplication.class);
 
     @Autowired
-    private UserRepository repository;
+    private UserRepository repository
 
     public static void main(String[] args) {
         SpringApplication.run(ConvertSampleApplication.class, args);

@@ -69,7 +69,7 @@ azure:
 
 ### Run with Maven
 ```
-cd azure-spring-boot-samples/azure-spring-boot-sample-active-directory-b2c-oidc
+cd azure-spring-boot-samples/aad/azure-spring-boot-sample-active-directory-b2c-oidc
 mvn spring-boot:run
 ```
 

@@ -72,4 +72,4 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 [create-azure-storage]: https://docs.microsoft.com/azure/storage/ 
 [eventhub-operation]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-integration-eventhubs/src/main/java/com/azure/spring/integration/eventhub/api/EventHubOperation.java
 [environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
-[application.yaml]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-samples/azure-spring-cloud-sample-eventhubs-operation/src/main/resources/application.yaml
+[application.yaml]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-samples/eventhubs/azure-spring-cloud-sample-eventhubs-operation/src/main/resources/application.yaml

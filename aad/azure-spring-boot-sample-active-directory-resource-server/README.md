@@ -53,7 +53,7 @@ azure:
 ### Run with Maven
 ```shell
 # Under sdk/spring project root directory
-cd azure-spring-boot-samples/azure-spring-boot-sample-active-directory-resource-server
+cd azure-spring-boot-samples/aad/azure-spring-boot-sample-active-directory-resource-server
 mvn spring-boot:run
 ```
 
@@ -84,6 +84,6 @@ Authorization: Bearer eyJ0eXAiO ... 0X2tnSQLEANnSPHY0gKcgw
 <!-- LINKS -->
 [environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 [Expose scoped permission to web api]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis
-[Resource Server]: https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-resource-server
-[Resource Server Obo]: https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-active-directory-resource-server-obo
+[Resource Server]: https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/azure-spring-boot-samples/aad/azure-spring-boot-sample-active-directory-resource-server
+[Resource Server Obo]: https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/azure-spring-boot-samples/aad/azure-spring-boot-sample-active-directory-resource-server-obo
 [resource server password credentials]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth-ropc

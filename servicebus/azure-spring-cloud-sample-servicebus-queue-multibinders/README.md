@@ -139,4 +139,4 @@ processing.
 [managed-identities]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/
 [environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[application.yaml]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-samples/azure-spring-cloud-sample-servicebus-queue-multibinders/src/main/resources/application.yaml
+[application.yaml]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-samples/servicebus/azure-spring-cloud-sample-servicebus-queue-multibinders/src/main/resources/application.yaml

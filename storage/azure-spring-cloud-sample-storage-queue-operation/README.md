@@ -84,5 +84,5 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 [create-sp-using-azure-cli]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-samples/create-sp-using-azure-cli.md
 [environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 [storage-queue-operation]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-integration-storage-queue/src/main/java/com/azure/spring/integration/storage/queue/StorageQueueOperation.java
-[web-controller]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-samples/azure-spring-cloud-sample-storage-queue-operation/src/main/java/com/azure/spring/sample/storage/queue/operation/WebController.java#L26
-[application.yaml]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-samples/azure-spring-cloud-sample-storage-queue-operation/src/main/resources/application.yaml
+[web-controller]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-samples/storage/azure-spring-cloud-sample-storage-queue-operation/src/main/java/com/azure/spring/sample/storage/queue/operation/WebController.java#L26
+[application.yaml]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-samples/storage/azure-spring-cloud-sample-storage-queue-operation/src/main/resources/application.yaml

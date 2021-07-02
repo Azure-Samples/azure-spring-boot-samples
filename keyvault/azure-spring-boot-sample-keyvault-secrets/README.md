@@ -134,7 +134,7 @@ Note: due to underlying library limitation from msal4j, when using certificates 
 This is because msal4f supports certificate chain by loading it from the end-entity certificate automatically. So you can provide the end-entity certificate only instead of the whole chain. For more details, please refer to the related [PR](https://github.com/AzureAD/microsoft-authentication-library-for-java/pull/276).
 ## Run with Maven
 ```
-cd azure-spring-boot-samples/azure-spring-boot-sample-keyvault-secrets
+cd azure-spring-boot-samples/keyvault/azure-spring-boot-sample-keyvault-secrets
 mvn spring-boot:run
 ```
 

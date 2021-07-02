@@ -11,6 +11,6 @@ public class AzureADB2COIDCSampleApplication {
 
     public static void main(String[] args) {
         //
-        SpringApplication.run(AzureADB2COIDCSampleApplication.class, args);
+        SpringApplication.run(AzureADB2COIDCSampleApplication.class, args)
     }
 }

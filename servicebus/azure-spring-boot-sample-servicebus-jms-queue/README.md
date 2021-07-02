@@ -28,7 +28,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 ## Examples                                           
 ### Config the sample
 
-1. Update [application.properties](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-servicebus-jms-queue/src/main/resources/application.properties)
+1. Update [application.properties](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-samples/servicebus/azure-spring-boot-sample-servicebus-jms-queue/src/main/resources/application.properties)
 
     ```properties
     # Fill service bus namespace connection string copied from portal
@@ -47,7 +47,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 ### How to run
 1. Run with Maven
     ```
-    cd azure-spring-boot-samples/azure-spring-boot-sample-servicebus-jms-queue
+    cd azure-spring-boot-samples/servicebus/azure-spring-boot-sample-servicebus-jms-queue
     mvn spring-boot:run
     ```
 
@@ -76,5 +76,5 @@ Type | Reference Link
 
 <!-- LINKS -->
 [environment_checklist]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
-[QueueSendController]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-servicebus-jms-queue/src/main/java/com/azure/spring/sample/jms/queue/QueueSendController.java
-[QueueReceiveController]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-samples/azure-spring-boot-sample-servicebus-jms-queue/src/main/java/com/azure/spring/sample/jms/queue/QueueReceiveController.java
+[QueueSendController]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-samples/servicebus/azure-spring-boot-sample-servicebus-jms-queue/src/main/java/com/azure/spring/sample/jms/queue/QueueSendController.java
+[QueueReceiveController]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-samples/servicebus/azure-spring-boot-sample-servicebus-jms-queue/src/main/java/com/azure/spring/sample/jms/queue/QueueReceiveController.java

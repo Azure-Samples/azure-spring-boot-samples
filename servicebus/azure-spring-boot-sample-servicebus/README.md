@@ -33,7 +33,7 @@ This sample project demonstrates how to use Service Bus with Spring Boot.
 ### Run with Maven
 
 ```
-cd azure-spring-boot-samples/azure-spring-boot-sample-servicebus
+cd azure-spring-boot-samples/servicebus/azure-spring-boot-sample-servicebus
 mvn spring-boot:run
 ```
 

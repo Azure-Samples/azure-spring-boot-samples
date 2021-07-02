@@ -44,7 +44,7 @@ This sample project demonstrates how to use Azure Cosmos DB via Spring Boot Star
 
 ### Run with Maven
 ```
-cd azure-spring-boot-samples/azure-spring-boot-sample-cosmos
+cd azure-spring-boot-samples/cosmos/azure-spring-boot-sample-cosmos
 mvn spring-boot:run
 ```
 

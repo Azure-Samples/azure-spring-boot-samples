@@ -27,7 +27,7 @@
 # that shouldn't require changes.
 #    python versioning/update_versions.py --ut external_dependency --sr
 #
-# The script must be run at the root of azure-sdk-for-java.
+
 
 import argparse
 from datetime import timedelta

@@ -23,7 +23,7 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
       - name: Build with Maven
-        run: mvn -f appconfiguration/azure-appconfiguration-conversion-sample-complete/pom.xml --update-snapshots verify
+        run: mvn -f pom.xml --batch-mode --update-snapshots verify
           
           
           

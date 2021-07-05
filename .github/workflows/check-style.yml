@@ -1,0 +1,25 @@
+# This is a basic workflow to help you get started with Actions
+
+name: check-style
+
+# Controls when the workflow will run
+on: push
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "checkstyle_job"
+  checkstyle_job:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Run Java check style
+      uses: nikitasavinov/checkstyle-action@master
+
+          
+          
+          
+          
+          

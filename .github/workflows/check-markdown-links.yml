@@ -7,8 +7,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - uses: gaurav-nelson/github-action-markdown-link-check@v1
+    - uses: backwind1233/github-action-markdown-link-check@master
       with:
         use-quiet-mode: 'yes'
         config-file: '.github/workflows/.mlc_config.json'
         continue-on-error: true
+        config_file_content: '{"ignorePatterns":[{"pattern":"^http://127.0.0.1"},{"pattern":"^http://localhost"},{"pattern":"^http://proxyserver"}],"replacementPatterns":[{"pattern":"https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/","replacement":"https://github.com/Azure-Samples/azure-spring-boot-samples/blob/${GITHUB_SHA}/"}]}'
+        

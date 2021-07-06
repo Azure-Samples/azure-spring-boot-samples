@@ -19,11 +19,11 @@ def delete_from_file(the_file):
 
 def main():
     # load file from azure-sdk-for-java
-    keyVaultJcaManagedIdentitySample_path = os.path.abspath("../keyvault/azure-spring-boot-sample-keyvault-certificates-client-side/src/main/java/com/azure/spring/security/keyvault/certificates/KeyVaultJcaManagedIdentitySample.java")
+    keyVaultJcaManagedIdentitySample_path = os.path.abspath("../keyvault/azure-spring-boot-sample-keyvault-certificates-client-side/src/main/java/com/azure/spring/security/keyvault/KeyVaultJcaManagedIdentitySample.java")
     url = r"https://raw.githubusercontent.com/Azure/azure-sdk-for-java/main/sdk/spring/azure-spring-boot/src/samples/java/com/azure/spring/keyvault/KeyVaultJcaManagedIdentitySample.java"
-    content_from_url =  urllib.request.urlopen(url).read()
+    content_from_url =  urllib.request.urlopen(url).read().decode('utf-8')
 
-    with open(keyVaultJcaManagedIdentitySample_path, "wb+" ) as f:
+    with open(keyVaultJcaManagedIdentitySample_path, "w" ) as f:
         f.write(content_from_url)
 
     command = npx_command

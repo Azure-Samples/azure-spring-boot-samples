@@ -84,7 +84,7 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
 
 #### Using TLS with managed identity
 1. Replace the `restTemplateWithTLS` bean in `SampleApplicationConfiguration.java` as
-    <!-- embedme ../../azure-spring-boot/src/samples/java/com/azure/spring/keyvault/KeyVaultJcaManagedIdentitySample.java#L18-L36 -->
+    <!-- embedme ../azure-spring-boot-sample-keyvault-certificates-client-side/src/main/java/com/azure/spring/security/keyvault/KeyVaultJcaManagedIdentitySample.java#L22-L40 -->
     ```java
     @Bean
     public RestTemplate restTemplateWithTLS() throws Exception {
@@ -102,7 +102,7 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
                                                     .setSSLSocketFactory(socketFactory)
                                                     .build();
         HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
-
+    
         return new RestTemplate(requestFactory);
     }
     ```
@@ -110,7 +110,7 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
 
 #### Using mTLS with managed identity
 1. Replace the `restTemplateWithMTLS` bean in `SampleApplicationConfiguration.java` as
-    <!-- embedme ../../azure-spring-boot/src/samples/java/com/azure/spring/keyvault/KeyVaultJcaManagedIdentitySample.java#L42-L61 -->
+    <!-- embedme ../azure-spring-boot-sample-keyvault-certificates-client-side/src/main/java/com/azure/spring/security/keyvault/KeyVaultJcaManagedIdentitySample.java#L42-L61 -->
     ```java
     @Bean
     public RestTemplate restTemplateWithMTLS() throws Exception {
@@ -129,7 +129,7 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
                                                     .setSSLSocketFactory(socketFactory)
                                                     .build();
         HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
-
+    
         return new RestTemplate(requestFactory);
     }
     ```

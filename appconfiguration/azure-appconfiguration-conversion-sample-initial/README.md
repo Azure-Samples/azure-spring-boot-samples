@@ -76,7 +76,7 @@ In this section, you clone a containerized Spring Boot application and test it l
 1. Clone the [Spring Boot on Docker Getting Started] sample project into the directory you created; for example:
 
    ```shell
-   git clone https://github.com/Azure-Samples/blob/main/azure-spring-boot-samples
+   git clone https://github.com/Azure-Samples/azure-spring-boot-samples.git
    ```
 
 1. Change directory to the initial project; for example:

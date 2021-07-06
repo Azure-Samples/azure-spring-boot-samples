@@ -40,13 +40,13 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
 
 #### Using mTLS with service principal
 1. In the sample `ApplicationConfiguration.class`, change the `self-signed` to your certificate alias.
-    <!-- embedme ../azure-spring-boot-samples/keyvault/azure-spring-boot-sample-keyvault-certificates-client-side/src/main/java/com/azure/spring/security/keyvault/certificates/sample/client/side/SampleApplicationConfiguration.java#L72-L77 -->
+    <!-- embedme ../azure-spring-boot-sample-keyvault-certificates-client-side/src/main/java/com/azure/spring/security/keyvault/certificates/sample/client/side/SampleApplicationConfiguration.java#L70-L75 -->
     ```java
     private static class ClientPrivateKeyStrategy implements PrivateKeyStrategy {
-       @Override
-       public String chooseAlias(Map<String, PrivateKeyDetails> map, Socket socket) {
-          return "self-signed"; // It should be your certificate alias used in client-side
-       }
+        @Override
+        public String chooseAlias(Map<String, PrivateKeyDetails> map, Socket socket) {
+            return "self-signed"; // It should be your certificate alias used in client-side
+        }
     }
     ``` 
 1. Add properties in application.yml of `server side` on the base of current configuration:

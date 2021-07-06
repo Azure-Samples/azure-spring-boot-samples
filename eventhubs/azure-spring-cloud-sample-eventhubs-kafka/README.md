@@ -93,6 +93,6 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 [azure-account]: https://azure.microsoft.com/account/
 [azure-portal]: https://ms.portal.azure.com/
 [create-event-hubs]: https://docs.microsoft.com/azure/event-hubs/
-[create-sp-using-azure-cli]: https://github.com/Azure-Samples/blob/main/azure-spring-boot-samples/create-sp-using-azure-cli.md
-[environment_checklist]: https://github.com/Azure-Samples/blob/main/azure-spring-boot-samples/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
-[application.yaml]: https://github.com/Azure-Samples/blob/main/azure-spring-boot-samples/eventhubs/azure-spring-cloud-sample-eventhubs-kafka/src/main/resources/application.yaml
+[create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-sp-using-azure-cli.md
+[environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/azure-spring-cloud-sample-eventhubs-kafka/src/main/resources/application.yaml

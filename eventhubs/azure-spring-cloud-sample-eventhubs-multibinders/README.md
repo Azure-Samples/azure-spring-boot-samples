@@ -151,11 +151,11 @@ processing.
 [azure-portal]: https://ms.portal.azure.com/
 [create-event-hubs]: https://docs.microsoft.com/azure/event-hubs/
 [create-azure-storage]: https://docs.microsoft.com/azure/storage/
-[create-sp-using-azure-cli]: https://github.com/Azure-Samples/blob/main/azure-spring-boot-samples/create-sp-using-azure-cli.md
-[create-managed-identity]: https://github.com/Azure-Samples/blob/main/azure-spring-boot-samples/create-managed-identity.md
+[create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-sp-using-azure-cli.md
+[create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-managed-identity.md
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
 [deploy-to-app-service-via-ftp]: https://docs.microsoft.com/azure/app-service/deploy-ftp
 [managed-identities]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/
-[environment_checklist]: https://github.com/Azure-Samples/blob/main/azure-spring-boot-samples/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+[environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[application.yaml]: https://github.com/Azure-Samples/blob/main/azure-spring-boot-samples/eventhubs/azure-spring-cloud-sample-eventhubs-multibinders/src/main/resources/application.yaml
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/azure-spring-cloud-sample-eventhubs-multibinders/src/main/resources/application.yaml

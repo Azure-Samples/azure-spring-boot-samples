@@ -72,6 +72,6 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 [create-event-hubs-namespace]: https://docs.microsoft.com/azure/event-hubs/event-hubs-create#create-an-event-hubs-namespace
 [create-event-hub-instance]: https://docs.microsoft.com/azure/event-hubs/event-hubs-create#create-an-event-hub
 [create-azure-storage]: https://docs.microsoft.com/azure/storage/ 
-[annotation-azure-message-listener]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-cloud-messaging/src/main/java/com/azure/spring/messaging/annotation/AzureMessageListener.java
+[annotation-azure-message-listener]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-cloud-messaging/src/main/java/com/azure/spring/messaging/annotation/AzureMessageListener.java
 [environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
 [application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/azure-spring-cloud-sample-eventhubs-operation/src/main/resources/application.yaml

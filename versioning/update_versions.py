@@ -209,7 +209,7 @@ def delete_from_file(the_file):
     if os.path.exists(the_file):
       os.remove(the_file)
 
-def display_version_info(version_map):
+def print_version_info(version_map):
     for value in version_map.values():
         print(value)
 
@@ -231,8 +231,8 @@ def update_versions_all(update_type, build_type, target_file, skip_readme, auto_
         print('external_dependency_file=' + dependency_file)
         load_version_map_from_file(dependency_file, ext_dep_map)
 
-    display_version_info(version_map)
-    display_version_info(ext_dep_map)
+    print_version_info(version_map)
+    print_version_info(ext_dep_map)
 
     if target_file:
         update_versions(update_type, version_map, ext_dep_map, target_file, skip_readme, auto_version_increment)

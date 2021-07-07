@@ -19,8 +19,7 @@ This code sample demonstrates how to use Spring Integration for Azure Storage Qu
 Running this sample will be charged by Azure. You can check the usage and bill at
 [this link][azure-account].
 
-### Prerequisites
-- [Environment checklist][environment_checklist]
+
 
 ### Create Azure resources
 
@@ -84,7 +83,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 [create-azure-storage]: https://docs.microsoft.com/azure/storage/
 [create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-managed-identity.md
 [create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-sp-using-azure-cli.md
-[environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+
 [send-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/storage/azure-spring-integration-sample-storage-queue/src/main/java/com/azure/spring/sample/storage/queue/SendController.java
 [receive-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/storage/azure-spring-integration-sample-storage-queue/src/main/java/com/azure/spring/sample/storage/queue/ReceiveController.java
 [application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/storage/azure-spring-integration-sample-storage-queue/src/main/resources/application.yaml

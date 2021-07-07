@@ -6,8 +6,7 @@ applications running in Cloud Foundry or by consuming the service configuration 
 
 ## Getting started
 
-### Prerequisites
-- [Environment checklist][environment_checklist]
+
 
 ### Pre-reqs:  Create required service instances in Cloud Foundry
 Before you can create any service instances, you'll need to create a resource group on Azure. Then you'll reference that
@@ -209,4 +208,4 @@ the following endpoints:
 ## Next steps
 ## Contributing
 
-[environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+

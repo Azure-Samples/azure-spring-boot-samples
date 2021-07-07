@@ -17,8 +17,7 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
 
 ## Getting started
 
-### Prerequisites
-- [Environment checklist][environment_checklist]
+
 - Start azure-spring-boot-sample-keyvault-certificates-server-side's SampleApplication.
 
 ### Run sample with service principal
@@ -141,7 +140,7 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
 ## Contributing
 
 <!-- LINKS -->
-[environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+
 [azure_spring_boot_starter_key_vault_certificates]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md
 [steps_to_store_certificate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md#creating-an-azure-key-vault
 [azure-spring-boot-sample-keyvault-certificates-server-side]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/keyvault/azure-spring-boot-sample-keyvault-certificates-server-side

@@ -13,8 +13,7 @@ urlFragment: "azure-appconfiguration-conversion-sample-complete"
 ## Key concepts
 ## Getting started
 
-### Prerequisites
-- [Environment checklist][environment_checklist]
+
 
 ## Key concepts
 ## Examples
@@ -23,4 +22,4 @@ urlFragment: "azure-appconfiguration-conversion-sample-complete"
 ## Contributing
 
 <!-- LINKS -->
-[environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+

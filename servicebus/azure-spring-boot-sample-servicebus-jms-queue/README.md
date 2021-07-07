@@ -18,8 +18,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 
 ## Getting started
 
-### Prerequisites
-- [Environment checklist][environment_checklist]
+
 
 ### Create Service Bus on Azure
 
@@ -75,6 +74,6 @@ Type | Reference Link
 ## Contributing
 
 <!-- LINKS -->
-[environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+
 [QueueSendController]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-boot-sample-servicebus-jms-queue/src/main/java/com/azure/spring/sample/jms/queue/QueueSendController.java
 [QueueReceiveController]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-boot-sample-servicebus-jms-queue/src/main/java/com/azure/spring/sample/jms/queue/QueueReceiveController.java

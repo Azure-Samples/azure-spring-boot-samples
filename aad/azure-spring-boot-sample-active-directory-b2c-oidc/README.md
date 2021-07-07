@@ -15,8 +15,7 @@ This sample illustrates how to use `azure-spring-boot-starter-active-directory-b
 
 ## Getting started
 
-### Prerequisites
-- [Environment checklist][environment_checklist]
+
 
 ### Create your Azure Active Directory B2C tenant
 
@@ -109,4 +108,4 @@ And also available for Amazon, Azure AD, FaceBook, Github, Linkedin and Twitter.
 ## Next steps
 ## Contributing
 <!-- LINKS -->
-[environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+

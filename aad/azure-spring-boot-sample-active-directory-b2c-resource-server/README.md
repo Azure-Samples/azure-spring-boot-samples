@@ -20,8 +20,7 @@ This sample illustrates how to use `azure-spring-boot-starter-active-directory-b
 5. Verify `aud`, `iss`, `nbf`, `exp` claims in access token.
 
 ## Getting started
-### Prerequisites
-- [Environment checklist][environment_checklist]
+
 
 ### Create and consent Application and Delegated permissions 
 1. On the **Azure AD B2C** Portal, select the application that requires roles to be added, select **Manifest**.
@@ -137,4 +136,4 @@ You can set `isEnabled` to `false` in the manifest's JSON configuration.Then del
 ## Next steps
 ## Contributing
 <!-- LINKS -->
-[environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+

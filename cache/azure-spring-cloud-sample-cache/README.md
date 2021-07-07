@@ -20,8 +20,7 @@ auto-configures redis properties via Azure Redis Cache Management SDK.
 
 Running this sample will be charged by Azure. You can check the usage and bill at [this link][azure-account].
 
-### Prerequisites
-- [Environment checklist][environment_checklist]
+
 
 ### Coordinates
 
@@ -92,5 +91,5 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 [azure-portal]: https://ms.portal.azure.com/
 [create-azure-cache-for-redis]: https://docs.microsoft.com/azure/azure-cache-for-redis/quickstart-create-redis
 [create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-sp-using-azure-cli.md
-[environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+
 

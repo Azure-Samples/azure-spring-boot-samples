@@ -19,8 +19,7 @@ This code sample demonstrates how to use [EventHubOperation.java][eventhub-opera
 Running this sample will be charged by Azure. You can check the usage and bill at 
 [this link][azure-account].
 
-### Prerequisites
-- [Environment checklist][environment_checklist]
+
 
 ### Create Azure resources
 
@@ -71,5 +70,5 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 [create-event-hubs]: https://docs.microsoft.com/azure/event-hubs/ 
 [create-azure-storage]: https://docs.microsoft.com/azure/storage/ 
 [eventhub-operation]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-integration-eventhubs/src/main/java/com/azure/spring/integration/eventhub/api/EventHubOperation.java
-[environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+
 [application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/azure-spring-cloud-sample-eventhubs-operation/src/main/resources/application.yaml

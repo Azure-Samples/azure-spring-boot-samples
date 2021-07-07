@@ -15,8 +15,7 @@ This sample describes how to use [spring-cloud-starter-azure-appconfiguration-co
 ## Key concepts
 ## Getting started
 
-### Prerequisites
-- [Environment checklist][environment_checklist]
+
 
 ### How to run
 
@@ -67,4 +66,4 @@ Please refer to this [README](https://github.com/Azure/azure-sdk-for-java/blob/a
 ## Contributing
 
 <!-- LINKS -->
-[environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+

@@ -22,8 +22,7 @@ This project is composed of a vue.js frontend and a simple backend with three en
 The sample is composed of two layers: vue.js client and Spring Boot RESTful Web Service. You need to make some changes 
 to get it working with your Azure AD tenant on both sides.
 
-### Prerequisites
-- [Environment checklist][environment_checklist]
+
 
 ### Register your application with your Azure Active Directory Tenant
 
@@ -122,4 +121,4 @@ mvn spring-boot:run
 ## Next steps
 ## Contributing
 <!-- LINKS -->
-[environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+

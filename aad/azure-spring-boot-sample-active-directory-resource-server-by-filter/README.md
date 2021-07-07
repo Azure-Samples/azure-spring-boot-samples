@@ -21,8 +21,7 @@ To run this sample, you'll need:
 - Configure groups in your Azure AD tenant with your users in that groups, see [how to create groups](https://docs.microsoft.com/azure/active-directory/fundamentals/active-directory-groups-create-azure-portal)
 - The sample retrieves user's group membership using Azure AD graph API which requires the registered app to have `Directory.Read.All` "Access the directory as the signed-in user" under `Delegated Permissions`. You need AAD admin privilege to be able to grant the permission in API ACCESS -> Required permission.
 
-### Prerequisites
-- [Environment checklist][environment_checklist]
+
 
 #### Note
 - If you are not the admin, you need consent from your admin for the the `Directory.Read.All` permission. For details see [Directory Permissions](https://docs.microsoft.com/graph/permissions-reference#directory-permissions)
@@ -149,5 +148,5 @@ redirectUriTemplate: xxxxxx-your-redirect-uri-xxxxxx
 
 <!-- LINKS -->
 
-[environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+
 [azure-china]: https://docs.microsoft.com/azure/china/china-welcome

@@ -22,8 +22,7 @@ These messages are published to an event hub. The sample will also consume messa
 Running this sample will be charged by Azure. You can check the usage
 and bill at [this link][azure-account].
 
-### Prerequisites
-- [Environment checklist][environment_checklist]
+
 
 ### Create Azure resources
 
@@ -156,6 +155,6 @@ processing.
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
 [deploy-to-app-service-via-ftp]: https://docs.microsoft.com/azure/app-service/deploy-ftp
 [managed-identities]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/
-[environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
 [application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/azure-spring-cloud-sample-eventhubs-multibinders/src/main/resources/application.yaml

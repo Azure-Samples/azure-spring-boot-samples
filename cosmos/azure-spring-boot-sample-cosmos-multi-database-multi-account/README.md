@@ -13,8 +13,7 @@ urlFragment: "azure-spring-boot-sample-cosmos-multi-database-multi-account"
 ## Key concepts
 ## Getting started
 
-### Prerequisites
-- [Environment checklist][environment_checklist]
+
 
 ### Configure Cosmos Database
 1. Log into <https://portal.azure.com>.
@@ -94,4 +93,4 @@ The corresponding data is added to the mysql database and cosmos database
 ## Contributing
 
 <!-- LINKS -->
-[environment_checklist]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+

@@ -23,6 +23,7 @@
     <module>aad/azure-spring-boot-sample-active-directory-resource-server-by-filter-stateless</module>
     <module>aad/azure-spring-boot-sample-active-directory-resource-server-obo</module>
     <module>aad/azure-spring-boot-sample-active-directory-webapp</module>
+    <module>aad/azure-spring-boot-sample-active-directory-webapp-resource-server</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-complete</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-initial</module>
     <module>appconfiguration/azure-appconfiguration-sample</module>

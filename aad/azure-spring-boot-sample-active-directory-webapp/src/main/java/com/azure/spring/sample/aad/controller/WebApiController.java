@@ -20,7 +20,7 @@ import static org.springframework.security.oauth2.client.web.reactive.function.c
 public class WebApiController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WebApiController.class);
-    private static final String WEB_API_A_URI = "http://localhost:8081/webapiA";
+    private static final String WEB_API_A_URI = "http://localhost:8081/webapiA/webapiB";
     private static final String WEB_API_B_URI = "http://localhost:8082/webapiB/clientCredential";
 
     @Autowired

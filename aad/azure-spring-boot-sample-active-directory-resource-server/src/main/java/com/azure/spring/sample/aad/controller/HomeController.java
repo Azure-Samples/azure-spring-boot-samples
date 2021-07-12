@@ -28,7 +28,7 @@ public class HomeController {
     }
 
     @GetMapping("/webapiB/clientCredential")
-    @PreAuthorize("hasAuthority('APPROLE_WebApiB.ClientCredential.ExampleScope)")
+    @PreAuthorize("hasAuthority('APPROLE_WebApiB.ClientCredential.ExampleScope')")
     @ResponseBody
     public String clientCredential() {
         return "Response from webApiB: clientCredential";

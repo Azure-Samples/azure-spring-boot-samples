@@ -11,12 +11,12 @@ urlFragment: "azure-spring-boot-sample-active-directory-webapp-and-resource-serv
 # OAuth 2.0 Sample for Azure AD Spring Boot Starter client library for Java
 
 ## Key concepts
-This sample illustrates how to use `azure-spring-boot-starter-active-directory` package to work with OAuth 2.0 and OpenID Connect protocols on Auzre. This sample illustrate how [Resource server access other resources usage] and [] work together. 
 
 [Web application and Resource server are in the same application] is a combined scenario of the *azure-spring-boot-sample-active-directory-webapp* and *azure-spring-boot-sample-active-directory-resource-server* sample. This sample illustrates multiple HttpSecurity instances to protect the Resource Server and Web Application in the same application.
+
 ## Getting started
 
-We assume that when used as a Resource Server, it is called `WebApiD`; when used as a Web Application, it is called `WebApp2`.
+We assume that when used as a Resource Server, it is called `WebApiC`; when used as a Web Application, it is called `WebApp2`.
 
 ### Configure web app
 
@@ -26,7 +26,7 @@ See [Configure web application] for more information about web app.
 
 See [Configure groups for sign in user] for more information about groups for sign in user.
 
-### Configure web app
+### Configure web api
 
 See [Configure your middle-tier Web API] or [Configure Web API] for more information about web api.
 

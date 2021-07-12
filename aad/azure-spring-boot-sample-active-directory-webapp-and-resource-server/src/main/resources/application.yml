@@ -11,7 +11,7 @@ azure:
       allowed-group-ids: <group1-id>,<group2-id>
     post-logout-redirect-uri: http://localhost:8080
     application-type: web_application_and_resource_server
-    app-id-uri: api://<Web-API-D-app-id-url>
+    app-id-uri: api://<Web-API-C-app-id-url>
     authorization-clients:
       arm: # Web Application uses arm client to access restricted resources.
         authorizationGrantType: authorization_code
@@ -22,11 +22,15 @@ azure:
         scopes:
           - https://graph.microsoft.com/User.Read
           - https://graph.microsoft.com/Directory.Read.All
-      webapiA:  # Resource server uses webapiA client to access restricted resources.
-        authorizationGrantType: on_behalf_of
+      webapiA:  # Web Application uses webapiA client to access restricted resources.
+        authorizationGrantType: authorization_code
         scopes:
-          - <Web-API-A-app-id-url>/Obo.WebApiA.ExampleScope
-      webapiB:  # Both Web Application or Resource Server can use webapiB client to access restricted resources.
+          - api://<Web-API-A-app-id-url>/Obo.WebApiA.ExampleScope
+      webapiBWithObo: # Resource server uses webapiBObo client to access restricted resources.
+        authorization-grant-type: on_behalf_of
+        scopes:
+          - api:/<Web-API-B-app-id-url>/WebApiB.ExampleScope
+      webapiBWithClientCredentials:  # Both Web Application or Resource Server can use webapiBWithClientCredentials client to access restricted resources.
         authorization-grant-type: client_credentials
         scopes:
           - api://<Web-API-B-app-id-url>/.default

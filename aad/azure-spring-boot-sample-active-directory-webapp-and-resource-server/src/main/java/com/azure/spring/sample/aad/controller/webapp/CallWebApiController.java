@@ -42,12 +42,12 @@ public class CallWebApiController {
     /**
      * Check whether webapiB/clientCredential is accessible.
      *
-     * @param client authorized client for webapiB
-     * @return Response webapiA data.
+     * @param client authorized client for webapiBWithClientCredentials
+     * @return Response webapiBWithClientCredentials data.
      */
     @GetMapping("/webapp/webapiB/clientCredential")
     @ResponseBody
-    public String webapiB(@RegisteredOAuth2AuthorizedClient("webapiB") OAuth2AuthorizedClient client) {
+    public String webapiB(@RegisteredOAuth2AuthorizedClient("webapiBWithClientCredentials") OAuth2AuthorizedClient client) {
         return canVisitUri(client, WEB_API_B_URI);
     }
 

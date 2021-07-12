@@ -26,7 +26,8 @@ public class WebApiController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WebApiController.class);
 
-    private static final String WEB_API_B_URI = "http://localhost:8082/webapiB/clientCredential";
+    private static final String WEB_API_B_URI = "http://localhost:8082/webapiB";
+    private static final String WEB_API_B_CLIENT_CREDENTIAL_URI = "http://localhost:8082/webapiB/clientCredential";
 
     @Autowired
     private WebClient webClient;
@@ -36,23 +37,36 @@ public class WebApiController {
         return "hello";
     }
 
-    @GetMapping("/webapiD")
-    @PreAuthorize("hasAuthority('SCOPE_WebApiD.WebApp.SampleScope')")
+    @GetMapping("/webapiC")
+    @PreAuthorize("hasAuthority('SCOPE_WebApiC.SampleScope')")
     public String webapiD() {
-        return "test";
+        return "webapiC";
     }
 
     /**
      * Call custom resources, combine all the response and return.
      *
      * @param webapiBClient authorized client for Custom
-     * @return Response Graph and Custom data.
+     * @return Response webapiBWithObo data.
      */
-    @PreAuthorize("hasAuthority('SCOPE_Obo.WebApiD.WebApp.SampleScope')")
-    @GetMapping("/webapiD/webapiB")
+    @PreAuthorize("hasAuthority('SCOPE_Obo.WebApiC.SampleScope')")
+    @GetMapping("/webapiC/webapiB")
     public String callWebapiB(
-        @RegisteredOAuth2AuthorizedClient("webapiB") OAuth2AuthorizedClient webapiBClient) {
+        @RegisteredOAuth2AuthorizedClient("webapiBWithObo") OAuth2AuthorizedClient webapiBClient) {
         return canVisitUri(webapiBClient, WEB_API_B_URI);
+    }
+
+    /**
+     * Call custom resources, combine all the response and return.
+     *
+     * @param webapiBClient authorized client for Custom
+     * @return Response webapiBWithClientCredentials data.
+     */
+    @PreAuthorize("hasAuthority('APPROLE_ClientCredentials.WebApiC.SampleScope')")
+    @GetMapping("/webapiC/webapiB/clientCredential")
+    public String callWebapiBWithClientCredentials(
+        @RegisteredOAuth2AuthorizedClient("webapiBWithClientCredentials") OAuth2AuthorizedClient webapiBClient) {
+        return canVisitUri(webapiBClient, WEB_API_B_CLIENT_CREDENTIAL_URI);
     }
 
     /**

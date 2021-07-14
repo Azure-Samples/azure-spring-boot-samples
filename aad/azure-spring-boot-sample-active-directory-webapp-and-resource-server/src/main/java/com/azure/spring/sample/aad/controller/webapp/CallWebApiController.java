@@ -21,8 +21,8 @@ import static org.springframework.security.oauth2.client.web.reactive.function.c
 public class CallWebApiController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WebApiController.class);
-    private static final String WEB_API_A_URI = "http://localhost:8081/webapiA";
-    private static final String WEB_API_B_URI = "http://localhost:8082/webapiB/clientCredential";
+    private static final String WEB_API_A_WEB_API_B_URI = "http://localhost:8081/webapiA/webapiB";
+    private static final String WEB_API_B_CLIENT_CREDENTIAL_URI = "http://localhost:8082/webapiB/clientCredential";
 
     @Autowired
     private WebClient webClient;
@@ -36,7 +36,7 @@ public class CallWebApiController {
     @GetMapping("/webapp/webapiA/webapiB")
     @ResponseBody
     public String webapiA(@RegisteredOAuth2AuthorizedClient("webapiA") OAuth2AuthorizedClient client) {
-        return canVisitUri(client, WEB_API_A_URI);
+        return canVisitUri(client, WEB_API_A_WEB_API_B_URI);
     }
 
     /**
@@ -48,7 +48,7 @@ public class CallWebApiController {
     @GetMapping("/webapp/webapiB/clientCredential")
     @ResponseBody
     public String webapiB(@RegisteredOAuth2AuthorizedClient("webapiBWithClientCredentials") OAuth2AuthorizedClient client) {
-        return canVisitUri(client, WEB_API_B_URI);
+        return canVisitUri(client, WEB_API_B_CLIENT_CREDENTIAL_URI);
     }
 
     /**

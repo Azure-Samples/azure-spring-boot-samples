@@ -12,11 +12,11 @@ urlFragment: "azure-spring-boot-sample-active-directory-webapp-and-resource-serv
 
 ## Key concepts
 
-[Web application and Resource server are in the same application] is a combined scenario of the *azure-spring-boot-sample-active-directory-webapp* and *azure-spring-boot-sample-active-directory-resource-server* sample. This sample illustrates multiple HttpSecurity instances to protect the Resource Server and Web Application in the same application.
+This scenario supports `Web application` and `Resource server` in the same application. This sample illustrates multiple HttpSecurity instances to protect the `Resource server` and `Web application` in the same application.
 
 ## Getting started
 
-We assume that when used as a Resource Server, it is called `WebApiC`; when used as a Web Application, it is called `WebApp2`.
+We assume that when used as a Resource server, it is called `WebApiC`; when used as a Web application, it is called `WebApp2`.
 
 ### Configure web app
 
@@ -47,7 +47,7 @@ See [Check the authentication and authorization of Web Application] or [Check th
 ## Contributing
 
 <!-- LINKS -->
-[Web application and Resource server are in the same application]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-starter-active-directory#web-application-and-resource-server-are-in-the-same-application
+[Web application and Resource server in the same application]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-starter-active-directory#web-application-and-resource-server-in-the-same-application
 [Configure web application]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-sample-active-directory-webapp#configure-web-app
 [Configure groups for sign in user]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-sample-active-directory-webapp#configure-groups-for-sign-in-user
 [Configure your middle-tier Web API]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-sample-active-directory-resource-server-obo#configure-your-middle-tier-web-api-a

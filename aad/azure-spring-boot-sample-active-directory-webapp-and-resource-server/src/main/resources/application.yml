@@ -22,15 +22,15 @@ azure:
         scopes:
           - https://graph.microsoft.com/User.Read
           - https://graph.microsoft.com/Directory.Read.All
-      webapiA:  # Web Application uses webapiA client to access restricted resources.
-        authorizationGrantType: authorization_code
-        scopes:
-          - api://<Web-API-A-app-id-url>/Obo.WebApiA.ExampleScope
-      webapiBWithObo: # Resource server uses webapiBObo client to access restricted resources.
-        authorization-grant-type: on_behalf_of
-        scopes:
-          - api:/<Web-API-B-app-id-url>/WebApiB.ExampleScope
-      webapiBWithClientCredentials:  # Both Web Application or Resource Server can use webapiBWithClientCredentials client to access restricted resources.
-        authorization-grant-type: client_credentials
-        scopes:
-          - api://<Web-API-B-app-id-url>/.default
+#      webapiA:  # Web Application uses webapiA client to access restricted resources.
+#        authorizationGrantType: authorization_code
+#        scopes:
+#          - api://<Web-API-A-app-id-url>/Obo.WebApiA.ExampleScope
+#      webapiBWithObo: # Resource server uses webapiBObo client to access restricted resources.
+#        authorization-grant-type: on_behalf_of
+#        scopes:
+#          - api:/<Web-API-B-app-id-url>/WebApiB.ExampleScope
+#      webapiBWithClientCredentials:  # Both Web Application or Resource Server can use webapiBWithClientCredentials client to access restricted resources.
+#        authorization-grant-type: client_credentials
+#        scopes:
+#          - api://<Web-API-B-app-id-url>/.default

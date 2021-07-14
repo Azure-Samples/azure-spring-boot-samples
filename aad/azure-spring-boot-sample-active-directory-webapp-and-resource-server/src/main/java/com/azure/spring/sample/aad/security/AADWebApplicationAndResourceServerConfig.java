@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class AADOAuth2SecurityConfig {
+public class AADWebApplicationAndResourceServerConfig {
 
     @Order(1)
     @Configuration

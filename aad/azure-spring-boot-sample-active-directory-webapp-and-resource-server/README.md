@@ -12,7 +12,7 @@ urlFragment: "azure-spring-boot-sample-active-directory-webapp-and-resource-serv
 
 ## Key concepts
 
-This scenario supports `Web application` and `Resource server` in the same application. This sample illustrates multiple HttpSecurity instances to protect the `Resource server` and `Web application` in the same application.
+This scenario supports `Web application` and `Resource server` in one application.
 
 ## Getting started
 
@@ -47,7 +47,7 @@ See [Check the authentication and authorization of Web Application] or [Check th
 ## Contributing
 
 <!-- LINKS -->
-[Web application and Resource server in the same application]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-starter-active-directory#web-application-and-resource-server-in-the-same-application
+[Web application and Resource server in one application]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-starter-active-directory#web-application-and-resource-server-in-one-application
 [Configure web application]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-sample-active-directory-webapp#configure-web-app
 [Configure groups for sign in user]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-sample-active-directory-webapp#configure-groups-for-sign-in-user
 [Configure your middle-tier Web API]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-sample-active-directory-resource-server-obo#configure-your-middle-tier-web-api-a

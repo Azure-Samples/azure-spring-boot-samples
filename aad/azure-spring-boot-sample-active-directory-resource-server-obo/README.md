@@ -60,7 +60,7 @@ azure:
         scopes:
           - https://graph.microsoft.com/User.Read
       webapiB:         # When authorization-grant-type is null, on behalf of flow is used by default
-        authorization-grant-type: on-behalf-of
+        authorization-grant-type: on_behalf_of
         scopes:
           - <Web-API-B-app-id-url>/WebApiB.ExampleScope
       webapiC:

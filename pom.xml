@@ -52,14 +52,9 @@
     <module>servicebus/azure-spring-cloud-sample-servicebus-queue-multibinders</module>
     <module>servicebus/azure-spring-cloud-sample-servicebus-topic-binder</module>
     <module>servicebus/azure-spring-integration-sample-servicebus</module>
-
-
-
-
-
-
-
-
+    <module>storage/azure-spring-boot-sample-storage-resource</module>
+    <module>storage/azure-spring-cloud-sample-storage-queue-operation</module>
+    <module>storage/azure-spring-integration-sample-storage-queue</module>
   </modules>
 
 </project>

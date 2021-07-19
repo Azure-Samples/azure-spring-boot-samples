@@ -56,7 +56,7 @@ azure.storage:
 # Resource location, used in this sample
 resource:
   blob: [azure-blob://[your-containerName]/[your-blobName]]  # [Optional] Required if you want to run BlobController
-  file: [azure-file://[fileshareName]/[fileName]]            # [Optional] Required if you want to run FileController
+  file: [azure-file://[your-fileshareName]/[your-fileName]]  # [Optional] Required if you want to run FileController
 
 ....
 

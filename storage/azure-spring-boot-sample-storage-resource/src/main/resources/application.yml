@@ -1,0 +1,21 @@
+# Storage account name length should be between 3 and 24 and use numbers and lower-case letters only
+# Configuration
+azure.storage:
+  account-name: [storage-account-name]
+  account-key: [storage-account-access-key]
+  # Fill storage Blob service endpoint URL copied from portal
+  blob-endpoint: [storage-blob-service-endpoint-URL]
+  # Fill storage File service endpoint URL copied from portal
+  file-endpoint: [storage-file-service-endpoint-URL]
+
+# Resource location, used in this sample
+resource:
+  # azure-blob://[your-containerName]/[your-blobName]
+  # eg: azure-blob://container01/blob01
+  blob: [your blob location]
+  #  azure-file://[fileshareName]/[fileName]
+  # eg: azure-file://fileshare01/file01
+  file: [your file location]
+
+
+

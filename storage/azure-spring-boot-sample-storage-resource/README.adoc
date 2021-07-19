@@ -16,9 +16,6 @@ You can check the usage and bill at {microsoft-account}[this link].
 
 == Getting started
 
-=== Environment checklist
-We need to ensure that this {ready-to-run-checklist}[environment checklist] is completed before the run.
-
 === Coordinates
 Maven coordinates:
 
@@ -43,19 +40,23 @@ dependencies {
 
 1. Create {azure-storage}[Azure Storage]
 
-2. Update {application-properties}[application.properties]
+2. Update {application.yml}[application.yml]
 
 +
 ....
 
 # Storage account name length should be between 3 and 24 and use numbers and lower-case letters only
-azure.storage.account-name=[storage-account-name]
+# Configuration
+azure.storage:
+  account-name: [storage-account-name]
+  account-key: [storage-account-access-key]
+  blob-endpoint: [Fill storage Blob service endpoint URL copied from portal] # [Optional] Required if you want to run BlobController
+  file-endpoint: [Fill storage File service endpoint URL copied from portal] # [Optional] Required if you want to run FileController
 
-# Fill storage account access key copied from portal
-azure.storage.account-key=[storage-account-access-key]
-
-# Fill storage blob endpoint URL copied from portal
-azure.storage.blob-endpoint=[storage-endpoint-URL]
+# Resource location, used in this sample
+resource:
+  blob: [azure-blob://[your-containerName]/[your-blobName]]  # [Optional] Required if you want to run BlobController
+  file: [azure-file://[fileshareName]/[fileName]]            # [Optional] Required if you want to run FileController
 
 ....
 

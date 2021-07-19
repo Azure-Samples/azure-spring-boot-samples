@@ -3,17 +3,13 @@
 azure.storage:
   account-name: [storage-account-name]
   account-key: [storage-account-access-key]
-  # [Optional] Required if you want to run BlobController
-  blob-endpoint: [Fill storage Blob service endpoint URL copied from portal]
-  # [Optional] Required if you want to run FileController
-  file-endpoint: [Fill storage File service endpoint URL copied from portal]
+  blob-endpoint: [Fill storage Blob service endpoint URL copied from portal] # [Optional] Required if you want to run BlobController
+  file-endpoint: [Fill storage File service endpoint URL copied from portal] # [Optional] Required if you want to run FileController
 
 # Resource location, used in this sample
 resource:
-  # [Optional] Required if you want to run BlobController
-  blob: [azure-blob://[your-containerName]/[your-blobName]]
-  # [Optional] Required if you want to run FileController
-  file: [azure-file://[fileshareName]/[fileName]]
+  blob: [azure-blob://[your-containerName]/[your-blobName]]  # [Optional] Required if you want to run BlobController
+  file: [azure-file://[fileshareName]/[fileName]]            # [Optional] Required if you want to run FileController
 
 
 

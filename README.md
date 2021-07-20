@@ -68,7 +68,7 @@ In this scenario:
 ### Cache
 - [azure-spring-cloud-sample-cache](/cache/azure-spring-cloud-sample-cache) 
 
-### Cache
+### Cloudfoundry
 - [azure-cloud-foundry-service-sample](/cloudfoundry/azure-cloud-foundry-service-sample) 
   
 ### Cosmos

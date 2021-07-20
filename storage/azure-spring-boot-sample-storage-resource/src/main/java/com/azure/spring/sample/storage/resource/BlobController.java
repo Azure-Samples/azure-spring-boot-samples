@@ -3,7 +3,10 @@
 
 package com.azure.spring.sample.storage.resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.WritableResource;
 import org.springframework.util.StreamUtils;
@@ -18,23 +21,30 @@ import java.nio.charset.Charset;
  */
 @RestController
 @RequestMapping("blob")
+@ConditionalOnProperty("azure.storage.blob-endpoint")
 public class BlobController {
 
-    @Value("${blob}")
-    private Resource blobFile;
+    final static Logger logger = LoggerFactory.getLogger(BlobController.class);
+
+    public BlobController() {
+        logger.info("azure.storage.blob-endpoint configured");
+    }
+
+    @Value("${resource.blob}")
+    private Resource azureBlobResource;
 
     @GetMapping
-    public String readBlobFile() throws IOException {
+    public String readBlobResource() throws IOException {
         return StreamUtils.copyToString(
-            this.blobFile.getInputStream(),
+            this.azureBlobResource.getInputStream(),
             Charset.defaultCharset());
     }
 
     @PostMapping
-    public String writeBlobFile(@RequestBody String data) throws IOException {
-        try (OutputStream os = ((WritableResource) this.blobFile).getOutputStream()) {
+    public String writeBlobResource(@RequestBody String data) throws IOException {
+        try (OutputStream os = ((WritableResource) this.azureBlobResource).getOutputStream()) {
             os.write(data.getBytes());
         }
-        return "file was updated";
+        return "blob was updated";
     }
 }

@@ -1,50 +1,13 @@
 
+## Current Branch Supported versions
+- [spring-boot-dependencies:2.5.2](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-dependencies/2.5.2/spring-boot-dependencies-2.5.2.pom).
+- [spring-cloud-dependencies:2020.0.3](https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud-dependencies/2020.0.3/spring-cloud-dependencies-2020.0.3.pom).
 
+## All active branches
 
-## How to develop codes to this repo.
-
-### 01. Develop sample with released libraries
-
-In this scenario,  the samples' dependency has been released to maven central.
-
-1. Make your changes in a new git fork.
-1. Checkout a new  feature/bugfix branch from `main`.
-2. Develop in feature/bugfix branch.
-3. Make pull request to merge the branch into main.(able to merge)
-
-### 02. Develop sample with unreleased libraries
-
-In this scenario, the samples may depend on beta version library, which is not released to maven central.
-
-1. Make your changes in a new git fork.
-1. Checkout a new  feature/bugfix branch from `main`.
-
-2. Develop in feature/bugfix branch.
-
-3. Before the dependent library is released to maven central.
-
-   - Test sample in local machine.
-
-4. After the dependent library is released to maven central.
-
-   - Make pull request to merge the branch into `main`.
-
-     > There are github actions to check some status here,
-     >
-     > if the dependent library is not released to maven central, the pull request will be blocked to merge.
-
-### 03. Develop sample with specific versions of libraries
-
-For some reason, we may need to provide sample with not the latest library but specific version of libraries. 
-
-In this scenario:
-1. Make your changes in a new git fork.
-1. Checkout a new feature/bugfix branch from `main`.
-2. Specify the version of libraries.
-3. Develop in feature/bugfix branch.
-3. Make pull request to merge the branch into new **feature** branch.
-
-
+| spring boot version | spring cloud version | azure spring boot version | 
+| ---                 | ---                  | ---                       | 
+| 2.5.2               | 2020.0.3             | 3.6.x                     | 
 
 ## All samples in this repo
 ### AAD
@@ -59,17 +22,24 @@ In this scenario:
     - [azure-spring-boot-sample-active-directory-webapp](/aad/azure-spring-boot-sample-active-directory-webapp) 
 
 ### Appconfiguration
-- [azure-appconfiguration-conversion-sample-complete](/appconfiguration/azure-appconfiguration-conversion-sample-complete) 
-- [azure-appconfiguration-conversion-sample-initial](/appconfiguration/azure-appconfiguration-conversion-sample-initial) 
-- [azure-appconfiguration-sample](/appconfiguration/azure-appconfiguration-sample) 
-- [feature-management-sample](/appconfiguration/feature-management-sample) 
-- [feature-management-web-sample](/appconfiguration/feature-management-web-sample) 
-  
+- com.microsoft.azure:spring-cloud-starter-azure-appconfiguration-config:1.3.0
+    - [azure-appconfiguration-conversion-sample-complete](/appconfiguration/azure-appconfiguration-conversion-sample-complete)
+- com.microsoft.azure:spring-cloud-azure-appconfiguration-config:1.3.0
+    - [azure-appconfiguration-sample](/appconfiguration/azure-appconfiguration-sample) 
+- com.microsoft.azure:spring-cloud-azure-feature-management:1.3.0
+    - [feature-management-sample](/appconfiguration/feature-management-sample) 
+    - [feature-management-web-sample](/appconfiguration/feature-management-web-sample)
+- com.azure.spring:azure-spring-boot-starter-cosmos:3.6.0
+    - [azure-appconfiguration-conversion-sample-initial](/appconfiguration/azure-appconfiguration-conversion-sample-initial)
+
 ### Cache
-- [azure-spring-cloud-sample-cache](/cache/azure-spring-cloud-sample-cache) 
+- com.azure.spring:azure-spring-cloud-starter-cache:2.6.0
+    - [azure-spring-cloud-sample-cache](/cache/azure-spring-cloud-sample-cache) 
 
 ### Cloudfoundry
-- [azure-cloud-foundry-service-sample](/cloudfoundry/azure-cloud-foundry-service-sample) 
+- com.azure.spring:azure-spring-boot-starter-cosmos:3.6.0
+- com.azure.spring:azure-spring-boot-starter-servicebus-jms:3.6.0
+    - [azure-cloud-foundry-service-sample](/cloudfoundry/azure-cloud-foundry-service-sample) 
   
 ### Cosmos
 - com.azure.spring:azure-spring-boot-starter-cosmos:3.6.0
@@ -122,14 +92,4 @@ In this scenario:
     - [azure-spring-integration-sample-storage-queue](/storage/azure-spring-integration-sample-storage-queue) 
 
 
-## Github actions of this repo
-
-There are several github actions in this repo to do some basic checks with pull requests or branches.
-
-| Action Name                                                  | Note                         |
-| ------------------------------------------------------------ | ---------------------------- |
-| [codeql-analysis](https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/.github/workflows/codeql-analysis.yml) | Code analysis                |
-| [check-style](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/.github/workflows) | Java check style             |
-| [check-markdown-links](https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/.github/workflows/check-markdown-links.yml) | Check broken markdown links. |
-| [azure-spring-boot-samples-action](https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/.github/workflows/azure-spring-boot-samples-action.yml) | Maven build check.           |
-
+[main]: https://github.com/Azure-Samples/azure-spring-boot-samples

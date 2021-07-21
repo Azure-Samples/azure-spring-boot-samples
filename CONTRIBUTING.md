@@ -1,76 +1,56 @@
-# Contributing to azure-spring-boot-samples
+## Github actions of this repo
 
-This project welcomes contributions and suggestions.  Most contributions require you to agree to a
-Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us
-the rights to use your contribution. For details, visit https://cla.opensource.microsoft.com.
+There are several github actions in this repo to do some basic checks with pull requests or branches.
 
-When you submit a pull request, a CLA bot will automatically determine whether you need to provide
-a CLA and decorate the PR appropriately (e.g., status check, comment). Simply follow the instructions
-provided by the bot. You will only need to do this once across all repos using our CLA.
+| Action Name                                                  | Note                         |
+| ------------------------------------------------------------ | ---------------------------- |
+| [codeql-analysis](https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/.github/workflows/codeql-analysis.yml) | Code analysis                |
+| [check-style](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/.github/workflows) | Java check style             |
+| [check-markdown-links](https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/.github/workflows/check-markdown-links.yml) | Check broken markdown links. |
+| [azure-spring-boot-samples-action](https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/.github/workflows/azure-spring-boot-samples-action.yml) | Maven build check.           |
 
-This project has adopted the [Microsoft Open Source Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
-For more information see the [Code of Conduct FAQ](https://opensource.microsoft.com/codeofconduct/faq/) or
-contact [opencode@microsoft.com](mailto:opencode@microsoft.com) with any additional questions or comments.
 
-- [Code of Conduct](#coc)
-- [Issues and Bugs](#issue)
-- [Feature Requests](#feature)
-- [Submission Guidelines](#submit)
+## How to develop codes to this repo.
 
-## <a name="coc"></a> Code of Conduct
-Help us keep this project open and inclusive. Please read and follow our [Code of Conduct](https://opensource.microsoft.com/codeofconduct/).
 
-## <a name="issue"></a> Found an Issue?
-If you find a bug in the source code or a mistake in the documentation, you can help us by
-[submitting an issue](#submit-issue) to the GitHub Repository. Even better, you can
-[submit a Pull Request](#submit-pr) with a fix.
+### 01. Develop sample with the latest released libraries
 
-## <a name="feature"></a> Want a Feature?
-You can *request* a new feature by [submitting an issue](#submit-issue) to the GitHub
-Repository. If you would like to *implement* a new feature, please submit an issue with
-a proposal for your work first, to be sure that we can use it.
+In this scenario,  the samples' dependency has been released to maven central.
 
-* **Small Features** can be crafted and directly [submitted as a Pull Request](#submit-pr).
+1. Make your changes in a new git fork.
+1. Checkout a new  feature/bugfix branch from `main`.
+2. Develop in feature/bugfix branch.
+3. Make pull request to merge the branch into main.(able to merge)
 
-## <a name="submit"></a> Submission Guidelines
 
-### <a name="submit-issue"></a> Submitting an Issue
-Before you submit an issue, search the archive, maybe your question was already answered.
+### 02. Develop sample with released versions of libraries(not the latest version)
 
-If your issue appears to be a bug, and hasn't been reported, open a new issue.
-Help us to maximize the effort we can spend fixing issues and adding new
-features, by not reporting duplicate issues.  Providing the following information will increase the
-chances of your issue being dealt with quickly:
+For some reason, we may need to provide sample with not the latest library but specific version of libraries.
 
-* **Overview of the Issue** - if an error is being thrown a non-minified stack trace helps
-* **Version** - what version is affected (e.g. 0.1.2)
-* **Motivation for or Use Case** - explain what are you trying to do and why the current behavior is a bug for you
-* **Browsers and Operating System** - is this a problem with all browsers?
-* **Reproduce the Error** - provide a live example or a unambiguous set of steps
-* **Related Issues** - has a similar issue been reported before?
-* **Suggest a Fix** - if you can't fix the bug yourself, perhaps you can point to what might be
-  causing the problem (line of code or commit)
+In this scenario:
+1. Make your changes in a new git fork.
+1. Checkout a new feature/bugfix branch.
+2. Specify the version of libraries.
+3. Develop in feature/bugfix branch.
+3. Make pull request to merge the branch into new **feature** branch.
 
-You can file new issues by providing the above information at the corresponding repository's issues link: https://github.com/[organization-name]/[repository-name]/issues/new].
+### 03. Develop sample with unreleased libraries
 
-### <a name="submit-pr"></a> Submitting a Pull Request (PR)
-Before you submit your Pull Request (PR) consider the following guidelines:
+In this scenario, the samples may depend on beta version library, which is not released to maven central.
 
-* Search the repository (https://github.com/Azure-Samples/azure-spring-boot-samples/pulls) for an open or closed PR
-  that relates to your submission. You don't want to duplicate effort.
+1. Make your changes in a new git fork.
+1. Checkout a new  feature/bugfix branch from `main`.
 
-* Make your changes in a new git fork:
+2. Develop in feature/bugfix branch.
 
-* Commit your changes using a descriptive commit message
-* Push your fork to GitHub:
-* In GitHub, create a pull request
-* If we suggest changes then:
-    * Make the required updates.
-    * Rebase your fork and force push to your GitHub repository (this will update your Pull Request):
+3. Before the dependent library is released to maven central.
 
-      ```shell
-      git rebase master -i
-      git push -f
-      ```
+    - Test sample in local machine.
 
-That's it! Thank you for your contribution!
+4. After the dependent library is released to maven central.
+
+    - Make pull request to merge the branch into `main`.
+
+      > There are github actions to check some status here,
+      >
+      > if the dependent library is not released to maven central, the pull request will be blocked to merge.

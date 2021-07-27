@@ -39,7 +39,7 @@ public class WebApiController {
 
     @GetMapping("/webapiC")
     @PreAuthorize("hasAuthority('SCOPE_WebApiC.SampleScope')")
-    public String webapiD() {
+    public String webapiC() {
         return "webapiC";
     }
 

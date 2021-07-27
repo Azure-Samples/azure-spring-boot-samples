@@ -1,8 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-package com.azure.spring.sample.aad.controller;
+package com.azure.spring.sample.aad.controller.webapp;
 
+import com.azure.spring.sample.aad.controller.webapi.WebApiController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,11 +18,11 @@ import org.springframework.web.reactive.function.client.WebClient;
 import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
 
 @Controller
-public class WebApiController {
+public class CallWebApiController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(WebApiController.class);
-    private static final String WEB_API_A_URI = "http://localhost:8081/webapiA/webapiB";
-    private static final String WEB_API_B_URI = "http://localhost:8082/webapiB/clientCredential";
+    private static final String WEB_API_A_WEB_API_B_URI = "http://localhost:8081/webapiA/webapiB";
+    private static final String WEB_API_B_CLIENT_CREDENTIAL_URI = "http://localhost:8082/webapiB/clientCredential";
 
     @Autowired
     private WebClient webClient;
@@ -35,19 +36,19 @@ public class WebApiController {
     @GetMapping("/webapp/webapiA/webapiB")
     @ResponseBody
     public String webapiA(@RegisteredOAuth2AuthorizedClient("webapiA") OAuth2AuthorizedClient client) {
-        return canVisitUri(client, WEB_API_A_URI);
+        return canVisitUri(client, WEB_API_A_WEB_API_B_URI);
     }
 
     /**
      * Check whether webapiB/clientCredential is accessible.
      *
-     * @param client authorized client for webapiB
-     * @return Response webapiA data.
+     * @param client authorized client for webapiBWithClientCredentials
+     * @return Response webapiBWithClientCredentials data.
      */
     @GetMapping("/webapp/webapiB/clientCredential")
     @ResponseBody
-    public String webapiB(@RegisteredOAuth2AuthorizedClient("webapiB") OAuth2AuthorizedClient client) {
-        return canVisitUri(client, WEB_API_B_URI);
+    public String webapiB(@RegisteredOAuth2AuthorizedClient("webapiBWithClientCredentials") OAuth2AuthorizedClient client) {
+        return canVisitUri(client, WEB_API_B_CLIENT_CREDENTIAL_URI);
     }
 
     /**

@@ -40,9 +40,9 @@
     <module>eventhubs/azure-spring-cloud-sample-eventhubs-operation</module>
     <module>eventhubs/azure-spring-cloud-sample-messaging-eventhubs</module>
     <module>eventhubs/azure-spring-integration-sample-eventhubs</module>
-    <module>keyvault/azure-spring-boot-sample-keyvault-certificates-client-side</module>
-    <module>keyvault/azure-spring-boot-sample-keyvault-certificates-server-side</module>
-    <module>keyvault/azure-spring-boot-sample-keyvault-secrets</module>
+    <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side</module>
+    <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side</module>
+    <module>keyvault/azure-spring-boot-starter-keyvault-secrets/keyvault-secrets</module>
     <module>mediaservices/azure-spring-boot-sample-mediaservices</module>
     <module>servicebus/azure-messaging-servicebus/servicebus</module>
     <module>servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-queue</module>

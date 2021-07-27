@@ -31,9 +31,9 @@
     <module>appconfiguration/feature-management-web-sample</module>
     <module>cache/azure-spring-cloud-sample-cache</module>
     <module>cloudfoundry/azure-cloud-foundry-service-sample</module>
-    <module>cosmos/azure-spring-boot-sample-cosmos</module>
-    <module>cosmos/azure-spring-boot-sample-cosmos-multi-database-multi-account</module>
-    <module>cosmos/azure-spring-boot-sample-cosmos-multi-database-single-account</module>
+    <module>cosmos/azure-spring-boot-starter-cosmos/cosmos</module>
+    <module>cosmos/azure-spring-boot-starter-cosmos/cosmos-multi-database-multi-account</module>
+    <module>cosmos/azure-spring-boot-starter-cosmos/cosmos-multi-database-single-account</module>
     <module>eventhubs/azure-spring-cloud-sample-eventhubs-binder</module>
     <module>eventhubs/azure-spring-cloud-sample-eventhubs-kafka</module>
     <module>eventhubs/azure-spring-cloud-sample-eventhubs-multibinders</module>

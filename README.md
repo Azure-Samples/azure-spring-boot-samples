@@ -10,7 +10,28 @@
 | 2.5.2               | 2020.0.3             | 3.6.x                     | 
 
 ## All samples in this repo
+
+| Azure Service    | Module                                                       | Dependency                                     |
+| ---------------- | ------------------------------------------------------------ | ---------------------------------------------- |
+| AAD              | [resource-server](aad/azure-spring-boot-starter-active-directory/resource-server) | azure-spring-boot-starter-active-directory     |
+| AAD              | [resource-server-by-filter](aad/azure-spring-boot-starter-active-directory/resource-server-by-filter) | azure-spring-boot-starter-active-directory     |
+| AAD              | [resource-server-by-filter-stateless](aad/azure-spring-boot-starter-active-directory/resource-server-by-filter-stateless) | azure-spring-boot-starter-active-directory     |
+| AAD              | [resource-server-obo](aad/azure-spring-boot-starter-active-directory/resource-server-obo) | azure-spring-boot-starter-active-directory     |
+| AAD              | [webapp](aad/azure-spring-boot-starter-active-directory/webapp) | azure-spring-boot-starter-active-directory     |
+| AAD              | [webapp-resource-server](aad/azure-spring-boot-starter-active-directory/webapp-resource-server) | azure-spring-boot-starter-active-directory     |
+| AAD              | [b2c-oidc](aad/azure-spring-boot-starter-active-directory-b2c/b2c-oidc) | azure-spring-boot-starter-active-directory-b2c |
+| AAD              | [b2c-resource-server](aad/azure-spring-boot-starter-active-directory-b2c/b2c-resource-server) | azure-spring-boot-starter-active-directory-b2c |
+| appconfiguration | [azure-appconfiguration-conversion-sample-complete](appconfiguration/azure-appconfiguration-conversion-sample-complete) |                                                |
+| appconfiguration | [azure-appconfiguration-conversion-sample-initial](appconfiguration/azure-appconfiguration-conversion-sample-initial) |                                                |
+| appconfiguration | [azure-appconfiguration-sample](appconfiguration/azure-appconfiguration-sample) |                                                |
+| appconfiguration | [feature-management-sample](appconfiguration/feature-management-sample) |                                                |
+| appconfiguration | [feature-management-web-sample](appconfiguration/feature-management-web-sample) |                                                |
+|                  |                                                              |                                                |
+
+
+
 ### AAD
+
 - com.azure.spring:azure-spring-boot-starter-active-directory-b2c:3.6.0
     - [azure-spring-boot-sample-active-directory-b2c-oidc](/aad/azure-spring-boot-sample-active-directory-b2c-oidc) 
     - [azure-spring-boot-sample-active-directory-b2c-resource-server](/aad/azure-spring-boot-sample-active-directory-b2c-resource-server) 
@@ -40,7 +61,7 @@
 - com.azure.spring:azure-spring-boot-starter-cosmos:3.6.0
 - com.azure.spring:azure-spring-boot-starter-servicebus-jms:3.6.0
     - [azure-cloud-foundry-service-sample](/cloudfoundry/azure-cloud-foundry-service-sample) 
-  
+
 ### Cosmos
 - com.azure.spring:azure-spring-boot-starter-cosmos:3.6.0
     - [azure-spring-boot-sample-cosmos](/cosmos/azure-spring-boot-sample-cosmos) 
@@ -68,7 +89,7 @@
 ### Mediaservices
 - com.microsoft.azure:azure-media:0.9.8
     - [azure-spring-boot-sample-mediaservices](/mediaservices/azure-spring-boot-sample-mediaservices) 
-  
+
 ### Servicebus
 - com.azure:azure-messaging-servicebus:7.2.3
     - [azure-spring-boot-sample-servicebus](/servicebus/azure-spring-boot-sample-servicebus)    

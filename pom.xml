@@ -20,10 +20,10 @@
     <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter</module>
     <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter-stateless</module>
     <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo</module>
-    <module>aad/azure-spring-boot-starter-active-directory/web-application</module>
-    <module>aad/azure-spring-boot-starter-active-directory/web-application-and-resource-server</module>
-    <module>aad/azure-spring-boot-starter-active-directory-b2c/b2c-oidc</module>
-    <module>aad/azure-spring-boot-starter-active-directory-b2c/b2c-resource-server</module>
+    <module>aad/azure-spring-boot-starter-active-directory/aad-web-application</module>
+    <module>aad/azure-spring-boot-starter-active-directory/aad-web-application-and-resource-server</module>
+    <module>aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-oidc</module>
+    <module>aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-resource-server</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-complete</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-initial</module>
     <module>appconfiguration/azure-appconfiguration-sample</module>

@@ -17,10 +17,10 @@
 | AAD              | [aad-resource-server-by-filter](aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter) | [azure-spring-boot-starter-active-directory:3.7.0]             |
 | AAD              | [aad-resource-server-by-filter-stateless](aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter-stateless) | [azure-spring-boot-starter-active-directory:3.7.0]             |
 | AAD              | [aad-resource-server-obo](aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo) | [azure-spring-boot-starter-active-directory:3.7.0]             |
-| AAD              | [web-application](aad/azure-spring-boot-starter-active-directory/web-application) | [azure-spring-boot-starter-active-directory:3.7.0]             |
-| AAD              | [webapp-resource-server](aad/azure-spring-boot-starter-active-directory/web-application-and-resource-server) | [azure-spring-boot-starter-active-directory:3.7.0]             |
-| AAD              | [b2c-oidc](aad/azure-spring-boot-starter-active-directory-b2c/b2c-oidc) | [azure-spring-boot-starter-active-directory-b2c:3.7.0]              |
-| AAD              | [b2c-resource-server](aad/azure-spring-boot-starter-active-directory-b2c/b2c-resource-server) | [azure-spring-boot-starter-active-directory-b2c:3.7.0]               |
+| AAD              | [aad-web-application](aad/azure-spring-boot-starter-active-directory/aad-web-application) | [azure-spring-boot-starter-active-directory:3.7.0]             |
+| AAD              | [aad-webapp-resource-server](aad/azure-spring-boot-starter-active-directory/aad-web-application-and-resource-server) | [azure-spring-boot-starter-active-directory:3.7.0]             |
+| AAD              | [aad-b2c-oidc](aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-oidc) | [azure-spring-boot-starter-active-directory-b2c:3.7.0]              |
+| AAD              | [aad-b2c-resource-server](aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-resource-server) | [azure-spring-boot-starter-active-directory-b2c:3.7.0]               |
 | appconfiguration | [azure-appconfiguration-conversion-sample-complete](appconfiguration/azure-appconfiguration-conversion-sample-complete) | [spring-cloud-starter-azure-appconfiguration-config:1.3.0]          |
 | appconfiguration | [azure-appconfiguration-conversion-sample-initial](appconfiguration/azure-appconfiguration-conversion-sample-initial) | [azure-spring-boot-starter-cosmos:3.7.0]                             |
 | appconfiguration | [azure-appconfiguration-sample](appconfiguration/azure-appconfiguration-sample) | [spring-cloud-azure-appconfiguration-config:1.3.0]                   |

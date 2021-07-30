@@ -11,7 +11,7 @@
 
 ## All samples in this repo
 
-| Azure Service    | Dependency                                                                                     | Module                                                                                                                            |
+| Azure Service    | Azure Spring Starter Dependency                                                                | Sample Project                                                                                                                    |
 |------------------|------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
 | AAD              | [azure-spring-boot-starter-active-directory-b2c:3.7.0]                                         | [aad-b2c-resource-server](aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-resource-server)                             |
 | AAD              | [azure-spring-boot-starter-active-directory-b2c:3.7.0]                                         | [aad-b2c-web-application](aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-web-application)                             |

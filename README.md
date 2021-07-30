@@ -21,13 +21,13 @@
 | AAD              | [webapp-resource-server](aad/azure-spring-boot-starter-active-directory/web-application-and-resource-server) | [azure-spring-boot-starter-active-directory:3.7.0]             |
 | AAD              | [b2c-oidc](aad/azure-spring-boot-starter-active-directory-b2c/b2c-oidc) | [azure-spring-boot-starter-active-directory-b2c:3.7.0]              |
 | AAD              | [b2c-resource-server](aad/azure-spring-boot-starter-active-directory-b2c/b2c-resource-server) | [azure-spring-boot-starter-active-directory-b2c:3.7.0]               |
-| appconfiguration | [azure-appconfiguration-conversion-sample-complete](appconfiguration/azure-appconfiguration-conversion-sample-complete) | spring-cloud-starter-azure-appconfiguration-config           |
-| appconfiguration | [azure-appconfiguration-conversion-sample-initial](appconfiguration/azure-appconfiguration-conversion-sample-initial) | azure-spring-boot-starter-cosmos                             |
-| appconfiguration | [azure-appconfiguration-sample](appconfiguration/azure-appconfiguration-sample) | spring-cloud-azure-appconfiguration-config                   |
-| appconfiguration | [feature-management-sample](appconfiguration/feature-management-sample) | spring-cloud-azure-feature-management                        |
-| appconfiguration | [feature-management-web-sample](appconfiguration/feature-management-web-sample) | spring-cloud-azure-feature-management                        |
-| cache            | [azure-spring-cloud-sample-cache](cache/azure-spring-cloud-sample-cache) | azure-spring-cloud-starter-cache                             |
-| cloudfoundry     | [azure-cloud-foundry-service-sample](cloudfoundry/azure-cloud-foundry-service-sample) | azure-spring-boot-starter-cosmos<br />azure-spring-boot-starter-servicebus-jms |
+| appconfiguration | [azure-appconfiguration-conversion-sample-complete](appconfiguration/azure-appconfiguration-conversion-sample-complete) | [spring-cloud-starter-azure-appconfiguration-config:1.3.0]          |
+| appconfiguration | [azure-appconfiguration-conversion-sample-initial](appconfiguration/azure-appconfiguration-conversion-sample-initial) | [azure-spring-boot-starter-cosmos:3.7.0]                             |
+| appconfiguration | [azure-appconfiguration-sample](appconfiguration/azure-appconfiguration-sample) | [spring-cloud-azure-appconfiguration-config:1.3.0]                   |
+| appconfiguration | [feature-management-sample](appconfiguration/feature-management-sample) | [spring-cloud-azure-feature-management:1.3.0]                        |
+| appconfiguration | [feature-management-web-sample](appconfiguration/feature-management-web-sample) | [spring-cloud-azure-feature-management:1.3.0]                        |
+| cache            | [azure-spring-cloud-sample-cache](cache/azure-spring-cloud-sample-cache) | [azure-spring-cloud-starter-cache:2.7.0]                             |
+| cloudfoundry     | [azure-cloud-foundry-service-sample](cloudfoundry/azure-cloud-foundry-service-sample) | [azure-spring-boot-starter-cosmos:3.7.0]<br />[azure-spring-boot-starter-servicebus-jms:3.7.0] |
 | cosmos           | [cosmos](cosmos/azure-spring-boot-starter-cosmos/cosmos)     | [azure-spring-boot-starter-cosmos:3.7.0]                             |
 | cosmos           | [cosmos-multi-database-multi-account](cosmos/azure-spring-boot-starter-cosmos/cosmos-multi-database-multi-account) | [azure-spring-boot-starter-cosmos:3.7.0]                            |
 | cosmos           | [cosmos-multi-database-single-account](cosmos/azure-spring-boot-starter-cosmos/cosmos-multi-database-single-account) | [azure-spring-boot-starter-cosmos:3.7.0]                            |
@@ -40,8 +40,8 @@
 | keyvault         | [keyvault-certificates-client-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side) | [azure-spring-boot-starter-keyvault-certificates:3.0.1]             |
 | keyvault         | [keyvault-certificates-server-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side) | [azure-spring-boot-starter-keyvault-certificates:3.0.1]             |
 | keyvault         | [keyvault-secrets](keyvault/azure-spring-boot-starter-keyvault-secrets/keyvault-secrets) | [azure-spring-boot-starter-keyvault-secrets:3.7.0]               |
-| mediaservices    | [azure-spring-boot-sample-mediaservices](mediaservices/azure-spring-boot-sample-mediaservices) | azure-media                                                  |
-| servicebus       | [servicebus](servicebus/azure-messaging-servicebus/servicebus) | azure-messaging-servicebus                                   |
+| mediaservices    | [azure-spring-boot-sample-mediaservices](mediaservices/azure-spring-boot-sample-mediaservices) | [azure-media:0.9.8]                                                  |
+| servicebus       | [servicebus](servicebus/azure-messaging-servicebus/servicebus) | [azure-messaging-servicebus:7.3.0]                                  |
 | servicebus       | [servicebus-jms-queue](servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-queue) | [azure-spring-boot-starter-servicebus-jms:3.7.0]                     |
 | servicebus       | [servicebus-jms-topic](servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-topic) | [azure-spring-boot-starter-servicebus-jms:3.7.0]                    |
 | servicebus       | [servicebus-integration](servicebus/azure-spring-cloud-starter-servicebus/servicebus-integration) | [azure-spring-cloud-starter-servicebus:2.7.0]                        |
@@ -53,13 +53,19 @@
 | storage          | [storage-resource](storage/azure-spring-boot-starter-storage/storage-resource) | [azure-spring-boot-starter-storage:3.7.0]                            |
 | storage          | [storage-queue-integration](storage/azure-spring-cloud-starter-storage-queue/storage-queue-integration) | [azure-spring-cloud-starter-storage-queue:2.7.0]                     |
 | storage          | [storage-queue-operation](storage/azure-spring-cloud-starter-storage-queue/storage-queue-operation) | [azure-spring-cloud-starter-storage-queue:2.7.0]                     |
-|                  |                                                              |                                                              |
-
-
 
 ### 
 
 [main]: https://github.com/Azure-Samples/azure-spring-boot-samples
+[azure-spring-boot-starter-servicebus-jms:3.7.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-servicebus-jms/3.7.0/jar
+[azure-spring-boot-starter-cosmos:3.7.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-cosmos/3.7.0/jar
+[azure-spring-cloud-starter-cache:2.7.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-cache/2.7.0/jar
+[spring-cloud-azure-feature-management:1.3.0]: https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-azure-feature-management/1.3.0/jar
+[spring-cloud-azure-appconfiguration-config:1.3.0]: https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-azure-appconfiguration-config/1.3.0/jar
+[azure-spring-boot-starter-cosmos:3.7.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-cosmos/3.7.0/jar
+[spring-cloud-starter-azure-appconfiguration-config:1.3.0]: https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-starter-azure-appconfiguration-config/1.3.0/jar
+[azure-messaging-servicebus:7.3.0]: https://search.maven.org/artifact/com.azure/azure-messaging-servicebus/7.3.0/jar
+[azure-media:0.9.8]: https://search.maven.org/artifact/com.microsoft.azure/azure-media/0.9.8/jar       
 [azure-spring-boot-starter-keyvault-secrets:3.7.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-secrets/3.7.0/jar
 [azure-spring-boot-starter-keyvault-certificates:3.0.1]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-certificates/3.0.1/jar
 [azure-spring-cloud-stream-binder-eventhubs:2.7.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-stream-binder-eventhubs/2.7.0/jar

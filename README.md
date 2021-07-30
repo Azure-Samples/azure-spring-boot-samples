@@ -13,12 +13,12 @@
 
 | Azure Service    | Module                                                       | Dependency                                                   |
 | ---------------- | ------------------------------------------------------------ | ------------------------------------------------------------ |
-| AAD              | [resource-server](aad/azure-spring-boot-starter-active-directory/resource-server) | [azure-spring-boot-starter-active-directory:3.7.0]           |
-| AAD              | [resource-server-by-filter](aad/azure-spring-boot-starter-active-directory/resource-server-by-filter) | [azure-spring-boot-starter-active-directory:3.7.0]             |
-| AAD              | [resource-server-by-filter-stateless](aad/azure-spring-boot-starter-active-directory/resource-server-by-filter-stateless) | [azure-spring-boot-starter-active-directory:3.7.0]             |
-| AAD              | [resource-server-obo](aad/azure-spring-boot-starter-active-directory/resource-server-obo) | [azure-spring-boot-starter-active-directory:3.7.0]             |
-| AAD              | [webapp](aad/azure-spring-boot-starter-active-directory/webapp) | [azure-spring-boot-starter-active-directory:3.7.0]             |
-| AAD              | [webapp-resource-server](aad/azure-spring-boot-starter-active-directory/webapp-resource-server) | [azure-spring-boot-starter-active-directory:3.7.0]             |
+| AAD              | [aad-resource-server](aad/azure-spring-boot-starter-active-directory/aad-resource-server) | [azure-spring-boot-starter-active-directory:3.7.0]           |
+| AAD              | [aad-resource-server-by-filter](aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter) | [azure-spring-boot-starter-active-directory:3.7.0]             |
+| AAD              | [aad-resource-server-by-filter-stateless](aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter-stateless) | [azure-spring-boot-starter-active-directory:3.7.0]             |
+| AAD              | [aad-resource-server-obo](aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo) | [azure-spring-boot-starter-active-directory:3.7.0]             |
+| AAD              | [web-application](aad/azure-spring-boot-starter-active-directory/web-application) | [azure-spring-boot-starter-active-directory:3.7.0]             |
+| AAD              | [webapp-resource-server](aad/azure-spring-boot-starter-active-directory/web-application-and-resource-server) | [azure-spring-boot-starter-active-directory:3.7.0]             |
 | AAD              | [b2c-oidc](aad/azure-spring-boot-starter-active-directory-b2c/b2c-oidc) | [azure-spring-boot-starter-active-directory-b2c:3.7.0]              |
 | AAD              | [b2c-resource-server](aad/azure-spring-boot-starter-active-directory-b2c/b2c-resource-server) | [azure-spring-boot-starter-active-directory-b2c:3.7.0]               |
 | appconfiguration | [azure-appconfiguration-conversion-sample-complete](appconfiguration/azure-appconfiguration-conversion-sample-complete) | spring-cloud-starter-azure-appconfiguration-config           |
@@ -48,7 +48,7 @@
 | servicebus       | [servicebus-messaging](servicebus/azure-spring-cloud-starter-servicebus/servicebus-messaging) | [azure-spring-cloud-starter-servicebus:2.7.0]                        |
 | servicebus       | [servicebus-operation](servicebus/azure-spring-cloud-starter-servicebus/servicebus-operation) | [azure-spring-cloud-starter-servicebus:2.7.0]                        |
 | servicebus       | [servicebus-queue-binder](servicebus/azure-spring-cloud-stream-binder-servicebus-queue/servicebus-queue-binder) | [azure-spring-cloud-stream-binder-servicebus-queue:2.7.0]            |
-| servicebus       | [servicebus-queue-multibinders](servicebus/azure-spring-cloud-stream-binder-servicebus-queue/servicebus-queue-multibinders) | [com.azure.spring:azure-spring-cloud-stream-binder-servicebus-queue:2.7.0]            |
+| servicebus       | [servicebus-queue-multibinders](servicebus/azure-spring-cloud-stream-binder-servicebus-queue/servicebus-queue-multibinders) | [azure-spring-cloud-stream-binder-servicebus-queue:2.7.0]            |
 | servicebus       | [servicebus-topic-binder](servicebus/azure-spring-cloud-stream-binder-servicebus-topic/servicebus-topic-binder) | [azure-spring-cloud-stream-binder-servicebus-topic:2.7.0]            |
 | storage          | [storage-resource](storage/azure-spring-boot-starter-storage/storage-resource) | [azure-spring-boot-starter-storage:3.7.0]                            |
 | storage          | [storage-queue-integration](storage/azure-spring-cloud-starter-storage-queue/storage-queue-integration) | [azure-spring-cloud-starter-storage-queue:2.7.0]                     |
@@ -67,7 +67,6 @@
 [azure-spring-cloud-starter-eventhubs:2.7.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-eventhubs/2.7.0/jar
 [azure-spring-boot-starter-cosmos:3.7.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-cosmos/3.7.0/jar
 [azure-spring-cloud-stream-binder-servicebus-topic:2.7.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-stream-binder-servicebus-topic/2.7.0/jar
-[com.azure.spring:azure-spring-cloud-stream-binder-servicebus-queue:2.7.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-stream-binder-servicebus-queue/2.7.0/jar
 [azure-spring-cloud-stream-binder-servicebus-queue:2.7.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-stream-binder-servicebus-queue/2.7.0/jar 
 [azure-spring-boot-starter-storage:3.7.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-storage/3.7.0/jar
 [azure-spring-boot-starter-active-directory:3.7.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-active-directory/3.7.0/jar

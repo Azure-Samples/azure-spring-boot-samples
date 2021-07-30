@@ -16,12 +16,12 @@
   </properties>
 
   <modules>
-    <module>aad/azure-spring-boot-starter-active-directory/resource-server</module>
-    <module>aad/azure-spring-boot-starter-active-directory/resource-server-by-filter</module>
-    <module>aad/azure-spring-boot-starter-active-directory/resource-server-by-filter-stateless</module>
-    <module>aad/azure-spring-boot-starter-active-directory/resource-server-obo</module>
-    <module>aad/azure-spring-boot-starter-active-directory/webapp</module>
-    <module>aad/azure-spring-boot-starter-active-directory/webapp-resource-server</module>
+    <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server</module>
+    <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter</module>
+    <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter-stateless</module>
+    <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo</module>
+    <module>aad/azure-spring-boot-starter-active-directory/web-application</module>
+    <module>aad/azure-spring-boot-starter-active-directory/web-application-and-resource-server</module>
     <module>aad/azure-spring-boot-starter-active-directory-b2c/b2c-oidc</module>
     <module>aad/azure-spring-boot-starter-active-directory-b2c/b2c-resource-server</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-complete</module>

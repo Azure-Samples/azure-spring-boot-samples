@@ -66,7 +66,7 @@ azure:
 ### Run with Maven
 ```shell
 # Under sdk/spring project root directory
-cd azure-spring-boot-samples/aad/azure-spring-boot-sample-active-directory-resource-server
+cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory/aad-resource-server
 mvn spring-boot:run
 ```
 
@@ -97,7 +97,7 @@ Authorization: Bearer eyJ0eXAiO ... 0X2tnSQLEANnSPHY0gKcgw
 <!-- LINKS -->
 
 [Expose scoped permission to web api]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis
-[Resource Server]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/azure-spring-boot-sample-active-directory-resource-server
-[Resource Server Obo]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/azure-spring-boot-sample-active-directory-resource-server-obo
+[Resource Server]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/azure-spring-boot-starter-active-directory/aad-resource-server
+[Resource Server Obo]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo
 [resource server password credentials]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth-ropc
 [Example: Application app role]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#example-application-app-role

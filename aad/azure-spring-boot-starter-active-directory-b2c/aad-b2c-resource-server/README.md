@@ -103,7 +103,7 @@ azure:
 
 ### Run with Maven
 ```
-cd azure-spring-boot-samples/aad/azure-spring-boot-sample-active-directory-b2c-resource-server
+cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-resource-server
 mvn spring-boot:run
 ```
 

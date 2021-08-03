@@ -25,7 +25,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 
 ## Examples                                           
 ### Config the sample
-1. Update [application.properties](https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-boot-sample-servicebus-jms-topic/src/main/resources/application.properties)
+1. Update [application.properties](https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-topic/src/main/resources/application.properties)
 
     ```properties
     # Fill service bus namespace connection string copied from portal
@@ -79,5 +79,5 @@ Type | Reference Link
 
 <!-- LINKS -->
 
-[TopicSendController]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-boot-sample-servicebus-jms-topic/src/main/java/com/azure/spring/sample/jms/topic/TopicSendController.java
-[TopicReceiveController]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-boot-sample-servicebus-jms-topic/src/main/java/com/azure/spring/sample/jms/topic/TopicReceiveController.java
+[TopicSendController]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-topic/src/main/java/com/azure/spring/sample/jms/topic/TopicSendController.java
+[TopicReceiveController]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-topic/src/main/java/com/azure/spring/sample/jms/topic/TopicReceiveController.java

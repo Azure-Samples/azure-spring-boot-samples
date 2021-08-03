@@ -98,6 +98,6 @@ Authorization: Bearer eyJ0eXAiO ... 0X2tnSQLEANnSPHY0gKcgw
 
 [Expose scoped permission to web api]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis
 [Resource Server]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/azure-spring-boot-starter-active-directory/aad-resource-server
-[Resource Server Obo]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo
+[Resource Server Obo]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/azure-spring-boot-starter-active-birectory/aad-resource-server-obo
 [resource server password credentials]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth-ropc
 [Example: Application app role]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#example-application-app-role

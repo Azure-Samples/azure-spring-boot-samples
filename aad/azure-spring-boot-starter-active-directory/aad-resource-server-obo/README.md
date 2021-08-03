@@ -132,5 +132,5 @@ client Credential response success.
 [Azure portal]: https://portal.azure.com/
 
 [Resource server access other resources usage]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-boot-starter-active-directory#resource-server-access-other-resources-usage
-[azure-spring-boot-sample-active-directory-resource-server]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/azure-spring-boot-sample-active-directory-resource-server
+[azure-spring-boot-sample-active-directory-resource-server]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/azure-spring-boot-starter-active-directory/aad-resource-server
 [OAuth 2.0 On-Behalf-Of flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow

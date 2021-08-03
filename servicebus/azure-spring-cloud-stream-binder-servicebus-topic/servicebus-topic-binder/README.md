@@ -201,6 +201,6 @@ spring:
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
 
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-cloud-sample-servicebus-topic-binder/src/main/resources/application-mi.yaml
-[application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-cloud-sample-servicebus-topic-binder/src/main/resources/application-sp.yaml
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-cloud-sample-servicebus-topic-binder/src/main/resources/application.yaml
+[application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/servicebus-topic-binder/src/main/resources/application-mi.yaml
+[application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/servicebus-topic-binder/src/main/resources/application-sp.yaml
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/servicebus-topic-binder/src/main/resources/application.yaml

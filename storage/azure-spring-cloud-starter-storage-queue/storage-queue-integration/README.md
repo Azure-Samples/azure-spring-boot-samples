@@ -84,6 +84,6 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 [create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-managed-identity.md
 [create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-sp-using-azure-cli.md
 
-[send-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/storage/azure-spring-integration-sample-storage-queue/src/main/java/com/azure/spring/sample/storage/queue/SendController.java
-[receive-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/storage/azure-spring-integration-sample-storage-queue/src/main/java/com/azure/spring/sample/storage/queue/ReceiveController.java
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/storage/azure-spring-integration-sample-storage-queue/src/main/resources/application.yaml
+[send-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/storage/storage-queue-integration/src/main/java/com/azure/spring/sample/storage/queue/SendController.java
+[receive-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/storage/storage-queue-integration/src/main/java/com/azure/spring/sample/storage/queue/ReceiveController.java
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/storage/storage-queue-integration/src/main/resources/application.yaml

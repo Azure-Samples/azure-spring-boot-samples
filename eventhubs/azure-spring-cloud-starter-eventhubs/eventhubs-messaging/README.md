@@ -73,4 +73,4 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 [create-azure-storage]: https://docs.microsoft.com/azure/storage/ 
 [annotation-azure-message-listener]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-cloud-messaging/src/main/java/com/azure/spring/messaging/annotation/AzureMessageListener.java
 
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/eventhubs-operation/src/main/resources/application.yaml
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/azure-spring-cloud-sample-eventhubs-operation/src/main/resources/application.yaml

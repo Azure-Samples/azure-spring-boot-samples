@@ -84,8 +84,8 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 [create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-sp-using-azure-cli.md
 [eventhub-operation]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-integration-eventhubs/src/main/java/com/azure/spring/integration/eventhub/api/EventHubOperation.java
 
-[receive-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/eventhubs-integration/src/main/java/com/azure/spring/sample/eventhubs/ReceiveController.java
-[send-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/eventhubs-integration/src/main/java/com/azure/spring/sample/eventhubs/SendController.java
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/eventhubs-integration/src/main/resources/application.yaml
+[receive-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/azure-spring-integration-sample-eventhubs/src/main/java/com/azure/spring/sample/eventhubs/ReceiveController.java
+[send-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/azure-spring-integration-sample-eventhubs/src/main/java/com/azure/spring/sample/eventhubs/SendController.java
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/azure-spring-integration-sample-eventhubs/src/main/resources/application.yaml
 
 

@@ -71,7 +71,7 @@ azure:
 
 ### Run with Maven
 ```shell
-cd azure-spring-boot-samples/aad/azure-spring-boot-sample-active-directory-resource-server-obo
+cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo
 mvn spring-boot:run
 ```
 

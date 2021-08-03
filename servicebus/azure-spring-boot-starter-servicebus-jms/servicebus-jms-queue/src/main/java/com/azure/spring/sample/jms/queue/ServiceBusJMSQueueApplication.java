@@ -14,7 +14,8 @@ public class ServiceBusJMSQueueApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(ServiceBusJMSQueueApplication.class, args);
-
+        int i = 0;
+        if(i < 0)System.out.println("i= "+i);
     }
 
 }

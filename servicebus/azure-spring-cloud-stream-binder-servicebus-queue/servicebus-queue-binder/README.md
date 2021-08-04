@@ -204,7 +204,7 @@ public ResponseEntity<String> sendMessage(@RequestParam String message) {
 For some Service Bus headers that can be mapped to multiple Spring header constants, the priority of different Spring headers is listed.
 
 Service Bus Message Headers and Properties | Spring Message Header Constants | Type | Priority Number (Descending priority)
----|---|---|---
+:---|:---|:---|:---
 ContentType | org.springframework.messaging.MessageHeaders.CONTENT_TYPE | String | N/A
 CorrelationId | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.CORRELATION_ID | String | N/A
 **MessageId** | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.MESSAGE_ID | String | 1

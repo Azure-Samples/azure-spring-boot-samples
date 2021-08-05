@@ -135,7 +135,7 @@ redirectUriTemplate: xxxxxx-your-redirect-uri-xxxxxx
 
 * Run with Maven 
  ```
- cd azure-spring-boot-samples/aad/azure-spring-boot-sample-active-directory-resource-server-by-filter
+ cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter
  mvn spring-boot:run
  ```
 

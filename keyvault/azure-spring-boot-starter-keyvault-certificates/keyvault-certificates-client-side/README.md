@@ -17,6 +17,7 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
 
 ## Getting started
 
+
 - Start azure-spring-boot-sample-keyvault-certificates-server-side's SampleApplication.
 
 ### Run sample with service principal

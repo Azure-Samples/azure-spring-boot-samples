@@ -15,8 +15,6 @@ This sample illustrates how to use [Azure Spring Boot Starter Key Vault Certific
 
 This sample should work together with [azure-spring-boot-sample-keyvault-certificates-server-side].
 
-This sample works for Linux/Unix OS.
-
 ## Getting started
 
 - Start azure-spring-boot-sample-keyvault-certificates-server-side's SampleApplication.

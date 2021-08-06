@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 
 # Set your Azure Subscription id where all required resources will be created.
 export SUBSCRIPTION_ID=

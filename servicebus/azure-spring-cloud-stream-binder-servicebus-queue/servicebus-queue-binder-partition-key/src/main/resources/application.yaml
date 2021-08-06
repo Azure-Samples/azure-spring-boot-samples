@@ -1,0 +1,20 @@
+spring:
+  cloud:
+    azure:
+      servicebus:
+        connection-string: Endpoint=sb://servicebus-xiaozhu-1.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=Iqri5zRJ8W3JXDkffPHrsu7ZUuUnPZX76pPebPhjZDA=
+    stream:
+      function:
+        definition: supply
+      bindings:
+        supply-out-0:
+          destination: queue1
+      servicebus:
+        queue:
+          bindings:
+            consume-in-0:
+              consumer:
+                checkpoint-mode: MANUAL
+      poller:
+        fixed-delay: 1000
+        initial-delay: 0

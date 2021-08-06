@@ -17,6 +17,8 @@ In this sample, a certificate named `self-signed` is stored into an Azure Key Va
 
 This sample can work together with [azure-spring-boot-sample-keyvault-certificates-client-side].
 
+This sample works for Linux/Unix OS.
+
 ## Getting started
 
 

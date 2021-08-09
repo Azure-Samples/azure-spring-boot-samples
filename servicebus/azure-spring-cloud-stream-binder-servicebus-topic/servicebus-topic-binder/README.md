@@ -165,6 +165,86 @@ spring:
 
 
 ## Examples
+### Usage examples
+**Example: Manually set the partition key of the message through application.yml**
+
+This example demonstrates how to manually set the partition key for the message in the application.
+
+**Way 1:**
+This example requires that `spring.cloud.stream.default.producer.partitionKeyExpression` be set `"'partitionKey-' + headers[<message-header-key>]"`.
+```yaml
+spring:
+  cloud:
+    azure:
+      servicebus:
+        connection-string: [servicebus-namespace-connection-string]
+    stream:
+      default:
+        producer:
+          partitionKeyExpression:  "'partitionKey-' + headers[<message-header-key>]"
+```
+```java
+@PostMapping("/messages")
+public ResponseEntity<String> sendMessage(@RequestParam String message) {
+    LOGGER.info("Going to add message {} to Sinks.Many.", message);
+    many.emitNext(MessageBuilder.withPayload(message)
+                                .setHeader("<message-header-key>", "Customize partirion key")
+                                .build(), Sinks.EmitFailureHandler.FAIL_FAST);
+    return ResponseEntity.ok("Sent!");
+}
+```
+
+> **NOTE:** When using `application.yml` to configure the partition key, its priority will be the lowest.
+> It will take effect only when the `ServiceBusMessageHeaders.SESSION_ID`, `ServiceBusMessageHeaders.PARTITION_KEY`, `AzureHeaders.PARTITION_KEY` are not configured.
+
+**Way 2:**
+Manually add the partition Key in the message header by code.
+
+*Recommended:* Use `ServiceBusMessageHeaders.PARTITION_KEY` as the key of the header.
+```java
+@PostMapping("/messages")
+public ResponseEntity<String> sendMessage(@RequestParam String message) {
+    LOGGER.info("Going to add message {} to Sinks.Many.", message);
+    many.emitNext(MessageBuilder.withPayload(message)
+                                .setHeader(ServiceBusMessageHeaders.PARTITION_KEY, "Customize partirion key")
+                                .build(), Sinks.EmitFailureHandler.FAIL_FAST);
+    return ResponseEntity.ok("Sent!");
+}
+```
+
+*Not recommended but currently supported:* `AzureHeaders.PARTITION_KEY` as the key of the header.
+```java
+@PostMapping("/messages")
+public ResponseEntity<String> sendMessage(@RequestParam String message) {
+    LOGGER.info("Going to add message {} to Sinks.Many.", message);
+    many.emitNext(MessageBuilder.withPayload(message)
+                                .setHeader(AzureHeaders.PARTITION_KEY, "Customize partirion key")
+                                .build(), Sinks.EmitFailureHandler.FAIL_FAST);
+    return ResponseEntity.ok("Sent!");
+}
+```
+> **NOTE:** When both `ServiceBusMessageHeaders.PARTITION_KEY` and `AzureHeaders.PARTITION_KEY` are set in the message headers,
+> `ServiceBusMessageHeaders.PARTITION_KEY` is preferred.
+
+**Example: Set the session id for the message**
+
+This example demonstrates how to manually set the session id of a message in the application.
+
+```java
+@PostMapping("/messages")
+public ResponseEntity<String> sendMessage(@RequestParam String message) {
+    LOGGER.info("Going to add message {} to Sinks.Many.", message);
+    many.emitNext(MessageBuilder.withPayload(message)
+                                .setHeader(ServiceBusMessageHeaders.SESSION_ID, "Customize session id")
+                                .build(), Sinks.EmitFailureHandler.FAIL_FAST);
+    return ResponseEntity.ok("Sent!");
+}
+```
+
+> **NOTE:** When the `ServiceBusMessageHeaders.SESSION_ID` is set in the message headers, and a different `ServiceBusMessageHeaders.PARTITION_KEY` (or `AzureHeaders.PARTITION_KEY`) header is also set,
+> the value of the session id will eventually be used to overwrite the value of the partition key.
+
+### Run sample
 
 1.  Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
 
@@ -181,7 +261,14 @@ spring:
         New message received: 'hello'
         Message 'hello' successfully checkpointed
 
-1.  Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
+4. Send a POST request
+
+        $ curl -X POST http://localhost:8080/setSessionId?message=hello
+
+5. It will be visible on Azure Portal that sent messages are configured with session id and partition key.
+   ![Azure portal displays the session id.](docs/image-set-session-id.png )
+
+6. Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
 
 ## Troubleshooting
 

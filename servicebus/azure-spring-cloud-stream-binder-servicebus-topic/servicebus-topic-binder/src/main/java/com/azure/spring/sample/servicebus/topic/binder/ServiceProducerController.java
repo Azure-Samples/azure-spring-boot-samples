@@ -3,6 +3,7 @@
 
 package com.azure.spring.sample.servicebus.topic.binder;
 
+import com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,43 @@ public class ServiceProducerController {
     public ResponseEntity<String> sendMessage(@RequestParam String message) {
         LOGGER.info("Going to add message {} to Sinks.Many.", message);
         many.emitNext(MessageBuilder.withPayload(message).build(), Sinks.EmitFailureHandler.FAIL_FAST);
+        return ResponseEntity.ok("Sent!");
+    }
+
+    /**
+     * Set the session id scene.
+     */
+    @PostMapping("/setSessionId")
+    public ResponseEntity<String> setSessionId(@RequestParam String message) {
+        LOGGER.info("Going to add message {} to Sinks.Many.", message);
+        many.emitNext(MessageBuilder.withPayload(message)
+                                    .setHeader(ServiceBusMessageHeaders.SESSION_ID, "<custom-session-id>")
+                                    .build(), Sinks.EmitFailureHandler.FAIL_FAST);
+        return ResponseEntity.ok("Sent!");
+    }
+
+    /**
+     * Set the ServiceBusMessageHeaders partition key scene.
+     */
+    @PostMapping("/setServiceBusMessageHeadersPartitionKey")
+    public ResponseEntity<String> setServiceBusMessageHeadersPartitionKey(@RequestParam String message) {
+        LOGGER.info("Going to add message {} to Sinks.Many.", message);
+        many.emitNext(MessageBuilder.withPayload(message)
+                                    .setHeader(ServiceBusMessageHeaders.PARTITION_KEY, "<custom-partition-key>")
+                                    .build(), Sinks.EmitFailureHandler.FAIL_FAST);
+        return ResponseEntity.ok("Sent!");
+    }
+
+    /**
+     * Set the session id and ServiceBusMessageHeaders partition key priority scenarios.
+     */
+    @PostMapping("/setSessionIdAndServiceBusMessageHeadersPartitionKey")
+    public ResponseEntity<String> setSessionIdAndServiceBusMessageHeadersPartitionKey(@RequestParam String message) {
+        LOGGER.info("Going to add message {} to Sinks.Many.", message);
+        many.emitNext(MessageBuilder.withPayload(message)
+                                    .setHeader(ServiceBusMessageHeaders.SESSION_ID, "<custom-session-id>")
+                                    .setHeader(ServiceBusMessageHeaders.PARTITION_KEY, "<custom-partition-key>")
+                                    .build(), Sinks.EmitFailureHandler.FAIL_FAST);
         return ResponseEntity.ok("Sent!");
     }
 

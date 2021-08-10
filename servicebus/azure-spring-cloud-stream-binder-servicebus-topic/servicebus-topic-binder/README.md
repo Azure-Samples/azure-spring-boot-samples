@@ -165,7 +165,7 @@ spring:
 
 
 ## Examples
-### Usage examples
+### How to configure the partition key
 **Example: Manually set the partition key of the message through application.yml**
 
 This example demonstrates how to manually set the partition key for the message in the application.
@@ -226,6 +226,7 @@ public ResponseEntity<String> sendMessage(@RequestParam String message) {
 > **NOTE:** When both `ServiceBusMessageHeaders.PARTITION_KEY` and `AzureHeaders.PARTITION_KEY` are set in the message headers,
 > `ServiceBusMessageHeaders.PARTITION_KEY` is preferred.
 
+### How to configure session id
 **Example: Set the session id for the message**
 
 This example demonstrates how to manually set the session id of a message in the application.

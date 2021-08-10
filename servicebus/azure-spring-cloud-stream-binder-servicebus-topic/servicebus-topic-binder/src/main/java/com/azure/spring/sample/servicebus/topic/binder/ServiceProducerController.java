@@ -57,19 +57,6 @@ public class ServiceProducerController {
         return ResponseEntity.ok("Sent!");
     }
 
-    /**
-     * Set the session id and ServiceBusMessageHeaders partition key priority scenarios.
-     */
-    @PostMapping("/setSessionIdAndServiceBusMessageHeadersPartitionKey")
-    public ResponseEntity<String> setSessionIdAndServiceBusMessageHeadersPartitionKey(@RequestParam String message) {
-        LOGGER.info("Going to add message {} to Sinks.Many.", message);
-        many.emitNext(MessageBuilder.withPayload(message)
-                                    .setHeader(ServiceBusMessageHeaders.SESSION_ID, "<custom-session-id>")
-                                    .setHeader(ServiceBusMessageHeaders.PARTITION_KEY, "<custom-partition-key>")
-                                    .build(), Sinks.EmitFailureHandler.FAIL_FAST);
-        return ResponseEntity.ok("Sent!");
-    }
-
     @GetMapping("/")
     public String welcome() {
         return "welcome";

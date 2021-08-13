@@ -15,7 +15,7 @@
     <version>1.0.0</version>
     <packaging>jar</packaging>
     <name>run-with-command-line-server-side</name>
-    <description>Sample project for a pure spring-boot webapp that is agnostic about azure key vault</description>
+    <description>Sample project for a pure spring-boot webapp that is agnostic about Azure key vault</description>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -28,5 +28,14 @@
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 
 </project>

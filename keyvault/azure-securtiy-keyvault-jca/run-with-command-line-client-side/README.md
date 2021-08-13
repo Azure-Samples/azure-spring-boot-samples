@@ -47,11 +47,11 @@ This sample illustrates how to run a web client with Azure key vault jca via com
 1. Start the server side. Please refer to server side tutorial: [Run with Command Line Server Side][run_with_command_line_server_side]  
 1. Open terminal and enter the directory sample_client, run the following command:
    ```
-   java --module-path ./azure-security-keyvault-jca-2.0.0-beta.1.jar --add-modules com.azure.security.keyvault.jca -Dsecurity.overridePropertiesFile=true -Djava.security.properties==./java.security -Dazure.keyvault.uri=https://kv-sp.vault.azure.net/ -Dazure.keyvault.tenant-id=72f988bf-86f1-41af-91ab-2d7cd011db47 -Dazure.keyvault.client-id=1a01b9bc-7b59-4526-9916-bb9433fa8573 -Dazure.keyvault.client-secret=S0Y2_uLSCNT.y.53D4KRR52~~g.Rjv6.F0 -jar run-with-command-line-client-side-1.0.0.jar
+   java --module-path ./azure-security-keyvault-jca-2.0.0-beta.1.jar --add-modules com.azure.security.keyvault.jca -Dsecurity.overridePropertiesFile=true -Djava.security.properties==./java.security -Dazure.keyvault.uri=<yourKeyVaultURI> -Dazure.keyvault.tenant-id=<yourTenantID> -Dazure.keyvault.client-id=<yourClientID> -Dazure.keyvault.client-secret=<yourSecretValue> -jar run-with-command-line-client-side-1.0.0.jar
    ```
    The client will be started and connect to the server side. If you have run the server side with client authentication needed, please use the following command instead of the above to run the client side:
    ```
-   java --module-path ./azure-security-keyvault-jca-2.0.0-beta.1.jar --add-modules com.azure.security.keyvault.jca -Dsecurity.overridePropertiesFile=true -Djava.security.properties==./java.security -Djavax.net.ssl.keyStoreType=AzureKeyVault -Dazure.keyvault.uri=https://kv-sp.vault.azure.net/ -Dazure.keyvault.tenant-id=72f988bf-86f1-41af-91ab-2d7cd011db47 -Dazure.keyvault.client-id=1a01b9bc-7b59-4526-9916-bb9433fa8573 -Dazure.keyvault.client-secret=S0Y2_uLSCNT.y.53D4KRR52~~g.Rjv6.F0 -jar run-with-command-line-client-side-1.0.0.jar
+   java --module-path ./azure-security-keyvault-jca-2.0.0-beta.1.jar --add-modules com.azure.security.keyvault.jca -Dsecurity.overridePropertiesFile=true -Djava.security.properties==./java.security -Djavax.net.ssl.keyStoreType=AzureKeyVault -Dazure.keyvault.uri=<yourKeyVaultURI> -Dazure.keyvault.tenant-id=<yourTenantID> -Dazure.keyvault.client-id=<yourClientID> -Dazure.keyvault.client-secret=<yourSecretValue> -jar run-with-command-line-client-side-1.0.0.jar
    ```
 
 

@@ -1,0 +1,17 @@
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          sign-up-or-sign-in:
+            authorization-uri: ${your-tenant-authorization-server-base-uri}/${your-sign-up-or-sign-in-flow-name}/oauth2/v2.0/authorize
+            token-uri: ${your-tenant-authorization-server-base-uri}/oauth2/v2.0/token?p=${your-sign-up-or-sign-in-flow-name}
+            jwk-set-uri: ${your-tenant-authorization-server-base-uri}/discovery/v2.0/keys?p=${your-sign-up-or-sign-in-flow-name}
+        registration:
+          sign-up-or-sign-in:
+            provider: sign-up-or-sign-in
+            client-id: ${your-client-id}
+            client-secret: ${your-client-secret}
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/"
+            scope: ${your-client-id}, openid, profile, offline_access

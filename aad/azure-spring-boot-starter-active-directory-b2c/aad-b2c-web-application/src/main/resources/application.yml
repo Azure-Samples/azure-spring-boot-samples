@@ -1,13 +1,13 @@
 azure:
   activedirectory:
     b2c:
-      base-uri: ${your-tenant-authorization-server-base-uri}
-      client-id: ${your-client-id}
-      client-secret: ${your-client-secret}
-      login-flow: ${your-login-user-flow-key}               # default to sign-up-or-sign-in, will look up the user-flows map with provided key.
-      logout-success-url: ${your-logout-success-url}
+      base-uri: https://LzcTestB2c.b2clogin.com/LzcTestB2c.onmicrosoft.com/
+      client-id: bcff581d-af2f-49cb-be6e-bca117239b3a
+      client-secret: JpNYC~1zIAsw_p.e38DHtQ4V54_7_60Q-3
+      login-flow: sign-up-or-sign-in               # default to sign-up-or-sign-in, will look up the user-flows map with provided key.
+#      logout-success-url: ${your-logout-success-url}
       user-flows:
-        password-reset: ${your-profile-edit-user-flow}
-        profile-edit: ${your-password-reset-user-flow}
-        sign-up-or-sign-in: ${your-sign-up-or-in-user-flow}
-      user-name-attribute-name: ${your-user-name-claim}
+        password-reset: B2C_1_password_Reset
+        profile-edit: B2C_1_Profile_edit
+        sign-up-or-sign-in: B2C_1_signupsignin1
+#      user-name-attribute-name: ${your-user-name-claim}

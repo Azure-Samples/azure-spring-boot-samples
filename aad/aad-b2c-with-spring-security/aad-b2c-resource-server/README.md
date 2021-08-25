@@ -116,7 +116,7 @@ Spring security support custom JwtDecoder beans. You can add logic for audience 
 ```
 
 ##### Support custom JwtAuthenticationConverter
-Spring security support custom JwtAuthenticationConverter. The custom converter logic can be added with the following code:
+Spring security support custom JwtAuthenticationConverter. The custom converter logic can be added using the following code:
 ```java
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -139,6 +139,32 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return jwtAuthenticationConverter;
     }
 }
+```
+
+Spring security allow for multiple Jwt to GrantedAuthorizies converters.
+We can add multiple JwtGrantedAuthoritiesConverter using the following code:
+```java
+    private JwtAuthenticationConverter jwtAuthenticationConverter() {
+        DelegatingJwtGrantedAuthoritiesConverter composite =
+                new DelegatingJwtGrantedAuthoritiesConverter(roles(), groups());
+        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(composite);
+        return jwtAuthenticationConverter;
+    }
+
+    JwtGrantedAuthoritiesConverter roles() {
+        JwtGrantedAuthoritiesConverter authorities = new JwtGrantedAuthoritiesConverter();
+        authorities.setAuthorityPrefix("ROLE_");
+        authorities.setAuthoritiesClaimName("roles");
+        return authorities;
+    }
+
+    JwtGrantedAuthoritiesConverter groups() {
+        JwtGrantedAuthoritiesConverter authorities = new JwtGrantedAuthoritiesConverter();
+        authorities.setAuthorityPrefix("GROUP_");
+        authorities.setAuthoritiesClaimName("groups");
+        return authorities;
+    }
 ```
 
 ### Run with Maven

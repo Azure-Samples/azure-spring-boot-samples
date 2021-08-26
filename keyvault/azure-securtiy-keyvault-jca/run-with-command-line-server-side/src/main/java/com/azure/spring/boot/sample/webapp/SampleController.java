@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 
 /**
- * A controller that accepts http requests and returns response
+ * A controller that accepts http requests and returns response.
  */
 @RestController
 public class SampleController {

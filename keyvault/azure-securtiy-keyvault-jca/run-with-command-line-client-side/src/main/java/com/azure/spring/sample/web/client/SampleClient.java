@@ -34,7 +34,7 @@ public class SampleClient {
             out.flush();
 
             if (out.checkError())
-                System.out.println("SSLSocketClient:  java.io.PrintWriter error");
+                System.out.println("SampleClient:  java.io.PrintWriter error");
 
             /* read response */
             in = new BufferedReader(

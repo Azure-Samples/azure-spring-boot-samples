@@ -3,22 +3,25 @@
 
 package com.azure.spring.sample.web.client;
 
-import javax.net.ssl.SSLSocket;
-import javax.net.ssl.SSLSocketFactory;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.InputStreamReader;
+import javax.net.ssl.SSLSocket;
+import javax.net.ssl.SSLSocketFactory;
 
+/**
+ *  A client creates an ssl socket to an HTTPS server.
+ */
 public class SampleClient {
   /**
-  * The TLS protocols
+  * The TLS protocols.
    */
   private static final String[] PROTOCOLS = new String[]{"TLSv1.3"};
 
   /**
-   * The cipher suites
+   * The cipher suites.
    */
   private static final String[] CIPHER_SUITES = new String[]{"TLS_AES_128_GCM_SHA256"};
 
@@ -54,12 +57,15 @@ public class SampleClient {
     } catch (Exception e) {
       e.printStackTrace();
     } finally {
-      if (sslSocket != null)
+      if (sslSocket != null) {
         sslSocket.close();
-      if (printWriter != null)
+      }
+      if (printWriter != null) {
         printWriter.close();
-      if (bufferedReader != null)
+      }
+      if (bufferedReader != null) {
         bufferedReader.close();
+      }
     }
   }
 }

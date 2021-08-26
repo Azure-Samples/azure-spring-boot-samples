@@ -6,6 +6,9 @@ package com.azure.spring.boot.sample.webapp;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+/**
+ * Web app
+ */
 @SpringBootApplication
 public class SpringBootWebappApplication {
   public static void main(String[] args) {

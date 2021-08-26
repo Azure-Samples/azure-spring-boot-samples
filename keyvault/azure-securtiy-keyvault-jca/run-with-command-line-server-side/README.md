@@ -19,7 +19,7 @@ This sample illustrates how to run a Spring Boot web server with Azure key vault
 - This sample contains a simple and pure Spring Boot web application. 
 
 ### Run Spring Boot web server with Azure key vault via command line. 
-1. Run command `mvn package` in the folder where the pom.xml. In the target folder there is a run-with-command-line-server-1.0.0.jar generated.  
+1. Open terminal and enter the folder where the pom.xml is and run `mvn package`. In the target folder there is a run-with-command-line-server-1.0.0.jar generated.  
 1. Get a copy of the JCA configuration file.
    - Linux: <java-home>/lib/security/java.security
    - MacOS Big Sur: <java-home>/conf/security/java.security

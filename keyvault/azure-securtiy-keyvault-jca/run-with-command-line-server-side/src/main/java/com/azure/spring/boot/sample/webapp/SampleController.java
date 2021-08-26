@@ -8,6 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class SampleController {
+
+  /**
+   *
+   * @return a String
+   */
   @GetMapping("/")
   public String helloWorld() {
     return "Hello World!";

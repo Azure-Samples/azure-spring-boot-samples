@@ -1,13 +1,25 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
+
 package com.azure.spring.sample.web.client;
 
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.InputStreamReader;
 
 public class SampleClient {
+  /**
+  * The TLS protocols
+   */
   private static final String[] PROTOCOLS = new String[]{"TLSv1.3"};
+
+  /**
+   * The cipher suites
+   */
   private static final String[] CIPHER_SUITES = new String[]{"TLS_AES_128_GCM_SHA256"};
 
   public static void main(String[] args) throws Exception {
@@ -28,7 +40,7 @@ public class SampleClient {
       printWriter.println("GET / HTTP/1.0");
       printWriter.println();
       printWriter.flush();
-      if (printWriter.checkError()){
+      if (printWriter.checkError()) {
         System.out.println("SampleClient: error in PrintWriter");
       }
       bufferedReader = new BufferedReader(

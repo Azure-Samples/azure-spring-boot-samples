@@ -58,7 +58,6 @@
     <module>storage/azure-spring-boot-starter-storage/storage-resource</module>
     <module>storage/azure-spring-cloud-starter-storage-queue/storage-queue-integration</module>
     <module>storage/azure-spring-cloud-starter-storage-queue/storage-queue-operation</module>
-    <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side</module>
   </modules>
 
 </project>

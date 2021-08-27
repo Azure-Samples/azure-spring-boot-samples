@@ -50,8 +50,8 @@ This sample illustrates how to run a Spring Boot web server with Azure key vault
    ```
    The server will be started without needing client side authentication. If you want to enable the client side authentication, please append ` --server.ssl.client-auth=need` to the above command.
 7. (Optional) You can also use the KeyVaultKeyStrore with local certificates. 
-    - For example, there are some well known CAs. You can put them into a folder, then configure the system property azure.cert-path.well-known=<yourFolderPath>. The certificates in this folder will be loaded by KeyVaultKeystore. If you don't configure such a property, the default well-known path will be `/etc/certs/well-known/`.
-    - Besides the well-known path, you can also put your customized certificates into another folder specified by azure.cert-path.custom=<yourCustomPath>, by default, the custom path is `/etc/certs/custom/`.
+    - For example, there are some well known CAs. You can put them into a folder, then configure the system property azure.cert-path.well-known=\<yourFolderPath>. The certificates in this folder will be loaded by KeyVaultKeystore. If you don't configure such a property, the default well-known path will be `/etc/certs/well-known/`.
+    - Besides the well-known path, you can also put your customized certificates into another folder specified by azure.cert-path.custom=\<yourCustomPath>, by default, the custom path is `/etc/certs/custom/`.
     - You can also put certificates under the class path, build a folder named `keyvault` and configure it under the class path, then all the certificates in this folder will be loaded by key vault keystore.
 ## Examples
 ## Troubleshooting

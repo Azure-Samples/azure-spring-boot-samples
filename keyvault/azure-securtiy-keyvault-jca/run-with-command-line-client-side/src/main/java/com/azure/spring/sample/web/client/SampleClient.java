@@ -25,6 +25,11 @@ public class SampleClient {
    */
   private static final String[] CIPHER_SUITES = new String[]{"TLS_AES_128_GCM_SHA256"};
 
+  /**
+   *
+   * @param args
+   * @throws Exception
+   */
   public static void main(String[] args) throws Exception {
     SSLSocket sslSocket = null;
     PrintWriter printWriter = null;

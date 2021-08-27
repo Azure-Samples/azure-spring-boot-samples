@@ -27,6 +27,7 @@ public class SampleClient {
 
   /**
    * Main method.
+   *
    * @param args  Command line arguments.
    * @throws Exception thrown out by main method.
    */

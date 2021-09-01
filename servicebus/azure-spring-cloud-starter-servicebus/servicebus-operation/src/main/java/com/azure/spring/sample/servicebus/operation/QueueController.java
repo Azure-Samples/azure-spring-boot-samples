@@ -7,6 +7,7 @@ import com.azure.spring.integration.core.AzureHeaders;
 import com.azure.spring.integration.core.api.CheckpointConfig;
 import com.azure.spring.integration.core.api.CheckpointMode;
 import com.azure.spring.integration.core.api.Checkpointer;
+import com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders;
 import com.azure.spring.integration.servicebus.queue.ServiceBusQueueOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -37,10 +38,26 @@ public class QueueController {
         return message;
     }
 
+    @PostMapping("/queuesAddPartitionKey")
+    public String queuesAddPartitionKey(@RequestParam("message") String message) {
+        this.queueOperation.sendAsync(QUEUE_NAME,
+            MessageBuilder.withPayload(message).setHeader(ServiceBusMessageHeaders.PARTITION_KEY, "<custom-partition"
+                + "-key>").build());
+        return message;
+    }
+
+    @PostMapping("/queuesAddSessionId")
+    public String queuesAddSessionId(@RequestParam("message") String message) {
+        this.queueOperation.sendAsync(QUEUE_NAME,
+            MessageBuilder.withPayload(message).setHeader(ServiceBusMessageHeaders.SESSION_ID, "<custom-session"
+                + "-id>").build());
+        return message;
+    }
+
     @PostConstruct
     public void subscribe() {
         this.queueOperation.setCheckpointConfig(CheckpointConfig.builder().checkpointMode(CheckpointMode.MANUAL)
-            .build());
+                                                                .build());
         this.queueOperation.subscribe(QUEUE_NAME, this::messageReceiver, String.class);
     }
 

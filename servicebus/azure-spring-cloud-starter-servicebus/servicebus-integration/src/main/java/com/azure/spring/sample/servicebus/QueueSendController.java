@@ -4,6 +4,7 @@
 package com.azure.spring.sample.servicebus;
 
 import com.azure.spring.integration.core.DefaultMessageHandler;
+import com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders;
 import com.azure.spring.integration.servicebus.queue.ServiceBusQueueOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.annotation.ServiceActivator;
+import org.springframework.integration.support.MessageBuilder;
+import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 import org.springframework.util.concurrent.ListenableFutureCallback;
@@ -40,6 +43,22 @@ public class QueueSendController {
         return message;
     }
 
+    @PostMapping("/queueAddPartitionKey")
+    public String queuesAddPartitionKey(@RequestParam("message") String message) {
+        this.messagingGateway.send(
+            MessageBuilder.withPayload(message).setHeader(ServiceBusMessageHeaders.PARTITION_KEY, "<custom-partition"
+                + "-key>").build());
+        return message;
+    }
+
+    @PostMapping("/queueAddSessionId")
+    public String queuesAddSessionId(@RequestParam("message") String message) {
+        this.messagingGateway.send(
+            MessageBuilder.withPayload(message).setHeader(ServiceBusMessageHeaders.SESSION_ID, "<custom-session"
+                + "-id>").build());
+        return message;
+    }
+
     @Bean
     @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
     public MessageHandler queueMessageSender(ServiceBusQueueOperation queueOperation) {
@@ -60,11 +79,12 @@ public class QueueSendController {
     }
 
     /**
-     * Message gateway binding with {@link MessageHandler}
-     * via {@link MessageChannel} has name {@value OUTPUT_CHANNEL}
+     * Message gateway binding with {@link MessageHandler} via {@link MessageChannel} has name {@value OUTPUT_CHANNEL}
      */
     @MessagingGateway(defaultRequestChannel = OUTPUT_CHANNEL)
     public interface QueueOutboundGateway {
         void send(String text);
+
+        void send(Message message);
     }
 }

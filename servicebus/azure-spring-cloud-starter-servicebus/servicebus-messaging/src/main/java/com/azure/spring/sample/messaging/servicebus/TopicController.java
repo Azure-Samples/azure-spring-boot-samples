@@ -3,6 +3,7 @@
 
 package com.azure.spring.sample.messaging.servicebus;
 
+import com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders;
 import com.azure.spring.integration.servicebus.topic.ServiceBusTopicOperation;
 import com.azure.spring.messaging.annotation.AzureMessageListener;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,22 @@ public class TopicController {
     @PostMapping("/messages")
     public String send(@RequestParam("message") String message) {
         this.topicOperation.sendAsync(TOPIC_NAME, MessageBuilder.withPayload(message).build());
+        return message;
+    }
+
+    @PostMapping("/topicAddPartitionKey")
+    public String queuesAddPartitionKey(@RequestParam("message") String message) {
+        this.topicOperation.sendAsync(TOPIC_NAME,
+            MessageBuilder.withPayload(message).setHeader(ServiceBusMessageHeaders.PARTITION_KEY, "<custom-partition"
+                + "-key>").build());
+        return message;
+    }
+
+    @PostMapping("/topicAddSessionId")
+    public String queuesAddSessionId(@RequestParam("message") String message) {
+        this.topicOperation.sendAsync(TOPIC_NAME,
+            MessageBuilder.withPayload(message).setHeader(ServiceBusMessageHeaders.SESSION_ID, "<custom-session"
+                + "-id>").build());
         return message;
     }
 

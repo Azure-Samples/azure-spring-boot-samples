@@ -4,6 +4,7 @@
 package com.azure.spring.sample.servicebus;
 
 import com.azure.spring.integration.core.DefaultMessageHandler;
+import com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders;
 import com.azure.spring.integration.servicebus.topic.ServiceBusTopicOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.annotation.ServiceActivator;
+import org.springframework.integration.support.MessageBuilder;
+import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 import org.springframework.util.concurrent.ListenableFutureCallback;
@@ -40,6 +43,22 @@ public class TopicSendController {
         return message;
     }
 
+    @PostMapping("/topicAddPartitionKey")
+    public String queuesAddPartitionKey(@RequestParam("message") String message) {
+        this.messagingGateway.send(
+            MessageBuilder.withPayload(message).setHeader(ServiceBusMessageHeaders.PARTITION_KEY, "<custom-partition"
+                + "-key>").build());
+        return message;
+    }
+
+    @PostMapping("/topicAddSessionId")
+    public String queuesAddSessionId(@RequestParam("message") String message) {
+        this.messagingGateway.send(
+            MessageBuilder.withPayload(message).setHeader(ServiceBusMessageHeaders.SESSION_ID, "<custom-session"
+                + "-id>").build());
+        return message;
+    }
+
     @Bean
     @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
     public MessageHandler topicMessageSender(ServiceBusTopicOperation topicOperation) {
@@ -66,5 +85,7 @@ public class TopicSendController {
     @MessagingGateway(defaultRequestChannel = OUTPUT_CHANNEL)
     public interface TopicOutboundGateway {
         void send(String text);
+
+        void send(Message message);
     }
 }

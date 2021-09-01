@@ -41,6 +41,8 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 1.  Update queue name in [QueueController.java][queue-controller], 
     topic name and subscription in [TopicController.java][topic-controller].
 
+> **NOTE:** When the `ServiceBusMessageHeaders.SESSION_ID` is set in the message headers, and a different `ServiceBusMessageHeaders.PARTITION_KEY` (or `AzureHeaders.PARTITION_KEY`) header is also set,
+> the value of the session id will eventually be used to overwrite the value of the partition key.
 
 1.  Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
 

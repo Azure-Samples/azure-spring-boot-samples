@@ -7,6 +7,7 @@ import com.azure.spring.integration.core.AzureHeaders;
 import com.azure.spring.integration.core.api.CheckpointConfig;
 import com.azure.spring.integration.core.api.CheckpointMode;
 import com.azure.spring.integration.core.api.Checkpointer;
+import com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders;
 import com.azure.spring.integration.servicebus.topic.ServiceBusTopicOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -35,6 +36,22 @@ public class TopicController {
     @PostMapping("/topics")
     public String send(@RequestParam("message") String message) {
         this.topicOperation.sendAsync(TOPIC_NAME, MessageBuilder.withPayload(message).build());
+        return message;
+    }
+
+    @PostMapping("/topicAddPartitionKey")
+    public String queuesAddPartitionKey(@RequestParam("message") String message) {
+        this.topicOperation.sendAsync(TOPIC_NAME,
+            MessageBuilder.withPayload(message).setHeader(ServiceBusMessageHeaders.PARTITION_KEY, "<custom-partition"
+                + "-key>").build());
+        return message;
+    }
+
+    @PostMapping("/topicAddSessionId")
+    public String queuesAddSessionId(@RequestParam("message") String message) {
+        this.topicOperation.sendAsync(TOPIC_NAME,
+            MessageBuilder.withPayload(message).setHeader(ServiceBusMessageHeaders.SESSION_ID, "<custom-session"
+                + "-id>").build());
         return message;
     }
 

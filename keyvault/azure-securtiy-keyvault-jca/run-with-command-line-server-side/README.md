@@ -29,18 +29,17 @@ This sample illustrates how to run a Spring Boot web server with Azure key vault
    security.provider.1=SUN
    security.provider.2=SunRsaSign
    security.provider.3=SunEC
-   security.provider.4=com.azure.security.keyvault.jca.KeyVaultTrustManagerFactoryProvider
-   security.provider.5=SunJSSE
-   security.provider.6=SunJCE
-   security.provider.7=SunJGSS
-   security.provider.8=SunSASL
-   security.provider.9=XMLDSig
-   security.provider.10=SunPCSC
-   security.provider.11=JdkLDAP
-   security.provider.12=JdkSASL
-   security.provider.13=Apple
-   security.provider.14=SunPKCS11
-   security.provider.15=com.azure.security.keyvault.jca.KeyVaultJcaProvider
+   security.provider.4=SunJSSE
+   security.provider.5=SunJCE
+   security.provider.6=SunJGSS
+   security.provider.7=SunSASL
+   security.provider.8=XMLDSig
+   security.provider.9=SunPCSC
+   security.provider.10=JdkLDAP
+   security.provider.11=JdkSASL
+   security.provider.12=Apple
+   security.provider.13=SunPKCS11
+   security.provider.14=com.azure.security.keyvault.jca.KeyVaultJcaProvider
    ```
 4. Get the Azure security key vault jca jar. You can build the latest one by yourself then you will get, for example, azure-security-keyvault-jca-2.0.0-beta.1.jar. You can also download the latest published jar from maven repository, then you will get, for example, azure-security-keyvault-jca.1.0.1.jar.
 5. Make a directory, for example, sample_server. Then put the edited copy of java.security file, the run-with-command-line-server-1.0.0.jar, the azure-security-keyvault-jca-2.0.0-beta.1.jar into sample_server
@@ -48,7 +47,7 @@ This sample illustrates how to run a Spring Boot web server with Azure key vault
    ```
    java --module-path ./azure-security-keyvault-jca-2.0.0-beta.1.jar --add-modules com.azure.security.keyvault.jca -Dsecurity.overridePropertiesFile=true -Djava.security.properties==./java.security -Dazure.keyvault.uri=<yourAzureKeyVaultUri> -Dazure.keyvault.tenant-id=<yourTenantID> -Dazure.keyvault.client-id=<youClientID> -Dazure.keyvault.client-secret=<yourSecretValue> -jar run-with-command-line-server-side-1.0.0.jar --server.port=8443 --server.ssl.enabled=true --server.ssl.key-alias=<yourCertificatName> --server.ssl.keystore-type=AzureKeyVault --server.ssl.key-store=.
    ```
-   The server will be started without needing client side authentication. If you want to enable the client side authentication, please append ` --server.ssl.client-auth=need` to the above command.
+   The server will be started without needing client side authentication. If you want to enable the client side authentication, please insert `-Djavax.net.ssl.trustStoreType=AzureKeyVault` into the above command and append ` --server.ssl.client-auth=need` to the above command.
 7. (Optional) You can also use the KeyVaultKeyStrore with local certificates. 
     - For example, there are some well known CAs. You can put them into a folder, then configure the system property azure.cert-path.well-known=\<yourFolderPath>. The certificates in this folder will be loaded by KeyVaultKeystore. If you don't configure such a property, the default well-known path will be `/etc/certs/well-known/`.
     - Besides the well-known path, you can also put your customized certificates into another folder specified by azure.cert-path.custom=\<yourCustomPath>, by default, the custom path is `/etc/certs/custom/`.

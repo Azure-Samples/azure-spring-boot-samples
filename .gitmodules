@@ -1,0 +1,4 @@
+[submodule "spring-petclinic-microservices"]
+	path = spring-petclinic-microservices
+	url = https://github.com/backwind1233/spring-petclinic-microservices.git
+	branch = azure-spring-starters

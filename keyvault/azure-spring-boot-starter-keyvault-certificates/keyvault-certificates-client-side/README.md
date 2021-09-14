@@ -140,7 +140,7 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
 - Besides the well-known path, you can also put your customized certificates into another folder specified by azure:cert-path:custom=\<yourCustomPath>, by default, the custom path is `/etc/certs/custom/`.
 - You can also put certificates under the class path, build a folder named `keyvault` and configure it under the class path, then all the certificates in this folder will be loaded by key vault keystore.
 
-If you want to do this, please uncomment and configure the optional local certificates path.
+To configure the local certificates, please uncomment and configure the optional local certificates path.
 ```yaml
 azure:
   #cert-path: 

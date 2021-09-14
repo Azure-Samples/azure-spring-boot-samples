@@ -22,6 +22,10 @@ We assume that when used as a Resource server, it is called `WebApiC`; when used
 
 See [Configure web application] for more information about web app.
 
+### Configure AppRoles for sign in user
+
+See [Configure AppRoles for sign in user] for more information about appRoles for sign in user.
+
 ### Configure groups for sign in user
 
 See [Configure groups for sign in user] for more information about groups for sign in user.
@@ -50,6 +54,7 @@ See [Check the authentication and authorization of Web Application] or [Check th
 [Web application and Resource server in one application]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-starter-active-directory#web-application-and-resource-server-in-one-application
 [Configure web application]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-starter-active-directory/aad-web-application#configure-web-app
 [Configure groups for sign in user]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-starter-active-directory/aad-web-application#configure-groups-for-sign-in-user
+[Configure AppRoles for sign in user]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-starter-active-directory/aad-web-application#support-access-control-by-id-token-in-web-application
 [Configure your middle-tier Web API]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo#configure-your-middle-tier-web-api-a
 [Configure Web API]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-starter-active-directory/aad-resource-server#configure-web-api
 [Check the authentication and authorization of Web Application]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-starter-active-directory/aad-web-application#check-the-authentication-and-authorization

@@ -42,7 +42,8 @@ We will prepare two applications to demonstrate the dependent calls of resources
 3. **Delegated permissions** is selected by default, Select **WebApiB.ExampleScope** permission, select **Add permission** to complete the process.![Add Permissions](docs/image-add-permissions.png)
 4. Same as the second step above, select ***Web API C*** Application Name.
 5. Manually select **Application Permissions**, Select **WebApiC.ExampleScope** permission, select **Add permission** to complete the process.![Select MyAPIs](docs/image-select-application-permission.png)
-6. Grant admin consent for ***Web API B*** permissions and  ***Web API C*** permissions.![API Permissions](docs/image-add-grant-admin-consent.png)
+6. Grant admin consent for ***Web API C*** permissions. ![API Permissions](docs/image-add-grant-admin-consent.png)
+You can choose ***Revoke admin consent*** by select the ellipsis behind the permissions and select ***Yes, Remove***. ![API Permissions](docs/image-remove-grant-admin-consent.png)
 
 See [OAuth 2.0 On-Behalf-Of flow] for more information about OBO.
 

@@ -26,7 +26,7 @@ to get it working with your Azure AD tenant on both sides.
 
 ### Register your application with your Azure Active Directory Tenant
 
-Follow the guide [here](https://docs.microsoft.com/azure/active-directory/develop/v1-protocols-openid-connect-code#register-your-application-with-your-ad-tenant).
+Follow the guide [here](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#register-an-application).
 
 ### Configure appRoles
 

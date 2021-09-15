@@ -40,7 +40,7 @@ or download and extract the repository .zip file, and navigate to `azure-spring-
 ---
 ### Step 2:  Register the sample with your Azure Active Directory tenant
 
-To register it follow the steps below or follow the guide [here](https://docs.microsoft.com/azure/active-directory/develop/v1-protocols-oauth-code#register-your-application-with-your-ad-tenant).
+To register it follow the steps below or follow the guide [here](https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#register-an-application).
 
 #### Choose the Azure AD tenant where you want to create your applications
 
@@ -55,7 +55,7 @@ As a first step you'll need to:
 1. Navigate to the Microsoft identity platform for developers [App registrations](https://go.microsoft.com/fwlink/?linkid=2083908) page.
 1. Select **New registration**.
    - In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `Spring Boot Sample`.
-   - In the **Supported account types** section, select **Accounts in any organizational directory**.
+   - In the **Supported account types** section, select **Accounts in this organizational directory only**.
    - Choose **Single-page application(SPA)** as application type.
    - Add `http://localhost:8080` as the `Reply URL` under Redirect URI.
    - Select **Register** to create the application. ![register_the application](docs/application-registration-1.png "register the application")![register_the application](docs/application-registration-2.png "register the application")

@@ -55,11 +55,11 @@ This sample can work together with [azure-spring-boot-sample-keyvault-certificat
 #### Option 2  - via Azure Portal 
 You can also create resources manually via Azure Portal. Please follow:
 1. Obtain a Service Principal. There are two ways to obtain a service principal:
-  - Recommended: enable a managed identity for the application. For more information, see  [the Managed identity overview][the_managed_identity_overview]. 
-  - If you cannot use managed identity, you can register your application with AAD [register app with AAD][register_app_with_AAD]. The registration also creates a second application object that identifies your app.
-1. Create the key vault and certificates. Please refer to [create key vault and certificates][create_key_vault_and_certificates]
-2. Make the key vault accessible to your service principal. Please refer to [assign key vault access policy][assign_key_vault_access_policy]
-3. You need manually configure the application.yml, replace the placeholders with the resources you created in the Azure Portal.
+   - Recommended: enable a managed identity for the application. For more information, see [the Managed identity overview][the_managed_identity_overview].
+   - If you cannot use managed identity, you can register your application with AAD, see [register app with AAD][register_app_with_AAD]. The registration also creates a second application object that identifies your app.
+2. Create the key vault and certificates. Please refer to [create key vault and certificates][create_key_vault_and_certificates]
+3. Make the key vault accessible to your service principal. Please refer to [assign key vault access policy][assign_key_vault_access_policy]
+4. You need manually configure the application.yml, replace the placeholders with the resources you created in the Azure Portal.
 
 If you used the script to create the resources, or you created the resources via Azure Portal and created the Service Principal in App Registration way.
 ### Run sample Using TLS. 

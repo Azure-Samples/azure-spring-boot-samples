@@ -24,7 +24,8 @@ This sample can work together with [azure-spring-boot-sample-keyvault-certificat
 - This sample will create and store a certificate in your Azure Key Vault.
 - This sample will create a service principal to read certificates/keys/secrets from your Azure Key Vault.
 
-### Run Sample with service principal
+### Create resources: Service Principal and Key Vault.
+#### Option 1 - via the script
 1. Run command `az login` to login to the Azure CLI.
 1. Open `scripts/export_environment_variables.sh` and enter the following information:
    ```
@@ -50,7 +51,18 @@ This sample can work together with [azure-spring-boot-sample-keyvault-certificat
    ```
    source script/setup.sh
    ```
-#### Using TLS with service principal
+  
+#### Option 2  - via Azure Portal 
+You can also create resources manually via Azure Portal. Please follow:
+1. Obtain a Service Principal. There are two ways to obtain a service principal:
+  - Recommended: enable a managed identity for the application. For more information, see  [the Managed identity overview][the_managed_identity_overview]. 
+  - If you cannot use managed identity, you can register your application with AAD [register app with AAD][register_app_with_AAD]. The registration also creates a second application object that identifies your app.
+1. Create the key vault and certificates. Please refer to [create key vault and certificates][create_key_vault_and_certificates]
+2. Make the key vault accessible to your service principal. Please refer to [assign key vault access policy][assign_key_vault_access_policy]
+3. You need manually configure the application.yml, replace the placeholders with the resources you created in the Azure Portal.
+
+If you used the script to create the resources, or you created the resources via Azure Portal and created the Service Principal in App Registration way.
+### Run sample Using TLS. 
 1. Run command `mvn spring-boot:run`
 1. Access https://localhost:8443/
 
@@ -59,7 +71,7 @@ Then you will get
 Hello World
 ``` 
 
-#### Using mTLS with service principal
+### Run sample Using mTLS 
 
 1. Add properties in application.yml on the base of current configuration:
 ```yaml
@@ -77,6 +89,8 @@ Then the client or server will get
 ```text
 Hello World
 ``` 
+
+If you created resources via Azure Portal and created the Service Principal in Managed Identity way.
 ### Run Sample with managed identity
 If you are using managed identity instead of service principal, use below properties in your `application.yml`:
 
@@ -138,3 +152,7 @@ azure:
 [azure_spring_boot_starter_key_vault_certificates]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md
 [steps_to_store_certificate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md#creating-an-azure-key-vault
 [azure-spring-boot-sample-keyvault-certificates-client-side]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side
+[the_managed_identity_overview]: https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview
+[register_app_with_AAD]: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app
+[create_key_vault_and_certificates]: https://docs.microsoft.com/en-us/azure/key-vault/certificates/quick-create-portal
+[assign_key_vault_access_policy]: https://docs.microsoft.com/en-us/azure/key-vault/general/assign-access-policy?tabs=azure-portal

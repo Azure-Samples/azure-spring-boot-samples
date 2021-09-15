@@ -21,10 +21,11 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
 - Start azure-spring-boot-sample-keyvault-certificates-server-side's SampleApplication.
 
 ### Run sample with service principal
-1. Set environment variables created in `azure-spring-boot-sample-keyvault-certificates-server-side` application by running command:
+1. Option 1 - If you created the resources via the script, you need set environment variables created in `azure-spring-boot-sample-keyvault-certificates-server-side` application by running command:
    ```
    source script/setup.sh
    ```
+2. Option 2 - If you created the resource via the Azure Portal, you need configure the application.yml manually, please replace the placeholders with the resources you created.   
 #### Using TLS with service principal
 1. Start azure-spring-boot-sample-keyvault-certificates-client-side's SampleApplication by running command:
    ```
@@ -37,7 +38,7 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
     Response from "https://localhost:8443/": Hello World
     ```
 
-#### Using mTLS with service principal
+#### Using mTLS with service principal created via App registration.
 1. In the sample `ApplicationConfiguration.class`, change the `self-signed` to your certificate alias.
     <!-- embedme ../azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side/src/main/java/com/azure/spring/security/keyvault/certificates/sample/client/side/SampleApplicationConfiguration.java#L70-L75 -->
     ```java

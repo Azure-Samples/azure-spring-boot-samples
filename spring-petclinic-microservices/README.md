@@ -45,13 +45,13 @@ In addition, you will need the following:
 
 ```bash
     mkdir source-code
-    git clone https://github.com/azure-samples/spring-petclinic-microservices
+    git clone https://github.com/Azure-Samples/azure-spring-boot-samples
 ```
 
 ### Change directory and build the project
 
 ```bash
-    cd spring-petclinic-microservices
+    cd azure-spring-boot-samples/spring-petclinic-microservices
     mvn clean package -DskipTests
 ```
 This will take a few minutes.

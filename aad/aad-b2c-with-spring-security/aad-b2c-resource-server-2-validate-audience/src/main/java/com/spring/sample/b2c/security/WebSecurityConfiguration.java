@@ -14,27 +14,30 @@ import java.util.ArrayList;
 
 import static org.springframework.security.oauth2.jwt.JwtClaimNames.AUD;
 
+/**
+ * Security Configuration
+ */
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
-    String jwkSetUri;
+  @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
+  String jwkSetUri;
 
-    @Value("${validateAudience}")
-    String validateAudience;
+  @Value("${validateAudience}")
+  String validateAudience;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests((requests) -> requests.anyRequest().authenticated())
-                .oauth2ResourceServer()
-                .jwt();
-    }
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.authorizeRequests((requests) -> requests.anyRequest().authenticated())
+        .oauth2ResourceServer()
+        .jwt();
+  }
 
-    @Bean
-    JwtDecoder jwtDecoder() {
-        NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withJwkSetUri(this.jwkSetUri).build();
-        jwtDecoder.setJwtValidator(new DelegatingOAuth2TokenValidator<>(
-               new JwtClaimValidator(AUD, aud -> aud != null && ((ArrayList)aud).contains(this.validateAudience))));
-        return jwtDecoder;
-    }
+  @Bean
+  JwtDecoder jwtDecoder() {
+    NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withJwkSetUri(this.jwkSetUri).build();
+    jwtDecoder.setJwtValidator(new DelegatingOAuth2TokenValidator<>(
+       new JwtClaimValidator(AUD, aud -> aud != null && ((ArrayList)aud).contains(this.validateAudience))));
+    return jwtDecoder;
+  }
 }

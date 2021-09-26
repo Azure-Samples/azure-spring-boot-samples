@@ -17,37 +17,40 @@ import java.util.ArrayList;
 
 import static org.springframework.security.oauth2.jwt.JwtClaimNames.AUD;
 
+/**
+ * Security Configuration
+ */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
-    String jwkSetUri;
+  @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
+  String jwkSetUri;
 
-    @Value("${validateAudience}")
-    String validateAudience;
+  @Value("${validateAudience}")
+  String validateAudience;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests((requests) -> requests.anyRequest().authenticated())
-                .oauth2ResourceServer()
-                .jwt().jwtAuthenticationConverter(jwtAuthenticationConverter());
-    }
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.authorizeRequests((requests) -> requests.anyRequest().authenticated())
+        .oauth2ResourceServer()
+        .jwt().jwtAuthenticationConverter(jwtAuthenticationConverter());
+  }
 
-    @Bean
-    JwtDecoder jwtDecoder() {
-        NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withJwkSetUri(this.jwkSetUri).build();
-        jwtDecoder.setJwtValidator(new DelegatingOAuth2TokenValidator<>(
-               new JwtClaimValidator(AUD, aud -> aud != null && ((ArrayList)aud).contains(this.validateAudience))));
-        return jwtDecoder;
-    }
+  @Bean
+  JwtDecoder jwtDecoder() {
+    NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withJwkSetUri(this.jwkSetUri).build();
+    jwtDecoder.setJwtValidator(new DelegatingOAuth2TokenValidator<>(
+        new JwtClaimValidator(AUD, aud -> aud != null && ((ArrayList)aud).contains(this.validateAudience))));
+    return jwtDecoder;
+  }
 
-    private JwtAuthenticationConverter jwtAuthenticationConverter() {
-        JwtGrantedAuthoritiesConverter authorities = new JwtGrantedAuthoritiesConverter();
-        authorities.setAuthorityPrefix("ROLE_");
-        authorities.setAuthoritiesClaimName("roles");
-        JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
-        jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(authorities);
-        return jwtAuthenticationConverter;
-    }
+  private JwtAuthenticationConverter jwtAuthenticationConverter() {
+    JwtGrantedAuthoritiesConverter authorities = new JwtGrantedAuthoritiesConverter();
+    authorities.setAuthorityPrefix("ROLE_");
+    authorities.setAuthoritiesClaimName("roles");
+    JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+    jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(authorities);
+    return jwtAuthenticationConverter;
+  }
 }

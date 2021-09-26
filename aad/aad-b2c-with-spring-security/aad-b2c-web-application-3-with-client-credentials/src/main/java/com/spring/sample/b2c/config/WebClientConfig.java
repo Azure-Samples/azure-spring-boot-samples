@@ -7,17 +7,20 @@ import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepo
 import org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction;
 import org.springframework.web.reactive.function.client.WebClient;
 
+/**
+ * config
+ */
 @Configuration
 public class WebClientConfig {
 
-    @Bean
-    public static WebClient webClient(ClientRegistrationRepository clientRegistrationRepository,
-                                      OAuth2AuthorizedClientRepository authorizedClientRepository) {
-        ServletOAuth2AuthorizedClientExchangeFilterFunction function =
-            new ServletOAuth2AuthorizedClientExchangeFilterFunction(clientRegistrationRepository,
-                authorizedClientRepository);
-        return WebClient.builder()
-                        .apply(function.oauth2Configuration())
-                        .build();
-    }
+  @Bean
+  public static WebClient webClient(ClientRegistrationRepository clientRegistrationRepository,
+                                    OAuth2AuthorizedClientRepository authorizedClientRepository) {
+    ServletOAuth2AuthorizedClientExchangeFilterFunction function =
+      new ServletOAuth2AuthorizedClientExchangeFilterFunction(clientRegistrationRepository,
+          authorizedClientRepository);
+    return WebClient.builder()
+                    .apply(function.oauth2Configuration())
+                    .build();
+  }
 }

@@ -11,22 +11,22 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
+import org.springframework.security.oauth2.jwt.JwtClaimNames;
 import org.springframework.security.oauth2.jwt.JwtClaimValidator;
 import org.springframework.security.oauth2.jwt.JwtValidators;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
-import org.springframework.security.oauth2.server.resource.authentication.DelegatingJwtGrantedAuthoritiesConverter;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider;
-import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
+import org.springframework.security.oauth2.server
+        .resource.authentication.DelegatingJwtGrantedAuthoritiesConverter;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider;
+import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 import org.springframework.security.oauth2.server.resource.web.DefaultBearerTokenResolver;
-
-import static org.springframework.security.oauth2.jwt.JwtClaimNames.AUD;
 
 /**
  * Security Configuration.
@@ -78,8 +78,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     };
 
     http.authorizeRequests((requests) -> requests.anyRequest().authenticated())
-            .oauth2ResourceServer()
-            .authenticationManagerResolver(resolver);
+        .oauth2ResourceServer()
+        .authenticationManagerResolver(resolver);
   }
 
   private JwtAuthenticationConverter jwtAuthenticationConverter() {
@@ -127,7 +127,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     jwtDecoder.setJwtValidator(new DelegatingOAuth2TokenValidator<>(
             // Select your instance under `Applications` from portal,
             // and then Fill in `${validate-audience}` from `Application ID`.
-            new JwtClaimValidator(AUD, aud ->
+            new JwtClaimValidator(JwtClaimNames.AUD, aud ->
                     aud != null && ((ArrayList) aud).contains(validateAudience)),
             JwtValidators.createDefaultWithIssuer(issuerUri)));
     JwtAuthenticationProvider authenticationProvider = new JwtAuthenticationProvider(jwtDecoder);

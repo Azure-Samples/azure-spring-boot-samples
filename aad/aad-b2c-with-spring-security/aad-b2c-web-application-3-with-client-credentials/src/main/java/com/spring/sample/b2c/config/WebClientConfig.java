@@ -15,13 +15,14 @@ public class WebClientConfig {
 
   /**
    * web client.
+   *
    * @param clientRegistrationRepository clientRegistrationRepository
    * @param authorizedClientRepository authorizedClientRepository
    * @return WebClient
    */
   @Bean
   public static WebClient webClient(ClientRegistrationRepository clientRegistrationRepository,
-                                    OAuth2AuthorizedClientRepository authorizedClientRepository) {
+                                  OAuth2AuthorizedClientRepository authorizedClientRepository) {
     ServletOAuth2AuthorizedClientExchangeFilterFunction function =
         new ServletOAuth2AuthorizedClientExchangeFilterFunction(clientRegistrationRepository,
           authorizedClientRepository);

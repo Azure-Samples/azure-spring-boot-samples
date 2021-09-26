@@ -19,15 +19,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
   protected void configure(HttpSecurity http) throws Exception {
     // @formatter:off
     http
-           .authorizeRequests()
-               .regexMatchers("/login").permitAll()
-               .anyRequest().authenticated()
-               .and()
-           .logout()
-               .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-               .logoutSuccessUrl(this.logoutSuccessUrl)
-               .and()
-           .oauth2Login();
+          .authorizeRequests()
+              .regexMatchers("/login").permitAll()
+              .anyRequest().authenticated()
+              .and()
+          .logout()
+              .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+              .logoutSuccessUrl(this.logoutSuccessUrl)
+              .and()
+          .oauth2Login();
     // @formatter:off
   }
 }

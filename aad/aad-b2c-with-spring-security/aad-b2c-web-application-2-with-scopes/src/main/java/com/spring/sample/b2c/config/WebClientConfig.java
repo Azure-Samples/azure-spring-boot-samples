@@ -15,6 +15,7 @@ public class WebClientConfig {
 
   /**
    * web client.
+   *
    * @param clientRegistrationRepository clientRegistrationRepository
    * @param authorizedClientRepository authorizedClientRepository
    * @return WebClient

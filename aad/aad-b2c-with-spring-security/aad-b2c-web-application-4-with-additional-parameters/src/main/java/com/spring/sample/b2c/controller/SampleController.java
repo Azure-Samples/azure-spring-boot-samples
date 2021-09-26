@@ -3,7 +3,7 @@ package com.spring.sample.b2c.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
-import org.springframework.security.oauth2.client.web.reactive.function.client.ServerOAuth2AuthorizedClientExchangeFilterFunction;
+import org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -25,8 +25,9 @@ public class SampleController {
 
   @GetMapping(value = { "/resourceServer" })
   @ResponseBody
-  public String getResourceServer(@RegisteredOAuth2AuthorizedClient("sign-up-or-sign-in")
-                                            OAuth2AuthorizedClient signUpOrSignIn) {
+  public String getResourceServer(
+          @RegisteredOAuth2AuthorizedClient("sign-up-or-sign-in")
+                  OAuth2AuthorizedClient signUpOrSignIn) {
     return canVisitUri(signUpOrSignIn, "http://localhost:8091/hello");
   }
 
@@ -76,12 +77,11 @@ public class SampleController {
     String body = this.webClient
             .get()
             .uri(uri)
-            .attributes(ServerOAuth2AuthorizedClientExchangeFilterFunction
+            .attributes(ServletOAuth2AuthorizedClientExchangeFilterFunction
                     .oauth2AuthorizedClient(client))
             .retrieve()
             .bodyToMono(String.class)
             .block();
     return "Get response from " + uri + (null != body ? " successfully" : " failed\n");
   }
-
 }

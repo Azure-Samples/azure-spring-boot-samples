@@ -40,7 +40,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withJwkSetUri(this.jwkSetUri).build();
     jwtDecoder.setJwtValidator(new DelegatingOAuth2TokenValidator<>(
         new JwtClaimValidator(JwtClaimNames.AUD, aud ->
-                aud != null && ((ArrayList) aud).contains(this.validateAudience))));
+          aud != null && ((ArrayList) aud).contains(this.validateAudience))));
     return jwtDecoder;
   }
 

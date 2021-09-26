@@ -1,7 +1,0 @@
-# b2c jwkSetUri can be find from metadata document
-spring:
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          jwkSetUri: ${your-base-uri}   # Such as: https://<your-tenant-name>.b2clogin.com/<your-tenant-name>.onmicrosoft.com/<user-flow-name>/discovery/v2.0/keys

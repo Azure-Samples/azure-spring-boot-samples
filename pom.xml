@@ -24,8 +24,15 @@
     <module>aad/azure-spring-boot-starter-active-directory/aad-web-application-and-resource-server</module>
     <module>aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-web-application</module>
     <module>aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-resource-server</module>
-    <module>aad/aad-b2c-with-spring-security/aad-b2c-web-application</module>
-    <module>aad/aad-b2c-with-spring-security/aad-b2c-resource-server</module>
+    <module>aad/aad-b2c-with-spring-security/aad-b2c-resource-server-1-simple-sample</module>
+    <module>aad/aad-b2c-with-spring-security/aad-b2c-resource-server-2-validate-audience</module>
+    <module>aad/aad-b2c-with-spring-security/aad-b2c-resource-server-3-authorize-by-scopes</module>
+    <module>aad/aad-b2c-with-spring-security/aad-b2c-resource-server-4-authorize-by-app-roles</module>
+    <module>aad/aad-b2c-with-spring-security/aad-b2c-resource-server-5-multi-tenant</module>
+    <module>aad/aad-b2c-with-spring-security/aad-b2c-web-application-1-simple-sample</module>
+    <module>aad/aad-b2c-with-spring-security/aad-b2c-web-application-2-with-scopes</module>
+    <module>aad/aad-b2c-with-spring-security/aad-b2c-web-application-3-with-client-credentials</module>
+    <module>aad/aad-b2c-with-spring-security/aad-b2c-web-application-4-with-additional-parameters</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-complete</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-initial</module>
     <module>appconfiguration/azure-appconfiguration-sample</module>

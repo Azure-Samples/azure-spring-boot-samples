@@ -1,0 +1,207 @@
+= Tutorial of using Azure Active Directory B2C by Spring Security
+:toc:
+
+By reading this tutorial, you will learn how to use Azure Active Directory B2C by Spring Security.
+
+== Prerequisites
+- https://azure.microsoft.com/free[Azure Subscription]
+- https://docs.microsoft.com/java/azure/jdk/?view=azure-java-stable[Java Development Kit (JDK)] with version 8 or above
+
+[[create-azure-active-directory-B2C-resources]]
+
+== Prepare Azure Active Directory B2C resources
+
+=== Create your Azure Active Directory B2C tenant
+
+Follow the guide of https://docs.microsoft.com/azure/active-directory-b2c/tutorial-create-tenant[AAD B2C tenant creation].
+
+=== Register your Azure Active Directory B2C application
+
+Follow the guide of https://docs.microsoft.com/azure/active-directory-b2c/tutorial-register-applications[AAD B2C application registry].
+Please ensure that your b2c application's `Redirect URL` is configured to `http://localhost:8080/login/oauth2/code/`.
+In order to jump to the correct page (home) after `profile-edit` and `password-reset`, we need to add `http://localhost:8080/` in the redirect uri too.
+
+=== Create user flows
+
+Follow the guide of https://docs.microsoft.com/azure/active-directory-b2c/tutorial-create-user-flows[AAD B2C user flows creation].
+
+=== Enable forgot password
+
+Follow the guide of https://docs.microsoft.com/en-us/azure/active-directory-b2c/add-password-reset-policy?pivots=b2c-user-flow#self-service-password-reset-recommended[AAD B2C enable forgot password].
+
+=== Enable profile edit
+
+Follow the guide of https://docs.microsoft.com/en-us/azure/active-directory-b2c/add-profile-editing-policy?pivots=b2c-user-flow[AAD B2C set up a profile edit flow].
+
+=== Enable password reset
+
+Follow the guide of https://docs.microsoft.com/en-us/azure/active-directory-b2c/add-password-reset-policy?pivots=b2c-user-flow#create-a-password-reset-user-flow[AAD B2C set up a password reset user flow]
+
+[[work-as-web-application]]
+== Work as web application
+
+[[work-application-simple-sample]]
+=== Web application simple sample
+
+Sample project: <<./web-application-1-simple-sample/README.adoc#chapter-link, web-application-1-simple-sample>>
+
+==== Fill necessary contents in sample project.
+
+1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+
+2. Fill necessary contents in `home.html`, like `${your-tenant-name}`.
+
+==== Boot up the application
+
+Lunch the sample project, then open `http://localhost:8080` by browser.
+You are then redirected to the default _auto-generated_ login page. You can sign in or sign up with your account.
+
+Then, you can edit your profile with the button `Profile edit` or reset your password with `Password reset`.
+
+[[Web-application-with-scopes]]
+=== Web application with scopes
+
+Sample project: <<./web-application-2-with-scopes/README.adoc#chapter-link, web-application-2-with-scopes>>
+
+Compared with the previous sample, updated the `application.yml` and `SampleController.java`
+
+==== Configure scopes for application
+
+Configure scopes `Delegated.Premisson.Scope1` for application with https://docs.microsoft.com/en-us/azure/active-directory-b2c/add-web-api-application?tabs=app-reg-ga#configure-scopes[Configure-scopes].
+
+==== Fill necessary contents in sample project.
+
+1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+
+2. Fill necessary contents in `home.html`, like `${your-tenant-name}`.
+
+==== Boot up the application
+
+Lunch the sample project, then open `http://localhost:8081` by browser.
+
+Compared with the previous sample, this sample adds scope for permission authentication.
+Please refer to <<Resource server authorize by scopes,Resource server authorize by scopes>>.
+
+[[Web-application-with-client-credentials]]
+=== Web application with client credentials
+
+Sample project: <<./web-application-3-with-client-credentials/README.adoc#chapter-link, web-application-3-with-client-credentials>>
+
+Compared with the previous sample, updated the `application.yml` and `WebSecurityConfiguration.java`
+
+==== Configure roles for application
+
+Configure Role `Application.Permission.Role1` for application with https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#app-manifest-editor[Configure-roles-for-application].
+https://docs.microsoft.com/en-us/azure/active-directory-b2c/user-overview#consumer-user[Consumer-user] cannot access Azure resources, but we can https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#example-application-app-role[assign-roles-to-application].
+
+==== Fill necessary contents in sample project.
+
+1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+
+2. Fill necessary contents in `home.html`, like `${your-tenant-name}`.
+
+==== Boot up the application
+
+Lunch the sample project, then open `http://localhost:8082` by browser.
+
+Compared with the previous example, this sample adds a client to obtain a token for your custom resource.
+Please refer to <<Resource server authorize by app roles,Resource server authorize by app roles>>.
+
+[[Web-application-with-additional-parameters]]
+=== Web application with additional parameters
+
+Sample project: <<./web-application-4-with-additional-parameters/README.adoc#chapter-link, web-application-4-with-additional-parameters>>
+
+Compared with the previous sample, updated the `application.yml` and `WebSecurityConfiguration.java`
+
+==== Fill necessary contents in sample project.
+
+1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+
+2. Fill necessary contents in `home.html`, like `${your-tenant-name}`.
+
+==== Boot up the application
+Lunch the sample project, then open `http://localhost:8083` by browser.
+Compared with the previous sample, this application just add `additional-Parameters`.
+
+[[work-as-resource-server]]
+== Work as Resource Server
+
+[[Resource-server-simple-sample]]
+=== Resource server simple sample
+
+Sample project: <<./resource-server-1-simple-sample/README.adoc#chapter-link, resource-server-1-simple-sample>>
+
+==== Fill necessary contents in sample project.
+
+1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+
+==== Boot up the application
+
+Lunch the sample project. Then open `http://localhost:8080/resourceServer` by browser. The browser will access <<Web application simple sample,Web application simple sample>> , and which will access this resource server by access token.
+
+[[Resource-server-validate-audience]]
+=== Resource server validate audience
+
+Sample project: <<./resource-server-2-validate-audience/README.adoc#chapter-link, resource-server-2-validate-audience>>
+
+Compared with the previous sample, updated the `application.yml` and `WebSecurityConfiguration.java`
+
+==== Fill necessary contents in sample project.
+
+1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+
+==== Boot up the application
+
+Lunch the sample project. Then open `http://localhost:8080/resourceServerValidateAudience` by browser. The browser will access <<Web application simple sample,Web application simple sample>>, and which will access this resource server by access token.
+This resource server will validate the accessToken's audience.
+
+[[Resource-server-authorize-by-scopes]]
+=== Resource server authorize by scopes
+
+Sample project: <<./resource-server-3-authorize-by-scopes/README.adoc#chapter-link, resource-server-3-authorize-by-scopes>>
+
+Compared with the previous sample, updated the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`
+
+==== Fill necessary contents in sample project.
+
+1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+
+==== Boot up the application
+
+Lunch the sample project. Then open `http://localhost:8081/resourceServerWithScope` by browser. The browser will access <<Web application with scopes,Web application with scopes>>, and which will access this resource server by access token.
+This resource server will validate the accessToken's `scp` claim.
+
+[[Resource-server-authorize-by-app-roles]]
+=== Resource server authorize by app roles
+
+Sample project: <<./resource-server-4-authorize-by-app-roles/README.adoc#chapter-link, resource-server-4-authorize-by-app-roles>>
+
+Compared with the previous sample, updated the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`
+
+==== Fill necessary contents in sample project.
+
+1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+
+==== Boot up the application
+
+Lunch the sample project. Then open `http://localhost:8082/resourceServerWithRoles` by browser. The browser will access <<Web application with client credentials,Web application with client credentials>>, and which will access this resource server by access token.
+This resource server will validate the accessToken's `roles` claim.
+
+[[Resource-server-multi-tenant]]
+=== Resource server multi tenant
+
+Sample project: <<./resource-server-5-multi-tenant/README.adoc#chapter-link, resource-server-5-multi-tenant>>
+
+Compared with the previous sample, updated the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`
+
+==== Fill necessary contents in sample project.
+
+1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+
+==== Boot up the application
+
+Lunch the sample project.
+Compared with the previous sample, this sample can validate accessToken with different issuers.
+So, you can access this resource server by both <<Web application with scopes, Web application with scopes>> and <<Web application with client credentials, Web application with client credentials>>,
+Open `http://localhost:8082/resourceServerWithMultiTenant` or `http://localhost:8083/resourceServerWithMultiTenant` by browser.

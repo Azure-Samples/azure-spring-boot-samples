@@ -113,12 +113,6 @@ Make sure the managed identity can access target Key Vault.
 
 1. Follow the above step of [Using TLS with service principal](#using-tls-with-service-principal) or [Using mTLS with service principal](#using-mtls-with-service-principal).
 
-## Examples
-## Troubleshooting
-## Next steps
-## Run with Maven
-## Contributing
-
 <!-- LINKS -->
 
 [azure_spring_boot_starter_key_vault_certificates]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md

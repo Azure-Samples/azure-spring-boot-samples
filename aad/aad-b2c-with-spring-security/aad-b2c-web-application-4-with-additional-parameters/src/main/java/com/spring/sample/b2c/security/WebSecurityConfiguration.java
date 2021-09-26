@@ -9,14 +9,13 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizationRequestResolver;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizationRequestResolver;
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 /**
- * Security Configuration
+ * Security Configuration.
  */
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -25,14 +24,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
   private String logoutSuccessUrl;
 
   @Value("#{${additional-Parameters}}")
-  private Map<String,String> additionalParameter;
+  private Map<String, String> additionalParameter;
 
   @Autowired
   private ClientRegistrationRepository clientRegistrationRepository;
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
-      // @formatter:off
+    // @formatter:off
     http
           .authorizeRequests()
               .regexMatchers("/login").permitAll()
@@ -50,6 +49,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     // @formatter:off
   }
 
+  /**
+   * CustomAuthorizationRequestResolver.
+   */
   public class CustomAuthorizationRequestResolver implements OAuth2AuthorizationRequestResolver {
     private final OAuth2AuthorizationRequestResolver defaultAuthorizationRequestResolver;
 
@@ -66,8 +68,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
       OAuth2AuthorizationRequest authorizationRequest =
               this.defaultAuthorizationRequestResolver.resolve(request);
 
-      return authorizationRequest != null ?
-              customAuthorizationRequest(authorizationRequest) :
+      return authorizationRequest != null
+              ? customAuthorizationRequest(authorizationRequest) :
               null;
     }
 
@@ -78,8 +80,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
       OAuth2AuthorizationRequest authorizationRequest =
               this.defaultAuthorizationRequestResolver.resolve(request, clientRegistrationId);
 
-      return authorizationRequest != null ?
-              customAuthorizationRequest(authorizationRequest) :
+      return authorizationRequest != null
+              ? customAuthorizationRequest(authorizationRequest) :
               null;
     }
 

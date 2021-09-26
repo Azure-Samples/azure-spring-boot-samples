@@ -3,15 +3,14 @@ package com.spring.sample.b2c.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.web.reactive.function.client.ServerOAuth2AuthorizedClientExchangeFilterFunction;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
-
 /**
- * controller
+ * controller.
  */
 @Controller
 public class SampleController {
@@ -26,31 +25,40 @@ public class SampleController {
 
   @GetMapping(value = { "/resourceServer" })
   @ResponseBody
-  public String getResourceServer(@RegisteredOAuth2AuthorizedClient("sign-up-or-sign-in") OAuth2AuthorizedClient signUpOrSignIn) {
+  public String getResourceServer(@RegisteredOAuth2AuthorizedClient("sign-up-or-sign-in")
+                                            OAuth2AuthorizedClient signUpOrSignIn) {
     return canVisitUri(signUpOrSignIn, "http://localhost:8091/hello");
   }
 
   @GetMapping(value = { "/resourceServerValidateAudience" })
   @ResponseBody
-  public String getResourceServerValidateAudience(@RegisteredOAuth2AuthorizedClient("sign-up-or-sign-in") OAuth2AuthorizedClient signUpOrSignIn) {
+  public String getResourceServerValidateAudience(
+          @RegisteredOAuth2AuthorizedClient("sign-up-or-sign-in")
+                  OAuth2AuthorizedClient signUpOrSignIn) {
     return canVisitUri(signUpOrSignIn, "http://localhost:8092/hello");
   }
 
   @GetMapping(value = { "/resourceServerWithScope" })
   @ResponseBody
-  public String getResourceServerWithScopes(@RegisteredOAuth2AuthorizedClient("sign-up-or-sign-in") OAuth2AuthorizedClient signUpOrSignIn) {
+  public String getResourceServerWithScopes(
+          @RegisteredOAuth2AuthorizedClient("sign-up-or-sign-in")
+                  OAuth2AuthorizedClient signUpOrSignIn) {
     return canVisitUri(signUpOrSignIn, "http://localhost:8093/hello");
   }
 
   @GetMapping(value = { "/resourceServerWithRoles" })
   @ResponseBody
-  public String getResourceServerWithRoles(@RegisteredOAuth2AuthorizedClient("resource-server") OAuth2AuthorizedClient resourceServer) {
+  public String getResourceServerWithRoles(
+          @RegisteredOAuth2AuthorizedClient("resource-server")
+                  OAuth2AuthorizedClient resourceServer) {
     return canVisitUri(resourceServer, "http://localhost:8094/hello");
   }
 
   @GetMapping(value = { "/resourceServerWithMultiTenant" })
   @ResponseBody
-  public String getResourceServerWithMultiTenant(@RegisteredOAuth2AuthorizedClient("resource-server") OAuth2AuthorizedClient resourceServer) {
+  public String getResourceServerWithMultiTenant(
+          @RegisteredOAuth2AuthorizedClient("resource-server")
+                  OAuth2AuthorizedClient resourceServer) {
     return canVisitUri(resourceServer, "http://localhost:8095/hello");
   }
 
@@ -68,7 +76,8 @@ public class SampleController {
     String body = this.webClient
             .get()
             .uri(uri)
-            .attributes(oauth2AuthorizedClient(client))
+            .attributes(ServerOAuth2AuthorizedClientExchangeFilterFunction
+                    .oauth2AuthorizedClient(client))
             .retrieve()
             .bodyToMono(String.class)
             .block();

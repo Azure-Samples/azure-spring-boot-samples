@@ -6,16 +6,14 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
+import org.springframework.security.oauth2.jwt.JwtClaimNames;
 import org.springframework.security.oauth2.jwt.JwtClaimValidator;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
+import java.util.ArrayList;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
 
-import java.util.ArrayList;
-
-import static org.springframework.security.oauth2.jwt.JwtClaimNames.AUD;
-
 /**
- * Security Configuration
+ * Security Configuration.
  */
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -37,7 +35,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
   JwtDecoder jwtDecoder() {
     NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withJwkSetUri(this.jwkSetUri).build();
     jwtDecoder.setJwtValidator(new DelegatingOAuth2TokenValidator<>(
-       new JwtClaimValidator(AUD, aud -> aud != null && ((ArrayList)aud).contains(this.validateAudience))));
+        new JwtClaimValidator(JwtClaimNames.AUD, aud ->
+               aud != null && ((ArrayList) aud).contains(this.validateAudience))));
     return jwtDecoder;
   }
 }

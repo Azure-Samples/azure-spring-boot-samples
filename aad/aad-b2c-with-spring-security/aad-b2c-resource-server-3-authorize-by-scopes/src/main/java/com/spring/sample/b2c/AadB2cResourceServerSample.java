@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * Spring application
+ * Spring application.
  */
 @SpringBootApplication
 public class AadB2cResourceServerSample {

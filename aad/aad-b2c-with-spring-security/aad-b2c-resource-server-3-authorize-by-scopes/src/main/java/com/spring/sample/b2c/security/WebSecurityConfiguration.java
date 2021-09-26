@@ -10,15 +10,14 @@ import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
 import org.springframework.security.oauth2.jwt.JwtClaimValidator;
 import org.springframework.security.oauth2.jwt.JwtDecoder;
 import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import java.util.ArrayList;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
-
-import java.util.ArrayList;
 
 import static org.springframework.security.oauth2.jwt.JwtClaimNames.AUD;
 
 /**
- * Security Configuration
+ * Security Configuration.
  */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -40,8 +39,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Bean
   JwtDecoder jwtDecoder() {
     NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withJwkSetUri(this.jwkSetUri).build();
-      jwtDecoder.setJwtValidator(new DelegatingOAuth2TokenValidator<>(
-        new JwtClaimValidator(AUD, aud -> aud != null && ((ArrayList)aud).contains(this.validateAudience))));
+    jwtDecoder.setJwtValidator(new DelegatingOAuth2TokenValidator<>(
+      new JwtClaimValidator(AUD, aud ->
+        aud != null && ((ArrayList) aud).contains(this.validateAudience))));
     return jwtDecoder;
   }
 

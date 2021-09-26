@@ -18,17 +18,19 @@ import org.springframework.security.oauth2.server.resource.authentication.Delega
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationProvider;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
-import org.springframework.security.oauth2.server.resource.web.DefaultBearerTokenResolver;
-
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
+import org.springframework.security.oauth2.server.resource.web.DefaultBearerTokenResolver;
 
 import static org.springframework.security.oauth2.jwt.JwtClaimNames.AUD;
 
+/**
+ * Security Configuration.
+ */
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
@@ -61,12 +63,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
       String token = new DefaultBearerTokenResolver().resolve(request);
       String issuer;
       try {
-          // Choose AuthenticationManager by accessToken issuer, you can add your own logic here
-          JWT result = JWTParser.parse(token);
-          JWTClaimsSet name = result.getJWTClaimsSet();
-          issuer = name.getIssuer();
+        // Choose AuthenticationManager by accessToken issuer, you can add your own logic here
+        JWT result = JWTParser.parse(token);
+        JWTClaimsSet name = result.getJWTClaimsSet();
+        issuer = name.getIssuer();
       } catch (ParseException e) {
-          throw new IllegalArgumentException("unknown tenant");
+        throw new IllegalArgumentException("unknown tenant");
       }
       // @formatter:off
       return Optional.ofNullable(issuer)
@@ -89,7 +91,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
   }
 
   /**
-   * This converter will add authority by claim "roles"
+   * This converter will add authority by claim "roles".
    *
    * @return JwtGrantedAuthoritiesConverter
    */
@@ -101,7 +103,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
   }
 
   /**
-   * This converter will add authority by claim "scp"
+   * This converter will add authority by claim "scp".
    *
    * @return JwtGrantedAuthoritiesConverter
    */
@@ -123,8 +125,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withJwkSetUri(jwkSetUri).build();
     // you can custom your own validator with your logic here.
     jwtDecoder.setJwtValidator(new DelegatingOAuth2TokenValidator<>(
-            // Select your instance under `Applications` from portal, and then Fill in `${validate-audience}` from `Application ID`.
-            new JwtClaimValidator(AUD, aud -> aud != null && ((ArrayList) aud).contains(validateAudience)),
+            // Select your instance under `Applications` from portal,
+            // and then Fill in `${validate-audience}` from `Application ID`.
+            new JwtClaimValidator(AUD, aud ->
+                    aud != null && ((ArrayList) aud).contains(validateAudience)),
             JwtValidators.createDefaultWithIssuer(issuerUri)));
     JwtAuthenticationProvider authenticationProvider = new JwtAuthenticationProvider(jwtDecoder);
     authenticationProvider.setJwtAuthenticationConverter(jwtAuthenticationConverter());

@@ -1,0 +1,29 @@
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888
+  application:
+    name: customers-service
+---
+spring:
+  profiles: docker
+  cloud:
+    config:
+      uri: http://config-server:8888
+
+---
+spring:
+  profiles: local
+  cloud:
+    config:
+      uri: http://localhost:8888
+server:
+  port: 8081
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/

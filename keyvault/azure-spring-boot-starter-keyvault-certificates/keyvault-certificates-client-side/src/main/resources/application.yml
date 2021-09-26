@@ -6,5 +6,8 @@ azure:
     client-secret: ${SERVICE_PRINCIPAL_SECRET}      # The Client Secret that will be used for accessing your Azure Key Vault (needed if you are not using managed identity).
     # managed-identity:  # client-id of the user-assigned managed identity to use.
     # If the above 4 properties are empty, then system-assigned managed identity will be used.
+  #cert-path:
+    #well-known:  # Optional local certificates path. Your local path that holds the well-known certificates.
+    #custom: # Optional local certificates path. Your local path that holds your customized certificates.
 server:
   port: 8080

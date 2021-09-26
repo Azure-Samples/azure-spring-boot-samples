@@ -21,11 +21,12 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
 - Start azure-spring-boot-sample-keyvault-certificates-server-side's SampleApplication.
 
 ### Run sample with service principal
-1. Set environment variables created in `azure-spring-boot-sample-keyvault-certificates-server-side` application by running command:
+1. Option 1 - If you created the resources via the script, you need set environment variables created in `azure-spring-boot-sample-keyvault-certificates-server-side` application by running command:
    ```
    source script/setup.sh
    ```
-#### Using TLS with service principal
+2. Option 2 - If you created the resource via the Azure Portal, you need configure the application.yml manually, please replace the placeholders with the resources you created.   
+#### Using TLS with service principal created via App registration.
 1. Start azure-spring-boot-sample-keyvault-certificates-client-side's SampleApplication by running command:
    ```
    mvn spring-boot:run
@@ -37,7 +38,7 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
     Response from "https://localhost:8443/": Hello World
     ```
 
-#### Using mTLS with service principal
+#### Using mTLS with service principal created via App registration.
 1. In the sample `ApplicationConfiguration.class`, change the `self-signed` to your certificate alias.
     <!-- embedme ../azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side/src/main/java/com/azure/spring/security/keyvault/certificates/sample/client/side/SampleApplicationConfiguration.java#L70-L75 -->
     ```java
@@ -134,6 +135,19 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
     ```
 1. Follow the above step of [Using mTLS with service principal](#using-mtls-with-service-principal).
 
+
+### (Optional) Use the KeyVaultKeyStore with local certificates as the trust resources. 
+- For example, there are some well known CAs. You can put them into a folder, then configure in the application.yml the  azure:cert-path:well-known=\<yourFolderPath>. The certificates in this folder will be loaded by KeyVaultKeystore. If you don't configure such a property, the default well-known path will be `/etc/certs/well-known/`.
+- Besides the well-known path, you can also put your customized certificates into another folder specified by azure:cert-path:custom=\<yourCustomPath>, by default, the custom path is `/etc/certs/custom/`.
+- You can also put certificates under the class path, build a folder named `keyvault` and configure it under the class path, then all the certificates in this folder will be loaded by key vault keystore.
+
+To configure the local certificates, please uncomment and configure the optional local certificates path.
+```yaml
+azure:
+  #cert-path: 
+    #well-known:  # Optional local certificates path. Your local path that holds the well-known certificates.
+    #custom: # Optional local certificates path. Your local path that holds your customized certificates. 
+```
 <!-- LINKS -->
 
 [azure_spring_boot_starter_key_vault_certificates]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md

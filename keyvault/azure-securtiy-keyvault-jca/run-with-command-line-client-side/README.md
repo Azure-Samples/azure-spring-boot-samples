@@ -18,6 +18,9 @@ This sample illustrates how to run a web client with Azure key vault jca via com
 
 - This sample contains a simple web client function. 
 
+### Environment
+jdk 11.0.12 or above
+
 ### Run Spring Boot web server with Azure key vault via command line.
 1. Open terminal and enter the folder where the pom.xml is and run `mvn package`. In the target folder there is a run-with-command-line-client-1.0.0.jar generated.
 2. Get a copy of the JCA configuration file.

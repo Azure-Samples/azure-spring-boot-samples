@@ -48,7 +48,7 @@ This sample illustrates how to run a web client with Azure key vault jca via com
    ```
    java --module-path ./azure-security-keyvault-jca-2.0.0-beta.1.jar --add-modules com.azure.security.keyvault.jca -Dsecurity.overridePropertiesFile=true -Djava.security.properties==./java.security -Djavax.net.ssl.trustStoreType=AzureKeyVault -Dazure.keyvault.uri=<yourKeyVaultURI> -Dazure.keyvault.tenant-id=<yourTenantID> -Dazure.keyvault.client-id=<yourClientID> -Dazure.keyvault.client-secret=<yourSecretValue> -jar run-with-command-line-client-side-1.0.0.jar
    ```
-   The client will be started and connect to the server side. If you have run the server side with client authentication needed, please use the following command instead of the above to run the client side:
+   The client will be started and connect to the server side, you will see "Hello World!". If you have run the server side with client authentication needed, please use the following command instead of the above to run the client side:
    ```
    java --module-path ./azure-security-keyvault-jca-2.0.0-beta.1.jar --add-modules com.azure.security.keyvault.jca -Dsecurity.overridePropertiesFile=true -Djava.security.properties==./java.security -Djavax.net.ssl.trustStoreType=AzureKeyVault -Djavax.net.ssl.keyStoreType=AzureKeyVault -Dazure.keyvault.uri=<yourKeyVaultURI> -Dazure.keyvault.tenant-id=<yourTenantID> -Dazure.keyvault.client-id=<yourClientID> -Dazure.keyvault.client-secret=<yourSecretValue> -jar run-with-command-line-client-side-1.0.0.jar
    ```

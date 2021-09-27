@@ -1,7 +1,7 @@
 = Tutorial of using Azure Active Directory B2C by Spring Security
 :toc:
 
-By reading this tutorial, you will learn how to use Azure Active Directory B2C by Spring Security.
+From this tutorial, you will learn how to use Azure Active Directory B2C by Spring Security.
 
 == Prerequisites
 - https://azure.microsoft.com/free[Azure Subscription]
@@ -45,11 +45,11 @@ Follow the guide of https://docs.microsoft.com/en-us/azure/active-directory-b2c/
 
 Sample project: <<./web-application-1-simple-sample/README.adoc#chapter-link, web-application-1-simple-sample>>
 
-==== Fill necessary contents in sample project.
+==== Fill necessary values in sample project.
 
-1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
 
-2. Fill necessary contents in `home.html`, like `${your-tenant-name}`.
+2. Fill necessary values in `home.html`, like `${your-tenant-name}`.
 
 ==== Boot up the application
 
@@ -69,11 +69,11 @@ Compared with the previous sample, updated the `application.yml` and `SampleCont
 
 Configure scopes `Delegated.Premisson.Scope1` for application with https://docs.microsoft.com/en-us/azure/active-directory-b2c/add-web-api-application?tabs=app-reg-ga#configure-scopes[Configure-scopes].
 
-==== Fill necessary contents in sample project.
+==== Fill necessary values in sample project.
 
-1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
 
-2. Fill necessary contents in `home.html`, like `${your-tenant-name}`.
+2. Fill necessary values in `home.html`, like `${your-tenant-name}`.
 
 ==== Boot up the application
 
@@ -94,11 +94,11 @@ Compared with the previous sample, updated the `application.yml` and `WebSecurit
 Configure Role `Application.Permission.Role1` for application with https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#app-manifest-editor[Configure-roles-for-application].
 https://docs.microsoft.com/en-us/azure/active-directory-b2c/user-overview#consumer-user[Consumer-user] cannot access Azure resources, but we can https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#example-application-app-role[assign-roles-to-application].
 
-==== Fill necessary contents in sample project.
+==== Fill necessary values in sample project.
 
-1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
 
-2. Fill necessary contents in `home.html`, like `${your-tenant-name}`.
+2. Fill necessary values in `home.html`, like `${your-tenant-name}`.
 
 ==== Boot up the application
 
@@ -114,15 +114,15 @@ Sample project: <<./web-application-4-with-additional-parameters/README.adoc#cha
 
 Compared with the previous sample, updated the `application.yml` and `WebSecurityConfiguration.java`
 
-==== Fill necessary contents in sample project.
+==== Fill necessary values in sample project.
 
-1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
 
-2. Fill necessary contents in `home.html`, like `${your-tenant-name}`.
+2. Fill necessary values in `home.html`, like `${your-tenant-name}`.
 
 ==== Boot up the application
 Lunch the sample project, then open `http://localhost:8083` by browser.
-Compared with the previous sample, this application just add `additional-Parameters`.
+Compared with the previous sample, this application just adds `additional-Parameters`.
 
 [[work-as-resource-server]]
 == Work as Resource Server
@@ -132,9 +132,9 @@ Compared with the previous sample, this application just add `additional-Paramet
 
 Sample project: <<./resource-server-1-simple-sample/README.adoc#chapter-link, resource-server-1-simple-sample>>
 
-==== Fill necessary contents in sample project.
+==== Fill necessary values in sample project.
 
-1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
 
 ==== Boot up the application
 
@@ -147,9 +147,9 @@ Sample project: <<./resource-server-2-validate-audience/README.adoc#chapter-link
 
 Compared with the previous sample, updated the `application.yml` and `WebSecurityConfiguration.java`
 
-==== Fill necessary contents in sample project.
+==== Fill necessary values in sample project.
 
-1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
 
 ==== Boot up the application
 
@@ -163,9 +163,9 @@ Sample project: <<./resource-server-3-authorize-by-scopes/README.adoc#chapter-li
 
 Compared with the previous sample, updated the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`
 
-==== Fill necessary contents in sample project.
+==== Fill necessary values in sample project.
 
-1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
 
 ==== Boot up the application
 
@@ -179,9 +179,9 @@ Sample project: <<./resource-server-4-authorize-by-app-roles/README.adoc#chapter
 
 Compared with the previous sample, updated the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`
 
-==== Fill necessary contents in sample project.
+==== Fill necessary values in sample project.
 
-1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
 
 ==== Boot up the application
 
@@ -195,9 +195,9 @@ Sample project: <<./resource-server-5-multi-tenant/README.adoc#chapter-link, res
 
 Compared with the previous sample, updated the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`
 
-==== Fill necessary contents in sample project.
+==== Fill necessary values in sample project.
 
-1. Fill necessary contents in `application.yml`, like `${your-jwk-set-uri}`.
+1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
 
 ==== Boot up the application
 

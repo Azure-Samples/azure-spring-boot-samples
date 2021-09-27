@@ -20,6 +20,7 @@ import com.azure.spring.data.cosmos.core.mapping.GeneratedValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
@@ -39,6 +40,7 @@ import java.util.Date;
 @Builder(builderMethodName = "visit")
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Visit {
 
     @Id
@@ -53,30 +55,5 @@ public class Visit {
 
     @Size(max = 8192)
     private String description;
-
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public Date getDate() {
-        return visit_date;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getPetId() {
-        return petId;
-    }
-
-    public void setPetId(final String petId) {
-        this.petId = petId;
-    }
 
 }

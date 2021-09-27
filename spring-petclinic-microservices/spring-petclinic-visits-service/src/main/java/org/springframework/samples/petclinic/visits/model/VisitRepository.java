@@ -17,9 +17,8 @@ package org.springframework.samples.petclinic.visits.model;
 
 import com.azure.spring.data.cosmos.repository.CosmosRepository;
 import org.springframework.stereotype.Repository;
-import reactor.core.publisher.Flux;
 
-import java.util.Collection;
+import java.util.List;
 
 
 /**
@@ -33,11 +32,10 @@ import java.util.Collection;
  * @author Maciej Szarlinski
  */
 @Repository
-public interface VisitRepository extends CosmosRepository<Visit, Integer> {
+public interface VisitRepository extends CosmosRepository<Visit, String > {
 
+    List<Visit> findByPetId(String petId);
 /*
-    Flux<Visit> findByPetId(int petId);
-
     Flux<Visit> findByPetIdIn(Collection<Integer> petIds);
 */
 }

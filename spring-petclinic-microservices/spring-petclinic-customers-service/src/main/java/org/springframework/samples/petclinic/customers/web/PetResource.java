@@ -46,8 +46,7 @@ class PetResource {
 
     @GetMapping("/petTypes")
     public List<String> getPetTypes() {
-        List<String> petTypes = petRepository.getPetTypes();
-        return petTypes;
+        return petRepository.getPetTypes();
     }
 
     @PostMapping("/owners/{ownerId}/pets")
@@ -57,21 +56,40 @@ class PetResource {
         @PathVariable("ownerId") String ownerId) {
 
         final Pet pet = new Pet();
-        Optional<Owner> optionalOwner = ownerRepository.findById(ownerId);
+        Pet save = save(pet, petRequest);
 
-        optionalOwner.ifPresent(owner -> {
-            owner.addPet(pet);
-        });
-        return save(pet, petRequest);
+        Optional<Owner> optionalOwner = ownerRepository.findById(ownerId);
+        pet.setId(save.getId());
+        pet.setName(save.getName());
+        pet.setBirthDate(save.getBirthDate());
+        pet.setType(save.getType());
+        optionalOwner.ifPresent(owner -> owner.addPet(pet));
+        ownerRepository.save(optionalOwner.get());
+
+        return save;
     }
 
-    @PutMapping("/owners/*/pets/{petId}")
+    @PutMapping("/owners/{ownerId}/pets/{petId}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void processUpdateForm(@RequestBody PetRequest petRequest) {
+    public void processUpdateForm(@RequestBody PetRequest petRequest
+        ,@PathVariable("ownerId") String ownerId) {
         String petId = petRequest.getId();
         Optional<Pet> petOptional = findPetById(petId);
         petOptional.ifPresent(pet -> {
-            save(pet, petRequest);
+            Pet save = save(pet, petRequest);
+            Optional<Owner> optionalOwner = ownerRepository.findById(ownerId);
+
+            optionalOwner.ifPresent(owner -> {
+                List<Pet> pets = owner.getPets();
+                for (Pet p : pets) {
+                    if (p.getId().equals(save.getId())) {
+                        p.setName(save.getName());
+                        p.setBirthDate(save.getBirthDate());
+                        p.setType(save.getType());
+                    }
+                }
+            });
+            ownerRepository.save(optionalOwner.get());
         });
     }
 

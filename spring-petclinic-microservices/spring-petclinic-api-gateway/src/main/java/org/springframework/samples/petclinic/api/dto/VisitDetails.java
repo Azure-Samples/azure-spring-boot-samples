@@ -15,8 +15,11 @@
  */
 package org.springframework.samples.petclinic.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.Date;
 
 /**
  * @author Maciej Szarlinski
@@ -29,7 +32,8 @@ public class VisitDetails {
 
     private String petId = null;
 
-    private String date = null;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private Date visit_date = null;
 
     private String description = null;
 }

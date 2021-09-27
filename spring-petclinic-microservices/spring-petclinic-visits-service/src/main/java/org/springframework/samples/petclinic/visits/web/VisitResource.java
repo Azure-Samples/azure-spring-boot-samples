@@ -27,8 +27,10 @@ import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 /**
  * @author Juergen Hoeller
@@ -57,19 +59,23 @@ class VisitResource {
     }
 
     @GetMapping("owners/*/pets/{petId}/visits")
-    Optional<Visit> visits(@PathVariable("petId") int petId) {
+    Optional<Visit> visits(@PathVariable("petId") String  petId) {
         return  visitRepository.findById(petId);
     }
 
     @GetMapping("pets/visits")
-    Visits visitsMultiGet(@RequestParam("petId") List<Integer> petIds) {
-        Iterable<Visit> visitIterable = visitRepository.findAllById(petIds);
-        return new Visits(Lists.newArrayList(visitIterable));
+    Visits visitsMultiGet(@RequestParam("petId") Set<String> petIds) {
+        List<Visit> result = new ArrayList<>();
+        for (String petId : petIds) {
+            List<Visit> visitIterable = visitRepository.findByPetId(petId);
+            result.addAll(visitIterable);
+        }
+        return new Visits(Lists.newArrayList(result));
     }
 
     @Value
     static class Visits {
-        private final List<Visit> items;
+        List<Visit> items;
 
         Visits(List<Visit> items) {
             this.items = items;

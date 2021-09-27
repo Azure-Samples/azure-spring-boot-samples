@@ -43,7 +43,7 @@ public class VisitResourceTest {
         List<Visit> list = Arrays.asList(visit().id("1").petId("111").build(),
             visit().id("2").petId("222").build()
         );
-        when(visitRepository.findAllById(asList(111, 222))).thenReturn(list);
+        when(visitRepository.findAllById(asList("111", "222"))).thenReturn(list);
 
         mvc.perform(get("/pets/visits?petId=111,222"))
             .andExpect(status().isOk())

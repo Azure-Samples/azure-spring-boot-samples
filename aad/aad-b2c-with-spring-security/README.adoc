@@ -87,7 +87,7 @@ Please refer to <<Resource server authorize by scopes,Resource server authorize 
 
 Sample project: <<./web-application-3-with-client-credentials/README.adoc#chapter-link, web-application-3-with-client-credentials>>
 
-Compared with the previous sample, updated the `application.yml` and `WebSecurityConfiguration.java`
+Compared with the previous sample, this sample updates the `application.yml` and `WebSecurityConfiguration.java`
 
 ==== Configure roles for application
 
@@ -112,7 +112,7 @@ Please refer to <<Resource server authorize by app roles,Resource server authori
 
 Sample project: <<./web-application-4-with-additional-parameters/README.adoc#chapter-link, web-application-4-with-additional-parameters>>
 
-Compared with the previous sample, updated the `application.yml` and `WebSecurityConfiguration.java`
+Compared with the previous sample, this sample updates the `application.yml` and `WebSecurityConfiguration.java`
 
 ==== Fill necessary values in sample project.
 
@@ -145,7 +145,7 @@ Lunch the sample project. Then open `http://localhost:8080/resourceServer` by br
 
 Sample project: <<./resource-server-2-validate-audience/README.adoc#chapter-link, resource-server-2-validate-audience>>
 
-Compared with the previous sample, updated the `application.yml` and `WebSecurityConfiguration.java`
+Compared with the previous sample, this sample updates the `application.yml` and `WebSecurityConfiguration.java`
 
 ==== Fill necessary values in sample project.
 
@@ -161,7 +161,7 @@ This resource server will validate the accessToken's audience.
 
 Sample project: <<./resource-server-3-authorize-by-scopes/README.adoc#chapter-link, resource-server-3-authorize-by-scopes>>
 
-Compared with the previous sample, updated the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`
+Compared with the previous sample, this sample updates the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`
 
 ==== Fill necessary values in sample project.
 
@@ -177,7 +177,7 @@ This resource server will validate the accessToken's `scp` claim.
 
 Sample project: <<./resource-server-4-authorize-by-app-roles/README.adoc#chapter-link, resource-server-4-authorize-by-app-roles>>
 
-Compared with the previous sample, updated the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`
+Compared with the previous sample, this sample updates the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`
 
 ==== Fill necessary values in sample project.
 
@@ -193,7 +193,7 @@ This resource server will validate the accessToken's `roles` claim.
 
 Sample project: <<./resource-server-5-multi-tenant/README.adoc#chapter-link, resource-server-5-multi-tenant>>
 
-Compared with the previous sample, updated the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`
+Compared with the previous sample, this sample updates the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`
 
 ==== Fill necessary values in sample project.
 

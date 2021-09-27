@@ -63,7 +63,7 @@ Then, you can edit your profile with the button `Profile edit` or reset your pas
 
 Sample project: <<./web-application-2-with-scopes/README.adoc#chapter-link, web-application-2-with-scopes>>
 
-Compared with the previous sample, updated the `application.yml` and `SampleController.java`
+Compared with the previous sample, this sample updates the `application.yml` and `WebSecurityConfiguration.java`
 
 ==== Configure scopes for application
 

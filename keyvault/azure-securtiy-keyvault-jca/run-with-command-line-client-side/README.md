@@ -49,23 +49,24 @@ jdk 11.0.12 or above
 6. Start the server side. Please refer to server side tutorial: [Run with Command Line Server Side][run_with_command_line_server_side]  
 7. Open terminal and enter the directory sample_client, run the following command:
    ```
-   java --module-path ./azure-security-keyvault-jca-2.0.0-beta.1.jar --add-modules com.azure.security.keyvault.jca -Dsecurity.overridePropertiesFile=true -Djava.security.properties==./java.security -Djavax.net.ssl.trustStoreType=AzureKeyVault -Dazure.keyvault.uri=<yourKeyVaultURI> -Dazure.keyvault.tenant-id=<yourTenantID> -Dazure.keyvault.client-id=<yourClientID> -Dazure.keyvault.client-secret=<yourSecretValue> -jar run-with-command-line-client-side-1.0.0.jar
+   java --module-path ./azure-security-keyvault-jca-2.0.0-beta.1.jar --add-modules com.azure.security.keyvault.jca \ 
+   -Dsecurity.overridePropertiesFile=true -Djava.security.properties==./java.security \ 
+   -Djavax.net.ssl.trustStoreType=AzureKeyVault \ 
+   -Dazure.keyvault.uri=<yourKeyVaultURI> -Dazure.keyvault.tenant-id=<yourTenantID> -Dazure.keyvault.client-id=<yourClientID> -Dazure.keyvault.client-secret=<yourSecretValue> \ 
+   -jar run-with-command-line-client-side-1.0.0.jar
    ```
    The client will be started and connect to the server side, you will see "Hello World!". If you have run the server side with client authentication needed, please use the following command instead of the above to run the client side:
    ```
-   java --module-path ./azure-security-keyvault-jca-2.0.0-beta.1.jar --add-modules com.azure.security.keyvault.jca -Dsecurity.overridePropertiesFile=true -Djava.security.properties==./java.security -Djavax.net.ssl.trustStoreType=AzureKeyVault -Djavax.net.ssl.keyStoreType=AzureKeyVault -Dazure.keyvault.uri=<yourKeyVaultURI> -Dazure.keyvault.tenant-id=<yourTenantID> -Dazure.keyvault.client-id=<yourClientID> -Dazure.keyvault.client-secret=<yourSecretValue> -jar run-with-command-line-client-side-1.0.0.jar
+   java --module-path ./azure-security-keyvault-jca-2.0.0-beta.1.jar --add-modules com.azure.security.keyvault.jca \ 
+   -Dsecurity.overridePropertiesFile=true -Djava.security.properties==./java.security \ 
+   -Djavax.net.ssl.trustStoreType=AzureKeyVault \ 
+   -Djavax.net.ssl.keyStoreType=AzureKeyVault -Dazure.keyvault.uri=<yourKeyVaultURI> -Dazure.keyvault.tenant-id=<yourTenantID> -Dazure.keyvault.client-id=<yourClientID> -Dazure.keyvault.client-secret=<yourSecretValue> \ 
+   -jar run-with-command-line-client-side-1.0.0.jar
    ```
 8. (Optional) You can also use the KeyVaultKeyStore with local certificates.
    - For example, there are some well known CAs. You can put them into a folder, then configure the system property azure.cert-path.well-known=\<yourFolderPath>. The certificates in this folder will be loaded by KeyVaultKeystore. If you don't configure such a property, the default well-known path will be `/etc/certs/well-known/`.
    - Besides the well-known path, you can also put your customized certificates into another folder specified by azure.cert-path.custom=\<yourCustomPath>, by default, the custom path is `/etc/certs/custom/`.
    - You can also put certificates under the class path, build a folder named `keyvault` and configure it under the class path, then all the certificates in this folder will be loaded by key vault keystore.
-
-
-## Examples
-## Troubleshooting
-## Next steps
-## Run with Maven
-## Contributing
 
 <!-- LINKS -->
 

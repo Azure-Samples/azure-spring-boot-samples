@@ -44,18 +44,22 @@ jdk 11.0.12 or above
    security.provider.13=SunPKCS11
    security.provider.14=com.azure.security.keyvault.jca.KeyVaultJcaProvider
    ```
-4. Get the Azure security key vault jca jar. You can build the latest one by yourself then you will get, for example, azure-security-keyvault-jca-2.0.0-beta.1.jar. You can also download the latest published jar from maven repository, then you will get, for example, azure-security-keyvault-jca.1.0.1.jar.
+4. Get the Azure security key vault jca jar. You can download the latest published jar from maven repository [azure-security-kevault-jca][azure-security-keyvault-jca]. When this document is written, the latest jar is azure-security-keyvault-jca.2.1.0.jar
 5. Make a directory, for example, sample_server. Then put the edited copy of java.security file, the run-with-command-line-server-1.0.0.jar, the azure-security-keyvault-jca-2.0.0-beta.1.jar into sample_server
 6. Open terminal and enter the directory sample_server, run the following command:
    ```
-   java --module-path ./azure-security-keyvault-jca-2.0.0-beta.1.jar --add-modules com.azure.security.keyvault.jca \
+   java --module-path ./azure-security-keyvault-jca-2.1.0.jar --add-modules com.azure.security.keyvault.jca \
     -Dsecurity.overridePropertiesFile=true -Djava.security.properties==./java.security \
     -Dazure.keyvault.uri=<yourAzureKeyVaultUri> -Dazure.keyvault.tenant-id=<yourTenantID> -Dazure.keyvault.client-id=<youClientID> -Dazure.keyvault.client-secret=<yourSecretValue> \
     -jar run-with-command-line-server-side-1.0.0.jar \ 
     --server.port=8443 --server.ssl.enabled=true --server.ssl.key-alias=<yourCertificatName> --server.ssl.keystore-type=DKS --server.ssl.keyStoreProvider=AzureKeyVault --server.ssl.key-store=classpath:keyvault.dummy 
    ```
-   The server will be started without needing client side authentication, you can visit https://localhost:8443 and see "Hello World!". If you want to enable the client side authentication, please insert `-Djavax.net.ssl.trustStoreType=AzureKeyVault` into the above command and append ` --server.ssl.client-auth=need` to the above command.
-7. (Optional) You can also use the KeyVaultKeyStore with local certificates. 
+7. Check the output. The server will be started after a while without needing client side authentication, you can visit https://localhost:8443 and see "Hello World!". If you want to enable the client side authentication, please insert `-Djavax.net.ssl.trustStoreType=AzureKeyVault` into the above command and append ` --server.ssl.client-auth=need` to the above command. Then you need start the [client sample][run-with-command-line-client-side] to see the output.
+8. (Optional) You can also use the KeyVaultKeyStore with local certificates. 
     - For example, there are some well known CAs. You can put them into a folder, then configure the system property azure.cert-path.well-known=\<yourFolderPath>. The certificates in this folder will be loaded by KeyVaultKeystore. If you don't configure such a property, the default well-known path will be `/etc/certs/well-known/`.
     - Besides the well-known path, you can also put your customized certificates into another folder specified by azure.cert-path.custom=\<yourCustomPath>, by default, the custom path is `/etc/certs/custom/`.
     - You can also put certificates under the class path, build a folder named `keyvault` and configure it under the class path, then all the certificates in this folder will be loaded by key vault keystore.
+
+<!-- LINKS -->
+[azure-security-keyvault-jca]: https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca
+[run-with-command-line-client-side]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/keyvault/azure-security-keyvault-jca/run-with-command-line-client-side/README.md

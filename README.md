@@ -38,7 +38,9 @@
 | eventhubs        | [azure-spring-cloud-stream-binder-eventhubs:2.8.0]                                             | [eventhubs-binder](eventhubs/azure-spring-cloud-stream-binder-eventhubs/eventhubs-binder)                                         |
 | eventhubs        | [azure-spring-cloud-stream-binder-eventhubs:2.8.0]                                             | [eventhubs-multibinders](eventhubs/azure-spring-cloud-stream-binder-eventhubs/eventhubs-multibinders)                             |
 | keyvault         | [azure-spring-boot-starter-keyvault-certificates:3.1.0]                                        | [keyvault-certificates-client-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side)   |
-| keyvault         | [azure-spring-boot-starter-keyvault-certificates:3.1.0]                                        | [keyvault-certificates-server-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side)   |
+| keyvault         | [azure-spring-boot-starter-keyvault-certificates:3.1.0]                                        | [keyvault-certificates-server-side](keyvault/azure-security-keyvault-jca/run-with-command-line-server-side)   |
+| keyvault         | [azure-security-keyvault-jca:2.1.0]                                                            | [run-with-command-line-server-side](keyvault/azure-security-keyvault-jca/run-with-command-line-client-side)   |
+| keyvault         | [azure-security-keyvault-jca:2.1.0]                                                            | [run-with-command-line-client-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side)   |
 | keyvault         | [azure-spring-boot-starter-keyvault-secrets:3.8.0]                                             | [keyvault-secrets](keyvault/azure-spring-boot-starter-keyvault-secrets/keyvault-secrets)                                          |
 | mediaservices    | [azure-media:0.9.8]                                                                            | [azure-spring-boot-sample-mediaservices](mediaservices/azure-spring-boot-sample-mediaservices)                                    |
 | servicebus       | [azure-messaging-servicebus:7.4.0]                                                             | [servicebus](servicebus/azure-messaging-servicebus/servicebus)                                                                    |
@@ -80,3 +82,4 @@
 [azure-spring-boot-starter-servicebus-jms:3.8.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-servicebus-jms/3.8.0/jar
 [azure-spring-cloud-starter-servicebus:2.8.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-servicebus/2.8.0/jar
 [azure-spring-cloud-starter-storage-queue:2.8.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-storage-queue/2.8.0/jar
+[azure-security-keyvault-jca:2.1.0]: https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca

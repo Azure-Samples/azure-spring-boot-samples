@@ -13,7 +13,7 @@ public class SampleController {
 
   @ResponseBody
   @GetMapping(value = { "/hello" })
-  @PreAuthorize("hasAuthority('SCOPE_Delegated.Premisson.Scope1')")
+  @PreAuthorize("hasAuthority('SCOPE_Delegated.Permission.Scope1')")
   public String hello() {
     return "this is a resource-server protected by Azure Active Directory B2C. ";
   }

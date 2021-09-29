@@ -25,7 +25,7 @@ spring:
             redirect-uri: "{baseUrl}/login/oauth2/code/"
             #Fill in `${client-id}` from `Application ID`
             #Fill in `${your-tenant-name}` from your tenant name
-            scope: openid, offline_access, https://${your-tenant-name}.onmicrosoft.com/${client-id}/Delegated.Premisson.Scope1
+            scope: openid, offline_access, https://${your-tenant-name}.onmicrosoft.com/${client-id}/Delegated.Permission.Scope1
 
 # this uri is used to clear your cache when you logout, please fill ${your-tenant-name} with your tenant name
 # and fill ${policy-name} with your sign up or sign in user flow name.

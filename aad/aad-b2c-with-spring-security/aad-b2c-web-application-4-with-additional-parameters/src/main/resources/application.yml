@@ -32,7 +32,7 @@ spring:
             redirect-uri: "{baseUrl}/login/oauth2/code/"
             # Fill in `${client-id}` from `Application ID`
             # Fill in `${your-tenant-name}` from your tenant name
-            scope: openid, offline_access, https://${your-tenant-name}.onmicrosoft.com/${client-id}/Delegated.Premisson.Scope1
+            scope: openid, offline_access, https://${your-tenant-name}.onmicrosoft.com/${client-id}/Delegated.Permission.Scope1
           resource-server:  # This is used to demonstrate client_credentials type. Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow
             provider: resource-server
             # Fill in `${client-id}` from `Application ID`

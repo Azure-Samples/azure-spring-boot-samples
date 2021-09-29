@@ -40,6 +40,8 @@
     <module>eventhubs/azure-spring-cloud-starter-eventhubs-kafka/eventhubs-kafka</module>
     <module>eventhubs/azure-spring-cloud-stream-binder-eventhubs/eventhubs-binder</module>
     <module>eventhubs/azure-spring-cloud-stream-binder-eventhubs/eventhubs-multibinders</module>
+    <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side</module>
+    <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side</module>
     <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side</module>
     <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side</module>
     <module>keyvault/azure-spring-boot-starter-keyvault-secrets/keyvault-secrets</module>

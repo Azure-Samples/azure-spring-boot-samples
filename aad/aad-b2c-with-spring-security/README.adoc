@@ -67,7 +67,7 @@ Compared with the previous sample, this sample updates the `application.yml` and
 
 ==== Configure scopes for application
 
-Configure scopes `Delegated.Premisson.Scope1` for application with https://docs.microsoft.com/en-us/azure/active-directory-b2c/add-web-api-application?tabs=app-reg-ga#configure-scopes[Configure-scopes].
+Configure scopes `Delegated.Permission.Scope1` for application with https://docs.microsoft.com/en-us/azure/active-directory-b2c/add-web-api-application?tabs=app-reg-ga#configure-scopes[Configure-scopes].
 
 ==== Fill necessary values in sample project.
 

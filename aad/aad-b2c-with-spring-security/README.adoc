@@ -43,7 +43,7 @@ Follow the guide of https://docs.microsoft.com/en-us/azure/active-directory-b2c/
 [[work-application-simple-sample]]
 === Web application simple sample
 
-Sample project: <<./web-application-1-simple-sample/README.adoc#chapter-link, web-application-1-simple-sample>>
+Sample project: <<./aad-b2c-web-application-1-simple-sample/README.adoc#chapter-link, web-application-1-simple-sample>>
 
 ==== Fill necessary values in sample project.
 
@@ -61,7 +61,7 @@ Then, you can edit your profile with the button `Profile edit` or reset your pas
 [[Web-application-with-scopes]]
 === Web application with scopes
 
-Sample project: <<./web-application-2-with-scopes/README.adoc#chapter-link, web-application-2-with-scopes>>
+Sample project: <<./aad-b2c-web-application-2-with-scopes/README.adoc#chapter-link, web-application-2-with-scopes>>
 
 Compared with the previous sample, this sample updates the `application.yml` and `WebSecurityConfiguration.java`
 
@@ -85,7 +85,7 @@ Please refer to <<Resource server authorize by scopes,Resource server authorize 
 [[Web-application-with-client-credentials]]
 === Web application with client credentials
 
-Sample project: <<./web-application-3-with-client-credentials/README.adoc#chapter-link, web-application-3-with-client-credentials>>
+Sample project: <<./aad-b2c-web-application-3-with-client-credentials/README.adoc#chapter-link, web-application-3-with-client-credentials>>
 
 Compared with the previous sample, this sample updates the `application.yml` and `WebSecurityConfiguration.java`
 
@@ -110,7 +110,7 @@ Please refer to <<Resource server authorize by app roles,Resource server authori
 [[Web-application-with-additional-parameters]]
 === Web application with additional parameters
 
-Sample project: <<./web-application-4-with-additional-parameters/README.adoc#chapter-link, web-application-4-with-additional-parameters>>
+Sample project: <<./aad-b2c-web-application-4-with-additional-parameters/README.adoc#chapter-link, web-application-4-with-additional-parameters>>
 
 Compared with the previous sample, this sample updates the `application.yml` and `WebSecurityConfiguration.java`
 
@@ -130,7 +130,7 @@ Compared with the previous sample, this application just adds `additional-Parame
 [[Resource-server-simple-sample]]
 === Resource server simple sample
 
-Sample project: <<./resource-server-1-simple-sample/README.adoc#chapter-link, resource-server-1-simple-sample>>
+Sample project: <<./aad-b2c-resource-server-1-simple-sample/README.adoc#chapter-link, resource-server-1-simple-sample>>
 
 ==== Fill necessary values in sample project.
 
@@ -143,7 +143,7 @@ Lunch the sample project. Then open `http://localhost:8080/resourceServer` by br
 [[Resource-server-validate-audience]]
 === Resource server validate audience
 
-Sample project: <<./resource-server-2-validate-audience/README.adoc#chapter-link, resource-server-2-validate-audience>>
+Sample project: <<./aad-b2c-resource-server-2-validate-audience/README.adoc#chapter-link, resource-server-2-validate-audience>>
 
 Compared with the previous sample, this sample updates the `application.yml` and `WebSecurityConfiguration.java`
 
@@ -159,7 +159,7 @@ This resource server will validate the accessToken's audience.
 [[Resource-server-authorize-by-scopes]]
 === Resource server authorize by scopes
 
-Sample project: <<./resource-server-3-authorize-by-scopes/README.adoc#chapter-link, resource-server-3-authorize-by-scopes>>
+Sample project: <<./aad-b2c-resource-server-3-authorize-by-scopes/README.adoc#chapter-link, resource-server-3-authorize-by-scopes>>
 
 Compared with the previous sample, this sample updates the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`
 
@@ -175,7 +175,7 @@ This resource server will validate the accessToken's `scp` claim.
 [[Resource-server-authorize-by-app-roles]]
 === Resource server authorize by app roles
 
-Sample project: <<./resource-server-4-authorize-by-app-roles/README.adoc#chapter-link, resource-server-4-authorize-by-app-roles>>
+Sample project: <<./aad-b2c-resource-server-4-authorize-by-app-roles/README.adoc#chapter-link, resource-server-4-authorize-by-app-roles>>
 
 Compared with the previous sample, this sample updates the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`
 
@@ -191,7 +191,7 @@ This resource server will validate the accessToken's `roles` claim.
 [[Resource-server-multi-tenant]]
 === Resource server multi tenant
 
-Sample project: <<./resource-server-5-multi-tenant/README.adoc#chapter-link, resource-server-5-multi-tenant>>
+Sample project: <<./aad-b2c-resource-server-5-multi-tenant/README.adoc#chapter-link, resource-server-5-multi-tenant>>
 
 Compared with the previous sample, this sample updates the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`
 

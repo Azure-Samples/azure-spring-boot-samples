@@ -20,20 +20,17 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @author Maciej Szarlinski
- */
+/** @author Maciej Szarlinski */
 @Data
 public class PetDetails {
 
-    private String id;
+  private String id;
 
-    private String name;
+  private String name;
 
-    private String birthDate;
+  private String birthDate;
 
-    private String type;
+  private String type;
 
-    private final List<VisitDetails> visits = new ArrayList<>();
-
+  private final List<VisitDetails> visits = new ArrayList<>();
 }

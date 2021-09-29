@@ -23,30 +23,26 @@ import java.util.List;
 
 import static java.util.stream.Collectors.toList;
 
-/**
- * @author Maciej Szarlinski
- */
+/** @author Maciej Szarlinski */
 @Data
 public class OwnerDetails {
 
-    private String id;
+  private String id;
 
-    private String firstName;
+  private String firstName;
 
-    private String lastName;
+  private String lastName;
 
-    private String address;
+  private String address;
 
-    private String city;
+  private String city;
 
-    private String telephone;
+  private String telephone;
 
-    private final List<PetDetails> pets = new ArrayList<>();
+  private final List<PetDetails> pets = new ArrayList<>();
 
-    @JsonIgnore
-    public List<String> getPetIds() {
-        return pets.stream()
-            .map(PetDetails::getId)
-            .collect(toList());
-    }
+  @JsonIgnore
+  public List<String> getPetIds() {
+    return pets.stream().map(PetDetails::getId).collect(toList());
+  }
 }

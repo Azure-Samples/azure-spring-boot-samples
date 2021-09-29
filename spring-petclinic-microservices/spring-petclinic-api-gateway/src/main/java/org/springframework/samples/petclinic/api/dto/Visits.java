@@ -15,18 +15,14 @@
  */
 package org.springframework.samples.petclinic.api.dto;
 
+import lombok.Value;
+
 import java.util.ArrayList;
 import java.util.List;
 
-import lombok.NoArgsConstructor;
-import lombok.Value;
-
-/**
- * @author Maciej Szarlinski
- */
+/** @author Maciej Szarlinski */
 @Value
 public class Visits {
 
-    private List<VisitDetails> items = new ArrayList<>();
-
+  private List<VisitDetails> items = new ArrayList<>();
 }

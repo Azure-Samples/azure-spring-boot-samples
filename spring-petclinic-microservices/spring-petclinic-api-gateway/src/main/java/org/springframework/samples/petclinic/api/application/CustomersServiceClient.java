@@ -16,26 +16,24 @@
 package org.springframework.samples.petclinic.api.application;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.samples.petclinic.api.dto.OwnerDetails;
 import org.springframework.stereotype.Component;
-import org.springframework.web.client.RestTemplate;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
-/**
- * @author Maciej Szarlinski
- */
+/** @author Maciej Szarlinski */
 @Component
 @RequiredArgsConstructor
 public class CustomersServiceClient {
 
-    private final WebClient.Builder webClientBuilder;
+  private final WebClient.Builder webClientBuilder;
 
-    public Mono<OwnerDetails> getOwner(final String ownerId) {
-        return webClientBuilder.build().get()
-            .uri("http://customers-service/owners/{ownerId}", ownerId)
-            .retrieve()
-            .bodyToMono(OwnerDetails.class);
-    }
+  public Mono<OwnerDetails> getOwner(final String ownerId) {
+    return webClientBuilder
+        .build()
+        .get()
+        .uri("http://customers-service/owners/{ownerId}", ownerId)
+        .retrieve()
+        .bodyToMono(OwnerDetails.class);
+  }
 }

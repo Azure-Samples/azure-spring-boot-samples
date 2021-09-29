@@ -21,19 +21,17 @@ import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
-/**
- * @author Maciej Szarlinski
- */
+/** @author Maciej Szarlinski */
 @Data
 @NoArgsConstructor
 public class VisitDetails {
 
-    private String id = null;
+  private String id = null;
 
-    private String petId = null;
+  private String petId = null;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date visit_date = null;
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  private Date visit_date = null;
 
-    private String description = null;
+  private String description = null;
 }

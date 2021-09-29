@@ -16,7 +16,6 @@
 package org.springframework.samples.petclinic.api.application;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.samples.petclinic.api.dto.Visits;
 import org.springframework.stereotype.Component;
 import org.springframework.web.reactive.function.client.WebClient;
@@ -26,30 +25,29 @@ import java.util.List;
 
 import static java.util.stream.Collectors.joining;
 
-/**
- * @author Maciej Szarlinski
- */
+/** @author Maciej Szarlinski */
 @Component
 @RequiredArgsConstructor
 public class VisitsServiceClient {
 
-    private String hostname = "http://visits-service/";
+  private String hostname = "http://visits-service/";
 
-    private final WebClient.Builder webClientBuilder;
+  private final WebClient.Builder webClientBuilder;
 
-    public Mono<Visits> getVisitsForPets(final List<String> petIds) {
-        return webClientBuilder.build()
-            .get()
-            .uri(hostname + "pets/visits?petId={petId}", joinIds(petIds))
-            .retrieve()
-            .bodyToMono(Visits.class);
-    }
+  public Mono<Visits> getVisitsForPets(final List<String> petIds) {
+    return webClientBuilder
+        .build()
+        .get()
+        .uri(hostname + "pets/visits?petId={petId}", joinIds(petIds))
+        .retrieve()
+        .bodyToMono(Visits.class);
+  }
 
-    private String joinIds(List<String> petIds) {
-        return petIds.stream().map(Object::toString).collect(joining(","));
-    }
+  private String joinIds(List<String> petIds) {
+    return petIds.stream().map(Object::toString).collect(joining(","));
+  }
 
-    void setHostname(String hostname) {
-        this.hostname = hostname;
-    }
+  void setHostname(String hostname) {
+    this.hostname = hostname;
+  }
 }

@@ -31,47 +31,50 @@ import reactor.core.publisher.Mono;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 
-/**
- * @author Maciej Szarlinski
- */
+/** @author Maciej Szarlinski */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/gateway")
 public class ApiGatewayController {
 
-    private final CustomersServiceClient customersServiceClient;
+  private final CustomersServiceClient customersServiceClient;
 
-    private final VisitsServiceClient visitsServiceClient;
+  private final VisitsServiceClient visitsServiceClient;
 
-    private final ReactiveCircuitBreakerFactory cbFactory;
+  private final ReactiveCircuitBreakerFactory cbFactory;
 
-    @GetMapping(value = "owners/{ownerId}")
-    public Mono<OwnerDetails> getOwnerDetails(final @PathVariable String ownerId) {
-        return customersServiceClient.getOwner(ownerId)
-            .flatMap(ownerDetails ->
-                    visitsServiceClient.getVisitsForPets(ownerDetails.getPetIds())
-                                       .transform(it -> {
-                                           ReactiveCircuitBreaker cb = cbFactory.create("getOwnerDetails");
-                                           return cb.run(it, throwable -> emptyVisitsForPets());
-                                       })
-                                       .map(addVisitsToOwner(ownerDetails))
-                );
+  @GetMapping(value = "owners/{ownerId}")
+  public Mono<OwnerDetails> getOwnerDetails(final @PathVariable String ownerId) {
+    return customersServiceClient
+        .getOwner(ownerId)
+        .flatMap(
+            ownerDetails ->
+                visitsServiceClient
+                    .getVisitsForPets(ownerDetails.getPetIds())
+                    .transform(
+                        it -> {
+                          ReactiveCircuitBreaker cb = cbFactory.create("getOwnerDetails");
+                          return cb.run(it, throwable -> emptyVisitsForPets());
+                        })
+                    .map(addVisitsToOwner(ownerDetails)));
+  }
 
-    }
+  private Function<Visits, OwnerDetails> addVisitsToOwner(OwnerDetails owner) {
+    return visits -> {
+      owner
+          .getPets()
+          .forEach(
+              pet ->
+                  pet.getVisits()
+                      .addAll(
+                          visits.getItems().stream()
+                              .filter(v -> v.getPetId().equals(pet.getId()))
+                              .collect(Collectors.toList())));
+      return owner;
+    };
+  }
 
-    private Function<Visits, OwnerDetails> addVisitsToOwner(OwnerDetails owner) {
-        return visits -> {
-            owner.getPets()
-                .forEach(pet -> pet.getVisits()
-                    .addAll(visits.getItems().stream()
-                        .filter(v -> v.getPetId().equals(pet.getId()))
-                        .collect(Collectors.toList()))
-                );
-            return owner;
-        };
-    }
-
-    private Mono<Visits> emptyVisitsForPets() {
-        return Mono.just(new Visits());
-    }
+  private Mono<Visits> emptyVisitsForPets() {
+    return Mono.just(new Visits());
+  }
 }

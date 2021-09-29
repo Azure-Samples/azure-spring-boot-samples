@@ -12,7 +12,7 @@
       please replace ${your-tenant-name} with your tenant name
              replace ${your-profile-edit-user-flow-name} with your profile edit user flow name
              replace ${your-client-id} with your `Application ID`-->
-    <form style="display:inline" method="post" action="https://${your-tenant-name}.b2clogin.com/${your-tenant-name}.onmicrosoft.com/${your-profile-edit-user-flow-name}/oauth2/v2.0/authorize?response_type=code&client_id=${your-client-id}&scope=${your-client-id}%20openid%20profile%20offline_access&redirect_uri=http://localhost:8080/oauth2/authorization/sign-up-or-sign-in">
+    <form style="display:inline" method="post" action="https://${your-tenant-name}.b2clogin.com/${your-tenant-name}.onmicrosoft.com/${your-profile-edit-user-flow-name}/oauth2/v2.0/authorize?response_type=code&client_id=${your-client-id}&scope=${your-client-id}%20openid%20profile%20offline_access&redirect_uri=http://localhost:8081">
         <button class="btn btn-md btn-primary btn-block" type="submit">Profile edit</button>
     </form>
 
@@ -20,7 +20,7 @@
       please replace ${your-tenant-name} with your tenant name
              replace ${your-password-reset-user-flow-name} with your password reset user flow name
              replace ${your-client-id} with your `Application ID`-->
-    <form style="display:inline" method="post" action="https://${your-tenant-name}.b2clogin.com/${your-tenant-name}.onmicrosoft.com/${your-password-reset-user-flow-name}/oauth2/v2.0/authorize?response_type=code&client_id=${your-client-id}&scope=${your-client-id}%20openid%20profile%20offline_access&redirect_uri=http://localhost:8080/oauth2/authorization/sign-up-or-sign-in">
+    <form style="display:inline" method="post" action="https://${your-tenant-name}.b2clogin.com/${your-tenant-name}.onmicrosoft.com/${your-password-reset-user-flow-name}/oauth2/v2.0/authorize?response_type=code&client_id=${your-client-id}&scope=${your-client-id}%20openid%20profile%20offline_access&redirect_uri=http://localhost:8081">
         <button class="btn btn-md btn-primary btn-block" type="submit">Password reset</button>
     </form>
 </div>

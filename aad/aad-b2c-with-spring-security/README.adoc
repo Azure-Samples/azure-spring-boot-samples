@@ -20,6 +20,7 @@ Follow the guide of https://docs.microsoft.com/azure/active-directory-b2c/tutori
 Follow the guide of https://docs.microsoft.com/azure/active-directory-b2c/tutorial-register-applications[AAD B2C application registry].
 Please ensure that your b2c application's `Redirect URL` is configured to `http://localhost:8080/login/oauth2/code/`.
 In order to jump to the correct page (home) after `profile-edit` and `password-reset`, we need to add `http://localhost:8080/` in the redirect uri too.
+You can add additional `Redirect URL` with https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri[Add Redirect URL].
 
 === Create user flows
 
@@ -65,9 +66,14 @@ Sample project: <<./aad-b2c-web-application-2-with-scopes/README.adoc#chapter-li
 
 Compared with the previous sample, this sample updates the `application.yml` and `WebSecurityConfiguration.java`
 
+==== Add Redirect URL
+
+This example has a different port from the previous example, so we need to add other redirect urls to this example by  https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri[adding the redirect url], including: `http://localhost:8081/login/oauth2/code/` and `http://localhost:8081/`.
+
 ==== Configure scopes for application
 
-Configure scopes `Delegated.Permission.Scope1` for application with https://docs.microsoft.com/en-us/azure/active-directory-b2c/add-web-api-application?tabs=app-reg-ga#configure-scopes[Configure-scopes].
+Configure scopes `Delegated.Premisson.Scope1` for application with https://docs.microsoft.com/azure/active-directory-b2c/add-web-api-application?tabs=app-reg-ga#configure-scopes[Configure-scopes].
+Then grant admin consent for application with https://docs.microsoft.com/azure/active-directory-b2c/add-web-api-application?tabs=app-reg-ga#grant-permissions[Grant-admin-consent].
 
 ==== Fill necessary values in sample project.
 
@@ -94,6 +100,10 @@ Compared with the previous sample, this sample updates the `application.yml` and
 Configure Role `Application.Permission.Role1` for application with https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#app-manifest-editor[Configure-roles-for-application].
 https://docs.microsoft.com/en-us/azure/active-directory-b2c/user-overview#consumer-user[Consumer-user] cannot access Azure resources, but we can https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#example-application-app-role[assign-roles-to-application].
 
+==== Add Redirect URL
+
+This example has a different port from the previous example, so we need to add other redirect urls to this example by  https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri[adding the redirect url], including: `http://localhost:8082/login/oauth2/code/` and `http://localhost:8082/`.
+
 ==== Fill necessary values in sample project.
 
 1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
@@ -113,6 +123,10 @@ Please refer to <<Resource server authorize by app roles,Resource server authori
 Sample project: <<./aad-b2c-web-application-4-with-additional-parameters/README.adoc#chapter-link, web-application-4-with-additional-parameters>>
 
 Compared with the previous sample, this sample updates the `application.yml` and `WebSecurityConfiguration.java`
+
+==== Add Redirect URL
+
+This example has a different port from the previous example, so we need to add other redirect urls to this example by  https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri[adding the redirect url], including: `http://localhost:8083/login/oauth2/code/` and `http://localhost:8083/`.
 
 ==== Fill necessary values in sample project.
 

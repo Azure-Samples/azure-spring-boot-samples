@@ -11,7 +11,7 @@
   </parent>
 
   <groupId>com.azure.spring</groupId>
-  <artifactId>aad-b2c-web-application-4-with-client-credentials</artifactId>
+  <artifactId>aad-b2c-web-application-3-with-client-credentials</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

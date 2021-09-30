@@ -43,66 +43,64 @@ public class Pet implements Serializable {
     @GeneratedValue
     private String id;
 
-    private String name;
+  private String name;
 
-    private Date birthDate;
+  private Date birthDate;
 
-    private String petType;
+  private String petType;
 
-//    @JsonIgnore
-//    private Owner owner;
+  //    @JsonIgnore
+  //    private Owner owner;
 
-    public String getId() {
-        return id;
-    }
+  public String getId() {
+    return id;
+  }
 
-    public void setId(final String id) {
-        this.id = id;
-    }
+  public void setId(final String id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return this.name;
-    }
+  public String getName() {
+    return this.name;
+  }
 
-    public void setName(final String name) {
-        this.name = name;
-    }
+  public void setName(final String name) {
+    this.name = name;
+  }
 
-    public Date getBirthDate() {
-        return birthDate;
-    }
+  public Date getBirthDate() {
+    return birthDate;
+  }
 
-    public void setBirthDate(final Date birthDate) {
-        this.birthDate = birthDate;
-    }
+  public void setBirthDate(final Date birthDate) {
+    this.birthDate = birthDate;
+  }
 
-    public String getType() {
-        return petType;
-    }
+  public String getType() {
+    return petType;
+  }
 
-    public void setType(final String type) {
-        this.petType = type;
-    }
+  public void setType(final String type) {
+    this.petType = type;
+  }
 
-//    public Owner getOwner() {
-//        return owner;
-//    }
-//
-//    public void setOwner(final Owner owner) {
-//        this.owner = owner;
-//    }
+  //    public Owner getOwner() {
+  //        return owner;
+  //    }
+  //
+  //    public void setOwner(final Owner owner) {
+  //        this.owner = owner;
+  //    }
 
-    @Override
-    public String toString() {
-        return new ToStringCreator(this)
-            .append("id", this.getId())
-            .append("name", this.getName())
-            .append("birthDate", this.getBirthDate())
-            .append("type", this.getType()
-            )
-//            .append("ownerFirstname", this.getOwner().getFirstName())
-//            .append("ownerLastname", this.getOwner().getLastName())
-            .toString();
-    }
-
+  @Override
+  public String toString() {
+    return new ToStringCreator(this)
+        .append("id", this.getId())
+        .append("name", this.getName())
+        .append("birthDate", this.getBirthDate())
+        .append("type", this.getType())
+      //.append("ownerFirstname", this.getOwner().getFirstName())
+      //.append("ownerLastname", this.getOwner().getLastName())
+        .toString();
+  }
 }

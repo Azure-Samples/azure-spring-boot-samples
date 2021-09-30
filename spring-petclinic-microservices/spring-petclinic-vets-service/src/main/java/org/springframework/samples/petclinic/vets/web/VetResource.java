@@ -40,16 +40,14 @@ import java.util.List;
 @RequiredArgsConstructor
 @Timed("petclinic.vet")
 @Slf4j
-class
-VetResource {
+class VetResource {
 
+  private final VetRepository vetRepository;
 
-    private final VetRepository vetRepository;
-
-    @GetMapping
-    public List<Vet> showResourcesVetList() {
-        List<Vet> list = new ArrayList<>();
-        vetRepository.findAll().forEach(list::add);
-        return list;
-    }
+  @GetMapping
+  public List<Vet> showResourcesVetList() {
+    List<Vet> list = new ArrayList<>();
+    vetRepository.findAll().forEach(list::add);
+    return list;
+  }
 }

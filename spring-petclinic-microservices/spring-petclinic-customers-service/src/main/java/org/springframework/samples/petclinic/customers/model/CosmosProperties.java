@@ -4,19 +4,18 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-
 @Getter
 @Setter
 @ConfigurationProperties(prefix = "azure.cosmosdb")
 public class CosmosProperties {
 
-    private String uri;
+  private String uri;
 
-    private String key;
+  private String key;
 
-    private String secondaryKey;
+  private String secondaryKey;
 
-    private String database;
+  private String database;
 
-    private boolean populateQueryMetrics;
+  private boolean populateQueryMetrics;
 }

@@ -3,10 +3,9 @@ package org.springframework.samples.petclinic.visits.model;
 // Licensed under the MIT License.
 /**
  * WARNING: MODIFYING THIS FILE WILL REQUIRE CORRESPONDING UPDATES TO README.md FILE. LINE NUMBERS
- * ARE USED TO EXTRACT APPROPRIATE CODE SEGMENTS FROM THIS FILE. ADD NEW CODE AT THE BOTTOM TO AVOID CHANGING
- * LINE NUMBERS OF EXISTING CODE SAMPLES.
+ * ARE USED TO EXTRACT APPROPRIATE CODE SEGMENTS FROM THIS FILE. ADD NEW CODE AT THE BOTTOM TO AVOID
+ * CHANGING LINE NUMBERS OF EXISTING CODE SAMPLES.
  */
-
 import com.azure.core.credential.AzureKeyCredential;
 import com.azure.cosmos.CosmosClientBuilder;
 import com.azure.cosmos.DirectConnectionConfig;
@@ -33,47 +32,46 @@ import org.springframework.lang.Nullable;
 @PropertySource("classpath:application.properties")
 public class VisitsAppConfiguration extends AbstractCosmosConfiguration {
 
-    private static final Logger logger = LoggerFactory.getLogger(VisitsAppConfiguration.class);
+  private static final Logger logger = LoggerFactory.getLogger(VisitsAppConfiguration.class);
 
     @Autowired
     private CosmosProperties properties;
 
-    private AzureKeyCredential azureKeyCredential;
+  private AzureKeyCredential azureKeyCredential;
 
-    @Bean
-    public CosmosClientBuilder cosmosClientBuilder() {
-        this.azureKeyCredential = new AzureKeyCredential(properties.getKey());
-        DirectConnectionConfig directConnectionConfig = new DirectConnectionConfig();
-        GatewayConnectionConfig gatewayConnectionConfig = new GatewayConnectionConfig();
-        return new CosmosClientBuilder()
-            .endpoint(properties.getUri())
-            .credential(azureKeyCredential)
-            .directMode(directConnectionConfig, gatewayConnectionConfig);
-    }
+  @Bean
+  public CosmosClientBuilder cosmosClientBuilder() {
+    this.azureKeyCredential = new AzureKeyCredential(properties.getKey());
+    DirectConnectionConfig directConnectionConfig = new DirectConnectionConfig();
+    GatewayConnectionConfig gatewayConnectionConfig = new GatewayConnectionConfig();
+    return new CosmosClientBuilder()
+        .endpoint(properties.getUri())
+        .credential(azureKeyCredential)
+        .directMode(directConnectionConfig, gatewayConnectionConfig);
+  }
 
-    @Override
-    public CosmosConfig cosmosConfig() {
-        return CosmosConfig.builder()
-            .enableQueryMetrics(properties.isPopulateQueryMetrics())
-            .responseDiagnosticsProcessor(new ResponseDiagnosticsProcessorImplementation())
-            .build();
-    }
+  @Override
+  public CosmosConfig cosmosConfig() {
+    return CosmosConfig.builder()
+        .enableQueryMetrics(properties.isPopulateQueryMetrics())
+        .responseDiagnosticsProcessor(new ResponseDiagnosticsProcessorImplementation())
+        .build();
+  }
 
+  public void switchToSecondaryKey() {
+    this.azureKeyCredential.update(properties.getSecondaryKey());
+  }
 
-    public void switchToSecondaryKey() {
-        this.azureKeyCredential.update(properties.getSecondaryKey());
-    }
-
-    @Override
-    protected String getDatabaseName() {
-        return properties.getDatabase();
-    }
+  @Override
+  protected String getDatabaseName() {
+    return properties.getDatabase();
+  }
 
     private static class ResponseDiagnosticsProcessorImplementation implements ResponseDiagnosticsProcessor {
 
-        @Override
-        public void processResponseDiagnostics(@Nullable ResponseDiagnostics responseDiagnostics) {
-            logger.info("Response Diagnostics {}", responseDiagnostics);
-        }
+    @Override
+    public void processResponseDiagnostics(@Nullable ResponseDiagnostics responseDiagnostics) {
+      logger.info("Response Diagnostics {}", responseDiagnostics);
     }
+  }
 }

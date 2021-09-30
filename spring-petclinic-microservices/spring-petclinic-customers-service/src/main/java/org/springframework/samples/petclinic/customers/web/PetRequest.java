@@ -28,13 +28,13 @@ import com.fasterxml.jackson.annotation.JsonFormat;
  */
 @Data
 class PetRequest {
-    private String id;
+  private String id;
 
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date birthDate;
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  private Date birthDate;
 
-    @Size(min = 1)
-    private String name;
+  @Size(min = 1)
+  private String name;
 
-    private String type;
+  private String type;
 }

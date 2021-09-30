@@ -59,15 +59,14 @@ class VetResourceTest {
     @MockBean
     VetRepository vetRepository;
 
-    @Test
-    void shouldGetAListOfVets() throws Exception {
-        List<Vet> vet = Arrays.asList(Vet.vet().id(1).build(), Vet.vet().id(2).build()
-        );
+  @Test
+  void shouldGetAListOfVets() throws Exception {
+    List<Vet> vet = Arrays.asList(Vet.vet().id(1).build(), Vet.vet().id(2).build());
 
-        given(vetRepository.findAll()).willReturn(vet);
+    given(vetRepository.findAll()).willReturn(vet);
 
-        mvc.perform(get("/vets").accept(MediaType.APPLICATION_JSON))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$[0].id").value(1));
-    }
+    mvc.perform(get("/vets").accept(MediaType.APPLICATION_JSON))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$[0].id").value(1));
+  }
 }

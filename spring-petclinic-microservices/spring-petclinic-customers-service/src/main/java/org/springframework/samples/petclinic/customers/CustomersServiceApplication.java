@@ -20,8 +20,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 // For AAD Sample
-//import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
-//import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+// import
+// org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+// import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
 /**
  * @author Maciej Szarlinski
@@ -29,14 +30,14 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 
 // For AAD Sample
-//@EnableWebSecurity
-//@EnableGlobalMethodSecurity(prePostEnabled = true)
+// @EnableWebSecurity
+// @EnableGlobalMethodSecurity(prePostEnabled = true)
 @EnableCaching
 @EnableDiscoveryClient
 @SpringBootApplication
 public class CustomersServiceApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(CustomersServiceApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(CustomersServiceApplication.class, args);
+  }
 }

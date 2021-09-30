@@ -20,10 +20,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-
 /**
- * Repository class for <code>Visit</code> domain objects All method names are compliant with Spring Data naming conventions so this interface can easily be extended for Spring
- * Data See here: http://static.springsource.org/spring-data/jpa/docs/current/reference/html/jpa.repositories.html#jpa.query-methods.query-creation
+ * Repository class for <code>Visit</code> domain objects All method names are compliant with Spring
+ * Data naming conventions so this interface can easily be extended for Spring Data See here:
+ * http://static.springsource.org/spring-data/jpa/docs/current/reference/html/jpa.repositories.html#jpa.query-methods.query-creation
  *
  * @author Ken Krebs
  * @author Juergen Hoeller
@@ -32,10 +32,10 @@ import java.util.List;
  * @author Maciej Szarlinski
  */
 @Repository
-public interface VisitRepository extends CosmosRepository<Visit, String > {
+public interface VisitRepository extends CosmosRepository<Visit, String> {
 
-    List<Visit> findByPetId(String petId);
-/*
-    Flux<Visit> findByPetIdIn(Collection<Integer> petIds);
-*/
+  List<Visit> findByPetId(String petId);
+  /*
+      Flux<Visit> findByPetIdIn(Collection<Integer> petIds);
+  */
 }

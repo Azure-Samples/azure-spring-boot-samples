@@ -37,19 +37,19 @@ public class VisitResourceTest {
     @MockBean
     VisitRepository visitRepository;
 
-    @Test
-    void shouldFetchVisits() throws Exception {
+  @Test
+  void shouldFetchVisits() throws Exception {
 
         List<Visit> list = Arrays.asList(visit().id("1").petId("111").build(),
             visit().id("2").petId("222").build()
         );
-        when(visitRepository.findAllById(asList("111", "222"))).thenReturn(list);
+    when(visitRepository.findAllById(asList("111", "222"))).thenReturn(list);
 
-        mvc.perform(get("/pets/visits?petId=111,222"))
-            .andExpect(status().isOk())
-            .andExpect(jsonPath("$.items[0].id").value("1"))
-            .andExpect(jsonPath("$.items[1].id").value("2"))
-            .andExpect(jsonPath("$.items[0].petId").value("111"))
-            .andExpect(jsonPath("$.items[1].petId").value("222"));
-    }
+    mvc.perform(get("/pets/visits?petId=111,222"))
+        .andExpect(status().isOk())
+        .andExpect(jsonPath("$.items[0].id").value("1"))
+        .andExpect(jsonPath("$.items[1].id").value("2"))
+        .andExpect(jsonPath("$.items[0].petId").value("111"))
+        .andExpect(jsonPath("$.items[1].petId").value("222"));
+  }
 }

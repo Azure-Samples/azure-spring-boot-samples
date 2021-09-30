@@ -27,25 +27,25 @@ import javax.persistence.Id;
  */
 @AllArgsConstructor
 @NoArgsConstructor
-public class    Specialty {
-    @Id
-    private Integer id;
+public class Specialty {
+  @Id
+  private Integer id;
 
-    private String name;
+  private String name;
 
-    public Integer getId() {
-        return id;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public void setId(final Integer id) {
-        this.id = id;
-    }
+  public void setId(final Integer id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(final String name) {
-        this.name = name;
-    }
+  public void setName(final String name) {
+    this.name = name;
+  }
 }

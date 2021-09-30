@@ -35,7 +35,6 @@ import java.util.Date;
  * @author Ken Krebs
  * @author Maciej Szarlinski
  */
-
 @Container(containerName = "visits")
 @Builder(builderMethodName = "visit")
 @AllArgsConstructor
@@ -47,13 +46,12 @@ public class Visit {
     @GeneratedValue
     private String id;
 
-    private String petId;
+  private String petId;
 
-    @Builder.Default
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date visit_date = new Date();
+  @Builder.Default
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  private Date visit_date = new Date();
 
-    @Size(max = 8192)
-    private String description;
-
+  @Size(max = 8192)
+  private String description;
 }

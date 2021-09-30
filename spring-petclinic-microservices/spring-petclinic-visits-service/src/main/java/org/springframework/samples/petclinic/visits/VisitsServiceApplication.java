@@ -29,7 +29,7 @@ import org.springframework.samples.petclinic.visits.model.VisitRepository;
 @SpringBootApplication
 public class VisitsServiceApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(VisitsServiceApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(VisitsServiceApplication.class, args);
+  }
 }

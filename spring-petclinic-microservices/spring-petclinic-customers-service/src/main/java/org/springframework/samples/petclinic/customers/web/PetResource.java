@@ -41,80 +41,81 @@ import java.util.Optional;
 @Slf4j
 class PetResource {
 
-    private final PetRepository petRepository;
-    private final OwnerRepository ownerRepository;
+  private final PetRepository petRepository;
+  private final OwnerRepository ownerRepository;
 
-    @GetMapping("/petTypes")
-    public List<String> getPetTypes() {
-        return petRepository.getPetTypes();
-    }
+  @GetMapping("/petTypes")
+  public List<String> getPetTypes() {
+    return petRepository.getPetTypes();
+  }
 
-    @PostMapping("/owners/{ownerId}/pets")
-    @ResponseStatus(HttpStatus.CREATED)
-    public Pet processCreationForm(
+  @PostMapping("/owners/{ownerId}/pets")
+  @ResponseStatus(HttpStatus.CREATED)
+  public Pet processCreationForm(
         @RequestBody PetRequest petRequest,
         @PathVariable("ownerId") String ownerId) {
 
-        final Pet pet = new Pet();
-        Pet save = save(pet, petRequest);
+    final Pet pet = new Pet();
+    Pet save = save(pet, petRequest);
 
-        Optional<Owner> optionalOwner = ownerRepository.findById(ownerId);
-        pet.setId(save.getId());
-        pet.setName(save.getName());
-        pet.setBirthDate(save.getBirthDate());
-        pet.setType(save.getType());
-        optionalOwner.ifPresent(owner -> owner.addPet(pet));
-        ownerRepository.save(optionalOwner.get());
+    Optional<Owner> optionalOwner = ownerRepository.findById(ownerId);
+    pet.setId(save.getId());
+    pet.setName(save.getName());
+    pet.setBirthDate(save.getBirthDate());
+    pet.setType(save.getType());
+    optionalOwner.ifPresent(owner -> owner.addPet(pet));
+    ownerRepository.save(optionalOwner.get());
 
-        return save;
-    }
+    return save;
+  }
 
-    @PutMapping("/owners/{ownerId}/pets/{petId}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void processUpdateForm(@RequestBody PetRequest petRequest
-        ,@PathVariable("ownerId") String ownerId) {
-        String petId = petRequest.getId();
-        Optional<Pet> petOptional = findPetById(petId);
-        petOptional.ifPresent(pet -> {
-            Pet save = save(pet, petRequest);
-            Optional<Owner> optionalOwner = ownerRepository.findById(ownerId);
+  @PutMapping("/owners/{ownerId}/pets/{petId}")
+  @ResponseStatus(HttpStatus.NO_CONTENT)
+  public void processUpdateForm(
+      @RequestBody PetRequest petRequest, @PathVariable("ownerId") String ownerId) {
+    String petId = petRequest.getId();
+    Optional<Pet> petOptional = findPetById(petId);
+    petOptional.ifPresent(
+        pet -> {
+          Pet save = save(pet, petRequest);
+          Optional<Owner> optionalOwner = ownerRepository.findById(ownerId);
 
-            optionalOwner.ifPresent(owner -> {
+          optionalOwner.ifPresent(
+              owner -> {
                 List<Pet> pets = owner.getPets();
                 for (Pet p : pets) {
-                    if (p.getId().equals(save.getId())) {
-                        p.setName(save.getName());
-                        p.setBirthDate(save.getBirthDate());
-                        p.setType(save.getType());
-                    }
+                  if (p.getId().equals(save.getId())) {
+                    p.setName(save.getName());
+                    p.setBirthDate(save.getBirthDate());
+                    p.setType(save.getType());
+                  }
                 }
-            });
-            ownerRepository.save(optionalOwner.get());
+              });
+          ownerRepository.save(optionalOwner.get());
         });
+  }
+
+  private Pet save(final Pet pet, final PetRequest petRequest) {
+
+    pet.setName(petRequest.getName());
+    pet.setBirthDate(petRequest.getBirthDate());
+    pet.setType(petRequest.getType());
+
+    log.info("Saving pet {}", pet);
+    return petRepository.save(pet);
+  }
+
+  @GetMapping("owners/*/pets/{petId}")
+  public PetDetails findPet(@PathVariable("petId") String petId) {
+    return new PetDetails(findPetById(petId));
+  }
+
+  private Optional<Pet> findPetById(String petId) {
+    Optional<Pet> optionalPet = petRepository.findById(petId);
+
+    if (!optionalPet.isPresent()) {
+      throw new ResourceNotFoundException("Pet " + petId + " not found");
     }
-
-    private Pet save(final Pet pet, final PetRequest petRequest) {
-
-        pet.setName(petRequest.getName());
-        pet.setBirthDate(petRequest.getBirthDate());
-        pet.setType(petRequest.getType());
-
-        log.info("Saving pet {}", pet);
-        return petRepository.save(pet);
-    }
-
-    @GetMapping("owners/*/pets/{petId}")
-    public PetDetails findPet(@PathVariable("petId") String petId) {
-        return new PetDetails(findPetById(petId));
-    }
-
-    private Optional<Pet> findPetById(String petId) {
-        Optional<Pet> optionalPet = petRepository.findById(petId);
-
-        if (!optionalPet.isPresent()) {
-            throw new ResourceNotFoundException("Pet " + petId + " not found");
-        }
-        return optionalPet;
-    }
-
+    return optionalPet;
+  }
 }

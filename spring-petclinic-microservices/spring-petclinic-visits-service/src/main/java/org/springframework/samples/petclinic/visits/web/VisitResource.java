@@ -45,40 +45,40 @@ import java.util.Set;
 @Timed("petclinic.visit")
 class VisitResource {
 
-    private final VisitRepository visitRepository;
+  private final VisitRepository visitRepository;
 
-    @PostMapping("owners/*/pets/{petId}/visits")
-    @ResponseStatus(HttpStatus.CREATED)
+  @PostMapping("owners/*/pets/{petId}/visits")
+  @ResponseStatus(HttpStatus.CREATED)
     Visit create(
         @Valid @RequestBody Visit visit,
         @PathVariable("petId") String petId) {
 
-        visit.setPetId(petId);
-        log.info("Saving visit {}", visit);
-        return visitRepository.save(visit);
-    }
+    visit.setPetId(petId);
+    log.info("Saving visit {}", visit);
+    return visitRepository.save(visit);
+  }
 
-    @GetMapping("owners/*/pets/{petId}/visits")
-    Optional<Visit> visits(@PathVariable("petId") String  petId) {
-        return  visitRepository.findById(petId);
-    }
+  @GetMapping("owners/*/pets/{petId}/visits")
+  Optional<Visit> visits(@PathVariable("petId") String petId) {
+    return visitRepository.findById(petId);
+  }
 
-    @GetMapping("pets/visits")
-    Visits visitsMultiGet(@RequestParam("petId") Set<String> petIds) {
-        List<Visit> result = new ArrayList<>();
-        for (String petId : petIds) {
-            List<Visit> visitIterable = visitRepository.findByPetId(petId);
-            result.addAll(visitIterable);
-        }
-        return new Visits(Lists.newArrayList(result));
+  @GetMapping("pets/visits")
+  Visits visitsMultiGet(@RequestParam("petId") Set<String> petIds) {
+    List<Visit> result = new ArrayList<>();
+    for (String petId : petIds) {
+      List<Visit> visitIterable = visitRepository.findByPetId(petId);
+      result.addAll(visitIterable);
     }
+    return new Visits(Lists.newArrayList(result));
+  }
 
-    @Value
-    static class Visits {
-        List<Visit> items;
+  @Value
+  static class Visits {
+    List<Visit> items;
 
-        Visits(List<Visit> items) {
-            this.items = items;
-        }
+    Visits(List<Visit> items) {
+      this.items = items;
     }
+  }
 }

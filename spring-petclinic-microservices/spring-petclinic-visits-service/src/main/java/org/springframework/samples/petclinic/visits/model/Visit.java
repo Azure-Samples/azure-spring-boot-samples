@@ -24,8 +24,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 
-import javax.persistence.GenerationType;
-import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.constraints.Size;
 import java.util.Date;
 
@@ -42,9 +40,8 @@ import java.util.Date;
 @Data
 public class Visit {
 
-    @Id
-    @GeneratedValue
-    private String id;
+  @Id @GeneratedValue
+  private String id;
 
   private String petId;
 

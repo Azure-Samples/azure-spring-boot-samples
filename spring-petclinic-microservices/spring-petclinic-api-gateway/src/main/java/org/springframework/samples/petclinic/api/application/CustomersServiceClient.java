@@ -28,6 +28,11 @@ public class CustomersServiceClient {
 
   private final WebClient.Builder webClientBuilder;
 
+    /**
+     * get owner info with ownerId
+     * @param ownerId
+     * @return OwnerDetails
+     */
   public Mono<OwnerDetails> getOwner(final String ownerId) {
     return webClientBuilder
         .build()

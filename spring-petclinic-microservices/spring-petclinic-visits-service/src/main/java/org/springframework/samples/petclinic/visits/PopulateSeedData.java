@@ -1,17 +1,15 @@
 package org.springframework.samples.petclinic.visits;
 
 import com.azure.cosmos.implementation.guava25.collect.Lists;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import javax.annotation.PostConstruct;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.visits.model.Visit;
 import org.springframework.samples.petclinic.visits.model.VisitRepository;
 import org.springframework.stereotype.Component;
-import reactor.core.publisher.Flux;
-
-import javax.annotation.PostConstruct;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 
 @Component
 public class PopulateSeedData {

@@ -17,7 +17,9 @@ package org.springframework.samples.petclinic.api.dto;
 
 import lombok.Data;
 
-/** @author Maciej Szarlinski */
+/**
+ * @author Maciej Szarlinski
+ */
 @Data
 public class PetType {
 

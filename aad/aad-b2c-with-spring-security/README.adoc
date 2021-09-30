@@ -72,7 +72,7 @@ This example has a different port from the previous example, so we need to add o
 
 ==== Configure scopes for application
 
-Configure scopes `Delegated.Premisson.Scope1` for application with https://docs.microsoft.com/azure/active-directory-b2c/add-web-api-application?tabs=app-reg-ga#configure-scopes[Configure-scopes].
+Configure scopes `Delegated.Permission.Scope1` for application with https://docs.microsoft.com/azure/active-directory-b2c/add-web-api-application?tabs=app-reg-ga#configure-scopes[Configure-scopes].
 Then grant admin consent for application with https://docs.microsoft.com/azure/active-directory-b2c/add-web-api-application?tabs=app-reg-ga#grant-permissions[Grant-admin-consent].
 
 ==== Fill necessary values in sample project.

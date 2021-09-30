@@ -22,7 +22,10 @@ import lombok.Data;
 
 import static java.util.stream.Collectors.toList;
 
-/** @author Maciej Szarlinski */
+/**
+ *
+ *  @author Maciej Szarlinski
+ */
 @Data
 public class OwnerDetails {
 

@@ -20,7 +20,10 @@ import java.util.Date;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-/** @author Maciej Szarlinski */
+/**
+ *
+ * @author Maciej Szarlinski
+ */
 @Data
 @NoArgsConstructor
 public class VisitDetails {

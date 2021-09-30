@@ -42,7 +42,8 @@ class VisitsServiceClientIntegrationTest {
             response
                 .setHeader("Content-Type", "application/json")
                 .setBody(
-                    "{\"items\":[{\"id\":5,\"date\":\"2018-11-15\",\"description\":\"test visit\",\"petId\":1}]}"));
+                    "{\"items\":[{\"id\":5,\"date\":\"2018-11-15\","
+                        + "\"description\":\"test visit\",\"petId\":1}]}"));
 
     Mono<Visits> visits = visitsServiceClient.getVisitsForPets(Collections.singletonList("1"));
 

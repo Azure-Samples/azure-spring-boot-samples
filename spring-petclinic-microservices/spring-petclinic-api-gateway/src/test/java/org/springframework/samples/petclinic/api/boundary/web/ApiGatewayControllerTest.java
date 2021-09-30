@@ -65,7 +65,10 @@ class ApiGatewayControllerTest {
         .isEqualTo("First visit");
   }
 
-  /** Test Resilience4j fallback method */
+    /**
+     *
+     * Test Resilience4j fallback method
+     */
   @Test
   void getOwnerDetails_withServiceError() {
     OwnerDetails owner = new OwnerDetails();

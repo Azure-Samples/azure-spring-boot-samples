@@ -19,7 +19,11 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Value;
 
-/** @author Maciej Szarlinski */
+
+/**
+ *
+ * @author Maciej Szarlinski
+ */
 @Value
 public class Visits {
 

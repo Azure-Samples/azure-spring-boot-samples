@@ -19,7 +19,10 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Data;
 
-/** @author Maciej Szarlinski */
+/**
+ *
+ * @author Maciej Szarlinski
+ */
 @Data
 public class PetDetails {
 

@@ -34,10 +34,15 @@ public class CustomersAppConfiguration extends AbstractCosmosConfiguration {
 
   private static final Logger logger = LoggerFactory.getLogger(CustomersAppConfiguration.class);
 
-  @Autowired private CosmosProperties properties;
+  @Autowired
+  private CosmosProperties properties;
 
   private AzureKeyCredential azureKeyCredential;
 
+  /**
+   * Bean definetion for CosmosClientBuilder
+   * @return
+   */
   @Bean
   public CosmosClientBuilder cosmosClientBuilder() {
     this.azureKeyCredential = new AzureKeyCredential(properties.getKey());

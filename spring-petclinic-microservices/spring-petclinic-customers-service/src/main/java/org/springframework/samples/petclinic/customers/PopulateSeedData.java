@@ -190,6 +190,11 @@ public class PopulateSeedData {
             pet1, pet2, pet3, pet4, pet5, pet6, pet7, pet8, pet9, pet10, pet11, pet12, pet13));
   }
 
+  /**
+   * parseDate
+   * @param date
+   * @return parsedDate
+   */
   public static Date parseDate(String date) {
     try {
       return new SimpleDateFormat("yyyy-MM-dd").parse(date);

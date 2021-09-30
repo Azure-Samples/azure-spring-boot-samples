@@ -34,6 +34,11 @@ public class VetsAppConfiguration extends AbstractCosmosConfiguration {
 
   private AzureKeyCredential azureKeyCredential;
 
+  /**
+   *
+   * Bean definetion for CosmosClientBuilder
+   * @return
+   */
   @Bean
   public CosmosClientBuilder cosmosClientBuilder() {
     this.azureKeyCredential = new AzureKeyCredential(properties.getKey());

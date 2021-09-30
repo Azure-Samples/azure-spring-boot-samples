@@ -29,6 +29,10 @@ public class VetsProperties {
 
   private Cache cache;
 
+  /**
+   *
+   * inner class Cache
+   */
   @Data
   public static class Cache {
 

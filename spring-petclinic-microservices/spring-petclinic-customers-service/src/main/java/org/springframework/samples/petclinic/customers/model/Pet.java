@@ -99,8 +99,8 @@ public class Pet implements Serializable {
         .append("name", this.getName())
         .append("birthDate", this.getBirthDate())
         .append("type", this.getType())
-      //.append("ownerFirstname", this.getOwner().getFirstName())
-      //.append("ownerLastname", this.getOwner().getLastName())
+        // .append("ownerFirstname", this.getOwner().getFirstName())
+        // .append("ownerLastname", this.getOwner().getLastName())
         .toString();
   }
 }

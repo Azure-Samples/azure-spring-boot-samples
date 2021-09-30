@@ -46,7 +46,7 @@ public class Visit {
 
   @Builder.Default
   @JsonFormat(pattern = "yyyy-MM-dd")
-  private Date visit_date = new Date();
+  private Date visitDate = new Date();
 
   @Size(max = 8192)
   private String description;

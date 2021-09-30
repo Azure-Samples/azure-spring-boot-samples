@@ -121,6 +121,10 @@ public class Owner implements Serializable {
     return this.pets;
   }
 
+    /**
+     * get sortedPets
+     * @return
+     */
   public List<Pet> getPets() {
     final List<Pet> sortedPets = new ArrayList<>(getPetsInternal());
     PropertyComparator.sort(sortedPets, new MutableSortDefinition("name", true, true));

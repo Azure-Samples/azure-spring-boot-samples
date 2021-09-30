@@ -90,6 +90,10 @@ public class Vet {
     return this.specialties;
   }
 
+  /**
+   * getSpecialties
+   * @return a list of Specialty
+   */
   @XmlElement
   public List<Specialty> getSpecialties() {
     List<Specialty> sortedSpecs = new ArrayList<>(getSpecialtiesInternal());

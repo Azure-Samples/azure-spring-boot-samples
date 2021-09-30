@@ -30,7 +30,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Mono;
 
-/** @author Maciej Szarlinski */
+/**
+ * @author Maciej Szarlinski
+ */
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/gateway")

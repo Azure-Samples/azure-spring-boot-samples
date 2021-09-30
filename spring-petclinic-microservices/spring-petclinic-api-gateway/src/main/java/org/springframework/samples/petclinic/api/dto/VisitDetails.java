@@ -33,7 +33,7 @@ public class VisitDetails {
   private String petId = null;
 
   @JsonFormat(pattern = "yyyy-MM-dd")
-  private Date visit_date = null;
+  private Date visitDate = null;
 
   private String description = null;
 }

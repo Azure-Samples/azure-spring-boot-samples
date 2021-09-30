@@ -55,14 +55,14 @@ class PetResource {
         @RequestBody PetRequest petRequest,
         @PathVariable("ownerId") String ownerId) {
 
-    final Pet pet = new Pet();
     Pet save = save(pet, petRequest);
-
-    Optional<Owner> optionalOwner = ownerRepository.findById(ownerId);
+    final Pet pet = new Pet();
     pet.setId(save.getId());
     pet.setName(save.getName());
     pet.setBirthDate(save.getBirthDate());
     pet.setType(save.getType());
+
+    Optional<Owner> optionalOwner = ownerRepository.findById(ownerId);
     optionalOwner.ifPresent(owner -> owner.addPet(pet));
     ownerRepository.save(optionalOwner.get());
 

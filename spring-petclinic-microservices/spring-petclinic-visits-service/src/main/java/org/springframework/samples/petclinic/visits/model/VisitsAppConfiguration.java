@@ -39,6 +39,10 @@ public class VisitsAppConfiguration extends AbstractCosmosConfiguration {
 
   private AzureKeyCredential azureKeyCredential;
 
+    /**
+     * Bean definetion for cosmosClientBuilder
+     * @return
+     */
   @Bean
   public CosmosClientBuilder cosmosClientBuilder() {
     this.azureKeyCredential = new AzureKeyCredential(properties.getKey());

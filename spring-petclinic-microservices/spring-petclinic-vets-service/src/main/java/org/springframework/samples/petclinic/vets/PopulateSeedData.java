@@ -17,9 +17,13 @@ public class PopulateSeedData {
 
   private static final Logger logger = LoggerFactory.getLogger(PopulateSeedData.class);
 
-    @Autowired
-    private VetRepository repository;
+  @Autowired
+  private VetRepository repository;
 
+  /**
+   * populateSeedData
+   * @throws ParseException
+   */
   @PostConstruct
   public void populateSeedData() throws ParseException {
     final Specialty speciality1 = new Specialty(1, "radiology");

@@ -40,11 +40,12 @@ class ApiGatewayControllerTest {
     owner.getPets().add(cat);
     Mockito.when(customersServiceClient.getOwner("1")).thenReturn(Mono.just(owner));
 
-    Visits visits = new Visits();
     VisitDetails visit = new VisitDetails();
     visit.setId("300");
     visit.setDescription("First visit");
     visit.setPetId(cat.getId());
+
+    Visits visits = new Visits();
     visits.getItems().add(visit);
     Mockito.when(visitsServiceClient.getVisitsForPets(Collections.singletonList(cat.getId())))
         .thenReturn(Mono.just(visits));
@@ -65,10 +66,10 @@ class ApiGatewayControllerTest {
         .isEqualTo("First visit");
   }
 
-    /**
-     *
-     * Test Resilience4j fallback method
-     */
+  /**
+   *
+   * Test Resilience4j fallback method
+   */
   @Test
   void getOwnerDetails_withServiceError() {
     OwnerDetails owner = new OwnerDetails();

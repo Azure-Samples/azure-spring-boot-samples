@@ -54,9 +54,9 @@ class OwnerResource {
   private final OwnerRepository ownerRepository;
 
   /**
-   * Create Owner
    *
-   * @return
+   * Create Owner
+   * @return created owner
    */
   @PostMapping
   @ResponseStatus(HttpStatus.CREATED)
@@ -67,7 +67,7 @@ class OwnerResource {
   /**
    * Read single Owner
    *
-   * @return
+   * @return findowner
    */
   @GetMapping(value = "/{ownerId}")
   public Optional<Owner> findOwner(@PathVariable("ownerId") String ownerId) {
@@ -93,9 +93,9 @@ class OwnerResource {
   @ResponseStatus(HttpStatus.NO_CONTENT)
   public void clearAllCache() {}
 
-    /**
-     * Read List of Owners
-     */
+  /**
+   * Read List of Owners
+   */
   @GetMapping(value = "/{ownerId}/pets")
   public List<Pet> findAllPets(@PathVariable("ownerId") String ownerId) {
     Optional<Owner> optionalOwner = ownerRepository.findById(ownerId);

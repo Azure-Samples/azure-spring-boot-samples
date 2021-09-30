@@ -40,6 +40,7 @@ public class CustomersAppConfiguration extends AbstractCosmosConfiguration {
   private AzureKeyCredential azureKeyCredential;
 
   /**
+   *
    * Bean definetion for CosmosClientBuilder
    * @return
    */

@@ -16,9 +16,8 @@
 package org.springframework.samples.petclinic.visits.model;
 
 import com.azure.spring.data.cosmos.repository.CosmosRepository;
-import org.springframework.stereotype.Repository;
-
 import java.util.List;
+import org.springframework.stereotype.Repository;
 
 /**
  * Repository class for <code>Visit</code> domain objects All method names are compliant with Spring

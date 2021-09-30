@@ -1,5 +1,7 @@
 package org.springframework.samples.petclinic.api.boundary.web;
 
+import java.net.ConnectException;
+import java.util.Collections;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mockito;
@@ -17,9 +19,6 @@ import org.springframework.samples.petclinic.api.dto.Visits;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import reactor.core.publisher.Mono;
-
-import java.net.ConnectException;
-import java.util.Collections;
 
 @ExtendWith(SpringExtension.class)
 @WebFluxTest(controllers = ApiGatewayController.class)

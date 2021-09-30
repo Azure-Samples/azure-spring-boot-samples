@@ -15,10 +15,9 @@
  */
 package org.springframework.samples.petclinic.vets.model;
 
+import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Id;
 
 /**
  * Models a {@link Vet Vet's} specialty (for example, dentistry).

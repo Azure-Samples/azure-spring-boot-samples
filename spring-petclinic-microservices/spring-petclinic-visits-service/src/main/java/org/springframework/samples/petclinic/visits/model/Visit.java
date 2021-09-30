@@ -18,14 +18,13 @@ package org.springframework.samples.petclinic.visits.model;
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.GeneratedValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Date;
+import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-
-import javax.validation.constraints.Size;
-import java.util.Date;
 
 /**
  * Simple JavaBean domain object representing a visit.

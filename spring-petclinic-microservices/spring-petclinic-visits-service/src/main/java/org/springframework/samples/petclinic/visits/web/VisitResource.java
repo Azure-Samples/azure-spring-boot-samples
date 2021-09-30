@@ -23,8 +23,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.samples.petclinic.visits.model.Visit;
 import org.springframework.samples.petclinic.visits.model.VisitRepository;
-import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
@@ -49,9 +54,7 @@ class VisitResource {
 
   @PostMapping("owners/*/pets/{petId}/visits")
   @ResponseStatus(HttpStatus.CREATED)
-    Visit create(
-        @Valid @RequestBody Visit visit,
-        @PathVariable("petId") String petId) {
+  Visit create(@Valid @RequestBody Visit visit, @PathVariable("petId") String petId) {
 
     visit.setPetId(petId);
     log.info("Saving visit {}", visit);

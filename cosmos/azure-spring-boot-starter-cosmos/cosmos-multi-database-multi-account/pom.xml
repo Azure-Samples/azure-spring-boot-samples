@@ -14,18 +14,6 @@
   <name>azure-spring-boot-sample-cosmos-multi-database</name>
   <description>Azure Spring Boot Sample Cosmos Multi Database</description>
 
-  <dependencyManagement>
-    <dependencies>
-        <dependency>
-          <groupId>com.azure.spring</groupId>
-          <artifactId>azure-spring-boot-bom</artifactId>
-          <version>3.9.0</version>
-          <type>pom</type>
-          <scope>import</scope>
-        </dependency>
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>

@@ -19,18 +19,6 @@
   <description>Sample project for Spring Boot Service Bus Starter</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
 
-  <dependencyManagement>
-    <dependencies>
-        <dependency>
-          <groupId>com.azure.spring</groupId>
-          <artifactId>azure-spring-boot-bom</artifactId>
-          <version>3.9.0</version>
-          <type>pom</type>
-          <scope>import</scope>
-        </dependency>
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>

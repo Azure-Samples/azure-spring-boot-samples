@@ -21,6 +21,26 @@
     <azure-spring-boot.version>3.9.0</azure-spring-boot.version>
   </properties>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.azure.spring</groupId>
+        <artifactId>azure-spring-cloud-dependencies</artifactId>
+        <version>${azure-spring-cloud.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>com.azure.spring</groupId>
+        <artifactId>azure-spring-boot-bom</artifactId>
+        <version>${azure-spring-boot.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <modules>
     <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server</module>
     <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter</module>

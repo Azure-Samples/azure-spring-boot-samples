@@ -6,10 +6,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.5.0</version> <!-- {x-version-update;org.springframework.boot:spring-boot-starter-parent;external_dependency} -->
-    <relativePath/> <!-- lookup parent from repository -->
+    <groupId>com.azure.spring</groupId>
+    <artifactId>azure-spring-boot-samples</artifactId>
+    <version>1.0.0</version>
+    <relativePath>../../../pom.xml</relativePath>
   </parent>
 
   <groupId>com.azure.spring</groupId>
@@ -30,7 +30,6 @@
     <dependency>
       <groupId>com.azure.spring</groupId>
       <artifactId>azure-spring-boot-starter-keyvault-certificates</artifactId>
-      <version>3.2.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-boot-starter-keyvault-certificates;dependency} -->
     </dependency>
 
     <dependency>

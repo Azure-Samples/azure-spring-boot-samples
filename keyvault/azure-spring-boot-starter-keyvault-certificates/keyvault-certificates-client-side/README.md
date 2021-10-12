@@ -148,11 +148,6 @@ azure:
     #well-known:  # Optional local certificates path. Your local path that holds the well-known certificates.
     #custom: # Optional local certificates path. Your local path that holds your customized certificates. 
 ```
-## Examples
-## Troubleshooting
-## Next steps
-## Contributing
-
 <!-- LINKS -->
 
 [azure_spring_boot_starter_key_vault_certificates]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md

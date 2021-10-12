@@ -141,11 +141,6 @@ azure:
     #well-known:  # Optional local certificates path. Your local path that holds the well-known certificates.
     #custom: # Optional local certificates path. Your local path that holds your customized certificates. 
 ```
-## Examples
-## Troubleshooting
-## Next steps
-## Run with Maven
-## Contributing
 
 <!-- LINKS -->
 

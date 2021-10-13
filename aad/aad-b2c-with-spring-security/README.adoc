@@ -208,7 +208,7 @@ Compared with <<Sample-07-Resource-server-validate-audience, Sample-07-Resource-
 
 ==== Boot up the application
 
-We need to get related access token before we access this resource server, we can get related access token from previous sample, please refer to <<Web-application-with-client-credentials, Web-application-with-client-credentials>>.
+We need to get related access token before we access this resource server, we can get related access token from previous sample, please refer to <<Sample-10-web-application-access-resource-server-validate-scope, Sample-10-web-application-access-resource-server-validate-scope>>.
 Lunch the sample project. This resource server will validate the accessToken's `roles` claim.
 
 [[Sample-10-web-application-access-resource-server-validate-scope]]
@@ -242,7 +242,7 @@ Compared with <<Sample-09-resource-server-authorize-by-scope, Sample-09-resource
 
 ==== Boot up the application
 
-We need to get related access token before we access this resource server, we can get related access token from previous sample, please refer to <<Web-application-with-client-credentials, Web-application-with-client-credentials>>.
+We need to get related access token before we access this resource server, we can get related access token from previous sample, please refer to <<Sample-12-Web-application-access-resource-server-validate-roles, Sample-12-Web-application-access-resource-server-validate-roles>>.
 Lunch the sample project. This resource server will validate the accessToken's `roles` claim.
 
 [[Sample-12-Web-application-access-resource-server-validate-roles]]

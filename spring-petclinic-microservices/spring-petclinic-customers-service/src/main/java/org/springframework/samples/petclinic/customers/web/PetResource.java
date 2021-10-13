@@ -55,8 +55,9 @@ class PetResource {
         @RequestBody PetRequest petRequest,
         @PathVariable("ownerId") String ownerId) {
 
+    Pet pet = new Pet();
     Pet save = save(pet, petRequest);
-    final Pet pet = new Pet();
+
     pet.setId(save.getId());
     pet.setName(save.getName());
     pet.setBirthDate(save.getBirthDate());

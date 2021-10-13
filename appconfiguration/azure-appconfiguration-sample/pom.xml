@@ -14,16 +14,6 @@
   <version>2.0.0</version> <!-- {x-version-update;com.azure.spring:azure-appconfiguration-sample;dependency} -->
   <name>Spring Cloud Azure App Configuration Sample</name>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.azure</groupId>
-        <artifactId>azure-core</artifactId>
-        <version>1.19.0</version> <!-- {x-version-update;com.azure:azure-core;dependency} -->
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
     <dependency>
       <groupId>com.microsoft.azure</groupId>

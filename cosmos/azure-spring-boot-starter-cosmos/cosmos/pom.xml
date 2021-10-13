@@ -20,11 +20,13 @@
 
   <dependencyManagement>
     <dependencies>
-      <dependency>
-        <groupId>com.azure</groupId>
-        <artifactId>azure-core</artifactId>
-        <version>1.19.0</version> <!-- {x-version-update;com.azure:azure-core;dependency} -->
-      </dependency>
+        <dependency>
+          <groupId>com.azure.spring</groupId>
+          <artifactId>azure-spring-boot-bom</artifactId>
+          <version>3.9.0</version>
+          <type>pom</type>
+          <scope>import</scope>
+        </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -32,7 +34,6 @@
     <dependency>
       <groupId>com.azure.spring</groupId>
       <artifactId>azure-spring-boot-starter-cosmos</artifactId>
-      <version>3.9.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-boot-starter-cosmos;dependency} -->
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>

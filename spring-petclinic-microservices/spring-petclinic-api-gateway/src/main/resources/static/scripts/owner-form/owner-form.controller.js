@@ -28,8 +28,8 @@ angular.module('ownerForm')
             }, function (response) {
                 var error = response.data;
                 alert(error.error + "\r\n" + error.errors.map(function (e) {
-                        return e.field + ": " + e.defaultMessage;
-                    }).join("\r\n"));
+                    return e.field + ": " + e.defaultMessage;
+                }).join("\r\n"));
             });
         };
     }]);

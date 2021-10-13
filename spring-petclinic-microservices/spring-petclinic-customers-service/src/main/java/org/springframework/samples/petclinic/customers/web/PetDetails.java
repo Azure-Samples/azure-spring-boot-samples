@@ -29,24 +29,25 @@ import java.util.Optional;
 @Data
 class PetDetails {
 
-    private String id;
+  private String id;
 
-    private String name;
+  private String name;
 
-//    private String owner;
+  //    private String owner;
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date birthDate;
+  @DateTimeFormat(pattern = "yyyy-MM-dd")
+  private Date birthDate;
 
-    private String type;
+  private String type;
 
-    PetDetails(Optional<Pet> petInfo) {
-        petInfo.ifPresent(pet -> {
-            this.id = pet.getId();
-            this.name = pet.getName();
-    //        this.owner = pet.getOwner().getFirstName() + " " + pet.getOwner().getLastName();
-            this.birthDate = pet.getBirthDate();
-            this.type = pet.getType();
+  PetDetails(Optional<Pet> petInfo) {
+    petInfo.ifPresent(
+        pet -> {
+          this.id = pet.getId();
+          this.name = pet.getName();
+          // this.owner = pet.getOwner().getFirstName() + " " + pet.getOwner().getLastName();
+          this.birthDate = pet.getBirthDate();
+          this.type = pet.getType();
         });
-    }
+  }
 }

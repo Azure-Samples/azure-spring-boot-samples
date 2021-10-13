@@ -8,8 +8,6 @@ import org.springframework.test.context.ActiveProfiles;
 @SpringBootTest
 class ApiGatewayApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
-
+  @Test
+  void contextLoads() {}
 }

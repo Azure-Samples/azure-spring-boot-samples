@@ -17,18 +17,24 @@ package org.springframework.samples.petclinic.visits.web;
 
 import com.azure.cosmos.implementation.guava25.collect.Lists;
 import io.micrometer.core.annotation.Timed;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.samples.petclinic.visits.model.Visit;
 import org.springframework.samples.petclinic.visits.model.VisitRepository;
-import org.springframework.web.bind.annotation.*;
-import reactor.core.publisher.Flux;
-
-import javax.validation.Valid;
-import java.util.List;
-import java.util.Optional;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 /**
  * @author Juergen Hoeller
@@ -43,36 +49,38 @@ import java.util.Optional;
 @Timed("petclinic.visit")
 class VisitResource {
 
-    private final VisitRepository visitRepository;
+  private final VisitRepository visitRepository;
 
-    @PostMapping("owners/*/pets/{petId}/visits")
-    @ResponseStatus(HttpStatus.CREATED)
-    Visit create(
-        @Valid @RequestBody Visit visit,
-        @PathVariable("petId") String petId) {
+  @PostMapping("owners/*/pets/{petId}/visits")
+  @ResponseStatus(HttpStatus.CREATED)
+  Visit create(@Valid @RequestBody Visit visit, @PathVariable("petId") String petId) {
 
-        visit.setPetId(petId);
-        log.info("Saving visit {}", visit);
-        return visitRepository.save(visit);
+    visit.setPetId(petId);
+    log.info("Saving visit {}", visit);
+    return visitRepository.save(visit);
+  }
+
+  @GetMapping("owners/*/pets/{petId}/visits")
+  Optional<Visit> visits(@PathVariable("petId") String petId) {
+    return visitRepository.findById(petId);
+  }
+
+  @GetMapping("pets/visits")
+  Visits visitsMultiGet(@RequestParam("petId") Set<String> petIds) {
+    List<Visit> result = new ArrayList<>();
+    for (String petId : petIds) {
+      List<Visit> visitIterable = visitRepository.findByPetId(petId);
+      result.addAll(visitIterable);
     }
+    return new Visits(Lists.newArrayList(result));
+  }
 
-    @GetMapping("owners/*/pets/{petId}/visits")
-    Optional<Visit> visits(@PathVariable("petId") int petId) {
-        return  visitRepository.findById(petId);
+  @Value
+  static class Visits {
+    List<Visit> items;
+
+    Visits(List<Visit> items) {
+      this.items = items;
     }
-
-    @GetMapping("pets/visits")
-    Visits visitsMultiGet(@RequestParam("petId") List<Integer> petIds) {
-        Iterable<Visit> visitIterable = visitRepository.findAllById(petIds);
-        return new Visits(Lists.newArrayList(visitIterable));
-    }
-
-    @Value
-    static class Visits {
-        private final List<Visit> items;
-
-        Visits(List<Visit> items) {
-            this.items = items;
-        }
-    }
+  }
 }

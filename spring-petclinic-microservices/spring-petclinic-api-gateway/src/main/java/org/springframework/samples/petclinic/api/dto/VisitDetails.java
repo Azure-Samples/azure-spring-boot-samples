@@ -15,21 +15,25 @@
  */
 package org.springframework.samples.petclinic.api.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Date;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 /**
+ *
  * @author Maciej Szarlinski
  */
 @Data
 @NoArgsConstructor
 public class VisitDetails {
 
-    private String id = null;
+  private String id = null;
 
-    private String petId = null;
+  private String petId = null;
 
-    private String date = null;
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  private Date visitDate = null;
 
-    private String description = null;
+  private String description = null;
 }

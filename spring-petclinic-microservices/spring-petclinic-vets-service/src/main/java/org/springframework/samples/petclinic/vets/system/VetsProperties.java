@@ -16,7 +16,6 @@
 package org.springframework.samples.petclinic.vets.system;
 
 import lombok.Data;
-
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
@@ -28,13 +27,17 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties(prefix = "vets")
 public class VetsProperties {
 
-    private Cache cache;
+  private Cache cache;
 
-    @Data
-    public static class Cache {
+  /**
+   *
+   * inner class Cache
+   */
+  @Data
+  public static class Cache {
 
-        private int ttl;
+    private int ttl;
 
-        private int heapSize;
-    }
+    private int heapSize;
+  }
 }

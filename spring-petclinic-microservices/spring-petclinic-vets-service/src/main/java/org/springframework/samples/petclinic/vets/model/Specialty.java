@@ -15,10 +15,9 @@
  */
 package org.springframework.samples.petclinic.vets.model;
 
+import javax.persistence.Id;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
-
-import javax.persistence.Id;
 
 /**
  * Models a {@link Vet Vet's} specialty (for example, dentistry).
@@ -27,25 +26,25 @@ import javax.persistence.Id;
  */
 @AllArgsConstructor
 @NoArgsConstructor
-public class    Specialty {
-    @Id
-    private Integer id;
+public class Specialty {
+  @Id
+  private Integer id;
 
-    private String name;
+  private String name;
 
-    public Integer getId() {
-        return id;
-    }
+  public Integer getId() {
+    return id;
+  }
 
-    public void setId(final Integer id) {
-        this.id = id;
-    }
+  public void setId(final Integer id) {
+    this.id = id;
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    public void setName(final String name) {
-        this.name = name;
-    }
+  public void setName(final String name) {
+    this.name = name;
+  }
 }

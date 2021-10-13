@@ -58,6 +58,7 @@
     <module>storage/azure-spring-boot-starter-storage/storage-resource</module>
     <module>storage/azure-spring-cloud-starter-storage-queue/storage-queue-integration</module>
     <module>storage/azure-spring-cloud-starter-storage-queue/storage-queue-operation</module>
+    <module>spring-petclinic-microservices</module>
   </modules>
 
 </project>

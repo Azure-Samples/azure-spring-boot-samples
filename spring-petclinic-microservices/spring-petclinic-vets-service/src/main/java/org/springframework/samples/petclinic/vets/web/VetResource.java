@@ -16,17 +16,15 @@
 package org.springframework.samples.petclinic.vets.web;
 
 import io.micrometer.core.annotation.Timed;
+import java.util.ArrayList;
+import java.util.List;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.samples.petclinic.vets.model.Vet;
 import org.springframework.samples.petclinic.vets.model.VetRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author Juergen Hoeller
@@ -40,16 +38,14 @@ import java.util.List;
 @RequiredArgsConstructor
 @Timed("petclinic.vet")
 @Slf4j
-class
-VetResource {
+class VetResource {
 
+  private final VetRepository vetRepository;
 
-    private final VetRepository vetRepository;
-
-    @GetMapping
-    public List<Vet> showResourcesVetList() {
-        List<Vet> list = new ArrayList<>();
-        vetRepository.findAll().forEach(list::add);
-        return list;
-    }
+  @GetMapping
+  public List<Vet> showResourcesVetList() {
+    List<Vet> list = new ArrayList<>();
+    vetRepository.findAll().forEach(list::add);
+    return list;
+  }
 }

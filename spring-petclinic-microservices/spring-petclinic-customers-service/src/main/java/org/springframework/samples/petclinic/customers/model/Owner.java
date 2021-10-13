@@ -57,89 +57,93 @@ public class Owner implements Serializable {
     @GeneratedValue
     private String id;
 
-    private String firstName;
+  private String firstName;
 
     @PartitionKey
     private String lastName;
 
-    private String address;
+  private String address;
 
-    private String city;
+  private String city;
 
-    private String telephone;
+  private String telephone;
 
-    private Set<Pet> pets;
+  private Set<Pet> pets;
 
-    public String getId() {
-        return id;
+  public String getId() {
+    return id;
+  }
+
+  public String getFirstName() {
+    return firstName;
+  }
+
+  public void setFirstName(final String firstName) {
+    this.firstName = firstName;
+  }
+
+  public String getLastName() {
+    return lastName;
+  }
+
+  public void setLastName(final String lastName) {
+    this.lastName = lastName;
+  }
+
+  public String getAddress() {
+    return this.address;
+  }
+
+  public void setAddress(String address) {
+    this.address = address;
+  }
+
+  public String getCity() {
+    return this.city;
+  }
+
+  public void setCity(String city) {
+    this.city = city;
+  }
+
+  public String getTelephone() {
+    return this.telephone;
+  }
+
+  public void setTelephone(String telephone) {
+    this.telephone = telephone;
+  }
+
+  protected Set<Pet> getPetsInternal() {
+    if (this.pets == null) {
+      this.pets = new HashSet<>();
     }
+    return this.pets;
+  }
 
-    public String getFirstName() {
-        return firstName;
-    }
+    /**
+     * get sortedPets
+     * @return
+     */
+  public List<Pet> getPets() {
+    final List<Pet> sortedPets = new ArrayList<>(getPetsInternal());
+    PropertyComparator.sort(sortedPets, new MutableSortDefinition("name", true, true));
+    return Collections.unmodifiableList(sortedPets);
+  }
 
-    public void setFirstName(final String firstName) {
-        this.firstName = firstName;
-    }
+  public void addPet(Pet pet) {
+    getPetsInternal().add(pet);
+  }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(final String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getAddress() {
-        return this.address;
-    }
-
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getCity() {
-        return this.city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getTelephone() {
-        return this.telephone;
-    }
-
-    public void setTelephone(String telephone) {
-        this.telephone = telephone;
-    }
-
-    protected Set<Pet> getPetsInternal() {
-        if (this.pets == null) {
-            this.pets = new HashSet<>();
-        }
-        return this.pets;
-    }
-
-    public List<Pet> getPets() {
-        final List<Pet> sortedPets = new ArrayList<>(getPetsInternal());
-        PropertyComparator.sort(sortedPets, new MutableSortDefinition("name", true, true));
-        return Collections.unmodifiableList(sortedPets);
-    }
-
-    public void addPet(Pet pet) {
-        getPetsInternal().add(pet);
-    }
-
-    @Override
-    public String toString() {
-        return new ToStringCreator(this)
-         .append("id", this.getId())
-            .append("lastName", this.getLastName())
-            .append("firstName", this.getFirstName())
-            .append("address", this.address)
-            .append("city", this.city)
-            .append("telephone", this.telephone)
-            .toString();
-    }
+  @Override
+  public String toString() {
+    return new ToStringCreator(this)
+        .append("id", this.getId())
+        .append("lastName", this.getLastName())
+        .append("firstName", this.getFirstName())
+        .append("address", this.address)
+        .append("city", this.city)
+        .append("telephone", this.telephone)
+        .toString();
+  }
 }

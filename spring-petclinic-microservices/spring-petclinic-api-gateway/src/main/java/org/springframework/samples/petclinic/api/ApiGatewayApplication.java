@@ -17,6 +17,7 @@ package org.springframework.samples.petclinic.api;
 
 import io.github.resilience4j.circuitbreaker.CircuitBreakerConfig;
 import io.github.resilience4j.timelimiter.TimeLimiterConfig;
+import java.time.Duration;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -36,55 +37,56 @@ import org.springframework.web.reactive.function.server.RouterFunction;
 import org.springframework.web.reactive.function.server.RouterFunctions;
 import org.springframework.web.reactive.function.server.ServerResponse;
 
-import java.time.Duration;
-
-
-/**
- * @author Maciej Szarlinski
- */
+/** @author Maciej Szarlinski */
 @EnableDiscoveryClient
 @SpringBootApplication
 public class ApiGatewayApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(ApiGatewayApplication.class, args);
-    }
+  public static void main(String[] args) {
+    SpringApplication.run(ApiGatewayApplication.class, args);
+  }
 
-    @Bean
-    @LoadBalanced
-    RestTemplate loadBalancedRestTemplate() {
-        return new RestTemplate();
-    }
+  @Bean
+  @LoadBalanced
+  RestTemplate loadBalancedRestTemplate() {
+    return new RestTemplate();
+  }
 
-    @Bean
-    @LoadBalanced
-    public WebClient.Builder loadBalancedWebClientBuilder() {
-        return WebClient.builder();
-    }
+  @Bean
+  @LoadBalanced
+  public WebClient.Builder loadBalancedWebClientBuilder() {
+    return WebClient.builder();
+  }
 
-    @Value("classpath:/static/index.html")
-    private Resource indexHtml;
+  @Value("classpath:/static/index.html")
+  private Resource indexHtml;
 
-    /**
-     * workaround solution for forwarding to index.html
-     * @see <a href="https://github.com/spring-projects/spring-boot/issues/9785">#9785</a>
-     */
-    @Bean
-    RouterFunction<?> routerFunction() {
-        RouterFunction router = RouterFunctions.resources("/**", new ClassPathResource("static/"))
-            .andRoute(RequestPredicates.GET("/"),
-                request -> ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(indexHtml));
-        return router;
-    }
+  /**
+   * workaround solution for forwarding to index.html
+   *
+   * @see <a href="https://github.com/spring-projects/spring-boot/issues/9785">#9785</a>
+   */
+  @Bean
+  RouterFunction<?> routerFunction() {
+    RouterFunction router =
+        RouterFunctions.resources("/**", new ClassPathResource("static/"))
+            .andRoute(
+                RequestPredicates.GET("/"),
+                request ->
+                    ServerResponse.ok().contentType(MediaType.TEXT_HTML).bodyValue(indexHtml));
+    return router;
+  }
 
-    /**
-     * Default Resilience4j circuit breaker configuration
-     */
-    @Bean
-    public Customizer<ReactiveResilience4JCircuitBreakerFactory> defaultCustomizer() {
-        return factory -> factory.configureDefault(id -> new Resilience4JConfigBuilder(id)
-            .circuitBreakerConfig(CircuitBreakerConfig.ofDefaults())
-            .timeLimiterConfig(TimeLimiterConfig.custom().timeoutDuration(Duration.ofSeconds(4)).build())
-            .build());
-    }
+  /** Default Resilience4j circuit breaker configuration */
+  @Bean
+  public Customizer<ReactiveResilience4JCircuitBreakerFactory> defaultCustomizer() {
+    return factory ->
+        factory.configureDefault(
+            id ->
+                new Resilience4JConfigBuilder(id)
+                    .circuitBreakerConfig(CircuitBreakerConfig.ofDefaults())
+                    .timeLimiterConfig(
+                        TimeLimiterConfig.custom().timeoutDuration(Duration.ofSeconds(4)).build())
+                    .build());
+  }
 }

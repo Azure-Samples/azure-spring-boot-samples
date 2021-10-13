@@ -18,15 +18,13 @@ package org.springframework.samples.petclinic.visits.model;
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.GeneratedValue;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import java.util.Date;
+import javax.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
-
-import javax.persistence.GenerationType;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.validation.constraints.Size;
-import java.util.Date;
 
 /**
  * Simple JavaBean domain object representing a visit.
@@ -34,49 +32,22 @@ import java.util.Date;
  * @author Ken Krebs
  * @author Maciej Szarlinski
  */
-
 @Container(containerName = "visits")
 @Builder(builderMethodName = "visit")
 @AllArgsConstructor
 @NoArgsConstructor
+@Data
 public class Visit {
 
-    @Id
-    @GeneratedValue
-    private String id;
+  @Id @GeneratedValue
+  private String id;
 
-    private String petId;
+  private String petId;
 
-    @Builder.Default
-    @JsonFormat(pattern = "yyyy-MM-dd")
-    private Date visit_date = new Date();
+  @Builder.Default
+  @JsonFormat(pattern = "yyyy-MM-dd")
+  private Date visitDate = new Date();
 
-    @Size(max = 8192)
-    private String description;
-
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public Date getDate() {
-        return visit_date;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public String getPetId() {
-        return petId;
-    }
-
-    public void setPetId(final String petId) {
-        this.petId = petId;
-    }
-
+  @Size(max = 8192)
+  private String description;
 }

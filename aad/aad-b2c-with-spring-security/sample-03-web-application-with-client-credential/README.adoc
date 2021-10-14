@@ -1,4 +1,4 @@
 = Azure Active Directory B2C with Spring Security Sample for resource server
 
 [[chapter-link]]
-Please refer to this <<../README.adoc#Web-application-with-client-credentials,tutorial>>
+Please refer to this <<../README.adoc#Sample-03-Web-application-authorize-by-client-credential,tutorial>>

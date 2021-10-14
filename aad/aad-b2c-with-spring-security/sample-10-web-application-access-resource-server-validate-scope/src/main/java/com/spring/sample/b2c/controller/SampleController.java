@@ -18,11 +18,18 @@ public class SampleController {
   @Autowired
   private WebClient webClient;
 
-  @GetMapping(value = { "/resourceServer" })
+  @GetMapping(value = { "/resourceServerForScope1" })
   @ResponseBody
-  public String getResourceServer(
+  public String getResourceServerForScope1(
           @RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient signUpOrSignIn) {
-    return canVisitUri(signUpOrSignIn, "http://localhost:8081/hello");
+    return canVisitUri(signUpOrSignIn, "http://localhost:8081/helloForScope1");
+  }
+
+  @GetMapping(value = { "/resourceServerForScope2" })
+  @ResponseBody
+  public String getResourceServerForScope2(
+          @RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient signUpOrSignIn) {
+    return canVisitUri(signUpOrSignIn, "http://localhost:8081/helloForScope2");
   }
 
   /**

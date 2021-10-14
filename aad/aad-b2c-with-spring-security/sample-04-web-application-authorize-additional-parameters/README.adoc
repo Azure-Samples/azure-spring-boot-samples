@@ -1,4 +1,4 @@
 = Azure Active Directory B2C with Spring Security Sample for resource server
 
 [[chapter-link]]
-Please refer to this <<../README.adoc#Web-application-with-additional-parameters,tutorial>>
+Please refer to this <<../README.adoc#Sample-04-Web-application-authorize-additional-parameters,tutorial>>

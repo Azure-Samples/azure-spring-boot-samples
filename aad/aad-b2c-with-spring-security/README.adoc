@@ -1,7 +1,7 @@
 = Tutorial of using Azure Active Directory B2C by Spring Security
 :toc:
 
-From this tutorial, you will learn how to use Azure Active Directory B2C by Spring Security.
+This tutorial will teach you how to protect your web service by https://docs.microsoft.com/azure/active-directory-b2c[Azure AD B2C]. We will leverage https://spring.io/projects/spring-security[Spring Security] to achieve this.
 
 == Prerequisites
 - https://azure.microsoft.com/free[Azure Subscription]
@@ -224,10 +224,12 @@ Compared with <<Sample-08-web-application-access-resource-server-validate-audien
 
 ==== Boot up the application
 
-Lunch the sample project. Then open `http://localhost:8080/resourceServer` by browser.
+Lunch the sample project. Then open `http://localhost:8080/resourceServerForScope1` by browser.
 Choose `web-application` and sign in. Which will access resource server success.
-Access `http://localhost:8080/logout` to sign out and access `http://localhost:8080/resourceServer` again.
+Access `http://localhost:8080/resourceServerForScope2` and which will access resource server fail
+Access `http://localhost:8080/logout` to sign out and access `http://localhost:8080/resourceServerForScope1` again.
 Choose `web-application2` and sign in. Which will access resource server fail.
+When try to access `http://localhost:8080/resourceServerForScope2` will be success.
 
 [[Sample-11-Resource-server-authorize-by-app-role]]
 === Sample 11: Resource server authorize by app role

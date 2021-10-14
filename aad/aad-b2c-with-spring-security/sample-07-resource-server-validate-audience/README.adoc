@@ -1,4 +1,4 @@
 = Azure Active Directory B2C with Spring Security Sample for resource server
 
 [[chapter-link]]
-Please refer to this <<../README.adoc#Resource-server-validate-audience,tutorial>>
+Please refer to this <<../README.adoc#Sample-07-Resource-server-validate-audience,tutorial>>

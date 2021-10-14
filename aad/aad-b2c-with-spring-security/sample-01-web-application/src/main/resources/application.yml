@@ -24,6 +24,8 @@ spring:
             authorization-grant-type: authorization_code
             redirect-uri: "{baseUrl}/login/oauth2/code/"
             # Fill in `${client-id}` from `Application ID`
+            # We can use ${client-id} to acquire access token that can be used against your own service or web API.
+            # Related doc: https://docs.microsoft.com/en-us/azure/active-directory-b2c/access-tokens#openid-connect-scopes
             scope: ${client-id}, openid, offline_access, profile
 
 # this uri is used to clear your cache when you logout, please fill ${your-tenant-name} with your tenant name

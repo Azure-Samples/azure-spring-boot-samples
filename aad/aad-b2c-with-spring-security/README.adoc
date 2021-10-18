@@ -25,7 +25,7 @@ Follow the guide of https://docs.microsoft.com/azure/active-directory-b2c/tutori
 Follow the guide of https://docs.microsoft.com/azure/active-directory-b2c/tutorial-register-applications[AAD B2C application registry].
 Please ensure that your b2c application's `Redirect URL` is configured to `http://localhost:8080/login/oauth2/code/`.
 In order to jump to the correct page (home) after `profile-edit` and `password-reset`, we need to add `http://localhost:8080/` in the redirect uri too.
-You can add additional `Redirect URL` with https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri[Add Redirect URL].
+You can add additional `Redirect URL` with https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri[Add Redirect URL].
 
 ===== Create user flows
 
@@ -33,15 +33,15 @@ Follow the guide of https://docs.microsoft.com/azure/active-directory-b2c/tutori
 
 ===== Enable forgot password
 
-Follow the guide of https://docs.microsoft.com/en-us/azure/active-directory-b2c/add-password-reset-policy?pivots=b2c-user-flow#self-service-password-reset-recommended[AAD B2C enable forgot password].
+Follow the guide of https://docs.microsoft.com/azure/active-directory-b2c/add-password-reset-policy?pivots=b2c-user-flow#self-service-password-reset-recommended[AAD B2C enable forgot password].
 
 ===== Enable profile edit
 
-Follow the guide of https://docs.microsoft.com/en-us/azure/active-directory-b2c/add-profile-editing-policy?pivots=b2c-user-flow[AAD B2C set up a profile edit flow].
+Follow the guide of https://docs.microsoft.com/azure/active-directory-b2c/add-profile-editing-policy?pivots=b2c-user-flow[AAD B2C set up a profile edit flow].
 
 ===== Enable password reset
 
-Follow the guide of https://docs.microsoft.com/en-us/azure/active-directory-b2c/add-password-reset-policy?pivots=b2c-user-flow#create-a-password-reset-user-flow[AAD B2C set up a password reset user flow]
+Follow the guide of https://docs.microsoft.com/azure/active-directory-b2c/add-password-reset-policy?pivots=b2c-user-flow#create-a-password-reset-user-flow[AAD B2C set up a password reset user flow]
 
 ==== Fill necessary values in sample project.
 
@@ -90,8 +90,8 @@ Compared with the previous sample, this sample updates the `application.yml`, `S
 
 ==== Configure roles for application
 
-Configure Role `Application.Permission.Role1` for application with https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#app-manifest-editor[Configure-roles-for-application].
-https://docs.microsoft.com/en-us/azure/active-directory-b2c/user-overview#consumer-user[Consumer-user] cannot access Azure resources, but we can https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#example-application-app-role[assign-roles-to-application].
+Configure Role `Application.Permission.Role1` for application with https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#app-manifest-editor[Configure-roles-for-application].
+https://docs.microsoft.com/azure/active-directory-b2c/user-overview#consumer-user[Consumer-user] cannot access Azure resources, but we can https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#example-application-app-role[assign-roles-to-application].
 
 ==== Fill necessary values in sample project.
 
@@ -182,7 +182,7 @@ We can create another application to show the feature of validate audience.
 Follow the guide of https://docs.microsoft.com/azure/active-directory-b2c/tutorial-register-applications[AAD B2C application registry].
 Please ensure that your b2c application's `Redirect URL` is configured to `http://localhost:8080/login/oauth2/code/`.
 In order to jump to the correct page (home) after `profile-edit` and `password-reset`, we need to add `http://localhost:8080/` in the redirect uri too.
-You can add additional `Redirect URL` with https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri[Add Redirect URL].
+You can add additional `Redirect URL` with https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri[Add Redirect URL].
 
 ==== Fill necessary values in sample project.
 

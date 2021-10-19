@@ -1,0 +1,17 @@
+# Please read "/azure-active-directory/README.md" to fill the placeholders in this file: "<tenant-id>", "<client-id>", "<client-secret>".
+server:
+  port: 8080
+spring:
+  security:
+    oauth2:
+      client:
+        provider: # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2login-common-oauth2-provider
+          azure-active-directory:
+            issuer-uri: https://sts.windows.net/<tenant-id>/ # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#webflux-oauth2-login-openid-provider-configuration
+        registration:
+          client-1:
+            provider: azure-active-directory
+            client-id: <client-id>
+            client-secret: <client-secret>
+            scope: openid, profile # Refs: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            redirect-uri: http://localhost:8080/login/oauth2/code/

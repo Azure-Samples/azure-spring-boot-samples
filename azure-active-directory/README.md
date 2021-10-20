@@ -526,7 +526,8 @@ Read [MS docs about expose an api], Add a scope named `resource-server-1.scope-1
 Read [MS docs about configure a client application to access a web API], add permissions for client-1 to access resource-server-1.
 
 ## 4.3. Run the application
-Run the Spring Boot application.
+ - Run [03-resource-server].
+ - Run current Spring boot application.
 
 Use web browser to access `http://localhost:8080/client/resource-server-1/hello`. It should return `Hello, this is resource server 1.`, which means client-1 access resource-server-1 successfully.
 
@@ -547,7 +548,7 @@ Use web browser to access `http://localhost:8080/client/resource-server-1/hello`
     - DelegatingOAuth2AuthorizedClientProvider
   - ClientRegistrationRepository
   - OAuth2AuthorizedClientRepository
-
+- Read the [MS docs about offline_access token], learn what `offline_access` scope is used for. And use current project to investigate the impact of adding `offline_access`.
 
 
 
@@ -579,4 +580,5 @@ Use web browser to access `http://localhost:8080/client/resource-server-1/hello`
 [MS docs about OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform]: https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols
 [MS docs about Microsoft identity platform and OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [MS docs about Microsoft identity platform access tokens]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
+[MS docs about offline_access token]: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#offline_access
 

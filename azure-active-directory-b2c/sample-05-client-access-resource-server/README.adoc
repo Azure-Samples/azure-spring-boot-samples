@@ -1,4 +1,4 @@
 = Azure Active Directory B2C with Spring Security Sample for resource server
 
 [[chapter-link]]
-Please refer to this <<../README.adoc#Sample-05-client-access-resource-server,tutorial>>
+Please refer to this <<../README.adoc#5. Sample 05: Client access resource server.,tutorial>>

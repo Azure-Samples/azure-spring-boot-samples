@@ -9,7 +9,6 @@ This tutorial will teach you how to protect your web service by https://docs.mic
 
 == Azure AD Active Directory Samples
 
-[[Sample-01-client]]
 === 1. Sample 01: Client.
 
 Sample project: <<./sample-01-client/README.adoc#chapter-link, sample-01-client>>
@@ -208,7 +207,6 @@ You are then redirected to the default _auto-generated_ login page. You can sign
 
 Then, you can edit your profile with the button `Profile edit` or reset your password with `Password reset`.
 
-[[Sample-02-client-authorize-by-scope]]
 === 2. Sample 02: Client authorize by scope.
 
 Sample project: <<./sample-02-client-authorize-by-scope/README.adoc#chapter-link, sample-02-client-authorize-by-scope>>
@@ -233,7 +231,6 @@ Run application, then open `http://localhost:8080` by browser.
 Compared with the previous sample, this sample can validate scopes.
 Open `http://localhost:8080/hello` by browser, the account has authority for the endpoint.
 
-[[Sample-03-client-authorize-additional-parameters]]
 === 3. Sample 03: Client authorize additional parameters.
 
 Sample project: <<./sample-03-client-authorize-additional-parameters/README.adoc#chapter-link, sample-03-client-authorize-additional-parameters>>
@@ -251,7 +248,6 @@ Run application, then open `http://localhost:8080` by browser.
 Compared with the previous sample, this application just adds `additional-parameters`.
 You can customize the Authorization Request for oauth2Login() by add `additional-parameters`.
 
-[[Sample-04-Resource-server]]
 === 4. Sample 04: Resource server.
 
 Sample project: <<./sample-04-resource-server/README.adoc#chapter-link, sample-04-resource-server>>
@@ -262,10 +258,9 @@ Sample project: <<./sample-04-resource-server/README.adoc#chapter-link, sample-0
 
 ==== 4.2. Run application.
 
-We need to get related access token before we access this resource server, please refer to <<Sample-05-client-access-resource-server, Sample-05-client-access-resource-server>>.
+We need to get related access token before we access this resource server, please refer to <<5. Sample 05: Client access resource server., Sample-05-client-access-resource-server>>.
 Run application. This resource server will validate the access token.
 
-[[Sample-05-client-access-resource-server]]
 === 5. Sample 05: Client access resource server.
 
 Sample project: <<./sample-05-client-access-resource-server/README.adoc#chapter-link, sample-05-client-access-resource-server>>
@@ -279,12 +274,11 @@ Sample project: <<./sample-05-client-access-resource-server/README.adoc#chapter-
 Run application. Then open `http://localhost:8080/client-1/resource-server-1` by browser and sign in.
 Which will access resource server by access token.
 
-[[Sample-06-Resource-server-validate-audience]]
 === 6. Sample 06: Resource server validate audience.
 
 Sample project: <<./sample-06-resource-server-validate-audience/README.adoc#chapter-link, sample-06-resource-server-validate-audience>>
 
-Compared with <<Sample-04-Resource-server, Sample-04-Resource-server>>, this sample updates the `application.yml` and `WebSecurityConfiguration.java`.
+Compared with <<4. Sample 04: Resource server., Sample-04-Resource-server>>, this sample updates the `application.yml` and `WebSecurityConfiguration.java`.
 
 ==== 6.1 Fill necessary values in sample project.
 
@@ -292,15 +286,14 @@ Compared with <<Sample-04-Resource-server, Sample-04-Resource-server>>, this sam
 
 ==== 6.2. Run application.
 
-We need to get related access token before we access this resource server, please refer to <<Sample-07-client-access-resource-server-validate-audience, Sample-07-client-access-resource-server-validate-audience>>.
+We need to get related access token before we access this resource server, please refer to <<7. Sample 07: Client access resource server validate audience., Sample-07-client-access-resource-server-validate-audience>>.
 Run application. This resource server will validate the accessToken's audience.
 
-[[Sample-07-client-access-resource-server-validate-audience]]
 === 7. Sample 07: Client access resource server validate audience.
 
 Sample project: <<./sample-07-client-access-resource-server-validate-audience/README.adoc#chapter-link, sample-07-client-access-resource-server-validate-audience>>
 
-Compared with <<Sample-05-client-access-resource-server, Sample-05-client-access-resource-server>>, this sample updates the `application.yml`.
+Compared with <<5. Sample 05: Client access resource server., Sample-05-client-access-resource-server>>, this sample updates the `application.yml`.
 
 ==== 7.1. Register your application as resource server.
 
@@ -320,12 +313,11 @@ You can add additional `Redirect URL` with https://docs.microsoft.com/azure/acti
 Run application. Then open `http://localhost:8080/client-1/resource-server-1` by browser and sign in. Which will access resource server success.
 Access `http://localhost:8080/client-1/resource-server-2`, Which will access resource server fail.
 
-[[Sample-08-resource-server-authorize-by-scope]]
 === 8. Sample 08: Resource server authorize by scope.
 
 Sample project: <<./sample-08-resource-server-authorize-by-scope/README.adoc#chapter-link, sample-08-resource-server-authorize-by-scope>>
 
-Compared with <<Sample-06-Resource-server-validate-audience, Sample-06-Resource-server-validate-audience>>, this sample updates the `SampleController.java` and `WebSecurityConfiguration.java`.
+Compared with <<6. Sample 06: Resource server validate audience., Sample-06-Resource-server-validate-audience>>, this sample updates the `SampleController.java` and `WebSecurityConfiguration.java`.
 
 ==== 8.1. Fill necessary values in sample project.
 
@@ -333,15 +325,14 @@ Compared with <<Sample-06-Resource-server-validate-audience, Sample-06-Resource-
 
 ==== 8.2. Run application.
 
-We need to get related access token before we access this resource server, please refer to <<Sample-09-client-access-resource-server-validate-scope, Sample-09-client-access-resource-server-validate-scope>>.
+We need to get related access token before we access this resource server, please refer to <<9. Sample 09: Client access resource server validate scope., Sample-09-client-access-resource-server-validate-scope>>.
 Run application. This resource server will validate the accessToken's `roles` claim.
 
-[[Sample-09-client-access-resource-server-validate-scope]]
 === 9. Sample 09: Client access resource server validate scope.
 
 Sample project: <<./sample-09-client-access-resource-server-validate-scope/README.adoc#chapter-link, sample-09-client-access-resource-server-validate-scope>>
 
-Compared with <<Sample-07-client-access-resource-server-validate-audience, Sample-07-client-access-resource-server-validate-audience>>, this sample updates the `application.yml`.
+Compared with <<7. Sample 07: Client access resource server validate audience., Sample-07-client-access-resource-server-validate-audience>>, this sample updates the `application.yml`.
 
 ==== 9.1. Fill necessary values in sample project.
 
@@ -351,12 +342,11 @@ Compared with <<Sample-07-client-access-resource-server-validate-audience, Sampl
 
 Run application. Then open `http://localhost:8080/client-1/resource-server/scope-1` by browser. Which will access resource server with scope.
 
-[[Sample-10-Resource-server-authorize-by-app-role]]
 === 10. Sample 10: Resource server authorize by app role.
 
 Sample project: <<./sample-10-resource-server-authorize-by-app-role/README.adoc#chapter-link, sample-10-resource-server-authorize-by-app-role>>
 
-Compared with <<Sample-08-resource-server-authorize-by-scope, Sample-08-resource-server-authorize-by-scope>>, this sample updates the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`.
+Compared with <<8. Sample 08: Resource server authorize by scope., Sample-08-resource-server-authorize-by-scope>>, this sample updates the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`.
 
 ==== 10.1. Configure roles for application.
 
@@ -370,15 +360,14 @@ Then client-1 can have authority without https://docs.microsoft.com/azure/active
 
 ==== 10.3. Run application.
 
-We need to get related access token before we access this resource server, we can get related access token from previous sample, please refer to <<Sample-11-client-access-resource-server-validate-roles, Sample-11-client-access-resource-server-validate-roles>>.
+We need to get related access token before we access this resource server, we can get related access token from previous sample, please refer to <<11. Sample 11: Client access resource server validate roles., Sample-11-client-access-resource-server-validate-roles>>.
 Run application. This resource server will validate the accessToken's `roles` claim.
 
-[[Sample-11-client-access-resource-server-validate-roles]]
 === 11. Sample 11: Client access resource server validate roles.
 
 Sample project: <<./sample-11-client-access-resource-server-validate-roles/README.adoc#chapter-link, sample-11-client-access-resource-server-validate-roles>>
 
-Compared with <<Sample-09-client-access-resource-server-validate-scope, Sample-09-client-access-resource-server-validate-scope>>, this sample updates the `application.yml`.
+Compared with <<9. Sample 09: Client access resource server validate scope., Sample-09-client-access-resource-server-validate-scope>>, this sample updates the `application.yml`.
 
 ==== 11.1. Fill necessary values in sample project.
 
@@ -388,12 +377,11 @@ Compared with <<Sample-09-client-access-resource-server-validate-scope, Sample-0
 
 Run application. Then open `http://localhost:8080/client-1/resource-server-1/role-1` by browser. Which will access resource server.
 
-[[Sample-12-Resource-server-multi-tenant]]
 === 12. Sample 12: Resource server multi tenant.
 
 Sample project: <<./sample-12-resource-server-multi-tenant/README.adoc#chapter-link, sample-12-resource-server-multi-tenant>>
 
-Compared with <<Sample-10-Resource-server-authorize-by-app-role, Sample-10-Resource-server-authorize-by-app-role>>, this sample updates the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`.
+Compared with <<10. Sample 10: Resource server authorize by app role., Sample-10-Resource-server-authorize-by-app-role>>, this sample updates the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`.
 
 ==== 12.1 Fill necessary values in sample project.
 

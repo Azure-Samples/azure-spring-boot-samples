@@ -1,4 +1,5 @@
-# Please read "/azure-active-directory/README.md" to fill the placeholders in this file: "<tenant-id>", "<client-id>", "<client-secret>".
+# Please read "/azure-active-directory/README.md" to fill the placeholders in this file:
+# "<tenant-id>", "<client-1-client-id>", "<client-1-client-secret>", "<resource-server-1-client-id>".
 server:
   port: 8080
 spring:
@@ -7,12 +8,12 @@ spring:
       client:
         provider: # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2login-common-oauth2-provider
           azure-active-directory:
-            issuer-uri: https://sts.windows.net/<tenant-id>/ # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#webflux-oauth2-login-openid-provider-configuration
-            user-name-attribute: upn
+            issuer-uri: https://login.microsoftonline.com/<tenant-id>/v2.0 # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#webflux-oauth2-login-openid-provider-configuration
+            user-name-attribute: name
         registration:
           client-1:
             provider: azure-active-directory
-            client-id: <client-id>
-            client-secret: <client-secret>
-            scope: openid, profile # Refs: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            client-id: <client-1-client-id>
+            client-secret: <client-1-client-secret>
+            scope: openid, profile,  api://<resource-server-1-client-id>/resource-server-1.scope-1, # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
             redirect-uri: http://localhost:8080/login/oauth2/code/

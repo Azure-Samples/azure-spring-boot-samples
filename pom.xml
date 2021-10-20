@@ -26,6 +26,8 @@
     <module>aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-resource-server</module>
     <module>azure-active-directory/01-client</module>
     <module>azure-active-directory/02-client-get-user-information</module>
+    <module>azure-active-directory/03-resource-server</module>
+    <module>azure-active-directory/04-client-access-resource-server</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-complete</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-initial</module>
     <module>appconfiguration/azure-appconfiguration-sample</module>

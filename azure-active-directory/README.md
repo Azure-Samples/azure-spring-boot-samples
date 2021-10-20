@@ -5,9 +5,9 @@
     * [1.1. Create sample project](#11-create-sample-project)
         + [1.1.1. Create a pom file in a new folder.](#111-create-a-pom-file-in-a-new-folder)
         + [1.1.2. Create Java classes.](#112-create-java-classes)
-            - [1.1.2.1. ClientApplication](#1121-clientapplication)
-            - [1.1.2.2. WebSecurityConfigure](#1122-websecurityconfigure)
-            - [1.1.2.3. HomeController](#1123-homecontroller)
+            - [1.1.2.1. ClientApplication.java](#1121-clientapplicationjava)
+            - [1.1.2.2. WebSecurityConfigure.java](#1122-websecurityconfigurejava)
+            - [1.1.2.3. HomeController.java](#1123-homecontrollerjava)
         + [1.1.3. Create application.yml.](#113-create-applicationyml)
     * [1.2. Create required resources in Azure.](#12-create-required-resources-in-azure)
         + [1.2.1. Get an Azure Active Directory tenant](#121-get-an-azure-active-directory-tenant)
@@ -21,11 +21,22 @@
     * [2.1. Update sample project](#21-update-sample-project)
         + [2.1.1. Update pom.xml](#211-update-pomxml)
         + [2.1.2. Add new Java class](#212-add-new-java-class)
-            - [2.1.2.1 UserInformationController](#2121-userinformationcontroller)
+            - [2.1.2.1 UserInformationController.java](#2121-userinformationcontrollerjava)
         + [2.1.3. Update application.yml](#213-update-applicationyml)
     * [2.2. Create required resources in Azure.](#22-create-required-resources-in-azure)
     * [2.3. Run the application](#23-run-the-application)
     * [2.4. Homework](#24-homework)
+- [3. resource-server](#3-resource-server)
+    * [3.1. Create sample project](#31-create-sample-project)
+        + [3.1.1. Create a pom file in a new folder](#311-create-a-pom-file-in-a-new-folder)
+        + [3.1.2. Create Java classes](#312-create-java-classes)
+            - [3.1.2.1. ResourceServerApplication.java](#3121-resourceserverapplicationjava)
+            - [3.1.2.2. HomeController.java](#3122-homecontrollerjava)
+            - [3.1.2.3. WebSecurityConfigure.java](#3123-websecurityconfigurejava)
+        + [3.1.3. Create application.yml](#313-create-applicationyml)
+    * [3.2. Create required resources in Azure.](#32-create-required-resources-in-azure)
+    * [3.3. Run the application](#33-run-the-application)
+    * [3.4. Homework](#34-homework)
 
 # Preface
 
@@ -77,7 +88,7 @@ This section will demonstrate how to use Azure Active Directory user account to 
 
 ### 1.1.2. Create Java classes.
 
-#### 1.1.2.1. ClientApplication
+#### 1.1.2.1. ClientApplication.java
 ```java
 package com.azure.sample.azure.active.directory;
 
@@ -93,7 +104,7 @@ public class ClientApplication {
 }
 ```
 
-#### 1.1.2.2. WebSecurityConfigure
+#### 1.1.2.2. WebSecurityConfigure.java
 ```java
 package com.azure.sample.azure.active.directory.config;
 
@@ -117,7 +128,7 @@ public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
 }
 ```
 
-#### 1.1.2.3. HomeController
+#### 1.1.2.3. HomeController.java
 ```java
 package com.azure.sample.azure.active.directory.controller;
 
@@ -136,19 +147,22 @@ public class HomeController {
 
 ### 1.1.3. Create application.yml.
 ```yml
+# Please read "/azure-active-directory/README.md" to fill the placeholders in this file: "<tenant-id>", "<client-id>", "<client-secret>".
+server:
+  port: 8080
 spring:
   security:
     oauth2:
       client:
-        provider:
+        provider: # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2login-common-oauth2-provider
           azure-active-directory:
-            issuer-uri: https://login.microsoftonline.com/<tenant-id>
+            issuer-uri: https://sts.windows.net/<tenant-id>/ # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#webflux-oauth2-login-openid-provider-configuration
         registration:
           client-1:
             provider: azure-active-directory
             client-id: <client-id>
             client-secret: <client-secret>
-            scope: openid, profile, offline_access, api://client-1/client-1-scope-1
+            scope: openid, profile # Refs: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
             redirect-uri: http://localhost:8080/login/oauth2/code/
 ```
 For more information about these configuration items, please refer to [Spring Security doc about CommonOAuth2Provider].
@@ -188,7 +202,7 @@ This section will demonstrate how to use get user information. You can choose on
 - Option 2: Follow steps in [2.1. Update sample project](#11-create-sample-project) to create the sample project.
 
 ## 2.1. Update sample project
-This project is build on top of [01-client]. The following step will change [01-client] into [02-client-get-user-information].
+This project is build on top of [01-client]. The following steps will change [01-client] into [02-client-get-user-information].
 
 ### 2.1.1. Update pom.xml
 Add the following dependency in pom.xml:
@@ -201,7 +215,7 @@ Add the following dependency in pom.xml:
 
 ### 2.1.2. Add new Java class
 
-#### 2.1.2.1 UserInformationController
+#### 2.1.2.1 UserInformationController.java
 ```java
 package com.azure.sample.azure.active.directory.controller;
 
@@ -255,8 +269,131 @@ Use web browser to access `http://localhost:8080/user-information`. After log in
 ## 2.4. Homework
  - Investigate what is the property (`spring.security.oauth2.client.provider.azure-active-directory.user-name-attribute = upn`) is used for.
 
+# 3. resource-server
+This section will demonstrate how to use Azure Active Directory to protect a resource-server. You can choose one of the following options to get the sample project.
+ - Option 1: Use [03-resource-server] directly.
+ - Follow the steps in [3.1. Create sample project](#31-create-sample-project) to create the sample project.
 
+## 3.1. Create sample project
 
+### 3.1.1. Create a pom file in a new folder
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.5.4</version> <!-- {x-version-update;org.springframework.boot:spring-boot-starter-parent;external_dependency} -->
+  </parent>
+
+  <groupId>com.azure.sample.azure.active.directory</groupId>
+  <artifactId>03-resource-server</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+    </dependency>
+  </dependencies>
+
+</project>
+```
+
+### 3.1.2. Create Java classes
+
+#### 3.1.2.1. ResourceServerApplication.java
+```java
+package com.azure.sample.azure.active.directory.resource.server;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ResourceServerApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ResourceServerApplication.class, args);
+    }
+}
+```
+
+#### 3.1.2.2. HomeController.java
+```java
+package com.azure.sample.azure.active.directory.resource.server.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HomeController {
+
+    @GetMapping("/")
+    public String home() {
+        return "hello";
+    }
+}
+```
+
+#### 3.1.2.3. WebSecurityConfigure.java
+```java
+package com.azure.sample.azure.active.directory.resource.server.config;
+
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@EnableWebSecurity
+public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        // @formatter:off
+        http.authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+            .oauth2ResourceServer()
+                .jwt()
+                .and();
+        // @formatter:off
+    }
+}
+```
+
+### 3.1.3. Create application.yml
+```yaml
+# Please read "/azure-active-directory/README.md" to fill the placeholders in this file: "<tenant-id>".
+server:
+  port: 8081
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://sts.windows.net/<tenant-id>/
+```
+
+## 3.2. Create required resources in Azure.
+All resources required in this sample is already created in previous sample. So no need to create new resources.
+
+## 3.3. Run the application
+Run the Spring Boot application.
+
+Use web browser to access `http://localhost:8081`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
+
+## 3.4. Homework
+
+ - Read the [rfc6749#section-1.1], learn the roles in the OAuth 2.0 authorization framework.
+ - Read the [rfc6749#section-1.2], learn the abstract protocol flow.
 
 
 
@@ -276,3 +413,6 @@ Use web browser to access `http://localhost:8080/user-information`. After log in
 [Spring docs about running application]: https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.running-your-application
 [rfc6749]: https://datatracker.ietf.org/doc/html/rfc6749
 [02-client-get-user-information]: ./02-client-get-user-information
+[03-resource-server]: ./03-resource-server
+[rfc6749#section-1.1]: https://datatracker.ietf.org/doc/html/rfc6749#section-1.1
+[rfc6749#section-1.2]: https://datatracker.ietf.org/doc/html/rfc6749#section-1.2

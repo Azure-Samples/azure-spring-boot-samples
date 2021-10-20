@@ -1,0 +1,9 @@
+# Please read "/azure-active-directory/README.md" to fill the placeholders in this file: "<tenant-id>".
+server:
+  port: 8081
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://sts.windows.net/<tenant-id>/

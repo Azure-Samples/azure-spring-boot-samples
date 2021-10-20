@@ -1,7 +1,6 @@
 package com.spring.sample.b2c.controller;
 
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
-import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -17,11 +16,11 @@ public class SampleController {
     return "home.html";
   }
 
-  @GetMapping(value = { "/resourceServer" })
   @ResponseBody
-  public String getResourceServer(
-          @RegisteredOAuth2AuthorizedClient("resource-server")
-                  OAuth2AuthorizedClient resourceServer) {
-    return resourceServer.getAccessToken().getTokenValue();
+  @GetMapping(value = { "/hello" })
+  @PreAuthorize("hasAuthority('SCOPE_scope-1')")
+  public String hello() {
+    return "this is a resource-server protected by Azure Active Directory B2C. ";
   }
+
 }

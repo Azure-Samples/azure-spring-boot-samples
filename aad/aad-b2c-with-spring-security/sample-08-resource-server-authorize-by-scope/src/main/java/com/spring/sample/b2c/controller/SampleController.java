@@ -16,17 +16,11 @@ public class SampleController {
   public String hello() {
     return "this is a resource-server protected by Azure Active Directory B2C. ";
   }
-  @ResponseBody
-  @GetMapping(value = { "/helloForScope1" })
-  @PreAuthorize("hasAuthority('SCOPE_Delegated.Permission.Scope1')")
-  public String helloForScope1() {
-    return "this is a resource-server protected by Azure Active Directory B2C. ";
-  }
 
   @ResponseBody
-  @GetMapping(value = { "/helloForScope2" })
-  @PreAuthorize("hasAuthority('SCOPE_Delegated.Permission.Scope2')")
-  public String helloForScope2() {
+  @GetMapping(value = { "/client-1/scope-1" })
+  @PreAuthorize("hasAuthority('SCOPE_scope-1')")
+  public String helloForScope1() {
     return "this is a resource-server protected by Azure Active Directory B2C. ";
   }
 }

@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class SampleController {
 
   @ResponseBody
-  @GetMapping(value = { "/hello" })
-  @PreAuthorize("hasAuthority('ROLE_Application.Permission.Role1')")
+  @GetMapping(value = { "/resource-server-1/role-1" })
+  @PreAuthorize("hasAuthority('ROLE_Role-1')")
   public String hello() {
     return "this is a resource-server protected by Azure Active Directory B2C. ";
   }

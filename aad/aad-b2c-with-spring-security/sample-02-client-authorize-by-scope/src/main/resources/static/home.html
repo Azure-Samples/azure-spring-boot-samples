@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<h1>Home Page</h1>
+<div>
+    <form style="display:inline" method="get" action="/logout">
+        <button class="btn btn-md btn-primary btn-block" type="submit">Log out</button>
+    </form>
+
+    <!-- this uri is used to redirect you to edit your profile with your profile edit user flow
+             replace ${your-client-id} with your `Application ID`-->
+    <form style="display:inline" method="post" action="https://sampleTenant1.b2clogin.com/sampleTenant1.onmicrosoft.com/oauth2/v2.0/authorize?p=profileediting&client_id=${your-client-id}&nonce=defaultNonce&redirect_uri=http%3A%2F%2Flocalhost%3A8080&scope=openid&response_type=id_token&prompt=login">
+        <button class="btn btn-md btn-primary btn-block" type="submit">Profile edit</button>
+    </form>
+
+    <!-- this uri is used to redirect you to reset password with your password reset user flow
+             replace ${your-client-id} with your `Application ID`-->
+    <form style="display:inline" method="post" action="https://sampleTenant1.b2clogin.com/sampleTenant1.onmicrosoft.com/oauth2/v2.0/authorize?p=passwordreset&client_id=${your-client-id}&nonce=defaultNonce&redirect_uri=http%3A%2F%2Flocalhost%3A8080&scope=openid&response_type=id_token&prompt=login">
+        <button class="btn btn-md btn-primary btn-block" type="submit">Password reset</button>
+    </form>
+</div>
+
+</body>
+</html>

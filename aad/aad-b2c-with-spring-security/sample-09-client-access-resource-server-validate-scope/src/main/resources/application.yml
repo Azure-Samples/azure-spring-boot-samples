@@ -1,0 +1,41 @@
+# From **Azure AD B2C** portal `App registrations` blade, select **Endpoints**, Access `Azure AD B2C OpenID Connect metadata document`(Global cloud format may looks like
+#`https://{your-tenant-name}.b2clogin.com/{your-tenant-name}.onmicrosoft.com/<policy-name>/v2.0/.well-known/openid-configuration`,
+# China Cloud looks like `https://{your-tenant-name}.b2clogin.cn/{your-tenant-name}.partner.onmschina.cn/<policy-name>/v2.0/.well-known/openid-configuration`) replace <policy-name> with your sign up or sign in user flow name.
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          azure-ad-b2c-sign-up-or-sign-in:
+            # `authorization-uri` should be the value of `authorization_endpoint` in page of Azure AD B2C OpenID Connect metadata document
+            authorization-uri: ${your-authorization-uri}
+            # `token-uri` should be the value of `token-uri` in page of Azure AD B2C OpenID Connect metadata document
+            token-uri: ${your-token-uri}
+            # `jwk-set-uri` should be the value of `jwkSetUri` in page of Azure AD B2C OpenID Connect metadata document
+            jwk-set-uri: ${your-jwk-set-uri}
+        registration:
+          web-application:
+            provider: azure-ad-b2c-sign-up-or-sign-in
+            # Select your instance of "client-1" under `Applications` from portal, and then Fill in `${client-id}` from `Application ID`.
+            # To make your accessToken can be validate form resource server, you should use the same application with resource server.
+            client-id: ${client-id}
+            # Fill in `${your-client-secret}` from one of `Keys`.
+            client-secret: ${your-client-secret}
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/"
+            # Fill in `${client-id}` from `Application ID`
+            scope: openid, offline_access, https://sampleTenant1.onmicrosoft.com/${client-id}/Delegated.Permission.Scope1
+          web-application2:
+            provider: azure-ad-b2c-sign-up-or-sign-in
+            # Select your instance of "client-2" under `Applications` from portal, and then Fill in `${client-id}` from `Application ID`.
+            # To make your accessToken can be validate form resource server, you should use the same application with resource server.
+            client-id: ${client-id}
+            # Fill in `${your-client-secret}` from one of `Keys`.
+            client-secret: ${your-client-secret}
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/"
+            # Fill in `${client-id}` from `Application ID`
+            scope: openid, offline_access, https://sampleTenant1.onmicrosoft.com/${client-id}/Delegated.Permission.Scope2
+
+# this uri is used to clear your cache when you logout
+logout-success-url: https://sampleTenant1.b2clogin.com/sampleTenant1.onmicrosoft.com/signupsignin1/oauth2/v2.0/logout?post_logout_redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Flogin

@@ -24,19 +24,18 @@
     <module>aad/azure-spring-boot-starter-active-directory/aad-web-application-and-resource-server</module>
     <module>aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-web-application</module>
     <module>aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-resource-server</module>
-    <module>aad/aad-b2c-with-spring-security/sample-01-web-application</module>
-    <module>aad/aad-b2c-with-spring-security/sample-02-web-application-authorize-by-scope</module>
-    <module>aad/aad-b2c-with-spring-security/sample-03-web-application-with-client-credential</module>
-    <module>aad/aad-b2c-with-spring-security/sample-04-web-application-authorize-additional-parameters</module>
-    <module>aad/aad-b2c-with-spring-security/sample-05-resource-server</module>
-    <module>aad/aad-b2c-with-spring-security/sample-06-web-application-access-resource-server</module>
-    <module>aad/aad-b2c-with-spring-security/sample-07-resource-server-validate-audience</module>
-    <module>aad/aad-b2c-with-spring-security/sample-08-web-application-access-resource-server-validate-audience</module>
-    <module>aad/aad-b2c-with-spring-security/sample-09-resource-server-authorize-by-scope</module>
-    <module>aad/aad-b2c-with-spring-security/sample-10-web-application-access-resource-server-validate-scope</module>
-    <module>aad/aad-b2c-with-spring-security/sample-11-resource-server-authorize-by-app-role</module>
-    <module>aad/aad-b2c-with-spring-security/sample-12-web-application-access-resource-server-validate-roles</module>
-    <module>aad/aad-b2c-with-spring-security/sample-13-resource-server-multi-tenant</module>
+    <module>aad/aad-b2c-with-spring-security/sample-01-client</module>
+    <module>aad/aad-b2c-with-spring-security/sample-02-client-authorize-by-scope</module>
+    <module>aad/aad-b2c-with-spring-security/sample-03-client-authorize-additional-parameters</module>
+    <module>aad/aad-b2c-with-spring-security/sample-04-resource-server</module>
+    <module>aad/aad-b2c-with-spring-security/sample-05-client-access-resource-server</module>
+    <module>aad/aad-b2c-with-spring-security/sample-06-resource-server-validate-audience</module>
+    <module>aad/aad-b2c-with-spring-security/sample-07-client-access-resource-server-validate-audience</module>
+    <module>aad/aad-b2c-with-spring-security/sample-08-resource-server-authorize-by-scope</module>
+    <module>aad/aad-b2c-with-spring-security/sample-09-client-access-resource-server-validate-scope</module>
+    <module>aad/aad-b2c-with-spring-security/sample-10-resource-server-authorize-by-app-role</module>
+    <module>aad/aad-b2c-with-spring-security/sample-11-client-access-resource-server-validate-roles</module>
+    <module>aad/aad-b2c-with-spring-security/sample-12-resource-server-multi-tenant</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-complete</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-initial</module>
     <module>appconfiguration/azure-appconfiguration-sample</module>

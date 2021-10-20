@@ -1,4 +1,4 @@
 = Azure Active Directory B2C with Spring Security Sample for resource server
 
 [[chapter-link]]
-Please refer to this <<../README.adoc#11. Sample 11: Client access resource server validate roles.,tutorial>>
+Please refer to this <<../README.adoc#11-sample-11-client-access-resource-server-validate-roles,tutorial>>

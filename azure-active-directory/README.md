@@ -16,6 +16,16 @@
         + [1.2.4. Add a client secret](#124-add-a-client-secret)
         + [1.2.5. Get user account.](#125-get-user-account)
     * [1.3. Run the application](#13-run-the-application)
+    * [1.4. Homework](#14-homework)
+- [2. client-get-user-information](#2-client-get-user-information)
+    * [2.1. Update sample project](#21-update-sample-project)
+        + [2.1.1. Update pom.xml](#211-update-pomxml)
+        + [2.1.2. Add new Java class](#212-add-new-java-class)
+            - [2.1.2.1 UserInformationController](#2121-userinformationcontroller)
+        + [2.1.3. Update application.yml](#213-update-applicationyml)
+    * [2.2. Create required resources in Azure.](#22-create-required-resources-in-azure)
+    * [2.3. Run the application](#23-run-the-application)
+    * [2.4. Homework](#24-homework)
 
 # Preface
 
@@ -25,9 +35,7 @@ Go through these samples one by one, you will learn how to protect your web serv
 ## Ask for help by GitHub issues
 If you have any question, please [create an issue].
 
-
 # 1. client
-
 This section will demonstrate how to use Azure Active Directory user account to log in a web service. You can choose one of the following options to get the sample project.
 - Option 1: Use [01-client] project directly
 - Option 2: Follow steps in [1.1. Create sample project](#11-create-sample-project) to create the sample project.
@@ -170,10 +178,82 @@ Run the Spring Boot application. If you don't know how to run Spring Boot applic
 
 Use web browser to access `http://localhost:8080/`, the web page will redirect to Azure Active Directory login page. Input username and password of `user-1@<tenant-name>.com`, then you can log in successfully and see "hello" in the web page.
 
+## 1.4. Homework
+ - Read [rfc6749] to learn OAuth 2.0 authorization framework
 
+# 2. client-get-user-information
 
+This section will demonstrate how to use get user information. You can choose one of the following options to get the sample project.
+- Option 1: Use [02-client-get-user-information] project directly
+- Option 2: Follow steps in [2.1. Update sample project](#11-create-sample-project) to create the sample project.
 
+## 2.1. Update sample project
+This project is build on top of [01-client]. The following step will change [01-client] into [02-client-get-user-information].
 
+### 2.1.1. Update pom.xml
+Add the following dependency in pom.xml:
+```xml
+    <dependency>
+      <groupId>com.fasterxml.jackson.datatype</groupId>
+      <artifactId>jackson-datatype-jsr310</artifactId>
+    </dependency>
+```
+
+### 2.1.2. Add new Java class
+
+#### 2.1.2.1 UserInformationController
+```java
+package com.azure.sample.azure.active.directory.controller;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.springframework.http.MediaType;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class UserInformationController {
+
+    ObjectMapper objectMapper;
+
+    public UserInformationController() {
+        objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+    }
+
+    @GetMapping(
+        path = "/user-information",
+        produces = MediaType.APPLICATION_JSON_VALUE)
+    public String userInformation() throws JsonProcessingException {
+        return objectMapper.writeValueAsString(SecurityContextHolder.getContext().getAuthentication());
+    }
+}
+```
+
+### 2.1.3. Update application.yml
+Add the following configuration:
+```yaml
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          azure-active-directory:
+            user-name-attribute: upn
+```
+
+## 2.2. Create required resources in Azure.
+All resources required in this sample is already created in previous sample. So no need to create new resources.
+
+## 2.3. Run the application
+Run the Spring Boot application.
+
+Use web browser to access `http://localhost:8080/user-information`. After log in, you can see a json response which will display the user information.
+
+## 2.4. Homework
+ - Investigate what is the property (`spring.security.oauth2.client.provider.azure-active-directory.user-name-attribute = upn`) is used for.
 
 
 
@@ -194,3 +274,5 @@ Use web browser to access `http://localhost:8080/`, the web page will redirect t
 [MS docs about add a client secret]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-client-secret
 [MS docs about add users]: https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory
 [Spring docs about running application]: https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.running-your-application
+[rfc6749]: https://datatracker.ietf.org/doc/html/rfc6749
+[02-client-get-user-information]: ./02-client-get-user-information

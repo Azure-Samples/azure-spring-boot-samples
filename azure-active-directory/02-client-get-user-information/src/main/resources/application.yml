@@ -8,6 +8,7 @@ spring:
         provider: # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2login-common-oauth2-provider
           azure-active-directory:
             issuer-uri: https://sts.windows.net/<tenant-id>/ # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#webflux-oauth2-login-openid-provider-configuration
+            user-name-attribute: upn
         registration:
           client-1:
             provider: azure-active-directory

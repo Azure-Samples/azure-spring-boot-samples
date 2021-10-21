@@ -1,11 +1,11 @@
-package com.azure.sample.azure.active.directory.config;
+package com.azure.sample.azure.active.directory.resource.server.configuration;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @EnableWebSecurity
-public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -13,7 +13,8 @@ public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
-            .oauth2Login()
+            .oauth2ResourceServer()
+                .jwt()
                 .and();
         // @formatter:off
     }

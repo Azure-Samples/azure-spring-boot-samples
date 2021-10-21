@@ -6,7 +6,7 @@
         + [1.1.1. Create a pom file in a new folder.](#111-create-a-pom-file-in-a-new-folder)
         + [1.1.2. Create Java classes.](#112-create-java-classes)
             - [1.1.2.1. ClientApplication.java](#1121-clientapplicationjava)
-            - [1.1.2.2. WebSecurityConfigure.java](#1122-websecurityconfigurejava)
+            - [1.1.2.2. WebSecurityConfiguration.java](#1122-websecurityconfigurationjava)
             - [1.1.2.3. HomeController.java](#1123-homecontrollerjava)
         + [1.1.3. Create application.yml.](#113-create-applicationyml)
     * [1.2. Create required resources in Azure.](#12-create-required-resources-in-azure)
@@ -32,13 +32,13 @@
         + [3.1.2. Create Java classes](#312-create-java-classes)
             - [3.1.2.1. ResourceServerApplication.java](#3121-resourceserverapplicationjava)
             - [3.1.2.2. HomeController.java](#3122-homecontrollerjava)
-            - [3.1.2.3. WebSecurityConfigure.java](#3123-websecurityconfigurejava)
+            - [3.1.2.3. WebSecurityConfiguration.java](#3123-websecurityconfigurationjava)
         + [3.1.3. Create application.yml](#313-create-applicationyml)
     * [3.2. Create required resources in Azure.](#32-create-required-resources-in-azure)
     * [3.3. Run the application](#33-run-the-application)
     * [3.4. Homework](#34-homework)
 - [4. client-access-resource-server](#4-client-access-resource-server)
-    * [4.1. Update sample project.](#41-update-sample-project)
+    * [4.1. Update sample project](#41-update-sample-project)
         + [4.1.1. Update pom.xml](#411-update-pomxml)
         + [4.1.2. Create Java classes](#412-create-java-classes)
             - [4.1.2.1. WebClientConfigure.java](#4121-webclientconfigurejava)
@@ -46,10 +46,19 @@
         + [4.1.3. Update application.yml](#413-update-applicationyml)
     * [4.2. Create required resources in Azure.](#42-create-required-resources-in-azure)
         + [4.2.2. Register an application](#422-register-an-application)
-        + [4.2.3. Expose an API](#423-expose-an-api)
-        + [4.2.4. Add permissions for client-1 to access resource-server-1](#424-add-permissions-for-client-1-to-access-resource-server-1)
+        + [4.2.3. Set accessTokenAcceptedVersion to 2](#423-set-accesstokenacceptedversion-to-2)
+        + [4.2.4. Expose an API](#424-expose-an-api)
+        + [4.2.5. Add permissions for client-1 to access resource-server-1](#425-add-permissions-for-client-1-to-access-resource-server-1)
     * [4.3. Run the application](#43-run-the-application)
     * [4.4. Homework](#44-homework)
+- [5. resource-server-validate-audience](#5-resource-server-validate-audience)
+    * [5.1. Update sample project](#51-update-sample-project)
+        + [5.1.1. Create Java class](#511-create-java-class)
+            - [ApplicationConfiguration.java](#applicationconfigurationjava)
+        + [5.1.1. Update application.yml](#511-update-applicationyml)
+    * [5.2. Create required resources in Azure](#52-create-required-resources-in-azure)
+    * [5.3. Run the application](#53-run-the-application)
+    * [5.4. Homework](#54-homework)
 
 # Preface
 
@@ -127,17 +136,17 @@ public class ClientApplication {
 }
 ```
 
-#### 1.1.2.2. WebSecurityConfigure.java
+#### 1.1.2.2. WebSecurityConfiguration.java
 
 ```java
-package com.azure.sample.azure.active.directory.config;
+package com.azure.sample.azure.active.directory.configuration;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurationrAdapter;
 
 @EnableWebSecurity
-public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfiguration extends WebSecurityConfigurationrAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -217,7 +226,7 @@ Run the Spring Boot application. If you don't know how to run Spring Boot applic
 Use web browser to access `http://localhost:8080/`, the web page will redirect to Azure Active Directory login page. Input username and password of `user-1@<tenant-name>.com`, then you can log in successfully and see "Hello, this is OAuth2 client application." in the web page.
 
 ## 1.4. Homework
- - Read [rfc6749] to learn OAuth 2.0 authorization framework
+1. Read [rfc6749] to learn OAuth 2.0 authorization framework
 
 # 2. client-get-user-information
 This section will demonstrate how to use get user information. You can choose one of the following options to get the sample project.
@@ -290,7 +299,7 @@ Run the Spring Boot application.
 Use web browser to access `http://localhost:8080/user-information`. After log in, you can see a json response which will display the user information.
 
 ## 2.4. Homework
- - Investigate what is the property (`spring.security.oauth2.client.provider.azure-active-directory.user-name-attribute`) is used for.
+1. Investigate what is the property (`spring.security.oauth2.client.provider.azure-active-directory.user-name-attribute`) is used for.
 
 # 3. resource-server
 This section will demonstrate how to use Azure Active Directory to protect a resource-server. You can choose one of the following options to get the sample project.
@@ -367,16 +376,16 @@ public class HomeController {
 }
 ```
 
-#### 3.1.2.3. WebSecurityConfigure.java
+#### 3.1.2.3. WebSecurityConfiguration.java
 ```java
-package com.azure.sample.azure.active.directory.resource.server.config;
+package com.azure.sample.azure.active.directory.resource.server.configuration;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @EnableWebSecurity
-public class WebSecurityConfigure extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfiguration extends WebSecurityConfigurationrAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -402,7 +411,8 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: https://login.microsoftonline.com/<tenant-id>/discovery/keys
+          jwk-set-uri: https://login.microsoftonline.com/<tenant-id>/discovery/v2.0/keys
+          issuer-uri: https://login.microsoftonline.com/<tenant-id>/v2.0
 ```
 
 ## 3.2. Create required resources in Azure.
@@ -415,16 +425,19 @@ Use web browser to access `http://localhost:8081`. It should return 401. Because
 
 ## 3.4. Homework
 
- - Read the [rfc6749#section-1.1], learn the roles in the OAuth 2.0 authorization framework.
- - Read the [rfc6749#section-1.2], learn the abstract protocol flow.
+1. Read the [rfc6749#section-1.1], learn the roles in the OAuth 2.0 authorization framework.
+2. Read the [rfc6749#section-1.2], learn the abstract protocol flow.
+3. Learn what are the 2 properties used for:
+   - spring.security.oauth2.resourceserver.jwt.jwk-set-uri
+   - spring.security.oauth2.resourceserver.jwt.issuer-uri
 
 # 4. client-access-resource-server
 This section will demonstrate how to access resource server in client application. You can choose one of the following options to get the sample project.
 
 - Option 1: Use [04-client-access-resource-server] project directly
-- Option 2: Follow steps in [4.1. Update sample project.](#41-update-sample-project) to create the sample project.
+- Option 2: Follow steps in [4.1. Update sample project](#41-update-sample-project) to create the sample project.
 
-## 4.1. Update sample project.
+## 4.1. Update sample project
 This project is build on top of [02-client-get-user-information]. The following steps will change [02-client-get-user-information] into [04-client-access-resource-server].
 
 ### 4.1.1. Update pom.xml
@@ -440,7 +453,7 @@ Add the following dependency in pom.xml:
 
 #### 4.1.2.1. WebClientConfigure.java
 ```java
-package com.azure.sample.azure.active.directory.config;
+package com.azure.sample.azure.active.directory.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -511,7 +524,7 @@ spring:
       client:
         registration:
           client-1:
-            scope: openid, profile, api://ea7e490c-61b6-4771-b703-37dd50afcc77/resource-server-1.scope-1, # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            scope: openid, profile, api://<resource-server-1-client-id>/resource-server-1.scope-1, # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
 ```
 
 ## 4.2. Create required resources in Azure.
@@ -519,10 +532,13 @@ spring:
 ### 4.2.2. Register an application
 Read [MS docs about register an application], register an application named `resource-server-1`. Get the client-id and replace the placeholder(`<resource-server-1-client-id>`) in `application.yml`.
 
-### 4.2.3. Expose an API
+### 4.2.3. Set accessTokenAcceptedVersion to 2
+Read [MS docs about Application manifest], set `accessTokenAcceptedVersion` to `2`.
+
+### 4.2.4. Expose an API
 Read [MS docs about expose an api], Add a scope named `resource-server-1.scope-1`, choose `Admins and users` for `Who can consent` option.
 
-### 4.2.4. Add permissions for client-1 to access resource-server-1
+### 4.2.5. Add permissions for client-1 to access resource-server-1
 Read [MS docs about configure a client application to access a web API], add permissions for client-1 to access resource-server-1.
 
 ## 4.3. Run the application
@@ -532,10 +548,12 @@ Read [MS docs about configure a client application to access a web API], add per
 Use web browser to access `http://localhost:8080/client/resource-server-1/hello`. It should return `Hello, this is resource server 1.`, which means client-1 access resource-server-1 successfully.
 
 ## 4.4. Homework
-- Read the [MS docs about OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform], learn the relationship of OAuth2 and OpenId Connect.
-- Read the [MS docs about Microsoft identity platform and OAuth 2.0 authorization code flow], learn the authorization code flow.
-- Read the [MS docs about Microsoft identity platform access tokens], learn the access token.
-- Read the java doc and source code of these classes:
+1. Read the [MS docs about OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform], learn the relationship of OAuth2 and OpenId Connect.
+2. Read the [MS docs about Microsoft identity platform and OAuth 2.0 authorization code flow], learn the authorization code flow.
+3. Read the [MS docs about Microsoft identity platform access tokens], learn the access token.
+4. Read the [MS docs about offline_access token], learn what `offline_access` scope is used for. And use current project to investigate the impact of adding `offline_access`.
+5. Investigate why we need to set `accessTokenAcceptedVersion` to `2`.
+6. (Optional) Read the java doc and source code of these classes:
   - AbstractAuthenticationProcessingFilter
     - OAuth2LoginAuthenticationFilter
     - OpenIDAuthenticationFilter
@@ -548,12 +566,115 @@ Use web browser to access `http://localhost:8080/client/resource-server-1/hello`
     - DelegatingOAuth2AuthorizedClientProvider
   - ClientRegistrationRepository
   - OAuth2AuthorizedClientRepository
-- Read the [MS docs about offline_access token], learn what `offline_access` scope is used for. And use current project to investigate the impact of adding `offline_access`.
 
+# 5. resource-server-validate-audience
 
+In [03-resource-server], when the resource server received a http request it will do these things:
+1. Check if there is an JWT in http header, if there is no JWT, return 401.
+2. Validate the signature of the JWT, if the signature is wrong, return 401.
+3. Validate whether the `iss` is equal to the issuer-uri configured in `application.yml`.
+4. Validate the JWT's time, if current time is not between `nbf` and `exp`, return 4.0.
+5. Allow http request.
 
+We found current steps doesn't contain validating the `aud` claim, which means if an access_token is used to access `resource-server-1` can also be used to access to other resource-servers. And from [03-resource-server]'s `application.yml`, it does not have any information to identify that the resource-server is `resource-server-1`.
 
+The [rfc6749#section-7] says that `The resource server MUST validate the
+access token and ensure that it has not expired and that its scope
+covers the requested resource.`, it does not enforce resource server to validate audience. So the feature of validating audience is not included by default in [Spring Security OAuth2 Resource Server].
 
+The [MS docs about payload claim in access token] says that `Your API must validate this value and reject the token if the value doesn't match.`. So we should add logic of validating `aud` claim by ourselves.
+
+This section will demonstrate how to validate audience in resource server. You can choose one of the following options to get the sample project.
+
+- Option 1: Use [05-resource-server-validate-audience] project directly
+- Option 2: Follow steps in [5.1. Update sample project](#51-update-sample-project) to create the sample project.
+
+## 5.1. Update sample project
+This project is build on top of [03-resource-server]. The following steps will change [03-resource-server] into [05-resource-server-validate-audience].
+
+### 5.1.1. Create Java class
+
+#### ApplicationConfiguration.java
+```java
+package com.azure.sample.azure.active.directory.resource.server.configuration;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
+import org.springframework.security.oauth2.core.OAuth2TokenValidator;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtClaimNames;
+import org.springframework.security.oauth2.jwt.JwtClaimValidator;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtIssuerValidator;
+import org.springframework.security.oauth2.jwt.JwtTimestampValidator;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Configuration
+public class ApplicationConfiguration {
+
+    private final OAuth2ResourceServerProperties.Jwt properties;
+
+    public ApplicationConfiguration(OAuth2ResourceServerProperties properties) {
+        this.properties = properties.getJwt();
+    }
+
+    @Value("${spring.security.oauth2.resourceserver.jwt.audience}")
+    String audience;
+
+    @Bean
+    JwtDecoder jwtDecoder() {
+        NimbusJwtDecoder nimbusJwtDecoder = NimbusJwtDecoder.withJwkSetUri(properties.getJwkSetUri()).build();
+        nimbusJwtDecoder.setJwtValidator(jwtValidator());
+        return nimbusJwtDecoder;
+    }
+
+    private OAuth2TokenValidator<Jwt> jwtValidator() {
+        List<OAuth2TokenValidator<Jwt>> validators = new ArrayList<>();
+        String issuerUri = properties.getIssuerUri();
+        if (StringUtils.hasText(issuerUri)) {
+            validators.add(new JwtIssuerValidator(issuerUri));
+        }
+        if (StringUtils.hasText(audience)) {
+            validators.add(new JwtClaimValidator<>(JwtClaimNames.AUD, aud -> audience.equals(aud)));
+        }
+        validators.add(new JwtTimestampValidator());
+        return new DelegatingOAuth2TokenValidator<>(validators);
+    }
+
+}
+```
+
+### 5.1.1. Update application.yml
+Add the following configuration in application.yml:
+```yaml
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          audience: <resource-server-1-client-id>
+```
+Replace the placeholder with actual value.
+
+## 5.2. Create required resources in Azure
+All resources required in this sample is already created in previous sample. So no need to create new resources.
+
+## 5.3. Run the application
+- Run current Spring boot application.
+- Run [04-client-access-resource-server].
+
+Use web browser to access `http://localhost:8080/client/resource-server-1/hello`. It should return `Hello, this is resource server 1.`, which means client-1 access resource-server-1 successfully.
+
+## 5.4. Homework
+1. In [05-resource-server-validate-audience]'s application.yml, set audience to a wrong value, run the application again, check what will happen.
+2. In [05-resource-server-validate-audience]'s application.yml, set issuer-uri to a wrong value, run the application again, check what will happen.
 
 
 
@@ -580,5 +701,9 @@ Use web browser to access `http://localhost:8080/client/resource-server-1/hello`
 [MS docs about OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform]: https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols
 [MS docs about Microsoft identity platform and OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [MS docs about Microsoft identity platform access tokens]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
-[MS docs about offline_access token]: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#offline_access
-
+[MS docs about offline_access token]: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#offline_access
+[rfc6749#section-7]: https://datatracker.ietf.org/doc/html/rfc6749#section-7
+[MS docs about payload claim in access token]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens#payload-claims
+[Spring Security OAuth2 Resource Server]: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2resourceserver
+[MS docs about Application manifest]: https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-app-manifest#accesstokenacceptedversion-attribute
+[05-resource-server-validate-audience]: ./05-resource-server-validate-audience

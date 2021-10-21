@@ -1,4 +1,5 @@
-# Please read "/azure-active-directory/README.md" to fill the placeholders in this file: "<tenant-id>".
+# Please read "/azure-active-directory/README.md" to fill the placeholders in this file:
+# "<tenant-id>", "<resource-server-1-client-id>".
 server:
   port: 8081
 spring:
@@ -6,6 +7,6 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-#          issuer-uri: https://login.microsoftonline.com/<tenant-id>/v2.0
-#          issuer-uri: https://login.microsoftonline.com/edaa7739-249e-4481-bc96-e438b1620e1d/v2.0
-          jwk-set-uri: https://login.microsoftonline.com/edaa7739-249e-4481-bc96-e438b1620e1d/discovery/keys
+          jwk-set-uri: https://login.microsoftonline.com/<tenant-id>/discovery/v2.0/keys
+          issuer-uri: https://login.microsoftonline.com/<tenant-id>/v2.0
+          audience: <resource-server-1-client-id>

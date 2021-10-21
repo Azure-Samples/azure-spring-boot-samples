@@ -55,7 +55,7 @@
     * [5.1. Update sample project](#51-update-sample-project)
         + [5.1.1. Create Java class](#511-create-java-class)
             - [ApplicationConfiguration.java](#applicationconfigurationjava)
-        + [5.1.1. Update application.yml](#511-update-applicationyml)
+        + [5.1.2. Update application.yml](#512-update-applicationyml)
     * [5.2. Create required resources in Azure](#52-create-required-resources-in-azure)
     * [5.3. Run the application](#53-run-the-application)
     * [5.4. Homework](#54-homework)
@@ -651,7 +651,7 @@ public class ApplicationConfiguration {
 }
 ```
 
-### 5.1.1. Update application.yml
+### 5.1.2. Update application.yml
 Add the following configuration in application.yml:
 ```yaml
 spring:

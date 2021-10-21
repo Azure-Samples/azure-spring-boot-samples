@@ -29,6 +29,7 @@
     <module>azure-active-directory/03-resource-server</module>
     <module>azure-active-directory/04-client-access-resource-server</module>
     <module>azure-active-directory/05-resource-server-validate-audience</module>
+    <module>azure-active-directory/06-resource-server-check-authorization-by-scp</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-complete</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-initial</module>
     <module>appconfiguration/azure-appconfiguration-sample</module>

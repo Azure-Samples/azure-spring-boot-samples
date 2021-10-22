@@ -17,6 +17,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Configuration
 public class ApplicationConfiguration {
@@ -44,10 +45,24 @@ public class ApplicationConfiguration {
             validators.add(new JwtIssuerValidator(issuerUri));
         }
         if (StringUtils.hasText(audience)) {
-            validators.add(new JwtClaimValidator<>(JwtClaimNames.AUD, aud -> audience.equals(aud)));
+            validators.add(new JwtClaimValidator<>(JwtClaimNames.AUD, audiencePredicate(audience)));
         }
         validators.add(new JwtTimestampValidator());
         return new DelegatingOAuth2TokenValidator<>(validators);
+    }
+
+    Predicate<Object> audiencePredicate(String audience) {
+        return aud -> {
+            if (aud == null) {
+                return false;
+            } else if (aud instanceof String) {
+                return aud.equals(audience);
+            } else if (aud instanceof List) {
+                return ((List<?>) aud).contains(audience);
+            } else {
+                return false;
+            }
+        };
     }
 
 }

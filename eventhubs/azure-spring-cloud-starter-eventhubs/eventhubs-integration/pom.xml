@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.5.0</version> <!-- {x-version-update;org.springframework.boot:spring-boot-starter-parent;external_dependency} -->
+    <version>2.5.4</version> <!-- {x-version-update;org.springframework.boot:spring-boot-starter-parent;external_dependency} -->
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
@@ -24,10 +24,12 @@
         <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>com.azure</groupId>
-        <artifactId>azure-core</artifactId>
-        <version>1.18.0</version> <!-- {x-version-update;com.azure:azure-core;dependency} -->
-      </dependency>
+          <groupId>com.azure.spring</groupId>
+          <artifactId>azure-spring-cloud-dependencies</artifactId>
+          <version>2.9.0</version>
+          <type>pom</type>
+          <scope>import</scope>
+        </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -39,7 +41,6 @@
     <dependency>
       <groupId>com.azure.spring</groupId>
       <artifactId>azure-spring-cloud-starter-eventhubs</artifactId>
-      <version>2.7.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-starter-eventhubs;dependency} -->
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>

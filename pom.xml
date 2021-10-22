@@ -24,12 +24,12 @@
     <module>aad/azure-spring-boot-starter-active-directory/aad-web-application-and-resource-server</module>
     <module>aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-web-application</module>
     <module>aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-resource-server</module>
-    <module>azure-active-directory/01-client</module>
-    <module>azure-active-directory/02-client-get-user-information</module>
-    <module>azure-active-directory/03-resource-server</module>
-    <module>azure-active-directory/04-client-access-resource-server</module>
-    <module>azure-active-directory/05-resource-server-validate-audience</module>
-    <module>azure-active-directory/06-resource-server-check-authorization-by-scp</module>
+    <module>AzureActiveDirectory/OAuth2/01-client</module>
+    <module>AzureActiveDirectory/OAuth2/02-client-get-user-information</module>
+    <module>AzureActiveDirectory/OAuth2/03-resource-server</module>
+    <module>AzureActiveDirectory/OAuth2/04-client-access-resource-server</module>
+    <module>AzureActiveDirectory/OAuth2/05-resource-server-validate-audience</module>
+    <module>AzureActiveDirectory/OAuth2/06-resource-server-check-permission-by-scp</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-complete</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-initial</module>
     <module>appconfiguration/azure-appconfiguration-sample</module>

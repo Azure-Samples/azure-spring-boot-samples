@@ -22,6 +22,7 @@
     <module>05-resource-server-validate-audience</module>
     <module>06-resource-server-check-permission-by-scp</module>
     <module>07-client-access-resource-server-check-permission-by-scp</module>
+    <module>08-client-access-resource-server-check-permission-by-scp-in-client-side</module>
   </modules>
 
 </project>

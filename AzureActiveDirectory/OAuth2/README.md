@@ -4,7 +4,7 @@
 - [1. client](#1-client)
     * [1.1. Create sample project](#11-create-sample-project)
         + [1.1.1. Create a pom file in a new folder.](#111-create-a-pom-file-in-a-new-folder)
-        + [1.1.2. Create Java classes.](#112-create-java-classes)
+        + [1.1.2. Java class](#112-java-class)
             - [1.1.2.1. ClientApplication.java](#1121-clientapplicationjava)
             - [1.1.2.2. WebSecurityConfiguration.java](#1122-websecurityconfigurationjava)
             - [1.1.2.3. HomeController.java](#1123-homecontrollerjava)
@@ -18,18 +18,18 @@
     * [1.3. Run the application](#13-run-the-application)
     * [1.4. Homework](#14-homework)
 - [2. client-get-user-information](#2-client-get-user-information)
-    * [2.1. Update sample project](#21-update-sample-project)
+    * [2.1. Create sample project](#21-create-sample-project)
         + [2.1.1. Update pom.xml](#211-update-pomxml)
-        + [2.1.2. Add new Java class](#212-add-new-java-class)
+        + [2.1.2. Java class](#212-java-class)
             - [2.1.2.1 UserInformationController.java](#2121-userinformationcontrollerjava)
-        + [2.1.3. Update application.yml](#213-update-applicationyml)
+        + [2.1.3. application.yml](#213-applicationyml)
     * [2.2. Create required resources in Azure.](#22-create-required-resources-in-azure)
     * [2.3. Run the application](#23-run-the-application)
     * [2.4. Homework](#24-homework)
 - [3. resource-server](#3-resource-server)
     * [3.1. Create sample project](#31-create-sample-project)
         + [3.1.1. Create a pom file in a new folder](#311-create-a-pom-file-in-a-new-folder)
-        + [3.1.2. Create Java classes](#312-create-java-classes)
+        + [3.1.2. Java class](#312-java-class)
             - [3.1.2.1. ResourceServerApplication.java](#3121-resourceserverapplicationjava)
             - [3.1.2.2. HomeController.java](#3122-homecontrollerjava)
             - [3.1.2.3. WebSecurityConfiguration.java](#3123-websecurityconfigurationjava)
@@ -38,12 +38,12 @@
     * [3.3. Run the application](#33-run-the-application)
     * [3.4. Homework](#34-homework)
 - [4. client-access-resource-server](#4-client-access-resource-server)
-    * [4.1. Update sample project](#41-update-sample-project)
+    * [4.1. Create sample project](#41-create-sample-project)
         + [4.1.1. Update pom.xml](#411-update-pomxml)
-        + [4.1.2. Create Java classes](#412-create-java-classes)
+        + [4.1.2. Java class](#412-java-class)
             - [4.1.2.1. WebClientConfigure.java](#4121-webclientconfigurejava)
             - [4.1.2.2. ResourceServer1Controller.java](#4122-resourceserver1controllerjava)
-        + [4.1.3. Update application.yml](#413-update-applicationyml)
+        + [4.1.3. application.yml](#413-applicationyml)
     * [4.2. Create required resources in Azure.](#42-create-required-resources-in-azure)
         + [4.2.2. Register an application](#422-register-an-application)
         + [4.2.3. Set accessTokenAcceptedVersion to 2](#423-set-accesstokenacceptedversion-to-2)
@@ -52,13 +52,32 @@
     * [4.3. Run the application](#43-run-the-application)
     * [4.4. Homework](#44-homework)
 - [5. resource-server-validate-audience](#5-resource-server-validate-audience)
-    * [5.1. Update sample project](#51-update-sample-project)
-        + [5.1.1. Create Java class](#511-create-java-class)
+    * [5.1. Create sample project](#51-create-sample-project)
+        + [5.1.1. Java class](#511-java-class)
             - [ApplicationConfiguration.java](#applicationconfigurationjava)
-        + [5.1.2. Update application.yml](#512-update-applicationyml)
+        + [5.1.2. application.yml](#512-applicationyml)
     * [5.2. Create required resources in Azure](#52-create-required-resources-in-azure)
     * [5.3. Run the application](#53-run-the-application)
     * [5.4. Homework](#54-homework)
+- [6. resource-server-check-permission-by-scp](#6-resource-server-check-permission-by-scp)
+    * [6.1. Create sample project](#61-create-sample-project)
+        + [6.1.1. Java class](#611-java-class)
+            - [6.1.1.1 Update WebSecurityConfiguration.java](#6111-update-websecurityconfigurationjava)
+            - [6.1.1.2. CheckPermissionByScopeController](#6112-checkpermissionbyscopecontroller)
+        + [6.1.2. application.yml](#612-applicationyml)
+    * [6.2. Create required resources in Azure](#62-create-required-resources-in-azure)
+        + [6.2.1. Expose an API](#621-expose-an-api)
+    * [6.3. Run the application](#63-run-the-application)
+    * [6.4. Homework](#64-homework)
+- [7. client-access-resource-server-check-permission-by-scp](#7-client-access-resource-server-check-permission-by-scp)
+    * [7.1. Create sample project](#71-create-sample-project)
+        + [7.1.1. Java class](#711-java-class)
+            - [7.1.1.1. ResourceServer1Controller.java](#7111-resourceserver1controllerjava)
+        + [7.1.2. application.yml](#712-applicationyml)
+    * [7.2. Create required resources in Azure](#72-create-required-resources-in-azure)
+        + [7.2.1. Add permissions for client-1 to access resource-server-1](#721-add-permissions-for-client-1-to-access-resource-server-1)
+    * [7.3. Run the application](#73-run-the-application)
+    * [7.4. Homework](#74-homework)
 
 # Preface
 
@@ -117,7 +136,7 @@ service. You can choose one of the following options to get the sample project.
 </project>
 ```
 
-### 1.1.2. Create Java classes.
+### 1.1.2. Java class
 
 #### 1.1.2.1. ClientApplication.java
 
@@ -200,7 +219,7 @@ spring:
 ```
 For more information about these configuration items, please refer to [Spring Security doc about CommonOAuth2Provider].
 
-Next step, we need to fill these placeholders in application.yml: `<tenant-id>`, `client-id`, `<client-1-client-secret>`.
+Next step, we need to fill these placeholders in `application.yml`: `<tenant-id>`, `client-id`, `<client-1-client-secret>`.
 
 ## 1.2. Create required resources in Azure.
 After sample project created, we need some resources in Azure. And get some properties and replace the placeholder in `application.yml`.
@@ -221,7 +240,9 @@ Read [MS docs about add a client secret], add a client secret. Get the client-se
 If you already have user account in this tenant, you can skip this step. Otherwise, read [MS docs about add users], create an account: `user-1@<tenant-name>.com`.
 
 ## 1.3. Run the application
-Run the Spring Boot application. If you don't know how to run Spring Boot application, please refer to [Spring docs about running application].
+Run [01-client]. 
+
+If you don't know how to run Spring Boot application, please refer to [Spring docs about running application].
 
 Use web browser to access `http://localhost:8080/`, the web page will redirect to Azure Active Directory login page. Input username and password of `user-1@<tenant-name>.com`, then you can log in successfully and see "Hello, this is OAuth2 client application." in the web page.
 
@@ -231,9 +252,9 @@ Use web browser to access `http://localhost:8080/`, the web page will redirect t
 # 2. client-get-user-information
 This section will demonstrate how to use get user information. You can choose one of the following options to get the sample project.
 - Option 1: Use [02-client-get-user-information] project directly
-- Option 2: Follow steps in [2.1. Update sample project](#11-create-sample-project) to create the sample project.
+- Option 2: Follow steps in [2.1. Create sample project](#11-create-sample-project) to create the sample project.
 
-## 2.1. Update sample project
+## 2.1. Create sample project
 This project is build on top of [01-client]. The following steps will change [01-client] into [02-client-get-user-information].
 
 ### 2.1.1. Update pom.xml
@@ -245,7 +266,7 @@ Add the following dependency in pom.xml:
     </dependency>
 ```
 
-### 2.1.2. Add new Java class
+### 2.1.2. Java class
 
 #### 2.1.2.1 UserInformationController.java
 ```java
@@ -278,7 +299,7 @@ public class UserInformationController {
 }
 ```
 
-### 2.1.3. Update application.yml
+### 2.1.3. application.yml
 Add the following configuration:
 ```yaml
 spring:
@@ -291,10 +312,10 @@ spring:
 ```
 
 ## 2.2. Create required resources in Azure.
-All resources required in this sample is already created in previous sample. So no need to create new resources.
+No need to create new Azure resources.
 
 ## 2.3. Run the application
-Run the Spring Boot application.
+Run [02-client-get-user-information].
 
 Use web browser to access `http://localhost:8080/user-information`. After log in, you can see a json response which will display the user information.
 
@@ -341,7 +362,7 @@ This section will demonstrate how to use Azure Active Directory to protect a res
 </project>
 ```
 
-### 3.1.2. Create Java classes
+### 3.1.2. Java class
 
 #### 3.1.2.1. ResourceServerApplication.java
 ```java
@@ -416,10 +437,10 @@ spring:
 ```
 
 ## 3.2. Create required resources in Azure.
-All resources required in this sample is already created in previous sample. So no need to create new resources.
+No need to create new Azure resources.
 
 ## 3.3. Run the application
-Run the Spring Boot application.
+Run the [03-resource-server].
 
 Use web browser to access `http://localhost:8081`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
 
@@ -435,9 +456,9 @@ Use web browser to access `http://localhost:8081`. It should return 401. Because
 This section will demonstrate how to access resource server in client application. You can choose one of the following options to get the sample project.
 
 - Option 1: Use [04-client-access-resource-server] project directly
-- Option 2: Follow steps in [4.1. Update sample project](#41-update-sample-project) to create the sample project.
+- Option 2: Follow steps in [4.1. Create sample project](#41-create-sample-project) to create the sample project.
 
-## 4.1. Update sample project
+## 4.1. Create sample project
 This project is build on top of [02-client-get-user-information]. The following steps will change [02-client-get-user-information] into [04-client-access-resource-server].
 
 ### 4.1.1. Update pom.xml
@@ -449,7 +470,7 @@ Add the following dependency in pom.xml:
     </dependency>
 ```
 
-### 4.1.2. Create Java classes
+### 4.1.2. Java class
 
 #### 4.1.2.1. WebClientConfigure.java
 ```java
@@ -515,7 +536,7 @@ public class ResourceServer1Controller {
 }
 ```
 
-### 4.1.3. Update application.yml
+### 4.1.3. application.yml
 Update the following configuration:
 ```yaml
 spring:
@@ -539,11 +560,11 @@ Read [MS docs about Application manifest], set `accessTokenAcceptedVersion` to `
 Read [MS docs about expose an api], Add a scope named `resource-server-1.scope-1`, choose `Admins and users` for `Who can consent` option.
 
 ### 4.2.5. Add permissions for client-1 to access resource-server-1
-Read [MS docs about configure a client application to access a web API], add permissions for client-1 to access resource-server-1.
+Read [MS docs about configure a client application to access a web API], add permissions for client-1 to access resource-server-1.scope-1.
 
 ## 4.3. Run the application
  - Run [03-resource-server].
- - Run current Spring boot application.
+ - Run [04-client-access-resource-server].
 
 Use web browser to access `http://localhost:8080/client/resource-server-1/hello`. It should return `Hello, this is resource server 1.`, which means client-1 access resource-server-1 successfully.
 
@@ -587,12 +608,12 @@ The [MS docs about payload claim in access token] says that `Your API must valid
 This section will demonstrate how to validate audience in resource server. You can choose one of the following options to get the sample project.
 
 - Option 1: Use [05-resource-server-validate-audience] project directly
-- Option 2: Follow steps in [5.1. Update sample project](#51-update-sample-project) to create the sample project.
+- Option 2: Follow steps in [5.1. Create sample project](#51-create-sample-project) to create the sample project.
 
-## 5.1. Update sample project
+## 5.1. Create sample project
 This project is build on top of [03-resource-server]. The following steps will change [03-resource-server] into [05-resource-server-validate-audience].
 
-### 5.1.1. Create Java class
+### 5.1.1. Java class
 
 #### ApplicationConfiguration.java
 ```java
@@ -615,6 +636,7 @@ import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Configuration
 public class ApplicationConfiguration {
@@ -642,17 +664,31 @@ public class ApplicationConfiguration {
             validators.add(new JwtIssuerValidator(issuerUri));
         }
         if (StringUtils.hasText(audience)) {
-            validators.add(new JwtClaimValidator<>(JwtClaimNames.AUD, aud -> audience.equals(aud)));
+            validators.add(new JwtClaimValidator<>(JwtClaimNames.AUD, audiencePredicate(audience)));
         }
         validators.add(new JwtTimestampValidator());
         return new DelegatingOAuth2TokenValidator<>(validators);
     }
 
+    Predicate<Object> audiencePredicate(String audience) {
+        return aud -> {
+            if (aud == null) {
+                return false;
+            } else if (aud instanceof String) {
+                return aud.equals(audience);
+            } else if (aud instanceof List) {
+                return ((List<?>) aud).contains(audience);
+            } else {
+                return false;
+            }
+        };
+    }
+
 }
 ```
 
-### 5.1.2. Update application.yml
-Add the following configuration in application.yml:
+### 5.1.2. application.yml
+Add the following configuration in `application.yml`:
 ```yaml
 spring:
   security:
@@ -664,17 +700,191 @@ spring:
 Replace the placeholder with actual value.
 
 ## 5.2. Create required resources in Azure
-All resources required in this sample is already created in previous sample. So no need to create new resources.
+No need to create new Azure resources.
 
 ## 5.3. Run the application
-- Run current Spring boot application.
+- Run [05-resource-server-validate-audience].
 - Run [04-client-access-resource-server].
 
 Use web browser to access `http://localhost:8080/client/resource-server-1/hello`. It should return `Hello, this is resource server 1.`, which means client-1 access resource-server-1 successfully.
 
 ## 5.4. Homework
-1. In [05-resource-server-validate-audience]'s application.yml, set audience to a wrong value, run the application again, check what will happen.
-2. In [05-resource-server-validate-audience]'s application.yml, set issuer-uri to a wrong value, run the application again, check what will happen.
+1. In [05-resource-server-validate-audience]'s `application.yml`, set audience to a wrong value, run the application again, check what will happen.
+2. In [05-resource-server-validate-audience]'s `application.yml`, set issuer-uri to a wrong value, run the application again, check what will happen.
+
+# 6. resource-server-check-permission-by-scp
+In this section, we will demonstrate how to check permissions in a resource server. You can get more information from [MS doc about permissions and consent in the Microsoft identity platform]. You can choose one of the following options to get the sample project.
+
+ - Option 1: Use [06-resource-server-check-permission-by-scp] project directly
+ - Option 2: Follow steps in [6.1. Create sample project](#61-create-sample-project) to create the sample project.
+
+## 6.1. Create sample project
+This project is build on top of [05-resource-server-validate-audience], The following steps will change [05-resource-server-validate-audience] into [06-resource-server-check-permission-by-scp].
+0
+### 6.1.1. Java class
+
+#### 6.1.1.1 Update WebSecurityConfiguration.java
+Add `@EnableGlobalMethodSecurity(prePostEnabled = true)` in WebSecurityConfiguration.java.
+```java
+package com.azure.sample.azure.active.directory.resource.server.configuration;
+
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        // @formatter:off
+        http.authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+            .oauth2ResourceServer()
+                .jwt()
+                .and();
+        // @formatter:off
+    }
+}
+```
+
+#### 6.1.1.2. CheckPermissionByScopeController
+```java
+package com.azure.sample.azure.active.directory.resource.server.controller;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class CheckPermissionByScopeController {
+
+    @GetMapping("/scope/resource-server-1-scope-1")
+    @PreAuthorize("hasAuthority('SCOPE_resource-server-1.scope-1')")
+    public String resourceServer1Scope1() {
+        return "Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1";
+    }
+
+    @GetMapping("/scope/resource-server-1-scope-2")
+    @PreAuthorize("hasAuthority('SCOPE_resource-server-1.scope-2')")
+    public String resourceServer1Scope2() {
+        return "Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-2";
+    }
+}
+```
+
+### 6.1.2. application.yml
+No need to update `application.yml`. Just replace placeholders with actual value.
+
+## 6.2. Create required resources in Azure
+
+### 6.2.1. Expose an API
+Read [MS docs about expose an api], Add a scope named `resource-server-1.scope-2`, choose `Admins and users` for `Who can consent` option.
+
+## 6.3. Run the application
+Run current Spring boot application. 
+
+Use web browser to access `http://localhost:8081//scope/resource-server-1-scope-1` and `http://localhost:8081//scope/resource-server-1-scope-1`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
+
+## 6.4. Homework
+Read the Java doc and code of `@EnableGlobalMethodSecurity` and `@PreAuthorize`.
+
+# 7. client-access-resource-server-check-permission-by-scp
+In this section, we will demonstrate access [06-resource-server-check-permission-by-scp] in client application. You can choose one of the following options to get the sample project.
+
+- Option 1: Use [07-client-access-resource-server-check-permission-by-scp] project directly
+- Option 2: Follow steps in [7.1. Create sample project](#71-create-sample-project) to create the sample project.
+
+## 7.1. Create sample project
+This project is build on top of [04-client-access-resource-server], The following steps will change [04-client-access-resource-server] into [07-client-access-resource-server-check-permission-by-scp].
+
+### 7.1.1. Java class
+
+#### 7.1.1.1. ResourceServer1Controller.java
+```java
+package com.azure.sample.azure.active.directory.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
+
+@RestController
+public class ResourceServer1Controller {
+
+    private final WebClient webClient;
+
+    public ResourceServer1Controller (WebClient webClient) {
+        this.webClient = webClient;
+    }
+
+    @GetMapping("/client/resource-server-1/hello")
+    public String resourceServer1(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+        return webClient
+            .get()
+            .uri("http://localhost:8081/")
+            .attributes(oauth2AuthorizedClient(client1))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
+
+    @GetMapping("/client/resource-server-1/scope/resource-server-1-scope-1")
+    public String resourceServer1Scope1(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+        return webClient
+            .get()
+            .uri("http://localhost:8081/scope/resource-server-1-scope-1")
+            .attributes(oauth2AuthorizedClient(client1))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
+
+    @GetMapping("/client/resource-server-1/scope/resource-server-1-scope-2")
+    public String resourceServer1Scope2(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+        return webClient
+            .get()
+            .uri("http://localhost:8081/scope/resource-server-1-scope-2")
+            .attributes(oauth2AuthorizedClient(client1))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
+}
+```
+
+### 7.1.2. application.yml
+No need to update `application.yml`. Just replace placeholders with actual value.
+
+## 7.2. Create required resources in Azure
+
+### 7.2.1. Add permissions for client-1 to access resource-server-1
+Read [MS docs about configure a client application to access a web API], add permissions for client-1 to access resource-server-1.scope-2.
+
+## 7.3. Run the application
+ - Run [06-resource-server-check-permission-by-scp]
+ - Run [07-client-access-resource-server-check-permission-by-scp]
+
+Use web browser to access `http://localhost:8080/client/resource-server-1/scope/resource-server-1-scope-1`. It should return `Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1`, which means client-1 can access resource-server-1's `/scope/resource-server-1-scope-1` endpoint.
+
+Use web browser to access `http://localhost:8080/client/resource-server-1/scope/resource-server-1-scope-2`. It should return `500` error, which means client-1 can not access resource-server-1's `/scope/resource-server-1-scope-2` endpoint. 
+
+In `application.yml`, `spring.security.oauth2.registration.client-1.scope` only contains `api://<resource-server-1-client-id>/resource-server-1.scope-1`, not contains `api://<resource-server-1-client-id>/resource-server-1.scope-2`, so in access token, the `scp` claim only contains `api://<resource-server-1-client-id>/resource-server-1.scope-1`.
+
+## 7.4. Homework
+ - Read the code of `ServletOAuth2AuthorizedClientExchangeFilterFunction`, investigate how does it add access token when send http request to resource server.
+
+
+
+
+
 
 
 
@@ -707,3 +917,6 @@ Use web browser to access `http://localhost:8080/client/resource-server-1/hello`
 [Spring Security OAuth2 Resource Server]: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2resourceserver
 [MS docs about Application manifest]: https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-app-manifest#accesstokenacceptedversion-attribute
 [05-resource-server-validate-audience]: ./05-resource-server-validate-audience
+[MS doc about permissions and consent in the Microsoft identity platform]: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent
+[06-resource-server-check-permission-by-scp]: ./06-resource-server-check-permission-by-scp
+[07-client-access-resource-server-check-permission-by-scp]: ./07-client-access-resource-server-check-permission-by-scp

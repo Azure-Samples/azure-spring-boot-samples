@@ -28,4 +28,26 @@ public class ResourceServer1Controller {
             .bodyToMono(String.class)
             .block();
     }
+
+    @GetMapping("/client/resource-server-1/scope/resource-server-1-scope-1")
+    public String resourceServer1Scope1(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+        return webClient
+            .get()
+            .uri("http://localhost:8081/scope/resource-server-1-scope-1")
+            .attributes(oauth2AuthorizedClient(client1))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
+
+    @GetMapping("/client/resource-server-1/scope/resource-server-1-scope-2")
+    public String resourceServer1Scope2(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+        return webClient
+            .get()
+            .uri("http://localhost:8081/scope/resource-server-1-scope-2")
+            .attributes(oauth2AuthorizedClient(client1))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
 }

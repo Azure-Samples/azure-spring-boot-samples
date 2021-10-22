@@ -11,7 +11,7 @@
   </parent>
 
   <groupId>com.azure.sample.azure.active.directory</groupId>
-  <artifactId>06-resource-server-check-authorization-by-scp</artifactId>
+  <artifactId>06-resource-server-check-permission-by-scp</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

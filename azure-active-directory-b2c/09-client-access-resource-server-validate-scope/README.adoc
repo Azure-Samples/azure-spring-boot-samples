@@ -1,0 +1,4 @@
+= Azure Active Directory B2C with Spring Security Sample for resource server
+
+[[chapter-link]]
+Please refer to this <<../README.adoc#_9_client_access_resource_server_validate_scope,tutorial>>

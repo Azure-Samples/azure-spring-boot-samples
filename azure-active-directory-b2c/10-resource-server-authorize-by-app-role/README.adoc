@@ -1,0 +1,4 @@
+= Azure Active Directory B2C with Spring Security Sample for resource server
+
+[[chapter-link]]
+Please refer to this <<../README.adoc#_10_resource_server_authorize_by_app_role,tutorial>>

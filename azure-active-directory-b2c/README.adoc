@@ -9,9 +9,9 @@ This tutorial will teach you how to protect your web service by https://docs.mic
 
 == Azure AD Active Directory Samples
 
-=== 1. Sample 01: Client.
+=== 1. Client.
 
-Sample project: <<./sample-01-client/README.adoc#chapter-link, sample-01-client>>
+Sample project: <<./01-client/README.adoc#chapter-link, sample-01-client>>
 
 ==== 1.1. Create sample project
 
@@ -30,7 +30,7 @@ Sample project: <<./sample-01-client/README.adoc#chapter-link, sample-01-client>
   </parent>
 
   <groupId>com.azure.spring</groupId>
-  <artifactId>sample-01-client</artifactId>
+  <artifactId>01-client</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
@@ -127,7 +127,7 @@ public class AzureAdB2cWebApplicationSample {
 
 ```
 
-====== 1.1.3. Create application.yml.
+====== 1.1.2.4 Create application.yml.
 ```yml
 # From **Azure AD B2C** portal `App registrations` blade, select **Endpoints**, Access `Azure AD B2C OpenID Connect metadata document`(Global cloud format may looks like
 #`https://{your-tenant-name}.b2clogin.com/{your-tenant-name}.onmicrosoft.com/<policy-name>/v2.0/.well-known/openid-configuration`,
@@ -163,6 +163,35 @@ spring:
 logout-success-url: https://sampleTenant1.b2clogin.com/sampleTenant1.onmicrosoft.com/B2C_1_signupsignin1/oauth2/v2.0/logout?post_logout_redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Flogin
 ```
 
+====== 1.1.2.5 Create home.html.
+```html
+<!DOCTYPE html>
+<html lang="en">
+<body>
+
+<h1>Home Page</h1>
+<div>
+    <form style="display:inline" method="get" action="/logout">
+        <button class="btn btn-md btn-primary btn-block" type="submit">Log out</button>
+    </form>
+
+    <!-- this uri is used to redirect you to edit your profile with your profile edit user flow
+             replace ${client-id} with your `Application ID`-->
+    <form style="display:inline" method="post" action="https://sampleTenant1.b2clogin.com/sampleTenant1.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_profileediting&client_id=${client-id}&nonce=defaultNonce&redirect_uri=http%3A%2F%2Flocalhost%3A8080&scope=openid&response_type=id_token&prompt=login">
+        <button class="btn btn-md btn-primary btn-block" type="submit">Profile edit</button>
+    </form>
+
+    <!-- this uri is used to redirect you to reset password with your password reset user flow
+             replace ${client-id} with your `Application ID`-->
+    <form style="display:inline" method="post" action="https://sampleTenant1.b2clogin.com/sampleTenant1.onmicrosoft.com/oauth2/v2.0/authorize?p=B2C_1_passwordreset&client_id=${client-id}&nonce=defaultNonce&redirect_uri=http%3A%2F%2Flocalhost%3A8080&scope=openid&response_type=id_token&prompt=login">
+        <button class="btn btn-md btn-primary btn-block" type="submit">Password reset</button>
+    </form>
+</div>
+
+</body>
+</html>
+```
+
 Next step, we need to fill these placeholders in application.yml: `${your-token-uri}`, `${client-id}` etc.
 
 ==== 1.2. Prepare Azure Active Directory B2C resources.
@@ -173,7 +202,8 @@ Follow the https://docs.microsoft.com/azure/active-directory-b2c/tutorial-create
 
 ===== 1.2.2. Register your Azure Active Directory B2C application.
 
-Follow the https://docs.microsoft.com/azure/active-directory-b2c/tutorial-register-applications[AAD B2C application registry] guide, create a web application named "client-1" and create a client secret.
+Follow the https://docs.microsoft.com/azure/active-directory-b2c/tutorial-register-applications[AAD B2C application registry] guide, create a web application named "client-1" and create a client secret. Get the client secret and replace the placeholder(${your-client-secret}) in application.yml, get the client id and replace the  placeholder(${client-id}) in application.yml and home.html.
+From **Azure AD B2C** portal `App registrations` blade, select **Endpoints**, Access `Azure AD B2C OpenID Connect metadata document`. Get the authorization_endpoint and replace the placeholder(${your-authorization-uri}), the sample, replace ${your-token-uri} with token-uri and ${your-jwk-set-uri} with jwkSetUri.
 Please ensure that your b2c application's `Redirect URL` is configured to `http://localhost:8080/login/oauth2/code/`.
 In order to jump to the correct page (home) after `profile-edit` and `password-reset`, we need to add `http://localhost:8080/` in the redirect uri too.
 You can add additional `Redirect URL` with https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri[Add Redirect URL].
@@ -186,30 +216,24 @@ Follow the https://docs.microsoft.com/azure/active-directory-b2c/tutorial-create
 
 Follow the guide of https://docs.microsoft.com/azure/active-directory-b2c/add-password-reset-policy?pivots=b2c-user-flow#self-service-password-reset-recommended[AAD B2C enable forgot password].
 
-===== 1.2.5. Enable profile edit.
+===== 1.2.5. Create profile edit flow.
 
 Follow the https://docs.microsoft.com/azure/active-directory-b2c/add-profile-editing-policy?pivots=b2c-user-flow[AAD B2C set up a profile edit flow] guide, create a Profile editing flow named "profileediting".
 
-===== 1.2.6. Enable password reset.
+===== 1.2.6. Create password reset flow.
 
 Follow the https://docs.microsoft.com/azure/active-directory-b2c/add-password-reset-policy?pivots=b2c-user-flow#create-a-password-reset-user-flow[AAD B2C set up a password reset user flow] guide, create a password reset user flow named "passwordreset".
 
-==== 1.3. Fill necessary values in sample project.
-
-1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
-
-2. Fill necessary values in `home.html`, like `${your-client-id}`.
-
-==== 1.4. Run application.
+==== 1.3. Run application.
 
 Run application, then open `http://localhost:8080` by browser.
 You are then redirected to the default _auto-generated_ login page. You can sign in or sign up with your account.
 
 Then, you can edit your profile with the button `Profile edit` or reset your password with `Password reset`.
 
-=== 2. Sample 02: Client authorize by scope.
+=== 2. Client authorize by scope.
 
-Sample project: <<./sample-02-client-authorize-by-scope/README.adoc#chapter-link, sample-02-client-authorize-by-scope>>
+Sample project: <<./02-client-authorize-by-scope/README.adoc#chapter-link, sample-02-client-authorize-by-scope>>
 
 Compared with the previous sample, this sample updates the `application.yml`, `SampleController.java`.
 
@@ -218,11 +242,9 @@ Compared with the previous sample, this sample updates the `application.yml`, `S
 Configure scopes `scope-1` for application with https://docs.microsoft.com/azure/active-directory-b2c/add-web-api-application?tabs=app-reg-ga#configure-scopes[Configure-scopes].
 Then grant admin consent for application with https://docs.microsoft.com/azure/active-directory-b2c/add-web-api-application?tabs=app-reg-ga#grant-permissions[Grant-admin-consent].
 
-==== 2.2. Fill necessary values in sample project.
+==== 2.2 Update sample project
 
-1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
-
-2. Fill necessary values in `home.html`, like `${your-client-id}`.
+add the following in SampleController.java
 
 ==== 2.3. Run application.
 
@@ -231,9 +253,9 @@ Run application, then open `http://localhost:8080` by browser.
 Compared with the previous sample, this sample can validate scopes.
 Open `http://localhost:8080/hello` by browser, the account has authority for the endpoint.
 
-=== 3. Sample 03: Client authorize additional parameters.
+=== 3. Client authorize additional parameters.
 
-Sample project: <<./sample-03-client-authorize-additional-parameters/README.adoc#chapter-link, sample-03-client-authorize-additional-parameters>>
+Sample project: <<./03-client-authorize-additional-parameters/README.adoc#chapter-link, sample-03-client-authorize-additional-parameters>>
 
 Compared with the previous sample, this sample updates the `application.yml`, `WebSecurityConfiguration.java`.
 
@@ -248,9 +270,9 @@ Run application, then open `http://localhost:8080` by browser.
 Compared with the previous sample, this application just adds `additional-parameters`.
 You can customize the Authorization Request for oauth2Login() by add `additional-parameters`.
 
-=== 4. Sample 04: Resource server.
+=== 4. Resource server.
 
-Sample project: <<./sample-04-resource-server/README.adoc#chapter-link, sample-04-resource-server>>
+Sample project: <<./04-resource-server/README.adoc#chapter-link, sample-04-resource-server>>
 
 ==== 4.1. Fill necessary values in sample project.
 
@@ -258,12 +280,12 @@ Sample project: <<./sample-04-resource-server/README.adoc#chapter-link, sample-0
 
 ==== 4.2. Run application.
 
-We need to get related access token before we access this resource server, please refer to <<5. Sample 05: Client access resource server., Sample-05-client-access-resource-server>>.
+We need to get related access token before we access this resource server, please refer to <<5. Client access resource server., 5. Client access resource server.>>.
 Run application. This resource server will validate the access token.
 
-=== 5. Sample 05: Client access resource server.
+=== 5. Client access resource server.
 
-Sample project: <<./sample-05-client-access-resource-server/README.adoc#chapter-link, sample-05-client-access-resource-server>>
+Sample project: <<./05-client-access-resource-server/README.adoc#chapter-link, sample-05-client-access-resource-server>>
 
 ==== 5.1. Fill necessary values in sample project.
 
@@ -274,11 +296,11 @@ Sample project: <<./sample-05-client-access-resource-server/README.adoc#chapter-
 Run application. Then open `http://localhost:8080/client-1/resource-server-1` by browser and sign in.
 Which will access resource server by access token.
 
-=== 6. Sample 06: Resource server validate audience.
+=== 6. Resource server validate audience.
 
-Sample project: <<./sample-06-resource-server-validate-audience/README.adoc#chapter-link, sample-06-resource-server-validate-audience>>
+Sample project: <<./06-resource-server-validate-audience/README.adoc#chapter-link, sample-06-resource-server-validate-audience>>
 
-Compared with <<4. Sample 04: Resource server., Sample-04-Resource-server>>, this sample updates the `application.yml` and `WebSecurityConfiguration.java`.
+Compared with <<4. Resource server., 4. Resource server.>>, this sample updates the `application.yml` and `WebSecurityConfiguration.java`.
 
 ==== 6.1 Fill necessary values in sample project.
 
@@ -286,14 +308,14 @@ Compared with <<4. Sample 04: Resource server., Sample-04-Resource-server>>, thi
 
 ==== 6.2. Run application.
 
-We need to get related access token before we access this resource server, please refer to <<7. Sample 07: Client access resource server validate audience., Sample-07-client-access-resource-server-validate-audience>>.
+We need to get related access token before we access this resource server, please refer to <<7. Client access resource server validate audience., 7. Client access resource server validate audience.>>.
 Run application. This resource server will validate the accessToken's audience.
 
-=== 7. Sample 07: Client access resource server validate audience.
+=== 7. Client access resource server validate audience.
 
-Sample project: <<./sample-07-client-access-resource-server-validate-audience/README.adoc#chapter-link, sample-07-client-access-resource-server-validate-audience>>
+Sample project: <<./07-client-access-resource-server-validate-audience/README.adoc#chapter-link, sample-07-client-access-resource-server-validate-audience>>
 
-Compared with <<5. Sample 05: Client access resource server., Sample-05-client-access-resource-server>>, this sample updates the `application.yml`.
+Compared with <<5. Client access resource server., 5. Client access resource server.>>, this sample updates the `application.yml`.
 
 ==== 7.1. Register your application as resource server.
 
@@ -313,11 +335,11 @@ You can add additional `Redirect URL` with https://docs.microsoft.com/azure/acti
 Run application. Then open `http://localhost:8080/client-1/resource-server-1` by browser and sign in. Which will access resource server success.
 Access `http://localhost:8080/client-1/resource-server-2`, Which will access resource server fail.
 
-=== 8. Sample 08: Resource server authorize by scope.
+=== 8. Resource server authorize by scope.
 
-Sample project: <<./sample-08-resource-server-authorize-by-scope/README.adoc#chapter-link, sample-08-resource-server-authorize-by-scope>>
+Sample project: <<./08-resource-server-authorize-by-scope/README.adoc#chapter-link, 08-resource-server-authorize-by-scope>>
 
-Compared with <<6. Sample 06: Resource server validate audience., Sample-06-Resource-server-validate-audience>>, this sample updates the `SampleController.java` and `WebSecurityConfiguration.java`.
+Compared with <<6. Resource server validate audience., 6. Resource server validate audience.>>, this sample updates the `SampleController.java` and `WebSecurityConfiguration.java`.
 
 ==== 8.1. Fill necessary values in sample project.
 
@@ -325,14 +347,14 @@ Compared with <<6. Sample 06: Resource server validate audience., Sample-06-Reso
 
 ==== 8.2. Run application.
 
-We need to get related access token before we access this resource server, please refer to <<9. Sample 09: Client access resource server validate scope., Sample-09-client-access-resource-server-validate-scope>>.
+We need to get related access token before we access this resource server, please refer to <<9. Client access resource server validate scope., 9. Client access resource server validate scope.>>.
 Run application. This resource server will validate the accessToken's `roles` claim.
 
-=== 9. Sample 09: Client access resource server validate scope.
+=== 9. Client access resource server validate scope.
 
-Sample project: <<./sample-09-client-access-resource-server-validate-scope/README.adoc#chapter-link, sample-09-client-access-resource-server-validate-scope>>
+Sample project: <<./09-client-access-resource-server-validate-scope/README.adoc#chapter-link, sample-09-client-access-resource-server-validate-scope>>
 
-Compared with <<7. Sample 07: Client access resource server validate audience., Sample-07-client-access-resource-server-validate-audience>>, this sample updates the `application.yml`.
+Compared with <<7. Client access resource server validate audience., 7. Client access resource server validate audience.>>, this sample updates the `application.yml`.
 
 ==== 9.1. Fill necessary values in sample project.
 
@@ -342,11 +364,11 @@ Compared with <<7. Sample 07: Client access resource server validate audience., 
 
 Run application. Then open `http://localhost:8080/client-1/resource-server/scope-1` by browser. Which will access resource server with scope.
 
-=== 10. Sample 10: Resource server authorize by app role.
+=== 10. Resource server authorize by app role.
 
-Sample project: <<./sample-10-resource-server-authorize-by-app-role/README.adoc#chapter-link, sample-10-resource-server-authorize-by-app-role>>
+Sample project: <<./10-resource-server-authorize-by-app-role/README.adoc#chapter-link, sample-10-resource-server-authorize-by-app-role>>
 
-Compared with <<8. Sample 08: Resource server authorize by scope., Sample-08-resource-server-authorize-by-scope>>, this sample updates the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`.
+Compared with <<8. Resource server authorize by scope., 8. Resource server authorize by scope.>>, this sample updates the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`.
 
 ==== 10.1. Configure roles for application.
 
@@ -360,14 +382,14 @@ Then client-1 can have authority without https://docs.microsoft.com/azure/active
 
 ==== 10.3. Run application.
 
-We need to get related access token before we access this resource server, we can get related access token from previous sample, please refer to <<11. Sample 11: Client access resource server validate roles., Sample-11-client-access-resource-server-validate-roles>>.
+We need to get related access token before we access this resource server, we can get related access token from previous sample, please refer to <<11. Client access resource server validate roles., 11. Client access resource server validate roles.>>.
 Run application. This resource server will validate the accessToken's `roles` claim.
 
-=== 11. Sample 11: Client access resource server validate roles.
+=== 11. Client access resource server validate roles.
 
-Sample project: <<./sample-11-client-access-resource-server-validate-roles/README.adoc#chapter-link, sample-11-client-access-resource-server-validate-roles>>
+Sample project: <<./11-client-access-resource-server-validate-roles/README.adoc#chapter-link, sample-11-client-access-resource-server-validate-roles>>
 
-Compared with <<9. Sample 09: Client access resource server validate scope., Sample-09-client-access-resource-server-validate-scope>>, this sample updates the `application.yml`.
+Compared with <<9. Client access resource server validate scope., 9. Client access resource server validate scope.>>, this sample updates the `application.yml`.
 
 ==== 11.1. Fill necessary values in sample project.
 
@@ -377,11 +399,11 @@ Compared with <<9. Sample 09: Client access resource server validate scope., Sam
 
 Run application. Then open `http://localhost:8080/client-1/resource-server-1/role-1` by browser. Which will access resource server.
 
-=== 12. Sample 12: Resource server multi tenant.
+=== 12. Resource server multi tenant.
 
-Sample project: <<./sample-12-resource-server-multi-tenant/README.adoc#chapter-link, sample-12-resource-server-multi-tenant>>
+Sample project: <<./12-resource-server-multi-tenant/README.adoc#chapter-link, sample-12-resource-server-multi-tenant>>
 
-Compared with <<10. Sample 10: Resource server authorize by app role., Sample-10-Resource-server-authorize-by-app-role>>, this sample updates the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`.
+Compared with <<10. Resource server authorize by app role., 10. Resource server authorize by app role.>>, this sample updates the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`.
 
 ==== 12.1 Fill necessary values in sample project.
 

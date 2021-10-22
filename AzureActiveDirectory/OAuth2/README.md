@@ -78,6 +78,15 @@
         + [7.2.1. Add permissions for client-1 to access resource-server-1](#721-add-permissions-for-client-1-to-access-resource-server-1)
     * [7.3. Run the application](#73-run-the-application)
     * [7.4. Homework](#74-homework)
+- [8. client-access-resource-server-check-permission-by-scp-in-client-side](#8-client-access-resource-server-check-permission-by-scp-in-client-side)
+    * [8.1. Create sample project](#81-create-sample-project)
+        + [8.1.1. Java class](#811-java-class)
+            - [8.1.1.1. Update WebSecurityConfiguration.java](#8111-update-websecurityconfigurationjava)
+            - [8.1.1.2. Create ResourceServer1CheckPermissionByScopeController.java](#8112-create-resourceserver1checkpermissionbyscopecontrollerjava)
+        + [8.1.2. application.yml](#812-applicationyml)
+    * [8.2. Create required resources in Azure](#82-create-required-resources-in-azure)
+    * [8.3. Run the application](#83-run-the-application)
+    * [8.4. Homework](#84-homework)
 
 # Preface
 
@@ -574,7 +583,7 @@ Use web browser to access `http://localhost:8080/client/resource-server-1/hello`
 3. Read the [MS docs about Microsoft identity platform access tokens], learn the access token.
 4. Read the [MS docs about offline_access token], learn what `offline_access` scope is used for. And use current project to investigate the impact of adding `offline_access`.
 5. Investigate why we need to set `accessTokenAcceptedVersion` to `2`.
-6. (Optional) Read the java doc and source code of these classes:
+6. (Optional) Read the source code of these classes:
   - AbstractAuthenticationProcessingFilter
     - OAuth2LoginAuthenticationFilter
     - OpenIDAuthenticationFilter
@@ -713,7 +722,7 @@ Use web browser to access `http://localhost:8080/client/resource-server-1/hello`
 2. In [05-resource-server-validate-audience]'s `application.yml`, set issuer-uri to a wrong value, run the application again, check what will happen.
 
 # 6. resource-server-check-permission-by-scp
-In this section, we will demonstrate how to check permissions in a resource server. You can get more information from [MS doc about permissions and consent in the Microsoft identity platform]. You can choose one of the following options to get the sample project.
+This section will demonstrate how to check permissions in a resource server. You can get more information from [MS doc about permissions and consent in the Microsoft identity platform]. You can choose one of the following options to get the sample project.
 
  - Option 1: Use [06-resource-server-check-permission-by-scp] project directly
  - Option 2: Follow steps in [6.1. Create sample project](#61-create-sample-project) to create the sample project.
@@ -777,7 +786,7 @@ public class CheckPermissionByScopeController {
 ```
 
 ### 6.1.2. application.yml
-No need to update `application.yml`. Just replace placeholders with actual value.
+No need to add no items in `application.yml`. Just replace placeholders with actual value.
 
 ## 6.2. Create required resources in Azure
 
@@ -790,10 +799,10 @@ Run current Spring boot application.
 Use web browser to access `http://localhost:8081//scope/resource-server-1-scope-1` and `http://localhost:8081//scope/resource-server-1-scope-1`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
 
 ## 6.4. Homework
-Read the Java doc and code of `@EnableGlobalMethodSecurity` and `@PreAuthorize`.
+Read the source code of `@EnableGlobalMethodSecurity` and `@PreAuthorize`.
 
 # 7. client-access-resource-server-check-permission-by-scp
-In this section, we will demonstrate access [06-resource-server-check-permission-by-scp] in client application. You can choose one of the following options to get the sample project.
+This section will demonstrate access [06-resource-server-check-permission-by-scp] in client application. You can choose one of the following options to get the sample project.
 
 - Option 1: Use [07-client-access-resource-server-check-permission-by-scp] project directly
 - Option 2: Follow steps in [7.1. Create sample project](#71-create-sample-project) to create the sample project.
@@ -861,7 +870,7 @@ public class ResourceServer1Controller {
 ```
 
 ### 7.1.2. application.yml
-No need to update `application.yml`. Just replace placeholders with actual value.
+No need to add no items in `application.yml`. Just replace placeholders with actual value.
 
 ## 7.2. Create required resources in Azure
 
@@ -881,7 +890,111 @@ In `application.yml`, `spring.security.oauth2.registration.client-1.scope` only 
 ## 7.4. Homework
  - Read the code of `ServletOAuth2AuthorizedClientExchangeFilterFunction`, investigate how does it add access token when send http request to resource server.
 
+# 8. client-access-resource-server-check-permission-by-scp-in-client-side
+In [07-client-access-resource-server-check-permission-by-scp], we check the permission by scp in resource server. Can we check the permission in client side? The answer is yes. This section will demonstrate how to achieve this. You can choose one of the following options to get the sample project.
 
+- Option 1: Use [08-client-access-resource-server-check-permission-by-scp-in-client-side] project directly
+- Option 2: Follow steps in [8.1. Create sample project](#71-create-sample-project) to create the sample project.
+
+## 8.1. Create sample project
+This project is build on top of [07-client-access-resource-server-check-permission-by-scp], The following steps will change [07-client-access-resource-server-check-permission-by-scp] into [08-client-access-resource-server-check-permission-by-scp-in-client-side].
+
+### 8.1.1. Java class
+
+#### 8.1.1.1. Update WebSecurityConfiguration.java
+Add `@EnableGlobalMethodSecurity(prePostEnabled = true)` in WebSecurityConfiguration.java.
+```java
+package com.azure.sample.azure.active.directory.configuration;
+
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        // @formatter:off
+        http.authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+            .oauth2Login()
+                .and();
+        // @formatter:off
+    }
+}
+```
+
+#### 8.1.1.2. Create ResourceServer1CheckPermissionByScopeController.java
+Create new java class: ResourceServer1CheckPermissionByScopeController.java. Replace placeholders with actual value.
+```java
+package com.azure.sample.azure.active.directory.controller;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
+
+@RestController
+public class ResourceServer1CheckPermissionByScopeController {
+
+    private final WebClient webClient;
+
+    public ResourceServer1CheckPermissionByScopeController(WebClient webClient) {
+        this.webClient = webClient;
+    }
+
+    @GetMapping("/check-permission/client/resource-server-1/scope/resource-server-1-scope-1")
+    @PreAuthorize("hasAuthority('SCOPE_api://<resource-server-1-client-id>/resource-server-1.scope-1')")
+    public String resourceServer1Scope1(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+        return webClient
+            .get()
+            .uri("http://localhost:8081/scope/resource-server-1-scope-1")
+            .attributes(oauth2AuthorizedClient(client1))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
+
+    @GetMapping("/check-permission/client/resource-server-1/scope/resource-server-1-scope-2")
+    @PreAuthorize("hasAuthority('SCOPE_api://<resource-server-1-client-id>/resource-server-1.scope-2')")
+    public String resourceServer1Scope2(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+        return webClient
+            .get()
+            .uri("http://localhost:8081/scope/resource-server-1-scope-2")
+            .attributes(oauth2AuthorizedClient(client1))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
+}
+```
+
+### 8.1.2. application.yml
+No need to add no items in `application.yml`. Just replace placeholders with actual value.
+
+## 8.2. Create required resources in Azure
+No need to create new Azure resources.
+
+## 8.3. Run the application
+- Run [07-client-access-resource-server-check-permission-by-scp]
+- Run [08-client-access-resource-server-check-permission-by-scp-in-client-side]
+
+Use web browser to access `http://localhost:8080/check-permission/client/resource-server-1/scope/resource-server-1-scope-1`. It should return `Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1`, which means we do not have authority access `ResourceServer1CheckPermissionByScopeController#resourceServer1Scope1`. And client-1 can access resource-server-1's `/scope/resource-server-1-scope-1` endpoint.
+
+Use web browser to access `http://localhost:8080/check-permission/client/resource-server-1/scope/resource-server-1-scope-2`. It should return `403` error, which means we do not have authority access `ResourceServer1CheckPermissionByScopeController#resourceServer1Scope2`.
+
+In `application.yml`, `spring.security.oauth2.registration.client-1.scope` only contains `api://<resource-server-1-client-id>/resource-server-1.scope-1`, not contains `api://<resource-server-1-client-id>/resource-server-1.scope-2`, so in access token, the `scp` claim only contains `api://<resource-server-1-client-id>/resource-server-1.scope-1`.
+
+## 8.4. Homework
+ - Read the source code of `OidcUserService`, learn the progress of building `SimpleGrantedAuthority` from `scp` claim in access token.
 
 
 
@@ -920,3 +1033,4 @@ In `application.yml`, `spring.security.oauth2.registration.client-1.scope` only 
 [MS doc about permissions and consent in the Microsoft identity platform]: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent
 [06-resource-server-check-permission-by-scp]: ./06-resource-server-check-permission-by-scp
 [07-client-access-resource-server-check-permission-by-scp]: ./07-client-access-resource-server-check-permission-by-scp
+[08-client-access-resource-server-check-permission-by-scp-in-client-side]: ./08-client-access-resource-server-check-permission-by-scp-in-client-side

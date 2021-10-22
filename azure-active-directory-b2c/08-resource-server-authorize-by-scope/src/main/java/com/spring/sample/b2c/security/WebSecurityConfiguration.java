@@ -1,17 +1,16 @@
 package com.spring.sample.b2c.security;
 
 import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
-import org.springframework.security.oauth2.jwt.JwtClaimNames;
-import org.springframework.security.oauth2.jwt.JwtClaimValidator;
-import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.security.oauth2.core.OAuth2TokenValidator;
+import org.springframework.security.oauth2.jwt.*;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
 import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
 
@@ -19,14 +18,16 @@ import org.springframework.security.oauth2.server.resource.authentication.JwtGra
  * Security Configuration.
  */
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
   @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
   String jwkSetUri;
 
-  @Value("${validateAudience}")
+  @Value("${spring.security.oauth2.resourceserver.jwt.valid-audience}")
   String validateAudience;
+
+  @Value("${spring.security.oauth2.resourceserver.jwt.issuer}")
+  String issuer;
 
   @Override
   protected void configure(HttpSecurity http) throws Exception {
@@ -38,10 +39,18 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
   @Bean
   JwtDecoder jwtDecoder() {
     NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withJwkSetUri(this.jwkSetUri).build();
-    jwtDecoder.setJwtValidator(new DelegatingOAuth2TokenValidator<>(
-        new JwtClaimValidator(JwtClaimNames.AUD, aud ->
-          aud != null && ((ArrayList) aud).contains(this.validateAudience))));
+    jwtDecoder.setJwtValidator(createDefaultWithIssuer());
     return jwtDecoder;
+  }
+
+  public OAuth2TokenValidator<Jwt> createDefaultWithIssuer() {
+    List<OAuth2TokenValidator<Jwt>> validators = new ArrayList<>();
+    validators.add(new JwtTimestampValidator());
+    validators.add(new JwtIssuerValidator(issuer));
+    validators.add(new DelegatingOAuth2TokenValidator<>(
+            new JwtClaimValidator(JwtClaimNames.AUD, aud ->
+                    aud != null && ((ArrayList) aud).contains(this.validateAudience))));
+    return new DelegatingOAuth2TokenValidator<>(validators);
   }
 
   private JwtAuthenticationConverter jwtAuthenticationConverter() {

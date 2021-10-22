@@ -21,7 +21,7 @@ public class SampleController {
   @GetMapping(value = { "/client-1/resource-server-1" })
   @ResponseBody
   public String client1AccessResourceServer1(
-          @RegisteredOAuth2AuthorizedClient OAuth2AuthorizedClient client1) {
+          @RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
     return canVisitUri(client1, "http://localhost:8081/hello");
   }
 

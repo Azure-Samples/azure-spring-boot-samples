@@ -7,9 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Spring application.
  */
 @SpringBootApplication
-public class AzureAdB2cResourceServerSample {
+public class ResourceServerApplication {
 
   public static void main(String[] args) {
-    SpringApplication.run(AzureAdB2cResourceServerSample.class, args);
+    SpringApplication.run(ResourceServerApplication.class, args);
   }
 }

@@ -127,7 +127,7 @@ public class AzureAdB2cWebApplicationSample {
 
 ```
 
-====== 1.1.2.4 Create application.yml.
+====== 1.1.3 Create application.yml.
 ```yml
 # From **Azure AD B2C** portal `App registrations` blade, select **Endpoints**, Access `Azure AD B2C OpenID Connect metadata document`(Global cloud format may looks like
 #`https://{your-tenant-name}.b2clogin.com/{your-tenant-name}.onmicrosoft.com/<policy-name>/v2.0/.well-known/openid-configuration`,
@@ -163,7 +163,7 @@ spring:
 logout-success-url: https://sampleTenant1.b2clogin.com/sampleTenant1.onmicrosoft.com/B2C_1_signupsignin1/oauth2/v2.0/logout?post_logout_redirect_uri=http%3A%2F%2Flocalhost%3A8080%2Flogin
 ```
 
-====== 1.1.2.5 Create home.html.
+====== 1.1.4 Create home.html.
 ```html
 <!DOCTYPE html>
 <html lang="en">
@@ -242,11 +242,37 @@ Compared with the previous sample, this sample updates the `application.yml`, `S
 Configure scopes `scope-1` for application with https://docs.microsoft.com/azure/active-directory-b2c/add-web-api-application?tabs=app-reg-ga#configure-scopes[Configure-scopes].
 Then grant admin consent for application with https://docs.microsoft.com/azure/active-directory-b2c/add-web-api-application?tabs=app-reg-ga#grant-permissions[Grant-admin-consent].
 
-==== 2.2 Update sample project
+==== 2.2. Update sample project
 
-add the following in SampleController.java
+Add the following in SampleController.java
+```java
+  @ResponseBody
+  @GetMapping(value = { "/hello" })
+  @PreAuthorize("hasAuthority('SCOPE_scope-1')")
+  public String hello() {
+    return "this is a resource-server protected by Azure Active Directory B2C. ";
+  }
+```
 
-==== 2.3. Run application.
+Add Annotations `@EnableGlobalMethodSecurity(prePostEnabled = true)` before WebSecurityConfiguration.class.
+
+Update the scope in application.yml.
+```yml
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          registration:
+            client-1:
+              scope: openid, offline_access, https://sampleTenant1.onmicrosoft.com/${client-id}/scope-1
+```
+
+==== 2.3. Fill in application.yml
+
+Replace the placeholder(${client-id}) with your client-id in application.yml
+
+==== 2.4. Run application.
 
 Run application, then open `http://localhost:8080` by browser.
 
@@ -259,11 +285,99 @@ Sample project: <<./03-client-authorize-additional-parameters/README.adoc#chapte
 
 Compared with the previous sample, this sample updates the `application.yml`, `WebSecurityConfiguration.java`.
 
-==== 3.1. Fill necessary values in sample project.
+==== 3.1. Update sample project
 
-1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
+update SampleController.java
 
-2. Fill necessary values in `home.html`, like `${your-client-id}`.
+```java
+  @Value("${logout-success-url}")
+  private String logoutSuccessUrl;
+
+  @Value("#{${additional-parameters}}")
+  private Map<String, String> additionalParameter;
+
+  @Autowired
+  private ClientRegistrationRepository clientRegistrationRepository;
+
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    // @formatter:off
+    http
+          .authorizeRequests()
+              .regexMatchers("/login").permitAll()
+              .anyRequest().authenticated()
+              .and()
+          .logout()
+              .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+              .logoutSuccessUrl(this.logoutSuccessUrl)
+              .and()
+          .oauth2Login()
+              .authorizationEndpoint()
+              .authorizationRequestResolver(
+                      new CustomAuthorizationRequestResolver(
+                              this.clientRegistrationRepository));
+    // @formatter:off
+  }
+
+  /**
+   * CustomAuthorizationRequestResolver.
+   */
+  public class CustomAuthorizationRequestResolver implements OAuth2AuthorizationRequestResolver {
+    private final OAuth2AuthorizationRequestResolver defaultAuthorizationRequestResolver;
+
+    /**
+     * Constructor of CustomAuthorizationRequestResolver.
+     *
+     * @param clientRegistrationRepository clientRegistrationRepository
+     */
+    public CustomAuthorizationRequestResolver(
+            ClientRegistrationRepository clientRegistrationRepository) {
+
+      this.defaultAuthorizationRequestResolver =
+              new DefaultOAuth2AuthorizationRequestResolver(
+                      clientRegistrationRepository, "/oauth2/authorization");
+    }
+
+    @Override
+    public OAuth2AuthorizationRequest resolve(HttpServletRequest request) {
+      OAuth2AuthorizationRequest authorizationRequest =
+              this.defaultAuthorizationRequestResolver.resolve(request);
+
+      return authorizationRequest != null
+              ? customAuthorizationRequest(authorizationRequest) :
+              null;
+    }
+
+    @Override
+    public OAuth2AuthorizationRequest resolve(
+            HttpServletRequest request, String clientRegistrationId) {
+
+      OAuth2AuthorizationRequest authorizationRequest =
+              this.defaultAuthorizationRequestResolver.resolve(request, clientRegistrationId);
+
+      return authorizationRequest != null
+              ? customAuthorizationRequest(authorizationRequest) :
+              null;
+    }
+
+    private OAuth2AuthorizationRequest customAuthorizationRequest(
+            OAuth2AuthorizationRequest authorizationRequest) {
+
+      Map<String, Object> additionalParameters =
+              new LinkedHashMap<>(authorizationRequest.getAdditionalParameters());
+      additionalParameters.putAll(WebSecurityConfiguration.this.additionalParameter);
+
+      return OAuth2AuthorizationRequest.from(authorizationRequest)
+              .additionalParameters(additionalParameters)
+              .build();
+    }
+  }
+```
+
+Add the following in yml
+```yml
+additional-parameters: '{"prompt": "login"}'
+```
 
 ==== 3.2. Run application.
 Run application, then open `http://localhost:8080` by browser.
@@ -274,11 +388,92 @@ You can customize the Authorization Request for oauth2Login() by add `additional
 
 Sample project: <<./04-resource-server/README.adoc#chapter-link, sample-04-resource-server>>
 
-==== 4.1. Fill necessary values in sample project.
+==== 4.1. Create sample project
+This Sample is work as resource server, which can work with other samples.
 
-1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
+===== 4.1.1 Create java classes
 
-==== 4.2. Run application.
+====== 4.1.1.1 Create SampleController.java
+```java
+package com.spring.sample.b2c.controller;
+
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+/**
+ * controller.
+ */
+@Controller
+public class SampleController {
+
+  @ResponseBody
+  @GetMapping(value = { "/hello" })
+  public String hello() {
+    return "this is a resource-server protected by Azure Active Directory B2C. ";
+  }
+}
+```
+
+====== 4.1.1.2 Create WebSecurityConfiguration.java
+```java
+package com.spring.sample.b2c.security;
+
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+/**
+ * Security Configuration.
+ */
+@EnableWebSecurity
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.authorizeRequests((requests) -> requests.anyRequest().authenticated())
+        .oauth2ResourceServer()
+        .jwt();
+  }
+}
+```
+
+====== 4.1.1.3 Create ResourceServerSample.java
+```java
+package com.spring.sample.b2c;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+/**
+ * Spring application.
+ */
+@SpringBootApplication
+public class ResourceServerSample {
+
+  public static void main(String[] args) {
+    SpringApplication.run(AzureAdB2cResourceServerSample.class, args);
+  }
+}
+```
+
+===== 4.1.2 Create application.yml
+```yml
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwkSetUri: ${your-jwk-set-uri}  # You can find your jwkSetUri from the result page of Azure AD B2C OpenID Connect metadata document
+server:
+  port: 8081
+```
+
+==== 4.2 Fill in application.yml
+
+Replace the placeholder(${your-jwk-set-uri}) with your jwkSetUri in application.yml
+
+==== 4.3. Run application.
 
 We need to get related access token before we access this resource server, please refer to <<5. Client access resource server., 5. Client access resource server.>>.
 Run application. This resource server will validate the access token.
@@ -287,9 +482,81 @@ Run application. This resource server will validate the access token.
 
 Sample project: <<./05-client-access-resource-server/README.adoc#chapter-link, sample-05-client-access-resource-server>>
 
-==== 5.1. Fill necessary values in sample project.
+==== 5.1. Update sample project
 
-1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
+This sample added some content on client application.
+
+===== 5.1.1 Add WebClientConfig.java
+```java
+package com.spring.sample.b2c.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
+import org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction;
+import org.springframework.web.reactive.function.client.WebClient;
+
+/**
+ * config.
+ */
+@Configuration
+public class WebClientConfig {
+
+  /**
+   * web client.
+   *
+   * @param clientRegistrationRepository clientRegistrationRepository
+   * @param authorizedClientRepository authorizedClientRepository
+   * @return WebClient
+   */
+  @Bean
+  public static WebClient webClient(ClientRegistrationRepository clientRegistrationRepository,
+                                  OAuth2AuthorizedClientRepository authorizedClientRepository) {
+    ServletOAuth2AuthorizedClientExchangeFilterFunction function =
+        new ServletOAuth2AuthorizedClientExchangeFilterFunction(clientRegistrationRepository,
+          authorizedClientRepository);
+    return WebClient.builder()
+                    .apply(function.oauth2Configuration())
+                    .build();
+  }
+}
+```
+
+===== 5.1.2 Update SampleController.java
+```java
+  @Autowired
+  private WebClient webClient;
+
+  @GetMapping(value = { "/client-1/resource-server-1" })
+  @ResponseBody
+  public String client1AccessResourceServer1(
+          @RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+    return canVisitUri(client1, "http://localhost:8081/hello");
+  }
+
+  /**
+   * Check whether uri is accessible by provided client.
+   *
+   * @param client Authorized client.
+   * @param uri The request uri.
+   * @return "Get http response successfully." or "Get http response failed."
+   */
+  private String canVisitUri(OAuth2AuthorizedClient client, String uri) {
+    if (null == client) {
+      return "Get response failed.";
+    }
+    String body = this.webClient
+            .get()
+            .uri(uri)
+            .attributes(ServletOAuth2AuthorizedClientExchangeFilterFunction
+                    .oauth2AuthorizedClient(client))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    return "Get response from " + uri + (null != body ? " successfully" : " failed\n");
+  }
+```
 
 ==== 5.2. Run application.
 
@@ -302,9 +569,49 @@ Sample project: <<./06-resource-server-validate-audience/README.adoc#chapter-lin
 
 Compared with <<4. Resource server., 4. Resource server.>>, this sample updates the `application.yml` and `WebSecurityConfiguration.java`.
 
-==== 6.1 Fill necessary values in sample project.
+==== 6.1. Update sample project
 
-1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
+===== 6.1.1. Update WebSecurityConfiguration.java
+Add the following content:
+```java
+  @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
+  String jwkSetUri;
+
+  @Value("${spring.security.oauth2.resourceserver.jwt.valid-audience}")
+  String validateAudience;
+
+  @Value("${spring.security.oauth2.resourceserver.jwt.issuer}")
+  String issuer;
+
+  @Bean
+  JwtDecoder jwtDecoder() {
+    NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withJwkSetUri(this.jwkSetUri).build();
+    jwtDecoder.setJwtValidator(createDefaultWithIssuer());
+    return jwtDecoder;
+  }
+
+  public OAuth2TokenValidator<Jwt> createDefaultWithIssuer() {
+    List<OAuth2TokenValidator<Jwt>> validators = new ArrayList<>();
+    validators.add(new JwtTimestampValidator());
+    validators.add(new JwtIssuerValidator(issuer));
+    validators.add(new DelegatingOAuth2TokenValidator<>(
+            new JwtClaimValidator(JwtClaimNames.AUD, aud ->
+                    aud != null && ((ArrayList) aud).contains(this.validateAudience))));
+    return new DelegatingOAuth2TokenValidator<>(validators);
+  }
+```
+
+===== 6.1.2. Update application.yml
+Add the following content:
+```yml
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          valid-audience: ${validate-audience} # Select your instance of "client-1" under `Applications` from portal, Fill in `${validate-audience}` from `Application ID`.
+          issuer: ${issuer} # You can find your `issuer` from the result page of Azure AD B2C OpenID Connect metadata document
+```
 
 ==== 6.2. Run application.
 
@@ -326,9 +633,42 @@ Please ensure that your b2c application's `Redirect URL` is configured to `http:
 In order to jump to the correct page (home) after `profile-edit` and `password-reset`, we need to add `http://localhost:8080/` in the redirect uri too.
 You can add additional `Redirect URL` with https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri[Add Redirect URL].
 
-==== 7.2. Fill necessary values in sample project.
+==== 7.2. Update sample project
 
-1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
+===== 7.2.1. Update SampleController.java
+Add the following content:
+```java
+  @GetMapping(value = { "/client-2/resource-server-1" })
+  @ResponseBody
+  public String client2AccessResourceServer1(
+          @RegisteredOAuth2AuthorizedClient("client-2") OAuth2AuthorizedClient client2) {
+    return canVisitUri(client2, "http://localhost:8081/hello");
+  }
+```
+
+===== 7.2.2 Update application.yml
+Add the following content:
+```yml
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          client-2:
+            provider: azure-ad-b2c-sign-up-or-sign-in
+            # Select your instance of "client-2" under `Applications` from portal, and then Fill in `${client-id}` from `Application ID`.
+            # To make your accessToken can be validate form resource server, you should use the same application with resource server.
+            client-id: ${client-id}
+            # Fill in `${your-client-secret}` from one of `Keys`.
+            client-secret: ${your-client-secret}
+            authorization-grant-type: authorization_code
+            redirect-uri: "{baseUrl}/login/oauth2/code/"
+            # Fill in `${client-id}` from `Application ID`
+            # We can use ${client-id} to acquire access token that can be used against your own service or web API.
+            # Related doc: https://docs.microsoft.com/en-us/azure/active-directory-b2c/access-tokens#openid-connect-scopes
+            scope: ${client-id}, openid, offline_access, profile
+
+```
 
 ==== 7.3 Run application.
 
@@ -341,9 +681,42 @@ Sample project: <<./08-resource-server-authorize-by-scope/README.adoc#chapter-li
 
 Compared with <<6. Resource server validate audience., 6. Resource server validate audience.>>, this sample updates the `SampleController.java` and `WebSecurityConfiguration.java`.
 
-==== 8.1. Fill necessary values in sample project.
+==== 8.1. Update sample project
 
-1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
+===== 8.1.1. Update SampleController.java
+Add the following content:
+```java
+  @ResponseBody
+  @GetMapping(value = { "/client-1/scope-1" })
+  @PreAuthorize("hasAuthority('SCOPE_scope-1')")
+  public String helloForScope1() {
+    return "this is a resource-server protected by Azure Active Directory B2C. ";
+  }
+```
+
+===== 8.1.2. Update WebSecurityConfiguration.java
+Add the following content:
+```java
+  private JwtAuthenticationConverter jwtAuthenticationConverter() {
+    JwtGrantedAuthoritiesConverter authorities = new JwtGrantedAuthoritiesConverter();
+    authorities.setAuthorityPrefix("SCOPE_");
+    authorities.setAuthoritiesClaimName("scp");
+    JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+    jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(authorities);
+    return jwtAuthenticationConverter;
+  }
+```
+
+update
+
+```java
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.authorizeRequests((requests) -> requests.anyRequest().authenticated())
+        .oauth2ResourceServer()
+        .jwt().jwtAuthenticationConverter(jwtAuthenticationConverter());
+  }
+```
 
 ==== 8.2. Run application.
 
@@ -356,9 +729,31 @@ Sample project: <<./09-client-access-resource-server-validate-scope/README.adoc#
 
 Compared with <<7. Client access resource server validate audience., 7. Client access resource server validate audience.>>, this sample updates the `application.yml`.
 
-==== 9.1. Fill necessary values in sample project.
+==== 9.1. Update sample project
 
-1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
+===== 9.1.1 Update SampleController.java
+Add the following content:
+```java
+  @GetMapping(value = { "/client-1/resource-server/scope-1" })
+  @ResponseBody
+  public String getResourceServerForScope1(
+          @RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+    return canVisitUri(client1, "http://localhost:8081/client-1/scope-1");
+  }
+```
+
+===== 9.1.2 Update application.yml
+Update the scope of client-1 in application.yml:
+```yml
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          registration:
+            client-1:
+              scope: openid, offline_access, https://sampleTenant1.onmicrosoft.com/${client-id}/scope-1
+```
 
 ==== 9.2. Run application.
 
@@ -376,11 +771,39 @@ Follow the https://docs.microsoft.com/azure/active-directory-b2c/tutorial-regist
 Follow https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#app-manifest-editor[configure-roles-for-application] guide to configure a role named "role-1" for resource-server-1. Follow https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#example-application-app-role[assign-roles-to-application] to assign Role "role-1" to client-1.
 Then client-1 can have authority without https://docs.microsoft.com/azure/active-directory-b2c/user-overview#consumer-user[Consumer-user]'s grant.
 
-==== 10.2. Fill necessary values in sample project.
+==== 10.2. Update sample project
 
-1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
+===== 10.2.1 Update SampleController.java
+Update the endPoint:
+```
+  @ResponseBody
+  @GetMapping(value = { "/resource-server-1/role-1" })
+  @PreAuthorize("hasAuthority('ROLE_Role-1')")
+  public String helloForRole() {
+    return "this is a resource-server protected by Azure Active Directory B2C. ";
+  }
+```
 
-==== 10.3. Run application.
+===== 10.2.2 Update WebSecurityConfiguration.java
+Update the JwtAuthenticationConverter:
+```java
+  private JwtAuthenticationConverter jwtAuthenticationConverter() {
+    JwtGrantedAuthoritiesConverter authorities = new JwtGrantedAuthoritiesConverter();
+    authorities.setAuthorityPrefix("ROLE_");
+    authorities.setAuthoritiesClaimName("roles");
+    JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+    jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(authorities);
+    return jwtAuthenticationConverter;
+  }
+```
+
+==== 10.3 Update the application.yml
+Now B2C don't support client_credential, but we can use AAD point to realize this function.
+From **Azure AD B2C** portal `App registrations` blade, select **Endpoints**, Access `Azure AD OpenID Connect metadata document`(Global cloud format may looks like
+https://login.microsoftonline.com/${your-tenant-id}/v2.0/.well-known/openid-configuration`,
+China Cloud looks like `https://login.chinacloudapi.cn/${your-tenant-id}/v2.0/.well-known/openid-configuration`) replace <policy-name> with your user flow name.
+
+==== 10.4. Run application.
 
 We need to get related access token before we access this resource server, we can get related access token from previous sample, please refer to <<11. Client access resource server validate roles., 11. Client access resource server validate roles.>>.
 Run application. This resource server will validate the accessToken's `roles` claim.
@@ -391,9 +814,41 @@ Sample project: <<./11-client-access-resource-server-validate-roles/README.adoc#
 
 Compared with <<9. Client access resource server validate scope., 9. Client access resource server validate scope.>>, this sample updates the `application.yml`.
 
-==== 11.1. Fill necessary values in sample project.
+==== 11.1 Update sample project
 
-1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
+===== 11.1.1 Update SampleController.java
+Add the following content:
+```java
+  @GetMapping(value = { "/client-1/resource-server-1/role-1" })
+  @ResponseBody
+  public String getResourceServerClientCredential(
+          @RegisteredOAuth2AuthorizedClient("resource-server-1")
+                  OAuth2AuthorizedClient resourceServer1) {
+    return canVisitUri(resourceServer1, "http://localhost:8081/hello");
+  }
+```
+
+===== 11.1.2 Update application.yml
+Add the following content:
+```yml
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          resource-server:
+            issuer-uri: https://login.microsoftonline.com/${your-tenant-id}
+          resource-server-1:  # This is used to demonstrate client_credentials type. Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow
+            provider: resource-server
+            # Fill in `${client-id}` from `Application ID`
+            scope: https://sampleTenant1.onmicrosoft.com/${client-id}/.default
+            # Fill in `${client-id}` from `Application ID`
+            client-id: ${client-id}
+            # Fill in `${your-client-secret}` from one of `Keys`.
+            client-secret: ${your-client-secret}
+            authorization-grant-type: client_credentials
+            redirect-uri: "{baseUrl}/login/oauth2/code/"
+```
 
 ==== 11.2. Run application.
 
@@ -405,9 +860,92 @@ Sample project: <<./12-resource-server-multi-tenant/README.adoc#chapter-link, sa
 
 Compared with <<10. Resource server authorize by app role., 10. Resource server authorize by app role.>>, this sample updates the `application.yml`, `SampleController.java` and `WebSecurityConfiguration.java`.
 
-==== 12.1 Fill necessary values in sample project.
+==== 12.1 Update sample project
 
-1. Fill necessary values in `application.yml`, like `${your-jwk-set-uri}`.
+===== 12.1.1 Update SampleController.java
+```java
+  @ResponseBody
+  @GetMapping(value = { "/resource-server-1/role-1-scope-1" })
+  @PreAuthorize("hasAnyAuthority('ROLE_scope-1'," +
+          " 'SCOPE_role-1')")
+  public String helloForRoleAndScope() {
+    return "this is a resource-server protected by Azure Active Directory B2C. ";
+  }
+```
+
+===== 12.1.2 Update WebSecurityConfiguration
+```java
+  @Value("${spring.security.oauth2.resourceserver.jwt.jwk-set-uri}")
+  String jwkSetUri;
+
+  @Value("${spring.security.oauth2.resourceserver.jwt.valid-audience}")
+  String validateAudience;
+
+  @Value("${spring.security.oauth2.resourceserver.jwt.issuer}")
+  String issuer;
+
+  @Override
+  protected void configure(HttpSecurity http) throws Exception {
+    http.authorizeRequests((requests) -> requests.anyRequest().authenticated())
+        .oauth2ResourceServer()
+        .jwt().jwtAuthenticationConverter(jwtAuthenticationConverter());
+  }
+
+  @Bean
+  JwtDecoder jwtDecoder() {
+    NimbusJwtDecoder jwtDecoder = NimbusJwtDecoder.withJwkSetUri(this.jwkSetUri).build();
+    jwtDecoder.setJwtValidator(createDefaultWithIssuer());
+    return jwtDecoder;
+  }
+
+  public OAuth2TokenValidator<Jwt> createDefaultWithIssuer() {
+    List<OAuth2TokenValidator<Jwt>> validators = new ArrayList<>();
+    validators.add(new JwtTimestampValidator());
+    validators.add(new JwtIssuerValidator(issuer));
+    validators.add(new DelegatingOAuth2TokenValidator<>(
+            new JwtClaimValidator(JwtClaimNames.AUD, aud ->
+                    aud != null && ((ArrayList) aud).contains(this.validateAudience))));
+    return new DelegatingOAuth2TokenValidator<>(validators);
+  }
+
+  private JwtAuthenticationConverter jwtAuthenticationConverter() {
+    JwtGrantedAuthoritiesConverter authorities = new JwtGrantedAuthoritiesConverter();
+    authorities.setAuthorityPrefix("ROLE_");
+    authorities.setAuthoritiesClaimName("roles");
+    JwtAuthenticationConverter jwtAuthenticationConverter = new JwtAuthenticationConverter();
+    jwtAuthenticationConverter.setJwtGrantedAuthoritiesConverter(authorities);
+    return jwtAuthenticationConverter;
+  }
+```
+
+===== 12.1.3 Update application.yml
+Update application.yml with:
+```yml
+server:
+  port: 8081
+
+# Select your instance of "client-1" under `Applications` from portal, Fill in `${validate-audience}` from `Application ID`.
+validateAudience: ${validate-audience}
+
+# From **Azure AD B2C** portal `App registrations` blade, select **Endpoints**, Access `Azure AD B2C OpenID Connect metadata document`(Global cloud format may looks like
+#`https://{your-tenant-name}.b2clogin.com/{your-tenant-name}.onmicrosoft.com/<policy-name>/v2.0/.well-known/openid-configuration`,
+# China Cloud looks like `https://{your-tenant-name}.b2clogin.cn/{your-tenant-name}.partner.onmschina.cn/<policy-name>/v2.0/.well-known/openid-configuration`) replace <policy-name> with your user flow name.
+tenantOne:
+  # You can find your `jwks_uri` from the result page of Azure AD B2C OpenID Connect metadata document
+  jwkSetUri: ${your-jwk-set-uri}
+  # You can find your `issuer` from the result page of Azure AD B2C OpenID Connect metadata document
+  issuerUri: ${your-issuer-uri}
+
+# Now B2C don't support client_credential, but we can use AAD point to realize this function.
+# From **Azure AD B2C** portal `App registrations` blade, select **Endpoints**, Access `Azure AD OpenID Connect metadata document`(Global cloud format may looks like
+#`https://login.microsoftonline.com/${your-tenant-id}/v2.0/.well-known/openid-configuration`,
+# China Cloud looks like `https://login.chinacloudapi.cn/${your-tenant-id}/v2.0/.well-known/openid-configuration`) replace <policy-name> with your user flow name.
+tenantTwo:
+  # You can find your `jwks_uri` from the result page of Azure AD OpenID Connect metadata document
+  jwkSetUri: ${your-AAD-jwk-set-uri}
+  # You can find your `issuer` from the result page of Azure AD OpenID Connect metadata document
+  issuerUri: ${your-AAD-issuer-uri}
+```
 
 ==== 12.2 Run application.
 

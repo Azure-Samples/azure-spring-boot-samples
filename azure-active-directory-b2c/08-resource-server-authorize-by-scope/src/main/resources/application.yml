@@ -7,8 +7,7 @@ spring:
       resourceserver:
         jwt:
           jwkSetUri: ${your-jwk-set-uri}  # You can find your jwkSetUri from the result page of Azure AD B2C OpenID Connect metadata document
+          valid-audience: ${validate-audience} # Select your instance of "client-1" under `Applications` from portal, Fill in `${validate-audience}` from `Application ID`.
+          issuer: ${issuer} # You can find your `issuer` from the result page of Azure AD B2C OpenID Connect metadata document
 server:
   port: 8081
-
-# Select your instance of "client-1" under `Applications` from portal, Fill in `${validate-audience}` from `Application ID`.
-validateAudience: ${validate-audience}

@@ -18,6 +18,20 @@ public class SampleController {
   @Autowired
   private WebClient webClient;
 
+  @GetMapping(value = { "/client-1/resource-server-1" })
+  @ResponseBody
+  public String client1AccessResourceServer1(
+          @RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+    return canVisitUri(client1, "http://localhost:8081/hello");
+  }
+
+  @GetMapping(value = { "/client-2/resource-server-1" })
+  @ResponseBody
+  public String client2AccessResourceServer1(
+          @RegisteredOAuth2AuthorizedClient("client-2") OAuth2AuthorizedClient client2) {
+    return canVisitUri(client2, "http://localhost:8081/hello");
+  }
+
   @GetMapping(value = { "/client-1/resource-server/scope-1" })
   @ResponseBody
   public String getResourceServerForScope1(

@@ -3,28 +3,27 @@
 
 package com.azure.spring.sample.storage.resource;
 
+import com.azure.spring.autoconfigure.storage.resource.AzureStorageProtocolResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.WritableResource;
-import org.springframework.util.StreamUtils;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.charset.Charset;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * @author Warren Zhu
  */
-@RestController
-@RequestMapping("file")
+@Controller
 @ConditionalOnProperty("azure.storage.file-endpoint")
 public class FileController {
     final static Logger logger = LoggerFactory.getLogger(FileController.class);
@@ -33,21 +32,41 @@ public class FileController {
         logger.info("azure.storage.file-endpoint configured");
     }
 
-    @Value("${resource.file}")
-    private Resource azureFileResource;
+    private String fileshareName = "input-filesharename";
 
-    @GetMapping
-    public String readFileResource() throws IOException {
-        return StreamUtils.copyToString(
-            this.azureFileResource.getInputStream(),
-            Charset.defaultCharset());
+    private String filePrefix = "azure-file://"+ fileshareName +"/";
+
+    @Autowired
+    private AzureStorageProtocolResolver resolver;
+
+    @GetMapping("/file")
+    public String index() {
+        return "fileupload";
     }
 
-    @PostMapping
-    public String writeFileResource(@RequestBody String data) throws IOException {
-        try (OutputStream os = ((WritableResource) this.azureFileResource).getOutputStream()) {
-            os.write(data.getBytes());
+    @PostMapping("file/upload")
+    public String uploadToFile(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) throws IOException {
+        logger.info("get input request：/upload");
+
+        if (file.isEmpty()) {
+            redirectAttributes.addFlashAttribute("message", "upload file is empty");
+            logger.info("uploaded file is empty");
+            return "redirect:/uploadStauts";
         }
-        return "file was updated";
+
+        String name = file.getOriginalFilename();
+        Resource resource = resolver.resolve(filePrefix + name,null);
+        try (OutputStream os = ((WritableResource) resource).getOutputStream()) {
+            os.write(file.getBytes());
+        }
+        redirectAttributes.addFlashAttribute("message",
+            "upload success ： '" + file.getOriginalFilename() + "'");
+        logger.info("upload success ：" + file.getOriginalFilename());
+        return "redirect:/uploadStauts";
+    }
+
+    @GetMapping("/uploadStauts")
+    public String uploadStatus() {
+        return "uploadStauts";
     }
 }

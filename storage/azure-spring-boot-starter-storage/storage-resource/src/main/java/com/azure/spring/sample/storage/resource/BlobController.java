@@ -3,24 +3,25 @@
 
 package com.azure.spring.sample.storage.resource;
 
+import com.azure.spring.autoconfigure.storage.resource.AzureStorageProtocolResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.WritableResource;
-import org.springframework.util.StreamUtils;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.nio.charset.Charset;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * @author Warren Zhu
  */
-@RestController
-@RequestMapping("blob")
+@Controller
 @ConditionalOnProperty("azure.storage.blob-endpoint")
 public class BlobController {
 
@@ -30,21 +31,41 @@ public class BlobController {
         logger.info("azure.storage.blob-endpoint configured");
     }
 
-    @Value("${resource.blob}")
-    private Resource azureBlobResource;
+    private String containerName = "gzhcontainer";
+    private String blobPath = "/";
+    private String blobPrefix = "azure-blob://" + containerName + blobPath;
 
-    @GetMapping
-    public String readBlobResource() throws IOException {
-        return StreamUtils.copyToString(
-            this.azureBlobResource.getInputStream(),
-            Charset.defaultCharset());
+    @Autowired
+    private AzureStorageProtocolResolver resolver;
+
+    @GetMapping("/blob")
+    public String index() {
+        return "blobupload";
     }
 
-    @PostMapping
-    public String writeBlobResource(@RequestBody String data) throws IOException {
-        try (OutputStream os = ((WritableResource) this.azureBlobResource).getOutputStream()) {
-            os.write(data.getBytes());
+    @PostMapping("blob/upload")
+    public String uploadToBlob(@RequestParam("file") MultipartFile file, RedirectAttributes redirectAttributes) throws IOException {
+        logger.info("get input request：/upload");
+
+        if (file.isEmpty()) {
+            redirectAttributes.addFlashAttribute("message", "upload file is empty");
+            logger.info("uploaded file is empty");
+            return "redirect:/uploadStauts";
         }
-        return "blob was updated";
+
+        String name = file.getOriginalFilename();
+        Resource resource = resolver.resolve(blobPrefix + name,null);
+        try (OutputStream os = ((WritableResource) resource).getOutputStream()) {
+            os.write(file.getBytes());
+        }
+        redirectAttributes.addFlashAttribute("message",
+            "upload success ： '" + file.getOriginalFilename() + "'");
+        logger.info("upload success ：" + file.getOriginalFilename());
+        return "redirect:/uploadStauts";
+    }
+
+    @GetMapping("/uploadStauts")
+    public String uploadStatus() {
+        return "uploadStauts";
     }
 }

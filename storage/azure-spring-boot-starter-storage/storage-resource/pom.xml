@@ -14,22 +14,12 @@
   <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-sample-storage-resource;dependency} -->
   <name>Azure Spring Cloud Sample Storage Resource</name>
 
-  <dependencyManagement>
-    <dependencies>
-        <dependency>
-          <groupId>com.azure.spring</groupId>
-          <artifactId>azure-spring-boot-bom</artifactId>
-          <version>3.9.0</version>
-          <type>pom</type>
-          <scope>import</scope>
-        </dependency>
-    </dependencies>
-  </dependencyManagement>
 
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>
       <artifactId>azure-spring-boot-starter-storage</artifactId>
+      <version>3.10.0-beta.1</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -41,6 +31,10 @@
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-logging</artifactId>
     </dependency>
     <dependency>
@@ -48,4 +42,5 @@
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>
   </dependencies>
+
 </project>

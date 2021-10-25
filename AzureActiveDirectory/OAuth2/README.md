@@ -5,7 +5,7 @@
     * [1.1. Create sample project](#11-create-sample-project)
         + [1.1.1. Create a pom file in a new folder.](#111-create-a-pom-file-in-a-new-folder)
         + [1.1.2. Java class](#112-java-class)
-            - [1.1.2.1. ClientApplication.java](#1121-clientapplicationjava)
+            - [1.1.2.1. Create ClientApplication.java](#1121-create-clientapplicationjava)
             - [1.1.2.2. WebSecurityConfiguration.java](#1122-websecurityconfigurationjava)
             - [1.1.2.3. HomeController.java](#1123-homecontrollerjava)
         + [1.1.3. Create application.yml.](#113-create-applicationyml)
@@ -81,12 +81,32 @@
 - [8. client-access-resource-server-check-permission-by-scp-in-client-side](#8-client-access-resource-server-check-permission-by-scp-in-client-side)
     * [8.1. Create sample project](#81-create-sample-project)
         + [8.1.1. Java class](#811-java-class)
-            - [8.1.1.1. Update WebSecurityConfiguration.java](#8111-update-websecurityconfigurationjava)
-            - [8.1.1.2. Create ResourceServer1CheckPermissionByScopeController.java](#8112-create-resourceserver1checkpermissionbyscopecontrollerjava)
+            - [8.1.1.1. WebSecurityConfiguration.java](#8111-websecurityconfigurationjava)
+            - [8.1.1.2. ResourceServer1CheckPermissionByScopeController.java](#8112-resourceserver1checkpermissionbyscopecontrollerjava)
         + [8.1.2. application.yml](#812-applicationyml)
     * [8.2. Create required resources in Azure](#82-create-required-resources-in-azure)
     * [8.3. Run the application](#83-run-the-application)
     * [8.4. Homework](#84-homework)
+- [9. resource-server-check-permission-by-role](#9-resource-server-check-permission-by-role)
+    * [9.1. Update sample project](#91-update-sample-project)
+        + [9.1.1. Java class](#911-java-class)
+            - [9.1.1.1. JwtGrantedAuthoritiesConverter.java](#9111-jwtgrantedauthoritiesconverterjava)
+            - [9.1.1.2. WebSecurityConfiguration.java](#9112-websecurityconfigurationjava)
+            - [9.1.1.3. CheckPermissionByRoleController.java](#9113-checkpermissionbyrolecontrollerjava)
+        + [9.1.2. application.yml](#912-applicationyml)
+    * [9.2. Create required resources in Azure](#92-create-required-resources-in-azure)
+    * [9.3. Run the application](#93-run-the-application)
+    * [9.4. Homework](#94-homework)
+- [10. client-access-resource-server-check-permission-by-role](#10-client-access-resource-server-check-permission-by-role)
+    * [10.1. Update sample project](#101-update-sample-project)
+        + [10.1.1. Java class](#1011-java-class)
+            - [10.1.1.1. ResourceServer1Controller.java](#10111-resourceserver1controllerjava)
+        + [10.1.2. application.yml](#1012-applicationyml)
+    * [10.2. Create required resources in Azure](#102-create-required-resources-in-azure)
+        + [10.2.1. Create resource-server-1-scope-1 and resource-server-1-scope-2.](#1021-create-resource-server-1-scope-1-and-resource-server-1-scope-2)
+        + [10.2.2. Assign user-1 to resource-server-1-scope-1](#1022-assign-user-1-to-resource-server-1-scope-1)
+    * [10.3. Run the application](#103-run-the-application)
+    * [10.4. Homework](#104-homework)
 
 # Preface
 
@@ -104,7 +124,7 @@ If you have any question, please [create an issue].
 This section will demonstrate how to use Azure Active Directory user account to log in a web
 service. You can choose one of the following options to get the sample project.
 
-- Option 1: Use [01-client] project directly
+- Option 1: Use [01-client] project directly.
 - Option 2: Follow steps in [1.1. Create sample project](#11-create-sample-project) to create the
   sample project.
 
@@ -147,7 +167,7 @@ service. You can choose one of the following options to get the sample project.
 
 ### 1.1.2. Java class
 
-#### 1.1.2.1. ClientApplication.java
+#### 1.1.2.1. Create ClientApplication.java
 
 ```java
 package com.azure.sample.azure.active.directory;
@@ -184,7 +204,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurationrAdapter {
                 .and()
             .oauth2Login()
                 .and();
-        // @formatter:off
+        // @formatter:on
     }
 }
 ```
@@ -260,7 +280,7 @@ Use web browser to access `http://localhost:8080/`, the web page will redirect t
 
 # 2. client-get-user-information
 This section will demonstrate how to use get user information. You can choose one of the following options to get the sample project.
-- Option 1: Use [02-client-get-user-information] project directly
+- Option 1: Use [02-client-get-user-information] project directly.
 - Option 2: Follow steps in [2.1. Create sample project](#11-create-sample-project) to create the sample project.
 
 ## 2.1. Create sample project
@@ -426,7 +446,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurationrAdapter {
             .oauth2ResourceServer()
                 .jwt()
                 .and();
-        // @formatter:off
+        // @formatter:on
     }
 }
 ```
@@ -449,7 +469,7 @@ spring:
 No need to create new Azure resources.
 
 ## 3.3. Run the application
-Run the [03-resource-server].
+Run [03-resource-server].
 
 Use web browser to access `http://localhost:8081`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
 
@@ -464,7 +484,7 @@ Use web browser to access `http://localhost:8081`. It should return 401. Because
 # 4. client-access-resource-server
 This section will demonstrate how to access resource server in client application. You can choose one of the following options to get the sample project.
 
-- Option 1: Use [04-client-access-resource-server] project directly
+- Option 1: Use [04-client-access-resource-server] project directly.
 - Option 2: Follow steps in [4.1. Create sample project](#41-create-sample-project) to create the sample project.
 
 ## 4.1. Create sample project
@@ -616,7 +636,7 @@ The [MS docs about payload claim in access token] says that `Your API must valid
 
 This section will demonstrate how to validate audience in resource server. You can choose one of the following options to get the sample project.
 
-- Option 1: Use [05-resource-server-validate-audience] project directly
+- Option 1: Use [05-resource-server-validate-audience] project directly.
 - Option 2: Follow steps in [5.1. Create sample project](#51-create-sample-project) to create the sample project.
 
 ## 5.1. Create sample project
@@ -724,7 +744,7 @@ Use web browser to access `http://localhost:8080/client/resource-server-1/hello`
 # 6. resource-server-check-permission-by-scp
 This section will demonstrate how to check permissions in a resource server. You can get more information from [MS doc about permissions and consent in the Microsoft identity platform]. You can choose one of the following options to get the sample project.
 
- - Option 1: Use [06-resource-server-check-permission-by-scp] project directly
+ - Option 1: Use [06-resource-server-check-permission-by-scp] project directly.
  - Option 2: Follow steps in [6.1. Create sample project](#61-create-sample-project) to create the sample project.
 
 ## 6.1. Create sample project
@@ -755,7 +775,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             .oauth2ResourceServer()
                 .jwt()
                 .and();
-        // @formatter:off
+        // @formatter:on
     }
 }
 ```
@@ -794,9 +814,9 @@ No need to add no items in `application.yml`. Just replace placeholders with act
 Read [MS docs about expose an api], Add a scope named `resource-server-1.scope-2`, choose `Admins and users` for `Who can consent` option.
 
 ## 6.3. Run the application
-Run current Spring boot application. 
+Run [06-resource-server-check-permission-by-scp]. 
 
-Use web browser to access `http://localhost:8081//scope/resource-server-1-scope-1` and `http://localhost:8081//scope/resource-server-1-scope-1`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
+Use web browser to access `http://localhost:8081/scope/resource-server-1-scope-1` and `http://localhost:8081/scope/resource-server-1-scope-1`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
 
 ## 6.4. Homework
 Read the source code of `@EnableGlobalMethodSecurity` and `@PreAuthorize`.
@@ -804,7 +824,7 @@ Read the source code of `@EnableGlobalMethodSecurity` and `@PreAuthorize`.
 # 7. client-access-resource-server-check-permission-by-scp
 This section will demonstrate access [06-resource-server-check-permission-by-scp] in client application. You can choose one of the following options to get the sample project.
 
-- Option 1: Use [07-client-access-resource-server-check-permission-by-scp] project directly
+- Option 1: Use [07-client-access-resource-server-check-permission-by-scp] project directly.
 - Option 2: Follow steps in [7.1. Create sample project](#71-create-sample-project) to create the sample project.
 
 ## 7.1. Create sample project
@@ -893,15 +913,15 @@ In `application.yml`, `spring.security.oauth2.registration.client-1.scope` only 
 # 8. client-access-resource-server-check-permission-by-scp-in-client-side
 In [07-client-access-resource-server-check-permission-by-scp], we check the permission by scp in resource server. Can we check the permission in client side? The answer is yes. This section will demonstrate how to achieve this. You can choose one of the following options to get the sample project.
 
-- Option 1: Use [08-client-access-resource-server-check-permission-by-scp-in-client-side] project directly
-- Option 2: Follow steps in [8.1. Create sample project](#71-create-sample-project) to create the sample project.
+- Option 1: Use [08-client-access-resource-server-check-permission-by-scp-in-client-side] project directly.
+- Option 2: Follow steps in [8.1. Create sample project](#81-create-sample-project) to create the sample project.
 
 ## 8.1. Create sample project
 This project is build on top of [07-client-access-resource-server-check-permission-by-scp], The following steps will change [07-client-access-resource-server-check-permission-by-scp] into [08-client-access-resource-server-check-permission-by-scp-in-client-side].
 
 ### 8.1.1. Java class
 
-#### 8.1.1.1. Update WebSecurityConfiguration.java
+#### 8.1.1.1. WebSecurityConfiguration.java
 Add `@EnableGlobalMethodSecurity(prePostEnabled = true)` in WebSecurityConfiguration.java.
 ```java
 package com.azure.sample.azure.active.directory.configuration;
@@ -923,12 +943,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
             .oauth2Login()
                 .and();
-        // @formatter:off
+        // @formatter:on
     }
 }
 ```
 
-#### 8.1.1.2. Create ResourceServer1CheckPermissionByScopeController.java
+#### 8.1.1.2. ResourceServer1CheckPermissionByScopeController.java
 Create new java class: ResourceServer1CheckPermissionByScopeController.java. Replace placeholders with actual value.
 ```java
 package com.azure.sample.azure.active.directory.controller;
@@ -987,7 +1007,7 @@ No need to create new Azure resources.
 - Run [07-client-access-resource-server-check-permission-by-scp]
 - Run [08-client-access-resource-server-check-permission-by-scp-in-client-side]
 
-Use web browser to access `http://localhost:8080/check-permission/client/resource-server-1/scope/resource-server-1-scope-1`. It should return `Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1`, which means we do not have authority access `ResourceServer1CheckPermissionByScopeController#resourceServer1Scope1`. And client-1 can access resource-server-1's `/scope/resource-server-1-scope-1` endpoint.
+Use web browser to access `http://localhost:8080/check-permission/client/resource-server-1/scope/resource-server-1-scope-1`. It should return `Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1`, which means we have authority access `ResourceServer1CheckPermissionByScopeController#resourceServer1Scope1`. And client-1 can access resource-server-1's `/scope/resource-server-1-scope-1` endpoint.
 
 Use web browser to access `http://localhost:8080/check-permission/client/resource-server-1/scope/resource-server-1-scope-2`. It should return `403` error, which means we do not have authority access `ResourceServer1CheckPermissionByScopeController#resourceServer1Scope2`.
 
@@ -996,8 +1016,294 @@ In `application.yml`, `spring.security.oauth2.registration.client-1.scope` only 
 ## 8.4. Homework
  - Read the source code of `OidcUserService`, learn the progress of building `SimpleGrantedAuthority` from `scp` claim in access token.
 
+# 9. resource-server-check-permission-by-role
+In [06-resource-server-check-permission-by-scp], we check the permission by scp in resource server. This section will demonstrate how to check permission by roles in resource server.  You can choose one of the following options to get the sample project.
 
+- Option 1: Use [09-resource-server-check-permission-by-role] project directly.
+- Option 2: Follow steps in [9.1. Create sample project](#91-update-sample-project) to create the sample project.
 
+## 9.1. Update sample project
+This project is build on top of [06-resource-server-check-permission-by-scp], The following steps will change [06-resource-server-check-permission-by-scp] into [09-resource-server-check-permission-by-role].
+
+### 9.1.1. Java class
+
+#### 9.1.1.1. JwtGrantedAuthoritiesConverter.java
+Create Java class: JwtGrantedAuthoritiesConverter.java:
+```java
+package com.azure.sample.azure.active.directory.resource.server.configuration;
+
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+import org.springframework.core.convert.converter.Converter;
+import org.springframework.core.log.LogMessage;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.util.StringUtils;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+public class JwtGrantedAuthoritiesConverter implements Converter<Jwt, Collection<GrantedAuthority>> {
+
+    private final Log logger = LogFactory.getLog(getClass());
+    private final Map<String, String> claimToAuthorityPrefixMap;
+
+    public JwtGrantedAuthoritiesConverter(Map<String, String> claimToAuthorityPrefixMap) {
+        this.claimToAuthorityPrefixMap = Collections.unmodifiableMap(claimToAuthorityPrefixMap);
+    }
+
+    @Override
+    public Collection<GrantedAuthority> convert(Jwt jwt) {
+        return getAuthorityStrings(jwt, this.claimToAuthorityPrefixMap);
+    }
+
+    private Collection<GrantedAuthority> getAuthorityStrings(Jwt jwt, Map<String, String> claimToAuthorityPrefixMap) {
+        Collection<String> authorityStrings = new HashSet<>();
+        for (String claim : claimToAuthorityPrefixMap.keySet()) {
+            String authorityPrefix = claimToAuthorityPrefixMap.get(claim);
+            getClaimValues(jwt, claim).stream()
+                                      .map(claimValue -> authorityPrefix + claimValue)
+                                      .forEach(authorityStrings::add);
+        }
+        return authorityStrings.stream()
+                               .map(SimpleGrantedAuthority::new)
+                               .collect(Collectors.toSet());
+    }
+
+    private Collection<String> getClaimValues(Jwt jwt, String claimName) {
+        if (claimName == null) {
+            this.logger.trace("Returning no authorities since could not find any claims that might contain scopes");
+            return Collections.emptyList();
+        }
+        if (this.logger.isTraceEnabled()) {
+            this.logger.trace(LogMessage.format("Looking for scopes in claim %s", claimName));
+        }
+        Object claimValue = jwt.getClaim(claimName);
+        if (claimValue instanceof String) {
+            if (StringUtils.hasText((String) claimValue)) {
+                return Arrays.asList(((String) claimValue).split(" "));
+            }
+            return Collections.emptyList();
+        }
+        if (claimValue instanceof Collection) {
+            return castToCollection(claimValue);
+        }
+        return Collections.emptyList();
+    }
+
+    @SuppressWarnings("unchecked")
+    private Collection<String> castToCollection(Object object) {
+        return (Collection<String>) object;
+    }
+}
+```
+
+#### 9.1.1.2. WebSecurityConfiguration.java
+Update WebSecurityConfiguration.java:
+```java
+package com.azure.sample.azure.active.directory.resource.server.configuration;
+
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+
+import java.util.HashMap;
+import java.util.Map;
+
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        // @formatter:off
+        http.authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+            .oauth2ResourceServer()
+                .jwt()
+                    .jwtAuthenticationConverter(jwtAuthenticationConverter())
+                    .and()
+                .and();
+        // @formatter:on
+    }
+
+    private JwtAuthenticationConverter jwtAuthenticationConverter() {
+        JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
+        converter.setJwtGrantedAuthoritiesConverter(new JwtGrantedAuthoritiesConverter(claimToAuthorityPrefixMap()));
+        return converter;
+    }
+
+    private Map<String, String> claimToAuthorityPrefixMap() {
+        Map<String, String> claimToAuthorityPrefixMap = new HashMap<>();
+        claimToAuthorityPrefixMap.put("scope", "SCOPE_");
+        claimToAuthorityPrefixMap.put("scp", "SCOPE_");
+        claimToAuthorityPrefixMap.put("roles", "ROLE_");
+        return claimToAuthorityPrefixMap;
+    }
+}
+```
+
+#### 9.1.1.3. CheckPermissionByRoleController.java
+Create CheckPermissionByRoleController.java:
+```java
+package com.azure.sample.azure.active.directory.resource.server.controller;
+
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class CheckPermissionByRoleController {
+
+    @GetMapping("/role/resource-server-1-role-1")
+    @PreAuthorize("hasAuthority('ROLE_resource-server-1.role-1')")
+    public String resourceServer1Role1() {
+        return "Hi, this is resource-server-1. You can access my endpoint: /role/resource-server-1-role-1";
+    }
+
+    @GetMapping("/role/resource-server-1-role-2")
+    @PreAuthorize("hasAuthority('ROLE_resource-server-1.role-2')")
+    public String resourceServer1Role2() {
+        return "Hi, this is resource-server-1. You can access my endpoint: /role/resource-server-1-role-2";
+    }
+}
+```
+
+### 9.1.2. application.yml
+No need to add no items in `application.yml`. Just replace placeholders with actual value.
+
+## 9.2. Create required resources in Azure
+No need to create new Azure resources.
+
+## 9.3. Run the application
+Run [09-resource-server-check-permission-by-role].
+
+Use web browser to access `http://localhost:8081/role/resource-server-1-role-1` and `http://localhost:8081/role/resource-server-1-role-2`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
+
+## 9.4. Homework
+ - Read the source code of `JwtAuthenticationConverter.java`. Investigate what is `JwtAuthenticationConverter#setPrincipalClaimName` used for.
+
+# 10. client-access-resource-server-check-permission-by-role
+This section will demonstrate access [09-resource-server-check-permission-by-role] in client application. You can choose one of the following options to get the sample project.
+
+- Option 1: Use [10-client-access-resource-server-check-permission-by-role] project directly.
+- Option 2: Follow steps in [10.1. Create sample project](#101-update-sample-project) to create the sample project.
+
+## 10.1. Update sample project
+This project is build on top of [08-client-access-resource-server-check-permission-by-scp-in-client-side], The following steps will change [08-client-access-resource-server-check-permission-by-scp-in-client-side] into [10-client-access-resource-server-check-permission-by-role].
+
+### 10.1.1. Java class
+
+#### 10.1.1.1. ResourceServer1Controller.java
+```java
+package com.azure.sample.azure.active.directory.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
+
+@RestController
+public class ResourceServer1Controller {
+
+    private final WebClient webClient;
+
+    public ResourceServer1Controller (WebClient webClient) {
+        this.webClient = webClient;
+    }
+
+    @GetMapping("/client/resource-server-1/hello")
+    public String resourceServer1(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+        return webClient
+            .get()
+            .uri("http://localhost:8081/")
+            .attributes(oauth2AuthorizedClient(client1))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
+
+    @GetMapping("/client/resource-server-1/scope/resource-server-1-scope-1")
+    public String resourceServer1Scope1(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+        return webClient
+            .get()
+            .uri("http://localhost:8081/scope/resource-server-1-scope-1")
+            .attributes(oauth2AuthorizedClient(client1))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
+
+    @GetMapping("/client/resource-server-1/scope/resource-server-1-scope-2")
+    public String resourceServer1Scope2(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+        return webClient
+            .get()
+            .uri("http://localhost:8081/scope/resource-server-1-scope-2")
+            .attributes(oauth2AuthorizedClient(client1))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
+
+    @GetMapping("/client/resource-server-1/role/resource-server-1-role-1")
+    public String resourceServer1Role1(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+        return webClient
+            .get()
+            .uri("http://localhost:8081/role/resource-server-1-role-1")
+            .attributes(oauth2AuthorizedClient(client1))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
+
+    @GetMapping("/client/resource-server-1/role/resource-server-1-role-2")
+    public String resourceServer1Role2(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+        return webClient
+            .get()
+            .uri("http://localhost:8081/role/resource-server-1-role-2")
+            .attributes(oauth2AuthorizedClient(client1))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
+}
+```
+
+### 10.1.2. application.yml
+No need to add no items in `application.yml`. Just replace placeholders with actual value.
+
+## 10.2. Create required resources in Azure
+
+### 10.2.1. Create resource-server-1-scope-1 and resource-server-1-scope-2.
+Read [MS docs about declare roles for an application], create 2 roles for resource-server-1: `resource-server-1-scope-1` and `resource-server-1-scope-2`.
+
+### 10.2.2. Assign user-1 to resource-server-1-scope-1
+Read [MS docs about assign users and groups to roles], assign user-1 to `resource-server-1-scope-1`.
+
+## 10.3. Run the application
+- Run [09-resource-server-check-permission-by-role]
+- Run [10-client-access-resource-server-check-permission-by-role]
+
+Use web browser to access `http://localhost:8080/client/resource-server-1/role/resource-server-1-role-1`. It should return `Hi, this is resource-server-1. You can access my endpoint: /role/resource-server-1-role-1`, which means client-1 can access resource-server-1's `/role/resource-server-1-role-1` endpoint.
+
+Use web browser to access `http://localhost:8080/client/resource-server-1/role/resource-server-1-role-2`. It should return `500` error, which means client-1 can not access resource-server-1's `/role/resource-server-1-role-2` endpoint.
+
+We only assigned user-1 to resource-server-1-scope-1, not assign user-1 to resource-server-1-scope-2, so in access token, the `roles` claim only contains `resource-server-1-scope-1`.
+
+## 10.4. Homework
+- Investigate whether it's possible to check the `role` claim in client application instead of resource server application, just like we check `scp` claim in client application in [08-client-access-resource-server-check-permission-by-scp-in-client-side].
 
 
 
@@ -1034,3 +1340,7 @@ In `application.yml`, `spring.security.oauth2.registration.client-1.scope` only 
 [06-resource-server-check-permission-by-scp]: ./06-resource-server-check-permission-by-scp
 [07-client-access-resource-server-check-permission-by-scp]: ./07-client-access-resource-server-check-permission-by-scp
 [08-client-access-resource-server-check-permission-by-scp-in-client-side]: ./08-client-access-resource-server-check-permission-by-scp-in-client-side
+[09-resource-server-check-permission-by-role]: ./09-resource-server-check-permission-by-role
+[10-client-access-resource-server-check-permission-by-role]: ./10-client-access-resource-server-check-permission-by-role
+[MS docs about declare roles for an application]: https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#declare-roles-for-an-application
+[MS docs about assign users and groups to roles]: https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles

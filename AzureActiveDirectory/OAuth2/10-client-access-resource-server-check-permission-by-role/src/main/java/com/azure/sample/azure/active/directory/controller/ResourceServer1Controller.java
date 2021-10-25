@@ -50,4 +50,26 @@ public class ResourceServer1Controller {
             .bodyToMono(String.class)
             .block();
     }
+
+    @GetMapping("/client/resource-server-1/role/resource-server-1-role-1")
+    public String resourceServer1Role1(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+        return webClient
+            .get()
+            .uri("http://localhost:8081/role/resource-server-1-role-1")
+            .attributes(oauth2AuthorizedClient(client1))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
+
+    @GetMapping("/client/resource-server-1/role/resource-server-1-role-2")
+    public String resourceServer1Role2(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+        return webClient
+            .get()
+            .uri("http://localhost:8081/role/resource-server-1-role-2")
+            .attributes(oauth2AuthorizedClient(client1))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
 }

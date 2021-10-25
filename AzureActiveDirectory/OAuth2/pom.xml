@@ -25,6 +25,7 @@
     <module>08-client-access-resource-server-check-permission-by-scp-in-client-side</module>
     <module>09-resource-server-check-permission-by-role</module>
     <module>10-client-access-resource-server-check-permission-by-role</module>
+    <module>11-client-scopes-from-multiple-resources</module>
   </modules>
 
 </project>

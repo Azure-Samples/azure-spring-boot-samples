@@ -1304,6 +1304,7 @@ We only assigned user-1 to resource-server-1-scope-1, not assign user-1 to resou
 
 ## 10.4. Homework
 - Investigate whether it's possible to check the `role` claim in client application instead of resource server application, just like we check `scp` claim in client application in [08-client-access-resource-server-check-permission-by-scp-in-client-side].
+- Read [MS docs about claims based authorization], check other claims in resource server, like `tid`, `wids`, `groups`, etc.
 
 
 
@@ -1334,7 +1335,7 @@ We only assigned user-1 to resource-server-1-scope-1, not assign user-1 to resou
 [rfc6749#section-7]: https://datatracker.ietf.org/doc/html/rfc6749#section-7
 [MS docs about payload claim in access token]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens#payload-claims
 [Spring Security OAuth2 Resource Server]: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2resourceserver
-[MS docs about Application manifest]: https://docs.microsoft.com/en-us/azure/active-directory/develop/reference-app-manifest#accesstokenacceptedversion-attribute
+[MS docs about Application manifest]: https://docs.microsoft.com/azure/active-directory/develop/reference-app-manifest#accesstokenacceptedversion-attribute
 [05-resource-server-validate-audience]: ./05-resource-server-validate-audience
 [MS doc about permissions and consent in the Microsoft identity platform]: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent
 [06-resource-server-check-permission-by-scp]: ./06-resource-server-check-permission-by-scp
@@ -1342,5 +1343,6 @@ We only assigned user-1 to resource-server-1-scope-1, not assign user-1 to resou
 [08-client-access-resource-server-check-permission-by-scp-in-client-side]: ./08-client-access-resource-server-check-permission-by-scp-in-client-side
 [09-resource-server-check-permission-by-role]: ./09-resource-server-check-permission-by-role
 [10-client-access-resource-server-check-permission-by-role]: ./10-client-access-resource-server-check-permission-by-role
-[MS docs about declare roles for an application]: https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#declare-roles-for-an-application
-[MS docs about assign users and groups to roles]: https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles
+[MS docs about declare roles for an application]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#declare-roles-for-an-application
+[MS docs about assign users and groups to roles]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles
+[MS docs about claims based authorization]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens#claims-based-authorization

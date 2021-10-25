@@ -1,7 +1,7 @@
 # Storage account name length should be between 3 and 24 and use numbers and lower-case letters only
 # Configuration
 azure.storage:
-  account-name: blobgzh
-  account-key: hTyTuFVp1mBQvLknCJ4j0MNfnMm5lltKqMCeagh1Wbx0CozdYwCuqr0CmS/mFZgHzp1gIWewxmMxKNZ4Fiu1zg==
-  blob-endpoint: https://blobgzh.blob.core.windows.net/
+  account-name: input-your-account-name
+  account-key: input-your-secret-key
+  blob-endpoint: input-your-blob-endpoint
 

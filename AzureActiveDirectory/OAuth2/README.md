@@ -157,7 +157,7 @@ service. You can choose one of the following options to get the sample project.
     </version> <!-- {x-version-update;org.springframework.boot:spring-boot-starter-parent;external_dependency} -->
   </parent>
 
-  <groupId>com.azure.sample.azure.active.directory</groupId>
+  <groupId>com.azure.spring.sample.active.directory</groupId>
   <artifactId>01-client</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
@@ -383,7 +383,7 @@ This section will demonstrate how to use Azure Active Directory to protect a res
     <version>2.5.4</version> <!-- {x-version-update;org.springframework.boot:spring-boot-starter-parent;external_dependency} -->
   </parent>
 
-  <groupId>com.azure.sample.azure.active.directory</groupId>
+  <groupId>com.azure.spring.sample.active.directory</groupId>
   <artifactId>03-resource-server</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>

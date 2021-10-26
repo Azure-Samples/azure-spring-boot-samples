@@ -10,7 +10,7 @@
     <version>2.5.4</version> <!-- {x-version-update;org.springframework.boot:spring-boot-starter-parent;external_dependency} -->
   </parent>
 
-  <groupId>com.azure.sample.azure.active.directory</groupId>
+  <groupId>com.azure.spring.sample.active.directory</groupId>
   <artifactId>08-client-access-resource-server-check-permission-by-scp-in-client-side</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>

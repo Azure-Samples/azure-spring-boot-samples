@@ -4,4 +4,4 @@ azure.storage:
   account-name: input-your-account-name
   account-key: input-your-secret-key
   blob-endpoint: input-your-blob-endpoint
-
+  file-endpoint：input-your-file-endpoint

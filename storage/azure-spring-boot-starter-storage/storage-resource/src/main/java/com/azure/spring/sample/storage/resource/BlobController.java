@@ -3,12 +3,12 @@
 
 package com.azure.spring.sample.storage.resource;
 
-import com.azure.spring.autoconfigure.storage.resource.AzureStorageProtocolResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.WritableResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -36,7 +36,7 @@ public class BlobController {
     private String blobPrefix = "azure-blob://" + containerName + blobPath;
 
     @Autowired
-    private AzureStorageProtocolResolver resolver;
+    private ResourceLoader resourceLoader;
 
     @GetMapping("/blob")
     public String index() {
@@ -54,7 +54,7 @@ public class BlobController {
         }
 
         String name = file.getOriginalFilename();
-        Resource resource = resolver.resolve(blobPrefix + name,null);
+        Resource resource = resourceLoader.getResource(blobPrefix + name);
         try (OutputStream os = ((WritableResource) resource).getOutputStream()) {
             os.write(file.getBytes());
         }
@@ -64,8 +64,4 @@ public class BlobController {
         return "redirect:/uploadStauts";
     }
 
-    @GetMapping("/uploadStauts")
-    public String uploadStatus() {
-        return "uploadStauts";
-    }
 }

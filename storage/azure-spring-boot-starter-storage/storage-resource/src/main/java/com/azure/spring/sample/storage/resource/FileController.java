@@ -3,12 +3,12 @@
 
 package com.azure.spring.sample.storage.resource;
 
-import com.azure.spring.autoconfigure.storage.resource.AzureStorageProtocolResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.WritableResource;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -37,7 +37,7 @@ public class FileController {
     private String filePrefix = "azure-file://"+ fileshareName +"/";
 
     @Autowired
-    private AzureStorageProtocolResolver resolver;
+    private ResourceLoader resourceLoader;
 
     @GetMapping("/file")
     public String index() {
@@ -55,7 +55,7 @@ public class FileController {
         }
 
         String name = file.getOriginalFilename();
-        Resource resource = resolver.resolve(filePrefix + name,null);
+        Resource resource = resourceLoader.getResource(filePrefix + name);
         try (OutputStream os = ((WritableResource) resource).getOutputStream()) {
             os.write(file.getBytes());
         }
@@ -63,10 +63,5 @@ public class FileController {
             "upload success ： '" + file.getOriginalFilename() + "'");
         logger.info("upload success ：" + file.getOriginalFilename());
         return "redirect:/uploadStauts";
-    }
-
-    @GetMapping("/uploadStauts")
-    public String uploadStatus() {
-        return "uploadStauts";
     }
 }

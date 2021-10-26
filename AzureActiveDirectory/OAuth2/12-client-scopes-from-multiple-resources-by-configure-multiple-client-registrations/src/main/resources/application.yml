@@ -1,6 +1,6 @@
 # Please read "/azure-active-directory/README.md" to fill the placeholders in this file:
 # "<tenant-id>", "<client-1-client-id>", "<client-1-client-secret>", "<resource-server-1-client-id>",
-# "<resource-server-1-client-id>".
+# "<resource-server-2-client-id>".
 server:
   port: 8080
 spring:
@@ -17,4 +17,10 @@ spring:
             client-id: <client-1-client-id>
             client-secret: <client-1-client-secret>
             scope: openid, profile, api://<resource-server-1-client-id>/resource-server-1.scope-1, api://<resource-server-2-client-id>/resource-server-2.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            redirect-uri: http://localhost:8080/login/oauth2/code/
+          client-1-resource-server-2:
+            provider: azure-active-directory
+            client-id: <client-1-client-id>
+            client-secret: <client-1-client-secret>
+            scope: openid, profile, api://<resource-server-2-client-id>/resource-server-2.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
             redirect-uri: http://localhost:8080/login/oauth2/code/

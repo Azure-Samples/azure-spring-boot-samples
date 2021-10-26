@@ -126,6 +126,16 @@
     * [12.2. Create required resources in Azure](#122-create-required-resources-in-azure)
     * [12.3. Run the application](#123-run-the-application)
     * [12.4. Homework](#124-homework)
+- [13. resource-server-2](#13-resource-server-2)
+    * [13.1. Create sample project](#131-create-sample-project)
+        + [13.1.1. Java class](#1311-java-class)
+        + [13.1.2. application.yml](#1312-applicationyml)
+    * [13.2. Create required resources in Azure](#132-create-required-resources-in-azure)
+        + [13.2.1. Create resource-server-2-role-1 and resource-server-2-role-2.](#1321-create-resource-server-2-role-1-and-resource-server-2-role-2)
+        + [13.2.1. Assign user-1 to resource-server-2-role-1](#1321-assign-user-1-to-resource-server-2-role-1)
+    * [13.3. Run the application](#133-run-the-application)
+    * [13.4. Homework](#134-homework)
+
 
 
 

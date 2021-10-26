@@ -179,9 +179,8 @@ service. You can choose one of the following options to get the sample project.
 ### 1.1.2. Java class
 
 #### 1.1.2.1. Create ClientApplication.java
-
 ```java
-package com.azure.sample.azure.active.directory;
+package com.azure.sample.active.directory;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -196,9 +195,8 @@ public class ClientApplication {
 ```
 
 #### 1.1.2.2. WebSecurityConfiguration.java
-
 ```java
-package com.azure.sample.azure.active.directory.configuration;
+package com.azure.sample.active.directory.configuration;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -222,7 +220,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurationrAdapter {
 
 #### 1.1.2.3. HomeController.java
 ```java
-package com.azure.sample.azure.active.directory.controller;
+package com.azure.sample.active.directory.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -310,7 +308,7 @@ Add the following dependency in pom.xml:
 
 #### 2.1.2.1 UserInformationController.java
 ```java
-package com.azure.sample.azure.active.directory.controller;
+package com.azure.sample.active.directory.controller;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -406,7 +404,7 @@ This section will demonstrate how to use Azure Active Directory to protect a res
 
 #### 3.1.2.1. ResourceServerApplication.java
 ```java
-package com.azure.sample.azure.active.directory.resource.server;
+package com.azure.sample.active.directory.resource.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -422,7 +420,7 @@ public class ResourceServerApplication {
 
 #### 3.1.2.2. HomeController.java
 ```java
-package com.azure.sample.azure.active.directory.resource.server.controller;
+package com.azure.sample.active.directory.resource.server.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -439,7 +437,7 @@ public class HomeController {
 
 #### 3.1.2.3. WebSecurityConfiguration.java
 ```java
-package com.azure.sample.azure.active.directory.resource.server.configuration;
+package com.azure.sample.active.directory.resource.server.configuration;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -514,7 +512,7 @@ Add the following dependency in pom.xml:
 
 #### 4.1.2.1. WebClientConfigure.java
 ```java
-package com.azure.sample.azure.active.directory.configuration;
+package com.azure.sample.active.directory.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -543,7 +541,7 @@ public class WebClientConfigure {
 
 #### 4.1.2.2. ResourceServer1Controller.java
 ```java
-package com.azure.sample.azure.active.directory.controller;
+package com.azure.sample.active.directory.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
@@ -559,7 +557,7 @@ public class ResourceServer1Controller {
 
     private final WebClient webClient;
 
-    public ResourceServer1Controller (WebClient webClient) {
+    public ResourceServer1Controller(WebClient webClient) {
         this.webClient = webClient;
     }
 
@@ -657,7 +655,7 @@ This project is build on top of [03-resource-server]. The following steps will c
 
 #### ApplicationConfiguration.java
 ```java
-package com.azure.sample.azure.active.directory.resource.server.configuration;
+package com.azure.sample.active.directory.resource.server.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
@@ -766,7 +764,7 @@ This project is build on top of [05-resource-server-validate-audience], The foll
 #### 6.1.1.1 Update WebSecurityConfiguration.java
 Add `@EnableGlobalMethodSecurity(prePostEnabled = true)` in WebSecurityConfiguration.java.
 ```java
-package com.azure.sample.azure.active.directory.resource.server.configuration;
+package com.azure.sample.active.directory.resource.server.configuration;
 
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -793,7 +791,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 #### 6.1.1.2. CheckPermissionByScopeController
 ```java
-package com.azure.sample.azure.active.directory.resource.server.controller;
+package com.azure.sample.active.directory.resource.server.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -845,7 +843,7 @@ This project is build on top of [04-client-access-resource-server], The followin
 
 #### 7.1.1.1. ResourceServer1Controller.java
 ```java
-package com.azure.sample.azure.active.directory.controller;
+package com.azure.sample.active.directory.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
@@ -861,7 +859,7 @@ public class ResourceServer1Controller {
 
     private final WebClient webClient;
 
-    public ResourceServer1Controller (WebClient webClient) {
+    public ResourceServer1Controller(WebClient webClient) {
         this.webClient = webClient;
     }
 
@@ -935,7 +933,7 @@ This project is build on top of [07-client-access-resource-server-check-permissi
 #### 8.1.1.1. WebSecurityConfiguration.java
 Add `@EnableGlobalMethodSecurity(prePostEnabled = true)` in WebSecurityConfiguration.java.
 ```java
-package com.azure.sample.azure.active.directory.configuration;
+package com.azure.sample.active.directory.configuration;
 
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -962,7 +960,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 #### 8.1.1.2. ResourceServer1CheckPermissionByScopeController.java
 Create new java class: ResourceServer1CheckPermissionByScopeController.java. Replace placeholders with actual value.
 ```java
-package com.azure.sample.azure.active.directory.controller;
+package com.azure.sample.active.directory.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
@@ -1041,7 +1039,7 @@ This project is build on top of [06-resource-server-check-permission-by-scp], Th
 #### 9.1.1.1. JwtGrantedAuthoritiesConverter.java
 Create Java class: JwtGrantedAuthoritiesConverter.java:
 ```java
-package com.azure.sample.azure.active.directory.resource.server.configuration;
+package com.azure.sample.active.directory.resource.server.configuration;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -1117,7 +1115,7 @@ public class JwtGrantedAuthoritiesConverter implements Converter<Jwt, Collection
 #### 9.1.1.2. WebSecurityConfiguration.java
 Update WebSecurityConfiguration.java:
 ```java
-package com.azure.sample.azure.active.directory.resource.server.configuration;
+package com.azure.sample.active.directory.resource.server.configuration;
 
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -1165,7 +1163,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 #### 9.1.1.3. CheckPermissionByRoleController.java
 Create CheckPermissionByRoleController.java:
 ```java
-package com.azure.sample.azure.active.directory.resource.server.controller;
+package com.azure.sample.active.directory.resource.server.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -1215,7 +1213,7 @@ This project is build on top of [08-client-access-resource-server-check-permissi
 
 #### 10.1.1.1. ResourceServer1Controller.java
 ```java
-package com.azure.sample.azure.active.directory.controller;
+package com.azure.sample.active.directory.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
@@ -1231,7 +1229,7 @@ public class ResourceServer1Controller {
 
     private final WebClient webClient;
 
-    public ResourceServer1Controller (WebClient webClient) {
+    public ResourceServer1Controller(WebClient webClient) {
         this.webClient = webClient;
     }
 

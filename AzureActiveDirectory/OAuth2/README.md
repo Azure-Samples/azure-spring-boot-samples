@@ -263,19 +263,19 @@ Next step, we need to fill these placeholders in `application.yml`: `<tenant-id>
 After sample project created, we need some resources in Azure. And get some properties and replace the placeholder in `application.yml`.
 
 ### 1.2.1. Get an Azure Active Directory tenant
-Read [MS docs about get an Azure AD tenant], get an Azure Active Directory tenant. Get the tenant-id and replace the placeholder(`<tenant-id>`) in `application.yml`.
+Read [MS docs about getting an Azure AD tenant], get an Azure Active Directory tenant. Get the tenant-id and replace the placeholder(`<tenant-id>`) in `application.yml`.
 
 ### 1.2.2. Register an application
-Read [MS docs about register an application], register an application named `client-1`. Here application is an OAuth2 client. Get the client-id and replace the placeholder(`<client-1-client-id>`) in `application.yml`.
+Read [MS docs about registering an application], register an application named `client-1`. Here application is an OAuth2 client. Get the client-id and replace the placeholder(`<client-1-client-id>`) in `application.yml`.
 
 ### 1.2.3. Add a client secret
-Read [MS docs about add a client secret], add a client secret. Get the client-secret and replace the placeholder(`<client-1-client-secret>`) in `application.yml`.
+Read [MS docs about adding a client secret], add a client secret. Get the client-secret and replace the placeholder(`<client-1-client-secret>`) in `application.yml`.
 
 ### 1.2.4. Add a redirect URI
-Read [MS docs about add a redirect URI], add redirect URI: `http://localhost:8080/login/oauth2/code/`.
+Read [MS docs about adding a redirect URI], add redirect URI: `http://localhost:8080/login/oauth2/code/`.
 
 ### 1.2.5. Get user account.
-If you already have user account in this tenant, you can skip this step. Otherwise, read [MS docs about add users], create an account: `user-1@<tenant-name>.com`.
+If you already have user account in this tenant, you can skip this step. Otherwise, read [MS docs about adding users], create an account: `user-1@<tenant-name>.com`.
 
 ## 1.3. Run the application
 Run [01-client]. 
@@ -287,6 +287,7 @@ Open browser(for example: [Edge]), close all [InPrivate window], and open a new 
 ## 1.4. Homework
 1. Read [rfc6749] to learn OAuth 2.0 authorization framework
 2. Investigate why we need use [InPrivate window].
+3. Read [MS docs about Microsoft identity platform and OAuth 2.0 authorization code flow].
 
 # 2. client-get-user-information
 This section will demonstrate how to use get user information. You can choose one of the following options to get the sample project.
@@ -590,16 +591,16 @@ spring:
 ## 4.2. Create required resources in Azure.
 
 ### 4.2.1. Register an application
-Read [MS docs about register an application], register an application named `resource-server-1`. Get the client-id and replace the placeholder(`<resource-server-1-client-id>`) in `application.yml`.
+Read [MS docs about registering an application], register an application named `resource-server-1`. Get the client-id and replace the placeholder(`<resource-server-1-client-id>`) in `application.yml`.
 
 ### 4.2.2. Set accessTokenAcceptedVersion to 2
 Read [MS docs about Application manifest], set `accessTokenAcceptedVersion` to `2`.
 
 ### 4.2.3. Expose an API
-Read [MS docs about expose an api], expose a scope named `resource-server-1.scope-1`, choose `Admins and users` for `Who can consent` option.
+Read [MS docs about exposing an api], expose a scope named `resource-server-1.scope-1`, choose `Admins and users` for `Who can consent` option.
 
 ### 4.2.4. Add permissions for client-1 to access resource-server-1
-Read [MS docs about configure a client application to access a web API], add permissions for client-1 to access `resource-server-1.scope-1`.
+Read [MS docs about configuring a client application to access a web API], add permissions for client-1 to access `resource-server-1.scope-1`.
 
 ## 4.3. Run the application
  - Run [03-resource-server].
@@ -758,8 +759,8 @@ This section will demonstrate how to check permissions in a resource server. You
  - Option 2: Follow steps in [6.1. Create sample project](#61-create-sample-project) to create the sample project.
 
 ## 6.1. Create sample project
-This project is build on top of [05-resource-server-validate-audience], The following steps will change [05-resource-server-validate-audience] into [06-resource-server-check-permission-by-scp].
-0
+This project is build on top of [05-resource-server-validate-audience], the following steps will change [05-resource-server-validate-audience] into [06-resource-server-check-permission-by-scp].
+
 ### 6.1.1. Java class
 
 #### 6.1.1.1 Update WebSecurityConfiguration.java
@@ -821,7 +822,7 @@ No need to add no items in `application.yml`. Just replace placeholders with act
 ## 6.2. Create required resources in Azure
 
 ### 6.2.1. Expose an API
-Read [MS docs about expose an api], Add a scope named `resource-server-1.scope-2`, choose `Admins and users` for `Who can consent` option.
+Read [MS docs about exposing an api], Add a scope named `resource-server-1.scope-2`, choose `Admins and users` for `Who can consent` option.
 
 ## 6.3. Run the application
 Run [06-resource-server-check-permission-by-scp]. 
@@ -838,7 +839,7 @@ This section will demonstrate access [06-resource-server-check-permission-by-scp
 - Option 2: Follow steps in [7.1. Create sample project](#71-create-sample-project) to create the sample project.
 
 ## 7.1. Create sample project
-This project is build on top of [04-client-access-resource-server], The following steps will change [04-client-access-resource-server] into [07-client-access-resource-server-check-permission-by-scp].
+This project is build on top of [04-client-access-resource-server], the following steps will change [04-client-access-resource-server] into [07-client-access-resource-server-check-permission-by-scp].
 
 ### 7.1.1. Java class
 
@@ -905,7 +906,7 @@ No need to add no items in `application.yml`. Just replace placeholders with act
 ## 7.2. Create required resources in Azure
 
 ### 7.2.1. Add permissions for client-1 to access resource-server-1
-Read [MS docs about configure a client application to access a web API], add permissions for client-1 to access resource-server-1.scope-2.
+Read [MS docs about configuring a client application to access a web API], add permissions for client-1 to access resource-server-1.scope-2.
 
 ## 7.3. Run the application
  - Run [06-resource-server-check-permission-by-scp]
@@ -927,7 +928,7 @@ In [07-client-access-resource-server-check-permission-by-scp], we check the perm
 - Option 2: Follow steps in [8.1. Create sample project](#81-create-sample-project) to create the sample project.
 
 ## 8.1. Create sample project
-This project is build on top of [07-client-access-resource-server-check-permission-by-scp], The following steps will change [07-client-access-resource-server-check-permission-by-scp] into [08-client-access-resource-server-check-permission-by-scp-in-client-side].
+This project is build on top of [07-client-access-resource-server-check-permission-by-scp], the following steps will change [07-client-access-resource-server-check-permission-by-scp] into [08-client-access-resource-server-check-permission-by-scp-in-client-side].
 
 ### 8.1.1. Java class
 
@@ -1033,7 +1034,7 @@ In [06-resource-server-check-permission-by-scp], we check the permission by scp 
 - Option 2: Follow steps in [9.1. Create sample project](#91-update-sample-project) to create the sample project.
 
 ## 9.1. Update sample project
-This project is build on top of [06-resource-server-check-permission-by-scp], The following steps will change [06-resource-server-check-permission-by-scp] into [09-resource-server-check-permission-by-role].
+This project is build on top of [06-resource-server-check-permission-by-scp], the following steps will change [06-resource-server-check-permission-by-scp] into [09-resource-server-check-permission-by-role].
 
 ### 9.1.1. Java class
 
@@ -1208,7 +1209,7 @@ This section will demonstrate access [09-resource-server-check-permission-by-rol
 - Option 2: Follow steps in [10.1. Create sample project](#101-update-sample-project) to create the sample project.
 
 ## 10.1. Update sample project
-This project is build on top of [08-client-access-resource-server-check-permission-by-scp-in-client-side], The following steps will change [08-client-access-resource-server-check-permission-by-scp-in-client-side] into [10-client-access-resource-server-check-permission-by-role].
+This project is build on top of [08-client-access-resource-server-check-permission-by-scp-in-client-side], the following steps will change [08-client-access-resource-server-check-permission-by-scp-in-client-side] into [10-client-access-resource-server-check-permission-by-role].
 
 ### 10.1.1. Java class
 
@@ -1297,10 +1298,10 @@ No need to add no items in `application.yml`. Just replace placeholders with act
 ## 10.2. Create required resources in Azure
 
 ### 10.2.1. Create resource-server-1-scope-1 and resource-server-1-scope-2.
-Read [MS docs about declare roles for an application], create 2 roles for resource-server-1: `resource-server-1-scope-1` and `resource-server-1-scope-2`.
+Read [MS docs about declaring roles for an application], create 2 roles for resource-server-1: `resource-server-1-scope-1` and `resource-server-1-scope-2`.
 
 ### 10.2.2. Assign user-1 to resource-server-1-scope-1
-Read [MS docs about assign users and groups to roles], assign user-1 to `resource-server-1-scope-1`.
+Read [MS docs about assigning users and groups to roles], assign user-1 to `resource-server-1-scope-1`.
 
 ## 10.3. Run the application
 - Run [09-resource-server-check-permission-by-role]
@@ -1352,16 +1353,16 @@ spring:
 ## 11.2. Create required resources in Azure
 
 ### 11.2.1. Register an application
-Read [MS docs about register an application], register an application named `resource-server-2`. Get the client-id and replace the placeholder(`<resource-server-2-client-id>`) in `application.yml`.
+Read [MS docs about registering an application], register an application named `resource-server-2`. Get the client-id and replace the placeholder(`<resource-server-2-client-id>`) in `application.yml`.
 
 ### 11.2.2. Set accessTokenAcceptedVersion to 2
 Read [MS docs about Application manifest], set `accessTokenAcceptedVersion` to `2`.
 
 ### 11.2.3. Expose an API
-Read [MS docs about expose an api], expose 2 scopes named `resource-server-2.scope-1` and `resource-server-2.scope-2`, choose `Admins and users` for `Who can consent` option.
+Read [MS docs about exposing an api], expose 2 scopes named `resource-server-2.scope-1` and `resource-server-2.scope-2`, choose `Admins and users` for `Who can consent` option.
 
 ### 11.2.4. Add permissions for client-1 to access resource-server-2
-Read [MS docs about configure a client application to access a web API], add permissions for client-1 to access `resource-server-2.scope-1` and `resource-server-2.scope-2`.
+Read [MS docs about configuring a client application to access a web API], add permissions for client-1 to access `resource-server-2.scope-1` and `resource-server-2.scope-2`.
 
 ## 11.3. Run the application
 - Run [11-client-scopes-from-multiple-resources].
@@ -1388,11 +1389,11 @@ Next section will introduce how to solve this problem.
 [01-client]: ./01-client
 [Spring Security]: https://spring.io/projects/spring-security
 [Spring Security doc about CommonOAuth2Provider]: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2login-common-oauth2-provider
-[MS docs about get an Azure AD tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant
-[MS docs about register an application]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
-[MS docs about add a redirect URI]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri
-[MS docs about add a client secret]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-client-secret
-[MS docs about add users]: https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory
+[MS docs about getting an Azure AD tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant
+[MS docs about registering an application]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
+[MS docs about adding a redirect URI]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri
+[MS docs about adding a client secret]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-client-secret
+[MS docs about adding users]: https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory
 [Spring docs about running application]: https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.running-your-application
 [rfc6749]: https://datatracker.ietf.org/doc/html/rfc6749
 [Edge]: https://www.microsoft.com/en-us/edge?r=1
@@ -1402,8 +1403,8 @@ Next section will introduce how to solve this problem.
 [rfc6749#section-1.1]: https://datatracker.ietf.org/doc/html/rfc6749#section-1.1
 [rfc6749#section-1.2]: https://datatracker.ietf.org/doc/html/rfc6749#section-1.2
 [04-client-access-resource-server]: ./04-client-access-resource-server
-[MS docs about expose an api]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis
-[MS docs about configure a client application to access a web API]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-access-web-apis
+[MS docs about exposing an api]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis
+[MS docs about configuring a client application to access a web API]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-access-web-apis
 [MS docs about OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform]: https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols
 [MS docs about Microsoft identity platform and OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [MS docs about Microsoft identity platform access tokens]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
@@ -1419,8 +1420,8 @@ Next section will introduce how to solve this problem.
 [08-client-access-resource-server-check-permission-by-scp-in-client-side]: ./08-client-access-resource-server-check-permission-by-scp-in-client-side
 [09-resource-server-check-permission-by-role]: ./09-resource-server-check-permission-by-role
 [10-client-access-resource-server-check-permission-by-role]: ./10-client-access-resource-server-check-permission-by-role
-[MS docs about declare roles for an application]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#declare-roles-for-an-application
-[MS docs about assign users and groups to roles]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles
+[MS docs about declaring roles for an application]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#declare-roles-for-an-application
+[MS docs about assigning users and groups to roles]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles
 [MS docs about claims based authorization]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens#claims-based-authorization
 [11-client-scopes-from-multiple-resources]: ./11-client-scopes-from-multiple-resources
 [Azure Active Directory OAuth2 auth code grant]: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow

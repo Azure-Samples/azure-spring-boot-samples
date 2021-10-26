@@ -12,8 +12,8 @@
     * [1.2. Create required resources in Azure.](#12-create-required-resources-in-azure)
         + [1.2.1. Get an Azure Active Directory tenant](#121-get-an-azure-active-directory-tenant)
         + [1.2.2. Register an application](#122-register-an-application)
-        + [1.2.3. Add a redirect URI](#123-add-a-redirect-uri)
-        + [1.2.4. Add a client secret](#124-add-a-client-secret)
+        + [1.2.3. Add a client secret](#123-add-a-client-secret)
+        + [1.2.4. Add a redirect URI](#124-add-a-redirect-uri)
         + [1.2.5. Get user account.](#125-get-user-account)
     * [1.3. Run the application](#13-run-the-application)
     * [1.4. Homework](#14-homework)
@@ -270,11 +270,11 @@ Read [MS docs about get an Azure AD tenant], get an Azure Active Directory tenan
 ### 1.2.2. Register an application
 Read [MS docs about register an application], register an application named `client-1`. Here application is an OAuth2 client. Get the client-id and replace the placeholder(`<client-1-client-id>`) in `application.yml`.
 
-### 1.2.3. Add a redirect URI
-Read [MS docs about add a redirect URI], add redirect URI: `http://localhost:8080/login/oauth2/code/`.
-
-### 1.2.4. Add a client secret
+### 1.2.3. Add a client secret
 Read [MS docs about add a client secret], add a client secret. Get the client-secret and replace the placeholder(`<client-1-client-secret>`) in `application.yml`.
+
+### 1.2.4. Add a redirect URI
+Read [MS docs about add a redirect URI], add redirect URI: `http://localhost:8080/login/oauth2/code/`.
 
 ### 1.2.5. Get user account.
 If you already have user account in this tenant, you can skip this step. Otherwise, read [MS docs about add users], create an account: `user-1@<tenant-name>.com`.

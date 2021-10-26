@@ -45,10 +45,10 @@
             - [4.1.2.2. ResourceServer1Controller.java](#4122-resourceserver1controllerjava)
         + [4.1.3. application.yml](#413-applicationyml)
     * [4.2. Create required resources in Azure.](#42-create-required-resources-in-azure)
-        + [4.2.2. Register an application](#422-register-an-application)
-        + [4.2.3. Set accessTokenAcceptedVersion to 2](#423-set-accesstokenacceptedversion-to-2)
-        + [4.2.4. Expose an API](#424-expose-an-api)
-        + [4.2.5. Add permissions for client-1 to access resource-server-1](#425-add-permissions-for-client-1-to-access-resource-server-1)
+        + [4.2.1. Register an application](#421-register-an-application)
+        + [4.2.2. Set accessTokenAcceptedVersion to 2](#422-set-accesstokenacceptedversion-to-2)
+        + [4.2.3. Expose an API](#423-expose-an-api)
+        + [4.2.4. Add permissions for client-1 to access resource-server-1](#424-add-permissions-for-client-1-to-access-resource-server-1)
     * [4.3. Run the application](#43-run-the-application)
     * [4.4. Homework](#44-homework)
 - [5. resource-server-validate-audience](#5-resource-server-validate-audience)
@@ -107,6 +107,17 @@
         + [10.2.2. Assign user-1 to resource-server-1-scope-1](#1022-assign-user-1-to-resource-server-1-scope-1)
     * [10.3. Run the application](#103-run-the-application)
     * [10.4. Homework](#104-homework)
+- [11. client-scopes-from-multiple-resources](#11-client-scopes-from-multiple-resources)
+    * [11.1. Update sample project](#111-update-sample-project)
+        + [11.1.1. Java class](#1111-java-class)
+        + [11.1.2. application.yml](#1112-applicationyml)
+    * [11.2. Create required resources in Azure](#112-create-required-resources-in-azure)
+        + [11.2.1. Register an application](#1121-register-an-application)
+        + [11.2.2. Set accessTokenAcceptedVersion to 2](#1122-set-accesstokenacceptedversion-to-2)
+        + [11.2.3. Expose an API](#1123-expose-an-api)
+        + [11.2.4. Add permissions for client-1 to access resource-server-2](#1124-add-permissions-for-client-1-to-access-resource-server-2)
+    * [11.3. Run the application](#113-run-the-application)
+    * [11.4. Homework](#114-homework)
 
 # Preface
 
@@ -579,17 +590,17 @@ spring:
 
 ## 4.2. Create required resources in Azure.
 
-### 4.2.2. Register an application
+### 4.2.1. Register an application
 Read [MS docs about register an application], register an application named `resource-server-1`. Get the client-id and replace the placeholder(`<resource-server-1-client-id>`) in `application.yml`.
 
-### 4.2.3. Set accessTokenAcceptedVersion to 2
+### 4.2.2. Set accessTokenAcceptedVersion to 2
 Read [MS docs about Application manifest], set `accessTokenAcceptedVersion` to `2`.
 
-### 4.2.4. Expose an API
-Read [MS docs about expose an api], Add a scope named `resource-server-1.scope-1`, choose `Admins and users` for `Who can consent` option.
+### 4.2.3. Expose an API
+Read [MS docs about expose an api], expose a scope named `resource-server-1.scope-1`, choose `Admins and users` for `Who can consent` option.
 
-### 4.2.5. Add permissions for client-1 to access resource-server-1
-Read [MS docs about configure a client application to access a web API], add permissions for client-1 to access resource-server-1.scope-1.
+### 4.2.4. Add permissions for client-1 to access resource-server-1
+Read [MS docs about configure a client application to access a web API], add permissions for client-1 to access `resource-server-1.scope-1`.
 
 ## 4.3. Run the application
  - Run [03-resource-server].
@@ -1306,6 +1317,70 @@ We only assigned user-1 to resource-server-1-scope-1, not assign user-1 to resou
 - Investigate whether it's possible to check the `role` claim in client application instead of resource server application, just like we check `scp` claim in client application in [08-client-access-resource-server-check-permission-by-scp-in-client-side].
 - Read [MS docs about claims based authorization], check other claims in resource server, like `tid`, `wids`, `groups`, etc.
 
+# 11. client-scopes-from-multiple-resources
+In previous samples, `spring.security.oauth2.registration.client-1.scope` configured scopes all from same resource. What if these scopes from multiple resources? This section will demonstrate this scenario.
+
+## 11.1. Update sample project
+
+### 11.1.1. Java class
+No need to create new Java classes.
+
+### 11.1.2. application.yml
+Add new item for `spring.security.oauth2.registration.client-1.scope`:
+```yaml
+# Please read "/azure-active-directory/README.md" to fill the placeholders in this file:
+# "<tenant-id>", "<client-1-client-id>", "<client-1-client-secret>", "<resource-server-1-client-id>",
+# "<resource-server-1-client-id>".
+server:
+  port: 8080
+spring:
+  security:
+    oauth2:
+      client:
+        provider: # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2login-common-oauth2-provider
+          azure-active-directory:
+            issuer-uri: https://login.microsoftonline.com/<tenant-id>/v2.0 # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#webflux-oauth2-login-openid-provider-configuration
+            user-name-attribute: name
+        registration:
+          client-1:
+            provider: azure-active-directory
+            client-id: <client-1-client-id>
+            client-secret: <client-1-client-secret>
+            scope: openid, profile, api://<resource-server-1-client-id>/resource-server-1.scope-1, api://<resource-server-2-client-id>/resource-server-2.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            redirect-uri: http://localhost:8080/login/oauth2/code/
+```
+
+## 11.2. Create required resources in Azure
+
+### 11.2.1. Register an application
+Read [MS docs about register an application], register an application named `resource-server-2`. Get the client-id and replace the placeholder(`<resource-server-2-client-id>`) in `application.yml`.
+
+### 11.2.2. Set accessTokenAcceptedVersion to 2
+Read [MS docs about Application manifest], set `accessTokenAcceptedVersion` to `2`.
+
+### 11.2.3. Expose an API
+Read [MS docs about expose an api], expose 2 scopes named `resource-server-2.scope-1` and `resource-server-2.scope-2`, choose `Admins and users` for `Who can consent` option.
+
+### 11.2.4. Add permissions for client-1 to access resource-server-2
+Read [MS docs about configure a client application to access a web API], add permissions for client-1 to access `resource-server-2.scope-1` and `resource-server-2.scope-2`.
+
+## 11.3. Run the application
+- Run [11-client-scopes-from-multiple-resources].
+
+Use web browser to access `http://localhost:8080/`, the web page will redirect to Azure Active Directory login page. Input username and password of `user-1@<tenant-name>.com`, then you can get the error response: `[invalid_request] AADSTS28003: Provided value for the input parameter scope cannot be empty when requesting an access token using the provided authorization code. Please specify a valid scope. Trace ID: <UUID> Correlation ID: <UUID> Timestamp: <Timestamp>`.
+
+Here is the root reason:
+ - In [Azure Active Directory OAuth2 auth code grant]:
+   - When request for an authorization code, `scope` is required and can cover multiple resources.
+   - When request for an access token, `scope` is optional. But when authorization code contains permissions from multiple resources, `scope` is required and the scopes must all be from a single source. Scopes must all from a single source because Azure Active Directory's access token can only have one audience. Please refer to [azure-docs#82875] to get more information.
+
+Next section will introduce how to solve this problem.
+
+## 11.4. Homework
+ - Read the source of `DefaultAuthorizationCodeTokenResponseClient.java`. Investigate where it can be used and when will it be executed.
+
+
+
 
 
 
@@ -1346,3 +1421,7 @@ We only assigned user-1 to resource-server-1-scope-1, not assign user-1 to resou
 [MS docs about declare roles for an application]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#declare-roles-for-an-application
 [MS docs about assign users and groups to roles]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles
 [MS docs about claims based authorization]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens#claims-based-authorization
+[11-client-scopes-from-multiple-resources]: ./11-client-scopes-from-multiple-resources
+[Azure Active Directory OAuth2 auth code grant]: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow
+[azure-docs#82875]: https://github.com/MicrosoftDocs/azure-docs/issues/82875
+

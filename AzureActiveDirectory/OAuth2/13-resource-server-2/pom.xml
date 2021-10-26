@@ -12,7 +12,7 @@
   </parent>
 
   <groupId>com.azure.spring.sample.active.directory</groupId>
-  <artifactId>10-client-access-resource-server-check-permission-by-role</artifactId>
+  <artifactId>13-resource-server-2</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
@@ -23,15 +23,7 @@
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-webflux</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-oauth2-client</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.fasterxml.jackson.datatype</groupId>
-      <artifactId>jackson-datatype-jsr310</artifactId>
+      <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
     </dependency>
   </dependencies>
 

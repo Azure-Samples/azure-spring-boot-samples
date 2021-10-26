@@ -88,7 +88,7 @@
     * [8.3. Run the application](#83-run-the-application)
     * [8.4. Homework](#84-homework)
 - [9. resource-server-check-permission-by-role](#9-resource-server-check-permission-by-role)
-    * [9.1. Update sample project](#91-update-sample-project)
+    * [9.1. Create sample project](#91-create-sample-project)
         + [9.1.1. Java class](#911-java-class)
             - [9.1.1.1. JwtGrantedAuthoritiesConverter.java](#9111-jwtgrantedauthoritiesconverterjava)
             - [9.1.1.2. WebSecurityConfiguration.java](#9112-websecurityconfigurationjava)
@@ -100,7 +100,7 @@
     * [9.3. Run the application](#93-run-the-application)
     * [9.4. Homework](#94-homework)
 - [10. client-access-resource-server-check-permission-by-role](#10-client-access-resource-server-check-permission-by-role)
-    * [10.1. Update sample project](#101-update-sample-project)
+    * [10.1. Create sample project](#101-create-sample-project)
         + [10.1.1. Java class](#1011-java-class)
             - [10.1.1.1. ResourceServer1Controller.java](#10111-resourceserver1controllerjava)
         + [10.1.2. application.yml](#1012-applicationyml)
@@ -108,7 +108,7 @@
     * [10.3. Run the application](#103-run-the-application)
     * [10.4. Homework](#104-homework)
 - [11. client-not-support-scopes-from-multiple-resources-in-one-client-registration](#11-client-not-support-scopes-from-multiple-resources-in-one-client-registration)
-    * [11.1. Update sample project](#111-update-sample-project)
+    * [11.1. Create sample project](#111-create-sample-project)
         + [11.1.1. Java class](#1111-java-class)
         + [11.1.2. application.yml](#1112-applicationyml)
     * [11.2. Create required resources in Azure](#112-create-required-resources-in-azure)
@@ -119,7 +119,7 @@
     * [11.3. Run the application](#113-run-the-application)
     * [11.4. Homework](#114-homework)
 - [12. client-supports-scopes-from-multiple-resources-by-multiple-client-registrations](#12-client-supports-scopes-from-multiple-resources-by-multiple-client-registrations)
-    * [12.1. Update sample project](#121-update-sample-project)
+    * [12.1. Create sample project](#121-create-sample-project)
         + [12.1.1. Java class](#1211-java-class)
             - [12.1.1.2. ResourceServer2Controller.java](#12112-resourceserver2controllerjava)
         + [12.1.2. application.yml](#1212-applicationyml)
@@ -166,6 +166,7 @@ service. You can choose one of the following options to get the sample project.
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.5.4
     </version> <!-- {x-version-update;org.springframework.boot:spring-boot-starter-parent;external_dependency} -->
+    <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
   <groupId>com.azure.spring.sample.active.directory</groupId>
@@ -388,6 +389,7 @@ This section will demonstrate how to use Azure Active Directory to protect a res
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.5.4</version> <!-- {x-version-update;org.springframework.boot:spring-boot-starter-parent;external_dependency} -->
+    <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
   <groupId>com.azure.spring.sample.active.directory</groupId>
@@ -1030,9 +1032,9 @@ In `application.yml`, `spring.security.oauth2.registration.client-1.scope` only 
 In [06-resource-server-check-permission-by-scp], we check the permission by scp in resource server. This section will demonstrate how to check permission by roles in resource server.  You can choose one of the following options to get the sample project.
 
 - Option 1: Use [09-resource-server-check-permission-by-role] project directly.
-- Option 2: Follow steps in [9.1. Create sample project](#91-update-sample-project) to create the sample project.
+- Option 2: Follow steps in [9.1. Create sample project](#91-create-sample-project) to create the sample project.
 
-## 9.1. Update sample project
+## 9.1. Create sample project
 This project is build on top of [06-resource-server-check-permission-by-scp], the following steps will change [06-resource-server-check-permission-by-scp] into [09-resource-server-check-permission-by-role].
 
 ### 9.1.1. Java class
@@ -1209,9 +1211,9 @@ Read [MS docs about assigning users and groups to roles], assign user-1 to `reso
 This section will demonstrate access [09-resource-server-check-permission-by-role] in client application. You can choose one of the following options to get the sample project.
 
 - Option 1: Use [10-client-access-resource-server-check-permission-by-role] project directly.
-- Option 2: Follow steps in [10.1. Create sample project](#101-update-sample-project) to create the sample project.
+- Option 2: Follow steps in [10.1. Create sample project](#101-create-sample-project) to create the sample project.
 
-## 10.1. Update sample project
+## 10.1. Create sample project
 This project is build on top of [08-client-access-resource-server-check-permission-by-scp-in-client-side], the following steps will change [08-client-access-resource-server-check-permission-by-scp-in-client-side] into [10-client-access-resource-server-check-permission-by-role].
 
 ### 10.1.1. Java class
@@ -1317,9 +1319,9 @@ We only assigned user-1 to resource-server-1-scope-1, not assign user-1 to resou
 In previous samples, `spring.security.oauth2.registration.client-1.scope` configured scopes all from same resource. What if these scopes from multiple resources? This section will demonstrate this scenario.You can choose one of the following options to get the sample project.
 
 - Option 1: Use [11-client-not-support-scopes-from-multiple-resources-in-one-client-registration] project directly.
-- Option 2: Follow steps in [11.1. Create sample project](#111-update-sample-project) to create the sample project.
+- Option 2: Follow steps in [11.1. Create sample project](#111-create-sample-project) to create the sample project.
 
-## 11.1. Update sample project
+## 11.1. Create sample project
 This project is build on top of [10-client-access-resource-server-check-permission-by-role], the following steps will change [10-client-access-resource-server-check-permission-by-role] into [11-client-not-support-scopes-from-multiple-resources-in-one-client-registration].
 
 ### 11.1.1. Java class
@@ -1382,9 +1384,9 @@ Next section will introduce how to solve this problem.
 This section will solve the problem introduced in previous section by configuring multiple client registration. You can choose one of the following options to get the sample project.
 
 - Option 1: Use [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations] project directly.
-- Option 2: Follow steps in [12.1. Create sample project](#121-update-sample-project) to create the sample project.
+- Option 2: Follow steps in [12.1. Create sample project](#121-create-sample-project) to create the sample project.
 
-## 12.1. Update sample project
+## 12.1. Create sample project
 This project is build on top of [11-client-not-support-scopes-from-multiple-resources-in-one-client-registration], the following steps will change [11-client-not-support-scopes-from-multiple-resources-in-one-client-registration] into [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations].
 
 ### 12.1.1. Java class
@@ -1469,6 +1471,37 @@ No need to create new Azure resources.
 ## 12.4. Homework
  - `spring.security.oauth2.client.registration.client-1.client-name`. This property is new added in this section. Investigate why we need this property.
 
+# 13. resource-server-2
+This section will demonstrate how to access multiple resource servers in one client application. First, we should create a new resource server application. You can choose one of the following options to get another resource server application.
+
+- Option 1: Use [13-resource-server-2] project directly.
+- Option 2: Follow steps in [13.1. Create sample project](#121-create-sample-project) to create another resource server.
+
+## 13.1. Create sample project
+This project is build on top of [09-resource-server-check-permission-by-role], the following steps will change [09-resource-server-check-permission-by-role] into [13-resource-server-2].
+
+### 13.1.1. Java class
+- Replace all `resource-server-1` into `resource-server-2`.
+
+### 13.1.2. application.yml
+- Replace all `resource-server-1` into `resource-server-2`.
+- Change `server.port` to `8082`.
+
+## 13.2. Create required resources in Azure
+resource-server-2's client-id & client-secret & scopes have  already created in [11.2. Create required resources in Azure](#112-create-required-resources-in-azure). Here we just need to create roles and assign user to these roles.
+
+### 13.2.1. Create resource-server-2-role-1 and resource-server-2-role-2.
+Read [MS docs about declaring roles for an application], create 2 roles for resource-server-2: `resource-server-2-role-1` and `resource-server-2-role-1`.
+
+### 13.2.1. Assign user-1 to resource-server-2-role-1
+Read [MS docs about assigning users and groups to roles], assign user-1 to `resource-server-2-role-1`.
+
+## 13.3. Run the application
+
+## 13.4. Homework
+
+
+
 
 
 [create an issue]: https://github.com/Azure-Samples/azure-spring-boot-samples/issues/new
@@ -1514,4 +1547,5 @@ No need to create new Azure resources.
 [Azure Active Directory OAuth2 auth code grant]: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [azure-docs#82875]: https://github.com/MicrosoftDocs/azure-docs/issues/82875
 [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations]: ./12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations
+[13-resource-server-2]: ./13-resource-server-2 
 

@@ -26,6 +26,7 @@
     <module>09-resource-server-check-permission-by-role</module>
     <module>10-client-access-resource-server-check-permission-by-role</module>
     <module>11-client-scopes-from-multiple-resources</module>
+    <module>12-client-scopes-from-multiple-resources-by-configure-multiple-client-registrations</module>
   </modules>
 
 </project>

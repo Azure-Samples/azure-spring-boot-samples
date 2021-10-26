@@ -95,6 +95,8 @@
             - [9.1.1.3. CheckPermissionByRoleController.java](#9113-checkpermissionbyrolecontrollerjava)
         + [9.1.2. application.yml](#912-applicationyml)
     * [9.2. Create required resources in Azure](#92-create-required-resources-in-azure)
+        + [9.2.1. Create resource-server-1-role-1 and resource-server-1-role-2.](#921-create-resource-server-1-role-1-and-resource-server-1-role-2)
+        + [9.2.1. Assign user-1 to resource-server-1-role-1](#921-assign-user-1-to-resource-server-1-role-1)
     * [9.3. Run the application](#93-run-the-application)
     * [9.4. Homework](#94-homework)
 - [10. client-access-resource-server-check-permission-by-role](#10-client-access-resource-server-check-permission-by-role)
@@ -103,8 +105,6 @@
             - [10.1.1.1. ResourceServer1Controller.java](#10111-resourceserver1controllerjava)
         + [10.1.2. application.yml](#1012-applicationyml)
     * [10.2. Create required resources in Azure](#102-create-required-resources-in-azure)
-        + [10.2.1. Create resource-server-1-scope-1 and resource-server-1-scope-2.](#1021-create-resource-server-1-scope-1-and-resource-server-1-scope-2)
-        + [10.2.2. Assign user-1 to resource-server-1-scope-1](#1022-assign-user-1-to-resource-server-1-scope-1)
     * [10.3. Run the application](#103-run-the-application)
     * [10.4. Homework](#104-homework)
 - [11. client-scopes-from-multiple-resources](#11-client-scopes-from-multiple-resources)
@@ -118,6 +118,16 @@
         + [11.2.4. Add permissions for client-1 to access resource-server-2](#1124-add-permissions-for-client-1-to-access-resource-server-2)
     * [11.3. Run the application](#113-run-the-application)
     * [11.4. Homework](#114-homework)
+- [12. client-scopes-from-multiple-resource-servers-by-configuring-multiple-client-registrations](#12-client-scopes-from-multiple-resource-servers-by-configuring-multiple-client-registrations)
+    * [12.1. Update sample project](#121-update-sample-project)
+        + [12.1.1. Java class](#1211-java-class)
+            - [12.1.1.2. ResourceServer2Controller.java](#12112-resourceserver2controllerjava)
+        + [12.1.2. application.yml](#1212-applicationyml)
+    * [12.2. Create required resources in Azure](#122-create-required-resources-in-azure)
+    * [12.3. Run the application](#123-run-the-application)
+    * [12.4. Homework](#124-homework)
+
+
 
 # Preface
 
@@ -278,11 +288,8 @@ Read [MS docs about adding a redirect URI], add redirect URI: `http://localhost:
 If you already have user account in this tenant, you can skip this step. Otherwise, read [MS docs about adding users], create an account: `user-1@<tenant-name>.com`.
 
 ## 1.3. Run the application
-Run [01-client]. 
-
-If you don't know how to run Spring Boot application, please refer to [Spring docs about running application].
-
-Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/`, the web page will redirect to Azure Active Directory login page. Input username and password of `user-1@<tenant-name>.com`, then you can log in successfully and see "Hello, this is OAuth2 client application." in the web page.
+- Run [01-client]. If you don't know how to run Spring Boot application, please refer to [Spring docs about running application].
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/`, the web page will redirect to Azure Active Directory login page. Input username and password of `user-1@<tenant-name>.com`, then you can log in successfully and see "Hello, this is OAuth2 client application." in the web page.
 
 ## 1.4. Homework
 1. Read [rfc6749] to learn OAuth 2.0 authorization framework
@@ -355,9 +362,8 @@ spring:
 No need to create new Azure resources.
 
 ## 2.3. Run the application
-Run [02-client-get-user-information].
-
-Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/user-information`. After log in, you can see a json response which will display the user information.
+- Run [02-client-get-user-information].
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/user-information`. After log in, you can see a json response which will display the user information.
 
 ## 2.4. Homework
 1. Investigate what is the property (`spring.security.oauth2.client.provider.azure-active-directory.user-name-attribute`) is used for.
@@ -480,9 +486,8 @@ spring:
 No need to create new Azure resources.
 
 ## 3.3. Run the application
-Run [03-resource-server].
-
-Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8081`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
+- Run [03-resource-server].
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8081`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
 
 ## 3.4. Homework
 
@@ -603,10 +608,9 @@ Read [MS docs about exposing an api], expose a scope named `resource-server-1.sc
 Read [MS docs about configuring a client application to access a web API], add permissions for client-1 to access `resource-server-1.scope-1`.
 
 ## 4.3. Run the application
- - Run [03-resource-server].
- - Run [04-client-access-resource-server].
-
-Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/hello`. After log in, it should return `Hello, this is resource server 1.`, which means client-1 access resource-server-1 successfully.
+- Run [03-resource-server].
+- Run [04-client-access-resource-server].
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/hello`. After log in, it should return `Hello, this is resource server 1.`, which means client-1 access resource-server-1 successfully.
 
 ## 4.4. Homework
 1. Read the [MS docs about OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform], learn the relationship of OAuth2 and OpenId Connect.
@@ -744,9 +748,8 @@ No need to create new Azure resources.
 
 ## 5.3. Run the application
 - Run [05-resource-server-validate-audience].
-- Run [04-client-access-resource-server].
-
-Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/hello`. After log in, it should return `Hello, this is resource server 1.`, which means client-1 access resource-server-1 successfully.
+- Run [04-client-access-resource-server]. 
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/hello`. After log in, it should return `Hello, this is resource server 1.`, which means client-1 access resource-server-1 successfully.
 
 ## 5.4. Homework
 1. In [05-resource-server-validate-audience]'s `application.yml`, set audience to a wrong value, run the application again, check what will happen.
@@ -825,9 +828,8 @@ No need to add no items in `application.yml`. Just replace placeholders with act
 Read [MS docs about exposing an api], Add a scope named `resource-server-1.scope-2`, choose `Admins and users` for `Who can consent` option.
 
 ## 6.3. Run the application
-Run [06-resource-server-check-permission-by-scp]. 
-
-Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8081/scope/resource-server-1-scope-1` and `http://localhost:8081/scope/resource-server-1-scope-1`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
+- Run [06-resource-server-check-permission-by-scp].
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8081/scope/resource-server-1-scope-1` and `http://localhost:8081/scope/resource-server-1-scope-1`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
 
 ## 6.4. Homework
 Read the source code of `@EnableGlobalMethodSecurity` and `@PreAuthorize`.
@@ -909,12 +911,10 @@ No need to add no items in `application.yml`. Just replace placeholders with act
 Read [MS docs about configuring a client application to access a web API], add permissions for client-1 to access resource-server-1.scope-2.
 
 ## 7.3. Run the application
- - Run [06-resource-server-check-permission-by-scp]
- - Run [07-client-access-resource-server-check-permission-by-scp]
-
-Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/scope/resource-server-1-scope-1`. After log in, it should return `Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1`, which means client-1 can access resource-server-1's `/scope/resource-server-1-scope-1` endpoint.
-
-Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/scope/resource-server-1-scope-2`. After log in, it should return `500` error, which means client-1 can not access resource-server-1's `/scope/resource-server-1-scope-2` endpoint. 
+- Run [06-resource-server-check-permission-by-scp].
+- Run [07-client-access-resource-server-check-permission-by-scp].
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/scope/resource-server-1-scope-1`. After log in, it should return `Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1`, which means client-1 can access resource-server-1's `/scope/resource-server-1-scope-1` endpoint.
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/scope/resource-server-1-scope-2`. After log in, it should return `500` error, which means client-1 can not access resource-server-1's `/scope/resource-server-1-scope-2` endpoint. 
 
 In `application.yml`, `spring.security.oauth2.registration.client-1.scope` only contains `api://<resource-server-1-client-id>/resource-server-1.scope-1`, not contains `api://<resource-server-1-client-id>/resource-server-1.scope-2`, so in access token, the `scp` claim only contains `api://<resource-server-1-client-id>/resource-server-1.scope-1`.
 
@@ -1015,12 +1015,10 @@ No need to add no items in `application.yml`. Just replace placeholders with act
 No need to create new Azure resources.
 
 ## 8.3. Run the application
-- Run [07-client-access-resource-server-check-permission-by-scp]
-- Run [08-client-access-resource-server-check-permission-by-scp-in-client-side]
-
-Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/check-permission/client/resource-server-1/scope/resource-server-1-scope-1`. After log in, it should return `Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1`, which means we have authority access `ResourceServer1CheckPermissionByScopeController#resourceServer1Scope1`. And client-1 can access resource-server-1's `/scope/resource-server-1-scope-1` endpoint.
-
-Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/check-permission/client/resource-server-1/scope/resource-server-1-scope-2`. After log in, it should return `403` error, which means we do not have authority access `ResourceServer1CheckPermissionByScopeController#resourceServer1Scope2`.
+- Run [07-client-access-resource-server-check-permission-by-scp].
+- Run [08-client-access-resource-server-check-permission-by-scp-in-client-side].
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/check-permission/client/resource-server-1/scope/resource-server-1-scope-1`. After log in, it should return `Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1`, which means we have authority access `ResourceServer1CheckPermissionByScopeController#resourceServer1Scope1`. And client-1 can access resource-server-1's `/scope/resource-server-1-scope-1` endpoint.
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/check-permission/client/resource-server-1/scope/resource-server-1-scope-2`. After log in, it should return `403` error, which means we do not have authority access `ResourceServer1CheckPermissionByScopeController#resourceServer1Scope2`.
 
 In `application.yml`, `spring.security.oauth2.registration.client-1.scope` only contains `api://<resource-server-1-client-id>/resource-server-1.scope-1`, not contains `api://<resource-server-1-client-id>/resource-server-1.scope-2`, so in access token, the `scp` claim only contains `api://<resource-server-1-client-id>/resource-server-1.scope-1`.
 
@@ -1192,12 +1190,16 @@ public class CheckPermissionByRoleController {
 No need to add no items in `application.yml`. Just replace placeholders with actual value.
 
 ## 9.2. Create required resources in Azure
-No need to create new Azure resources.
+
+### 9.2.1. Create resource-server-1-role-1 and resource-server-1-role-2.
+Read [MS docs about declaring roles for an application], create 2 roles for resource-server-1: `resource-server-1-role-1` and `resource-server-1-role-1`.
+
+### 9.2.1. Assign user-1 to resource-server-1-role-1
+Read [MS docs about assigning users and groups to roles], assign user-1 to `resource-server-1-role-1`.
 
 ## 9.3. Run the application
-Run [09-resource-server-check-permission-by-role].
-
-Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8081/role/resource-server-1-role-1` and `http://localhost:8081/role/resource-server-1-role-2`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
+- Run [09-resource-server-check-permission-by-role].
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8081/role/resource-server-1-role-1` and `http://localhost:8081/role/resource-server-1-role-2`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
 
 ## 9.4. Homework
  - Read the source code of `JwtAuthenticationConverter.java`. Investigate what is `JwtAuthenticationConverter#setPrincipalClaimName` used for.
@@ -1296,20 +1298,13 @@ public class ResourceServer1Controller {
 No need to add no items in `application.yml`. Just replace placeholders with actual value.
 
 ## 10.2. Create required resources in Azure
-
-### 10.2.1. Create resource-server-1-scope-1 and resource-server-1-scope-2.
-Read [MS docs about declaring roles for an application], create 2 roles for resource-server-1: `resource-server-1-scope-1` and `resource-server-1-scope-2`.
-
-### 10.2.2. Assign user-1 to resource-server-1-scope-1
-Read [MS docs about assigning users and groups to roles], assign user-1 to `resource-server-1-scope-1`.
+No need to create new Azure resources.
 
 ## 10.3. Run the application
-- Run [09-resource-server-check-permission-by-role]
-- Run [10-client-access-resource-server-check-permission-by-role]
-
-Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/role/resource-server-1-role-1`. After log in, it should return `Hi, this is resource-server-1. You can access my endpoint: /role/resource-server-1-role-1`, which means client-1 can access resource-server-1's `/role/resource-server-1-role-1` endpoint.
-
-Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/role/resource-server-1-role-2`. After log in, it should return `500` error, which means client-1 can not access resource-server-1's `/role/resource-server-1-role-2` endpoint.
+- Run [09-resource-server-check-permission-by-role].
+- Run [10-client-access-resource-server-check-permission-by-role].
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/role/resource-server-1-role-1`. After log in, it should return `Hi, this is resource-server-1. You can access my endpoint: /role/resource-server-1-role-1`, which means client-1 can access resource-server-1's `/role/resource-server-1-role-1` endpoint.
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/role/resource-server-1-role-2`. After log in, it should return `500` error, which means client-1 can not access resource-server-1's `/role/resource-server-1-role-2` endpoint.
 
 We only assigned user-1 to resource-server-1-scope-1, not assign user-1 to resource-server-1-scope-2, so in access token, the `roles` claim only contains `resource-server-1-scope-1`.
 
@@ -1318,9 +1313,13 @@ We only assigned user-1 to resource-server-1-scope-1, not assign user-1 to resou
 - Read [MS docs about claims based authorization], check other claims in resource server, like `tid`, `wids`, `groups`, etc.
 
 # 11. client-scopes-from-multiple-resources
-In previous samples, `spring.security.oauth2.registration.client-1.scope` configured scopes all from same resource. What if these scopes from multiple resources? This section will demonstrate this scenario.
+In previous samples, `spring.security.oauth2.registration.client-1.scope` configured scopes all from same resource. What if these scopes from multiple resources? This section will demonstrate this scenario.You can choose one of the following options to get the sample project.
+
+- Option 1: Use [11-client-scopes-from-multiple-resources] project directly.
+- Option 2: Follow steps in [11.1. Create sample project](#111-update-sample-project) to create the sample project.
 
 ## 11.1. Update sample project
+This project is build on top of [10-client-access-resource-server-check-permission-by-role], the following steps will change [10-client-access-resource-server-check-permission-by-role] into [11-client-scopes-from-multiple-resources].
 
 ### 11.1.1. Java class
 No need to create new Java classes.
@@ -1366,8 +1365,7 @@ Read [MS docs about configuring a client application to access a web API], add p
 
 ## 11.3. Run the application
 - Run [11-client-scopes-from-multiple-resources].
-
-Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/`, the web page will redirect to Azure Active Directory login page. Input username and password of `user-1@<tenant-name>.com`, then you can get the error response: `[invalid_request] AADSTS28003: Provided value for the input parameter scope cannot be empty when requesting an access token using the provided authorization code. Please specify a valid scope. Trace ID: <UUID> Correlation ID: <UUID> Timestamp: <Timestamp>`.
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/`, the web page will redirect to Azure Active Directory login page. Input username and password of `user-1@<tenant-name>.com`, then you can get the error response: `[invalid_request] AADSTS28003: Provided value for the input parameter scope cannot be empty when requesting an access token using the provided authorization code. Please specify a valid scope. Trace ID: <UUID> Correlation ID: <UUID> Timestamp: <Timestamp>`.
 
 Here is the root reason:
  - In [Azure Active Directory OAuth2 auth code grant]:
@@ -1379,8 +1377,96 @@ Next section will introduce how to solve this problem.
 ## 11.4. Homework
  - Read the source of `DefaultAuthorizationCodeTokenResponseClient.java`. Investigate where it can be used and when will it be executed.
 
+# 12. client-scopes-from-multiple-resource-servers-by-configuring-multiple-client-registrations
+This section will solve the problem introduced in previous section by configuring multiple client registration. You can choose one of the following options to get the sample project.
 
+- Option 1: Use [12-client-scopes-from-multiple-resources-by-configure-multiple-client-registrations] project directly.
+- Option 2: Follow steps in [12.1. Create sample project](#121-update-sample-project) to create the sample project.
 
+## 12.1. Update sample project
+This project is build on top of [11-client-scopes-from-multiple-resources], the following steps will change [11-client-scopes-from-multiple-resources] into [12-client-scopes-from-multiple-resources-by-configure-multiple-client-registrations].
+
+### 12.1.1. Java class
+
+#### 12.1.1.2. ResourceServer2Controller.java
+Create ResourceServer2Controller.java
+```java
+package com.azure.sample.active.directory.controller;
+
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
+
+@RestController
+public class ResourceServer2Controller {
+
+    private final WebClient webClient;
+
+    public ResourceServer2Controller(WebClient webClient) {
+        this.webClient = webClient;
+    }
+
+    @GetMapping("/client/resource-server-2/hello")
+    public String resourceServer1(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-2")
+                                      OAuth2AuthorizedClient client1ResourceServer2) {
+        return webClient
+            .get()
+            .uri("http://localhost:8082/")
+            .attributes(oauth2AuthorizedClient(client1ResourceServer2))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
+}
+```
+
+### 12.1.2. application.yml
+Add another client registration in `application.yml`:
+```yaml
+# Please read "/azure-active-directory/README.md" to fill the placeholders in this file:
+# "<tenant-id>", "<client-1-client-id>", "<client-1-client-secret>", "<resource-server-1-client-id>",
+# "<resource-server-2-client-id>".
+server:
+  port: 8080
+spring:
+  security:
+    oauth2:
+      client:
+        provider: # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2login-common-oauth2-provider
+          azure-active-directory:
+            issuer-uri: https://login.microsoftonline.com/<tenant-id>/v2.0 # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#webflux-oauth2-login-openid-provider-configuration
+            user-name-attribute: name
+        registration:
+          client-1:
+            provider: azure-active-directory
+            client-name: client-1
+            client-id: <client-1-client-id>
+            client-secret: <client-1-client-secret>
+            scope: openid, profile, api://<resource-server-1-client-id>/resource-server-1.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            redirect-uri: http://localhost:8080/login/oauth2/code/
+          client-1-resource-server-2:
+            provider: azure-active-directory
+            client-name: client-1-resource-server-2
+            client-id: <client-1-client-id>
+            client-secret: <client-1-client-secret>
+            scope: openid, profile, api://<resource-server-2-client-id>/resource-server-2.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            redirect-uri: http://localhost:8080/login/oauth2/code/
+```
+
+## 12.2. Create required resources in Azure
+No need to create new Azure resources.
+
+## 12.3. Run the application
+- Run [12-client-scopes-from-multiple-resources-by-configure-multiple-client-registrations].
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/`, the web page will display the 2 client-registrations' name, click the first one: `client-1`, then it will redirect to Microsoft Identity login page. Input username and password, then it will return `Hello, this is client 1.`, which means we log in successfully.
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/`, the web page will display the 2 client-registrations' name, click the first one: `client-1-resource-server-2`, then it will redirect to Microsoft Identity login page. Input username and password, then it will return `Hello, this is client 1.`, which means we log in successfully.
+
+## 12.4. Homework
+ - `spring.security.oauth2.client.registration.client-1.client-name`. This property is new added in this section. Investigate why we need this property.
 
 
 
@@ -1426,4 +1512,5 @@ Next section will introduce how to solve this problem.
 [11-client-scopes-from-multiple-resources]: ./11-client-scopes-from-multiple-resources
 [Azure Active Directory OAuth2 auth code grant]: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [azure-docs#82875]: https://github.com/MicrosoftDocs/azure-docs/issues/82875
+[12-client-scopes-from-multiple-resources-by-configure-multiple-client-registrations]: ./12-client-scopes-from-multiple-resources-by-configure-multiple-client-registrations
 

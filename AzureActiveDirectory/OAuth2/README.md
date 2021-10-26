@@ -107,7 +107,7 @@
     * [10.2. Create required resources in Azure](#102-create-required-resources-in-azure)
     * [10.3. Run the application](#103-run-the-application)
     * [10.4. Homework](#104-homework)
-- [11. client-scopes-from-multiple-resources](#11-client-scopes-from-multiple-resources)
+- [11. client-not-support-scopes-from-multiple-resources-in-one-client-registration](#11-client-not-support-scopes-from-multiple-resources-in-one-client-registration)
     * [11.1. Update sample project](#111-update-sample-project)
         + [11.1.1. Java class](#1111-java-class)
         + [11.1.2. application.yml](#1112-applicationyml)
@@ -118,7 +118,7 @@
         + [11.2.4. Add permissions for client-1 to access resource-server-2](#1124-add-permissions-for-client-1-to-access-resource-server-2)
     * [11.3. Run the application](#113-run-the-application)
     * [11.4. Homework](#114-homework)
-- [12. client-scopes-from-multiple-resource-servers-by-configuring-multiple-client-registrations](#12-client-scopes-from-multiple-resource-servers-by-configuring-multiple-client-registrations)
+- [12. client-supports-scopes-from-multiple-resources-by-multiple-client-registrations](#12-client-supports-scopes-from-multiple-resources-by-multiple-client-registrations)
     * [12.1. Update sample project](#121-update-sample-project)
         + [12.1.1. Java class](#1211-java-class)
             - [12.1.1.2. ResourceServer2Controller.java](#12112-resourceserver2controllerjava)
@@ -126,6 +126,7 @@
     * [12.2. Create required resources in Azure](#122-create-required-resources-in-azure)
     * [12.3. Run the application](#123-run-the-application)
     * [12.4. Homework](#124-homework)
+
 
 
 
@@ -1312,14 +1313,14 @@ We only assigned user-1 to resource-server-1-scope-1, not assign user-1 to resou
 - Investigate whether it's possible to check the `role` claim in client application instead of resource server application, just like we check `scp` claim in client application in [08-client-access-resource-server-check-permission-by-scp-in-client-side].
 - Read [MS docs about claims based authorization], check other claims in resource server, like `tid`, `wids`, `groups`, etc.
 
-# 11. client-scopes-from-multiple-resources
+# 11. client-not-support-scopes-from-multiple-resources-in-one-client-registration
 In previous samples, `spring.security.oauth2.registration.client-1.scope` configured scopes all from same resource. What if these scopes from multiple resources? This section will demonstrate this scenario.You can choose one of the following options to get the sample project.
 
-- Option 1: Use [11-client-scopes-from-multiple-resources] project directly.
+- Option 1: Use [11-client-not-support-scopes-from-multiple-resources-in-one-client-registration] project directly.
 - Option 2: Follow steps in [11.1. Create sample project](#111-update-sample-project) to create the sample project.
 
 ## 11.1. Update sample project
-This project is build on top of [10-client-access-resource-server-check-permission-by-role], the following steps will change [10-client-access-resource-server-check-permission-by-role] into [11-client-scopes-from-multiple-resources].
+This project is build on top of [10-client-access-resource-server-check-permission-by-role], the following steps will change [10-client-access-resource-server-check-permission-by-role] into [11-client-not-support-scopes-from-multiple-resources-in-one-client-registration].
 
 ### 11.1.1. Java class
 No need to create new Java classes.
@@ -1364,7 +1365,7 @@ Read [MS docs about exposing an api], expose 2 scopes named `resource-server-2.s
 Read [MS docs about configuring a client application to access a web API], add permissions for client-1 to access `resource-server-2.scope-1` and `resource-server-2.scope-2`.
 
 ## 11.3. Run the application
-- Run [11-client-scopes-from-multiple-resources].
+- Run [11-client-not-support-scopes-from-multiple-resources-in-one-client-registration].
 - Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/`, the web page will redirect to Azure Active Directory login page. Input username and password of `user-1@<tenant-name>.com`, then you can get the error response: `[invalid_request] AADSTS28003: Provided value for the input parameter scope cannot be empty when requesting an access token using the provided authorization code. Please specify a valid scope. Trace ID: <UUID> Correlation ID: <UUID> Timestamp: <Timestamp>`.
 
 Here is the root reason:
@@ -1377,14 +1378,14 @@ Next section will introduce how to solve this problem.
 ## 11.4. Homework
  - Read the source of `DefaultAuthorizationCodeTokenResponseClient.java`. Investigate where it can be used and when will it be executed.
 
-# 12. client-scopes-from-multiple-resource-servers-by-configuring-multiple-client-registrations
+# 12. client-supports-scopes-from-multiple-resources-by-multiple-client-registrations
 This section will solve the problem introduced in previous section by configuring multiple client registration. You can choose one of the following options to get the sample project.
 
-- Option 1: Use [12-client-scopes-from-multiple-resources-by-configure-multiple-client-registrations] project directly.
+- Option 1: Use [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations] project directly.
 - Option 2: Follow steps in [12.1. Create sample project](#121-update-sample-project) to create the sample project.
 
 ## 12.1. Update sample project
-This project is build on top of [11-client-scopes-from-multiple-resources], the following steps will change [11-client-scopes-from-multiple-resources] into [12-client-scopes-from-multiple-resources-by-configure-multiple-client-registrations].
+This project is build on top of [11-client-not-support-scopes-from-multiple-resources-in-one-client-registration], the following steps will change [11-client-not-support-scopes-from-multiple-resources-in-one-client-registration] into [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations].
 
 ### 12.1.1. Java class
 
@@ -1461,7 +1462,7 @@ spring:
 No need to create new Azure resources.
 
 ## 12.3. Run the application
-- Run [12-client-scopes-from-multiple-resources-by-configure-multiple-client-registrations].
+- Run [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations].
 - Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/`, the web page will display the 2 client-registrations' name, click the first one: `client-1`, then it will redirect to Microsoft Identity login page. Input username and password, then it will return `Hello, this is client 1.`, which means we log in successfully.
 - Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/`, the web page will display the 2 client-registrations' name, click the first one: `client-1-resource-server-2`, then it will redirect to Microsoft Identity login page. Input username and password, then it will return `Hello, this is client 1.`, which means we log in successfully.
 
@@ -1509,8 +1510,8 @@ No need to create new Azure resources.
 [MS docs about declaring roles for an application]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#declare-roles-for-an-application
 [MS docs about assigning users and groups to roles]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles
 [MS docs about claims based authorization]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens#claims-based-authorization
-[11-client-scopes-from-multiple-resources]: ./11-client-scopes-from-multiple-resources
+[11-client-not-support-scopes-from-multiple-resources-in-one-client-registration]: ./11-client-not-support-scopes-from-multiple-resources-in-one-client-registration
 [Azure Active Directory OAuth2 auth code grant]: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [azure-docs#82875]: https://github.com/MicrosoftDocs/azure-docs/issues/82875
-[12-client-scopes-from-multiple-resources-by-configure-multiple-client-registrations]: ./12-client-scopes-from-multiple-resources-by-configure-multiple-client-registrations
+[12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations]: ./12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations
 

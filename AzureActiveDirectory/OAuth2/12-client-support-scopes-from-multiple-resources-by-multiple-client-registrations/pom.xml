@@ -11,7 +11,7 @@
   </parent>
 
   <groupId>com.azure.spring.sample.active.directory</groupId>
-  <artifactId>12-client-scopes-from-multiple-resources-by-configure-multiple-client-registrations</artifactId>
+  <artifactId>12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

@@ -441,7 +441,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return "Hello, this is resource server 1.";
+        return "Hello, this is resource-server-1.";
     }
 }
 ```
@@ -613,7 +613,7 @@ Read [MS docs about configuring a client application to access a web API], add p
 ## 4.3. Run the application
 - Run [03-resource-server].
 - Run [04-client-access-resource-server].
-- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/hello`. After log in, it should return `Hello, this is resource server 1.`, which means client-1 access resource-server-1 successfully.
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/hello`. After log in, it should return `Hello, this is resource-server-1.`, which means client-1 access resource-server-1 successfully.
 
 ## 4.4. Homework
 1. Read the [MS docs about OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform], learn the relationship of OAuth2 and OpenId Connect.
@@ -752,7 +752,7 @@ No need to create new Azure resources.
 ## 5.3. Run the application
 - Run [05-resource-server-validate-audience].
 - Run [04-client-access-resource-server]. 
-- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/hello`. After log in, it should return `Hello, this is resource server 1.`, which means client-1 access resource-server-1 successfully.
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/hello`. After log in, it should return `Hello, this is resource-server-1.`, which means client-1 access resource-server-1 successfully.
 
 ## 5.4. Homework
 1. In [05-resource-server-validate-audience]'s `application.yml`, set audience to a wrong value, run the application again, check what will happen.
@@ -1497,8 +1497,17 @@ Read [MS docs about declaring roles for an application], create 2 roles for reso
 Read [MS docs about assigning users and groups to roles], assign user-1 to `resource-server-2-role-1`.
 
 ## 13.3. Run the application
+- Run [09-resource-server-check-permission-by-role].
+- Run [13-resource-server-2].
+- Run [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations].
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/hello`, the web page will display the 2 client-registrations' name, click the first one: `client-1`, then it will redirect to Microsoft Identity login page. Input username and password, then it will return `Hello, this is resource-server-1.`, which means we log in successfully, and client application can access resource-server-1 successfully.
+- Access `http://localhost:8080/client/resource-server-2/hello`, then it will return `Hello, this is resource-server-2.`, which means we log in successfully, and client application can access resource-server-2 successfully.
 
 ## 13.4. Homework
+- Single choice: When we access `http://localhost:8080/client/resource-server-2/hello` after access `http://localhost:8080/client/resource-server-1/hello`, how did [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations] get access token for resource-server-2?
+    + A. It executes auth code flow again.
+    + B. It uses the authorization code got when access `http://localhost:8080/client/resource-server-1/hello`
+    + C. It uses `client-1`'s refresh token to get access token for `client-1-resource-server-2`
 
 
 

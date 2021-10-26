@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.azure.spring</groupId>
+  <artifactId>spring-boot-samples-for-azure-active-directory-oauth2</artifactId>
+  <packaging>pom</packaging>
+  <version>1.0.0</version><!-- Need not change for every release-->
+
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
+
+  <modules>
+    <module>01-client</module>
+    <module>02-client-get-user-information</module>
+    <module>03-resource-server</module>
+    <module>04-client-access-resource-server</module>
+    <module>05-resource-server-validate-audience</module>
+    <module>06-resource-server-check-permission-by-scp</module>
+    <module>07-client-access-resource-server-check-permission-by-scp</module>
+    <module>08-client-access-resource-server-check-permission-by-scp-in-client-side</module>
+    <module>09-resource-server-check-permission-by-role</module>
+    <module>10-client-access-resource-server-check-permission-by-role</module>
+    <module>11-client-scopes-from-multiple-resources</module>
+    <module>12-client-scopes-from-multiple-resources-by-configure-multiple-client-registrations</module>
+  </modules>
+
+</project>

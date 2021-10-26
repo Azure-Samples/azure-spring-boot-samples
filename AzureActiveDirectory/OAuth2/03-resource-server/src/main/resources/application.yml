@@ -1,0 +1,10 @@
+# Please read "/azure-active-directory/README.md" to fill the placeholders in this file: "<tenant-id>".
+server:
+  port: 8081
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://login.microsoftonline.com/<tenant-id>/discovery/keys
+          issuer-uri: https://login.microsoftonline.com/<tenant-id>/v2.0

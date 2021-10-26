@@ -24,6 +24,7 @@
     <module>aad/azure-spring-boot-starter-active-directory/aad-web-application-and-resource-server</module>
     <module>aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-web-application</module>
     <module>aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-resource-server</module>
+    <module>AzureActiveDirectory</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-complete</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-initial</module>
     <module>appconfiguration/azure-appconfiguration-sample</module>

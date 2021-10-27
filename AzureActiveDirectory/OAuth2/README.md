@@ -856,7 +856,7 @@ Read [MS docs about exposing an api], Add a scope named `resource-server-1.scope
 
 ## 6.3. Run the application
 - Run [06-resource-server-check-permission-by-scp].
-- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8081/scope/resource-server-1-scope-1` and `http://localhost:8081/scope/resource-server-1-scope-1`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8081/scope/resource-server-1-scope-1` and `http://localhost:8081/scope/resource-server-1-scope-2`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
 
 ## 6.4. Homework
 Read the source code of `@EnableGlobalMethodSecurity` and `@PreAuthorize`.
@@ -1042,7 +1042,7 @@ No need to add no items in `application.yml`. Just replace placeholders with act
 No need to create new Azure resources.
 
 ## 8.3. Run the application
-- Run [07-client-access-resource-server-check-permission-by-scp].
+- Run [06-resource-server-check-permission-by-scp].
 - Run [08-client-access-resource-server-check-permission-by-scp-in-client-side].
 - Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/check-permission/client/resource-server-1/scope/resource-server-1-scope-1`. After log in, it should return `Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1`, which means we have authority access `ResourceServer1CheckPermissionByScopeController#resourceServer1Scope1`. And client-1 can access resource-server-1's `/scope/resource-server-1-scope-1` endpoint.
 - Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/check-permission/client/resource-server-1/scope/resource-server-1-scope-2`. After log in, it should return `403` error, which means we do not have authority access `ResourceServer1CheckPermissionByScopeController#resourceServer1Scope2`.
@@ -1626,10 +1626,18 @@ Read [MS docs about exposing an api], expose 2 scopes named `resource-server-3.s
 Read [MS docs about configuring a client application to access a web API], add permissions for client-1 to access `resource-server-3.scope-1` and `resource-server-3.scope-2`.
 
 ## 14.3. Run the application
+- Run [14-client-consent-when-request-for-specific-api].
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-3/hello`, the web page will display the 3 client-registrations' name, click `client-1-resource-server-3`, then it will redirect to Microsoft Identity login page. Input username and password, then it will appear consent page like this:
+![img.png](images/14.consent-page-for-resource-server3.scope-1.png)
+- Note: We configured both `resource-server-3.scope-1` and `resource-server-3.scope-2` to client-1 in Azure Portal in [14.2.4. Add permissions for client-1 to access resource-server-3](#1424-add-permissions-for-client-1-to-access-resource-server-3), but only configured `resource-server-3.scope-1` in `application.yml` in [14.1.2. application.yml](#1412-applicationyml). And in the consent page, it only has `resource-server-3.scope-1`, seems the scopes appeared in consent page is decided by the parameter of authorize http request, not by Azure Portal configuration.
+- Click `Accept`, then it will return `Hi, this is client 1. You can see this response means you already consented the permissions configured for client registration: client-1-resource-server-3. Here are the scopes in OAuth2AuthorizedClient: [api://<resource-server-3-client-id>/resource-server-3.scope-1]`, which means we log in successfully, and client application get required permissions.
+- Close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-3/hello`, log in again. This time, there is no consent page anymore. Seems consent only happens for the first time. 
 
 ## 14.4. Homework
-
-
+- In `application.yml`, change `resource-server-3.scope-1` to `resource-server-3.scope-2`, and run the application again. 
+  + Check the consent page. Confirm that scopes appeared in consent page is decides by the parameters of authorize http request, not by Azure Portal configuration.
+![img.png](images/14.consent-page-for-resource-server3.scope-2.png)
+  + Login more than one time. Confirm that consent page appears only when the user consent the scope to client-1 for the first time.
 
 
 

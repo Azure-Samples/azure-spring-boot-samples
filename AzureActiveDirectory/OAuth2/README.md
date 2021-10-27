@@ -135,6 +135,20 @@
         + [13.2.1. Assign user-1 to resource-server-2-role-1](#1321-assign-user-1-to-resource-server-2-role-1)
     * [13.3. Run the application](#133-run-the-application)
     * [13.4. Homework](#134-homework)
+- [14. client-consent-when-request-for-specific-api](#14-client-consent-when-request-for-specific-api)
+    * [14.1. Create sample project](#141-create-sample-project)
+        + [14.1.1. Java class](#1411-java-class)
+            - [ResourceServer3Controller.java](#resourceserver3controllerjava)
+        + [14.1.2. application.yml](#1412-applicationyml)
+    * [14.2. Create required resources in Azure](#142-create-required-resources-in-azure)
+        + [14.2.1. Register an application](#1421-register-an-application)
+        + [14.2.2. Set accessTokenAcceptedVersion to 2](#1422-set-accesstokenacceptedversion-to-2)
+        + [14.2.3. Expose an API](#1423-expose-an-api)
+        + [14.2.4. Add permissions for client-1 to access resource-server-3](#1424-add-permissions-for-client-1-to-access-resource-server-3)
+    * [14.3. Run the application](#143-run-the-application)
+    * [14.4. Homework](#144-homework)
+
+
 
 
 
@@ -1489,7 +1503,7 @@ No need to create new Azure resources.
 This section will demonstrate how to access multiple resource servers in one client application. First, we should create a new resource server application. You can choose one of the following options to get another resource server application.
 
 - Option 1: Use [13-resource-server-2] project directly.
-- Option 2: Follow steps in [13.1. Create sample project](#121-create-sample-project) to create another resource server.
+- Option 2: Follow steps in [13.1. Create sample project](#131-create-sample-project) to create another resource server.
 
 ## 13.1. Create sample project
 This project is build on top of [09-resource-server-check-permission-by-role], the following steps will change [09-resource-server-check-permission-by-role] into [13-resource-server-2].
@@ -1523,6 +1537,100 @@ Read [MS docs about assigning users and groups to roles], assign user-1 to `reso
     + B. It uses the authorization code got when access `http://localhost:8080/client/resource-server-1/hello`
     + C. It uses `client-1`'s refresh token to get access token for `client-1-resource-server-2`
 
+# 14. client-consent-when-request-for-specific-api
+In `application.yml`, we can configure multiple client-registrations, not all these client-registrations need to be consented when user login. Some consent operation only needed when request for specific api. This section will demonstrate this feature. You can choose one of the following options to get the sample application.
+
+- Option 1: Use [14-client-consent-when-request-for-specific-api] project directly.
+- Option 2: Follow steps in [14.1. Create sample project](#141-create-sample-project) to create another resource server.
+
+## 14.1. Create sample project
+This project is build on top of [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations], the following steps will change [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations] into [14-client-consent-when-request-for-specific-api].
+
+### 14.1.1. Java class
+
+#### ResourceServer3Controller.java
+Create ResourceServer3Controller.java:
+```java
+package com.azure.sample.active.directory.controller;
+
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class ResourceServer3Controller {
+
+    @GetMapping("/client/resource-server-3/hello")
+    public String resourceServer1(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-3")
+                                      OAuth2AuthorizedClient client1ResourceServer3) {
+        return "Hi, this is client 1. You can see this response means you already consented the permissions "
+            + "configured for client registration: client-1-resource-server-3. Here are the scopes in "
+            + "OAuth2AuthorizedClient: " + client1ResourceServer3.getAccessToken().getScopes();
+    }
+}
+```
+
+### 14.1.2. application.yml
+Add `client-1-resource-server-3` related content in `application.yml`:
+```yaml
+# Please read "/azure-active-directory/README.md" to fill the placeholders in this file:
+# "<tenant-id>", "<client-1-client-id>", "<client-1-client-secret>", "<resource-server-1-client-id>",
+# "<resource-server-2-client-id>", "<resource-server-3-client-id>".
+server:
+  port: 8080
+spring:
+  security:
+    oauth2:
+      client:
+        provider: # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2login-common-oauth2-provider
+          azure-active-directory:
+            issuer-uri: https://login.microsoftonline.com/<tenant-id>/v2.0 # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#webflux-oauth2-login-openid-provider-configuration
+            user-name-attribute: name
+        registration:
+          client-1:
+            provider: azure-active-directory
+            client-name: client-1
+            client-id: <client-1-client-id>
+            client-secret: <client-1-client-secret>
+            scope: openid, profile, api://<resource-server-1-client-id>/resource-server-1.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            redirect-uri: http://localhost:8080/login/oauth2/code/
+          client-1-resource-server-2:
+            provider: azure-active-directory
+            client-name: client-1-resource-server-2
+            client-id: <client-1-client-id>
+            client-secret: <client-1-client-secret>
+            scope: openid, profile, api://<resource-server-2-client-id>/resource-server-2.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            redirect-uri: http://localhost:8080/login/oauth2/code/
+          client-1-resource-server-3:
+            provider: azure-active-directory
+            client-name: client-1-resource-server-3
+            client-id: <client-1-client-id>
+            client-secret: <client-1-client-secret>
+            scope: openid, profile, api://<resource-server-3-client-id>/resource-server-3.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            redirect-uri: http://localhost:8080/login/oauth2/code/
+```
+
+## 14.2. Create required resources in Azure
+
+### 14.2.1. Register an application
+Read [MS docs about registering an application], register an application named `resource-server-3`. Get the client-id and replace the placeholder(`<resource-server-3-client-id>`) in `application.yml`.
+
+### 14.2.2. Set accessTokenAcceptedVersion to 2
+Read [MS docs about Application manifest], set `accessTokenAcceptedVersion` to `2`.
+
+### 14.2.3. Expose an API
+Read [MS docs about exposing an api], expose 2 scopes named `resource-server-3.scope-1` and `resource-server-3.scope-2`, choose `Admins and users` for `Who can consent` option.
+
+### 14.2.4. Add permissions for client-1 to access resource-server-3
+Read [MS docs about configuring a client application to access a web API], add permissions for client-1 to access `resource-server-3.scope-1` and `resource-server-3.scope-2`.
+
+## 14.3. Run the application
+
+## 14.4. Homework
+
+
+
 
 
 
@@ -1539,8 +1647,8 @@ Read [MS docs about assigning users and groups to roles], assign user-1 to `reso
 [MS docs about adding users]: https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory
 [Spring docs about running application]: https://docs.spring.io/spring-boot/docs/current/reference/html/using.html#using.running-your-application
 [rfc6749]: https://datatracker.ietf.org/doc/html/rfc6749
-[Edge]: https://www.microsoft.com/en-us/edge?r=1
-[InPrivate window]: https://support.microsoft.com/en-us/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2
+[Edge]: https://www.microsoft.com/edge?r=1
+[InPrivate window]: https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2
 [02-client-get-user-information]: ./02-client-get-user-information
 [03-resource-server]: ./03-resource-server
 [rfc6749#section-1.1]: https://datatracker.ietf.org/doc/html/rfc6749#section-1.1
@@ -1567,8 +1675,9 @@ Read [MS docs about assigning users and groups to roles], assign user-1 to `reso
 [MS docs about assigning users and groups to roles]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles
 [MS docs about claims based authorization]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens#claims-based-authorization
 [11-client-not-support-scopes-from-multiple-resources-in-one-client-registration]: ./11-client-not-support-scopes-from-multiple-resources-in-one-client-registration
-[Azure Active Directory OAuth2 auth code grant]: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-oauth2-auth-code-flow
+[Azure Active Directory OAuth2 auth code grant]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [azure-docs#82875]: https://github.com/MicrosoftDocs/azure-docs/issues/82875
 [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations]: ./12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations
 [13-resource-server-2]: ./13-resource-server-2 
+[14-client-consent-when-request-for-specific-api]: ./14-client-consent-when-request-for-specific-api
 

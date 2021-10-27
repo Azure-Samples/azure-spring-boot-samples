@@ -1637,8 +1637,12 @@ Read [MS docs about configuring a client application to access a web API], add p
 - In `application.yml`, change `resource-server-3.scope-1` to `resource-server-3.scope-2`, and run the application again. 
   + Check the consent page. Confirm that scopes appeared in consent page is decides by the parameters of authorize http request, not by Azure Portal configuration.
 ![img.png](images/14.consent-page-for-resource-server3.scope-2.png)
+  + After consent, it will return `Hi, this is client 1. You can see this response means you already consented the permissions configured for client registration: client-1-resource-server-3. Here are the scopes in OAuth2AuthorizedClient: [api://<resource-server-3-client-id>/resource-server-3.scope-1, api://<resource-server-3-client-id>/resource-server-3.scope-2]`. In this time, we did not request `resource-server-3.scope-1` in the request, but in the returned access token's scope claim, it still contains `resource-server-3.scope-1`. Seems the Azure Active Directory remember that the user already consented the scopes, it will contain all consented scopes when request for an access token.
   + Login more than one time. Confirm that consent page appears only when the user consent the scope to client-1 for the first time.
-
+- Like [14.2.3. Expose an API](#1423-expose-an-api), expose a new api named `resource-server-3.scope-3`, but **NOT** add permission to client-1 like [14.2.4. Add permissions for client-1 to access resource-server-3]. In `application.yml`, change `resource-server-3.scope-1` to `resource-server-3.scope-3`, and run the application again. The result should be like this:
+  + Appear a consent page about `resource-server-3.scope-3`.
+  + Login successfully, seems `Add permissions for client-1 to access resource-server-3` is not necessary. You can read [MS docs about consent types] and [MS doc about Microsoft identity platform (v2.0) and Azure Active Directory (v1.0) endpoints] to get more information.
+  + The access token still contain `resource-server-3.scope-1` and `resource-server-3.scope-2` even though we did not request for the 2 scopes this time.
 
 
 
@@ -1688,4 +1692,5 @@ Read [MS docs about configuring a client application to access a web API], add p
 [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations]: ./12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations
 [13-resource-server-2]: ./13-resource-server-2 
 [14-client-consent-when-request-for-specific-api]: ./14-client-consent-when-request-for-specific-api
-
+[MS docs about consent types]: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#consent-types
+[MS doc about Microsoft identity platform (v2.0) and Azure Active Directory (v1.0) endpoints]: https://docs.microsoft.com/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison#incremental-and-dynamic-consent

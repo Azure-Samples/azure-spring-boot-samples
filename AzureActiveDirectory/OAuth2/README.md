@@ -174,8 +174,7 @@
 
 ## About
 
-Go through these samples one by one, you will learn how to protect your web service
-by [Azure Active Directory]. We will leverage [Spring Security] to achieve this.
+Go through these samples one by one, you will learn how to protect your web service by [OAuth 2.0 Authorization Framework], and use [Azure Active Directory] as an authorization server. We will leverage [Spring Security] to achieve this.
 
 ## Ask for help by GitHub issues
 
@@ -183,12 +182,10 @@ If you have any question, please [create an issue].
 
 # 1. client
 
-This section will demonstrate how to use Azure Active Directory user account to log in a web
-service. You can choose one of the following options to get the sample project.
+This section will demonstrate how to use Azure Active Directory user account to log in a web service. You can choose one of the following options to get the sample project.
 
 - Option 1: Use [01-client] project directly.
-- Option 2: Follow steps in [1.1. Create sample project](#11-create-sample-project) to create the
-  sample project.
+- Option 2: Follow steps in [1.1. Create sample project](#11-create-sample-project) to create the sample project.
 
 ## 1.1. Create sample project
 
@@ -1799,7 +1796,7 @@ Read [MS docs about exposing an api], expose 2 scopes named `resource-server-5.s
 
 
 
-
+[OAuth 2.0 Authorization Framework]: https://datatracker.ietf.org/doc/html/rfc6749
 [create an issue]: https://github.com/Azure-Samples/azure-spring-boot-samples/issues/new
 [Azure Active Directory]: https://azure.microsoft.com/services/active-directory/
 [01-client]: ./01-client

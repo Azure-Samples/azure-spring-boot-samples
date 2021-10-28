@@ -1509,8 +1509,8 @@ No need to create new Azure resources.
 
 ## 12.3. Run the application
 - Run [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations].
-- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/`, the web page will display the 2 client-registrations' name, click the first one: `client-1`, then it will redirect to Microsoft Identity login page. Input username and password, then it will return `Hello, this is client 1.`, which means we log in successfully.
-- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/`, the web page will display the 2 client-registrations' name, click the first one: `client-1-resource-server-2`, then it will redirect to Microsoft Identity login page. Input username and password, then it will return `Hello, this is client 1.`, which means we log in successfully.
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/`, the web page will display the 2 client-registrations' names, click the first one: `client-1`, then it will redirect to Microsoft Identity login page. Input username and password, then it will return `Hello, this is client 1.`, which means we log in successfully.
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/`, the web page will display the 2 client-registrations' names, click the first one: `client-1-resource-server-2`, then it will redirect to Microsoft Identity login page. Input username and password, then it will return `Hello, this is client 1.`, which means we log in successfully.
 
 ## 12.4. Homework
  - `spring.security.oauth2.client.registration.client-1.client-name`. This property is new added in this section. Investigate why we need this property.
@@ -1544,7 +1544,7 @@ Read [MS docs about assigning users and groups to roles], assign user-1 to `reso
 - Run [09-resource-server-check-permission-by-role].
 - Run [13-resource-server-2].
 - Run [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations].
-- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/hello`, the web page will display the 2 client-registrations' name, click the first one: `client-1`, then it will redirect to Microsoft Identity login page. Input username and password, then it will return `Hello, this is resource-server-1.`, which means we log in successfully, and client application can access resource-server-1 successfully.
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-1/hello`, the web page will display the 2 client-registrations' names, click the first one: `client-1`, then it will redirect to Microsoft Identity login page. Input username and password, then it will return `Hello, this is resource-server-1.`, which means we log in successfully, and client application can access resource-server-1 successfully.
 - Access `http://localhost:8080/client/resource-server-2/hello`, then it will return `Hello, this is resource-server-2.`, which means we log in successfully, and client application can access resource-server-2 successfully.
 
 ## 13.4. Homework
@@ -1643,10 +1643,10 @@ Read [MS docs about configuring a client application to access a web API], add p
 
 ## 14.3. Run the application
 - Run [14-client-consent-when-request-for-specific-api].
-- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/`, the web page will display the 3 client-registrations' name, click `client-1`, then it will redirect to Microsoft Identity login page. Input username and password, it will return `Hello, this is client 1.`, which means we log in successfully.
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/`, the web page will display the 3 client-registrations' names, click `client-1`, then it will redirect to Microsoft Identity login page. Input username and password, it will return `Hello, this is client 1.`, which means we log in successfully.
 - Access`http://localhost:8080/user-information`, it will return user information , no consent required.
 - Access`http://localhost:8080/client/resource-server-3/hello`, then it will appear consent page like this:
-![img.png](images/14.consent-page-for-resource-server3.scope-1.png)
+![img.png](images/14-consent-page-for-resource-server-3.scope-1.png)
 - Note: We configured both `resource-server-3.scope-1` and `resource-server-3.scope-2` to client-1 in Azure Portal in [14.2.4. Add permissions for client-1 to access resource-server-3](#1424-add-permissions-for-client-1-to-access-resource-server-3), but only configured `resource-server-3.scope-1` in `application.yml` in [14.1.2. application.yml](#1412-applicationyml). And in the consent page, it only has `resource-server-3.scope-1`, seems the scopes appeared in consent page is decided by the parameter of authorize http request, not by Azure Portal configuration.
 - Click `Accept`, then it will return `Hi, this is client 1. You can see this response means you already consented the permissions configured for client registration: client-1-resource-server-3. Here are the scopes in OAuth2AuthorizedClient: [api://<resource-server-3-client-id>/resource-server-3.scope-1]`, which means required scopes have been consented.
 - Close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-3/hello`, log in again. This time, there is no consent page anymore. Seems consent only happens for the first time. Azure Active Directory can remember it if a user consent a scope to a client, and won't let that user consent again.
@@ -1654,7 +1654,7 @@ Read [MS docs about configuring a client application to access a web API], add p
 ## 14.4. Homework
 - In `application.yml`, change `resource-server-3.scope-1` to `resource-server-3.scope-2`, and run the application again. 
   + Check the consent page. Confirm that scopes appeared in consent page is decides by the parameters of authorize http request, not by Azure Portal configuration.
-![img.png](images/14.consent-page-for-resource-server3.scope-2.png)
+![img.png](images/14-consent-page-for-resource-server-3.scope-2.png)
   + After consent, it will return `Hi, this is client 1. You can see this response means you already consented the permissions configured for client registration: client-1-resource-server-3. Here are the scopes in OAuth2AuthorizedClient: [api://<resource-server-3-client-id>/resource-server-3.scope-1, api://<resource-server-3-client-id>/resource-server-3.scope-2]`. In this time, we did not request `resource-server-3.scope-1` in the request, but in the returned access token's scope claim, it still contains `resource-server-3.scope-1`. Seems the Azure Active Directory remember that the user already consented the scopes, it will contain all consented scopes when request for an access token.
   + Login more than one time. Confirm that consent page appears only when the user consent the scope to client-1 for the first time.
 - Like [14.2.3. Expose an API](#1423-expose-an-api), expose a new api named `resource-server-3.scope-3`, but **NOT** add permission to client-1 like [14.2.4. Add permissions for client-1 to access resource-server-3]. In `application.yml`, change `resource-server-3.scope-1` to `resource-server-3.scope-3`, and run the application again. The result should be like this:
@@ -1780,10 +1780,19 @@ Read [MS docs about Application manifest], set `accessTokenAcceptedVersion` to `
 Read [MS docs about exposing an api], expose 2 scopes named `resource-server-5.scope-1` and `resource-server-5.scope-2`, choose `Admins and users` for `Who can consent` option.
 
 ## 15.3. Run the application
-
+- Run [15-client-consent-all-scopes-in-one-api].
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-all/hello`, the web page will display the 5 client-registrations' names, click `client-1`, then it will redirect to Microsoft Identity login page. Input username and password, it will return consent page like this:
+![img.png](images/15-consent-page-for-resource-server-4.scope-1.png)
+- Click `Accept`, then it will return consent page like this:
+![img.png](images/15-consent-page-for-resource-server-5.scope-1.png)
+- Click `Accept`, then it will return `Hi, this is client 1. You can see this response means you already consented the permissions configured for client registration. Scopes in client1ResourceServer1: [api://<resource-server-1-client-id>/resource-server-1.scope-1]Scopes in client1ResourceServer2: [api://<resource-server-2-client-id>/resource-server-2.scope-1]Scopes in client1ResourceServer3: [api://<resource-server-3-client-id>/resource-server-3.scope-1, api://<resource-server-3-client-id>/resource-server-3.scope-3, api://<resource-server-3-client-id>/resource-server-3.scope-4]Scopes in client1ResourceServer4: [api://<resource-server-4-client-id>/resource-server-4.scope-1]Scopes in client1ResourceServer5: [api://<resource-server-5-client-id>/resource-server-5.scope-1]`. Note that all scopes consented from by the user from one resource-server to the client will be contained in the access token. Only the scopes that not been consented before will appear consent page.
+- Access other endpoints, we found that no consent page will appear. Because the user consented all scopes when access `http://localhost:8080/client/resource-server-all/hello`.
 
 ## 15.4. Homework
-
+- If we configured many clients like `client-1-resource-server-1`, `client-1-resource-server-2`, ... `client-1-resource-server-100`, when user log in for the first time, the user need to consent 100 times. It's not user-friendly. Please investigate how to solve this problem. Here are some suggestions:
+  + Use incremental and dynamic user consent. Refer to [MS docs about incremental and dynamic user consent] and [14-client-consent-when-request-for-specific-api].
+  + Use admin consent. Refer to [MS docs about admin consent].
+  + Configure `pre-authorized client app (PCA)`. Refer to [MS docs about add a scope].
 
 
 
@@ -1839,3 +1848,6 @@ Read [MS docs about exposing an api], expose 2 scopes named `resource-server-5.s
 [MS docs about consent types]: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#consent-types
 [MS doc about Microsoft identity platform (v2.0) and Azure Active Directory (v1.0) endpoints]: https://docs.microsoft.com/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison#incremental-and-dynamic-consent
 [15-client-consent-all-scopes-in-one-api]: ./15-client-consent-all-scopes-in-one-api
+[MS docs about incremental and dynamic user consent]: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#incremental-and-dynamic-user-consent
+[MS docs about admin consent]: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#admin-consent
+[MS docs about add a scope]: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-configure-app-expose-web-apis#add-a-scope

@@ -10,7 +10,7 @@ public class ResourceServerAllController {
 
     @GetMapping("/client/resource-server-all/hello")
     public String resourceServer1(
-        @RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1,
+        @RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1ResourceServer1,
         @RegisteredOAuth2AuthorizedClient("client-1-resource-server-2") OAuth2AuthorizedClient client1ResourceServer2,
         @RegisteredOAuth2AuthorizedClient("client-1-resource-server-3") OAuth2AuthorizedClient client1ResourceServer3,
         @RegisteredOAuth2AuthorizedClient("client-1-resource-server-4") OAuth2AuthorizedClient client1ResourceServer4,

@@ -147,6 +147,22 @@
         + [14.2.4. Add permissions for client-1 to access resource-server-3](#1424-add-permissions-for-client-1-to-access-resource-server-3)
     * [14.3. Run the application](#143-run-the-application)
     * [14.4. Homework](#144-homework)
+- [15. client-consent-all-scopes-in-one-api](#15-client-consent-all-scopes-in-one-api)
+    * [15.1. Create sample project](#151-create-sample-project)
+        + [15.1.1. Java class](#1511-java-class)
+            - [15.1.1.1. ResourceServerAllController.java](#15111-resourceserverallcontrollerjava)
+        + [15.1.2. application.yml](#1512-applicationyml)
+    * [15.2. Create required resources in Azure](#152-create-required-resources-in-azure)
+        + [15.2.1. Register an application](#1521-register-an-application)
+        + [15.2.2. Set accessTokenAcceptedVersion to 2](#1522-set-accesstokenacceptedversion-to-2)
+        + [15.2.3. Expose an API](#1523-expose-an-api)
+        + [15.2.4. Register an application](#1524-register-an-application)
+        + [15.2.5. Set accessTokenAcceptedVersion to 2](#1525-set-accesstokenacceptedversion-to-2)
+        + [15.2.6. Expose an API](#1526-expose-an-api)
+    * [15.3. Run the application](#153-run-the-application)
+    * [15.4. Homework](#154-homework)
+
+
 
 
 
@@ -1646,6 +1662,132 @@ Read [MS docs about configuring a client application to access a web API], add p
   + Login successfully, seems `Add permissions for client-1 to access resource-server-3` is not necessary. You can read [MS docs about consent types] and [MS doc about Microsoft identity platform (v2.0) and Azure Active Directory (v1.0) endpoints] to get more information.
   + The access token still contain `resource-server-3.scope-1` and `resource-server-3.scope-2` even though we did not request for the 2 scopes this time.
 
+# 15. client-consent-all-scopes-in-one-api
+[14. client-consent-when-request-for-specific-api](#14-client-consent-when-request-for-specific-api) demonstrated that some scope can be un consented until user access some specific api. Is it possible to consent all scopes from different resource server user log in? The answer is yes. This section will demonstrate how to achieve this. You can choose one of the following options to get the sample application.
+
+- Option 1: Use [15-client-consent-all-scopes-in-one-api] project directly.
+- Option 2: Follow steps in [15.1. Create sample project](#151-create-sample-project) to create another resource server.
+
+## 15.1. Create sample project
+This project is build on top of [14-client-consent-when-request-for-specific-api], the following steps will change [14-client-consent-when-request-for-specific-api] into [15-client-consent-all-scopes-in-one-api].
+
+### 15.1.1. Java class
+
+#### 15.1.1.1. ResourceServerAllController.java
+Create `ResourceServerAllController.java`:
+```java
+package com.azure.sample.active.directory.controller;
+
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class ResourceServerAllController {
+
+    @GetMapping("/client/resource-server-all/hello")
+    public String resourceServer1(
+        @RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1,
+        @RegisteredOAuth2AuthorizedClient("client-1-resource-server-2") OAuth2AuthorizedClient client1ResourceServer2,
+        @RegisteredOAuth2AuthorizedClient("client-1-resource-server-3") OAuth2AuthorizedClient client1ResourceServer3,
+        @RegisteredOAuth2AuthorizedClient("client-1-resource-server-4") OAuth2AuthorizedClient client1ResourceServer4,
+        @RegisteredOAuth2AuthorizedClient("client-1-resource-server-5") OAuth2AuthorizedClient client1ResourceServer5) {
+        return "Hi, this is client 1. You can see this response means you already consented the permissions "
+            + "configured for client registration. "
+            + "Scopes in client1ResourceServer1: " + client1ResourceServer1.getAccessToken().getScopes()
+            + "Scopes in client1ResourceServer2: " + client1ResourceServer2.getAccessToken().getScopes()
+            + "Scopes in client1ResourceServer3: " + client1ResourceServer3.getAccessToken().getScopes()
+            + "Scopes in client1ResourceServer4: " + client1ResourceServer4.getAccessToken().getScopes()
+            + "Scopes in client1ResourceServer5: " + client1ResourceServer5.getAccessToken().getScopes();
+    }
+}
+```
+
+### 15.1.2. application.yml
+Add 2 client registrations in `application.yml`:
+```yaml
+# Please read "/azure-active-directory/README.md" to fill the placeholders in this file:
+# "<tenant-id>", "<client-1-client-id>", "<client-1-client-secret>", "<resource-server-1-client-id>",
+# "<resource-server-2-client-id>", "<resource-server-3-client-id>", "<resource-server-4-client-id>",
+# "<resource-server-4-client-id>".
+server:
+  port: 8080
+spring:
+  security:
+    oauth2:
+      client:
+        provider: # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2login-common-oauth2-provider
+          azure-active-directory:
+            issuer-uri: https://login.microsoftonline.com/<tenant-id>/v2.0 # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#webflux-oauth2-login-openid-provider-configuration
+            user-name-attribute: name
+        registration:
+          client-1:
+            provider: azure-active-directory
+            client-name: client-1
+            client-id: <client-1-client-id>
+            client-secret: <client-1-client-secret>
+            scope: openid, profile, api://<resource-server-1-client-id>/resource-server-1.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            redirect-uri: http://localhost:8080/login/oauth2/code/
+          client-1-resource-server-2:
+            provider: azure-active-directory
+            client-name: client-1-resource-server-2
+            client-id: <client-1-client-id>
+            client-secret: <client-1-client-secret>
+            scope: openid, profile, api://<resource-server-2-client-id>/resource-server-2.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            redirect-uri: http://localhost:8080/login/oauth2/code/
+          client-1-resource-server-3:
+            provider: azure-active-directory
+            client-name: client-1-resource-server-3
+            client-id: <client-1-client-id>
+            client-secret: <client-1-client-secret>
+            scope: openid, profile, api://<resource-server-3-client-id>/resource-server-3.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            redirect-uri: http://localhost:8080/login/oauth2/code/
+          client-1-resource-server-4:
+            provider: azure-active-directory
+            client-name: client-1-resource-server-4
+            client-id: <client-1-client-id>
+            client-secret: <client-1-client-secret>
+            scope: openid, profile, api://<resource-server-4-client-id>/resource-server-4.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            redirect-uri: http://localhost:8080/login/oauth2/code/
+          client-1-resource-server-5:
+            provider: azure-active-directory
+            client-name: client-1-resource-server-5
+            client-id: <client-1-client-id>
+            client-secret: <client-1-client-secret>
+            scope: openid, profile, api://<resource-server-5-client-id>/resource-server-5.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            redirect-uri: http://localhost:8080/login/oauth2/code/
+```
+
+## 15.2. Create required resources in Azure
+
+### 15.2.1. Register an application
+Read [MS docs about registering an application], register an application named `resource-server-4`. Get the client-id and replace the placeholder(`<resource-server-4-client-id>`) in `application.yml`.
+
+### 15.2.2. Set accessTokenAcceptedVersion to 2
+Read [MS docs about Application manifest], set `accessTokenAcceptedVersion` to `2`.
+
+### 15.2.3. Expose an API
+Read [MS docs about exposing an api], expose 2 scopes named `resource-server-4.scope-1` and `resource-server-4.scope-2`, choose `Admins and users` for `Who can consent` option.
+
+### 15.2.4. Register an application
+Read [MS docs about registering an application], register an application named `resource-server-5`. Get the client-id and replace the placeholder(`<resource-server-5-client-id>`) in `application.yml`.
+
+### 15.2.5. Set accessTokenAcceptedVersion to 2
+Read [MS docs about Application manifest], set `accessTokenAcceptedVersion` to `2`.
+
+### 15.2.6. Expose an API
+Read [MS docs about exposing an api], expose 2 scopes named `resource-server-5.scope-1` and `resource-server-5.scope-2`, choose `Admins and users` for `Who can consent` option.
+
+## 15.3. Run the application
+
+
+## 15.4. Homework
+
+
+
+
+
 
 
 
@@ -1696,3 +1838,4 @@ Read [MS docs about configuring a client application to access a web API], add p
 [14-client-consent-when-request-for-specific-api]: ./14-client-consent-when-request-for-specific-api
 [MS docs about consent types]: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#consent-types
 [MS doc about Microsoft identity platform (v2.0) and Azure Active Directory (v1.0) endpoints]: https://docs.microsoft.com/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison#incremental-and-dynamic-consent
+[15-client-consent-all-scopes-in-one-api]: ./15-client-consent-all-scopes-in-one-api

@@ -29,6 +29,7 @@
     <module>12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations</module>
     <module>13-resource-server-2</module>
     <module>14-client-consent-when-request-for-specific-api</module>
+    <module>15-client-consent-all-scopes-in-one-api</module>
   </modules>
 
 </project>

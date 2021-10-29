@@ -15,7 +15,7 @@ public class ResourceServerAllController {
         @RegisteredOAuth2AuthorizedClient("client-1-resource-server-3") OAuth2AuthorizedClient client1ResourceServer3,
         @RegisteredOAuth2AuthorizedClient("client-1-resource-server-4") OAuth2AuthorizedClient client1ResourceServer4,
         @RegisteredOAuth2AuthorizedClient("client-1-resource-server-5") OAuth2AuthorizedClient client1ResourceServer5) {
-        return "Hi, this is client 1. You can see this response means you already consented the permissions "
+        return "Hi, this is client-1. You can see this response means you already consented the permissions "
             + "configured for client registration. "
             + "Scopes in client1ResourceServer1: " + client1ResourceServer1.getAccessToken().getScopes()
             + "Scopes in client1ResourceServer2: " + client1ResourceServer2.getAccessToken().getScopes()

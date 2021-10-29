@@ -1790,6 +1790,7 @@ Read [MS docs about exposing an api], expose 2 scopes named `resource-server-5.s
   + Use incremental and dynamic user consent. Refer to [MS docs about incremental and dynamic user consent] and [14-client-consent-when-request-for-specific-api].
   + Use admin consent. Refer to [MS docs about admin consent].
   + Configure `pre-authorized client app (PCA)`. Refer to [MS docs about add a scope].
+  + When request for authorization code, scopes from multiple resource. When request for access token, scopes from single resource. Refer to [spring-security#10452] to get more information.
 
 
 
@@ -1848,3 +1849,4 @@ Read [MS docs about exposing an api], expose 2 scopes named `resource-server-5.s
 [MS docs about incremental and dynamic user consent]: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#incremental-and-dynamic-user-consent
 [MS docs about admin consent]: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#admin-consent
 [MS docs about add a scope]: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-configure-app-expose-web-apis#add-a-scope
+[spring-security#10452]: https://github.com/spring-projects/spring-security/issues/10452

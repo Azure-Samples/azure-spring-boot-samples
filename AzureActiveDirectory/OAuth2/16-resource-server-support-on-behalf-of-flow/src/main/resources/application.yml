@@ -11,6 +11,7 @@ spring:
             issuer-uri: https://login.microsoftonline.com/<tenant-id>/v2.0 # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#webflux-oauth2-login-openid-provider-configuration
         registration:
           resource-server-2-resource-server-3:
+            provider: azure-active-directory
             client-id: <resource-server-2-client-id>
             client-secret: <resource-server-2-client-secret>
             authorization-grant-type: urn:ietf:params:oauth:grant-type:jwt-bearer

@@ -21,13 +21,13 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
         http.authorizeRequests()
-            .anyRequest().authenticated()
-            .and()
+                .anyRequest().authenticated()
+                .and()
             .oauth2ResourceServer()
-            .jwt()
-            .jwtAuthenticationConverter(jwtAuthenticationConverter())
-            .and()
-            .and();
+                .jwt()
+                    .jwtAuthenticationConverter(jwtAuthenticationConverter())
+                    .and()
+                .and();
         // @formatter:on
     }
 

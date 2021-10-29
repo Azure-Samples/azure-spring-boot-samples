@@ -3,7 +3,7 @@
     * [Ask for help by GitHub issues](#ask-for-help-by-github-issues)
 - [1. client](#1-client)
     * [1.1. Create sample project](#11-create-sample-project)
-        + [1.1.1. Create a pom file in a new folder.](#111-create-a-pom-file-in-a-new-folder)
+        + [1.1.1. pom.xml](#111-pomxml)
         + [1.1.2. Java class](#112-java-class)
             - [1.1.2.1. Create ClientApplication.java](#1121-create-clientapplicationjava)
             - [1.1.2.2. WebSecurityConfiguration.java](#1122-websecurityconfigurationjava)
@@ -19,7 +19,7 @@
     * [1.4. Homework](#14-homework)
 - [2. client-get-user-information](#2-client-get-user-information)
     * [2.1. Create sample project](#21-create-sample-project)
-        + [2.1.1. Update pom.xml](#211-update-pomxml)
+        + [2.1.1. pom.xml](#211-pomxml)
         + [2.1.2. Java class](#212-java-class)
             - [2.1.2.1 UserInformationController.java](#2121-userinformationcontrollerjava)
         + [2.1.3. application.yml](#213-applicationyml)
@@ -28,7 +28,7 @@
     * [2.4. Homework](#24-homework)
 - [3. resource-server](#3-resource-server)
     * [3.1. Create sample project](#31-create-sample-project)
-        + [3.1.1. Create a pom file in a new folder](#311-create-a-pom-file-in-a-new-folder)
+        + [3.1.1. pom.xml](#311-pomxml)
         + [3.1.2. Java class](#312-java-class)
             - [3.1.2.1. ResourceServerApplication.java](#3121-resourceserverapplicationjava)
             - [3.1.2.2. HomeController.java](#3122-homecontrollerjava)
@@ -39,7 +39,7 @@
     * [3.4. Homework](#34-homework)
 - [4. client-access-resource-server](#4-client-access-resource-server)
     * [4.1. Create sample project](#41-create-sample-project)
-        + [4.1.1. Update pom.xml](#411-update-pomxml)
+        + [4.1.1. pom.xml](#411-pomxml)
         + [4.1.2. Java class](#412-java-class)
             - [4.1.2.1. WebClientConfigure.java](#4121-webclientconfigurejava)
             - [4.1.2.2. ResourceServer1Controller.java](#4122-resourceserver1controllerjava)
@@ -53,47 +53,52 @@
     * [4.4. Homework](#44-homework)
 - [5. resource-server-validate-audience](#5-resource-server-validate-audience)
     * [5.1. Create sample project](#51-create-sample-project)
-        + [5.1.1. Java class](#511-java-class)
+        + [5.1.1. pom.xml](#511-pomxml)
+        + [5.1.2. Java class](#512-java-class)
             - [ApplicationConfiguration.java](#applicationconfigurationjava)
-        + [5.1.2. application.yml](#512-applicationyml)
+        + [5.1.3. application.yml](#513-applicationyml)
     * [5.2. Create required resources in Azure](#52-create-required-resources-in-azure)
     * [5.3. Run the application](#53-run-the-application)
     * [5.4. Homework](#54-homework)
 - [6. resource-server-check-permission-by-scp](#6-resource-server-check-permission-by-scp)
     * [6.1. Create sample project](#61-create-sample-project)
-        + [6.1.1. Java class](#611-java-class)
-            - [6.1.1.1 Update WebSecurityConfiguration.java](#6111-update-websecurityconfigurationjava)
-            - [6.1.1.2. CheckPermissionByScopeController](#6112-checkpermissionbyscopecontroller)
-        + [6.1.2. application.yml](#612-applicationyml)
+        + [6.1.1. pom.xml](#611-pomxml)
+        + [6.1.2. Java class](#612-java-class)
+            - [6.1.2.1 Update WebSecurityConfiguration.java](#6121-update-websecurityconfigurationjava)
+            - [6.1.2.2. CheckPermissionByScopeController](#6122-checkpermissionbyscopecontroller)
+        + [6.1.3. application.yml](#613-applicationyml)
     * [6.2. Create required resources in Azure](#62-create-required-resources-in-azure)
         + [6.2.1. Expose an API](#621-expose-an-api)
     * [6.3. Run the application](#63-run-the-application)
     * [6.4. Homework](#64-homework)
 - [7. client-access-resource-server-check-permission-by-scp](#7-client-access-resource-server-check-permission-by-scp)
     * [7.1. Create sample project](#71-create-sample-project)
-        + [7.1.1. Java class](#711-java-class)
-            - [7.1.1.1. ResourceServer1Controller.java](#7111-resourceserver1controllerjava)
-        + [7.1.2. application.yml](#712-applicationyml)
+        + [7.1.1. pom.xml](#711-pomxml)
+        + [7.1.2. Java class](#712-java-class)
+            - [7.1.2.1. ResourceServer1Controller.java](#7121-resourceserver1controllerjava)
+        + [7.1.3. application.yml](#713-applicationyml)
     * [7.2. Create required resources in Azure](#72-create-required-resources-in-azure)
         + [7.2.1. Add permissions for client-1 to access resource-server-1](#721-add-permissions-for-client-1-to-access-resource-server-1)
     * [7.3. Run the application](#73-run-the-application)
     * [7.4. Homework](#74-homework)
 - [8. client-access-resource-server-check-permission-by-scp-in-client-side](#8-client-access-resource-server-check-permission-by-scp-in-client-side)
     * [8.1. Create sample project](#81-create-sample-project)
-        + [8.1.1. Java class](#811-java-class)
-            - [8.1.1.1. WebSecurityConfiguration.java](#8111-websecurityconfigurationjava)
-            - [8.1.1.2. ResourceServer1CheckPermissionByScopeController.java](#8112-resourceserver1checkpermissionbyscopecontrollerjava)
-        + [8.1.2. application.yml](#812-applicationyml)
+        + [8.1.1. pom.xml](#811-pomxml)
+        + [8.1.2. Java class](#812-java-class)
+            - [8.1.2.1. WebSecurityConfiguration.java](#8121-websecurityconfigurationjava)
+            - [8.1.2.2. ResourceServer1CheckPermissionByScopeController.java](#8122-resourceserver1checkpermissionbyscopecontrollerjava)
+        + [8.1.3. application.yml](#813-applicationyml)
     * [8.2. Create required resources in Azure](#82-create-required-resources-in-azure)
     * [8.3. Run the application](#83-run-the-application)
     * [8.4. Homework](#84-homework)
 - [9. resource-server-check-permission-by-role](#9-resource-server-check-permission-by-role)
     * [9.1. Create sample project](#91-create-sample-project)
-        + [9.1.1. Java class](#911-java-class)
-            - [9.1.1.1. JwtGrantedAuthoritiesConverter.java](#9111-jwtgrantedauthoritiesconverterjava)
-            - [9.1.1.2. WebSecurityConfiguration.java](#9112-websecurityconfigurationjava)
-            - [9.1.1.3. CheckPermissionByRoleController.java](#9113-checkpermissionbyrolecontrollerjava)
-        + [9.1.2. application.yml](#912-applicationyml)
+        + [9.1.1. pom.xml](#911-pomxml)
+        + [9.1.2. Java class](#912-java-class)
+            - [9.1.2.1. JwtGrantedAuthoritiesConverter.java](#9121-jwtgrantedauthoritiesconverterjava)
+            - [9.1.2.2. WebSecurityConfiguration.java](#9122-websecurityconfigurationjava)
+            - [9.1.2.3. CheckPermissionByRoleController.java](#9123-checkpermissionbyrolecontrollerjava)
+        + [9.1.3. application.yml](#913-applicationyml)
     * [9.2. Create required resources in Azure](#92-create-required-resources-in-azure)
         + [9.2.1. Create resource-server-1-role-1 and resource-server-1-role-2.](#921-create-resource-server-1-role-1-and-resource-server-1-role-2)
         + [9.2.1. Assign user-1 to resource-server-1-role-1](#921-assign-user-1-to-resource-server-1-role-1)
@@ -101,16 +106,18 @@
     * [9.4. Homework](#94-homework)
 - [10. client-access-resource-server-check-permission-by-role](#10-client-access-resource-server-check-permission-by-role)
     * [10.1. Create sample project](#101-create-sample-project)
-        + [10.1.1. Java class](#1011-java-class)
-            - [10.1.1.1. ResourceServer1Controller.java](#10111-resourceserver1controllerjava)
-        + [10.1.2. application.yml](#1012-applicationyml)
+        + [10.1.1. pom.xml](#1011-pomxml)
+        + [10.1.2. Java class](#1012-java-class)
+            - [10.1.2.1. ResourceServer1Controller.java](#10121-resourceserver1controllerjava)
+        + [10.1.3. application.yml](#1013-applicationyml)
     * [10.2. Create required resources in Azure](#102-create-required-resources-in-azure)
     * [10.3. Run the application](#103-run-the-application)
     * [10.4. Homework](#104-homework)
 - [11. client-not-support-scopes-from-multiple-resources-in-one-client-registration](#11-client-not-support-scopes-from-multiple-resources-in-one-client-registration)
     * [11.1. Create sample project](#111-create-sample-project)
-        + [11.1.1. Java class](#1111-java-class)
-        + [11.1.2. application.yml](#1112-applicationyml)
+        + [11.1.1. pom.xml](#1111-pomxml)
+        + [11.1.2. Java class](#1112-java-class)
+        + [11.1.3. application.yml](#1113-applicationyml)
     * [11.2. Create required resources in Azure](#112-create-required-resources-in-azure)
         + [11.2.1. Register an application](#1121-register-an-application)
         + [11.2.2. Set accessTokenAcceptedVersion to 2](#1122-set-accesstokenacceptedversion-to-2)
@@ -120,16 +127,18 @@
     * [11.4. Homework](#114-homework)
 - [12. client-supports-scopes-from-multiple-resources-by-multiple-client-registrations](#12-client-supports-scopes-from-multiple-resources-by-multiple-client-registrations)
     * [12.1. Create sample project](#121-create-sample-project)
-        + [12.1.1. Java class](#1211-java-class)
-            - [12.1.1.2. ResourceServer2Controller.java](#12112-resourceserver2controllerjava)
-        + [12.1.2. application.yml](#1212-applicationyml)
+        + [12.1.1. pom.xml](#1211-pomxml)
+        + [12.1.2. Java class](#1212-java-class)
+            - [12.1.2.2. ResourceServer2Controller.java](#12122-resourceserver2controllerjava)
+        + [12.1.3. application.yml](#1213-applicationyml)
     * [12.2. Create required resources in Azure](#122-create-required-resources-in-azure)
     * [12.3. Run the application](#123-run-the-application)
     * [12.4. Homework](#124-homework)
 - [13. resource-server-2](#13-resource-server-2)
     * [13.1. Create sample project](#131-create-sample-project)
-        + [13.1.1. Java class](#1311-java-class)
-        + [13.1.2. application.yml](#1312-applicationyml)
+        + [13.1.1. pom.xml](#1311-pomxml)
+        + [13.1.2. Java class](#1312-java-class)
+        + [13.1.3. application.yml](#1313-applicationyml)
     * [13.2. Create required resources in Azure](#132-create-required-resources-in-azure)
         + [13.2.1. Create resource-server-2-role-1 and resource-server-2-role-2.](#1321-create-resource-server-2-role-1-and-resource-server-2-role-2)
         + [13.2.1. Assign user-1 to resource-server-2-role-1](#1321-assign-user-1-to-resource-server-2-role-1)
@@ -137,9 +146,10 @@
     * [13.4. Homework](#134-homework)
 - [14. client-consent-when-request-for-specific-api](#14-client-consent-when-request-for-specific-api)
     * [14.1. Create sample project](#141-create-sample-project)
-        + [14.1.1. Java class](#1411-java-class)
+        + [14.1.1. pom.xml](#1411-pomxml)
+        + [14.1.2. Java class](#1412-java-class)
             - [ResourceServer3Controller.java](#resourceserver3controllerjava)
-        + [14.1.2. application.yml](#1412-applicationyml)
+        + [14.1.3. application.yml](#1413-applicationyml)
     * [14.2. Create required resources in Azure](#142-create-required-resources-in-azure)
         + [14.2.1. Register an application](#1421-register-an-application)
         + [14.2.2. Set accessTokenAcceptedVersion to 2](#1422-set-accesstokenacceptedversion-to-2)
@@ -149,9 +159,10 @@
     * [14.4. Homework](#144-homework)
 - [15. client-consent-all-scopes-in-one-api](#15-client-consent-all-scopes-in-one-api)
     * [15.1. Create sample project](#151-create-sample-project)
-        + [15.1.1. Java class](#1511-java-class)
-            - [15.1.1.1. ResourceServerAllController.java](#15111-resourceserverallcontrollerjava)
-        + [15.1.2. application.yml](#1512-applicationyml)
+        + [15.1.1. pom.xml](#1511-pomxml)
+        + [15.1.2. Java class](#1512-java-class)
+            - [15.1.2.1. ResourceServerAllController.java](#15121-resourceserverallcontrollerjava)
+        + [15.1.3. application.yml](#1513-applicationyml)
     * [15.2. Create required resources in Azure](#152-create-required-resources-in-azure)
         + [15.2.1. Register an application](#1521-register-an-application)
         + [15.2.2. Set accessTokenAcceptedVersion to 2](#1522-set-accesstokenacceptedversion-to-2)
@@ -161,6 +172,21 @@
         + [15.2.6. Expose an API](#1526-expose-an-api)
     * [15.3. Run the application](#153-run-the-application)
     * [15.4. Homework](#154-homework)
+- [16. resource-server-support-on-behalf-of-flow](#16-resource-server-support-on-behalf-of-flow)
+    * [16.1. Create sample project](#161-create-sample-project)
+        + [16.1.1. pom.xml](#1611-pomxml)
+        + [16.1.2. Java class](#1612-java-class)
+            - [16.1.2.1. ApplicationConfiguration.java](#16121-applicationconfigurationjava)
+            - [16.1.2.1. OnBehalfOfController.java](#16121-onbehalfofcontrollerjava)
+        + [16.1.3. application.yml](#1613-applicationyml)
+    * [16.2. Create required resources in Azure](#162-create-required-resources-in-azure)
+        + [16.2.1. Add a client secret](#1621-add-a-client-secret)
+    * [16.3. Run the application](#163-run-the-application)
+    * [16.4. Homework](#164-homework)
+
+
+
+
 
 
 
@@ -189,8 +215,8 @@ This section will demonstrate how to use Azure Active Directory user account to 
 
 ## 1.1. Create sample project
 
-### 1.1.1. Create a pom file in a new folder.
-
+### 1.1.1. pom.xml
+Create a pom.xml.
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -343,7 +369,7 @@ This section will demonstrate how to use get user information. You can choose on
 ## 2.1. Create sample project
 This project is build on top of [01-client]. The following steps will change [01-client] into [02-client-get-user-information].
 
-### 2.1.1. Update pom.xml
+### 2.1.1. pom.xml
 Add the following dependency in pom.xml:
 ```xml
     <dependency>
@@ -414,7 +440,8 @@ This section will demonstrate how to use Azure Active Directory to protect a res
 
 ## 3.1. Create sample project
 
-### 3.1.1. Create a pom file in a new folder
+### 3.1.1. pom.xml
+Create a pom.xml.
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -546,7 +573,7 @@ This section will demonstrate how to access resource server in client applicatio
 ## 4.1. Create sample project
 This project is build on top of [02-client-get-user-information]. The following steps will change [02-client-get-user-information] into [04-client-access-resource-server].
 
-### 4.1.1. Update pom.xml
+### 4.1.1. pom.xml
 Add the following dependency in pom.xml:
 ```xml
     <dependency>
@@ -697,7 +724,10 @@ This section will demonstrate how to validate audience in resource server. You c
 ## 5.1. Create sample project
 This project is build on top of [03-resource-server]. The following steps will change [03-resource-server] into [05-resource-server-validate-audience].
 
-### 5.1.1. Java class
+### 5.1.1. pom.xml
+No need to update pom.xml.
+
+### 5.1.2. Java class
 
 #### ApplicationConfiguration.java
 ```java
@@ -771,7 +801,7 @@ public class ApplicationConfiguration {
 }
 ```
 
-### 5.1.2. application.yml
+### 5.1.3. application.yml
 Add the following configuration in `application.yml`:
 ```yaml
 spring:
@@ -804,9 +834,12 @@ This section will demonstrate how to check permissions in a resource server. You
 ## 6.1. Create sample project
 This project is build on top of [05-resource-server-validate-audience], the following steps will change [05-resource-server-validate-audience] into [06-resource-server-check-permission-by-scp].
 
-### 6.1.1. Java class
+### 6.1.1. pom.xml
+No need to update pom.xml.
 
-#### 6.1.1.1 Update WebSecurityConfiguration.java
+### 6.1.2. Java class
+
+#### 6.1.2.1 Update WebSecurityConfiguration.java
 Add `@EnableGlobalMethodSecurity(prePostEnabled = true)` in WebSecurityConfiguration.java.
 ```java
 package com.azure.sample.active.directory.resource.server.configuration;
@@ -834,7 +867,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 }
 ```
 
-#### 6.1.1.2. CheckPermissionByScopeController
+#### 6.1.2.2. CheckPermissionByScopeController
 ```java
 package com.azure.sample.active.directory.resource.server.controller;
 
@@ -859,7 +892,7 @@ public class CheckPermissionByScopeController {
 }
 ```
 
-### 6.1.2. application.yml
+### 6.1.3. application.yml
 No need to add no items in `application.yml`. Just replace placeholders with actual value.
 
 ## 6.2. Create required resources in Azure
@@ -883,9 +916,12 @@ This section will demonstrate access [06-resource-server-check-permission-by-scp
 ## 7.1. Create sample project
 This project is build on top of [04-client-access-resource-server], the following steps will change [04-client-access-resource-server] into [07-client-access-resource-server-check-permission-by-scp].
 
-### 7.1.1. Java class
+### 7.1.1. pom.xml
+No need to update pom.xml.
 
-#### 7.1.1.1. ResourceServer1Controller.java
+### 7.1.2. Java class
+
+#### 7.1.2.1. ResourceServer1Controller.java
 ```java
 package com.azure.sample.active.directory.controller;
 
@@ -942,7 +978,7 @@ public class ResourceServer1Controller {
 }
 ```
 
-### 7.1.2. application.yml
+### 7.1.3. application.yml
 No need to add no items in `application.yml`. Just replace placeholders with actual value.
 
 ## 7.2. Create required resources in Azure
@@ -970,9 +1006,12 @@ In [07-client-access-resource-server-check-permission-by-scp], we check the perm
 ## 8.1. Create sample project
 This project is build on top of [07-client-access-resource-server-check-permission-by-scp], the following steps will change [07-client-access-resource-server-check-permission-by-scp] into [08-client-access-resource-server-check-permission-by-scp-in-client-side].
 
-### 8.1.1. Java class
+### 8.1.1. pom.xml
+No need to update pom.xml.
 
-#### 8.1.1.1. WebSecurityConfiguration.java
+### 8.1.2. Java class
+
+#### 8.1.2.1. WebSecurityConfiguration.java
 Add `@EnableGlobalMethodSecurity(prePostEnabled = true)` in WebSecurityConfiguration.java.
 ```java
 package com.azure.sample.active.directory.configuration;
@@ -999,7 +1038,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 }
 ```
 
-#### 8.1.1.2. ResourceServer1CheckPermissionByScopeController.java
+#### 8.1.2.2. ResourceServer1CheckPermissionByScopeController.java
 Create new java class: ResourceServer1CheckPermissionByScopeController.java. Replace placeholders with actual value.
 ```java
 package com.azure.sample.active.directory.controller;
@@ -1048,7 +1087,7 @@ public class ResourceServer1CheckPermissionByScopeController {
 }
 ```
 
-### 8.1.2. application.yml
+### 8.1.3. application.yml
 No need to add no items in `application.yml`. Just replace placeholders with actual value.
 
 ## 8.2. Create required resources in Azure
@@ -1074,9 +1113,12 @@ In [06-resource-server-check-permission-by-scp], we check the permission by scp 
 ## 9.1. Create sample project
 This project is build on top of [06-resource-server-check-permission-by-scp], the following steps will change [06-resource-server-check-permission-by-scp] into [09-resource-server-check-permission-by-role].
 
-### 9.1.1. Java class
+### 9.1.1. pom.xml
+No need to update pom.xml.
 
-#### 9.1.1.1. JwtGrantedAuthoritiesConverter.java
+### 9.1.2. Java class
+
+#### 9.1.2.1. JwtGrantedAuthoritiesConverter.java
 Create Java class: JwtGrantedAuthoritiesConverter.java:
 ```java
 package com.azure.sample.active.directory.resource.server.configuration;
@@ -1152,7 +1194,7 @@ public class JwtGrantedAuthoritiesConverter implements Converter<Jwt, Collection
 }
 ```
 
-#### 9.1.1.2. WebSecurityConfiguration.java
+#### 9.1.2.2. WebSecurityConfiguration.java
 Update WebSecurityConfiguration.java:
 ```java
 package com.azure.sample.active.directory.resource.server.configuration;
@@ -1204,7 +1246,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 }
 ```
 
-#### 9.1.1.3. CheckPermissionByRoleController.java
+#### 9.1.2.3. CheckPermissionByRoleController.java
 Create CheckPermissionByRoleController.java:
 ```java
 package com.azure.sample.active.directory.resource.server.controller;
@@ -1230,7 +1272,7 @@ public class CheckPermissionByRoleController {
 }
 ```
 
-### 9.1.2. application.yml
+### 9.1.3. application.yml
 No need to add no items in `application.yml`. Just replace placeholders with actual value.
 
 ## 9.2. Create required resources in Azure
@@ -1257,9 +1299,12 @@ This section will demonstrate access [09-resource-server-check-permission-by-rol
 ## 10.1. Create sample project
 This project is build on top of [08-client-access-resource-server-check-permission-by-scp-in-client-side], the following steps will change [08-client-access-resource-server-check-permission-by-scp-in-client-side] into [10-client-access-resource-server-check-permission-by-role].
 
-### 10.1.1. Java class
+### 10.1.1. pom.xml
+No need to update pom.xml.
 
-#### 10.1.1.1. ResourceServer1Controller.java
+### 10.1.2. Java class
+
+#### 10.1.2.1. ResourceServer1Controller.java
 ```java
 package com.azure.sample.active.directory.controller;
 
@@ -1338,7 +1383,7 @@ public class ResourceServer1Controller {
 }
 ```
 
-### 10.1.2. application.yml
+### 10.1.3. application.yml
 No need to add no items in `application.yml`. Just replace placeholders with actual value.
 
 ## 10.2. Create required resources in Azure
@@ -1365,10 +1410,13 @@ In previous samples, `spring.security.oauth2.registration.client-1.scope` config
 ## 11.1. Create sample project
 This project is build on top of [10-client-access-resource-server-check-permission-by-role], the following steps will change [10-client-access-resource-server-check-permission-by-role] into [11-client-not-support-scopes-from-multiple-resources-in-one-client-registration].
 
-### 11.1.1. Java class
+### 11.1.1. pom.xml
+No need to update pom.xml.
+
+### 11.1.2. Java class
 No need to create new Java classes.
 
-### 11.1.2. application.yml
+### 11.1.3. application.yml
 Add new item for `spring.security.oauth2.registration.client-1.scope`:
 ```yaml
 # Please read "/azure-active-directory/README.md" to fill the placeholders in this file:
@@ -1430,9 +1478,12 @@ This section will solve the problem introduced in previous section by configurin
 ## 12.1. Create sample project
 This project is build on top of [11-client-not-support-scopes-from-multiple-resources-in-one-client-registration], the following steps will change [11-client-not-support-scopes-from-multiple-resources-in-one-client-registration] into [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations].
 
-### 12.1.1. Java class
+### 12.1.1. pom.xml
+No need to update pom.xml.
 
-#### 12.1.1.2. ResourceServer2Controller.java
+### 12.1.2. Java class
+
+#### 12.1.2.2. ResourceServer2Controller.java
 Create ResourceServer2Controller.java
 ```java
 package com.azure.sample.active.directory.controller;
@@ -1468,7 +1519,7 @@ public class ResourceServer2Controller {
 }
 ```
 
-### 12.1.2. application.yml
+### 12.1.3. application.yml
 Add another client registration in `application.yml`:
 ```yaml
 # Please read "/azure-active-directory/README.md" to fill the placeholders in this file:
@@ -1521,10 +1572,13 @@ This section will demonstrate how to access multiple resource servers in one cli
 ## 13.1. Create sample project
 This project is build on top of [09-resource-server-check-permission-by-role], the following steps will change [09-resource-server-check-permission-by-role] into [13-resource-server-2].
 
-### 13.1.1. Java class
+### 13.1.1. pom.xml
+No need to update pom.xml.
+
+### 13.1.2. Java class
 - Replace all `resource-server-1` into `resource-server-2`.
 
-### 13.1.2. application.yml
+### 13.1.3. application.yml
 - Replace all `resource-server-1` into `resource-server-2`.
 - Change `server.port` to `8082`.
 
@@ -1559,7 +1613,10 @@ In `application.yml`, we can configure multiple client-registrations, not all th
 ## 14.1. Create sample project
 This project is build on top of [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations], the following steps will change [12-client-support-scopes-from-multiple-resources-by-multiple-client-registrations] into [14-client-consent-when-request-for-specific-api].
 
-### 14.1.1. Java class
+### 14.1.1. pom.xml
+No need to update pom.xml.
+
+### 14.1.2. Java class
 
 #### ResourceServer3Controller.java
 Create ResourceServer3Controller.java:
@@ -1584,7 +1641,7 @@ public class ResourceServer3Controller {
 }
 ```
 
-### 14.1.2. application.yml
+### 14.1.3. application.yml
 Add `client-1-resource-server-3` related content in `application.yml`:
 ```yaml
 # Please read "/azure-active-directory/README.md" to fill the placeholders in this file:
@@ -1644,7 +1701,7 @@ Read [MS docs about configuring a client application to access a web API], add p
 - Access`http://localhost:8080/user-information`, it will return user information , no consent required.
 - Access`http://localhost:8080/client/resource-server-3/hello`, then it will appear consent page like this:
 ![img.png](images/14-consent-page-for-resource-server-3.scope-1.png)
-- Note: We configured both `resource-server-3.scope-1` and `resource-server-3.scope-2` to client-1 in Azure Portal in [14.2.4. Add permissions for client-1 to access resource-server-3](#1424-add-permissions-for-client-1-to-access-resource-server-3), but only configured `resource-server-3.scope-1` in `application.yml` in [14.1.2. application.yml](#1412-applicationyml). And in the consent page, it only has `resource-server-3.scope-1`, seems the scopes appeared in consent page is decided by the parameter of authorize http request, not by Azure Portal configuration.
+- Note: We configured both `resource-server-3.scope-1` and `resource-server-3.scope-2` to client-1 in Azure Portal in [14.2.4. Add permissions for client-1 to access resource-server-3](#1424-add-permissions-for-client-1-to-access-resource-server-3), but only configured `resource-server-3.scope-1` in `application.yml` in [14.1.3. application.yml](#1413-applicationyml). And in the consent page, it only has `resource-server-3.scope-1`, seems the scopes appeared in consent page is decided by the parameter of authorize http request, not by Azure Portal configuration.
 - Click `Accept`, then it will return `Hi, this is client 1. You can see this response means you already consented the permissions configured for client registration: client-1-resource-server-3. Here are the scopes in OAuth2AuthorizedClient: [api://<resource-server-3-client-id>/resource-server-3.scope-1]`, which means required scopes have been consented.
 - Close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-3/hello`, log in again. This time, there is no consent page anymore. Seems consent only happens for the first time. Azure Active Directory can remember it if a user consent a scope to a client, and won't let that user consent again.
 
@@ -1668,9 +1725,12 @@ Read [MS docs about configuring a client application to access a web API], add p
 ## 15.1. Create sample project
 This project is build on top of [14-client-consent-when-request-for-specific-api], the following steps will change [14-client-consent-when-request-for-specific-api] into [15-client-consent-all-scopes-in-one-api].
 
-### 15.1.1. Java class
+### 15.1.1. pom.xml
+No need to update pom.xml.
 
-#### 15.1.1.1. ResourceServerAllController.java
+### 15.1.2. Java class
+
+#### 15.1.2.1. ResourceServerAllController.java
 Create `ResourceServerAllController.java`:
 ```java
 package com.azure.sample.active.directory.controller;
@@ -1701,7 +1761,7 @@ public class ResourceServerAllController {
 }
 ```
 
-### 15.1.2. application.yml
+### 15.1.3. application.yml
 Add 2 client registrations in `application.yml`:
 ```yaml
 # Please read "/azure-active-directory/README.md" to fill the placeholders in this file:
@@ -1792,8 +1852,189 @@ Read [MS docs about exposing an api], expose 2 scopes named `resource-server-5.s
   + Configure `pre-authorized client app (PCA)`. Refer to [MS docs about add a scope].
   + When request for authorization code, scopes from multiple resource. When request for access token, scopes from single resource. Refer to [spring-security#10452] to get more information.
 
+# 16. resource-server-support-on-behalf-of-flow
+This section will demonstrate how to support on-behalf-of flow in a resource server. Please read [MS docs about on_behalf_of flow] to get more information about on_behalf_of flow. You can choose one of the following options to get the sample application.
 
+- Option 1: Use [16-resource-server-support-on-behalf-of-flow] project directly.
+- Option 2: Follow steps in [16.1. Create sample project](#161-create-sample-project) to create another resource server.
 
+## 16.1. Create sample project
+This project is build on top of [13-resource-server-2], the following steps will change [13-resource-server-2] into [16-resource-server-support-on-behalf-of-flow].
+
+### 16.1.1. pom.xml
+Add a new dependency in pom.xml:
+```xml
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-oauth2-client</artifactId>
+    </dependency>
+```
+
+### 16.1.2. Java class
+
+#### 16.1.2.1. ApplicationConfiguration.java
+Define a new bean in ApplicationConfiguration.java: authorizedClientManager.
+```java
+package com.azure.sample.active.directory.resource.server.configuration;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.client.JwtBearerOAuth2AuthorizedClientProvider;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProvider;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProviderBuilder;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizedClientManager;
+import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
+import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
+import org.springframework.security.oauth2.core.OAuth2TokenValidator;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtClaimNames;
+import org.springframework.security.oauth2.jwt.JwtClaimValidator;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtIssuerValidator;
+import org.springframework.security.oauth2.jwt.JwtTimestampValidator;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
+@Configuration
+public class ApplicationConfiguration {
+
+    private final OAuth2ResourceServerProperties.Jwt properties;
+
+    public ApplicationConfiguration(OAuth2ResourceServerProperties properties) {
+        this.properties = properties.getJwt();
+    }
+
+    @Value("${spring.security.oauth2.resourceserver.jwt.audience}")
+    String audience;
+
+    @Bean
+    JwtDecoder jwtDecoder() {
+        NimbusJwtDecoder nimbusJwtDecoder = NimbusJwtDecoder.withJwkSetUri(properties.getJwkSetUri()).build();
+        nimbusJwtDecoder.setJwtValidator(jwtValidator());
+        return nimbusJwtDecoder;
+    }
+
+    @Bean
+    public OAuth2AuthorizedClientManager authorizedClientManager(
+        ClientRegistrationRepository clientRegistrationRepository,
+        OAuth2AuthorizedClientRepository authorizedClientRepository) {
+        OAuth2AuthorizedClientProvider authorizedClientProvider =
+            OAuth2AuthorizedClientProviderBuilder.builder()
+                                                 .provider(new JwtBearerOAuth2AuthorizedClientProvider())
+                                                 .build();
+        DefaultOAuth2AuthorizedClientManager authorizedClientManager =
+            new DefaultOAuth2AuthorizedClientManager(clientRegistrationRepository, authorizedClientRepository);
+        authorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);
+        return authorizedClientManager;
+    }
+
+    private OAuth2TokenValidator<Jwt> jwtValidator() {
+        List<OAuth2TokenValidator<Jwt>> validators = new ArrayList<>();
+        String issuerUri = properties.getIssuerUri();
+        if (StringUtils.hasText(issuerUri)) {
+            validators.add(new JwtIssuerValidator(issuerUri));
+        }
+        if (StringUtils.hasText(audience)) {
+            validators.add(new JwtClaimValidator<>(JwtClaimNames.AUD, audiencePredicate(audience)));
+        }
+        validators.add(new JwtTimestampValidator());
+        return new DelegatingOAuth2TokenValidator<>(validators);
+    }
+
+    Predicate<Object> audiencePredicate(String audience) {
+        return aud -> {
+            if (aud == null) {
+                return false;
+            } else if (aud instanceof String) {
+                return aud.equals(audience);
+            } else if (aud instanceof List) {
+                return ((List<?>) aud).contains(audience);
+            } else {
+                return false;
+            }
+        };
+    }
+
+}
+```
+
+#### 16.1.2.1. OnBehalfOfController.java
+Create a new file: OnBehalfOfController.java:
+```java
+package com.azure.sample.active.directory.resource.server.controller;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.oauth2.client.OAuth2AuthorizeRequest;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
+import org.springframework.web.bind.annotation.GetMapping;
+
+public class OnBehalfOfController {
+
+    @Autowired
+    private OAuth2AuthorizedClientManager authorizedClientManager;
+
+    @GetMapping("/on-behalf-of/resource-server-3")
+    public String resource(JwtAuthenticationToken jwtAuthentication) {
+        OAuth2AuthorizeRequest authorizeRequest =
+            OAuth2AuthorizeRequest.withClientRegistrationId("resource-server-2-resource-server-3")
+                                  .principal(jwtAuthentication)
+                                  .build();
+        OAuth2AuthorizedClient authorizedClient = this.authorizedClientManager.authorize(authorizeRequest);
+        return "Hi, this is resource-server-2. You can see this response means you already consented the permissions "
+            + "configured for client registration. "
+            + "Scopes in authorizedClient: " + authorizedClient.getAccessToken().getScopes();
+    }
+}
+```
+
+### 16.1.3. application.yml
+Add contents about oauth2 provider and client registration:
+```yaml
+# Please read "/azure-active-directory/README.md" to fill the placeholders in this file:
+# "<tenant-id>", "<resource-server-2-client-id>", "<resource-server-2-client-secret>".
+server:
+  port: 8082
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          azure-active-directory:
+            issuer-uri: https://login.microsoftonline.com/<tenant-id>/v2.0 # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#webflux-oauth2-login-openid-provider-configuration
+        registration:
+          resource-server-2-resource-server-3:
+            client-id: <resource-server-2-client-id>
+            client-secret: <resource-server-2-client-secret>
+            authorization-grant-type: urn:ietf:params:oauth:grant-type:jwt-bearer
+            scope: api://<resource-server-3-client-id>/resource-server-3.scope-1
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://login.microsoftonline.com/<tenant-id>/discovery/v2.0/keys
+          issuer-uri: https://login.microsoftonline.com/<tenant-id>/v2.0
+          audience: <resource-server-2-client-id>
+```
+
+## 16.2. Create required resources in Azure
+
+### 16.2.1. Add a client secret
+Read [MS docs about adding a client secret], add a client secret for resource-server-2. Get the client-secret and replace the placeholder(`<resource-server-2-client-secret>`) in `application.yml`.
+
+## 16.3. Run the application
+- Run [03-resource-server].
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8082/on-behalf-of/resource-server-3`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
+
+## 16.4. Homework
+- Read [rfc7523].
 
 
 
@@ -1846,7 +2087,10 @@ Read [MS docs about exposing an api], expose 2 scopes named `resource-server-5.s
 [MS docs about consent types]: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#consent-types
 [MS doc about Microsoft identity platform (v2.0) and Azure Active Directory (v1.0) endpoints]: https://docs.microsoft.com/azure/active-directory/azuread-dev/azure-ad-endpoint-comparison#incremental-and-dynamic-consent
 [15-client-consent-all-scopes-in-one-api]: ./15-client-consent-all-scopes-in-one-api
-[MS docs about incremental and dynamic user consent]: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#incremental-and-dynamic-user-consent
-[MS docs about admin consent]: https://docs.microsoft.com/en-us/azure/active-directory/develop/v2-permissions-and-consent#admin-consent
-[MS docs about add a scope]: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-configure-app-expose-web-apis#add-a-scope
+[MS docs about incremental and dynamic user consent]: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#incremental-and-dynamic-user-consent
+[MS docs about admin consent]: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#admin-consent
+[MS docs about add a scope]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis#add-a-scope
 [spring-security#10452]: https://github.com/spring-projects/spring-security/issues/10452
+[MS docs about on_behalf_of flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow
+[16-resource-server-support-on-behalf-of-flow]: ./16-resource-server-support-on-behalf-of-flow
+[rfc7523]: https://datatracker.ietf.org/doc/html/rfc7523

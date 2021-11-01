@@ -8,6 +8,7 @@ import org.springframework.security.oauth2.client.JwtBearerOAuth2AuthorizedClien
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProvider;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProviderBuilder;
+import org.springframework.security.oauth2.client.endpoint.DefaultJwtBearerTokenResponseClient;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
@@ -51,12 +52,24 @@ public class ApplicationConfiguration {
         OAuth2AuthorizedClientRepository authorizedClientRepository) {
         OAuth2AuthorizedClientProvider authorizedClientProvider =
             OAuth2AuthorizedClientProviderBuilder.builder()
-                                                 .provider(new JwtBearerOAuth2AuthorizedClientProvider())
+                                                 .provider(jwtBearerOAuth2AuthorizedClientProvider())
                                                  .build();
         DefaultOAuth2AuthorizedClientManager authorizedClientManager =
             new DefaultOAuth2AuthorizedClientManager(clientRegistrationRepository, authorizedClientRepository);
         authorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);
         return authorizedClientManager;
+    }
+
+    private JwtBearerOAuth2AuthorizedClientProvider jwtBearerOAuth2AuthorizedClientProvider() {
+        JwtBearerOAuth2AuthorizedClientProvider provider = new JwtBearerOAuth2AuthorizedClientProvider();
+        provider.setAccessTokenResponseClient(oAuth2AccessTokenResponseClient());
+        return provider;
+    }
+
+    private DefaultJwtBearerTokenResponseClient oAuth2AccessTokenResponseClient() {
+        DefaultJwtBearerTokenResponseClient client = new DefaultJwtBearerTokenResponseClient();
+        client.setRequestEntityConverter(new AzureADJwtBearerGrantRequestEntityConverter());
+        return client;
     }
 
     private OAuth2TokenValidator<Jwt> jwtValidator() {

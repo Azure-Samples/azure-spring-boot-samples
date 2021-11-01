@@ -2037,6 +2037,68 @@ Read [MS docs about adding a client secret], add a client secret for resource-se
 ## 16.4. Homework
 - Read [rfc7523].
 
+# 17.
+This section is used to call the web api provided in [16-resource-server-support-on-behalf-of-flow]. You can choose one of the following options to get the sample application.
+
+- Option 1: Use [17-client-access-resource-server-with-on-behalf-of-function] project directly.
+- Option 2: Follow steps in [17.1. Create sample project](#171-create-sample-project) to create another resource server.
+
+## 17.1. Create sample project
+This project is build on top of [15-client-consent-all-scopes-in-one-api], the following steps will change [15-client-consent-all-scopes-in-one-api] into [17-client-access-resource-server-with-on-behalf-of-function].
+
+### 17.1.1. pom.xml
+No need to update pom.xml.
+
+### 17.1.2. Java class
+
+#### 17.1.2.1. ResourceServer2OnBehalfOfController.java
+Create ResourceServer2OnBehalfOfController.java:
+```java
+package com.azure.sample.active.directory.controller;
+
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
+
+@RestController
+public class ResourceServer2OnBehalfOfController {
+
+    private final WebClient webClient;
+
+    public ResourceServer2OnBehalfOfController(WebClient webClient) {
+        this.webClient = webClient;
+    }
+
+    @GetMapping("/client/resource-server-2/on-behalf-of/")
+    public String resourceServer1(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-2")
+                                      OAuth2AuthorizedClient client1ResourceServer2) {
+        return webClient
+            .get()
+            .uri("http://localhost:8082/on-behalf-of/resource-server-3")
+            .attributes(oauth2AuthorizedClient(client1ResourceServer2))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
+}
+```
+
+### 17.1.3. application.yml
+No need to update application.yml.
+
+## 17.2. Create required resources in Azure
+No need to create new Azure resources.
+
+## 17.3. Run the application
+
+## 17.4. Homework
+
+
+
 
 
 [OAuth 2.0 Authorization Framework]: https://datatracker.ietf.org/doc/html/rfc6749
@@ -2095,3 +2157,5 @@ Read [MS docs about adding a client secret], add a client secret for resource-se
 [MS docs about on_behalf_of flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow
 [16-resource-server-support-on-behalf-of-flow]: ./16-resource-server-support-on-behalf-of-flow
 [rfc7523]: https://datatracker.ietf.org/doc/html/rfc7523
+[17-client-access-resource-server-with-on-behalf-of-function]: ./17-client-access-resource-server-with-on-behalf-of-function
+

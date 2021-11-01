@@ -31,6 +31,7 @@
     <module>14-client-consent-when-request-for-specific-api</module>
     <module>15-client-consent-all-scopes-in-one-api</module>
     <module>16-resource-server-support-on-behalf-of-flow</module>
+    <module>17-client-access-resource-server-with-on-behalf-of-function</module>
   </modules>
 
 </project>

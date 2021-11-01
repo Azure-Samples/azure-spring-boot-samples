@@ -176,13 +176,24 @@
     * [16.1. Create sample project](#161-create-sample-project)
         + [16.1.1. pom.xml](#1611-pomxml)
         + [16.1.2. Java class](#1612-java-class)
-            - [16.1.2.1. ApplicationConfiguration.java](#16121-applicationconfigurationjava)
-            - [16.1.2.1. OnBehalfOfController.java](#16121-onbehalfofcontrollerjava)
+            - [16.1.2.1. AzureADJwtBearerGrantRequestEntityConverter.java](#16121-azureadjwtbearergrantrequestentityconverterjava)
+            - [16.1.2.2. ApplicationConfiguration.java](#16122-applicationconfigurationjava)
+            - [16.1.2.3. OnBehalfOfController.java](#16123-onbehalfofcontrollerjava)
         + [16.1.3. application.yml](#1613-applicationyml)
     * [16.2. Create required resources in Azure](#162-create-required-resources-in-azure)
         + [16.2.1. Add a client secret](#1621-add-a-client-secret)
     * [16.3. Run the application](#163-run-the-application)
     * [16.4. Homework](#164-homework)
+- [17.](#17)
+    * [17.1. Create sample project](#171-create-sample-project)
+        + [17.1.1. pom.xml](#1711-pomxml)
+        + [17.1.2. Java class](#1712-java-class)
+            - [17.1.2.1. ResourceServer2OnBehalfOfController.java](#17121-resourceserver2onbehalfofcontrollerjava)
+        + [17.1.3. application.yml](#1713-applicationyml)
+    * [17.2. Create required resources in Azure](#172-create-required-resources-in-azure)
+    * [17.3. Run the application](#173-run-the-application)
+    * [17.4. Homework](#174-homework)
+
 
 
 
@@ -1872,7 +1883,29 @@ Add a new dependency in pom.xml:
 
 ### 16.1.2. Java class
 
-#### 16.1.2.1. ApplicationConfiguration.java
+#### 16.1.2.1. AzureADJwtBearerGrantRequestEntityConverter.java
+Create AzureADJwtBearerGrantRequestEntityConverter.java:
+```java
+package com.azure.sample.active.directory.resource.server.configuration;
+
+import org.springframework.security.oauth2.client.endpoint.JwtBearerGrantRequest;
+import org.springframework.security.oauth2.client.endpoint.JwtBearerGrantRequestEntityConverter;
+import org.springframework.util.MultiValueMap;
+
+public class AzureADJwtBearerGrantRequestEntityConverter extends JwtBearerGrantRequestEntityConverter {
+
+    @Override
+    protected MultiValueMap<String, String> createParameters(JwtBearerGrantRequest jwtBearerGrantRequest) {
+        MultiValueMap<String, String> parameters = super.createParameters(jwtBearerGrantRequest);
+        parameters.add("requested_token_use", "on_behalf_of");
+        return parameters;
+    }
+
+}
+
+```
+
+#### 16.1.2.2. ApplicationConfiguration.java
 Define a new bean in ApplicationConfiguration.java: authorizedClientManager.
 ```java
 package com.azure.sample.active.directory.resource.server.configuration;
@@ -1885,6 +1918,7 @@ import org.springframework.security.oauth2.client.JwtBearerOAuth2AuthorizedClien
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProvider;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProviderBuilder;
+import org.springframework.security.oauth2.client.endpoint.DefaultJwtBearerTokenResponseClient;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
@@ -1928,12 +1962,24 @@ public class ApplicationConfiguration {
         OAuth2AuthorizedClientRepository authorizedClientRepository) {
         OAuth2AuthorizedClientProvider authorizedClientProvider =
             OAuth2AuthorizedClientProviderBuilder.builder()
-                                                 .provider(new JwtBearerOAuth2AuthorizedClientProvider())
+                                                 .provider(jwtBearerOAuth2AuthorizedClientProvider())
                                                  .build();
         DefaultOAuth2AuthorizedClientManager authorizedClientManager =
             new DefaultOAuth2AuthorizedClientManager(clientRegistrationRepository, authorizedClientRepository);
         authorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);
         return authorizedClientManager;
+    }
+
+    private JwtBearerOAuth2AuthorizedClientProvider jwtBearerOAuth2AuthorizedClientProvider() {
+        JwtBearerOAuth2AuthorizedClientProvider provider = new JwtBearerOAuth2AuthorizedClientProvider();
+        provider.setAccessTokenResponseClient(oAuth2AccessTokenResponseClient());
+        return provider;
+    }
+
+    private DefaultJwtBearerTokenResponseClient oAuth2AccessTokenResponseClient() {
+        DefaultJwtBearerTokenResponseClient client = new DefaultJwtBearerTokenResponseClient();
+        client.setRequestEntityConverter(new AzureADJwtBearerGrantRequestEntityConverter());
+        return client;
     }
 
     private OAuth2TokenValidator<Jwt> jwtValidator() {
@@ -1966,7 +2012,7 @@ public class ApplicationConfiguration {
 }
 ```
 
-#### 16.1.2.1. OnBehalfOfController.java
+#### 16.1.2.3. OnBehalfOfController.java
 Create a new file: OnBehalfOfController.java:
 ```java
 package com.azure.sample.active.directory.resource.server.controller;
@@ -1977,14 +2023,16 @@ import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class OnBehalfOfController {
 
     @Autowired
     private OAuth2AuthorizedClientManager authorizedClientManager;
 
     @GetMapping("/on-behalf-of/resource-server-3")
-    public String resource(JwtAuthenticationToken jwtAuthentication) {
+    public String onBehalfOfResourceServer3(JwtAuthenticationToken jwtAuthentication) {
         OAuth2AuthorizeRequest authorizeRequest =
             OAuth2AuthorizeRequest.withClientRegistrationId("resource-server-2-resource-server-3")
                                   .principal(jwtAuthentication)

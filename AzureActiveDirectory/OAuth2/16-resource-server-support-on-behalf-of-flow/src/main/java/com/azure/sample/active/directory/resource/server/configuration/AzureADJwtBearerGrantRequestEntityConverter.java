@@ -13,6 +13,5 @@ public class AzureADJwtBearerGrantRequestEntityConverter extends JwtBearerGrantR
         return parameters;
     }
 
-
 }
 

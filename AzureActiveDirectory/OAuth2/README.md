@@ -1292,7 +1292,7 @@ No need to add no items in `application.yml`. Just replace placeholders with act
 ## 9.2. Create required resources in Azure
 
 ### 9.2.1. Create resource-server-1-role-1 and resource-server-1-role-2.
-Read [MS docs about declaring roles for an application], create 2 roles for resource-server-1: `resource-server-1-role-1` and `resource-server-1-role-1`.
+Read [MS docs about declaring roles for an application], create 2 roles for resource-server-1: `resource-server-1-role-1` and `resource-server-1-role-2`.
 
 ### 9.2.1. Assign user-1 to resource-server-1-role-1
 Read [MS docs about assigning users and groups to roles], assign user-1 to `resource-server-1-role-1`.

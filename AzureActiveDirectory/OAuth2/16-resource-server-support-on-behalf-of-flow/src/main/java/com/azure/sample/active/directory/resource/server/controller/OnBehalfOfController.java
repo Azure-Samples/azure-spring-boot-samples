@@ -6,14 +6,16 @@ import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
+@RestController
 public class OnBehalfOfController {
 
     @Autowired
     private OAuth2AuthorizedClientManager authorizedClientManager;
 
     @GetMapping("/on-behalf-of/resource-server-3")
-    public String resource(JwtAuthenticationToken jwtAuthentication) {
+    public String onBehalfOfResourceServer3(JwtAuthenticationToken jwtAuthentication) {
         OAuth2AuthorizeRequest authorizeRequest =
             OAuth2AuthorizeRequest.withClientRegistrationId("resource-server-2-resource-server-3")
                                   .principal(jwtAuthentication)

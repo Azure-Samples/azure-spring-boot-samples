@@ -100,8 +100,8 @@
             - [9.1.2.3. CheckPermissionByRoleController.java](#9123-checkpermissionbyrolecontrollerjava)
         + [9.1.3. application.yml](#913-applicationyml)
     * [9.2. Create required resources in Azure](#92-create-required-resources-in-azure)
-        + [9.2.1. Create resource-server-1-role-1 and resource-server-1-role-2.](#921-create-resource-server-1-role-1-and-resource-server-1-role-2)
-        + [9.2.1. Assign user-1 to resource-server-1-role-1](#921-assign-user-1-to-resource-server-1-role-1)
+        + [9.2.1. Create resource-server-1.role-1 and resource-server-1.role-1.](#921-create-resource-server-1role-1-and-resource-server-1role-1)
+        + [9.2.1. Assign user-1 to resource-server-1.role-1](#921-assign-user-1-to-resource-server-1role-1)
     * [9.3. Run the application](#93-run-the-application)
     * [9.4. Homework](#94-homework)
 - [10. client-access-resource-server-check-permission-by-role](#10-client-access-resource-server-check-permission-by-role)
@@ -1291,11 +1291,11 @@ No need to add no items in `application.yml`. Just replace placeholders with act
 
 ## 9.2. Create required resources in Azure
 
-### 9.2.1. Create resource-server-1-role-1 and resource-server-1-role-2.
-Read [MS docs about declaring roles for an application], create 2 roles for resource-server-1: `resource-server-1-role-1` and `resource-server-1-role-2`.
+### 9.2.1. Create resource-server-1.role-1 and resource-server-1.role-1.
+Read [MS docs about declaring roles for an application], create 2 roles for resource-server-1: `resource-server-1.role-1` and `resource-server-1.role-1`.
 
-### 9.2.1. Assign user-1 to resource-server-1-role-1
-Read [MS docs about assigning users and groups to roles], assign user-1 to `resource-server-1-role-1`.
+### 9.2.1. Assign user-1 to resource-server-1.role-1
+Read [MS docs about assigning users and groups to roles], assign user-1 to `resource-server-1.role-1`.
 
 ## 9.3. Run the application
 - Run [09-resource-server-check-permission-by-role].

@@ -182,9 +182,10 @@
         + [16.1.3. application.yml](#1613-applicationyml)
     * [16.2. Create required resources in Azure](#162-create-required-resources-in-azure)
         + [16.2.1. Add a client secret](#1621-add-a-client-secret)
+        + [16.2.2. Authorized client applications](#1622-authorized-client-applications)
     * [16.3. Run the application](#163-run-the-application)
     * [16.4. Homework](#164-homework)
-- [17.](#17)
+- [17. client-access-resource-server-with-on-behalf-of-function](#17-client-access-resource-server-with-on-behalf-of-function)
     * [17.1. Create sample project](#171-create-sample-project)
         + [17.1.1. pom.xml](#1711-pomxml)
         + [17.1.2. Java class](#1712-java-class)
@@ -193,6 +194,8 @@
     * [17.2. Create required resources in Azure](#172-create-required-resources-in-azure)
     * [17.3. Run the application](#173-run-the-application)
     * [17.4. Homework](#174-homework)
+
+
 
 
 
@@ -2078,14 +2081,18 @@ spring:
 ### 16.2.1. Add a client secret
 Read [MS docs about adding a client secret], add a client secret for resource-server-2. Get the client-secret and replace the placeholder(`<resource-server-2-client-secret>`) in `application.yml`.
 
+### 16.2.2. Authorized client applications
+Read [MS docs about exposing an api], pre-authorize resource-server-2 to access resource-server-3.
+
 ## 16.3. Run the application
-- Run [03-resource-server].
+- Run [16-resource-server-support-on-behalf-of-flow].
 - Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8082/on-behalf-of/resource-server-3`. It should return 401. Because now we do not have authority to access this resource-server. In the next section, we will use OAuth2 client to access this resource-server.
 
 ## 16.4. Homework
 - Read [rfc7523].
+- Read [MS docs about gaining consent for the middle-tier application].
 
-# 17.
+# 17. client-access-resource-server-with-on-behalf-of-function
 This section is used to call the web api provided in [16-resource-server-support-on-behalf-of-flow]. You can choose one of the following options to get the sample application.
 
 - Option 1: Use [17-client-access-resource-server-with-on-behalf-of-function] project directly.
@@ -2142,9 +2149,13 @@ No need to update application.yml.
 No need to create new Azure resources.
 
 ## 17.3. Run the application
+- Run [16-resource-server-support-on-behalf-of-flow].
+- Run [17-client-access-resource-server-with-on-behalf-of-function].
+- Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window]. Use the new opened [InPrivate window] to access `http://localhost:8080/client/resource-server-2/hello`. Input username and password, it will return `Hello, this is resource-server-2.`.
+- Access `http://localhost:8080/client/resource-server-2/on-behalf-of/`, it will return `Hi, this is resource-server-2. You can see this response means you already consented the permissions configured for client registration. Scopes in authorizedClient: [...]`, which means `on_behalf_of` flow executed successfully.
 
 ## 17.4. Homework
-
+- Investigate why we need `AzureADJwtBearerGrantRequestEntityConverter.java` in [16-resource-server-support-on-behalf-of-flow].
 
 
 
@@ -2205,5 +2216,6 @@ No need to create new Azure resources.
 [MS docs about on_behalf_of flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow
 [16-resource-server-support-on-behalf-of-flow]: ./16-resource-server-support-on-behalf-of-flow
 [rfc7523]: https://datatracker.ietf.org/doc/html/rfc7523
+[MS docs about gaining consent for the middle-tier application]: https://docs.microsoft.comazure/active-directory/develop/v2-oauth2-on-behalf-of-flow#gaining-consent-for-the-middle-tier-application
 [17-client-access-resource-server-with-on-behalf-of-function]: ./17-client-access-resource-server-with-on-behalf-of-function
 

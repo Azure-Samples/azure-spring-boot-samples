@@ -407,6 +407,7 @@ public class HomeController {
 # Please fill these placeholders before run this application:
 # 1. <tenant-id>
 # 2. <resource-server-1-client-id>
+
 server:
   port: 8081
 spring:

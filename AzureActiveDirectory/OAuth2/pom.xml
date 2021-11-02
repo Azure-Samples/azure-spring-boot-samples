@@ -33,6 +33,7 @@
     <module>16-resource-server-support-on-behalf-of-flow</module>
     <module>17-client-access-resource-server-with-on-behalf-of-function</module>
     <module>sample-01-simplest-scenario/sample-01-client</module>
+    <module>sample-01-simplest-scenario/sample-01-resource-server</module>
   </modules>
 
 </project>

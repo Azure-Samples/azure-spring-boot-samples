@@ -12,9 +12,9 @@ Each sample has homework, you can get the reference answer in [homework referenc
 
 ## 4.1. Sample 1: Simplest scenario
 This sample will demonstrate the simplest scenario:
-- User sign in client and client get [access token] by [OAuth 2.0 authorization code flow].
-- Client access resource-server by [access token].
-- Resource server validate the [access token] by validating the signature, and checking these claims: `aud`, `nbf` and `exp`.
+1. User sign in client and client get [access token] by [OAuth 2.0 authorization code flow].
+2. Client access resource-server by [access token].
+3. Resource server validate the [access token] by validating the signature, and checking these claims: **aud**, **nbf** and **exp**.
 
 
 

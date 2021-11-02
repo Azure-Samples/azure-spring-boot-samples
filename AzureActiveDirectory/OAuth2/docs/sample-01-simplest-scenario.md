@@ -40,9 +40,9 @@
 Please refer to [Azure Active Directory OAuth2 samples] to get all samples about using [Azure Active Directory] and [OAuth2] to protect web application developed by [Spring Security].
 
 This sample will demonstrate the simplest scenario:
- - User sign in client and client get [access token] by [OAuth 2.0 authorization code flow].
- - Client access resource-server by [access token].
- - Resource server validate the [access token] by validating the signature, and checking these claims: **aud**, **nbf** and **exp**.
+1. User sign in client and client get [access token] by [OAuth 2.0 authorization code flow].
+2. Client access resource-server by [access token].
+3. Resource server validate the [access token] by validating the signature, and checking these claims: **aud**, **nbf** and **exp**.
 
 # 2. Create sample applications
 You can follow the following steps to create sample applications, or you can use samples in GitHub: [sample-01-simplest-scenario].

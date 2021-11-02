@@ -23,7 +23,7 @@
     * [3.3. Register client-1](#33-register-client-1)
     * [3.4. Add a client secret for client-1](#34-add-a-client-secret-for-client-1)
     * [3.5. Add a redirect URI for client-1](#35-add-a-redirect-uri-for-client-1)
-    * [3.3. Register resource-server-1](#33-register-resource-server-1)
+    * [3.6. Register resource-server-1](#36-register-resource-server-1)
 - [4. Run sample applications](#4-run-sample-applications)
 - [5. Homework](#5-homework)
 
@@ -437,7 +437,7 @@ Read [document about adding a client secret], add a client secret. Get the clien
 ## 3.5. Add a redirect URI for client-1
 Read [document about adding a redirect URI], add redirect URI: **http://localhost:8080/login/oauth2/code/**.
 
-## 3.3. Register resource-server-1
+## 3.6. Register resource-server-1
 Read [document about registering an application], register an application named **resource-server-1**. Get the client-id: **<resource-server-1-client-id>**.
 
 # 4. Run sample applications
@@ -468,6 +468,10 @@ Read [document about registering an application], register an application named 
 [access token]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
 [sample-01-simplest-scenario]: ../sample-01-simplest-scenario
 [document about creating an Azure AD tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant
+[document about registering an application]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
+[document about adding users]: https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory
+[document about adding a client secret]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-client-secret
+[document about adding a redirect URI]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri
 [sample-01-client]: ../sample-01-simplest-scenario/sample-01-client
 [sample-01-resource-server]: ../sample-01-simplest-scenario/sample-01-resource-server
 [Edge]: https://www.microsoft.com/edge?r=1

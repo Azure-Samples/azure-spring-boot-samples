@@ -3,14 +3,38 @@
     * [2.1. Client](#21-client)
         + [2.1.1. pom.xml](#211-pomxml)
         + [2.1.2. Java classes](#212-java-classes)
+            - [2.1.2.1. ClientApplication.java](#2121-clientapplicationjava)
+            - [2.1.2.2. WebSecurityConfiguration.java](#2122-websecurityconfigurationjava)
+            - [2.1.2.3. ApplicationConfiguration.java](#2123-applicationconfigurationjava)
+            - [2.1.2.4. HomeController.java](#2124-homecontrollerjava)
+            - [2.1.2.5. CheckPermissionByScopeController.java](#2125-checkpermissionbyscopecontrollerjava)
+            - [2.1.2.6. ResourceServerController.java](#2126-resourceservercontrollerjava)
         + [2.1.3. application.yml](#213-applicationyml)
     * [2.2. Resource server](#22-resource-server)
         + [2.2.1. pom.xml](#221-pomxml)
         + [2.2.2. Java classes](#222-java-classes)
+            - [2.2.2.1. ResourceServerApplication.java](#2221-resourceserverapplicationjava)
+            - [2.2.2.2. WebSecurityConfiguration.java](#2222-websecurityconfigurationjava)
+            - [2.2.2.3. ApplicationConfiguration.java](#2223-applicationconfigurationjava)
+            - [2.2.2.4. HomeController.java](#2224-homecontrollerjava)
+            - [2.2.2.5. CheckPermissionByScopeController.java](#2225-checkpermissionbyscopecontrollerjava)
+            - [2.2.2.6. CheckPermissionByRoleController.java](#2226-checkpermissionbyrolecontrollerjava)
         + [2.2.3. application.yml](#223-applicationyml)
 - [3. Create resources in Azure](#3-create-resources-in-azure)
+    * [3.1. Create a tenant](#31-create-a-tenant)
+    * [3.2. Add a new user.](#32-add-a-new-user)
+    * [3.3. Register client-1](#33-register-client-1)
+    * [3.4. Add a client secret for client-1](#34-add-a-client-secret-for-client-1)
+    * [3.5. Add a redirect URI for client-1](#35-add-a-redirect-uri-for-client-1)
+    * [3.6. Register resource-server-1](#36-register-resource-server-1)
+    * [3.7. Expose apis for resource-server-1](#37-expose-apis-for-resource-server-1)
+    * [3.8. Add permissions for client-1 to access resource-server-1](#38-add-permissions-for-client-1-to-access-resource-server-1)
+    * [3.9. Create roles for resource-server-1](#39-create-roles-for-resource-server-1)
+    * [3.10. Assign user-1 to resource-server-1-role-1](#310-assign-user-1-to-resource-server-1-role-1)
 - [4. Run sample applications](#4-run-sample-applications)
 - [5. Homework](#5-homework)
+
+
 
 
 
@@ -574,6 +598,36 @@ spring:
 
 # 3. Create resources in Azure
 
+## 3.1. Create a tenant
+Read [document about creating an Azure AD tenant], create a new tenant. Get the tenant-id: **<tenant-id>**.
+
+## 3.2. Add a new user.
+Read [document about adding users], add a new user: **user-1@<tenant-name>.com**. Get the user's password.
+
+## 3.3. Register client-1
+Read [document about registering an application], register an application named **client-1**. Get the client-id: **<client-1-client-id>**.
+
+## 3.4. Add a client secret for client-1
+Read [document about adding a client secret], add a client secret. Get the client-secret value: **<client-1-client-secret>**.
+
+## 3.5. Add a redirect URI for client-1
+Read [document about adding a redirect URI], add redirect URI: **http://localhost:8080/login/oauth2/code/**.
+
+## 3.6. Register resource-server-1
+Read [document about registering an application], register an application named **resource-server-1**. Get the client-id: **<resource-server-1-client-id>**.
+
+## 3.7. Expose apis for resource-server-1
+Read [document about exposing an api], expose 2 scopes for resource-server-1: **resource-server-1.scope-1** and **resource-server-1.scope-2**, choose **Admins and users** for **Who can consent** option.
+
+## 3.8. Add permissions for client-1 to access resource-server-1
+Read [document about configuring a client application to access a web API], add permissions for **client-1** to access **resource-server-1.scope-1**.
+
+## 3.9. Create roles for resource-server-1
+Read [document about declaring roles for an application], create 2 roles for resource-server-1: **resource-server-1-role-1** and **resource-server-1-role-2**.
+
+## 3.10. Assign user-1 to resource-server-1-role-1
+Read [document about assigning users and groups to roles], assign **user-1** to **resource-server-2-role-1**.
+
 # 4. Run sample applications
 
 # 5. Homework
@@ -589,3 +643,13 @@ spring:
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [access token]: https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
 [sample-02-check-permissions-by-claims-in-access-token]: ../sample-02-check-permissions-by-claims-in-access-token
+[document about creating an Azure AD tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant
+[document about registering an application]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
+[document about adding users]: https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory
+[document about adding a client secret]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-client-secret
+[document about adding a redirect URI]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri
+[document about exposing an api]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis
+[document about configuring a client application to access a web API]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-access-web-apis
+[document about assigning users and groups to roles]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles
+[document about declaring roles for an application]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#declare-roles-for-an-application
+[document about assigning users and groups to roles]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles

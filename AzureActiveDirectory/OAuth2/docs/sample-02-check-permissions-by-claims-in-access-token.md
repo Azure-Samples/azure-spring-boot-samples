@@ -642,7 +642,8 @@ Read [document about assigning users and groups to roles], assign **user-1** to 
 11. Access **http://localhost:8080/resource-server-1/role/resource-server-1-role-2**, it will return 500. Check the log of [sample-02-client], it show that [sample-02-resource-server] returned 403 to [sample-02-client]. which means [sample-02-client] doesn't have authority to access this endpoint of [sample-02-resource-server].
 
 # 5. Homework
-
+1. Try to use groups for authorization.
+2. List all claims that can be used for authorization.
 
 
 
@@ -668,10 +669,3 @@ Read [document about assigning users and groups to roles], assign **user-1** to 
 [sample-02-resource-server]: ../sample-02-check-permissions-by-claims-in-access-token/sample-02-resource-server
 [Edge]: https://www.microsoft.com/edge?r=1
 [InPrivate window]: https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2
-[rfc6749]: https://datatracker.ietf.org/doc/html/rfc6749
-[document about OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform]: https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols
-[document about Microsoft identity platform and OpenID Connect protocol]: https://docs.microsoft.com/azure/active-directory/develop/v2-protocols-oidc
-[document about Microsoft identity platform and OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
-[document about Microsoft identity platform ID tokens]: https://docs.microsoft.com/azure/active-directory/develop/id-tokens
-[document about Microsoft identity platform access tokens]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
-[document about Microsoft identity platform refresh tokens]: https://docs.microsoft.com/azure/active-directory/develop/refresh-tokens

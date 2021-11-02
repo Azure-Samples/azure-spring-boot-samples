@@ -204,11 +204,11 @@ public class CheckPermissionByScopeController {
 
     @GetMapping("/scope/resource-server-1-scope-1")
     @PreAuthorize("hasAuthority('SCOPE_api://<resource-server-1-client-id>/resource-server-1.scope-1')")
-    public String resourceServer1Scope1(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+    public String resourceServer1Scope1(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8081/scope/resource-server-1-scope-1")
-            .attributes(oauth2AuthorizedClient(client1))
+            .attributes(oauth2AuthorizedClient(client1ResourceServer1))
             .retrieve()
             .bodyToMono(String.class)
             .block();
@@ -216,11 +216,11 @@ public class CheckPermissionByScopeController {
 
     @GetMapping("/scope/resource-server-1-scope-2")
     @PreAuthorize("hasAuthority('SCOPE_api://<resource-server-1-client-id>/resource-server-1.scope-2')")
-    public String resourceServer1Scope2(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+    public String resourceServer1Scope2(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8081/scope/resource-server-1-scope-2")
-            .attributes(oauth2AuthorizedClient(client1))
+            .attributes(oauth2AuthorizedClient(client1ResourceServer1))
             .retrieve()
             .bodyToMono(String.class)
             .block();
@@ -250,7 +250,7 @@ public class ResourceServerController {
     }
 
     @GetMapping("/resource-server-1/hello")
-    public String hello(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1ResourceServer1) {
+    public String hello(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8081/")
@@ -261,7 +261,7 @@ public class ResourceServerController {
     }
 
     @GetMapping("/resource-server-1/scope/resource-server-1-scope-1")
-    public String resourceServer1Scope1(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1ResourceServer1) {
+    public String resourceServer1Scope1(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8081/scope/resource-server-1-scope-1")
@@ -272,7 +272,7 @@ public class ResourceServerController {
     }
 
     @GetMapping("/resource-server-1/scope/resource-server-1-scope-2")
-    public String resourceServer1Scope2(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1ResourceServer1) {
+    public String resourceServer1Scope2(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8081/scope/resource-server-1-scope-2")
@@ -283,7 +283,7 @@ public class ResourceServerController {
     }
 
     @GetMapping("/resource-server-1/role/resource-server-1-role-1")
-    public String resourceServer1Role1(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1ResourceServer1) {
+    public String resourceServer1Role1(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8081/role/resource-server-1-role-1")
@@ -294,7 +294,7 @@ public class ResourceServerController {
     }
 
     @GetMapping("/resource-server-1/role/resource-server-1-role-2")
-    public String resourceServer1Role2(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1ResourceServer1) {
+    public String resourceServer1Role2(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8081/role/resource-server-1-role-2")
@@ -629,6 +629,17 @@ Read [document about declaring roles for an application], create 2 roles for res
 Read [document about assigning users and groups to roles], assign **user-1** to **resource-server-2-role-1**.
 
 # 4. Run sample applications
+1. Fill these placeholders in **application.yml** and **CheckPermissionByScopeController.java**, then run [sample-02-client].
+2. Fill these placeholders in **application.yml**, then run [sample-02-resource-server].
+3. Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window].
+4. Access **http://localhost:8080**, it will redirect to Microsoft login page. Input username and password, it will return permission request page. click **Accept**, then it will return **Hello, this is sample-02-client.**. This means we log in successfully.
+5. Access **http://localhost:8080/scope/resource-server-1-scope-1**, it will return **Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1**.
+6. Access **http://localhost:8080/scope/resource-server-1-scope-2**, it will return 403, which means user do not have authority to access this endpoint.
+7. Access **http://localhost:8080/resource-server-1/hello**, it will return **Hello, this is resource-server-1.**, which means [sample-02-client] can access [sample-02-resource-server].
+8. Access **http://localhost:8080/resource-server-1/scope/resource-server-1-scope-1**, it will return **Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1**.
+9. Access **http://localhost:8080/resource-server-1/scope/resource-server-1-scope-2**, it will return 500. Check the log of [sample-02-client], it show that [sample-02-resource-server] returned 403 to [sample-02-client]. which means [sample-02-client] doesn't have authority to access this endpoint of [sample-02-resource-server].
+10. Access **http://localhost:8080/resource-server-1/role/resource-server-1-role-1**, it will return **Hi, this is resource-server-1. You can access my endpoint: /role/resource-server-1-role-1**.
+11. Access **http://localhost:8080/resource-server-1/role/resource-server-1-role-2**, it will return 500. Check the log of [sample-02-client], it show that [sample-02-resource-server] returned 403 to [sample-02-client]. which means [sample-02-client] doesn't have authority to access this endpoint of [sample-02-resource-server].
 
 # 5. Homework
 
@@ -653,3 +664,14 @@ Read [document about assigning users and groups to roles], assign **user-1** to 
 [document about assigning users and groups to roles]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles
 [document about declaring roles for an application]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#declare-roles-for-an-application
 [document about assigning users and groups to roles]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles
+[sample-02-client]: ../sample-02-check-permissions-by-claims-in-access-token/sample-02-client
+[sample-02-resource-server]: ../sample-02-check-permissions-by-claims-in-access-token/sample-02-resource-server
+[Edge]: https://www.microsoft.com/edge?r=1
+[InPrivate window]: https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2
+[rfc6749]: https://datatracker.ietf.org/doc/html/rfc6749
+[document about OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform]: https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols
+[document about Microsoft identity platform and OpenID Connect protocol]: https://docs.microsoft.com/azure/active-directory/develop/v2-protocols-oidc
+[document about Microsoft identity platform and OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
+[document about Microsoft identity platform ID tokens]: https://docs.microsoft.com/azure/active-directory/develop/id-tokens
+[document about Microsoft identity platform access tokens]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
+[document about Microsoft identity platform refresh tokens]: https://docs.microsoft.com/azure/active-directory/develop/refresh-tokens

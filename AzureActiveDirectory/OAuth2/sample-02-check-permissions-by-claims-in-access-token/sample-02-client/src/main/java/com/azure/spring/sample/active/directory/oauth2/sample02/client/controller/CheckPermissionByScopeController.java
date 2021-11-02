@@ -20,11 +20,11 @@ public class CheckPermissionByScopeController {
 
     @GetMapping("/scope/resource-server-1-scope-1")
     @PreAuthorize("hasAuthority('SCOPE_api://<resource-server-1-client-id>/resource-server-1.scope-1')")
-    public String resourceServer1Scope1(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+    public String resourceServer1Scope1(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8081/scope/resource-server-1-scope-1")
-            .attributes(oauth2AuthorizedClient(client1))
+            .attributes(oauth2AuthorizedClient(client1ResourceServer1))
             .retrieve()
             .bodyToMono(String.class)
             .block();
@@ -32,11 +32,11 @@ public class CheckPermissionByScopeController {
 
     @GetMapping("/scope/resource-server-1-scope-2")
     @PreAuthorize("hasAuthority('SCOPE_api://<resource-server-1-client-id>/resource-server-1.scope-2')")
-    public String resourceServer1Scope2(@RegisteredOAuth2AuthorizedClient("client-1") OAuth2AuthorizedClient client1) {
+    public String resourceServer1Scope2(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8081/scope/resource-server-1-scope-2")
-            .attributes(oauth2AuthorizedClient(client1))
+            .attributes(oauth2AuthorizedClient(client1ResourceServer1))
             .retrieve()
             .bodyToMono(String.class)
             .block();

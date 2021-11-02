@@ -230,7 +230,7 @@ spring:
             provider: azure-active-directory
             client-id: <client-1-client-id>
             client-secret: <client-1-client-secret>
-            scope: openid, profile, api://<resource-server-1-client-id>/resource-server-1.scope-1, # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            scope: openid, profile, offline_access, api://<resource-server-1-client-id>/resource-server-1.scope-1, # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
             redirect-uri: http://localhost:8080/login/oauth2/code/
 ```
 
@@ -422,29 +422,40 @@ spring:
 # 3. Create resources in Azure
 
 ## 3.1. Create a tenant
-Read [MS docs about creating an Azure AD tenant], create a new tenant. Get the tenant-id: **<tenant-id>**.
+Read [document about creating an Azure AD tenant], create a new tenant. Get the tenant-id: **<tenant-id>**.
 
 ## 3.2. Add a new user.
-Read [MS docs about adding users], add a new user: **user-1@<tenant-name>.com**.
+Read [document about adding users], add a new user: **user-1@<tenant-name>.com**. Get the user's password.
 
 ## 3.3. Register client-1
-Read [MS docs about registering an application], register an application named **client-1**. Get the client-id: **<client-1-client-id>**.
+Read [document about registering an application], register an application named **client-1**. Get the client-id: **<client-1-client-id>**.
 
 ## 3.4. Add a client secret for client-1
-Read [MS docs about adding a client secret], add a client secret. Get the client-secret value: **<client-1-client-secret>**.
+Read [document about adding a client secret], add a client secret. Get the client-secret value: **<client-1-client-secret>**.
 
 ## 3.5. Add a redirect URI for client-1
-Read [MS docs about adding a redirect URI], add redirect URI: **http://localhost:8080/login/oauth2/code/**.
+Read [document about adding a redirect URI], add redirect URI: **http://localhost:8080/login/oauth2/code/**.
 
 ## 3.3. Register resource-server-1
-Read [MS docs about registering an application], register an application named **resource-server-1**. Get the client-id: **<resource-server-1-client-id>**.
+Read [document about registering an application], register an application named **resource-server-1**. Get the client-id: **<resource-server-1-client-id>**.
 
 # 4. Run sample applications
-
+ 1. Fill these placeholders in **application.yml**, that run [sample-01-client].
+ 2. Fill these placeholders in **application.yml**, that run [sample-01-resource-server].
+ 3. Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window].
+ 4. Access **http://localhost:8080**, it will redirect to Microsoft login page. Input username and password, it will return permission request page. click **Accept**, then it will return **Hello, this is sample-01-client.**. This means we log in successfully.
+ 5. Access **http://localhost:8080/resource-server**, it will return **Hello, this is resource-server-1.**, which means [sample-01-client] can access [sample-01-resource-server].
 
 # 5. Homework
-
-
+ 1. Read [rfc6749].
+ 2. Read [document about OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform].
+ 3. Read [document about Microsoft identity platform and OpenID Connect protocol]
+ 4. Read [document about Microsoft identity platform and OAuth 2.0 authorization code flow].
+ 5. Read [document about Microsoft identity platform ID tokens].
+ 6. Read [document about Microsoft identity platform access tokens].
+ 7. Read [document about Microsoft identity platform refresh tokens].
+ 8. Investigate each item's purpose in the 2 sample projects' **application.yml**.
+ 9. In [sample-01-client]'s **application.yml**, the property **spring.security.oauth2.client.registration.scope** contains **openid**, **profile**, and **offline_access**. what will happen if we delete these scopes?
 
 
 
@@ -453,7 +464,17 @@ Read [MS docs about registering an application], register an application named *
 [OAuth2]: https://oauth.net/2/
 [Spring Security]: https://spring.io/projects/spring-security
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
-[access token]: https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
+[access token]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
 [sample-01-simplest-scenario]: ../sample-01-simplest-scenario
-[MS docs about creating an Azure AD tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant
-
+[document about creating an Azure AD tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant
+[sample-01-client]: ../sample-01-simplest-scenario/sample-01-client
+[sample-01-resource-server]: ../sample-01-simplest-scenario/sample-01-resource-server
+[Edge]: https://www.microsoft.com/edge?r=1
+[InPrivate window]: https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2
+[rfc6749]: https://datatracker.ietf.org/doc/html/rfc6749
+[document about OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform]: https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols
+[document about Microsoft identity platform and OpenID Connect protocol]: https://docs.microsoft.com/azure/active-directory/develop/v2-protocols-oidc
+[document about Microsoft identity platform and OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
+[document about Microsoft identity platform ID tokens]: https://docs.microsoft.com/azure/active-directory/develop/id-tokens
+[document about Microsoft identity platform access tokens]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
+[document about Microsoft identity platform refresh tokens]: https://docs.microsoft.com/azure/active-directory/develop/refresh-tokens

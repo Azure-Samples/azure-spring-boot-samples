@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ResourceServerAllController {
 
-    @GetMapping("/resource-server-all/hello")
+    @GetMapping("/resource-server-all")
     public String resourceServerAll(
         @RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1,
         @RegisteredOAuth2AuthorizedClient("client-1-resource-server-2") OAuth2AuthorizedClient client1ResourceServer2) {

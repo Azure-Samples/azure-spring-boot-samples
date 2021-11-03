@@ -205,7 +205,7 @@ public class ResourceServer1Controller {
         this.webClient = webClient;
     }
 
-    @GetMapping("/resource-server-1/hello")
+    @GetMapping("/resource-server-1")
     public String hello(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
@@ -239,7 +239,7 @@ public class ResourceServer2Controller {
         this.webClient = webClient;
     }
 
-    @GetMapping("/resource-server-2/hello")
+    @GetMapping("/resource-server-2")
     public String hello(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-2") OAuth2AuthorizedClient client1ResourceServer2) {
         return webClient
             .get()
@@ -264,7 +264,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class ResourceServerAllController {
 
-    @GetMapping("/client/resource-server-all/hello")
+    @GetMapping("/client/resource-server-all")
     public String resourceServerAll(
         @RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1,
         @RegisteredOAuth2AuthorizedClient("client-1-resource-server-2") OAuth2AuthorizedClient client1ResourceServer2) {
@@ -718,13 +718,13 @@ Read [document about exposing an api], expose 2 scopes for resource-server-2: **
 2. Fill these placeholders in **application.yml**, then run [sample-03-resource-server-1].
 3. Fill these placeholders in **application.yml**, then run [sample-03-resource-server-2].
 4. Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window].
-5. Access **http://localhost:8080/resource-server-all/hello**, it will return login page.
+5. Access **http://localhost:8080/resource-server-all**, it will return login page.
 6. Click **client-1-resource-server-1**, it will redirect to Microsoft login page.
 7. Input username and password, it will return permission request page: let user permit **client-1** to access **resource-server-1**.
 8. Click **Accept**, then it will return permission request page: let user permit **client-1** to access **resource-server-2**.
 9. Click **Accept**, then it will return **Hello, this is sample-03-client, ...**. This means user log in successfully.
-10. Access **http://localhost:8080/resource-server-1/hello**, it will return **Hello, this is resource-server-1.**, there is no permission request page anymore.
-11. Access **http://localhost:8080/resource-server-2/hello**, it will return **Hello, this is resource-server-2.**, there is no permission request page anymore.
+10. Access **http://localhost:8080/resource-server-1**, it will return **Hello, this is resource-server-1.**, there is no permission request page anymore.
+11. Access **http://localhost:8080/resource-server-2**, it will return **Hello, this is resource-server-2.**, there is no permission request page anymore.
 
 # 5. Homework
 1. If there are 100 clients configured in application.yml, the permission request page will appear 100 times. Please investigate how to reduce the consent page.

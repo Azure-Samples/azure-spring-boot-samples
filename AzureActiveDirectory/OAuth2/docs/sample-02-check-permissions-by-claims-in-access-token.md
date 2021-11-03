@@ -250,7 +250,7 @@ public class ResourceServerController {
         this.webClient = webClient;
     }
 
-    @GetMapping("/resource-server-1/hello")
+    @GetMapping("/resource-server-1")
     public String hello(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
@@ -633,7 +633,7 @@ Read [document about assigning users and groups to roles], assign **user-1** to 
 4. Access **http://localhost:8080**, it will redirect to Microsoft login page. Input username and password, it will return permission request page. click **Accept**, then it will return **Hello, this is sample-02-client.**. This means we log in successfully.
 5. Access **http://localhost:8080/scope/resource-server-1-scope-1**, it will return **Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1**.
 6. Access **http://localhost:8080/scope/resource-server-1-scope-2**, it will return 403, which means user do not have authority to access this endpoint.
-7. Access **http://localhost:8080/resource-server-1/hello**, it will return **Hello, this is resource-server-1.**, which means [sample-02-client] can access [sample-02-resource-server].
+7. Access **http://localhost:8080/resource-server-1**, it will return **Hello, this is resource-server-1.**, which means [sample-02-client] can access [sample-02-resource-server].
 8. Access **http://localhost:8080/resource-server-1/scope/resource-server-1-scope-1**, it will return **Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1**.
 9. Access **http://localhost:8080/resource-server-1/scope/resource-server-1-scope-2**, it will return 500. Check the log of [sample-02-client], it show that [sample-02-resource-server] returned 403 to [sample-02-client]. which means [sample-02-client] doesn't have authority to access this endpoint of [sample-02-resource-server].
 10. Access **http://localhost:8080/resource-server-1/role/resource-server-1-role-1**, it will return **Hi, this is resource-server-1. You can access my endpoint: /role/resource-server-1-role-1**.

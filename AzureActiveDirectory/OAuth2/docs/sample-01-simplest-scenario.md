@@ -445,7 +445,7 @@ Read [document about registering an application], register an application named 
  2. Fill these placeholders in **application.yml**, then run [sample-01-resource-server].
  3. Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window].
  4. Access **http://localhost:8080**, it will redirect to Microsoft login page. Input username and password, it will return permission request page. click **Accept**, then it will return **Hello, this is sample-01-client.**. This means we log in successfully.
- 5. Access **http://localhost:8080/resource-server-1/hello**, it will return **Hello, this is resource-server-1.**, which means [sample-01-client] can access [sample-01-resource-server].
+ 5. Access **http://localhost:8080/resource-server-1**, it will return **Hello, this is resource-server-1.**, which means [sample-01-client] can access [sample-01-resource-server].
 
 # 5. Homework
  1. Read [rfc6749].

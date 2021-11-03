@@ -17,7 +17,7 @@ public class ResourceServer2Controller {
         this.webClient = webClient;
     }
 
-    @GetMapping("/resource-server-2/hello")
+    @GetMapping("/resource-server-2")
     public String hello(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-2") OAuth2AuthorizedClient client1ResourceServer2) {
         return webClient
             .get()

@@ -187,7 +187,7 @@ public class ResourceServer1Controller {
         this.webClient = webClient;
     }
 
-    @GetMapping("/resource-server-1/hello")
+    @GetMapping("/resource-server-1")
     public String hello(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
@@ -198,11 +198,11 @@ public class ResourceServer1Controller {
             .block();
     }
 
-    @GetMapping("/resource-server-1/resource-server-2/hello")
+    @GetMapping("/resource-server-1/resource-server-2")
     public String resourceServer2hello(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
-            .uri("http://localhost:8081/resource-server-2/hello")
+            .uri("http://localhost:8081/resource-server-2")
             .attributes(oauth2AuthorizedClient(client1ResourceServer1))
             .retrieve()
             .bodyToMono(String.class)
@@ -241,10 +241,313 @@ spring:
 ## 2.2. Resource server 1
 
 ### 2.2.1. pom.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.5.4</version>
+    <relativePath/>
+  </parent>
+
+  <groupId>com.azure.spring.sample.active.directory.oauth2</groupId>
+  <artifactId>sample-04-resource-server-1</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-webflux</artifactId> <!-- Require this because this project used WebClient。 -->
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-oauth2-client</artifactId>
+    </dependency>
+  </dependencies>
+
+</project>
+```
 
 ### 2.2.2. Java classes
 
+#### 2.2.2.1. ResourceServerApplication.java
+```java
+package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server1;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ResourceServerApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ResourceServerApplication.class, args);
+    }
+}
+```
+
+#### 2.2.2.2. WebSecurityConfiguration.java
+```java
+package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server1.configuration;
+
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        // @formatter:off
+        http.authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+            .oauth2ResourceServer()
+                .jwt()
+                .and();
+        // @formatter:on
+    }
+}
+```
+
+#### 2.2.2.3. AzureADJwtBearerGrantRequestEntityConverter.java
+```java
+package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server1.configuration;
+
+import org.springframework.security.oauth2.client.endpoint.JwtBearerGrantRequest;
+import org.springframework.security.oauth2.client.endpoint.JwtBearerGrantRequestEntityConverter;
+import org.springframework.util.MultiValueMap;
+
+public class AzureADJwtBearerGrantRequestEntityConverter extends JwtBearerGrantRequestEntityConverter {
+
+    @Override
+    protected MultiValueMap<String, String> createParameters(JwtBearerGrantRequest jwtBearerGrantRequest) {
+        MultiValueMap<String, String> parameters = super.createParameters(jwtBearerGrantRequest);
+        parameters.add("requested_token_use", "on_behalf_of");
+        return parameters;
+    }
+
+}
+```
+
+#### 2.2.2.4. ApplicationConfiguration.java
+```java
+package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server1.configuration;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.client.JwtBearerOAuth2AuthorizedClientProvider;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProvider;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProviderBuilder;
+import org.springframework.security.oauth2.client.endpoint.DefaultJwtBearerTokenResponseClient;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizedClientManager;
+import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
+import org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction;
+import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
+import org.springframework.security.oauth2.core.OAuth2TokenValidator;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtClaimNames;
+import org.springframework.security.oauth2.jwt.JwtClaimValidator;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtIssuerValidator;
+import org.springframework.security.oauth2.jwt.JwtTimestampValidator;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.util.StringUtils;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
+@Configuration
+public class ApplicationConfiguration {
+
+    private final OAuth2ResourceServerProperties.Jwt properties;
+
+    public ApplicationConfiguration(OAuth2ResourceServerProperties properties) {
+        this.properties = properties.getJwt();
+    }
+
+    @Value("${spring.security.oauth2.resourceserver.jwt.audience}")
+    String audience;
+
+    @Bean
+    JwtDecoder jwtDecoder() {
+        NimbusJwtDecoder nimbusJwtDecoder = NimbusJwtDecoder.withJwkSetUri(properties.getJwkSetUri()).build();
+        nimbusJwtDecoder.setJwtValidator(jwtValidator());
+        return nimbusJwtDecoder;
+    }
+
+    @Bean
+    public OAuth2AuthorizedClientManager authorizedClientManager(
+        ClientRegistrationRepository clientRegistrationRepository,
+        OAuth2AuthorizedClientRepository authorizedClientRepository) {
+        OAuth2AuthorizedClientProvider authorizedClientProvider =
+            OAuth2AuthorizedClientProviderBuilder.builder()
+                                                 .provider(jwtBearerOAuth2AuthorizedClientProvider())
+                                                 .build();
+        DefaultOAuth2AuthorizedClientManager authorizedClientManager =
+            new DefaultOAuth2AuthorizedClientManager(clientRegistrationRepository, authorizedClientRepository);
+        authorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);
+        return authorizedClientManager;
+    }
+
+    @Bean
+    public static WebClient webClient(ClientRegistrationRepository clientRegistrationRepository,
+                                      OAuth2AuthorizedClientRepository authorizedClientRepository) {
+        ServletOAuth2AuthorizedClientExchangeFilterFunction function =
+            new ServletOAuth2AuthorizedClientExchangeFilterFunction(clientRegistrationRepository,
+                authorizedClientRepository);
+        return WebClient.builder()
+                        .apply(function.oauth2Configuration())
+                        .build();
+    }
+
+    private JwtBearerOAuth2AuthorizedClientProvider jwtBearerOAuth2AuthorizedClientProvider() {
+        JwtBearerOAuth2AuthorizedClientProvider provider = new JwtBearerOAuth2AuthorizedClientProvider();
+        provider.setAccessTokenResponseClient(oAuth2AccessTokenResponseClient());
+        return provider;
+    }
+
+    private DefaultJwtBearerTokenResponseClient oAuth2AccessTokenResponseClient() {
+        DefaultJwtBearerTokenResponseClient client = new DefaultJwtBearerTokenResponseClient();
+        client.setRequestEntityConverter(new AzureADJwtBearerGrantRequestEntityConverter());
+        return client;
+    }
+
+    private OAuth2TokenValidator<Jwt> jwtValidator() {
+        List<OAuth2TokenValidator<Jwt>> validators = new ArrayList<>();
+        String issuerUri = properties.getIssuerUri();
+        if (StringUtils.hasText(issuerUri)) {
+            validators.add(new JwtIssuerValidator(issuerUri));
+        }
+        if (StringUtils.hasText(audience)) {
+            validators.add(new JwtClaimValidator<>(JwtClaimNames.AUD, audiencePredicate(audience)));
+        }
+        validators.add(new JwtTimestampValidator());
+        return new DelegatingOAuth2TokenValidator<>(validators);
+    }
+
+    Predicate<Object> audiencePredicate(String audience) {
+        return aud -> {
+            if (aud == null) {
+                return false;
+            } else if (aud instanceof String) {
+                return aud.equals(audience);
+            } else if (aud instanceof List) {
+                return ((List<?>) aud).contains(audience);
+            } else {
+                return false;
+            }
+        };
+    }
+
+}
+```
+
+#### 2.2.2.5. HomeController.java
+```java
+package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server1.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HomeController {
+
+    @GetMapping("/")
+    public String home() {
+        return "Hello, this is resource-server-2.";
+    }
+}
+```
+
+#### 2.2.2.6. ResourceServer2Controller.java
+```java
+package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server1.controller;
+
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.reactive.function.client.WebClient;
+
+import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
+
+@RestController
+public class ResourceServer2Controller {
+
+    private final WebClient webClient;
+
+    public ResourceServer2Controller(WebClient webClient) {
+        this.webClient = webClient;
+    }
+
+    @GetMapping("/resource-server-2")
+    public String resourceServer2(@RegisteredOAuth2AuthorizedClient("resource-server-1-resource-server-2")
+                                      OAuth2AuthorizedClient resourceServer1ResourceServer2) {
+        return webClient
+            .get()
+            .uri("http://localhost:8082/")
+            .attributes(oauth2AuthorizedClient(resourceServer1ResourceServer2))
+            .retrieve()
+            .bodyToMono(String.class)
+            .block();
+    }
+}
+```
+
 ### 2.2.3. application.yml
+```yaml
+# Please fill these placeholders before run this application:
+# 1. <tenant-id>
+# 2. <resource-server-1-client-id>
+# 3. <resource-server-1-client-secret>
+# 4. <resource-server-2-client-id>
+
+server:
+  port: 8082
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          azure-active-directory:
+            issuer-uri: https://login.microsoftonline.com/<tenant-id>/v2.0 # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#webflux-oauth2-login-openid-provider-configuration
+        registration:
+          resource-server-1-resource-server-2:
+            provider: azure-active-directory
+            client-id: <resource-server-1-client-id>
+            client-secret: <resource-server-1-client-secret>
+            authorization-grant-type: urn:ietf:params:oauth:grant-type:jwt-bearer
+            scope: api://<resource-server-2-client-id>/resource-server-2.scope-1
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://login.microsoftonline.com/<tenant-id>/discovery/v2.0/keys
+          issuer-uri: https://login.microsoftonline.com/<tenant-id>/v2.0
+          audience: <resource-server-1-client-id>
+```
 
 ## 2.3. Resource server 2
 

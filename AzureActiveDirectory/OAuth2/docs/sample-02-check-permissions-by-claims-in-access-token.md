@@ -28,11 +28,12 @@
     * [3.5. Add a redirect URI for client-1](#35-add-a-redirect-uri-for-client-1)
     * [3.6. Register resource-server-1](#36-register-resource-server-1)
     * [3.7. Expose apis for resource-server-1](#37-expose-apis-for-resource-server-1)
-    * [3.8. Add permissions for client-1 to access resource-server-1](#38-add-permissions-for-client-1-to-access-resource-server-1)
-    * [3.9. Create roles for resource-server-1](#39-create-roles-for-resource-server-1)
-    * [3.10. Assign user-1 to resource-server-1-role-1](#310-assign-user-1-to-resource-server-1-role-1)
+    * [3.8. Create roles for resource-server-1](#38-create-roles-for-resource-server-1)
+    * [3.9. Assign user-1 to resource-server-1-role-1](#39-assign-user-1-to-resource-server-1-role-1)
 - [4. Run sample applications](#4-run-sample-applications)
 - [5. Homework](#5-homework)
+
+
 
 
 
@@ -619,13 +620,10 @@ Read [document about registering an application], register an application named 
 ## 3.7. Expose apis for resource-server-1
 Read [document about exposing an api], expose 2 scopes for resource-server-1: **resource-server-1.scope-1** and **resource-server-1.scope-2**, choose **Admins and users** for **Who can consent** option.
 
-## 3.8. Add permissions for client-1 to access resource-server-1
-Read [document about configuring a client application to access a web API], add permissions for **client-1** to access **resource-server-1.scope-1**.
-
-## 3.9. Create roles for resource-server-1
+## 3.8. Create roles for resource-server-1
 Read [document about declaring roles for an application], create 2 roles for resource-server-1: **resource-server-1-role-1** and **resource-server-1-role-2**.
 
-## 3.10. Assign user-1 to resource-server-1-role-1
+## 3.9. Assign user-1 to resource-server-1-role-1
 Read [document about assigning users and groups to roles], assign **user-1** to **resource-server-2-role-1**.
 
 # 4. Run sample applications

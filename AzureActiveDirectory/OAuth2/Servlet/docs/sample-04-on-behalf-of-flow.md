@@ -108,7 +108,7 @@ You can follow the following steps to create sample applications, or you can use
 
 #### 2.1.2.1. ClientApplication.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample04.client;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.client;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -124,7 +124,7 @@ public class ClientApplication {
 
 #### 2.1.2.2. WebSecurityConfiguration.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample04.client.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.client.configuration;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -148,7 +148,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 #### 2.1.2.3. ApplicationConfiguration.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample04.client.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.client.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -175,7 +175,7 @@ public class ApplicationConfiguration {
 
 #### 2.1.2.4. HomeController.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample04.client.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.client.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -192,7 +192,7 @@ public class HomeController {
 
 #### 2.1.2.5. ResourceServer1Controller.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample04.client.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.client.controller;
 
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
@@ -310,7 +310,7 @@ spring:
 
 #### 2.2.2.1. ResourceServerApplication.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server1;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.resource.server1;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -326,7 +326,7 @@ public class ResourceServerApplication {
 
 #### 2.2.2.2. WebSecurityConfiguration.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server1.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.resource.server1.configuration;
 
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -353,7 +353,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 #### 2.2.2.3. AzureADJwtBearerGrantRequestEntityConverter.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server1.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.resource.server1.configuration;
 
 import org.springframework.security.oauth2.client.endpoint.JwtBearerGrantRequest;
 import org.springframework.security.oauth2.client.endpoint.JwtBearerGrantRequestEntityConverter;
@@ -373,7 +373,7 @@ public class AzureADJwtBearerGrantRequestEntityConverter extends JwtBearerGrantR
 
 #### 2.2.2.4. ApplicationConfiguration.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server1.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.resource.server1.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
@@ -492,7 +492,7 @@ public class ApplicationConfiguration {
 
 #### 2.2.2.5. HomeController.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server1.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.resource.server1.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -509,7 +509,7 @@ public class HomeController {
 
 #### 2.2.2.6. ResourceServer2Controller.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server1.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.resource.server1.controller;
 
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
@@ -613,7 +613,7 @@ spring:
 
 #### 2.3.2.1. ResourceServerApplication.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server2;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.resource.server2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -629,7 +629,7 @@ public class ResourceServerApplication {
 
 #### 2.3.2.2. WebSecurityConfiguration.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server2.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.resource.server2.configuration;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -654,7 +654,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 #### 2.3.2.3. ApplicationConfiguration.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server2.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.resource.server2.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
@@ -726,7 +726,7 @@ public class ApplicationConfiguration {
 
 #### 2.3.2.4. HomeController.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server2.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.resource.server2.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;

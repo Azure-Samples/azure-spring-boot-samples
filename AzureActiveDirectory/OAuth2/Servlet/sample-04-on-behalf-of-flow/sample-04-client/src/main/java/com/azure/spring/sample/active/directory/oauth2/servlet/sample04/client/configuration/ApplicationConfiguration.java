@@ -1,4 +1,4 @@
-package com.azure.spring.sample.active.directory.oauth2.sample04.client.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.client.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

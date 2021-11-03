@@ -1,10 +1,12 @@
-package com.azure.spring.sample.active.directory.oauth2.sample04.client.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.resource.server1.configuration;
 
+import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -13,7 +15,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
-            .oauth2Login()
+            .oauth2ResourceServer()
+                .jwt()
                 .and();
         // @formatter:on
     }

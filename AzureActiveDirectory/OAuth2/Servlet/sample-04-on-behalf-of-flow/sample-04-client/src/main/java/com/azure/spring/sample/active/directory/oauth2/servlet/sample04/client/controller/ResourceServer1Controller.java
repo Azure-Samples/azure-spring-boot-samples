@@ -1,4 +1,4 @@
-package com.azure.spring.sample.active.directory.oauth2.sample04.client.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.client.controller;
 
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;

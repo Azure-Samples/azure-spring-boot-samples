@@ -1,4 +1,4 @@
-package com.azure.spring.sample.active.directory.oauth2.sample03.resource.server2.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample03.resource.server2.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;

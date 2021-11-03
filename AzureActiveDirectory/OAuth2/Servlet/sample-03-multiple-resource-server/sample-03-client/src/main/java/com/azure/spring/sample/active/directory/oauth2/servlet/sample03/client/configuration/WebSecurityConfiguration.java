@@ -1,4 +1,4 @@
-package com.azure.spring.sample.active.directory.oauth2.sample03.resource.server2.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample03.client.configuration;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,8 +13,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .anyRequest().authenticated()
                 .and()
-            .oauth2ResourceServer()
-                .jwt()
+            .oauth2Login()
                 .and();
         // @formatter:on
     }

@@ -1,12 +1,12 @@
-package com.azure.spring.sample.active.directory.oauth2.sample03.resource.server2;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample03.client;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class ResourceServerApplication {
+public class ClientApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ResourceServerApplication.class, args);
+        SpringApplication.run(ClientApplication.class, args);
     }
 }

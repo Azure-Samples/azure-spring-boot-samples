@@ -18,7 +18,7 @@ spring:
         registration:
           client-1-resource-server-1:
             provider: azure-active-directory
-            client-name: client-1
+            client-name: client-1-resource-server-1
             client-id: <client-1-client-id>
             client-secret: <client-1-client-secret>
             scope: openid, profile, api://<resource-server-1-client-id>/resource-server-1.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes

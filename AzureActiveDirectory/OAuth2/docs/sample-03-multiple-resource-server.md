@@ -28,8 +28,18 @@
             - [2.3.2.4. HomeController.java](#2324-homecontrollerjava)
         + [2.3.3. application.yml](#233-applicationyml)
 - [3. Create resources in Azure](#3-create-resources-in-azure)
+    * [3.1. Create a tenant](#31-create-a-tenant)
+    * [3.2. Add a new user.](#32-add-a-new-user)
+    * [3.3. Register client-1](#33-register-client-1)
+    * [3.4. Add a client secret for client-1](#34-add-a-client-secret-for-client-1)
+    * [3.5. Add a redirect URI for client-1](#35-add-a-redirect-uri-for-client-1)
+    * [3.6. Register resource-server-1](#36-register-resource-server-1)
+    * [3.7. Expose apis for resource-server-1](#37-expose-apis-for-resource-server-1)
+    * [3.8. Register resource-server-2](#38-register-resource-server-2)
+    * [3.9. Expose apis for resource-server-2](#39-expose-apis-for-resource-server-2)
 - [4. Run sample applications](#4-run-sample-applications)
 - [5. Homework](#5-homework)
+
 
 
 
@@ -288,7 +298,7 @@ spring:
         registration:
           client-1-resource-server-1:
             provider: azure-active-directory
-            client-name: client-1
+            client-name: client-1-resource-server-1
             client-id: <client-1-client-id>
             client-secret: <client-1-client-secret>
             scope: openid, profile, api://<resource-server-1-client-id>/resource-server-1.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
@@ -676,10 +686,48 @@ spring:
 
 # 3. Create resources in Azure
 
+## 3.1. Create a tenant
+Read [document about creating an Azure AD tenant], create a new tenant. Get the tenant-id: **<tenant-id>**.
+
+## 3.2. Add a new user.
+Read [document about adding users], add a new user: **user-1@<tenant-name>.com**. Get the user's password.
+
+## 3.3. Register client-1
+Read [document about registering an application], register an application named **client-1**. Get the client-id: **<client-1-client-id>**.
+
+## 3.4. Add a client secret for client-1
+Read [document about adding a client secret], add a client secret. Get the client-secret value: **<client-1-client-secret>**.
+
+## 3.5. Add a redirect URI for client-1
+Read [document about adding a redirect URI], add redirect URI: **http://localhost:8080/login/oauth2/code/**.
+
+## 3.6. Register resource-server-1
+Read [document about registering an application], register an application named **resource-server-1**. Get the client-id: **<resource-server-1-client-id>**.
+
+## 3.7. Expose apis for resource-server-1
+Read [document about exposing an api], expose 2 scopes for resource-server-1: **resource-server-1.scope-1** and **resource-server-1.scope-2**, choose **Admins and users** for **Who can consent** option.
+
+## 3.8. Register resource-server-2
+Read [document about registering an application], register an application named **resource-server-2**. Get the client-id: **<resource-server-2-client-id>**.
+
+## 3.9. Expose apis for resource-server-2
+Read [document about exposing an api], expose 2 scopes for resource-server-2: **resource-server-2.scope-1** and **resource-server-2.scope-2**, choose **Admins and users** for **Who can consent** option.
+
 # 4. Run sample applications
+1. Fill these placeholders in **application.yml**, then run [sample-03-client].
+2. Fill these placeholders in **application.yml**, then run [sample-03-resource-server-1].
+3. Fill these placeholders in **application.yml**, then run [sample-03-resource-server-2].
+4. Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window].
+5. Access **http://localhost:8080/resource-server-all/hello**, it will return login page.
+6. Click **client-1-resource-server-1**, it will redirect to Microsoft login page.
+7. Input username and password, it will return permission request page: let user permit **client-1** to access **resource-server-1**.
+8. Click **Accept**, then it will return permission request page: let user permit **client-1** to access **resource-server-2**.
+9. Click **Accept**, then it will return **Hello, this is sample-03-client, ...**. This means user log in successfully.
+10. Access **http://localhost:8080/resource-server-1/hello**, it will return **Hello, this is resource-server-1.**, there is no permission request page anymore.
+11. Access **http://localhost:8080/resource-server-2/hello**, it will return **Hello, this is resource-server-2.**, there is no permission request page anymore.
 
 # 5. Homework
-
+1. If there are 100 clients configured in application.yml, the permission request page will appear 100 times. Please investigate how to reduce the consent page.
 
 
 
@@ -691,3 +739,14 @@ spring:
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [access token]: https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
 [sample-03-multiple-resource-server]: ../sample-03-multiple-resource-server
+[document about creating an Azure AD tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant
+[document about registering an application]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
+[document about adding users]: https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory
+[document about adding a client secret]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-client-secret
+[document about adding a redirect URI]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri
+[document about exposing an api]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis
+[document about configuring a client application to access a web API]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-access-web-apis
+[sample-03-client]: ../sample-03-multiple-resource-server/sample-03-client
+[sample-03-resource-server-1]: ../sample-03-multiple-resource-server/sample-03-resource-server-1
+[sample-03-resource-server-2]: ../sample-03-multiple-resource-server/sample-03-resource-server-2
+

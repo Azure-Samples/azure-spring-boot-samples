@@ -39,6 +39,7 @@
     <module>sample-03-multiple-resource-server/sample-03-client</module>
     <module>sample-03-multiple-resource-server/sample-03-resource-server-1</module>
     <module>sample-03-multiple-resource-server/sample-03-resource-server-2</module>
+    <module>sample-04-on-behalf-of-flow/sample-04-client</module>
   </modules>
 
 </project>

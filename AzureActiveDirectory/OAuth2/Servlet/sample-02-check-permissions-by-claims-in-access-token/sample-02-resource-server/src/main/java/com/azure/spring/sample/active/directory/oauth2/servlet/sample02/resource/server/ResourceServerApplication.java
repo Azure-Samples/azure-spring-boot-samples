@@ -1,4 +1,4 @@
-package com.azure.spring.sample.active.directory.oauth2.sample02.resource.server;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.resource.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

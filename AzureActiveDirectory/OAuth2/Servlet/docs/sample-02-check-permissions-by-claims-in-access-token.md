@@ -97,7 +97,7 @@ You can follow the following steps to create sample applications, or you can use
 
 #### 2.1.2.1. ClientApplication.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample02.client;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.client;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -113,7 +113,7 @@ public class ClientApplication {
 
 #### 2.1.2.2. WebSecurityConfiguration.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample02.client.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.client.configuration;
 
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -139,7 +139,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 #### 2.1.2.3. ApplicationConfiguration.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample02.client.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.client.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -166,7 +166,7 @@ public class ApplicationConfiguration {
 
 #### 2.1.2.4. HomeController.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample02.client.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.client.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -183,7 +183,7 @@ public class HomeController {
 
 #### 2.1.2.5. CheckPermissionByScopeController.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample02.client.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.client.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
@@ -231,7 +231,7 @@ public class CheckPermissionByScopeController {
 
 #### 2.1.2.6. ResourceServerController.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample02.client.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.client.controller;
 
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
@@ -374,7 +374,7 @@ spring:
 
 #### 2.2.2.1. ResourceServerApplication.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample02.resource.server;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.resource.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -390,7 +390,7 @@ public class ResourceServerApplication {
 
 #### 2.2.2.2. WebSecurityConfiguration.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample02.resource.server.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.resource.server.configuration;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -441,7 +441,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 #### 2.2.2.3. ApplicationConfiguration.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample02.resource.server.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.resource.server.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
@@ -513,7 +513,7 @@ public class ApplicationConfiguration {
 
 #### 2.2.2.4. HomeController.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample02.resource.server.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.resource.server.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -530,7 +530,7 @@ public class HomeController {
 
 #### 2.2.2.5. CheckPermissionByScopeController.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample02.resource.server.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.resource.server.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -555,7 +555,7 @@ public class CheckPermissionByScopeController {
 
 #### 2.2.2.6. CheckPermissionByRoleController.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.sample02.resource.server.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.resource.server.controller;
 
 
 import org.springframework.security.access.prepost.PreAuthorize;

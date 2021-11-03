@@ -1,4 +1,4 @@
-package com.azure.spring.sample.active.directory.oauth2.sample02.client.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.client.controller;
 
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;

@@ -1,4 +1,4 @@
-package com.azure.spring.sample.active.directory.oauth2.sample02.client;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.client;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

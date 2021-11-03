@@ -1,4 +1,4 @@
-package com.azure.spring.sample.active.directory.oauth2.sample02.resource.server.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.resource.server.controller;
 
 
 import org.springframework.security.access.prepost.PreAuthorize;

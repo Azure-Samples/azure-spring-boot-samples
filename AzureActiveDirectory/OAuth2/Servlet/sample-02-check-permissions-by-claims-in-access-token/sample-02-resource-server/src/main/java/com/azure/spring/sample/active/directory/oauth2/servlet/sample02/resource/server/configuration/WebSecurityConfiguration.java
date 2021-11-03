@@ -1,4 +1,4 @@
-package com.azure.spring.sample.active.directory.oauth2.sample02.resource.server.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.resource.server.configuration;
 
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

@@ -22,7 +22,7 @@ This sample will demonstrate the simplest scenario:
 [OAuth2]: https://oauth.net/2/
 [Spring Security]: https://spring.io/projects/spring-security
 [creating a new github issue]: https://github.com/Azure-Samples/azure-spring-boot-samples/issues/new
-[homework reference answer]: ./homework-reference-answer.md
+[homework reference answer]: homework-reference-answer.md
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [access token]: https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
 

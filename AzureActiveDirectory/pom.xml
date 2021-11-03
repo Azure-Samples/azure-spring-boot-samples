@@ -15,7 +15,7 @@
   </properties>
 
   <modules>
-    <module>OAuth2</module>
+    <module>OAuth2/Servlet</module>
   </modules>
 
 </project>

@@ -14,14 +14,23 @@
     * [2.2. Resource server 1](#22-resource-server-1)
         + [2.2.1. pom.xml](#221-pomxml)
         + [2.2.2. Java classes](#222-java-classes)
+        + [2.2.2.1. ResourceServerApplication.java](#2221-resourceserverapplicationjava)
+            - [2.2.2.2. WebSecurityConfiguration.java](#2222-websecurityconfigurationjava)
+            - [2.2.2.3. ApplicationConfiguration.java](#2223-applicationconfigurationjava)
+            - [2.2.2.4. HomeController.java](#2224-homecontrollerjava)
         + [2.2.3. application.yml](#223-applicationyml)
     * [2.3. Resource server 2](#23-resource-server-2)
         + [2.3.1. pom.xml](#231-pomxml)
         + [2.3.2. Java classes](#232-java-classes)
+            - [2.3.2.1. ResourceServerApplication.java](#2321-resourceserverapplicationjava)
+            - [2.3.2.2. WebSecurityConfiguration.java](#2322-websecurityconfigurationjava)
+            - [2.3.2.3. ApplicationConfiguration.java](#2323-applicationconfigurationjava)
+            - [2.3.2.4. HomeController.java](#2324-homecontrollerjava)
         + [2.3.3. application.yml](#233-applicationyml)
 - [3. Create resources in Azure](#3-create-resources-in-azure)
 - [4. Run sample applications](#4-run-sample-applications)
 - [5. Homework](#5-homework)
+
 
 
 
@@ -649,7 +658,20 @@ public class HomeController {
 
 ### 2.3.3. application.yml
 ```yaml
+# Please fill these placeholders before run this application:
+# 1. <tenant-id>
+# 2. <resource-server-2-client-id>
 
+server:
+  port: 8082
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://login.microsoftonline.com/<tenant-id>/discovery/v2.0/keys
+          issuer-uri: https://login.microsoftonline.com/<tenant-id>/v2.0
+          audience: <resource-server-2-client-id>
 ```
 
 # 3. Create resources in Azure

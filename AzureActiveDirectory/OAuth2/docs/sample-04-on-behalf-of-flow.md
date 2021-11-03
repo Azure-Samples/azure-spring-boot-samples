@@ -552,10 +552,188 @@ spring:
 ## 2.3. Resource server 2
 
 ### 2.3.1. pom.xml
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>2.5.4</version>
+    <relativePath/>
+  </parent>
+
+  <groupId>com.azure.spring.sample.active.directory.oauth2</groupId>
+  <artifactId>sample-04-resource-server-2</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <dependencies>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+    </dependency>
+  </dependencies>
+
+</project>
+```
 
 ### 2.3.2. Java classes
 
+#### 2.3.2.1. ResourceServerApplication.java
+```java
+package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server2;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ResourceServerApplication {
+
+    public static void main(String[] args) {
+        SpringApplication.run(ResourceServerApplication.class, args);
+    }
+}
+```
+
+#### 2.3.2.2. WebSecurityConfiguration.java
+```java
+package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server2.configuration;
+
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+@EnableWebSecurity
+public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        // @formatter:off
+        http.authorizeRequests()
+                .anyRequest().authenticated()
+                .and()
+            .oauth2ResourceServer()
+                .jwt()
+                .and();
+        // @formatter:on
+    }
+}
+```
+
+#### 2.3.2.3. ApplicationConfiguration.java
+```java
+package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server2.configuration;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.oauth2.core.DelegatingOAuth2TokenValidator;
+import org.springframework.security.oauth2.core.OAuth2TokenValidator;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.jwt.JwtClaimNames;
+import org.springframework.security.oauth2.jwt.JwtClaimValidator;
+import org.springframework.security.oauth2.jwt.JwtDecoder;
+import org.springframework.security.oauth2.jwt.JwtIssuerValidator;
+import org.springframework.security.oauth2.jwt.JwtTimestampValidator;
+import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+import org.springframework.util.StringUtils;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.function.Predicate;
+
+@Configuration
+public class ApplicationConfiguration {
+
+    @Value("${spring.security.oauth2.resourceserver.jwt.audience}")
+    String audience;
+
+    private final OAuth2ResourceServerProperties.Jwt properties;
+
+    public ApplicationConfiguration(OAuth2ResourceServerProperties properties) {
+        this.properties = properties.getJwt();
+    }
+
+    @Bean
+    JwtDecoder jwtDecoder() {
+        NimbusJwtDecoder nimbusJwtDecoder = NimbusJwtDecoder.withJwkSetUri(properties.getJwkSetUri()).build();
+        nimbusJwtDecoder.setJwtValidator(jwtValidator());
+        return nimbusJwtDecoder;
+    }
+
+    private OAuth2TokenValidator<Jwt> jwtValidator() {
+        List<OAuth2TokenValidator<Jwt>> validators = new ArrayList<>();
+        String issuerUri = properties.getIssuerUri();
+        if (StringUtils.hasText(issuerUri)) {
+            validators.add(new JwtIssuerValidator(issuerUri));
+        }
+        if (StringUtils.hasText(audience)) {
+            validators.add(new JwtClaimValidator<>(JwtClaimNames.AUD, audiencePredicate(audience)));
+        }
+        validators.add(new JwtTimestampValidator());
+        return new DelegatingOAuth2TokenValidator<>(validators);
+    }
+
+    Predicate<Object> audiencePredicate(String audience) {
+        return aud -> {
+            if (aud == null) {
+                return false;
+            } else if (aud instanceof String) {
+                return aud.equals(audience);
+            } else if (aud instanceof List) {
+                return ((List<?>) aud).contains(audience);
+            } else {
+                return false;
+            }
+        };
+    }
+
+}
+```
+
+#### 2.3.2.4. HomeController.java
+```java
+package com.azure.spring.sample.active.directory.oauth2.sample04.resource.server2.controller;
+
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class HomeController {
+
+    @GetMapping("/")
+    public String home() {
+        return "Hello, this is resource-server-2.";
+    }
+}
+```
+
 ### 2.3.3. application.yml
+```yaml
+# Please fill these placeholders before run this application:
+# 1. <tenant-id>
+# 2. <resource-server-2-client-id>
+
+server:
+  port: 8082
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://login.microsoftonline.com/<tenant-id>/discovery/v2.0/keys
+          issuer-uri: https://login.microsoftonline.com/<tenant-id>/v2.0
+          audience: <resource-server-2-client-id>
+```
 
 # 3. Create resources in Azure
 

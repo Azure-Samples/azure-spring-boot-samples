@@ -21,7 +21,7 @@ public class ResourceServer2Controller {
     public String hello(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-2") OAuth2AuthorizedClient client1ResourceServer2) {
         return webClient
             .get()
-            .uri("http://localhost:8081")
+            .uri("http://localhost:8082")
             .attributes(oauth2AuthorizedClient(client1ResourceServer2))
             .retrieve()
             .bodyToMono(String.class)

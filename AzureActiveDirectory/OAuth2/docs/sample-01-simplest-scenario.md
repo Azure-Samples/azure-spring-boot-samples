@@ -19,7 +19,7 @@
         + [2.2.3. application.yml](#223-applicationyml)
 - [3. Create resources in Azure](#3-create-resources-in-azure)
     * [3.1. Create a tenant](#31-create-a-tenant)
-    * [3.2. Add a new user.](#32-add-a-new-user)
+    * [3.2. Add a new user](#32-add-a-new-user)
     * [3.3. Register client-1](#33-register-client-1)
     * [3.4. Add a client secret for client-1](#34-add-a-client-secret-for-client-1)
     * [3.5. Add a redirect URI for client-1](#35-add-a-redirect-uri-for-client-1)
@@ -425,7 +425,7 @@ spring:
 ## 3.1. Create a tenant
 Read [document about creating an Azure AD tenant], create a new tenant. Get the tenant-id: **<tenant-id>**.
 
-## 3.2. Add a new user.
+## 3.2. Add a new user
 Read [document about adding users], add a new user: **user-1@<tenant-name>.com**. Get the user's password.
 
 ## 3.3. Register client-1

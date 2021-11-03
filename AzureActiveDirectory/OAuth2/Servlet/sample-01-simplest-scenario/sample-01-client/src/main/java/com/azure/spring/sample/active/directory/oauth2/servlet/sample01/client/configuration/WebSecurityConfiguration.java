@@ -1,4 +1,4 @@
-package com.azure.spring.sample.active.directory.oauth2.sample01.client.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample01.client.configuration;
 
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;

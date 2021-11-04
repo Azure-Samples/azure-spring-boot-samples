@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.azure.spring</groupId>
-  <artifactId>spring-boot-samples-for-azure-active-directory-oauth2-servlet</artifactId>
+  <artifactId>azure-active-directory-spring-security-servlet-applications-oauth2</artifactId>
   <packaging>pom</packaging>
   <version>1.0.0</version><!-- Need not change for every release-->
 

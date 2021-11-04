@@ -65,9 +65,9 @@ Each sample has homework, you can get the answer in [homework answers].
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [access token]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
 [on behalf of flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow
-[sample-01-basic-scenario]: ./sample-01-basic-scenario.md
-[sample-02-check-permissions-by-claims-in-access-token]: ./sample-02-check-permissions-by-claims-in-access-token.md
-[sample-03-multiple-resource-server]: ./sample-03-multiple-resource-server.md
-[sample-04-on-behalf-of-flow]: ./sample-04-on-behalf-of-flow.md
+[sample-01-basic-scenario]: sample-01-basic-scenario.md
+[sample-02-check-permissions-by-claims-in-access-token]: sample-02-check-permissions-by-claims-in-access-token.md
+[sample-03-multiple-resource-server]: sample-03-multiple-resource-server.md
+[sample-04-on-behalf-of-flow]: sample-04-on-behalf-of-flow.md
 
 

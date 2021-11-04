@@ -7,8 +7,7 @@
             - [2.1.2.2. WebSecurityConfiguration.java](#2122-websecurityconfigurationjava)
             - [2.1.2.3. ApplicationConfiguration.java](#2123-applicationconfigurationjava)
             - [2.1.2.4. HomeController.java](#2124-homecontrollerjava)
-            - [2.1.2.5. CheckPermissionByScopeController.java](#2125-checkpermissionbyscopecontrollerjava)
-            - [2.1.2.6. ResourceServerController.java](#2126-resourceservercontrollerjava)
+            - [2.1.2.5. ResourceServerController.java](#2125-resourceservercontrollerjava)
         + [2.1.3. application.yml](#213-applicationyml)
     * [2.2. Resource server](#22-resource-server)
         + [2.2.1. pom.xml](#221-pomxml)
@@ -17,8 +16,6 @@
             - [2.2.2.2. WebSecurityConfiguration.java](#2222-websecurityconfigurationjava)
             - [2.2.2.3. ApplicationConfiguration.java](#2223-applicationconfigurationjava)
             - [2.2.2.4. HomeController.java](#2224-homecontrollerjava)
-            - [2.2.2.5. CheckPermissionByScopeController.java](#2225-checkpermissionbyscopecontrollerjava)
-            - [2.2.2.6. CheckPermissionByRoleController.java](#2226-checkpermissionbyrolecontrollerjava)
         + [2.2.3. application.yml](#223-applicationyml)
 - [3. Create resources in Azure](#3-create-resources-in-azure)
     * [3.1. Create a tenant](#31-create-a-tenant)
@@ -27,11 +24,10 @@
     * [3.4. Add a client secret for client-1](#34-add-a-client-secret-for-client-1)
     * [3.5. Add a redirect URI for client-1](#35-add-a-redirect-uri-for-client-1)
     * [3.6. Register resource-server-1](#36-register-resource-server-1)
-    * [3.7. Expose apis for resource-server-1](#37-expose-apis-for-resource-server-1)
-    * [3.8. Create roles for resource-server-1](#38-create-roles-for-resource-server-1)
-    * [3.9. Assign user-1 to resource-server-1-role-1](#39-assign-user-1-to-resource-server-1-role-1)
 - [4. Run sample applications](#4-run-sample-applications)
 - [5. Homework](#5-homework)
+
+
 
 
 
@@ -43,15 +39,13 @@
 
 Please refer to [Azure Active Directory OAuth2 samples] to get all samples about using [Azure Active Directory] and [OAuth2] to protect web application developed by [Spring Security].
 
-This sample will demonstrate this scenario:
+This sample will demonstrate the basic scenario:
 1. User sign in client and client get [access token] by [OAuth 2.0 authorization code flow].
-2. Client check whether current signed-in user has permission to specific method.
-3. Client access resource-server by [access token].
-4. Resource server validate the [access token] by validating the signature, and checking these claims: **aud**, **nbf** and **exp**.
-5. Resource server check whether current signed-in user has permission to specific method.
+2. Client access resource-server by [access token].
+3. Resource server validate the [access token] by validating the signature, and checking these claims: **aud**, **nbf** and **exp**.
 
 # 2. Create sample applications
-You can follow the following steps to create sample applications, or you can use samples in GitHub: [sample-02-check-permissions-by-claims-in-access-token].
+You can follow the following steps to create sample applications, or you can use samples in GitHub: [sample-01-basic-scenario].
 
 ## 2.1. Client
 
@@ -71,7 +65,7 @@ You can follow the following steps to create sample applications, or you can use
   </parent>
 
   <groupId>com.azure.spring.sample.active.directory.oauth2</groupId>
-  <artifactId>sample-02-client</artifactId>
+  <artifactId>sample-01-client</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
@@ -82,7 +76,7 @@ You can follow the following steps to create sample applications, or you can use
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-webflux</artifactId>
+      <artifactId>spring-boot-starter-webflux</artifactId> <!-- Require this because this project used WebClient。 -->
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -97,7 +91,7 @@ You can follow the following steps to create sample applications, or you can use
 
 #### 2.1.2.1. ClientApplication.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.client;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample01.client;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -113,15 +107,13 @@ public class ClientApplication {
 
 #### 2.1.2.2. WebSecurityConfiguration.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.client.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample01.client.configuration;
 
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -139,7 +131,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 #### 2.1.2.3. ApplicationConfiguration.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.client.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample01.client.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -166,7 +158,7 @@ public class ApplicationConfiguration {
 
 #### 2.1.2.4. HomeController.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.client.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample01.client.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -176,62 +168,14 @@ public class HomeController {
 
     @GetMapping("/")
     public String home() {
-        return "Hello, this is sample-02-client.";
+        return "Hello, this is sample-01-client.";
     }
 }
 ```
 
-#### 2.1.2.5. CheckPermissionByScopeController.java
+#### 2.1.2.5. ResourceServerController.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.client.controller;
-
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
-import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.reactive.function.client.WebClient;
-
-import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
-
-@RestController
-public class CheckPermissionByScopeController {
-
-    private final WebClient webClient;
-
-    public CheckPermissionByScopeController(WebClient webClient) {
-        this.webClient = webClient;
-    }
-
-    @GetMapping("/scope/resource-server-1-scope-1")
-    @PreAuthorize("hasAuthority('SCOPE_api://<resource-server-1-client-id>/resource-server-1.scope-1')")
-    public String resourceServer1Scope1(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
-        return webClient
-            .get()
-            .uri("http://localhost:8081/scope/resource-server-1-scope-1")
-            .attributes(oauth2AuthorizedClient(client1ResourceServer1))
-            .retrieve()
-            .bodyToMono(String.class)
-            .block();
-    }
-
-    @GetMapping("/scope/resource-server-1-scope-2")
-    @PreAuthorize("hasAuthority('SCOPE_api://<resource-server-1-client-id>/resource-server-1.scope-2')")
-    public String resourceServer1Scope2(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
-        return webClient
-            .get()
-            .uri("http://localhost:8081/scope/resource-server-1-scope-2")
-            .attributes(oauth2AuthorizedClient(client1ResourceServer1))
-            .retrieve()
-            .bodyToMono(String.class)
-            .block();
-    }
-}
-```
-
-#### 2.1.2.6. ResourceServerController.java
-```java
-package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.client.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample01.client.controller;
 
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
@@ -250,55 +194,11 @@ public class ResourceServerController {
         this.webClient = webClient;
     }
 
-    @GetMapping("/resource-server-1")
+    @GetMapping("/resource-server")
     public String hello(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
-            .uri("http://localhost:8081/")
-            .attributes(oauth2AuthorizedClient(client1ResourceServer1))
-            .retrieve()
-            .bodyToMono(String.class)
-            .block();
-    }
-
-    @GetMapping("/resource-server-1/scope/resource-server-1-scope-1")
-    public String resourceServer1Scope1(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
-        return webClient
-            .get()
-            .uri("http://localhost:8081/scope/resource-server-1-scope-1")
-            .attributes(oauth2AuthorizedClient(client1ResourceServer1))
-            .retrieve()
-            .bodyToMono(String.class)
-            .block();
-    }
-
-    @GetMapping("/resource-server-1/scope/resource-server-1-scope-2")
-    public String resourceServer1Scope2(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
-        return webClient
-            .get()
-            .uri("http://localhost:8081/scope/resource-server-1-scope-2")
-            .attributes(oauth2AuthorizedClient(client1ResourceServer1))
-            .retrieve()
-            .bodyToMono(String.class)
-            .block();
-    }
-
-    @GetMapping("/resource-server-1/role/resource-server-1-role-1")
-    public String resourceServer1Role1(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
-        return webClient
-            .get()
-            .uri("http://localhost:8081/role/resource-server-1-role-1")
-            .attributes(oauth2AuthorizedClient(client1ResourceServer1))
-            .retrieve()
-            .bodyToMono(String.class)
-            .block();
-    }
-
-    @GetMapping("/resource-server-1/role/resource-server-1-role-2")
-    public String resourceServer1Role2(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
-        return webClient
-            .get()
-            .uri("http://localhost:8081/role/resource-server-1-role-2")
+            .uri("http://localhost:8081")
             .attributes(oauth2AuthorizedClient(client1ResourceServer1))
             .retrieve()
             .bodyToMono(String.class)
@@ -352,7 +252,7 @@ spring:
   </parent>
 
   <groupId>com.azure.spring.sample.active.directory.oauth2</groupId>
-  <artifactId>sample-02-resource-server</artifactId>
+  <artifactId>sample-01-resource-server</artifactId>
   <version>1.0.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
@@ -374,7 +274,7 @@ spring:
 
 #### 2.2.2.1. ResourceServerApplication.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.resource.server;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample01.resource.server;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -390,23 +290,13 @@ public class ResourceServerApplication {
 
 #### 2.2.2.2. WebSecurityConfiguration.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.resource.server.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample01.resource.server.configuration;
 
-import org.springframework.core.convert.converter.Converter;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.oauth2.jwt.Jwt;
-import org.springframework.security.oauth2.server.resource.authentication.DelegatingJwtGrantedAuthoritiesConverter;
-import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
-import org.springframework.security.oauth2.server.resource.authentication.JwtGrantedAuthoritiesConverter;
-
-import java.util.Collection;
 
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
@@ -417,31 +307,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
             .oauth2ResourceServer()
                 .jwt()
-                    .jwtAuthenticationConverter(jwtAuthenticationConverter())
-                    .and()
                 .and();
         // @formatter:on
-    }
-
-    private JwtAuthenticationConverter jwtAuthenticationConverter() {
-        JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
-        converter.setJwtGrantedAuthoritiesConverter(jwtGrantedAuthoritiesConverter());
-        return converter;
-    }
-
-    private Converter<Jwt, Collection<GrantedAuthority>> jwtGrantedAuthoritiesConverter() {
-        JwtGrantedAuthoritiesConverter scp = new JwtGrantedAuthoritiesConverter();
-        JwtGrantedAuthoritiesConverter roles = new JwtGrantedAuthoritiesConverter();
-        roles.setAuthoritiesClaimName("roles");
-        roles.setAuthorityPrefix("ROLE_");
-        return new DelegatingJwtGrantedAuthoritiesConverter(scp, roles);
     }
 }
 ```
 
 #### 2.2.2.3. ApplicationConfiguration.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.resource.server.configuration;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample01.resource.server.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
@@ -465,14 +339,14 @@ import java.util.function.Predicate;
 @Configuration
 public class ApplicationConfiguration {
 
+    @Value("${spring.security.oauth2.resourceserver.jwt.audience}")
+    String audience;
+
     private final OAuth2ResourceServerProperties.Jwt properties;
 
     public ApplicationConfiguration(OAuth2ResourceServerProperties properties) {
         this.properties = properties.getJwt();
     }
-
-    @Value("${spring.security.oauth2.resourceserver.jwt.audience}")
-    String audience;
 
     @Bean
     JwtDecoder jwtDecoder() {
@@ -513,7 +387,7 @@ public class ApplicationConfiguration {
 
 #### 2.2.2.4. HomeController.java
 ```java
-package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.resource.server.controller;
+package com.azure.spring.sample.active.directory.oauth2.servlet.sample01.resource.server.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -524,57 +398,6 @@ public class HomeController {
     @GetMapping("/")
     public String home() {
         return "Hello, this is resource-server-1.";
-    }
-}
-```
-
-#### 2.2.2.5. CheckPermissionByScopeController.java
-```java
-package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.resource.server.controller;
-
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class CheckPermissionByScopeController {
-
-    @GetMapping("/scope/resource-server-1-scope-1")
-    @PreAuthorize("hasAuthority('SCOPE_resource-server-1.scope-1')")
-    public String resourceServer1Scope1() {
-        return "Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1";
-    }
-
-    @GetMapping("/scope/resource-server-1-scope-2")
-    @PreAuthorize("hasAuthority('SCOPE_resource-server-1.scope-2')")
-    public String resourceServer1Scope2() {
-        return "Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-2";
-    }
-}
-```
-
-#### 2.2.2.6. CheckPermissionByRoleController.java
-```java
-package com.azure.spring.sample.active.directory.oauth2.servlet.sample02.resource.server.controller;
-
-
-import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-@RestController
-public class CheckPermissionByRoleController {
-
-    @GetMapping("/role/resource-server-1-role-1")
-    @PreAuthorize("hasAuthority('ROLE_resource-server-1.role-1')")
-    public String resourceServer1Role1() {
-        return "Hi, this is resource-server-1. You can access my endpoint: /role/resource-server-1-role-1";
-    }
-
-    @GetMapping("/role/resource-server-1-role-2")
-    @PreAuthorize("hasAuthority('ROLE_resource-server-1.role-2')")
-    public String resourceServer1Role2() {
-        return "Hi, this is resource-server-1. You can access my endpoint: /role/resource-server-1-role-2";
     }
 }
 ```
@@ -617,53 +440,46 @@ Read [document about adding a redirect URI], add redirect URI: **http://localhos
 ## 3.6. Register resource-server-1
 Read [document about registering an application], register an application named **resource-server-1**. Get the client-id: **<resource-server-1-client-id>**.
 
-## 3.7. Expose apis for resource-server-1
-Read [document about exposing an api], expose 2 scopes for resource-server-1: **resource-server-1.scope-1** and **resource-server-1.scope-2**, choose **Admins and users** for **Who can consent** option.
-
-## 3.8. Create roles for resource-server-1
-Read [document about declaring roles for an application], create 2 roles for resource-server-1: **resource-server-1-role-1** and **resource-server-1-role-2**.
-
-## 3.9. Assign user-1 to resource-server-1-role-1
-Read [document about assigning users and groups to roles], assign **user-1** to **resource-server-2-role-1**.
-
 # 4. Run sample applications
-1. Fill these placeholders in **application.yml** and **CheckPermissionByScopeController.java**, then run [sample-02-client].
-2. Fill these placeholders in **application.yml**, then run [sample-02-resource-server].
-3. Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window].
-4. Access **http://localhost:8080**, it will redirect to Microsoft login page. Input username and password, it will return permission request page. click **Accept**, then it will return **Hello, this is sample-02-client.**. This means we log in successfully.
-5. Access **http://localhost:8080/scope/resource-server-1-scope-1**, it will return **Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1**.
-6. Access **http://localhost:8080/scope/resource-server-1-scope-2**, it will return 403, which means user do not have authority to access this endpoint.
-7. Access **http://localhost:8080/resource-server-1**, it will return **Hello, this is resource-server-1.**, which means [sample-02-client] can access [sample-02-resource-server].
-8. Access **http://localhost:8080/resource-server-1/scope/resource-server-1-scope-1**, it will return **Hi, this is resource-server-1. You can access my endpoint: /scope/resource-server-1-scope-1**.
-9. Access **http://localhost:8080/resource-server-1/scope/resource-server-1-scope-2**, it will return 500. Check the log of [sample-02-client], it show that [sample-02-resource-server] returned 403 to [sample-02-client]. which means [sample-02-client] doesn't have authority to access this endpoint of [sample-02-resource-server].
-10. Access **http://localhost:8080/resource-server-1/role/resource-server-1-role-1**, it will return **Hi, this is resource-server-1. You can access my endpoint: /role/resource-server-1-role-1**.
-11. Access **http://localhost:8080/resource-server-1/role/resource-server-1-role-2**, it will return 500. Check the log of [sample-02-client], it show that [sample-02-resource-server] returned 403 to [sample-02-client]. which means [sample-02-client] doesn't have authority to access this endpoint of [sample-02-resource-server].
+ 1. Fill these placeholders in **application.yml**, then run [sample-01-client].
+ 2. Fill these placeholders in **application.yml**, then run [sample-01-resource-server].
+ 3. Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window].
+ 4. Access **http://localhost:8080**, it will redirect to Microsoft login page. Input username and password, it will return permission request page. click **Accept**, then it will return **Hello, this is sample-01-client.**. This means we log in successfully.
+ 5. Access **http://localhost:8080/resource-server-1**, it will return **Hello, this is resource-server-1.**, which means [sample-01-client] can access [sample-01-resource-server].
 
 # 5. Homework
-1. Try to use groups for authorization.
-2. List all claims that can be used for authorization.
+ 1. Read [rfc6749].
+ 2. Read [document about OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform].
+ 3. Read [document about Microsoft identity platform and OpenID Connect protocol]
+ 4. Read [document about Microsoft identity platform and OAuth 2.0 authorization code flow].
+ 5. Read [document about Microsoft identity platform ID tokens].
+ 6. Read [document about Microsoft identity platform access tokens].
+ 7. Read [document about Microsoft identity platform refresh tokens].
+ 8. Investigate each item's purpose in the 2 sample projects' **application.yml**.
+ 9. In [sample-01-client]'s **application.yml**, the property **spring.security.oauth2.client.registration.scope** contains **openid**, **profile**, and **offline_access**. what will happen if we delete these scopes?
 
 
 
-
-[Azure Active Directory OAuth2 samples]: ../README.md
+[Azure Active Directory OAuth2 samples]: ../ServletApplications/OAuth2/README.md
 [Azure Active Directory]: https://azure.microsoft.com/services/active-directory/
 [OAuth2]: https://oauth.net/2/
 [Spring Security]: https://spring.io/projects/spring-security
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [access token]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
-[sample-02-check-permissions-by-claims-in-access-token]: ../sample-02-check-permissions-by-claims-in-access-token
+[sample-01-basic-scenario]: ../ServletApplications/OAuth2/sample-01-basic-scenario
 [document about creating an Azure AD tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant
 [document about registering an application]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
 [document about adding users]: https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory
 [document about adding a client secret]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-client-secret
 [document about adding a redirect URI]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri
-[document about exposing an api]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis
-[document about configuring a client application to access a web API]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-access-web-apis
-[document about assigning users and groups to roles]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles
-[document about declaring roles for an application]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#declare-roles-for-an-application
-[document about assigning users and groups to roles]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles
-[sample-02-client]: ../sample-02-check-permissions-by-claims-in-access-token/sample-02-client
-[sample-02-resource-server]: ../sample-02-check-permissions-by-claims-in-access-token/sample-02-resource-server
+[sample-01-client]: ../ServletApplications/OAuth2/sample-01-basic-scenario/sample-01-client
+[sample-01-resource-server]: ../ServletApplications/OAuth2/sample-01-basic-scenario/sample-01-resource-server
 [Edge]: https://www.microsoft.com/edge?r=1
 [InPrivate window]: https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2
+[rfc6749]: https://datatracker.ietf.org/doc/html/rfc6749
+[document about OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform]: https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols
+[document about Microsoft identity platform and OpenID Connect protocol]: https://docs.microsoft.com/azure/active-directory/develop/v2-protocols-oidc
+[document about Microsoft identity platform and OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
+[document about Microsoft identity platform ID tokens]: https://docs.microsoft.com/azure/active-directory/develop/id-tokens
+[document about Microsoft identity platform access tokens]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
+[document about Microsoft identity platform refresh tokens]: https://docs.microsoft.com/azure/active-directory/develop/refresh-tokens

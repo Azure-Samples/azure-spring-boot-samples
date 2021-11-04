@@ -651,7 +651,7 @@ Read [document about assigning users and groups to roles], assign **user-1** to 
 [OAuth2]: https://oauth.net/2/
 [Spring Security]: https://spring.io/projects/spring-security
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
-[access token]: https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
+[access token]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
 [sample-02-check-permissions-by-claims-in-access-token]: ../sample-02-check-permissions-by-claims-in-access-token
 [document about creating an Azure AD tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant
 [document about registering an application]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app

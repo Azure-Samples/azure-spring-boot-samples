@@ -51,9 +51,9 @@ Please refer to [Azure Active Directory OAuth2 samples] to get all samples about
 In [Azure Active Directory]'s [access token], the **aud** claim only have one value, not a list. Which means one [access token] can only been used for one resource server. And one **OAuth2AuthorizedClient** can only hold one access token. So, if one client want to access multiple resource servers, it must configure multiple **ClientRegistration**s.
 
 This sample will demonstrate this scenario:
-- One client application access multiple resource servers.
-- Consent scopes when request for specific endpoint.
-- Consent all scopes when request for a specific endpoint.
+1. One client application access multiple resource servers.
+2. Consent scopes when request for specific endpoint.
+3. Consent all scopes when request for a specific endpoint.
 
 # 2. Create sample applications
 You can follow the following steps to create sample applications, or you can use samples in GitHub: [sample-03-multiple-resource-server].
@@ -737,7 +737,7 @@ Read [document about exposing an api], expose 2 scopes for resource-server-2: **
 [OAuth2]: https://oauth.net/2/
 [Spring Security]: https://spring.io/projects/spring-security
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
-[access token]: https://docs.microsoft.com/en-us/azure/active-directory/develop/access-tokens
+[access token]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
 [sample-03-multiple-resource-server]: ../sample-03-multiple-resource-server
 [document about creating an Azure AD tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant
 [document about registering an application]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app

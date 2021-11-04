@@ -1,4 +1,4 @@
-- [1. sample-01-simplest-scenario](#1-sample-01-simplest-scenario)
+- [1. sample-01-basic-scenario](#1-sample-01-basic-scenario)
     * [1.1. Question 9](#11-question-9)
 - [2. sample-02-check-permissions-by-claims-in-access-token](#2-sample-02-check-permissions-by-claims-in-access-token)
     * [2.1. Question 1](#21-question-1)
@@ -8,7 +8,7 @@
 
 
 
-# 1. sample-01-simplest-scenario
+# 1. sample-01-basic-scenario
 
 ## 1.1. Question 9
 Question: 
@@ -50,7 +50,7 @@ Answer:
 
 
 
-[sample-01-client]: ../sample-01-simplest-scenario/sample-01-client
+[sample-01-client]: ../sample-01-basic-scenario/sample-01-client
 [document about OpenID Connect scopes]: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
 [document about incremental and dynamic user consent]: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#incremental-and-dynamic-user-consent
 [document about admin consent]: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#admin-consent

@@ -39,13 +39,13 @@
 
 Please refer to [Azure Active Directory OAuth2 samples] to get all samples about using [Azure Active Directory] and [OAuth2] to protect web application developed by [Spring Security].
 
-This sample will demonstrate the simplest scenario:
+This sample will demonstrate the basic scenario:
 1. User sign in client and client get [access token] by [OAuth 2.0 authorization code flow].
 2. Client access resource-server by [access token].
 3. Resource server validate the [access token] by validating the signature, and checking these claims: **aud**, **nbf** and **exp**.
 
 # 2. Create sample applications
-You can follow the following steps to create sample applications, or you can use samples in GitHub: [sample-01-simplest-scenario].
+You can follow the following steps to create sample applications, or you can use samples in GitHub: [sample-01-basic-scenario].
 
 ## 2.1. Client
 
@@ -466,14 +466,14 @@ Read [document about registering an application], register an application named 
 [Spring Security]: https://spring.io/projects/spring-security
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [access token]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
-[sample-01-simplest-scenario]: ../sample-01-simplest-scenario
+[sample-01-basic-scenario]: ../sample-01-basic-scenario
 [document about creating an Azure AD tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant
 [document about registering an application]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
 [document about adding users]: https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory
 [document about adding a client secret]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-client-secret
 [document about adding a redirect URI]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri
-[sample-01-client]: ../sample-01-simplest-scenario/sample-01-client
-[sample-01-resource-server]: ../sample-01-simplest-scenario/sample-01-resource-server
+[sample-01-client]: ../sample-01-basic-scenario/sample-01-client
+[sample-01-resource-server]: ../sample-01-basic-scenario/sample-01-resource-server
 [Edge]: https://www.microsoft.com/edge?r=1
 [InPrivate window]: https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2
 [rfc6749]: https://datatracker.ietf.org/doc/html/rfc6749

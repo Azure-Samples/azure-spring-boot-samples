@@ -15,8 +15,8 @@
   </properties>
 
   <modules>
-    <module>sample-01-simplest-scenario/sample-01-client</module>
-    <module>sample-01-simplest-scenario/sample-01-resource-server</module>
+    <module>sample-01-basic-scenario/sample-01-client</module>
+    <module>sample-01-basic-scenario/sample-01-resource-server</module>
     <module>sample-02-check-permissions-by-claims-in-access-token/sample-02-client</module>
     <module>sample-02-check-permissions-by-claims-in-access-token/sample-02-resource-server</module>
     <module>sample-03-multiple-resource-server/sample-03-client</module>

@@ -14,7 +14,7 @@
 
 
 # 1. About
-Samples in this folder will demonstrate how to use [Azure Active Directory] and [OAuth2] to protect web application developed by [Spring Security]. All the samples are Servlet applications. 
+[Azure Active Directory] (Azure AD) provides comprehensive OAuth 2 support. This section demonstrates how leverage [Spring Security] to integrate Azure AD's OAuth2 feature into your servlet based application.
 
 # 2. Ask for help
 If you have any question about these samples, please ask by [creating a new github issue].
@@ -58,6 +58,7 @@ Each sample has homework, you can get the answer in [homework answers].
 
 [Azure Active Directory]: https://azure.microsoft.com/services/active-directory/
 [OAuth2]: https://oauth.net/2/
+[authorization server]: https://datatracker.ietf.org/doc/html/rfc6749#section-1.1
 [Spring Security]: https://spring.io/projects/spring-security
 [creating a new github issue]: https://github.com/Azure-Samples/azure-spring-boot-samples/issues/new
 [homework answers]: homework-answers.md

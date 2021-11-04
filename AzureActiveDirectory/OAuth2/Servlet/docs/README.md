@@ -25,13 +25,13 @@ Each sample has homework, you can get the answer in [homework answers].
 # 4. Sample list
 
 ## 4.1. sample-01-simplest-scenario
-This sample will demonstrate the simplest scenario:
+[sample-01-simplest-scenario] will demonstrate the simplest scenario:
 1. User sign in client and client get [access token] by [OAuth 2.0 authorization code flow].
 2. Client access resource-server by [access token].
 3. Resource server validate the [access token] by validating the signature, and checking these claims: **aud**, **nbf** and **exp**.
 
 ## 4.2. sample-02-check-permissions-by-claims-in-access-token
-This sample will demonstrate this scenario:
+[sample-02-check-permissions-by-claims-in-access-token] will demonstrate this scenario:
 1. User sign in client and client get [access token] by [OAuth 2.0 authorization code flow].
 2. Client check whether current signed-in user has permission to specific method.
 3. Client access resource-server by [access token].
@@ -39,13 +39,13 @@ This sample will demonstrate this scenario:
 5. Resource server check whether current signed-in user has permission to specific method.
 
 ## 4.3. sample-03-multiple-resource-server
-This sample will demonstrate this scenario:
+[sample-03-multiple-resource-server] will demonstrate this scenario:
 1. One client application access multiple resource servers.
 2. Consent scopes when request for specific endpoint.
 3. Consent all scopes when request for a specific endpoint.
 
 ## 4.4. sample-04-on-behalf-of-flow
-This sample will demonstrate this scenario:
+[sample-04-on-behalf-of-flow] will demonstrate this scenario:
 - User sign in client and client get [access token] by [OAuth 2.0 authorization code flow].
 - Client access resource-server-1 by [access token].
 - resource-server-1 validate the [access token] by validating the signature, and checking these claims: `aud`, `nbf` and `exp`.
@@ -64,5 +64,9 @@ This sample will demonstrate this scenario:
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [access token]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
 [on behalf of flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow
+[sample-01-simplest-scenario]: ./sample-01-simplest-scenario.md
+[sample-02-check-permissions-by-claims-in-access-token]: ./sample-02-check-permissions-by-claims-in-access-token.md
+[sample-03-multiple-resource-server]: ./sample-03-multiple-resource-server.md
+[sample-04-on-behalf-of-flow]: ./sample-04-on-behalf-of-flow.md
 
 

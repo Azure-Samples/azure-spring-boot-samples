@@ -24,13 +24,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author Warren Zhu
  */
 @Controller
-@ConditionalOnProperty("azure.storage.file-endpoint")
 public class FileController {
     final static Logger logger = LoggerFactory.getLogger(FileController.class);
-
-    public FileController() {
-        logger.info("azure.storage.file-endpoint configured");
-    }
 
     private String fileshareName = "input-filesharename";
 

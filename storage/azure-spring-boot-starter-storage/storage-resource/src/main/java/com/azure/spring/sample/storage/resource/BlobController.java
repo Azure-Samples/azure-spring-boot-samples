@@ -6,7 +6,7 @@ package com.azure.spring.sample.storage.resource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.WritableResource;
@@ -22,14 +22,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author Warren Zhu
  */
 @Controller
-@ConditionalOnProperty("azure.storage.blob-endpoint")
 public class BlobController {
 
     final static Logger logger = LoggerFactory.getLogger(BlobController.class);
-
-    public BlobController() {
-        logger.info("azure.storage.blob-endpoint configured");
-    }
 
     private String containerName = "gzhcontainer";
     private String blobPath = "/";
@@ -38,9 +33,36 @@ public class BlobController {
     @Autowired
     private ResourceLoader resourceLoader;
 
+    @Value("azure-blob://gzhcontainer/hahaha.txt")
+    private Resource blobresource;
+
+
+    @Value("azure-file://gzhfile/hahahafile.txt")
+    private Resource resourcefile;
+
     @GetMapping("/blob")
     public String index() {
         return "blobupload";
+    }
+
+
+    @GetMapping("/resource")
+    @ResponseBody
+    public String resource() throws IOException{
+        try (OutputStream os = ((WritableResource) this.blobresource).getOutputStream()) {
+            os.write("resource test".getBytes());
+        }
+        return "success";
+    }
+
+
+    @GetMapping("/resourcefile")
+    @ResponseBody
+    public String resourcefile() throws IOException{
+        try (OutputStream os = ((WritableResource) this.resourcefile).getOutputStream()) {
+            os.write("resourcefile test".getBytes());
+        }
+        return "success";
     }
 
     @PostMapping("blob/upload")

@@ -49,29 +49,31 @@ See [OAuth 2.0 On-Behalf-Of flow] for more information about OBO.
 ## Examples
 ### Configure application.yml
 ```yaml
-azure:
-  activedirectory:
-    client-id: <Web-API-A-client-id>
-    client-secret: <Web-API-A-client-secret>
-    tenant-id: <Tenant-id-registered-by-application>
-    app-id-uri: <Web-API-A-app-id-url>
-    authorization-clients:
-      graph:
-        scopes:
-          - https://graph.microsoft.com/User.Read
-      webapiB:         # When authorization-grant-type is null, on behalf of flow is used by default
-        authorization-grant-type: on_behalf_of
-        scopes:
-          - <Web-API-B-app-id-url>/WebApiB.ExampleScope
-      webapiC:
-        authorization-grant-type: client_credentials
-        scopes:
-          - <Web-API-C-app-id-url>/.default
+spring:
+  cloud:
+    azure:
+      active-directory:
+        client-id: <Web-API-A-client-id>
+        client-secret: <Web-API-A-client-secret>
+        tenant-id: <Tenant-id-registered-by-application>
+        app-id-uri: <Web-API-A-app-id-url>
+        authorization-clients:
+          graph:
+            scopes:
+              - https://graph.microsoft.com/User.Read
+          webapiB:         # When authorization-grant-type is null, on behalf of flow is used by default
+            authorization-grant-type: on_behalf_of
+            scopes:
+              - <Web-API-B-app-id-url>/WebApiB.ExampleScope
+          webapiC:
+            authorization-grant-type: client_credentials
+            scopes:
+              - <Web-API-C-app-id-url>/.default
 ```
 
 ### Run with Maven
 ```shell
-cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo
+cd azure-spring-boot-samples/active-directory/spring-cloud-azure-starter-active-directory/aad-resource-server-obo
 mvn spring-boot:run
 ```
 
@@ -131,6 +133,6 @@ client Credential response success.
 <!-- LINKS -->
 [Azure portal]: https://portal.azure.com/
 
-[Resource server access other resources usage]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-boot-starter-active-directory#resource-server-access-other-resources-usage
-[azure-spring-boot-sample-active-directory-resource-server]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/azure-spring-boot-starter-active-directory/aad-resource-server
+[Resource server access other resources usage]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/spring-cloud-azure-starter-active-directory#resource-server-access-other-resources-usage
+[azure-spring-boot-sample-active-directory-resource-server]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/spring-cloud-azure-starter-active-directory/aad-resource-server
 [OAuth 2.0 On-Behalf-Of flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow

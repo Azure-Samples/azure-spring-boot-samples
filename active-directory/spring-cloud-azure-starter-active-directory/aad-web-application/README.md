@@ -11,7 +11,7 @@ urlFragment: "azure-spring-boot-sample-active-directory-webapp"
 # OAuth 2.0 Sample for Azure AD Spring Boot Starter client library for Java
 
 ## Key concepts
-This sample illustrates how to use `azure-spring-boot-starter-active-directory` package to work with OAuth 2.0 and OpenID Connect protocols on Auzre. This sample will use Microsoft Graph API to retrieve user information.
+This sample illustrates how to use `spring-cloud-azure-starter-active-directory` package to work with OAuth 2.0 and OpenID Connect protocols on Auzre. This sample will use Microsoft Graph API to retrieve user information.
 
 ## Getting started
 
@@ -82,26 +82,28 @@ If you want to use **webapp** to access other resource server (for example, acce
 ```yaml
 # WebapiA is an optional client, we can access obo resource servers or the other custom server.
 
-azure:
-  activedirectory:
-    client-id: <client-id>
-    client-secret: <client-secret>
-    tenant-id: <tenant-id>
-    user-group:
-      allowed-group-names: <group1>,<group2>
-      allowed-group-ids: <group1-id>,<group2-id>   # When 'all' is used, all group id can be obtained.
-    post-logout-redirect-uri: http://localhost:8080
-    authorization-clients:
-      arm:
-        on-demand: true
-        scopes: https://management.core.windows.net/user_impersonation
-      graph:
-        scopes:
-          - https://graph.microsoft.com/User.Read
-          - https://graph.microsoft.com/Directory.Read.All
-#      webapiA:
-#        scopes:
-#          - <Web-API-A-app-id-url>/Obo.WebApiA.ExampleScope
+spring:
+  cloud:
+    azure:
+      active-directory:
+        client-id: <client-id>
+        client-secret: <client-secret>
+        tenant-id: <tenant-id>
+        user-group:
+          allowed-group-names: <group1>,<group2>
+          allowed-group-ids: <group1-id>,<group2-id>   # When 'all' is used, all group id can be obtained.
+        post-logout-redirect-uri: http://localhost:8080
+        authorization-clients:
+          arm:
+            on-demand: true
+            scopes: https://management.core.windows.net/user_impersonation
+          graph:
+            scopes:
+              - https://graph.microsoft.com/User.Read
+              - https://graph.microsoft.com/Directory.Read.All
+#          webapiA:
+#            scopes:
+#              - <Web-API-A-app-id-url>/Obo.WebApiA.ExampleScope
       
 # enable-full-list is used to control whether to list all group ids, default is false
 
@@ -111,7 +113,7 @@ azure:
 
 ### Run with Maven
 ```shell
-cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory/aad-web-application
+cd azure-spring-boot-samples/active-directory/spring-cloud-azure-starter-active-directory/aad-web-application
 mvn spring-boot:run
 ```
 
@@ -129,9 +131,11 @@ mvn spring-boot:run
 ### If registered application is multi-tenanted, how to run this sample?
 In your application.yml file:
 ```yaml
-azure:
-  activedirectory:
-    tenant-id: common
+spring:
+  cloud:
+    azure:
+      active-directory:
+        tenant-id: common
 ```
 ---
 ### Meet with `AADSTS240002: Input id_token cannot be used as 'urn:ietf:params:oauth:grant-type:jwt-bearer' grant` error.
@@ -146,6 +150,6 @@ In Azure portal, app registration manifest page, configure `oauth2AllowImplicitF
 [Grant scoped permission]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-access-web-apis
 [configure the user and groups in Azure Active Directory]: https://docs.microsoft.com/azure/active-directory/active-directory-groups-create-azure-portal
 [this issue]: https://github.com/MicrosoftDocs/azure-docs/issues/8121#issuecomment-387090099
-[Resource Server]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/azure-spring-boot-starter-active-directory/aad-resource-server
-[Resource Server Obo]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo
-[config for resource server obo]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo#configure-your-middle-tier-web-api-a
+[Resource Server]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/spring-cloud-azure-starter-active-directory/aad-resource-server
+[Resource Server Obo]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/spring-cloud-azure-starter-active-directory/aad-resource-server-obo
+[config for resource server obo]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/spring-cloud-azure-starter-active-directory/aad-resource-server-obo#configure-your-middle-tier-web-api-a

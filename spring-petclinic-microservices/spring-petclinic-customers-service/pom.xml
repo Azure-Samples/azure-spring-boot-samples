@@ -131,8 +131,8 @@
        <!--   Dependencies for AAD # For sample only
         <dependency>
             <groupId>com.azure.spring</groupId>
-            <artifactId>azure-spring-boot-starter-active-directory</artifactId>
-            <version>3.3.0</version>
+            <artifactId>spring-cloud-azure-starter-active-directory</artifactId>
+            <version>4.0.0-beta.1</version>
         </dependency>
 
         <dependency>

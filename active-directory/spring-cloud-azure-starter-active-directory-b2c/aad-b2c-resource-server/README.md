@@ -11,7 +11,7 @@ urlFragment: "azure-spring-boot-sample-active-directory-b2c-resource-server"
 # Sample for Azure AD B2C Resource server Spring Boot client library for Java
 
 ## Key concepts
-This sample illustrates how to use `azure-spring-boot-starter-active-directory-b2c` package to work in a resource server and valiate tokens. 
+This sample illustrates how to use `spring-cloud-azure-starter-active-directory-b2c` package to work in a resource server and valiate tokens. 
 
 1. Constructs trusted iss by configuring tenant id.
 2. Obtain the access token from the HTTP request header.
@@ -90,20 +90,22 @@ This sample illustrates how to use `azure-spring-boot-starter-active-directory-b
 
 ```yaml
 # In v2.0 tokens, `aud` is always the client ID of the API, while in v1.0 tokens it can be the app id uri.
-azure:
-  activedirectory:
-    b2c:
-      tenant-id: ${your-tenant-id}
-      app-id-uri: ${your-app-id-uri}         # If you are using v1.0 token, please configure app-id-uri for `aud` verification
-      client-id: ${your-client-id}           # If you are using v2.0 token, please configure client-id for `aud` verification
-      base-uri: ${your-base-uri}             # Such as: https://xxxxb2c.b2clogin.com
-      user-flows:
-        sign-up-or-sign-in: ${sign-up-or-sign-in-user-flow-name}
+spring:
+  cloud:
+    azure:
+      active-directory:
+        b2c:
+          tenant-id: ${your-tenant-id}
+          app-id-uri: ${your-app-id-uri}         # If you are using v1.0 token, please configure app-id-uri for `aud` verification
+          client-id: ${your-client-id}           # If you are using v2.0 token, please configure client-id for `aud` verification
+          base-uri: ${your-base-uri}             # Such as: https://xxxxb2c.b2clogin.com
+          user-flows:
+            sign-up-or-sign-in: ${sign-up-or-sign-in-user-flow-name}
 ```
 
 ### Run with Maven
 ```
-cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-resource-server
+cd azure-spring-boot-samples/active-directory/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server
 mvn spring-boot:run
 ```
 

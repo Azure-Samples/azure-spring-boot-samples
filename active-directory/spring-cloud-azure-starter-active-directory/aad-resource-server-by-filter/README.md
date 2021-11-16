@@ -9,7 +9,7 @@ products:
 # Authentication filter sample for Azure AD Spring Boot Starter client library for Java
 
 ## Key concepts
-This sample illustrates how to use `azure-spring-boot-starter-active-directory` package to plugin JWT token filter into Spring Security filter chain. The filter injects `UserPrincipal` object that is associated with the thread of the current user request. User's AAD membership info, along with token claimsset, JWS object etc. are accessible from the object which can be used for role based authorization. Methods like `isMemberOf` is also supported.
+This sample illustrates how to use `spring-cloud-azure-starter-active-directory` package to plugin JWT token filter into Spring Security filter chain. The filter injects `UserPrincipal` object that is associated with the thread of the current user request. User's AAD membership info, along with token claimsset, JWS object etc. are accessible from the object which can be used for role based authorization. Methods like `isMemberOf` is also supported.
 
 ## Getting started
 The sample is composed of two layers: Angular JS client and Spring Boot RESTful Web Service. You need to make some changes to get it working with your Azure AD tenant on both sides.
@@ -90,18 +90,20 @@ In the steps below, "client-id" is the same as "Application ID" or "AppId".
 Open application.yml in your project to configure:
 
 ```yml
-azure:
-  activedirectory:
-    tenant-id: <your-tenant-id>
-    client-id: <your-client-id>
-    client-secret: <your-client-secret>
-    # Optional, default value is http://localhost:8080/
-    redirect-uri-template: <your-redirect-uri>
-    # groups that you created in your Azure AD tenant
-    user-group:
-      allowed-groups: group1,group2
-    # Optional, the default value is 
-    # environment: global  
+spring:
+  cloud:
+    azure:
+      active-directory:
+        tenant-id: <your-tenant-id>
+        client-id: <your-client-id>
+        client-secret: <your-client-secret>
+        # Optional, default value is http://localhost:8080/
+        redirect-uri-template: <your-redirect-uri>
+        # groups that you created in your Azure AD tenant
+        user-group:
+          allowed-groups: group1,group2
+        # Optional, the default value is 
+        # environment: global  
 ```
 
 
@@ -135,7 +137,7 @@ redirectUriTemplate: xxxxxx-your-redirect-uri-xxxxxx
 
 * Run with Maven 
  ```
- cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter
+ cd azure-spring-boot-samples/active-directory/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter
  mvn spring-boot:run
  ```
 

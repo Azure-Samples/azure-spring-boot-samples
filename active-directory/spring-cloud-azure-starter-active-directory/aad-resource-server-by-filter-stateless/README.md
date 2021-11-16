@@ -79,9 +79,9 @@ Furthermore enable the implicit flow in the manifest for the demo application
 You have to activate the stateless app-role auth filter and configure the `client-id`of your application registration:
 
 ```properties
-azure.activedirectory.session-stateless=true
-azure.activedirectory.client-id=xxxxxx-your-client-id-xxxxxx
-azure.activedirectory.appIdUri=xxxxxx-your-appIDUri-xxxxxx
+spring.cloud.azure.active-directory.session-stateless=true
+spring.cloud.azure.active-directory.client-id=xxxxxx-your-client-id-xxxxxx
+spring.cloud.azure.active-directory.appIdUri=xxxxxx-your-appIDUri-xxxxxx
 ```
 
 #### Configure Webapp
@@ -100,7 +100,7 @@ data: {
 
 ### Run with Maven
 ```shell
-cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter-stateless
+cd azure-spring-boot-samples/active-directory/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless
 mvn spring-boot:run
 ```
 

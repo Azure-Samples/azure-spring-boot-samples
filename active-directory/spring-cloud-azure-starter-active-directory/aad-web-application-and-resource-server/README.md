@@ -34,7 +34,7 @@ See [Configure your middle-tier Web API] or [Configure Web API] for more informa
 
 ### Run with Maven
 ```shell
-cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory/aad-resource-server
+cd azure-spring-boot-samples/active-directory/spring-cloud-azure-starter-active-directory/aad-resource-server
 mvn spring-boot:run
 ```
 
@@ -47,10 +47,10 @@ See [Check the authentication and authorization of Web Application] or [Check th
 ## Contributing
 
 <!-- LINKS -->
-[Web application and Resource server in one application]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/azure-spring-boot-starter-active-directory#web-application-and-resource-server-in-one-application
-[Configure web application]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-starter-active-directory/aad-web-application#configure-web-app
-[Configure groups for sign in user]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-starter-active-directory/aad-web-application#configure-groups-for-sign-in-user
-[Configure your middle-tier Web API]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo#configure-your-middle-tier-web-api-a
-[Configure Web API]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-starter-active-directory/aad-resource-server#configure-web-api
-[Check the authentication and authorization of Web Application]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-starter-active-directory/aad-web-application#check-the-authentication-and-authorization
-[Check the authentication and authorization of Resource Server]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/azure-spring-boot-starter-active-directory/aad-resource-server#check-the-authentication-and-authorization
+[Web application and Resource server in one application]: https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-active-directory#web-application-and-resource-server-in-one-application
+[Configure web application]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/spring-cloud-azure-starter-active-directory/aad-web-application#configure-web-app
+[Configure groups for sign in user]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/spring-cloud-azure-starter-active-directory/aad-web-application#configure-groups-for-sign-in-user
+[Configure your middle-tier Web API]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/spring-cloud-azure-starter-active-directory/aad-resource-server-obo#configure-your-middle-tier-web-api-a
+[Configure Web API]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/spring-cloud-azure-starter-active-directory/aad-resource-server#configure-web-api
+[Check the authentication and authorization of Web Application]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/spring-cloud-azure-starter-active-directory/aad-web-application#check-the-authentication-and-authorization
+[Check the authentication and authorization of Resource Server]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/aad/spring-cloud-azure-starter-active-directory/aad-resource-server#check-the-authentication-and-authorization

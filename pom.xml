@@ -16,14 +16,14 @@
   </properties>
 
   <modules>
-    <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server</module>
-    <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter</module>
-    <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter-stateless</module>
-    <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo</module>
-    <module>aad/azure-spring-boot-starter-active-directory/aad-web-application</module>
-    <module>aad/azure-spring-boot-starter-active-directory/aad-web-application-and-resource-server</module>
-    <module>aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-web-application</module>
-    <module>aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-resource-server</module>
+    <module>active-directory/spring-cloud-azure-starter-active-directory/aad-resource-server</module>
+    <module>active-directory/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter</module>
+    <module>active-directory/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless</module>
+    <module>active-directory/spring-cloud-azure-starter-active-directory/aad-resource-server-obo</module>
+    <module>active-directory/spring-cloud-azure-starter-active-directory/aad-web-application</module>
+    <module>active-directory/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server</module>
+    <module>active-directory/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application</module>
+    <module>active-directory/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-complete</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-initial</module>
     <module>appconfiguration/azure-appconfiguration-sample</module>

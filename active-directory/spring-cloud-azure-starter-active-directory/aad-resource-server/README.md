@@ -53,20 +53,22 @@ See [Expose scoped permission to web api] for more information about web api.
 ## Examples
 ### Configure application.yml
 ```yaml
-#If we configure the azure.activedirectory.client-id or azure.activedirectory.app-id-uri will be to check the audience.
+#If we configure the spring.cloud.azure.active-directory.client-id or spring.cloud.azure.active-directory.app-id-uri will be to check the audience.
 #In v2.0 tokens, this is always client id of the app, while in v1.0 tokens it can be the client id or the application id url used in the request.
 #If you are using v1.0 tokens, configure both to properly complete the audience validation.
 
-azure:
-  activedirectory:
-    client-id: <client-id>
-    app-id-uri: <app-id-uri>
+spring:
+  cloud:
+    azure:
+      active-directory:
+        client-id: <client-id>
+        app-id-uri: <app-id-uri>
 ```
 
 ### Run with Maven
 ```shell
 # Under sdk/spring project root directory
-cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory/aad-resource-server
+cd azure-spring-boot-samples/active-directory/spring-cloud-azure-starter-active-directory/aad-resource-server
 mvn spring-boot:run
 ```
 
@@ -97,7 +99,7 @@ Authorization: Bearer eyJ0eXAiO ... 0X2tnSQLEANnSPHY0gKcgw
 <!-- LINKS -->
 
 [Expose scoped permission to web api]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis
-[Resource Server]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/azure-spring-boot-starter-active-directory/aad-resource-server
-[Resource Server Obo]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo
+[Resource Server]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/spring-cloud-azure-starter-active-directory/aad-resource-server
+[Resource Server Obo]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/aad/spring-cloud-azure-starter-active-directory/aad-resource-server-obo
 [resource server password credentials]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth-ropc
 [Example: Application app role]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#example-application-app-role

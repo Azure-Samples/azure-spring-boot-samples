@@ -12,7 +12,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 
 @Configuration
-public class WebClientConfig {
+public class ApplicationConfiguration {
 
     @Bean
     public static WebClient webClient(ClientRegistrationRepository clientRegistrationRepository,

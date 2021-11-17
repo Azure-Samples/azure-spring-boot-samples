@@ -3,7 +3,7 @@
 
 package com.azure.spring.sample.aad.b2c.security;
 
-import com.azure.spring.cloud.autoconfigure.active.directory.implementation.autoconfigure.b2c.AADB2CJwtBearerTokenAuthenticationConverter;
+import com.azure.spring.cloud.autoconfigure.aad.b2c.implementation.AADB2CJwtBearerTokenAuthenticationConverter;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;

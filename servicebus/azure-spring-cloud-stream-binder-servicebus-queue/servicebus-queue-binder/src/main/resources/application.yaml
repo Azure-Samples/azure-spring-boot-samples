@@ -3,6 +3,7 @@ spring:
     azure:
       servicebus:
         connection-string: [servicebus-namespace-connection-string]
+        entity-type: queue
     stream:
       function:
         definition: consume;supply

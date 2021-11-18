@@ -13,20 +13,19 @@
   <groupId>com.azure.spring</groupId>
   <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-sample-servicebus-queue-multibinders;dependency} -->
   <name>Azure Spring Cloud Sample Service Bus Queue Multiple Binders</name>
-
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
-        <version>2020.0.2</version> <!-- {x-version-update;org.springframework.cloud:spring-cloud-dependencies;external_dependency} -->
+        <version>2020.0.3</version> <!-- {x-version-update;org.springframework.cloud:spring-cloud-dependencies;external_dependency} -->
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>com.azure.spring</groupId>
-        <artifactId>azure-spring-cloud-dependencies</artifactId>
-        <version>2.10.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-dependencies;current} -->
+        <artifactId>spring-cloud-azure-dependencies</artifactId>
+        <version>4.0.0-beta.1</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-dependencies;current} -->
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -40,7 +39,7 @@
     </dependency>
     <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>azure-spring-cloud-stream-binder-servicebus-queue</artifactId>
+      <artifactId>spring-cloud-azure-stream-binder-servicebus</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>

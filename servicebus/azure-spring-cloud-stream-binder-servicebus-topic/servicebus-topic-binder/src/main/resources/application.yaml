@@ -3,17 +3,17 @@ spring:
     azure:
       servicebus:
         connection-string: [servicebus-namespace-connection-string]
+        entity-type: topic
     stream:
       function:
         definition: consume;supply
       bindings:
         consume-in-0:
           destination: [servicebus-topic-name]
-          group: [topic-subscription-name]
         supply-out-0:
           destination: [servicebus-topic-name-same-as-above]
       servicebus:
-        topic:
+        queue:
           bindings:
             consume-in-0:
               consumer:

@@ -3,7 +3,7 @@
 
 package com.azure.spring.sample.aad.b2c.security;
 
-import com.azure.spring.autoconfigure.b2c.AADB2COidcLoginConfigurer;
+import com.azure.spring.cloud.autoconfigure.aad.b2c.implementation.AADB2COidcLoginConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;

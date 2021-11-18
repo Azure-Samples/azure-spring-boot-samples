@@ -21,7 +21,7 @@
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>azure-spring-boot-starter-active-directory</artifactId>
+      <artifactId>spring-cloud-azure-starter-active-directory</artifactId>
     </dependency>
 
     <dependency>

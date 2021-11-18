@@ -14,18 +14,6 @@
   <name>Azure Spring Boot Azure AD Starter Sample - Resource Server OBO</name>
   <description>Azure AD Spring Security Integration Spring Boot Resource Server OBO</description>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.azure.spring</groupId>
-        <artifactId>azure-spring-boot-bom</artifactId>
-        <version>3.10.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-boot-bom;current} -->
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>

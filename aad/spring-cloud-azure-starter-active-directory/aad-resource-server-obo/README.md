@@ -49,24 +49,26 @@ See [OAuth 2.0 On-Behalf-Of flow] for more information about OBO.
 ## Examples
 ### Configure application.yml
 ```yaml
-azure:
-  activedirectory:
-    client-id: <Web-API-A-client-id>
-    client-secret: <Web-API-A-client-secret>
-    tenant-id: <Tenant-id-registered-by-application>
-    app-id-uri: <Web-API-A-app-id-url>
-    authorization-clients:
-      graph:
-        scopes:
-          - https://graph.microsoft.com/User.Read
-      webapiB:         # When authorization-grant-type is null, on behalf of flow is used by default
-        authorization-grant-type: on_behalf_of
-        scopes:
-          - <Web-API-B-app-id-url>/WebApiB.ExampleScope
-      webapiC:
-        authorization-grant-type: client_credentials
-        scopes:
-          - <Web-API-C-app-id-url>/.default
+spring:
+  cloud:
+    azure:
+      active-directory:
+        client-id: <Web-API-A-client-id>
+        client-secret: <Web-API-A-client-secret>
+        tenant-id: <Tenant-id-registered-by-application>
+        app-id-uri: <Web-API-A-app-id-url>
+        authorization-clients:
+          graph:
+            scopes:
+              - https://graph.microsoft.com/User.Read
+          webapiB:         # When authorization-grant-type is null, on behalf of flow is used by default
+            authorization-grant-type: on_behalf_of
+            scopes:
+              - <Web-API-B-app-id-url>/WebApiB.ExampleScope
+          webapiC:
+            authorization-grant-type: client_credentials
+            scopes:
+              - <Web-API-C-app-id-url>/.default
 ```
 
 ### Run with Maven

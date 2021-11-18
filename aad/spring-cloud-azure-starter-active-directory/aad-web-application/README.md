@@ -82,31 +82,33 @@ If you want to use **webapp** to access other resource server (for example, acce
 ```yaml
 # WebapiA is an optional client, we can access obo resource servers or the other custom server.
 
-azure:
-  activedirectory:
-    client-id: <client-id>
-    client-secret: <client-secret>
-    tenant-id: <tenant-id>
-    user-group:
-      allowed-group-names: <group1>,<group2>
-      allowed-group-ids: <group1-id>,<group2-id>   # When 'all' is used, all group id can be obtained.
-    post-logout-redirect-uri: http://localhost:8080
-    authorization-clients:
-      arm:
-        on-demand: true
-        scopes: https://management.core.windows.net/user_impersonation
-      graph:
-        scopes:
-          - https://graph.microsoft.com/User.Read
-          - https://graph.microsoft.com/Directory.Read.All
-#      webapiA:
-#        scopes:
-#          - <Web-API-A-app-id-url>/Obo.WebApiA.ExampleScope
-      
-# enable-full-list is used to control whether to list all group ids, default is false
-
-# It's suggested the logged in user should at least belong to one of the above groups
-# If not, the logged in user will not be able to access any authorization controller rest APIs
+spring:
+  cloud:
+    azure:
+      active-directory:
+        client-id: <client-id>
+        client-secret: <client-secret>
+        tenant-id: <tenant-id>
+        user-group:
+          allowed-group-names: <group1>,<group2>
+          allowed-group-ids: <group1-id>,<group2-id>   # When 'all' is used, all group id can be obtained.
+        post-logout-redirect-uri: http://localhost:8080
+        authorization-clients:
+          arm:
+            on-demand: true
+            scopes: https://management.core.windows.net/user_impersonation
+          graph:
+            scopes:
+              - https://graph.microsoft.com/User.Read
+              - https://graph.microsoft.com/Directory.Read.All
+#          webapiA:
+#            scopes:
+#              - <Web-API-A-app-id-url>/Obo.WebApiA.ExampleScope
+          
+#     enable-full-list is used to control whether to list all group ids, default is false
+    
+#     It's suggested the logged in user should at least belong to one of the above groups
+#     If not, the logged in user will not be able to access any authorization controller rest APIs
 ```
 
 ### Run with Maven
@@ -129,9 +131,11 @@ mvn spring-boot:run
 ### If registered application is multi-tenanted, how to run this sample?
 In your application.yml file:
 ```yaml
-azure:
-  activedirectory:
-    tenant-id: common
+spring:
+  cloud:
+    azure:
+      active-directory:
+        tenant-id: common
 ```
 ---
 ### Meet with `AADSTS240002: Input id_token cannot be used as 'urn:ietf:params:oauth:grant-type:jwt-bearer' grant` error.

@@ -90,18 +90,20 @@ In the steps below, "client-id" is the same as "Application ID" or "AppId".
 Open application.yml in your project to configure:
 
 ```yml
-azure:
-  activedirectory:
-    tenant-id: <your-tenant-id>
-    client-id: <your-client-id>
-    client-secret: <your-client-secret>
-    # Optional, default value is http://localhost:8080/
-    redirect-uri-template: <your-redirect-uri>
-    # groups that you created in your Azure AD tenant
-    user-group:
-      allowed-groups: group1,group2
-    # Optional, the default value is 
-    # environment: global  
+spring:
+  cloud:
+    azure:
+      active-directory:
+        tenant-id: <your-tenant-id>
+        client-id: <your-client-id>
+        client-secret: <your-client-secret>
+        # Optional, default value is http://localhost:8080/
+        redirect-uri-template: <your-redirect-uri>
+        # groups that you created in your Azure AD tenant
+        user-group:
+          allowed-groups: group1,group2
+        # Optional, the default value is 
+        # environment: global  
 ```
 
 

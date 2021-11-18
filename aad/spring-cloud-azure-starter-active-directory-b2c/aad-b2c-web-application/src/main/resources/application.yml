@@ -3,6 +3,7 @@ spring:
     azure:
       active-directory:
         b2c:
+          enabled: true
           base-uri: ${your-tenant-authorization-server-base-uri}
           client-id: ${your-client-id}
           client-secret: ${your-client-secret}

@@ -94,6 +94,7 @@ spring:
   cloud:
     azure:
       active-directory:
+          enabled: true
         tenant-id: <your-tenant-id>
         client-id: <your-client-id>
         client-secret: <your-client-secret>

@@ -86,6 +86,7 @@ spring:
   cloud:
     azure:
       active-directory:
+        enabled: true
         client-id: <client-id>
         client-secret: <client-secret>
         tenant-id: <tenant-id>
@@ -135,6 +136,7 @@ spring:
   cloud:
     azure:
       active-directory:
+        enabled: true
         tenant-id: common
 ```
 ---

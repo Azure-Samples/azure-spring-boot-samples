@@ -53,7 +53,7 @@ See [Expose scoped permission to web api] for more information about web api.
 ## Examples
 ### Configure application.yml
 ```yaml
-#If we configure the spring.cloud.azure.active-directoryclient-id or spring.cloud.azure.active-directoryapp-id-uri will be to check the audience.
+#If we configure the spring.cloud.azure.active-directory.client-id or spring.cloud.azure.active-directory.app-id-uri will be to check the audience.
 #In v2.0 tokens, this is always client id of the app, while in v1.0 tokens it can be the client id or the application id url used in the request.
 #If you are using v1.0 tokens, configure both to properly complete the audience validation.
 
@@ -61,6 +61,7 @@ spring:
   cloud:
     azure:
       active-directory:
+        enabled: true
         client-id: <client-id>
         app-id-uri: <app-id-uri>
 ```

@@ -53,6 +53,7 @@ spring:
   cloud:
     azure:
       active-directory:
+        enabled: true
         client-id: <Web-API-A-client-id>
         client-secret: <Web-API-A-client-secret>
         tenant-id: <Tenant-id-registered-by-application>

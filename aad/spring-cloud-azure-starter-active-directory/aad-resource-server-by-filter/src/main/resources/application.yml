@@ -1,10 +1,11 @@
-# By default, spring.cloud.azure.active-directoryenvironment property has value `global`,
+# By default, spring.cloud.azure.active-directory.environment property has value `global`,
 # supported value is global, cn. Please refer to the README for details.
-# spring.cloud.azure.active-directoryenvironment=global
+# spring.cloud.azure.active-directory.environment=global
 spring:
   cloud:
     azure:
       active-directory:
+        enabled: true
         tenant-id: <your-tenant-id>
         client-id: <your-client-id>
         client-secret: <your-client-secret>

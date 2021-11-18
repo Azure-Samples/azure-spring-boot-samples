@@ -5,6 +5,7 @@ spring:
     azure:
       active-directory:
         b2c:
+          enabled: true
           tenant-id: ${your-tenant-id}
           app-id-uri: ${your-app-id-uri}         # If you are using v1.0 token, please configure app-id-uri for `aud` verification
           client-id: ${your-client-id}           # If you are using v2.0 token, please configure client-id for `aud` verification

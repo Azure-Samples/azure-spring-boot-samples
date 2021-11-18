@@ -79,9 +79,10 @@ Furthermore enable the implicit flow in the manifest for the demo application
 You have to activate the stateless app-role auth filter and configure the `client-id`of your application registration:
 
 ```properties
-spring.cloud.azure.active-directorysession-stateless=true
-spring.cloud.azure.active-directoryclient-id=xxxxxx-your-client-id-xxxxxx
-spring.cloud.azure.active-directoryappIdUri=xxxxxx-your-appIDUri-xxxxxx
+spring.cloud.azure.active-directory.enabled=true
+spring.cloud.azure.active-directory.session-stateless=true
+spring.cloud.azure.active-directory.client-id=xxxxxx-your-client-id-xxxxxx
+spring.cloud.azure.active-directory.appIdUri=xxxxxx-your-appIDUri-xxxxxx
 ```
 
 #### Configure Webapp

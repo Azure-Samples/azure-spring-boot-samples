@@ -5,7 +5,7 @@ spring:
       client-id: [the-id-of-managed-identity]
       resource-group: [ resource-group ]
       subscription-id: [ subscription-id ]
-      eventhub:
+      eventhubs:
         namespace: [eventhub-namespace]
         checkpoint-storage-account: [checkpoint-storage-account]
         checkpoint-container: [checkpoint-container]

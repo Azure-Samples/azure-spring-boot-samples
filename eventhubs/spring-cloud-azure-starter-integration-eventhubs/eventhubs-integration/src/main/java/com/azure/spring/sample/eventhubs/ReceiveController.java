@@ -3,12 +3,13 @@
 
 package com.azure.spring.sample.eventhubs;
 
-import com.azure.spring.integration.core.AzureHeaders;
-import com.azure.spring.integration.core.api.CheckpointConfig;
-import com.azure.spring.integration.core.api.CheckpointMode;
-import com.azure.spring.integration.core.api.reactor.Checkpointer;
-import com.azure.spring.integration.eventhub.api.EventHubOperation;
-import com.azure.spring.integration.eventhub.inbound.EventHubInboundChannelAdapter;
+
+import com.azure.spring.eventhubs.core.EventHubsProcessorContainer;
+import com.azure.spring.integration.eventhubs.inbound.EventHubsInboundChannelAdapter;
+import com.azure.spring.messaging.AzureHeaders;
+import com.azure.spring.messaging.checkpoint.CheckpointConfig;
+import com.azure.spring.messaging.checkpoint.CheckpointMode;
+import com.azure.spring.messaging.checkpoint.Checkpointer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -27,11 +28,11 @@ public class ReceiveController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ReceiveController.class);
     private static final String INPUT_CHANNEL = "input";
-    private static final String EVENTHUB_NAME = "eventhub1";
-    private static final String CONSUMER_GROUP = "cg1";
+    private static final String EVENTHUB_NAME = "eh1";
+    private static final String CONSUMER_GROUP = "$Default";
 
     /**
-     * This message receiver binding with {@link EventHubInboundChannelAdapter}
+     * This message receiver binding with {@link EventHubsInboundChannelAdapter}
      * via {@link MessageChannel} has name {@value INPUT_CHANNEL}
      */
     @ServiceActivator(inputChannel = INPUT_CHANNEL)
@@ -39,17 +40,20 @@ public class ReceiveController {
         String message = new String(payload);
         LOGGER.info("New message received: '{}'", message);
         checkpointer.success()
-            .doOnSuccess(s -> LOGGER.info("Message '{}' successfully checkpointed", message))
-            .doOnError(e -> LOGGER.error("Error found", e))
-            .subscribe();
+                .doOnSuccess(s -> LOGGER.info("Message '{}' successfully checkpointed", message))
+                .doOnError(e -> LOGGER.error("Error found", e))
+                .subscribe();
     }
 
     @Bean
-    public EventHubInboundChannelAdapter messageChannelAdapter(
-        @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel, EventHubOperation eventhubOperation) {
-        eventhubOperation.setCheckpointConfig(CheckpointConfig.builder().checkpointMode(CheckpointMode.MANUAL).build());
-        EventHubInboundChannelAdapter adapter = new EventHubInboundChannelAdapter(EVENTHUB_NAME,
-            eventhubOperation, CONSUMER_GROUP);
+    public EventHubsInboundChannelAdapter messageChannelAdapter(
+            @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel,
+            EventHubsProcessorContainer processorContainer) {
+        CheckpointConfig config = new CheckpointConfig(CheckpointMode.MANUAL);
+
+        EventHubsInboundChannelAdapter adapter =
+                new EventHubsInboundChannelAdapter(processorContainer, EVENTHUB_NAME,
+                        CONSUMER_GROUP, config);
         adapter.setOutputChannel(inputChannel);
         return adapter;
     }

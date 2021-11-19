@@ -1,17 +1,16 @@
 spring:
   cloud:
     azure:
-      client-id: [service-principal-id]
-      client-secret: [service-principal-secret]
-      tenant-id: [tenant-id]
-      resource-group: [resource-group]
-
+      credential:
+        client-id: [client-id]
+        client-secret: [client-secret]
+      profile:
+        tenant-id: [tenant-id]
 #     Uncomment below configurations if you want to enable auto creating resources.
-#
-#      subscription-id: [subscription-id]
-#      auto-create-resources: true
-#      environment: Azure
-#      region: [region]
+#        subscription-id: [subscription-id]
+#        cloud: Azure
+#      resource:
+#        region: [region]
 
       servicebus:
-        namespace: [servicebus-namespace]
+        namespace: [namespace]

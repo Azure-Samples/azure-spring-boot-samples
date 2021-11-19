@@ -29,7 +29,8 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 
 ## Examples
 
-1. Update [application.yaml]. 
+1. Update [application.yaml]. If you choose to use service principal or managed identity, update the `application-sp.yaml` or
+ `application-mi.yaml` respectively.
     ```yaml
     servicebus.producers[0]:
       entity-name: queue1

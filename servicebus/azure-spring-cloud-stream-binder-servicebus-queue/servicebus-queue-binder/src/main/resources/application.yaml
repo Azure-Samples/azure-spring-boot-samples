@@ -12,7 +12,6 @@ spring:
         supply-out-0:
           destination: [servicebus-queue-name-same-as-above]
       servicebus:
-        queue:
           bindings:
             consume-in-0:
               consumer:

@@ -48,22 +48,22 @@ and bill at [this link][azure-account].
         stream:
           #To specify which functional bean to bind to the external destination(s) exposed by the bindings
           function:
-            definition: topicConsume;topicSupply;queueConsume;queueSupply
+            definition: consume1;supply1;consume2;supply2
           bindings:
-            topicConsume-in-0:
+            consume1-in-0:
               destination: [servicebus-topic-1-name]
-              group: [topic-subscription-name]
-            topicSupply-out-0:
-              destination: [servicebus-topic-1-name]
-            queueConsume-in-0:
+              group: [servicebus-topic-1-subscription-name]
+            supply1-out-0:
+              destination: [servicebus-topic-1-name-same-as-above]
+            consume2-in-0:
               binder: servicebus-2
               destination: [servicebus-queue-1-name]
-            queueSupply-out-0:
+            supply2-out-0:
               binder: servicebus-2
-              destination: [servicebus-queue-1-name]
+              destination: [servicebus-queue-1-name-same-as-above]
           binders:
             servicebus-1:
-              type: servicebus-queue
+              type: servicebus
               default-candidate: true
               environment:
                 spring:
@@ -72,7 +72,7 @@ and bill at [this link][azure-account].
                       servicebus:
                         connection-string: [servicebus-namespace-1-connection-string]
             servicebus-2:
-              type: servicebus-queue
+              type: servicebus
               default-candidate: false
               environment:
                 spring:
@@ -82,10 +82,10 @@ and bill at [this link][azure-account].
                         connection-string: [servicebus-namespace-2-connection-string]
           servicebus:
             bindings:
-              topicSupply-out-0:
+              consume1-out-0:
                 producer:
                   entity-type: topic
-              queueSupply-out-0:
+              consume2-out-0:
                 producer:
                   entity-type: queue
           poller:
@@ -274,4 +274,4 @@ To | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.TO | String | 
 [deploy-to-app-service-via-ftp]: https://docs.microsoft.com/azure/app-service/deploy-ftp
 [managed-identities]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-cloud-stream-binder-servicebus-queue/servicebus-queue-multibinders/src/main/resources/application.yaml
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/azure-spring-cloud-stream-binder-servicebus-queue/servicebus-queue-multibinders/src/main/resources/application.yaml

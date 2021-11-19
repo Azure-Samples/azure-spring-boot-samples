@@ -340,4 +340,4 @@ To | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.TO | String | 
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
 [application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-cloud-stream-binder-servicebus-queue/servicebus-queue-binder/src/main/resources/application-mi.yaml
 [application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-cloud-stream-binder-servicebus-queue/servicebus-queue-binder/src/main/resources/application-sp.yaml
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-cloud-stream-binder-servicebus-queue/servicebus-queue-binder/src/main/resources/application.yaml
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/azure-spring-cloud-stream-binder-servicebus-queue/servicebus-queue-binder/src/main/resources/application.yaml

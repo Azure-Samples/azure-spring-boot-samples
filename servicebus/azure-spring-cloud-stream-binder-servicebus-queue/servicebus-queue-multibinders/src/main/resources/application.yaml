@@ -2,19 +2,19 @@ spring:
   cloud:
     stream:
       function:
-        definition: queueConsume;queueSupply;topicConsume;topicSupply;
+        definition: consume1;supply1;consume2;supply2
       bindings:
-        topicConsume-in-0:
+        consume1-in-0:
           destination: [servicebus-topic-1-name]
-          group: [topic-subscription-name]
-        topicSupply-out-0:
-          destination: [servicebus-topic-1-name]
-        queueConsume-in-0:
+          group: [servicebus-topic-1-subscription-name]
+        supply1-out-0:
+          destination: [servicebus-topic-1-name-same-as-above]
+        consume2-in-0:
           binder: servicebus-2
           destination: [servicebus-queue-1-name]
-        queueSupply-out-0:
+        supply2-out-0:
           binder: servicebus-2
-          destination: [servicebus-queue-1-name]
+          destination: [servicebus-queue-1-name-same-as-above]
       binders:
         servicebus-1:
           type: servicebus
@@ -36,10 +36,10 @@ spring:
                     connection-string: [servicebus-namespace-2-connection-string]
       servicebus:
         bindings:
-          topicSupply-out-0:
+          consume1-out-0:
             producer:
               entity-type: topic
-          queueSupply-out-0:
+          consume2-out-0:
             producer:
               entity-type: queue
       poller:

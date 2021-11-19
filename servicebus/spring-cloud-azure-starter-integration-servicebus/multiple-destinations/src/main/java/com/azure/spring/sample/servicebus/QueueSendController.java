@@ -23,19 +23,19 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Warren Zhu
  */
 @RestController
-public class TopicSendController {
+public class QueueSendController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(TopicSendController.class);
-    private static final String OUTPUT_CHANNEL = "topic.output";
-    private static final String TOPIC_NAME = "topic1";
+    private static final Logger LOGGER = LoggerFactory.getLogger(QueueSendController.class);
+    private static final String OUTPUT_CHANNEL = "queue.output";
+    private static final String QUEUE_NAME = "queue1";
 
     @Autowired
-    TopicOutboundGateway messagingGateway;
+    QueueOutboundGateway messagingGateway;
 
     /**
-     * Posts a message to a Service Bus Topic
+     * Posts a message to a Service Bus Queue
      */
-    @PostMapping("/topics")
+    @PostMapping("/queues")
     public String send(@RequestParam("message") String message) {
         this.messagingGateway.send(message);
         return message;
@@ -43,9 +43,9 @@ public class TopicSendController {
 
     @Bean
     @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
-    public MessageHandler topicMessageSender(ServiceBusTemplate serviceBusTemplate) {
-        serviceBusTemplate.setDefaultEntityType(ServiceBusEntityType.TOPIC);
-        DefaultMessageHandler handler = new DefaultMessageHandler(TOPIC_NAME, serviceBusTemplate);
+    public MessageHandler queueMessageSender(ServiceBusTemplate queueOperation) {
+        queueOperation.setDefaultEntityType(ServiceBusEntityType.QUEUE);
+        DefaultMessageHandler handler = new DefaultMessageHandler(QUEUE_NAME, queueOperation);
         handler.setSendCallback(new ListenableFutureCallback<Void>() {
             @Override
             public void onSuccess(Void result) {
@@ -66,7 +66,7 @@ public class TopicSendController {
      * via {@link MessageChannel} has name {@value OUTPUT_CHANNEL}
      */
     @MessagingGateway(defaultRequestChannel = OUTPUT_CHANNEL)
-    public interface TopicOutboundGateway {
+    public interface QueueOutboundGateway {
         void send(String text);
     }
 }

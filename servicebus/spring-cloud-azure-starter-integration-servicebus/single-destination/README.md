@@ -54,18 +54,26 @@ Running this sample will be charged by Azure. You can check the usage and bill a
    [TopicReceiveController.java][topic-receive-controller] and
    [TopicSendController.java][topic-send-controller].   
     
-1.  Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
+3. Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
 
-1. Send a POST request to service bus queue
+4. Send a POST request to service bus queue
 
         $ curl -X POST http://localhost:8080/queues?message=hello
 
-1.  Verify in your app’s logs that a similar message was posted:
+5. Verify in your app’s logs that a similar message was posted:
+
+        New message received: 'hello'
+        Message 'hello' successfully checkpointed
+6. Send a POST request to service bus topic
+
+        $ curl -X POST http://localhost:8080/topics?message=hello
+
+7. Verify in your app’s logs that a similar message was posted:
 
         New message received: 'hello'
         Message 'hello' successfully checkpointed
 
-1.  Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
+8. Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
 
 ## Enhancement
 ### Set Service Bus message headers
@@ -110,11 +118,11 @@ To | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.TO | String | 
 [create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-managed-identity.md
 [create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-sp-using-azure-cli.md
 
-[queue-receive-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-cloud-starter-servicebus/servicebus-integration/src/main/java/com/azure/spring/sample/servicebus/QueueReceiveController.java
-[queue-send-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-cloud-starter-servicebus/servicebus-integration/src/main/java/com/azure/spring/sample/servicebus/QueueSendController.java
-[topic-receive-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-cloud-starter-servicebus/servicebus-integration/src/main/java/com/azure/spring/sample/servicebus/TopicReceiveController.java
-[topic-send-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-cloud-starter-servicebus/servicebus-integration/src/main/java/com/azure/spring/sample/servicebus/TopicSendController.java
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-cloud-starter-servicebus/servicebus-integration/src/main/resources/application.yaml
+[queue-receive-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/spring-cloud-azure-starter-integration-servicebus/single-destination/src/main/java/com/azure/spring/sample/servicebus/QueueReceiveController.java
+[queue-send-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/spring-cloud-azure-starter-integration-servicebus/single-destination/src/main/java/com/azure/spring/sample/servicebus/QueueSendController.java
+[topic-receive-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/spring-cloud-azure-starter-integration-servicebus/single-destination/src/main/java/com/azure/spring/sample/servicebus/TopicReceiveController.java
+[topic-send-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/spring-cloud-azure-starter-integration-servicebus/single-destination/src/main/java/com/azure/spring/sample/servicebus/TopicSendController.java
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/spring-cloud-azure-starter-integration-servicebus/single-destination/src/main/resources/application.yaml
 
 
 

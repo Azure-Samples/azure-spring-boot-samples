@@ -10,10 +10,10 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>spring-cloud-azure-starter-integration-sample-servicebus-queue</artifactId>
+  <artifactId>spring-cloud-azure-starter-integration-sample-servicebus</artifactId>
   <groupId>com.azure.spring</groupId>
   <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-integration-sample-servicebus;dependency} -->
-  <name>Spring Cloud Azure Starter Integration Sample Service Bus Queue</name>
+  <name>Spring Cloud Azure Starter Integration Sample Service Bus</name>
 
   <dependencies>
     <dependency>

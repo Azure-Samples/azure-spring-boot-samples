@@ -12,8 +12,8 @@ urlFragment: "azure-spring-integration-eventhubs-sample"
 
 ## Key concepts
 
-This code sample demonstrates how to use Spring Integration for Azure
-Event Hub.
+This sample demonstrates how to use Spring Integration for Azure
+Event Hubs.
 
 
 ## Getting started
@@ -26,16 +26,10 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 ### Create Azure resources
 
 1.  Create [Azure Event Hubs][create-event-hubs].
-    Please note `Basic` tier is unsupported. After creating the Azure Event Hub, you
+    After creating the Azure Event Hubs, you
     can create your own Consumer Group or use the default "$Default" Consumer Group.
 
 1.  Create [Azure Storage][create-azure-storage] for checkpoint use.
-
-1.  **[Optional]** if you want to use service principal, please follow
-    [create service principal from Azure CLI][create-sp-using-azure-cli] to create one.
-
-1.  **[Optional]** if you want to use managed identity, please follow
-    [create managed identity][create-managed-identity] to set up managed identity.
 
 ## Examples
 
@@ -44,13 +38,15 @@ Running this sample will be charged by Azure. You can check the usage and bill a
    `application-mi.yaml` respectively.
     ```yaml
     spring:
-      cloud:
-        azure:
-          eventhub:
-            connection-string: [eventhub-namespace-connection-string]
-            checkpoint-storage-account: [checkpoint-storage-account]
-            checkpoint-access-key: [checkpoint-access-key]
-            checkpoint-container: [checkpoint-container]
+        cloud:
+            azure:
+                eventhubs:
+                    connection-string: [connection-string]
+                    processor:
+                        checkpoint-store:
+                          container-name: [container-name]
+                          account-name: [account-name]
+                          account-key: [account-key]
     ```
 
 1.  Update event hub name and consumer group in
@@ -84,8 +80,8 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 [create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-sp-using-azure-cli.md
 [eventhub-operation]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-integration-eventhubs/src/main/java/com/azure/spring/integration/eventhub/api/EventHubOperation.java
 
-[receive-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/azure-spring-cloud-starter-eventhubs/eventhubs-integration/src/main/java/com/azure/spring/sample/eventhubs/ReceiveController.java
-[send-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/azure-spring-cloud-starter-eventhubs/eventhubs-integration/src/main/java/com/azure/spring/sample/eventhubs/SendController.java
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/azure-spring-cloud-starter-eventhubs/eventhubs-integration/src/main/resources/application.yaml
+[receive-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration/src/main/java/com/azure/spring/sample/eventhubs/ReceiveController.java
+[send-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration/src/main/java/com/azure/spring/sample/eventhubs/SendController.java
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration/src/main/resources/application.yaml
 
 

@@ -3,8 +3,8 @@
 
 package com.azure.spring.sample.eventhubs;
 
-import com.azure.spring.integration.core.api.reactor.DefaultMessageHandler;
-import com.azure.spring.integration.eventhub.api.EventHubOperation;
+import com.azure.spring.eventhubs.core.EventHubsTemplate;
+import com.azure.spring.integration.handler.DefaultMessageHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,13 +26,13 @@ public class SendController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SendController.class);
     private static final String OUTPUT_CHANNEL = "output";
-    private static final String EVENTHUB_NAME = "eventhub1";
+    private static final String EVENTHUB_NAME = "eh1";
 
     @Autowired
     EventHubOutboundGateway messagingGateway;
 
     /**
-     * Posts a message to a Azure Event Hub
+     * Posts a message to an Azure Event Hub
      */
     @PostMapping("/messages")
     public String send(@RequestParam("message") String message) {
@@ -42,7 +42,7 @@ public class SendController {
 
     @Bean
     @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
-    public MessageHandler messageSender(EventHubOperation queueOperation) {
+    public MessageHandler messageSender(EventHubsTemplate queueOperation) {
         DefaultMessageHandler handler = new DefaultMessageHandler(EVENTHUB_NAME, queueOperation);
         handler.setSendCallback(new ListenableFutureCallback<Void>() {
             @Override

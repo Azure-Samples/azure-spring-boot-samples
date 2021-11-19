@@ -3,12 +3,12 @@
 
 package com.azure.spring.sample.servicebus;
 
-import com.azure.spring.integration.core.AzureHeaders;
-import com.azure.spring.integration.core.api.CheckpointConfig;
-import com.azure.spring.integration.core.api.CheckpointMode;
-import com.azure.spring.integration.core.api.Checkpointer;
-import com.azure.spring.integration.servicebus.inbound.ServiceBusTopicInboundChannelAdapter;
-import com.azure.spring.integration.servicebus.topic.ServiceBusTopicOperation;
+import com.azure.spring.integration.servicebus.inbound.ServiceBusInboundChannelAdapter;
+import com.azure.spring.messaging.AzureHeaders;
+import com.azure.spring.messaging.checkpoint.CheckpointConfig;
+import com.azure.spring.messaging.checkpoint.CheckpointMode;
+import com.azure.spring.messaging.checkpoint.Checkpointer;
+import com.azure.spring.servicebus.core.ServiceBusProcessorContainer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -31,7 +31,7 @@ public class TopicReceiveController {
     private static final String SUBSCRIPTION_NAME = "group1";
 
     /**
-     * This message receiver binding with {@link ServiceBusTopicInboundChannelAdapter}
+     * This message receiver binding with {@link ServiceBusInboundChannelAdapter}
      * via {@link MessageChannel} has name {@value INPUT_CHANNEL}
      */
     @ServiceActivator(inputChannel = INPUT_CHANNEL)
@@ -42,16 +42,15 @@ public class TopicReceiveController {
             if (ex == null) {
                 LOGGER.info("Message '{}' successfully checkpointed", message);
             }
-            return null;
+//            return null;
         });
     }
 
     @Bean
-    public ServiceBusTopicInboundChannelAdapter topicMessageChannelAdapter(
-        @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel, ServiceBusTopicOperation topicOperation) {
-        topicOperation.setCheckpointConfig(CheckpointConfig.builder().checkpointMode(CheckpointMode.MANUAL).build());
-        ServiceBusTopicInboundChannelAdapter adapter = new ServiceBusTopicInboundChannelAdapter(TOPIC_NAME,
-            topicOperation, SUBSCRIPTION_NAME);
+    public ServiceBusInboundChannelAdapter topicMessageChannelAdapter(
+        @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel, ServiceBusProcessorContainer topicOperation) {
+        ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(topicOperation, TOPIC_NAME, SUBSCRIPTION_NAME,
+            new CheckpointConfig(CheckpointMode.MANUAL));
         adapter.setOutputChannel(inputChannel);
         return adapter;
     }

@@ -25,8 +25,8 @@
       </dependency>
       <dependency>
         <groupId>com.azure.spring</groupId>
-        <artifactId>azure-spring-cloud-dependencies</artifactId>
-        <version>2.10.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-dependencies;current} -->
+        <artifactId>spring-cloud-azure-dependencies</artifactId>
+        <version>4.0.0-beta.1</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-dependencies;current} -->
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -39,8 +39,21 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-configuration-processor</artifactId>
+      <version>2.5.4</version> <!-- {x-version-update;org.springframework.boot:spring-boot-configuration-processor;external_dependency} -->
+      <optional>true</optional>
+    </dependency>
+    <dependency>
+      <groupId>com.azure</groupId>
+      <artifactId>azure-identity</artifactId>
+      <version>1.4.1</version> <!-- {x-version-update;com.azure:azure-identity;dependency} -->
+      <scope>compile</scope>
+    </dependency>
+    <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>azure-spring-cloud-starter-servicebus</artifactId>
+      <artifactId>spring-cloud-azure-starter-integration-servicebus</artifactId>
+      <version>4.0.0-beta.1</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>

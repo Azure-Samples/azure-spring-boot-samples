@@ -3,8 +3,8 @@
 
 package com.azure.spring.sample.servicebus;
 
-import com.azure.spring.integration.core.DefaultMessageHandler;
-import com.azure.spring.integration.servicebus.topic.ServiceBusTopicOperation;
+import com.azure.spring.integration.handler.DefaultMessageHandler;
+import com.azure.spring.servicebus.core.ServiceBusTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +42,7 @@ public class TopicSendController {
 
     @Bean
     @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
-    public MessageHandler topicMessageSender(ServiceBusTopicOperation topicOperation) {
+    public MessageHandler topicMessageSender(ServiceBusTemplate topicOperation) {
         DefaultMessageHandler handler = new DefaultMessageHandler(TOPIC_NAME, topicOperation);
         handler.setSendCallback(new ListenableFutureCallback<Void>() {
             @Override

@@ -12,7 +12,7 @@ urlFragment: "azure-spring-integration-sample-servicebus"
 
 ## Key concepts
 
-This code sample demonstrates how to use Spring Integration for Azure Service Bus.
+This code sample demonstrates how to use Spring Integration for Azure Service Bus with multiple destinations. It shows how to use Spring Integration for Azure Service Bus to send and receive messages from one queue and then forward them to another queue.
 
 
 ## Getting started
@@ -24,36 +24,31 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 
 ### Create Azure resources
 
-1. Create Azure Service Bus namespace, queue and topic. Please see 
-   [how to create][create-service-bus].
-
-1.  **[Optional]** if you want to use service principal, please follow
-    [create service principal from Azure CLI][create-sp-using-azure-cli] to create one.
-
-1.  **[Optional]** if you want to use managed identity, please follow
-    [create managed identity][create-managed-identity] to set up managed identity.
-
+1. Create Azure Service Bus namespace and two queue entities with name of `queue1` and `queue2`. Please see 
+   [how to create][create-service-bus]. Note: this sample takes queue as example, it's also applied with Service Bus topic.
 
 ## Examples
 
-1. Update [application.yaml]. If you choose to use
-   service principal or managed identity, update the `application-sp.yaml` or
-   `application-mi.yaml` respectively.
+1. Update [application.yaml]. 
     ```yaml
+    servicebus.producers[0]:
+      entity-name: queue1
+      entity-type: queue
+      connection-string: [connection-string-for-queue1-send]
+    servicebus.producers[1]:
+      entity-name: queue2
+      entity-type: queue
+      connection-string: [connection-string-for-queue2-send]
+    servicebus.processors[0]:
+      entity-name: queue1
+      entity-type: queue
+      connection-string: [connection-string-for-queue1-receive]
     spring:
       cloud:
         azure:
           servicebus:
-            connection-string: [servicebus-namespace-connection-string]
-    ```
-
-1. Update queue name in 
-   [QueueReceiveController.java][queue-receive-controller] and
-   [QueueSendController.java][queue-send-controller], 
-   and update topic name and subscription in
-   [TopicReceiveController.java][topic-receive-controller] and
-   [TopicSendController.java][topic-send-controller].
-   
+            namespace: [servicebus-namespace]
+    ``` 
     
 1.  Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
 
@@ -63,50 +58,12 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 
 1.  Verify in your app’s logs that a similar message was posted:
 
+        Message was sent successfully for queue1.
         New message received: 'hello'
         Message 'hello' successfully checkpointed
-
-1. Send a POST request to service bus topic
-
-        $ curl -X POST http://localhost:8080/topics?message=hello
-
-1.  Verify in your app’s logs that a similar message was posted:
-
-        New message received: 'hello'
-        Message 'hello' successfully checkpointed
+        Message was sent successfully for queue2.
 
 1.  Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
-
-## Enhancement
-### Set Service Bus message headers
-The following table illustrates how Spring message headers are mapped to Service Bus message headers and properties.
-When creat a message, developers can specify the header or property of a Service Bus message by below constants.
-
-```java
-@MessagingGateway(defaultRequestChannel = OUTPUT_CHANNEL, defaultHeaders = @GatewayHeader(name = SESSION_ID,
-value="group"))
-public interface QueueOutboundGateway {
-    void send(String text);
-}
-```
-
-For some Service Bus headers that can be mapped to multiple Spring header constants, the priority of different Spring headers is listed.
-
-Service Bus Message Headers and Properties | Spring Message Header Constants | Type | Priority Number (Descending priority)
-:---|:---|:---|:---
-ContentType | org.springframework.messaging.MessageHeaders.CONTENT_TYPE | String | N/A
-CorrelationId | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.CORRELATION_ID | String | N/A
-**MessageId** | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.MESSAGE_ID | String | 1
-**MessageId** | com.azure.spring.integration.core.AzureHeaders.RAW_ID | String | 2
-**MessageId** | org.springframework.messaging.MessageHeaders.ID | UUID | 3
-PartitionKey | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.PARTITION_KEY | String | N/A
-ReplyTo | org.springframework.messaging.MessageHeaders.REPLY_CHANNEL | String | N/A
-ReplyToSessionId | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.REPLY_TO_SESSION_ID | String | N/A
-**ScheduledEnqueueTimeUtc** | com.azure.spring.integration.core.AzureHeaders.SCHEDULED_ENQUEUE_MESSAGE | Integer | 1
-**ScheduledEnqueueTimeUtc** | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.SCHEDULED_ENQUEUE_TIME | Instant | 2
-SessionID | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.SESSION_ID | String | N/A
-TimeToLive | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.TIME_TO_LIVE | Duration | N/A
-To | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.TO | String | N/A
 
 ## Troubleshooting
 

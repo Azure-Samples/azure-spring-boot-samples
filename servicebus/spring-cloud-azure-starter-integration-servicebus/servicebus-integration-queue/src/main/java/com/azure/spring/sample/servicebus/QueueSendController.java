@@ -26,11 +26,11 @@ import org.springframework.web.bind.annotation.RestController;
 public class QueueSendController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(QueueSendController.class);
-    private static final String OUTPUT_CHANNEL = "queue1.output";
+    private static final String OUTPUT_CHANNEL = "queue.output";
     private static final String QUEUE_NAME = "queue1";
 
     @Autowired
-    QueueSendGateway messagingGateway;
+    QueueOutboundGateway messagingGateway;
 
     /**
      * Posts a message to a Service Bus Queue
@@ -49,7 +49,7 @@ public class QueueSendController {
         handler.setSendCallback(new ListenableFutureCallback<Void>() {
             @Override
             public void onSuccess(Void result) {
-                LOGGER.info("Message was sent successfully for {}.", QUEUE_NAME);
+                LOGGER.info("Message was sent successfully.");
             }
 
             @Override
@@ -66,7 +66,7 @@ public class QueueSendController {
      * via {@link MessageChannel} has name {@value OUTPUT_CHANNEL}
      */
     @MessagingGateway(defaultRequestChannel = OUTPUT_CHANNEL)
-    public interface QueueSendGateway {
+    public interface QueueOutboundGateway {
         void send(String text);
     }
 }

@@ -1,28 +1,17 @@
+servicebus.producers[0]:
+  entity-name: queue1
+  entity-type: queue
+  connection-string: [connection-string-for-queue1-send]
+servicebus.producers[1]:
+  entity-name: queue2
+  entity-type: queue
+  connection-string: [connection-string-for-queue2-send]
+servicebus.processors[0]:
+  entity-name: queue1
+  entity-type: queue
+  connection-string: [connection-string-for-queue1-receive]
 spring:
   cloud:
     azure:
       servicebus:
-        connection-string: Endpoint=sb://yiservtest.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=BP30zenz3kpqLvxHwUTjpzRNtSjVsaRZCIkTcy/TMSg=
-#        producer:
-#        entity-name: topic1
-#        entity-type: topic
-#        processor:
-#          subscription-name: group1
-#          connection-string: Endpoint=sb://yisertest.servicebus.windows.net/;SharedAccessKeyName=send;SharedAccessKey=oEmWK5mYx6qxIpJFg5saELcMtKLqHinOlkaAmaj4O0Q=;EntityPath=queue1
-#        processor:
-#          entity-name: queue2
-#          entity-type: queue
-#          connection-string: Endpoint=sb://yisertest.servicebus.windows.net/;SharedAccessKeyName=listen;SharedAccessKey=Id32wWODhYMdLykYeg+FycYubpgHqJlooYND94v4dI4=;EntityPath=queue2
-#my.producers[0]:
-#  entity-name: queue1
-#  entity-type: queue
-#  connection-string: Endpoint=sb://yisertest.servicebus.windows.net/;SharedAccessKeyName=send;SharedAccessKey=oEmWK5mYx6qxIpJFg5saELcMtKLqHinOlkaAmaj4O0Q=;EntityPath=queue1
-#my.producers[1]:
-#  entity-name: queue2
-#  entity-type: queue
-#  connection-string: Endpoint=sb://yisertest.servicebus.windows.net/;SharedAccessKeyName=send;SharedAccessKey=oEmWK5mYx6qxIpJFg5saELcMtKLqHinOlkaAmaj4O0Q=;EntityPath=queue1
-#my.processors[0]:
-#  entity-name: queue2
-#  entity-type: queue
-#  connection-string: Endpoint=sb://yisertest.servicebus.windows.net/;SharedAccessKeyName=listen;SharedAccessKey=Id32wWODhYMdLykYeg+FycYubpgHqJlooYND94v4dI4=;EntityPath=queue2
-
+        namespace:

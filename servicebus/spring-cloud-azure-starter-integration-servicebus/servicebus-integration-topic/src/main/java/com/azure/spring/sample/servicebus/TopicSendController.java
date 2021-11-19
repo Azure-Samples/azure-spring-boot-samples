@@ -23,19 +23,19 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Warren Zhu
  */
 @RestController
-public class QueueSendController {
+public class TopicSendController {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(QueueSendController.class);
-    private static final String OUTPUT_CHANNEL = "queue1.output";
-    private static final String QUEUE_NAME = "queue1";
+    private static final Logger LOGGER = LoggerFactory.getLogger(TopicSendController.class);
+    private static final String OUTPUT_CHANNEL = "topic.output";
+    private static final String TOPIC_NAME = "topic1";
 
     @Autowired
-    QueueSendGateway messagingGateway;
+    TopicOutboundGateway messagingGateway;
 
     /**
-     * Posts a message to a Service Bus Queue
+     * Posts a message to a Service Bus Topic
      */
-    @PostMapping("/queues")
+    @PostMapping("/topics")
     public String send(@RequestParam("message") String message) {
         this.messagingGateway.send(message);
         return message;
@@ -43,13 +43,13 @@ public class QueueSendController {
 
     @Bean
     @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
-    public MessageHandler queueMessageSender(ServiceBusTemplate serviceBusTemplate) {
-        serviceBusTemplate.setDefaultEntityType(ServiceBusEntityType.QUEUE);
-        DefaultMessageHandler handler = new DefaultMessageHandler(QUEUE_NAME, serviceBusTemplate);
+    public MessageHandler topicMessageSender(ServiceBusTemplate serviceBusTemplate) {
+        serviceBusTemplate.setDefaultEntityType(ServiceBusEntityType.TOPIC);
+        DefaultMessageHandler handler = new DefaultMessageHandler(TOPIC_NAME, serviceBusTemplate);
         handler.setSendCallback(new ListenableFutureCallback<Void>() {
             @Override
             public void onSuccess(Void result) {
-                LOGGER.info("Message was sent successfully for {}.", QUEUE_NAME);
+                LOGGER.info("Message was sent successfully.");
             }
 
             @Override
@@ -66,7 +66,7 @@ public class QueueSendController {
      * via {@link MessageChannel} has name {@value OUTPUT_CHANNEL}
      */
     @MessagingGateway(defaultRequestChannel = OUTPUT_CHANNEL)
-    public interface QueueSendGateway {
+    public interface TopicOutboundGateway {
         void send(String text);
     }
 }

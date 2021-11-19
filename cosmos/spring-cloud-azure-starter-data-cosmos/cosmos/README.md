@@ -27,17 +27,28 @@ This sample project demonstrates how to use Azure Cosmos DB via Spring Boot Star
 
 ### Config the sample
 
-1. Navigate to `src/main/resources` and open `application.properties`.
-2. replace below properties in `application.properties` with information of your database.
-   ```properties
-   azure.cosmos.uri=your-cosmos-uri
-   azure.cosmos.key=your-cosmos-key
-   azure.cosmos.database=your-cosmos-databasename
-   ```
+1. Navigate to `src/main/resources` and open `application.yml`.
+2. replace below properties in `application.yml` with information of your database.
+
+```yaml
+spring:
+  cloud:
+    azure:
+      cosmos:
+        key: [your-cosmos-key]
+        endpoint: [your-cosmos-endpoint]
+        database: [your-cosmos-database]
+```
+
 3. (Optional) Add Spring Boot Actuator
-   ```properties
-    management.health.azure-cosmos.enabled=true
-   ```
+
+```yaml
+management:
+  health:
+    azure-cosmos:
+      enabled: true
+```   
+
     If you choose to add Spring Boot Actuator for Cosmos DB, add `management.health.azure-cosmos.enabled=true` to application.properties.
     Call `http://{hostname}:{port}/actuator/health/cosmos` to get the Cosmos DB health info. 
 

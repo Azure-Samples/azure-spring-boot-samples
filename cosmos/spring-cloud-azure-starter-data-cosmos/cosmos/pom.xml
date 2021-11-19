@@ -4,9 +4,10 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.5.4</version> <!-- {x-version-update;org.springframework.boot:spring-boot-starter-parent;external_dependency} -->
+    <groupId>com.azure.spring</groupId>
+    <artifactId>azure-spring-boot-samples</artifactId>
+    <version>1.0.0</version>
+    <relativePath>../../../pom.xml</relativePath>
   </parent>
 
   <groupId>com.azure.spring</groupId>
@@ -18,22 +19,10 @@
   <description>Sample project for Azure Document DB Starter</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.azure.spring</groupId>
-        <artifactId>azure-spring-boot-bom</artifactId>
-        <version>3.10.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-boot-bom;current} -->
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>azure-spring-boot-starter-cosmos</artifactId>
+      <artifactId>spring-cloud-azure-starter-data-cosmos</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>

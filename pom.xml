@@ -57,9 +57,9 @@
     <module>appconfiguration/feature-management-web-sample</module>
     <module>cache/azure-spring-cloud-sample-cache</module>
     <module>cloudfoundry/azure-cloud-foundry-service-sample</module>
-    <module>cosmos/azure-spring-boot-starter-cosmos/cosmos</module>
-    <module>cosmos/azure-spring-boot-starter-cosmos/cosmos-multi-database-multi-account</module>
-    <module>cosmos/azure-spring-boot-starter-cosmos/cosmos-multi-database-single-account</module>
+    <module>cosmos/spring-cloud-azure-starter-data-cosmos/cosmos</module>
+    <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account</module>
+    <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>
     <module>eventhubs/azure-spring-cloud-starter-eventhubs/eventhubs-integration</module>
     <module>eventhubs/azure-spring-cloud-starter-eventhubs/eventhubs-messaging</module>
     <module>eventhubs/azure-spring-cloud-starter-eventhubs/eventhubs-operation</module>

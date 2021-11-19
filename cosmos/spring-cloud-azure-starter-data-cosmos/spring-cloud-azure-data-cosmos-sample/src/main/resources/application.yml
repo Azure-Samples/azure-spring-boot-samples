@@ -6,7 +6,3 @@ spring:
         endpoint: [your-cosmos-endpoint]
         database: [your-cosmos-database]
 
-management:
-  health:
-    azure-cosmos:
-      enabled: true

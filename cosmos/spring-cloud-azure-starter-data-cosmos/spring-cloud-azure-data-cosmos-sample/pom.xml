@@ -11,13 +11,12 @@
   </parent>
 
   <groupId>com.azure.spring</groupId>
-  <artifactId>azure-spring-boot-sample-cosmos</artifactId>
+  <artifactId>spring-cloud-azure-data-cosmos-sample</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <name>Azure Spring Boot Starter Sample - Cosmos DB</name>
-  <description>Sample project for Azure Document DB Starter</description>
-  <url>https://github.com/Azure/azure-sdk-for-java</url>
+  <description>Sample project for Spring Cloud Azure Starter Data Cosmos</description>
 
   <dependencies>
     <dependency>

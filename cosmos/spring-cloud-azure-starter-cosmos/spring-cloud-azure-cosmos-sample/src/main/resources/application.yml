@@ -1,0 +1,6 @@
+spring:
+  cloud:
+    azure:
+      cosmos:
+        key: [your-cosmos-key]
+        endpoint: [your-cosmos-endpoint]

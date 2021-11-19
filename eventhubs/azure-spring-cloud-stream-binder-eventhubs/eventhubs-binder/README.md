@@ -204,6 +204,73 @@ spring:
               sync: true
 ```
 
+#### Using Batch Consuming
+To enable [batch consuming][spring-cloud-stream-batch0-consumer] feature, you should add below configuration in the `batch` profile.
+```yaml
+spring:
+  cloud:
+    stream:
+      bindings:
+        consume-in-0:
+          destination: [eventhub-name]
+          group: [consumer-group]
+          consumer:
+            batch-mode: true 
+      eventhub:
+        bindings:
+          consume-in-0:
+            consumer:
+              checkpoint-mode: BATCH # or MANUAL as needed
+              max-batch-size: [max-batch-size] # The default valueis 10
+              max-wait-time: [max-wait-time] # Optional, the default value is null
+```
+For checkpointing mode as BATCH, you can use below code to send messages and consume in batches, see the [BatchConsumerConfiguration.java][BatchConsumerConfiguration]
+```java
+    @Bean
+    public Consumer<List<String>> consume() {
+        return list -> list.forEach(event -> LOGGER.info("New event received: '{}'",event));
+    }
+
+    @Bean
+    public Supplier<Message<String>> supply() {
+        return () -> {
+            LOGGER.info("Sending message, sequence " + i);
+            return MessageBuilder.withPayload("\"Hello world"+ i++ +"\"").build();
+        };
+    }
+```
+
+For checkpointing mode as MANUAL, you can use below code to send messages and consume/checkpoint in batches.
+```java
+    @Bean
+    public Consumer<Message<List<String>>> consume() {
+        return message -> {
+            for (int i = 0; i < message.getPayload().size(); i++) {
+                LOGGER.info("New message received: '{}', partition key: {}, sequence number: {}, offset: {}, enqueued time: {}",
+                    message.getPayload().get(i),
+                    ((List<Object>) message.getHeaders().get(EventHubHeaders.PARTITION_KEY)).get(i),
+                    ((List<Object>) message.getHeaders().get(EventHubHeaders.SEQUENCE_NUMBER)).get(i),
+                    ((List<Object>) message.getHeaders().get(EventHubHeaders.OFFSET)).get(i),
+                    ((List<Object>) message.getHeaders().get(EventHubHeaders.ENQUEUED_TIME)).get(i));
+            }
+        
+            Checkpointer checkpointer = (Checkpointer) message.getHeaders().get(CHECKPOINTER);
+            checkpointer.success()
+                        .doOnSuccess(success -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
+                        .doOnError(error -> LOGGER.error("Exception found", error))
+                        .subscribe();
+        };
+    }
+
+    @Bean
+    public Supplier<Message<String>> supply() {
+        return () -> {
+            LOGGER.info("Sending message, sequence " + i);
+            return MessageBuilder.withPayload("\"Hello world"+ i++ +"\"").build();
+        };
+    }
+```
+
 ## Examples
 
 1.  Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
@@ -255,3 +322,5 @@ spring:
 [application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/azure-spring-cloud-stream-binder-eventhubs/eventhubs-binder/src/main/resources/application.yaml
 [application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/azure-spring-cloud-stream-binder-eventhubs/eventhubs-binder/src/main/resources/application-sp.yaml
 [StreamBridge]: https://docs.spring.io/spring-cloud-stream/docs/3.1.3/reference/html/spring-cloud-stream.html#_sending_arbitrary_data_to_an_output_e_g_foreign_event_driven_sources
+[spring-cloud-stream-batch0-consumer]: https://docs.spring.io/spring-cloud-stream/docs/3.1.4/reference/html/spring-cloud-stream.html#_batch_consumers
+[BatchConsumerConfiguration]: ./src/main/java/com/azure/spring/sample/eventhubs/binder/BatchConsumerConfiguration.java

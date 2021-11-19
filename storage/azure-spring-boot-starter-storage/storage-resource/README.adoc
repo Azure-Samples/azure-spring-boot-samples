@@ -7,11 +7,11 @@
 :storage-howto-file: https://docs.microsoft.com/azure/storage/storage-java-how-to-use-file-storage
 :storage-howto-table: https://docs.microsoft.com/azure/storage/storage-java-how-to-use-table-storage
 :storage-howto-queue: https://docs.microsoft.com/azure/storage/storage-java-how-to-use-queue-storage
-= Sample for Azure Spring Boot Storage starter library for Java
+= Sample for Spring Cloud Azure Storage [Blob |File Share] Starter library for Java
 
 == Key concepts
 This code sample demonstrates how to read and write files with the Spring Resource abstraction for Azure Storage using the
-link:{azure-spring-boot-starter-storage}[Azure Spring Boot Starter Storage]. Running this sample will be charged by Azure.
+link:{azure-spring-boot-starter-storage}[Spring Cloud Azure Storage Starter]. Running this sample will be charged by Azure.
 You can check the usage and bill at {microsoft-account}[this link].
 
 == Getting started
@@ -23,7 +23,11 @@ Maven coordinates:
 ----
 <dependency>
     <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-boot-starter-storage</artifactId>
+    <artifactId>spring-cloud-azure-starter-storage-blob</artifactId>
+</dependency>
+<dependency>
+    <groupId>com.azure.spring</groupId>
+    <artifactId>spring-cloud-azure-starter-storage-file-share</artifactId>
 </dependency>
 ----
 
@@ -32,7 +36,8 @@ Gradle coordinates:
 [source]
 ----
 dependencies {
-    compile group: 'com.azure.spring', name: 'azure-spring-boot-starter-storage'
+    compile group: 'com.azure.spring', name: 'spring-cloud-azure-starter-storage-blob'
+    compile group: 'com.azure.spring', name: 'spring-cloud-azure-starter-storage-file-share'
 }
 ----
 
@@ -47,11 +52,18 @@ dependencies {
 
 # Storage account name length should be between 3 and 24 and use numbers and lower-case letters only
 # Configuration
-azure.storage:
-  account-name: [storage-account-name]
-  account-key: [storage-account-access-key]
-  blob-endpoint: [Fill storage Blob service endpoint URL copied from portal] # [Optional] Required if you want to run BlobController
-  file-endpoint: [Fill storage File service endpoint URL copied from portal] # [Optional] Required if you want to run FileController
+spring:
+  cloud:
+    azure:
+      storage:
+        blob:
+          account-name: [storage-account-name]
+          account-key: [storage-account-access-key]
+          endpoint: [Fill storage Blob service endpoint URL copied from portal] # [Optional] Required if you want to run BlobController
+        fileshare:
+          account-name: [storage-account-name]
+          account-key: [storage-account-access-key]
+          endpoint:  [Fill storage File service endpoint URL copied from portal] # [Optional] Required if you want to run FileController
 
 # Resource location, used in this sample
 resource:

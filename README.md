@@ -7,7 +7,7 @@
 
 | spring boot version | spring cloud version | azure spring boot version | 
 | ---                 | ---                  | ---                       | 
-| 2.5.2               | 2020.0.3             | 3.6.x                     | 
+| 2.5.2               | 2020.0.3             | [4.0](https://github.com/Azure/azure-sdk-for-java/tree/feature/azure-spring-cloud-4.0/sdk/spring)                     | 
 
 ## All samples in this repo
 

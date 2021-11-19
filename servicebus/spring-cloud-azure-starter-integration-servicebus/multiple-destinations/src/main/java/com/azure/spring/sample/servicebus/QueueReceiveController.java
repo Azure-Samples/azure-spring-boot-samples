@@ -26,9 +26,6 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * @author Warren Zhu
- */
 @RestController
 public class QueueReceiveController {
 

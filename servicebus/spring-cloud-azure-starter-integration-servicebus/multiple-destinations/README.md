@@ -12,7 +12,7 @@ urlFragment: "azure-spring-integration-sample-servicebus"
 
 ## Key concepts
 
-This code sample demonstrates how to use Spring Integration for Azure Service Bus with multiple destinations. It shows how to use Spring Integration for Azure Service Bus to send and receive messages from one queue and then forward them to another queue.
+This code sample demonstrates how to use Spring Integration for Azure Service Bus with multiple destinations. It shows how to use Spring Integration for Azure Service Bus to send and receive messages from one queue in one Service Bus namespace and then forward them to another queue in another Service Bus namespace.
 
 
 ## Getting started
@@ -24,7 +24,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 
 ### Create Azure resources
 
-1. Create Azure Service Bus namespace and two queue entities with name of `queue1` and `queue2`. Please see 
+1. Create Azure Service Bus namespaces and two queue entities with name of `queue1` and `queue2`. Please see 
    [how to create][create-service-bus]. Note: this sample takes queue as example, it's also applied with Service Bus topic.
 
 ## Examples
@@ -43,11 +43,6 @@ Running this sample will be charged by Azure. You can check the usage and bill a
       entity-name: queue1
       entity-type: queue
       connection-string: [connection-string-for-queue1-receive]
-    spring:
-      cloud:
-        azure:
-          servicebus:
-            namespace: [servicebus-namespace]
     ``` 
     
 1.  Run the `mvn spring-boot:run` in the root of the code sample to get the app running.

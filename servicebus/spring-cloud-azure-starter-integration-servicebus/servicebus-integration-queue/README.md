@@ -12,7 +12,7 @@ urlFragment: "azure-spring-integration-sample-servicebus"
 
 ## Key concepts
 
-This code sample demonstrates how to use Spring Integration for Azure Service Bus Queue.
+This code sample demonstrates how to use Spring Integration for Azure Service Bus.
 
 
 ## Getting started
@@ -24,7 +24,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 
 ### Create Azure resources
 
-1. Create Azure Service Bus namespace and queue. Please see 
+1. Create Azure Service Bus namespace, queue and topic. Please see 
    [how to create][create-service-bus].
 
 1.  **[Optional]** if you want to use service principal, please follow
@@ -47,10 +47,12 @@ Running this sample will be charged by Azure. You can check the usage and bill a
             connection-string: [servicebus-namespace-connection-string]
     ```
 
-1. Update queue name in 
+2. Update queue name in 
    [QueueReceiveController.java][queue-receive-controller] and
-   [QueueSendController.java][queue-send-controller].
-   
+   [QueueSendController.java][queue-send-controller],
+   and update topic name and subscription in
+   [TopicReceiveController.java][topic-receive-controller] and
+   [TopicSendController.java][topic-send-controller].   
     
 1.  Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
 

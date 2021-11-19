@@ -19,9 +19,6 @@ import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.web.bind.annotation.RestController;
 
-/**
- * @author Warren Zhu
- */
 @RestController
 public class TopicReceiveController {
 

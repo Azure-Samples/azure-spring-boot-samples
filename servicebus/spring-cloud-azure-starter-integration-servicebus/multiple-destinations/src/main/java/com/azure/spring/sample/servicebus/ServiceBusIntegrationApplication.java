@@ -6,7 +6,6 @@ package com.azure.spring.sample.servicebus;
 import com.azure.spring.messaging.PropertiesSupplier;
 import com.azure.spring.servicebus.core.properties.ProcessorProperties;
 import com.azure.spring.servicebus.core.properties.ProducerProperties;
-import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -16,11 +15,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.config.EnableIntegration;
 import reactor.util.function.Tuple2;
 
-/**
- * Spring Integration Channel Adapters for Azure Service Bus code sample.
- *
- * @author Warren Zhu
- */
 @SpringBootApplication
 @EnableIntegration
 @EnableConfigurationProperties(CustomizedServiceBusProperties.class)

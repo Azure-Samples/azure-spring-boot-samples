@@ -8,11 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.config.EnableIntegration;
 
-/**
- * Spring Integration Channel Adapters for Azure Service Bus code sample.
- *
- * @author Warren Zhu
- */
 @SpringBootApplication
 @EnableIntegration
 @Configuration(proxyBeanMethods = false)

@@ -10,8 +10,4 @@ servicebus.processors[0]:
   entity-name: queue1
   entity-type: queue
   connection-string: [connection-string-for-queue1-receive]
-spring:
-  cloud:
-    azure:
-      servicebus:
-        namespace:
+

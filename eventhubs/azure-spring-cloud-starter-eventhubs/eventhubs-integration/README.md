@@ -44,13 +44,15 @@ Running this sample will be charged by Azure. You can check the usage and bill a
    `application-mi.yaml` respectively.
     ```yaml
     spring:
-      cloud:
-        azure:
-          eventhub:
-            connection-string: [eventhub-namespace-connection-string]
-            checkpoint-storage-account: [checkpoint-storage-account]
-            checkpoint-access-key: [checkpoint-access-key]
-            checkpoint-container: [checkpoint-container]
+        cloud:
+          azure:
+              eventhubs:
+                  connection-string: [connection-string]
+                  processor:
+                      checkpoint-store:
+                      container-name: [container-name]
+                      account-name: [account-name]
+                      account-key: [account-key]
     ```
 
 1.  Update event hub name and consumer group in

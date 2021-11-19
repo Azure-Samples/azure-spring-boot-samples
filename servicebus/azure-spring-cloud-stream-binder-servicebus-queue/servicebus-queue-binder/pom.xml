@@ -19,14 +19,14 @@
       <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-dependencies</artifactId>
-        <version>2020.0.2</version> <!-- {x-version-update;org.springframework.cloud:spring-cloud-dependencies;external_dependency} -->
+        <version>2020.0.3</version> <!-- {x-version-update;org.springframework.cloud:spring-cloud-dependencies;external_dependency} -->
         <type>pom</type>
         <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>com.azure.spring</groupId>
-        <artifactId>azure-spring-cloud-dependencies</artifactId>
-        <version>2.10.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-dependencies;current} -->
+        <artifactId>spring-cloud-azure-dependencies</artifactId>
+        <version>4.0.0-beta.1</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-dependencies;current} -->
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -40,16 +40,17 @@
     </dependency>
     <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>azure-spring-cloud-stream-binder-servicebus-queue</artifactId>
+      <artifactId>spring-cloud-azure-stream-binder-servicebus</artifactId>
+<!--      <version>4.0.0-beta.1</version>-->
     </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-logging</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate.validator</groupId>
-      <artifactId>hibernate-validator</artifactId>
-    </dependency>
+<!--    <dependency>-->
+<!--      <groupId>org.springframework.boot</groupId>-->
+<!--      <artifactId>spring-boot-starter-logging</artifactId>-->
+<!--    </dependency>-->
+<!--    <dependency>-->
+<!--      <groupId>org.hibernate.validator</groupId>-->
+<!--      <artifactId>hibernate-validator</artifactId>-->
+<!--    </dependency>-->
     <!-- TEST-->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -60,10 +61,10 @@
 
   <build>
     <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
+<!--      <plugin>-->
+<!--        <groupId>org.springframework.boot</groupId>-->
+<!--        <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--      </plugin>-->
 
       <!-- mvn azure-webapp:config -->
       <plugin>

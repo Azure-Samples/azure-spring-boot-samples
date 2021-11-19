@@ -1,23 +1,53 @@
+#spring:
+#  cloud:
+#    azure:
+#      servicebus:
+#        connection-string: [servicebus-namespace-connection-string]
+#    stream:
+#      function:
+#        definition: consume;supply
+#      bindings:
+#        consume-in-0:
+#          destination: [servicebus-topic-name]
+#          group: [topic-subscription-name]
+#        supply-out-0:
+#          destination: [servicebus-topic-name-same-as-above]
+#      servicebus:
+#        topic:
+#          bindings:
+#            consume-in-0:
+#              consumer:
+#                checkpoint-mode: MANUAL
+#      poller:
+#        fixed-delay: 1000
+#        initial-delay: 0
+
+
 spring:
   cloud:
     azure:
       servicebus:
-        connection-string: [servicebus-namespace-connection-string]
+        connection-string: Endpoint=sb://yonghui-servicebus.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=ggnHRUiSbu4wpSLvWYHHW6BQfF9rORH7xQda4IW4mhk=
+        entity-type: topic
     stream:
       function:
         definition: consume;supply
       bindings:
         consume-in-0:
-          destination: [servicebus-topic-name]
-          group: [topic-subscription-name]
+          destination: yonghui-topic
+          group: yonghui-subscription
         supply-out-0:
-          destination: [servicebus-topic-name-same-as-above]
+          destination: yonghui-topic
       servicebus:
-        topic:
-          bindings:
-            consume-in-0:
-              consumer:
-                checkpoint-mode: MANUAL
+        bindings:
+          consume-in-0:
+            consumer:
+              checkpoint-mode: MANUAL
       poller:
         fixed-delay: 1000
         initial-delay: 0
+  profiles:
+    active: manual
+server:
+  port: 8082
+

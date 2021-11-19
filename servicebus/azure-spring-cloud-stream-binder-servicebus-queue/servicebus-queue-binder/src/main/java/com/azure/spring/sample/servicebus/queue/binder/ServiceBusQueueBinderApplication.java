@@ -3,7 +3,8 @@
 
 package com.azure.spring.sample.servicebus.queue.binder;
 
-import com.azure.spring.integration.core.api.Checkpointer;
+
+import com.azure.spring.messaging.checkpoint.Checkpointer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +14,8 @@ import org.springframework.messaging.Message;
 
 import java.util.function.Consumer;
 
-import static com.azure.spring.integration.core.AzureHeaders.CHECKPOINTER;
+import static com.azure.spring.messaging.AzureHeaders.CHECKPOINTER;
+
 
 @SpringBootApplication
 public class ServiceBusQueueBinderApplication {
@@ -29,12 +31,10 @@ public class ServiceBusQueueBinderApplication {
         return message -> {
             Checkpointer checkpointer = (Checkpointer) message.getHeaders().get(CHECKPOINTER);
             LOGGER.info("New message received: '{}'", message.getPayload());
-            checkpointer.success().handle((r, ex) -> {
-                if (ex == null) {
-                    LOGGER.info("Message '{}' successfully checkpointed", message.getPayload());
-                }
-                return null;
-            });
+            checkpointer.success()
+                    .doOnSuccess(s -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
+                    .doOnError(e -> LOGGER.error("Error found", e))
+                    .subscribe();
         };
     }
 }

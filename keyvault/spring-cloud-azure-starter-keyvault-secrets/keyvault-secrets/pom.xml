@@ -11,7 +11,7 @@
   </parent>
 
   <groupId>com.azure.spring</groupId>
-  <artifactId>azure-spring-boot-sample-keyvault-secrets</artifactId>
+  <artifactId>spring-cloud-azure-starter-keyvault-secrets-sample</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

@@ -3,8 +3,8 @@
 
 package com.azure.spring.sample.aad.security;
 
-import com.azure.spring.cloud.autoconfigure.aad.implementation.webapi.AADResourceServerWebSecurityConfigurerAdapter;
-import com.azure.spring.cloud.autoconfigure.aad.implementation.webapp.AADWebSecurityConfigurerAdapter;
+import com.azure.spring.cloud.autoconfigure.aad.webapi.AADResourceServerWebSecurityConfigurerAdapter;
+import com.azure.spring.cloud.autoconfigure.aad.webapp.AADWebSecurityConfigurerAdapter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;

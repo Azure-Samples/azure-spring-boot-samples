@@ -3,21 +3,23 @@ spring:
     azure:
       servicebus:
         connection-string: [servicebus-namespace-connection-string]
-        entity-type: topic
     stream:
       function:
         definition: consume;supply
       bindings:
         consume-in-0:
           destination: [servicebus-topic-name]
+          group: [topic-subscription-name]
         supply-out-0:
           destination: [servicebus-topic-name-same-as-above]
       servicebus:
-        queue:
           bindings:
             consume-in-0:
               consumer:
                 checkpoint-mode: MANUAL
+            supply-out-0:
+              producer:
+                entity-type: topic
       poller:
         fixed-delay: 1000
         initial-delay: 0

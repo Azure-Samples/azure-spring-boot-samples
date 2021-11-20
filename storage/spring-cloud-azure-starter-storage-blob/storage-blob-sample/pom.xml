@@ -10,20 +10,15 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>azure-spring-boot-sample-storage-resource</artifactId>
+  <artifactId>storage-blob-sample</artifactId>
   <groupId>com.azure.spring</groupId>
-  <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-sample-storage-resource;dependency} -->
-  <name>Azure Spring Cloud Sample Storage Resource</name>
-
+  <version>1.0.0</version>
+  <name> Spring Cloud Azure Storage Blob  Sample</name>
 
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>
       <artifactId>spring-cloud-azure-starter-storage-blob</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.azure.spring</groupId>
-      <artifactId>spring-cloud-azure-starter-storage-file-share</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>

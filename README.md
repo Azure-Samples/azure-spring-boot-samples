@@ -26,12 +26,12 @@
 | appconfiguration | [spring-cloud-azure-feature-management:1.3.0]                                                  | [feature-management-sample](appconfiguration/feature-management-sample)                                                           |
 | appconfiguration | [spring-cloud-azure-feature-management:1.3.0]                                                  | [feature-management-web-sample](appconfiguration/feature-management-web-sample)                                                   |
 | appconfiguration | [spring-cloud-starter-azure-appconfiguration-config:1.3.0]                                     | [azure-appconfiguration-conversion-sample-complete](appconfiguration/azure-appconfiguration-conversion-sample-complete)           |
-| cache            | [azure-spring-cloud-starter-cache:2.9.0]                                                       | [azure-spring-cloud-sample-cache](cache/azure-spring-cloud-sample-cache)                                                          |
+| cache            | N/A                                                                                            | [azure-spring-cloud-sample-cache](cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache)                                                          |
 | cloudfoundry     | [azure-spring-boot-starter-cosmos:3.9.0]<br />[azure-spring-boot-starter-servicebus-jms:3.9.0] | [azure-cloud-foundry-service-sample](cloudfoundry/azure-cloud-foundry-service-sample)                                             |
 | cosmos           | [azure-spring-boot-starter-cosmos:3.9.0]                                                       | [cosmos-multi-database-multi-account](cosmos/azure-spring-boot-starter-cosmos/cosmos-multi-database-multi-account)                |
 | cosmos           | [azure-spring-boot-starter-cosmos:3.9.0]                                                       | [cosmos-multi-database-single-account](cosmos/azure-spring-boot-starter-cosmos/cosmos-multi-database-single-account)              |
 | cosmos           | [azure-spring-boot-starter-cosmos:3.9.0]                                                       | [cosmos](cosmos/azure-spring-boot-starter-cosmos/cosmos)                                                                          |
-| eventhubs        | [azure-spring-cloud-starter-eventhubs-kafka:2.9.0]                                             | [eventhubs-kafka](eventhubs/azure-spring-cloud-starter-eventhubs-kafka/eventhubs-kafka)                                           |
+| eventhubs        | N/A                                                                                            | [spring-cloud-azure-sample-eventhubs-kafka](eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka)                                           |
 | eventhubs        | [azure-spring-cloud-starter-eventhubs:2.9.0]                                                   | [eventhubs-integration](eventhubs/azure-spring-cloud-starter-eventhubs/eventhubs-integration)                                     |
 | eventhubs        | [azure-spring-cloud-starter-eventhubs:2.9.0]                                                   | [eventhubs-messaging](eventhubs/azure-spring-cloud-starter-eventhubs/eventhubs-messaging)                                         |
 | eventhubs        | [azure-spring-cloud-starter-eventhubs:2.9.0]                                                   | [eventhubs-operation](eventhubs/azure-spring-cloud-starter-eventhubs/eventhubs-operation)                                         |
@@ -61,7 +61,6 @@
 [main]: https://github.com/Azure-Samples/azure-spring-boot-samples
 [azure-spring-boot-starter-servicebus-jms:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-servicebus-jms/3.9.0/jar
 [azure-spring-boot-starter-cosmos:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-cosmos/3.9.0/jar
-[azure-spring-cloud-starter-cache:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-cache/2.9.0/jar
 [spring-cloud-azure-feature-management:1.3.0]: https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-azure-feature-management/1.3.0/jar
 [spring-cloud-azure-appconfiguration-config:1.3.0]: https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-azure-appconfiguration-config/1.3.0/jar
 [azure-spring-boot-starter-cosmos:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-cosmos/3.9.0/jar
@@ -71,7 +70,6 @@
 [azure-spring-boot-starter-keyvault-secrets:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-secrets/3.9.0/jar
 [azure-spring-boot-starter-keyvault-certificates:3.2.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-certificates/3.2.0/jar
 [azure-spring-cloud-stream-binder-eventhubs:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-stream-binder-eventhubs/2.9.0/jar
-[azure-spring-cloud-starter-eventhubs-kafka:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-eventhubs-kafka/2.9.0/jar
 [azure-spring-cloud-starter-eventhubs:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-eventhubs/2.9.0/jar
 [azure-spring-boot-starter-cosmos:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-cosmos/3.9.0/jar
 [azure-spring-cloud-stream-binder-servicebus-topic:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-stream-binder-servicebus-topic/2.9.0/jar

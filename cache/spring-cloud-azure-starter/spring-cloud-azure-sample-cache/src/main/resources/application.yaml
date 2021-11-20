@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    azure:
+      credential:
+        client-id: [service-principal-id]
+        client-secret: [service-principal-secret]
+      profile:
+        tenant-id: [tenant-id]
+        subscription-id: [subscription-id]
+      redis:
+        name: [azure-cache-for-redis-instance-name]
+        resource:
+          resource-group: [resource-group]

@@ -1,0 +1,38 @@
+spring:
+  cloud:
+    azure:
+      eventhubs:
+        connection-string:  [connection-string]
+        processor:
+          checkpoint-store:
+            container-name: [container-name]
+            account-name: [account-name]
+            account-key: [account-key]
+    stream:
+      function:
+        definition: consume;supply
+      bindings:
+
+        consume-in-0:
+          content-type: text/plain # string message must specify this value
+          destination: [event hub destination]
+          group: [event hub group]
+          consumer:
+            batch-mode: true
+        supply-out-0:
+          destination: [same as above destination]
+      eventhubs:
+        bindings:
+          consume-in-0:
+            consumer:
+              batch:
+                max-size: 10 # The default value is 10
+                max-wait-time: 1m # Optional, the default value is null
+              checkpoint:
+                mode: BATCH # BATCH | MANUAL
+      default:
+        producer:
+          errorChannelEnabled: true
+      poller:
+        initial-delay: 0
+        fixed-delay: 1000

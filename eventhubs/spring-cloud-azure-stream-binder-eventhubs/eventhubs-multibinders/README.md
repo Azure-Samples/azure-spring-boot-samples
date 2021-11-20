@@ -4,15 +4,16 @@ languages:
 - java
 products:
 - azure-event-hubs
-description: "Azure Spring Cloud Stream Binder Sample project for Multiple Event Hub Namespace client library"
-urlFragment: "azure-spring-cloud-sample-eventhubs-multibinders"
+description: "Spring Cloud Azure Stream Binder Sample project for Multiple Event Hub Namespace client 
+  library"
+urlFragment: "spring-cloud-azure-sample-eventhubs-multibinders"
 ---
 
 # Spring Cloud Azure Stream Binder for Multiple Event Hub Namespace Code Sample shared library for Java
 
 ## Key concepts
-This code sample demonstrates how to use the Spring Cloud Stream Binder
-for multiple Azure Event Hub namespaces. In this sample you will bind to
+This sample demonstrates how to use the Spring Cloud Stream Binder
+for multiple Azure Event Hubs namespaces. In this sample you will bind to
 two Event Hub namespaces separately through two binders. The sample app has two operating modes.
 One way is to expose a Restful API to receive string message, another way is to automatically provide string messages.
 These messages are published to an event hub. The sample will also consume messages from the same event hub.
@@ -32,18 +33,10 @@ and bill at [this link][azure-account].
 
 1.  Create [Azure Storage][create-azure-storage] for checkpoint use.
 
-1.  **[Optional]** if you want to use service principal, please follow 
-    [create service principal from Azure CLI][create-sp-using-azure-cli] to create one.
-
-1.  **[Optional]** if you want to use managed identity, please follow
-    [create managed identity][create-managed-identity] to set up managed identity. 
-
 ## Examples
 
 1.  Update stream binding related properties in
-    [application.yaml][application.yaml]. If you choose to use 
-    service principal or managed identity, update the `application-sp.yaml` or 
-    `application-mi.yaml` respectively.
+    [application.yaml][application.yaml].
 
     ```yaml
     spring:
@@ -68,17 +61,19 @@ and bill at [this link][azure-account].
           
           binders:
             eventhub-1:
-              type: eventhub
+              type: eventhubs
               default-candidate: true
               environment:
                 spring:
                   cloud:
                     azure:
-                      eventhub:
+                      eventhubs:
                         connection-string: [connection-string-of-first-eventhub-namespace]
-                        checkpoint-storage-account: [checkpoint-storage-account]
-                        checkpoint-access-key: [checkpoint-access-key]
-                        checkpoint-container: [checkpoint-container-1]
+                        processor:
+                          checkpoint-store:
+                            container-name: [container-name]
+                            account-name: [account-name]
+                            account-key: [account-key]
             eventhub-2:
               type: eventhub
               default-candidate: false
@@ -86,11 +81,13 @@ and bill at [this link][azure-account].
                 spring:
                   cloud:
                     azure:
-                      eventhub:
+                      eventhubs:
                         connection-string: [connection-string-of-second-eventhub-namespace]
-                        checkpoint-storage-account: [checkpoint-storage-account]
-                        checkpoint-access-key: [checkpoint-access-key]
-                        checkpoint-container: [checkpoint-container-2]
+                        processor:
+                          checkpoint-store:
+                            container-name: [container-name]
+                            account-name: [account-name]
+                            account-key: [account-key]
           eventhub:
             bindings:
               consume1-in-0:
@@ -157,4 +154,4 @@ processing.
 [managed-identities]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/
 
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/azure-spring-cloud-stream-binder-eventhubs/eventhubs-multibinders/src/main/resources/application.yaml
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders/src/main/resources/application.yaml

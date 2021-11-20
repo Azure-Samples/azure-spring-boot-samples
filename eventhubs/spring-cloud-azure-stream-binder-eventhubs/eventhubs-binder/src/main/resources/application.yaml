@@ -1,0 +1,36 @@
+spring:
+  profiles:
+    active: [profile-name, default is 'default']
+  cloud:
+    azure:
+      eventhubs:
+        connection-string: [connection-string]
+        processor:
+          checkpoint-store:
+            container-name: [container-name]
+            account-name: [account-name]
+            account-key: [account-key]
+    stream:
+      function:
+        definition: consume;supply
+      bindings:
+
+        consume-in-0:
+          destination: [event-hub name]
+          group: [event hub group name, default is $Default]
+          consumer:
+            batch-mode: false # false is default value
+        supply-out-0:
+          destination: [same as above destination]
+      eventhubs:
+        bindings:
+          consume-in-0:
+            consumer:
+              checkpoint:
+                mode: MANUAL # RECORD | MANUAL
+      default:
+        producer:
+          errorChannelEnabled: true
+      poller:
+        initial-delay: 0
+        fixed-delay: 1000

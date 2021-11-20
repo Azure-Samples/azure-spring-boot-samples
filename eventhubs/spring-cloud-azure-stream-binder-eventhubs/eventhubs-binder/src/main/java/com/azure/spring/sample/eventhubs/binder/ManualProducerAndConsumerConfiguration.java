@@ -3,8 +3,10 @@
 
 package com.azure.spring.sample.eventhubs.binder;
 
-import com.azure.spring.integration.core.EventHubHeaders;
-import com.azure.spring.integration.core.api.reactor.Checkpointer;
+
+import com.azure.spring.eventhubs.support.EventHubsHeaders;
+import com.azure.spring.messaging.AzureHeaders;
+import com.azure.spring.messaging.checkpoint.Checkpointer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -17,7 +19,6 @@ import reactor.core.publisher.Sinks;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
-import static com.azure.spring.integration.core.AzureHeaders.CHECKPOINTER;
 
 @Configuration
 @Profile("manual")
@@ -40,13 +41,13 @@ public class ManualProducerAndConsumerConfiguration {
     @Bean
     public Consumer<Message<String>> consume() {
         return message -> {
-            Checkpointer checkpointer = (Checkpointer) message.getHeaders().get(CHECKPOINTER);
+            Checkpointer checkpointer = (Checkpointer) message.getHeaders().get(AzureHeaders.CHECKPOINTER);
             LOGGER.info("New message received: '{}', partition key: {}, sequence number: {}, offset: {}, enqueued time: {}",
                 message.getPayload(),
-                message.getHeaders().get(EventHubHeaders.PARTITION_KEY),
-                message.getHeaders().get(EventHubHeaders.SEQUENCE_NUMBER),
-                message.getHeaders().get(EventHubHeaders.OFFSET),
-                message.getHeaders().get(EventHubHeaders.ENQUEUED_TIME)
+                message.getHeaders().get(EventHubsHeaders.PARTITION_KEY),
+                message.getHeaders().get(EventHubsHeaders.SEQUENCE_NUMBER),
+                message.getHeaders().get(EventHubsHeaders.OFFSET),
+                message.getHeaders().get(EventHubsHeaders.ENQUEUED_TIME)
             );
 
             checkpointer.success()

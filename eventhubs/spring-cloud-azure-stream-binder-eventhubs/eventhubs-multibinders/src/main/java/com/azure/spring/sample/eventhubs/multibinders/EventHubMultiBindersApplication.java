@@ -3,7 +3,7 @@
 
 package com.azure.spring.sample.eventhubs.multibinders;
 
-import com.azure.spring.integration.core.api.reactor.Checkpointer;
+import com.azure.spring.messaging.checkpoint.Checkpointer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +13,8 @@ import org.springframework.messaging.Message;
 
 import java.util.function.Consumer;
 
-import static com.azure.spring.integration.core.AzureHeaders.CHECKPOINTER;
+import static com.azure.spring.messaging.AzureHeaders.CHECKPOINTER;
+
 
 @SpringBootApplication
 public class EventHubMultiBindersApplication {
@@ -30,9 +31,9 @@ public class EventHubMultiBindersApplication {
             Checkpointer checkpointer = (Checkpointer) message.getHeaders().get(CHECKPOINTER);
             LOGGER.info("New message1 received: '{}'", message);
             checkpointer.success()
-                        .doOnSuccess(success -> LOGGER.info("Message1 '{}' successfully checkpointed", message))
-                        .doOnError(error -> LOGGER.error("Exception found", error))
-                        .subscribe();
+                    .doOnSuccess(success -> LOGGER.info("Message1 '{}' successfully checkpointed", message))
+                    .doOnError(error -> LOGGER.error("Exception found", error))
+                    .subscribe();
         };
     }
 
@@ -42,9 +43,9 @@ public class EventHubMultiBindersApplication {
             Checkpointer checkpointer = (Checkpointer) message.getHeaders().get(CHECKPOINTER);
             LOGGER.info("New message2 received: '{}'", message);
             checkpointer.success()
-                        .doOnSuccess(success -> LOGGER.info("Message2 '{}' successfully checkpointed", message))
-                        .doOnError(error -> LOGGER.error("Exception found", error))
-                        .subscribe();
+                    .doOnSuccess(success -> LOGGER.info("Message2 '{}' successfully checkpointed", message))
+                    .doOnError(error -> LOGGER.error("Exception found", error))
+                    .subscribe();
         };
     }
 

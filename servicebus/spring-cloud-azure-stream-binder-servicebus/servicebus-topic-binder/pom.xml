@@ -10,10 +10,10 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>azure-spring-cloud-sample-servicebus-topic-binder</artifactId>
+  <artifactId>spring-cloud-azure-sample-servicebus-topic-binder</artifactId>
   <groupId>com.azure.spring</groupId>
   <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-sample-servicebus-topic-binder;dependency} -->
-  <name>Azure Spring Cloud Sample Service Bus Topic Binder</name>
+  <name>Spring Cloud Azure Sample Service Bus Topic Binder</name>
 
 
   <dependencies>

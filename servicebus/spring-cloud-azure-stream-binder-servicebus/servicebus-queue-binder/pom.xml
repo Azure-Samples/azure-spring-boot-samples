@@ -10,10 +10,11 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>azure-spring-cloud-sample-servicebus-queue-multibinders</artifactId>
+  <artifactId>spring-cloud-azure-sample-servicebus-queue-binder</artifactId>
   <groupId>com.azure.spring</groupId>
-  <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-sample-servicebus-queue-multibinders;dependency} -->
-  <name>Azure Spring Cloud Sample Service Bus Queue Multiple Binders</name>
+  <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-sample-servicebus-queue-binder;dependency} -->
+  <name>Spring Cloud Azure Sample Service Bus Queue Binder</name>
+
 
   <dependencies>
     <dependency>
@@ -46,6 +47,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
+
       <!-- mvn azure-webapp:config -->
       <plugin>
         <groupId>com.microsoft.azure</groupId>

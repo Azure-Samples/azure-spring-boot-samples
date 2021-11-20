@@ -4,17 +4,18 @@ languages:
 - java
 products:
 - azure-service-bus
-description: "Azure Spring Cloud Stream Binder Sample project for Service Bus Topic client library"
-urlFragment: "azure-spring-cloud-sample-service-bus-topic-binder"
+description: "Spring Cloud Azure Stream Binder Sample project for Service Bus queue client library"
+urlFragment: "spring-cloud-azure-sample-service-bus-queue-binder"
 ---
 
-# Spring Cloud Azure Stream Binder for Service Bus topic Sample shared library for Java
+# Spring Cloud Azure Stream Binder for Service Bus queue Sample shared library for Java
 
 ## Key concepts
 
-This code sample demonstrates how to use the Spring Cloud Stream binder for Azure Service Bus topic. The sample app has two operating modes.
+This code sample demonstrates how to use the Spring Cloud Stream binder for 
+Azure Service Bus queue. The sample app has two operating modes.
 One way is to expose a Restful API to receive string message, another way is to automatically provide string messages.
-These messages are published to a service bus topic. The sample will also consume messages from the same service bus topic.
+These messages are published to a service bus queue. The sample will also consume messages from the same service bus queue.
 
 ## Getting started
 
@@ -25,8 +26,8 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 
 ### Create Azure resources
 
-We have several ways to config the Spring Cloud Stream Binder for Azure
-Service Bus Topic. You can choose anyone of them.
+We have several ways to config the Spring Cloud Stream Binder for Service
+Bus Queue. You can choose anyone of them.
 
 >[!Important]
 >
@@ -34,12 +35,11 @@ Service Bus Topic. You can choose anyone of them.
 
 #### Method 1: Connection string based usage
 
-1.  Create Azure Service Bus namespace and topic.
+1.  Create Azure Service Bus namespace and queue.
     Please see [how to create][create-service-bus].
 
-1.  Update [application.yaml].
+1.  Update [application.yaml][application.yaml].
     ```yaml
-    
     spring:
       cloud:
         azure:
@@ -60,7 +60,7 @@ Service Bus Topic. You can choose anyone of them.
                   checkpoint-mode: MANUAL
               supply-out-0:
                 producer:
-                  entity-type: topic
+                  entity-type: queue
           poller:
             fixed-delay: 1000
             initial-delay: 0
@@ -73,20 +73,21 @@ Service Bus Topic. You can choose anyone of them.
 
 1.  Create Azure Service Bus namespace and queue.
         Please see [how to create][create-service-bus].
-        
+
 1.  Add Role Assignment for Service Bus. See
     [Service principal for Azure resources with Service Bus][role-assignment]
-    to add role assignment for Service Bus. Assign `Contributor` role for managed identity.        
+    to add role assignment for Service Bus. Assign `Contributor` role for service bus.
     
-1.  Update [application-sp.yaml].
+1.  Update [application-sp.yaml][application-sp.yaml].
     ```yaml
     spring:
       cloud:
         azure:
-          client-id: [service-principal-id]
-          client-secret: [service-principal-secret]
-          tenant-id: [tenant-id]
-          resource-group: [resource-group]
+          credential:
+            client-id: [ client-id ]
+            client-secret: [ client-secret ]
+            profile:
+              tenant-id: [ tenant-id ]
           servicebus:
             namespace: [servicebus-namespace]
         stream:
@@ -94,15 +95,21 @@ Service Bus Topic. You can choose anyone of them.
             definition: consume;supply
           bindings:
             consume-in-0:
-              destination: [servicebus-queue-name]
+              destination: [ servicebus-queue-name ]
             supply-out-0:
-              destination: [servicebus-queue-name-same-as-above]
+              destination: [ servicebus-queue-name-same-as-above ]
+          servicebus:
+            bindings:
+              consume-in-0:
+                consumer:
+                  checkpoint-mode: MANUAL
+              supply-out-0:
+                producer:
+                  entity-type: queue
           poller:
             fixed-delay: 1000
             initial-delay: 0
     ```
-    > We should specify `spring.profiles.active=sp` to run the Spring Boot application.     
-        
 #### Method 3: MSI credential based usage
 
 ##### Set up managed identity
@@ -121,15 +128,15 @@ Please follow [create managed identity][create-managed-identity] to set up manag
 
 ##### Update MSI related properties
 
-1.  Update [application-mi.yaml]
+1.  Update [application-mi.yaml][application-mi.yaml].
     ```yaml
-    spring:
+     spring:
       cloud:
         azure:
-          msi-enabled: true
-          client-id: [the-id-of-managed-identity]
-          resource-group: [resource-group]
-          subscription-id: [subscription-id]
+          credential:
+            managed-identity-client-id: [ managed-identity-client-id ]
+            profile:
+              tenant-id: [ tenant-id ]
           servicebus:
             namespace: [servicebus-namespace]
         stream:
@@ -137,9 +144,17 @@ Please follow [create managed identity][create-managed-identity] to set up manag
             definition: consume;supply
           bindings:
             consume-in-0:
-              destination: [servicebus-queue-name]
+              destination: [ servicebus-queue-name ]
             supply-out-0:
-              destination: [servicebus-queue-name-same-as-above]
+              destination: [ servicebus-queue-name-same-as-above ]
+          servicebus:
+            bindings:
+              consume-in-0:
+                consumer:
+                  checkpoint-mode: MANUAL
+              supply-out-0:
+                producer:
+                  entity-type: queue
           poller:
             fixed-delay: 1000
             initial-delay: 0
@@ -193,6 +208,7 @@ spring:
 1.  Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
 
 ## Enhancement
+
 ### Configuration Options 
 
 The binder provides the following configuration options:
@@ -334,11 +350,11 @@ To | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.TO | String | 
 [azure-portal]: https://ms.portal.azure.com/
 [create-service-bus]: https://docs.microsoft.com/azure/service-bus-messaging/service-bus-create-namespace-portal 
 [create-azure-storage]: https://docs.microsoft.com/azure/storage/ 
-[create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-sp-using-azure-cli.md
-[create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-managed-identity.md
+[create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-sp-using-azure-cli.md
+[create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-managed-identity.md
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
 
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/azure-spring-cloud-stream-binder-servicebus-topic/servicebus-topic-binder/src/main/resources/application-mi.yaml
-[application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/azure-spring-cloud-stream-binder-servicebus-topic/servicebus-topic-binder/src/main/resources/application-sp.yaml
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/azure-spring-cloud-stream-binder-servicebus-topic/servicebus-topic-binder/src/main/resources/application.yaml
+[application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder/src/main/resources/application-mi.yaml
+[application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder/src/main/resources/application-sp.yaml
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder/src/main/resources/application.yaml

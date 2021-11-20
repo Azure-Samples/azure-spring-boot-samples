@@ -4,16 +4,15 @@ languages:
 - java
 products:
 - azure-event-hubs
-description: "Azure Spring Cloud Stream Binder Sample project for Event Hub client library"
-urlFragment: "azure-spring-cloud-sample-eventhubs-kafka"
+description: "Spring Cloud Azure Stream Kafka Sample project for Event Hubs"
+urlFragment: "spring-cloud-azure-sample-eventhubs-kafka"
 ---
 
-# Spring Cloud Azure Stream Kafka Binder for Event Hub Code Sample shared library for Java
+# Spring Cloud Azure Sample Stream Event Hubs Kafka
 
 ## Key concepts
 
-This code sample demonstrates how to use the Spring Cloud Stream Kafka
-binder for Azure Event Hub. The sample app exposes a RESTful API to receive
+This code sample demonstrates how to use the Spring Cloud Azure Starter and Spring Cloud Starter Stream Kafka for Azure Event Hub. The sample app exposes a RESTful API to receive
 string message. Then message is sent through Azure Event Hub to a bean `consumer`
 which simply logs the message.
 
@@ -24,14 +23,14 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 [this link][azure-account].
 
 
-
-
 ### Create Azure resources
 
 1. Create a service principal for use in by your app. Please follow 
-   [create service principal from Azure CLI][create-sp-using-azure-cli].
+   [create service principal from Azure CLI][create-sp-using-azure-cli]. 
+   The credential is not required since Spring Cloud Azure support https://docs.microsoft.com/en-us/azure/developer/java/sdk/identity,
+   you only need to log in with az cli / vs code or Intellij Azure Toolkit, then credential information will be left out of properties
 
-1. Create [Azure Event Hubs][create-event-hubs]. 
+3. Create [Azure Event Hubs][create-event-hubs]. 
 
 ## Examples
 
@@ -43,22 +42,31 @@ Running this sample will be charged by Azure. You can check the usage and bill a
     spring:
       cloud:
         azure:
-          client-id: [service-principal-id]
-          client-secret: [service-principal-secret]
-          tenant-id: [tenant-id]
-          resource-group: [resource-group]
-          eventhub:
-            namespace: [eventhub-namespace]
+          profile:
+            tenant-id: ${SPRING_TENANT_ID}
+            subscription-id: ${SPRING_SUBSCRIPTION_ID}
+    # This is not required since Spring Cloud Azure support https://docs.microsoft.com/en-us/azure/developer/java/sdk/identity
+    # you only need to login with az cli / vs code or Intellij Azure Toolkit
+    # then credential information will be left out of properties
+    #      credential:
+    #        client-id: ${SPRING_CLIENT_ID}
+    #        client-secret: ${SPRING_CLIENT_SECRET}
+          eventhubs:
+            namespace: ${EVENTHUB_NAMESPACE_NAME_SAMPLE_EVENTHUBS_KAFKA}
+            resource:
+              resource-group: ${SPRING_RESOURCE_GROUP}
+    
         stream:
           function:
             definition: consume;supply
           bindings:
             consume-in-0:
-              destination: [eventhub-name]
-              group: [consumer-group]
+              destination: sample-eventhubs-kafka
+              group: $Default
             supply-out-0:
-              destination: [the-same-eventhub-name-as-above]
+              destination: sample-eventhubs-kafka
     ```
+    > :notes: Please note that currently we do not support the automatic creation of EventHubs namespace resources, but Event hubs Entities is possible.
 
 1.  Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
 

@@ -3,11 +3,11 @@
 
 package com.azure.spring.sample.storage.queue;
 
-import com.azure.spring.integration.core.AzureHeaders;
-import com.azure.spring.integration.core.api.CheckpointMode;
-import com.azure.spring.integration.core.api.reactor.Checkpointer;
-import com.azure.spring.integration.storage.queue.StorageQueueOperation;
 import com.azure.spring.integration.storage.queue.inbound.StorageQueueMessageSource;
+import com.azure.spring.messaging.AzureHeaders;
+import com.azure.spring.messaging.checkpoint.CheckpointMode;
+import com.azure.spring.messaging.checkpoint.Checkpointer;
+import com.azure.spring.storage.queue.core.StorageQueueOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;

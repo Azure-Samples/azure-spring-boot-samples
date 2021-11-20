@@ -3,7 +3,7 @@
 
 package com.azure.spring.sample.storage.queue.operation;
 
-import com.azure.spring.integration.storage.queue.StorageQueueOperation;
+import com.azure.spring.storage.queue.core.StorageQueueOperation;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

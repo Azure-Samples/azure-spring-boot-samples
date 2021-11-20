@@ -2,5 +2,6 @@ spring:
   cloud:
     azure:
       storage:
-        account: [storage-account]
-        access-key: [storage-account-access-key]
+        queue:
+          account-name: [account-name]
+          account-key: [account-key]

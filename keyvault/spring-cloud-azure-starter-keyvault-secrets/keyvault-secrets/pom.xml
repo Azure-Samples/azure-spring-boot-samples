@@ -10,14 +10,9 @@
     <version>1.0.0</version>
   </parent>
 
-  <groupId>com.azure.spring</groupId>
   <artifactId>spring-cloud-azure-starter-keyvault-secrets-sample</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
-
-  <name>Azure Spring Boot Starter Sample - Key Vault Secrets</name>
-  <description>Sample project for Azure Key Vault Secrets Starter</description>
-  <url>https://github.com/Azure/azure-sdk-for-java</url>
 
   <dependencies>
     <dependency>

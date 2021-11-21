@@ -1,0 +1,13 @@
+servicebus.producers[0]:
+  entity-name: queue1
+  entity-type: queue
+  connection-string: [connection-string-for-queue1-send]
+servicebus.producers[1]:
+  entity-name: queue2
+  entity-type: queue
+  connection-string: [connection-string-for-queue2-send]
+servicebus.processors[0]:
+  entity-name: queue1
+  entity-type: queue
+  connection-string: [connection-string-for-queue1-receive]
+

@@ -3,8 +3,8 @@ spring:
     azure:
       credential:
         managed-identity-client-id: [ managed-identity-client-id ]
-        profile:
-          tenant-id: [ tenant-id ]
+      profile:
+        tenant-id: [ tenant-id ]
 
 #     Uncomment below configurations if you want to enable auto creating resources.
 #

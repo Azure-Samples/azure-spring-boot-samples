@@ -15,7 +15,6 @@ import java.util.function.Consumer;
 
 import static com.azure.spring.messaging.AzureHeaders.CHECKPOINTER;
 
-
 @SpringBootApplication
 public class ServiceBusQueueBinderApplication {
 

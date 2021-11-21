@@ -31,10 +31,6 @@ import java.nio.charset.Charset;
 public class FileController {
     final static Logger logger = LoggerFactory.getLogger(FileController.class);
 
-    public FileController() {
-        logger.info("azure.storage.file-endpoint configured");
-    }
-
     @Value("${resource.file}")
     private Resource azureFileResource;
 

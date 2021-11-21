@@ -29,7 +29,7 @@ public class BlobController {
     final static Logger logger = LoggerFactory.getLogger(BlobController.class);
 
     public BlobController() {
-        logger.info("azure.storage.blob-endpoint configured");
+        logger.info("spring.cloud.azure.storage.blob.endpoint configured");
     }
 
     @Value("${resource.blob}")

@@ -11,11 +11,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class KeyVaultSampleApplication implements CommandLineRunner {
 
-    @Value("${secret_name_in_key_vault_1}")
+    @Value("${secret-name-in-key-vault-1}")
     private String secretNameInKeyVault1;
-    @Value("${secret_name_in_key_vault_2}")
+    @Value("${secret-name-in-key-vault-2}")
     private String secretNameInKeyVault2;
-    @Value("${secret_name_in_key_vault_both}")
+    @Value("${secret-name-in-key-vault-both}")
     private String secretNameInKeyVaultBoth;
 
     public static void main(String[] args) {

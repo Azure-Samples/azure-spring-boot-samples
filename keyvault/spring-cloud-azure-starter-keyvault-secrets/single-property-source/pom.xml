@@ -10,7 +10,7 @@
     <version>1.0.0</version>
   </parent>
 
-  <artifactId>spring-cloud-azure-starter-keyvault-secrets-sample</artifactId>
+  <artifactId>spring-cloud-azure-starter-keyvault-secrets-sample-single-property-source</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

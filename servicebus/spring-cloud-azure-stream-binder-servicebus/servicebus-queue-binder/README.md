@@ -4,8 +4,8 @@ languages:
 - java
 products:
 - azure-service-bus
-description: "Azure Spring Cloud Stream Binder Sample project for Service Bus queue client library"
-urlFragment: "azure-spring-cloud-sample-service-bus-queue-binder"
+description: "Spring Cloud Azure Stream Binder for Service Bus queue Sample shared library for Java"
+urlFragment: "spring-cloud-azure-sample-stream-binder-servicebus-queue"
 ---
 
 # Spring Cloud Azure Stream Binder for Service Bus queue Sample shared library for Java
@@ -83,10 +83,11 @@ Bus Queue. You can choose anyone of them.
     spring:
       cloud:
         azure:
-          client-id: [service-principal-id]
-          client-secret: [service-principal-secret]
-          tenant-id: [tenant-id]
-          resource-group: [resource-group]
+          credential:
+            client-id: [ client-id ]
+            client-secret: [ client-secret ]
+          profile:
+            tenant-id: [ tenant-id ]
           servicebus:
             namespace: [servicebus-namespace]
         stream:
@@ -124,10 +125,10 @@ Please follow [create managed identity][create-managed-identity] to set up manag
     spring:
       cloud:
         azure:
-          msi-enabled: true
-          client-id: [the-id-of-managed-identity]
-          resource-group: [resource-group]
-          subscription-id: [subscription-id]
+          credential:
+            managed-identity-client-id: [ managed-identity-client-id ]
+          profile:
+            tenant-id: [ tenant-id ]
           servicebus:
             namespace: [servicebus-namespace]
         stream:
@@ -164,10 +165,12 @@ If you want to auto create the Azure Service Bus instances, make sure you add su
 spring:
   cloud:
     azure:
-      subscription-id: [subscription-id]
-      auto-create-resources: true
-      environment: Azure
-      region: [region]
+      profile:
+        tenant-id: [tenant-id]
+        subscription-id: [subscription-id]
+        cloud: Azure
+      resource:
+        region: [region]
 ```
 
 

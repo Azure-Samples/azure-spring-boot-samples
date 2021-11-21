@@ -2,15 +2,15 @@ spring:
   cloud:
     azure:
       credential:
-        managed-identity-client-id: [ managed-identity-client-id ]
-        profile:
-          tenant-id: [ tenant-id ]
-
+        client-id: [ client-id ]
+        client-secret: [ client-secret ]
+      profile:
+        tenant-id: [ tenant-id ]
 #     Uncomment below configurations if you want to enable auto creating resources.
-#
-#      auto-create-resources: true
-#      environment: Azure
-#      region: [region]
+#        subscription-id: [subscription-id]
+#        cloud: Azure
+#      resource:
+#        region: [region]
 
       servicebus:
         namespace: [servicebus-namespace]

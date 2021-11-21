@@ -73,7 +73,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 [create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-managed-identity.md
 [create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-sp-using-azure-cli.md
 
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-destinations/src/main/resources/application.yaml
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces/src/main/resources/application.yaml
 
 
 

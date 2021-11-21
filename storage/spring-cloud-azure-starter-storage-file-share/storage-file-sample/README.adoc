@@ -1,0 +1,100 @@
+:azure-spring-boot-starter-storage: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-boot-starter-storage
+:azure-storage: https://docs.microsoft.com/azure/storage/
+:application-properties: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/storage/azure-spring-boot-starter-storage/storage-resource/src/main/resources/application.properties
+:ready-to-run-checklist: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
+:microsoft-account: https://azure.microsoft.com/account/
+:storage-howto-blob: https://docs.microsoft.com/azure/storage/storage-java-how-to-use-blob-storage
+:storage-howto-file: https://docs.microsoft.com/azure/storage/storage-java-how-to-use-file-storage
+:storage-howto-table: https://docs.microsoft.com/azure/storage/storage-java-how-to-use-table-storage
+:storage-howto-queue: https://docs.microsoft.com/azure/storage/storage-java-how-to-use-queue-storage
+= Sample for Spring Cloud Azure Storage [Blob |File Share] Starter library for Java
+
+== Key concepts
+This code sample demonstrates how to read and write files with the Spring Resource abstraction for Azure Storage using the
+link:{azure-spring-boot-starter-storage}[Spring Cloud Azure Storage Starter]. Running this sample will be charged by Azure.
+You can check the usage and bill at {microsoft-account}[this link].
+
+== Getting started
+
+=== Coordinates
+Maven coordinates:
+
+[source,xml]
+----
+<dependency>
+    <groupId>com.azure.spring</groupId>
+    <artifactId>spring-cloud-azure-starter-storage-file-share</artifactId>
+</dependency>
+----
+
+Gradle coordinates:
+
+[source]
+----
+dependencies {
+    compile group: 'com.azure.spring', name: 'spring-cloud-azure-starter-storage-file-share'
+}
+----
+
+=== Configure the application.properties
+
+1. Create {azure-storage}[Azure Storage]
+
+2. Update {application.yml}[application.yml]
+
++
+....
+
+# Storage account name length should be between 3 and 24 and use numbers and lower-case letters only
+# Configuration
+spring:
+  cloud:
+    azure:
+      storage:
+        fileshare:
+          account-name: [storage-account-name]
+          account-key: [storage-account-access-key]
+          endpoint:  [Fill storage File service endpoint URL copied from portal] # [Optional] Required if you want to run FileController
+
+# Resource location, used in this sample
+resource:
+  file: [azure-file://[your-fileshareName]/[your-fileName]]  # [Optional] Required if you want to run FileController
+
+....
+
+=== How to run
+1. Start the `StorageApplication` Spring Boot app.
++
+```
+$ mvn spring-boot:run
+```
+
+2. Send a POST request to update file contents:
++
+```
+$ curl -d 'new message' -H 'Content-Type: text/plain' localhost:8080/file
+```
++
+Verify by sending a GET request
++
+```
+$ curl -XGET http://localhost:8080/file
+```
+
+3. Delete the resources on http://ms.portal.azure.com/[Azure Portal] to avoid unexpected charges.
+
+== Examples
+== Troubleshooting
+== Next steps
+Please check the following table for reference links of detailed Storage usage.
+
+|===
+|Storage Type | Reference Link
+
+|`Blob storage` | {storage-howto-blob}[https://docs.microsoft.com/azure/storage/storage-java-how-to-use-blob-storage]
+|`File storage` | {storage-howto-file}[https://docs.microsoft.com/azure/storage/storage-java-how-to-use-file-storage]
+|`Queue storage` | {storage-howto-queue}[https://docs.microsoft.com/azure/storage/storage-java-how-to-use-queue-storage]
+|`Table storage` | {storage-howto-table}[https://docs.microsoft.com/azure/storage/storage-java-how-to-use-table-storage]
+|===
+
+== Contributing

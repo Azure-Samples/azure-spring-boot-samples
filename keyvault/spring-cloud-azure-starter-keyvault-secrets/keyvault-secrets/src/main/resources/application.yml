@@ -1,9 +1,11 @@
 spring:
   cloud:
     azure:
-      tenant-id: <tenant-id>
-      client-id: <client-id>
-      client-key: <client-key>
+      profile:
+        tenant-id: <tenant-id>
+      credential:
+        client-id: <client-id>
+        client-secret: <client-secret>
       keyvault:
         secret:
           property-source-enabled: true

@@ -46,11 +46,10 @@ public class QueueReceiveController {
     public void messageReceiver(byte[] payload, @Header(AzureHeaders.CHECKPOINTER) Checkpointer checkpointer) {
         String message = new String(payload);
         LOGGER.info("New message received: '{}'", message);
-        checkpointer.success().handle((r, ex) -> {
-            if (ex == null) {
-                LOGGER.info("Message '{}' successfully checkpointed.", message);
-            }
-        });
+        checkpointer.success()
+                .doOnSuccess(s -> LOGGER.info("Message '{}' successfully checkpointed", message))
+                .doOnError(e -> LOGGER.error("Error found", e))
+                .subscribe();
         this.messagingGateway.send(message);
     }
 

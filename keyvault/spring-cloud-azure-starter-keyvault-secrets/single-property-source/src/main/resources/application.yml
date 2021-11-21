@@ -2,11 +2,11 @@ spring:
   cloud:
     azure:
       profile:
-        tenant-id: ${tenant-id}
+        tenant-id: ${AZURE_TENANT_ID}
       credential:
-        client-id: ${client-id}
-        client-secret: ${client-secret}
+        client-id: ${AZURE_CLIENT_ID}
+        client-secret: ${AZURE_CLIENT_SECRET}
       keyvault:
         secret:
           property-source-enabled: true
-          endpoint: ${endpoint}
+          endpoint: ${ENDPOINT}

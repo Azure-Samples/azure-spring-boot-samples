@@ -3,7 +3,7 @@
 # Sample project for Spring Cloud Azure Starter Data Cosmos
 
 ## Key concepts
-This sample project demonstrates how to use Azure Cosmos DB via Spring Boot Starter `azure-spring-boot-starter-cosmos` to store data in and retrieve data from your Azure Cosmos DB.
+This sample project demonstrates how to use Azure Cosmos DB via Spring Boot Starter `spring-cloud-azure-starter-data-cosmos` to store data in and retrieve data from your Azure Cosmos DB.
 
 ## Getting started
 

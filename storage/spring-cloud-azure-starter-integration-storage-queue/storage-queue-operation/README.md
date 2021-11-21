@@ -34,7 +34,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 ## Examples
 
 1.  Update stream binding related properties in
-    [application.yaml]. If you choose to use
+    `application.yaml`. If you choose to use
     service principal or managed identity, update the `application-sp.yaml` or
     `application-mi.yaml` respectively.
 
@@ -47,7 +47,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
             access-key: [storage-account-access-key]
     ```
 
-1.  Update queue name in [WebController.java][web-controller].
+1.  Update queue name in **WebController.java**.
 
 1.  Run the `mvn spring-boot:run` in the root of the code sample to get
     the app running.
@@ -83,5 +83,4 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 [create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-sp-using-azure-cli.md
 
 [storage-queue-operation]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-integration-storage-queue/src/main/java/com/azure/spring/integration/storage/queue/StorageQueueOperation.java
-[web-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/storage/azure-spring-cloud-starter-storage-queue/storage-queue-operation/src/main/java/com/azure/spring/sample/storage/queue/operation/WebController.java#L26
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/storage/azure-spring-cloud-starter-storage-queue/storage-queue-operation/src/main/resources/application.yaml
+

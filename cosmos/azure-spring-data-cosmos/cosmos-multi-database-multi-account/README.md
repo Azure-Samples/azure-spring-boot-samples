@@ -78,7 +78,7 @@ spring.datasource.password=your-mysql-password
 
 ### Run with Maven
 ```shell
-cd azure-spring-boot-samples/azure-spring-boot-sample-multi-database
+cd azure-spring-boot-samples/cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account
 mvn spring-boot:run
 ```
 

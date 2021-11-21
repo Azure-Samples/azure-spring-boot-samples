@@ -34,7 +34,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 ## Examples
 
 1.  Update stream binding related properties in
-    [application.yaml]. If you choose to use
+    `application.yaml`. If you choose to use
     service principal or managed identity, update the `application-sp.yaml` or
     `application-mi.yaml` respectively.
 
@@ -48,8 +48,8 @@ Running this sample will be charged by Azure. You can check the usage and bill a
     ```
 
 2. Update queue name in 
-   [SendController.java][send-controller] and
-   [ReceiveController.java][receive-controller].
+   **SendController.java** and
+   **ReceiveController.java**.
 
 1.  Run the `mvn spring-boot:run` in the root of the code sample to get
     the app running.
@@ -83,7 +83,3 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 [create-azure-storage]: https://docs.microsoft.com/azure/storage/
 [create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-managed-identity.md
 [create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-sp-using-azure-cli.md
-
-[send-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/storage/azure-spring-cloud-starter-storage-queue/storage-queue-integration/	src/main/java/com/azure/spring/sample/storage/queue/SendController.java
-[receive-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/storage/azure-spring-cloud-starter-storage-queue/storage-queue-integration/	src/main/java/com/azure/spring/sample/storage/queue/ReceiveController.java
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/storage/azure-spring-cloud-starter-storage-queue/storage-queue-integration/	src/main/resources/application.yaml

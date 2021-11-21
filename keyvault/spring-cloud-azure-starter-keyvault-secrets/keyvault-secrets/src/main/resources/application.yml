@@ -6,4 +6,5 @@ spring:
       client-key: <client-key>
       keyvault:
         secret:
+          property-source-enabled: true
           endpoint: <endpoint>

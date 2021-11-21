@@ -29,11 +29,10 @@ public class ServiceBusQueueBinderApplication {
         return message -> {
             Checkpointer checkpointer = (Checkpointer) message.getHeaders().get(CHECKPOINTER);
             LOGGER.info("New message received: '{}'", message.getPayload());
-            checkpointer.success().handle((r, ex) -> {
-                if (ex == null) {
-                    LOGGER.info("Message '{}' successfully checkpointed", message.getPayload());
-                }
-            });
+            checkpointer.success()
+                    .doOnSuccess(s -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
+                    .doOnError(e -> LOGGER.error("Error found", e))
+                    .subscribe();
         };
     }
 }

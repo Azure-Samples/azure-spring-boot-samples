@@ -51,19 +51,19 @@ and bill at [this link][azure-account].
             definition: consume1;supply1;consume2;supply2
           bindings:
             consume1-in-0:
-              destination: [servicebus-queue-1-name]
+              destination: [servicebus-topic-1-name]
+              group: [servicebus-topic-1-subscription-name]
             supply1-out-0:
-              destination: [servicebus-queue-1-name-same-as-above]
+              destination: [servicebus-topic-1-name-same-as-above]
             consume2-in-0:
               binder: servicebus-2
-              destination: [servicebus-queue-2-name]
+              destination: [servicebus-queue-1-name]
             supply2-out-0:
               binder: servicebus-2
-              destination: [servicebus-queue-2-name-same-as-above]
-    
+              destination: [servicebus-queue-1-name-same-as-above]
           binders:
             servicebus-1:
-              type: servicebus-queue
+              type: servicebus
               default-candidate: true
               environment:
                 spring:
@@ -72,7 +72,7 @@ and bill at [this link][azure-account].
                       servicebus:
                         connection-string: [servicebus-namespace-1-connection-string]
             servicebus-2:
-              type: servicebus-queue
+              type: servicebus
               default-candidate: false
               environment:
                 spring:
@@ -80,6 +80,14 @@ and bill at [this link][azure-account].
                     azure:
                       servicebus:
                         connection-string: [servicebus-namespace-2-connection-string]
+          servicebus:
+            bindings:
+              consume1-out-0:
+                producer:
+                  entity-type: topic
+              consume2-out-0:
+                producer:
+                  entity-type: queue
           poller:
             initial-delay: 0
             fixed-delay: 1000
@@ -125,20 +133,9 @@ processing.
 
 The binder provides the following configuration options:
 
-##### Spring Cloud Azure Properties
-
-Name | Description | Required | Default 
----|---|---|---
-spring.cloud.azure.credential-file-path | Location of azure credential file | Yes |
-spring.cloud.azure.resource-group | Name of Azure resource group | Yes |
-spring.cloud.azure.region | Region name of the Azure resource group, e.g. westus | Yes | 
-spring.cloud.azure.servicebus.namespace | Service Bus Namespace. Auto creating if missing | Yes |
-spring.cloud.azure.servicebus.transportType | Service Bus transportType, supported value of `AMQP` and `AMQP_WEB_SOCKETS` | No | `AMQP`
-spring.cloud.azure.servicebus.retry-Options | Service Bus retry options | No | Default value of AmqpRetryOptions
-
 ##### Serivce Bus Queue Producer Properties
 
-It supports the following configurations with the format of `spring.cloud.stream.servicebus.queue.bindings.<channelName>.producer`.
+It supports the following configurations with the format of `spring.cloud.stream.servicebus.<channelName>.producer`.
 
 **_sync_**
 
@@ -155,7 +152,7 @@ Default: `10000`
  
 ##### Service Bus Queue Consumer Properties
 
-It supports the following configurations with the format of `spring.cloud.stream.servicebus.queue.bindings.<channelName>.consumer`.
+It supports the following configurations with the format of `spring.cloud.stream.servicebus.bindings.<channelName>.consumer`.
 
 **_checkpoint-mode_**
 
@@ -247,18 +244,18 @@ For some Service Bus headers that can be mapped to multiple Spring header consta
 Service Bus Message Headers and Properties | Spring Message Header Constants | Type | Priority Number (Descending priority)
 :---|:---|:---|:---
 ContentType | org.springframework.messaging.MessageHeaders.CONTENT_TYPE | String | N/A
-CorrelationId | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.CORRELATION_ID | String | N/A
-**MessageId** | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.MESSAGE_ID | String | 1
-**MessageId** | com.azure.spring.integration.core.AzureHeaders.RAW_ID | String | 2
+CorrelationId | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.CORRELATION_ID | String | N/A
+**MessageId** | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.MESSAGE_ID | String | 1
+**MessageId** | com.azure.spring.messaging.AzureHeaders.RAW_ID | String | 2
 **MessageId** | org.springframework.messaging.MessageHeaders.ID | UUID | 3
-PartitionKey | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.PARTITION_KEY | String | N/A
+PartitionKey | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.PARTITION_KEY | String | N/A
 ReplyTo | org.springframework.messaging.MessageHeaders.REPLY_CHANNEL | String | N/A
-ReplyToSessionId | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.REPLY_TO_SESSION_ID | String | N/A
-**ScheduledEnqueueTimeUtc** | com.azure.spring.integration.core.AzureHeaders.SCHEDULED_ENQUEUE_MESSAGE | Integer | 1
-**ScheduledEnqueueTimeUtc** | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.SCHEDULED_ENQUEUE_TIME | Instant | 2
-SessionID | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.SESSION_ID | String | N/A
-TimeToLive | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.TIME_TO_LIVE | Duration | N/A
-To | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.TO | String | N/A
+ReplyToSessionId | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.REPLY_TO_SESSION_ID | String | N/A
+**ScheduledEnqueueTimeUtc** | com.azure.spring.messaging.AzureHeaders.SCHEDULED_ENQUEUE_MESSAGE | Integer | 1
+**ScheduledEnqueueTimeUtc** | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.SCHEDULED_ENQUEUE_TIME | Instant | 2
+SessionID | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.SESSION_ID | String | N/A
+TimeToLive | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.TIME_TO_LIVE | Duration | N/A
+To | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.TO | String | N/A
 
 ## Troubleshooting
 
@@ -277,4 +274,4 @@ To | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.
 [deploy-to-app-service-via-ftp]: https://docs.microsoft.com/azure/app-service/deploy-ftp
 [managed-identities]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-cloud-stream-binder-servicebus-queue/servicebus-queue-multibinders/src/main/resources/application.yaml
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/azure-spring-cloud-stream-binder-servicebus-queue/servicebus-queue-multibinders/src/main/resources/application.yaml

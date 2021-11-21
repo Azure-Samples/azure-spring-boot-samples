@@ -39,6 +39,7 @@ Service Bus Topic. You can choose anyone of them.
 
 1.  Update [application.yaml].
     ```yaml
+    
     spring:
       cloud:
         azure:
@@ -52,6 +53,14 @@ Service Bus Topic. You can choose anyone of them.
               destination: [servicebus-queue-name]
             supply-out-0:
               destination: [servicebus-queue-name-same-as-above]
+          servicebus:
+            bindings:
+              consume-in-0:
+                consumer:
+                  checkpoint-mode: MANUAL
+              supply-out-0:
+                producer:
+                  entity-type: topic
           poller:
             fixed-delay: 1000
             initial-delay: 0
@@ -188,20 +197,9 @@ spring:
 
 The binder provides the following configuration options:
 
-##### Spring Cloud Azure Properties
-
-Name | Description | Required | Default 
----|---|---|---
-spring.cloud.azure.credential-file-path | Location of azure credential file | Yes |
-spring.cloud.azure.resource-group | Name of Azure resource group | Yes |
-spring.cloud.azure.region | Region name of the Azure resource group, e.g. westus | Yes | 
-spring.cloud.azure.servicebus.namespace | Service Bus Namespace. Auto creating if missing | Yes |
-spring.cloud.azure.servicebus.transportType | Service Bus transportType, supported value of `AMQP` and `AMQP_WEB_SOCKETS` | No | `AMQP`
-spring.cloud.azure.servicebus.retry-Options | Service Bus retry options | No | Default value of AmqpRetryOptions
-
 ##### Serivce Bus Queue Producer Properties
 
-It supports the following configurations with the format of `spring.cloud.stream.servicebus.queue.bindings.<channelName>.producer`.
+It supports the following configurations with the format of `spring.cloud.stream.servicebus.bindings.<channelName>.producer`.
 
 **_sync_**
 
@@ -218,7 +216,7 @@ Default: `10000`
  
 ##### Service Bus Queue Consumer Properties
 
-It supports the following configurations with the format of `spring.cloud.stream.servicebus.queue.bindings.<channelName>.consumer`.
+It supports the following configurations with the format of `spring.cloud.stream.servicebus.bindings.<channelName>.consumer`.
 
 **_checkpoint-mode_**
 
@@ -310,18 +308,18 @@ For some Service Bus headers that can be mapped to multiple Spring header consta
 Service Bus Message Headers and Properties | Spring Message Header Constants | Type | Priority Number (Descending priority)
 :---|:---|:---|:---
 ContentType | org.springframework.messaging.MessageHeaders.CONTENT_TYPE | String | N/A
-CorrelationId | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.CORRELATION_ID | String | N/A
-**MessageId** | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.MESSAGE_ID | String | 1
-**MessageId** | com.azure.spring.integration.core.AzureHeaders.RAW_ID | String | 2
+CorrelationId | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.CORRELATION_ID | String | N/A
+**MessageId** | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.MESSAGE_ID | String | 1
+**MessageId** | com.azure.spring.messaging.AzureHeaders.RAW_ID | String | 2
 **MessageId** | org.springframework.messaging.MessageHeaders.ID | UUID | 3
-PartitionKey | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.PARTITION_KEY | String | N/A
+PartitionKey | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.PARTITION_KEY | String | N/A
 ReplyTo | org.springframework.messaging.MessageHeaders.REPLY_CHANNEL | String | N/A
-ReplyToSessionId | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.REPLY_TO_SESSION_ID | String | N/A
-**ScheduledEnqueueTimeUtc** | com.azure.spring.integration.core.AzureHeaders.SCHEDULED_ENQUEUE_MESSAGE | Integer | 1
-**ScheduledEnqueueTimeUtc** | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.SCHEDULED_ENQUEUE_TIME | Instant | 2
-SessionID | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.SESSION_ID | String | N/A
-TimeToLive | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.TIME_TO_LIVE | Duration | N/A
-To | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.TO | String | N/A
+ReplyToSessionId | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.REPLY_TO_SESSION_ID | String | N/A
+**ScheduledEnqueueTimeUtc** | com.azure.spring.messaging.AzureHeaders.SCHEDULED_ENQUEUE_MESSAGE | Integer | 1
+**ScheduledEnqueueTimeUtc** | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.SCHEDULED_ENQUEUE_TIME | Instant | 2
+SessionID | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.SESSION_ID | String | N/A
+TimeToLive | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.TIME_TO_LIVE | Duration | N/A
+To | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.TO | String | N/A
 
 ## Troubleshooting
 
@@ -341,6 +339,6 @@ To | com.azure.spring.integration.servicebus.converter.ServiceBusMessageHeaders.
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
 
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-cloud-stream-binder-servicebus-topic/servicebus-topic-binder/src/main/resources/application-mi.yaml
-[application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-cloud-stream-binder-servicebus-topic/servicebus-topic-binder/src/main/resources/application-sp.yaml
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-cloud-stream-binder-servicebus-topic/servicebus-topic-binder/src/main/resources/application.yaml
+[application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/azure-spring-cloud-stream-binder-servicebus-topic/servicebus-topic-binder/src/main/resources/application-mi.yaml
+[application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/azure-spring-cloud-stream-binder-servicebus-topic/servicebus-topic-binder/src/main/resources/application-sp.yaml
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/azure-spring-cloud-stream-binder-servicebus-topic/servicebus-topic-binder/src/main/resources/application.yaml

@@ -46,12 +46,11 @@
 | servicebus       | [azure-messaging-servicebus:7.4.0]                                                             | [servicebus](servicebus/azure-messaging-servicebus/servicebus)                                                                    |
 | servicebus       | [azure-spring-boot-starter-servicebus-jms:3.9.0]                                               | [servicebus-jms-queue](servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-queue)                                  |
 | servicebus       | [azure-spring-boot-starter-servicebus-jms:3.9.0]                                               | [servicebus-jms-topic](servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-topic)                                  |
-| servicebus       | [azure-spring-cloud-starter-servicebus:2.9.0]                                                  | [servicebus-integration](servicebus/azure-spring-cloud-starter-servicebus/servicebus-integration)                                 |
-| servicebus       | [azure-spring-cloud-starter-servicebus:2.9.0]                                                  | [servicebus-messaging](servicebus/azure-spring-cloud-starter-servicebus/servicebus-messaging)                                     |
-| servicebus       | [azure-spring-cloud-starter-servicebus:2.9.0]                                                  | [servicebus-operation](servicebus/azure-spring-cloud-starter-servicebus/servicebus-operation)                                     |
-| servicebus       | [azure-spring-cloud-stream-binder-servicebus-queue:2.9.0]                                      | [servicebus-queue-binder](servicebus/azure-spring-cloud-stream-binder-servicebus-queue/servicebus-queue-binder)                   |
-| servicebus       | [azure-spring-cloud-stream-binder-servicebus-queue:2.9.0]                                      | [servicebus-queue-multibinders](servicebus/azure-spring-cloud-stream-binder-servicebus-queue/servicebus-queue-multibinders)       |
-| servicebus       | [azure-spring-cloud-stream-binder-servicebus-topic:2.9.0]                                      | [servicebus-topic-binder](servicebus/azure-spring-cloud-stream-binder-servicebus-topic/servicebus-topic-binder)                   |
+| servicebus       | [spring-cloud-azure-starter-integration-servicebus:4.0.0-beta.1]                               | [single-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespaces)                                 |
+| servicebus       | [spring-cloud-azure-starter-integration-servicebus:4.0.0-beta.1]                               | [multiple-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces)                                 |
+| servicebus       | [spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.1]                                     | [servicebus-queue-binder](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder)                   |
+| servicebus       | [spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.1]                                     | [servicebus-queue-multibinders](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-multibinders)       |
+| servicebus       | [spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.1]                                     | [servicebus-topic-binder](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder)                   |
 | storage          | [azure-spring-boot-starter-storage:3.9.0]                                                      | [storage-resource](storage/azure-spring-boot-starter-storage/storage-resource)                                                    |
 | storage          | [azure-spring-cloud-starter-storage-queue:2.9.0]                                               | [storage-queue-integration](storage/azure-spring-cloud-starter-storage-queue/storage-queue-integration)                           |
 | storage          | [azure-spring-cloud-starter-storage-queue:2.9.0]                                               | [storage-queue-operation](storage/azure-spring-cloud-starter-storage-queue/storage-queue-operation)                               |
@@ -72,12 +71,11 @@
 [azure-spring-cloud-stream-binder-eventhubs:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-stream-binder-eventhubs/2.9.0/jar
 [azure-spring-cloud-starter-eventhubs:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-eventhubs/2.9.0/jar
 [azure-spring-boot-starter-cosmos:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-cosmos/3.9.0/jar
-[azure-spring-cloud-stream-binder-servicebus-topic:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-stream-binder-servicebus-topic/2.9.0/jar
-[azure-spring-cloud-stream-binder-servicebus-queue:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-stream-binder-servicebus-queue/2.9.0/jar
+[spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.1]  : https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-stream-binder-servicebus-topic/2.9.0/jar
 [azure-spring-boot-starter-storage:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-storage/3.9.0/jar
 [azure-spring-boot-starter-active-directory:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-active-directory/3.9.0/jar
 [azure-spring-boot-starter-active-directory-b2c:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-active-directory-b2c/3.9.0/jar
 [azure-spring-boot-starter-servicebus-jms:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-servicebus-jms/3.9.0/jar
-[azure-spring-cloud-starter-servicebus:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-servicebus/2.9.0/jar
+[spring-cloud-azure-starter-integration-servicebus:4.0.0-beta.1] : https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-servicebus/2.9.0/jar
 [azure-spring-cloud-starter-storage-queue:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-storage-queue/2.9.0/jar
 [azure-security-keyvault-jca:2.1.0]: https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca

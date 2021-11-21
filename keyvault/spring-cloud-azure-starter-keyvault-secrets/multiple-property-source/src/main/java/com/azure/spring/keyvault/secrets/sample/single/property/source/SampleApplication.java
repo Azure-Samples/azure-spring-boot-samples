@@ -9,7 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class KeyVaultSampleApplication implements CommandLineRunner {
+public class SampleApplication implements CommandLineRunner {
 
     @Value("${secret-name-in-key-vault-1}")
     private String secretNameInKeyVault1;
@@ -19,7 +19,7 @@ public class KeyVaultSampleApplication implements CommandLineRunner {
     private String secretNameInKeyVaultBoth;
 
     public static void main(String[] args) {
-        SpringApplication.run(KeyVaultSampleApplication.class, args);
+        SpringApplication.run(SampleApplication.class, args);
     }
 
     public void run(String[] args) {

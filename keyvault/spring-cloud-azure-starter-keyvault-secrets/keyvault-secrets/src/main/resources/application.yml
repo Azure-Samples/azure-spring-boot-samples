@@ -1,9 +1,9 @@
 spring:
   cloud:
     azure:
+      tenant-id: <tenant-id>
+      client-id: <client-id>
+      client-key: <client-key>
       keyvault:
         secret:
-          client-id: put-your-client-id-here
-          client-key: put-your-client-key-here
-          uri: put-your-uri-here
-          tenant-id: put-your-tenant-id-here
+          endpoint: <endpoint>

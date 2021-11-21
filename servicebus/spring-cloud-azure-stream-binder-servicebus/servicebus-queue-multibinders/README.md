@@ -39,8 +39,8 @@ and bill at [this link][azure-account].
 
 1.  Update stream binding related properties in
     [application.yaml][application.yaml]. If you choose to use 
-    service principal or managed identity, update the `application-sp.yaml` or 
-    `application-mi.yaml` respectively.
+    service principal or managed identity, update the [application-sp.yaml][application-sp.yaml] or 
+    [application-mi.yaml][application-mi.yaml] respectively.
 
     ```yaml
     spring:
@@ -275,6 +275,8 @@ To | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.TO | String | 
 [managed-identities]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
 [application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-multibinders/src/main/resources/application.yaml
+[application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-multibinders/src/main/resources/application-mi.yaml
+[application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-multibinders/src/main/resources/application-sp.yaml
 
 
 

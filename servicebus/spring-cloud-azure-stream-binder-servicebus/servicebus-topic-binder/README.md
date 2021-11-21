@@ -51,6 +51,7 @@ Service Bus Topic. You can choose anyone of them.
           bindings: 
             consume-in-0: 
               destination: [servicebus-topic-name]
+              group: [topic-subscription-name]
             supply-out-0:
               destination: [servicebus-topic-name-same-as-above]
           servicebus:
@@ -86,8 +87,8 @@ Service Bus Topic. You can choose anyone of them.
           credential:
             client-id: [ client-id ]
             client-secret: [ client-secret ]
-            profile:
-              tenant-id: [ tenant-id ]
+          profile:
+            tenant-id: [ tenant-id ]
           servicebus:
             namespace: [servicebus-namespace]
         stream:
@@ -137,9 +138,9 @@ Please follow [create managed identity][create-managed-identity] to set up manag
       cloud:
         azure:
           credential:
-            managed-identity-client-id: [ managed-identity-client-id ]
-            profile:
-              tenant-id: [ tenant-id ]
+            managed-identity-client-id: [managed-identity-client-id]
+          profile:
+            tenant-id: [tenant-id]
           servicebus:
             namespace: [servicebus-namespace]
         stream:
@@ -185,10 +186,11 @@ If you want to auto create the Azure Service Bus instances, make sure you add su
 spring:
   cloud:
     azure:
-      subscription-id: [subscription-id]
-      auto-create-resources: true
-      environment: Azure
-      region: [region]
+      credential:
+        subscription-id: [subscription-id]
+        cloud: Azure
+      resource:
+        region: [region]
 ```
 
 
@@ -355,7 +357,6 @@ To | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.TO | String | 
 [create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-sp-using-azure-cli.md
 [create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-managed-identity.md
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
-
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
 [application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder/src/main/resources/application-mi.yaml
 [application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder/src/main/resources/application-sp.yaml

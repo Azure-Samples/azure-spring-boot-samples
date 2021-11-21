@@ -75,9 +75,8 @@
     <module>servicebus/azure-messaging-servicebus/servicebus</module>
     <module>servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-queue</module>
     <module>servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-topic</module>
-    <module>servicebus/azure-spring-cloud-starter-servicebus/servicebus-integration</module>
-    <module>servicebus/azure-spring-cloud-starter-servicebus/servicebus-messaging</module>
-    <module>servicebus/azure-spring-cloud-starter-servicebus/servicebus-operation</module>
+    <module>servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces</module>
+    <module>servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespaces</module>
     <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder</module>
     <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-multibinders</module>
     <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder</module>

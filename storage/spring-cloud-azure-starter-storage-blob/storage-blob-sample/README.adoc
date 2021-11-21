@@ -25,10 +25,6 @@ Maven coordinates:
     <groupId>com.azure.spring</groupId>
     <artifactId>spring-cloud-azure-starter-storage-blob</artifactId>
 </dependency>
-<dependency>
-    <groupId>com.azure.spring</groupId>
-    <artifactId>spring-cloud-azure-starter-storage-file-share</artifactId>
-</dependency>
 ----
 
 Gradle coordinates:
@@ -37,7 +33,6 @@ Gradle coordinates:
 ----
 dependencies {
     compile group: 'com.azure.spring', name: 'spring-cloud-azure-starter-storage-blob'
-    compile group: 'com.azure.spring', name: 'spring-cloud-azure-starter-storage-file-share'
 }
 ----
 
@@ -60,15 +55,10 @@ spring:
           account-name: [storage-account-name]
           account-key: [storage-account-access-key]
           endpoint: [Fill storage Blob service endpoint URL copied from portal] # [Optional] Required if you want to run BlobController
-        fileshare:
-          account-name: [storage-account-name]
-          account-key: [storage-account-access-key]
-          endpoint:  [Fill storage File service endpoint URL copied from portal] # [Optional] Required if you want to run FileController
 
 # Resource location, used in this sample
 resource:
   blob: [azure-blob://[your-containerName]/[your-blobName]]  # [Optional] Required if you want to run BlobController
-  file: [azure-file://[your-fileshareName]/[your-fileName]]  # [Optional] Required if you want to run FileController
 
 ....
 

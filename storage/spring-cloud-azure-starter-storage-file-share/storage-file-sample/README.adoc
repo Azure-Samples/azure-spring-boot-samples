@@ -23,10 +23,6 @@ Maven coordinates:
 ----
 <dependency>
     <groupId>com.azure.spring</groupId>
-    <artifactId>spring-cloud-azure-starter-storage-blob</artifactId>
-</dependency>
-<dependency>
-    <groupId>com.azure.spring</groupId>
     <artifactId>spring-cloud-azure-starter-storage-file-share</artifactId>
 </dependency>
 ----
@@ -36,7 +32,6 @@ Gradle coordinates:
 [source]
 ----
 dependencies {
-    compile group: 'com.azure.spring', name: 'spring-cloud-azure-starter-storage-blob'
     compile group: 'com.azure.spring', name: 'spring-cloud-azure-starter-storage-file-share'
 }
 ----
@@ -56,10 +51,6 @@ spring:
   cloud:
     azure:
       storage:
-        blob:
-          account-name: [storage-account-name]
-          account-key: [storage-account-access-key]
-          endpoint: [Fill storage Blob service endpoint URL copied from portal] # [Optional] Required if you want to run BlobController
         fileshare:
           account-name: [storage-account-name]
           account-key: [storage-account-access-key]
@@ -67,7 +58,6 @@ spring:
 
 # Resource location, used in this sample
 resource:
-  blob: [azure-blob://[your-containerName]/[your-blobName]]  # [Optional] Required if you want to run BlobController
   file: [azure-file://[your-fileshareName]/[your-fileName]]  # [Optional] Required if you want to run FileController
 
 ....
@@ -82,13 +72,13 @@ $ mvn spring-boot:run
 2. Send a POST request to update file contents:
 +
 ```
-$ curl -d 'new message' -H 'Content-Type: text/plain' localhost:8080/blob
+$ curl -d 'new message' -H 'Content-Type: text/plain' localhost:8080/file
 ```
 +
 Verify by sending a GET request
 +
 ```
-$ curl -XGET http://localhost:8080/blob
+$ curl -XGET http://localhost:8080/file
 ```
 
 3. Delete the resources on http://ms.portal.azure.com/[Azure Portal] to avoid unexpected charges.

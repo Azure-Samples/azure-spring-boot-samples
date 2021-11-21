@@ -12,7 +12,7 @@
 
   <artifactId>spring-cloud-azure-sample-stream-binder-servicebus-queue</artifactId>
   <groupId>com.azure.spring</groupId>
-  <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-sample-servicebus-queue-binder;dependency} -->
+  <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:spring-cloud-azure-sample-stream-binder-servicebus-queue;dependency} -->
   <name>Spring Cloud Azure Sample Service Bus Queue Binder</name>
 
 

@@ -73,11 +73,11 @@
 [azure-spring-cloud-stream-binder-eventhubs:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-stream-binder-eventhubs/2.9.0/jar
 [azure-spring-cloud-starter-eventhubs:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-eventhubs/2.9.0/jar
 [azure-spring-boot-starter-cosmos:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-cosmos/3.9.0/jar
-[spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.1]  : https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-stream-binder-servicebus-topic/2.9.0/jar
+[spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.1]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-stream-binder-servicebus/4.0.0-beta.1/jar
 [azure-spring-boot-starter-storage:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-storage/3.9.0/jar
 [azure-spring-boot-starter-active-directory:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-active-directory/3.9.0/jar
 [azure-spring-boot-starter-active-directory-b2c:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-active-directory-b2c/3.9.0/jar
 [azure-spring-boot-starter-servicebus-jms:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-servicebus-jms/3.9.0/jar
-[spring-cloud-azure-starter-integration-servicebus:4.0.0-beta.1] : https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-servicebus/2.9.0/jar
+[spring-cloud-azure-starter-integration-servicebus:4.0.0-beta.1]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-integration-servicebus/4.0.0-beta.1/jar
 [azure-spring-cloud-starter-storage-queue:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-storage-queue/2.9.0/jar
 [azure-security-keyvault-jca:2.1.0]: https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca

@@ -13,13 +13,13 @@ spring:
         supply-out-0:
           destination: [servicebus-topic-name-same-as-above]
       servicebus:
-          bindings:
-            consume-in-0:
-              consumer:
-                checkpoint-mode: MANUAL
-            supply-out-0:
-              producer:
-                entity-type: topic
+        bindings:
+          consume-in-0:
+            consumer:
+              checkpoint-mode: MANUAL
+          supply-out-0:
+            producer:
+              entity-type: topic
       poller:
         fixed-delay: 1000
         initial-delay: 0

@@ -12,14 +12,12 @@
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>azure-spring-cloud-sample-servicebus-jms-topic</artifactId>
   <groupId>com.azure.spring</groupId>
+  <artifactId>spring-cloud-azure-sample-servicebus-jms-topic</artifactId>
   <version>1.0.0</version>
-  <name>Azure Spring Cloud Sample Service Bus JMS Topic</name>
+  <name>Spring Cloud Azure Sample Service Bus JMS Topic</name>
 
-  <properties>
-    <skipSpringITs>true</skipSpringITs>
-  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>

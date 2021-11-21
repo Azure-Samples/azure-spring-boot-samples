@@ -5,14 +5,14 @@ languages:
 products:
 - azure-service-bus
 description: "Azure Spring Boot Sample project for Spring JMS with Service Bus Queue client library"
-urlFragment: "azure-spring-boot-sample-service-bus-jms-queue"
+urlFragment: "spring-cloud-azure-sample-service-bus-jms-queue"
 ---
 
-# Sample for Spring JMS with Azure Service Bus Queue Spring Boot client library for Java
+# Sample for Spring JMS with Azure Service Bus Queue Spring Cloud client library for Java
 
 ## Key concepts
 
-This sample project demonstrates how to use Spring JMS for Azure Service Bus Queue via Spring Boot Starter `azure-spring-boot-starter-servicebus-jms`. 
+This sample project demonstrates how to use Spring JMS for Azure Service Bus Queue via Spring Boot Starter `spring-cloud-azure-starter-servicebus-jms`. 
 
 Running this sample will be charged by Azure. You can check the usage and bill at this [link](https://azure.microsoft.com/account/).
 
@@ -27,8 +27,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 ## Examples                                           
 ### Config the sample
 
-1. Update [application.properties](https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-queue/src/main/resources/application.properties)
-
+1. Update [application.properties](https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-sample-servicebus-jms/servicebus-jms-queue/src/main/resources/application.properties)
     ```properties
     # Fill service bus namespace connection string copied from portal
     spring.jms.servicebus.connection-string=[servicebus-namespace-connection-string]
@@ -46,7 +45,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 ### How to run
 1. Run with Maven
     ```
-    cd azure-spring-boot-samples/servicebus/azure-spring-boot-sample-servicebus-jms-queue
+    cd spring-cloud-azure-samples/servicebus/spring-cloud-azure-sample-servicebus-jms/servicebus-jms-queue
     mvn spring-boot:run
     ```
 
@@ -75,5 +74,5 @@ Type | Reference Link
 
 <!-- LINKS -->
 
-[QueueSendController]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-queue/src/main/java/com/azure/spring/sample/jms/queue/QueueSendController.java
-[QueueReceiveController]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-queue/src/main/java/com/azure/spring/sample/jms/queue/QueueReceiveController.java
+[QueueSendController]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-sample-servicebus-jms/servicebus-jms-queue/src/main/java/com/azure/spring/sample/jms/queue/QueueSendController.java
+[QueueReceiveController]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-sample-servicebus-jms/servicebus-jms-queue/src/main/java/com/azure/spring/sample/jms/queue/QueueReceiveController.java

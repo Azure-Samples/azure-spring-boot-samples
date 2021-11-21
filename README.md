@@ -44,8 +44,8 @@
 | keyvault         | [azure-spring-boot-starter-keyvault-secrets:3.9.0]                                             | [keyvault-secrets](keyvault/azure-spring-boot-starter-keyvault-secrets/keyvault-secrets)                                          |
 | mediaservices    | [azure-media:0.9.8]                                                                            | [azure-spring-boot-sample-mediaservices](mediaservices/azure-spring-boot-sample-mediaservices)                                    |
 | servicebus       | [azure-messaging-servicebus:7.4.0]                                                             | [servicebus](servicebus/azure-messaging-servicebus/servicebus)                                                                    |
-| servicebus       | [azure-spring-boot-starter-servicebus-jms:3.9.0]                                               | [servicebus-jms-queue](servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-queue)                                  |
-| servicebus       | [azure-spring-boot-starter-servicebus-jms:3.9.0]                                               | [servicebus-jms-topic](servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-topic)                                  |
+| servicebus       | [spring-cloud-azure-starter-servicebus-jms:4.0.0-beta.1]                                       | [servicebus-jms-queue](servicebus/spring-cloud-azure-sample-servicebus-jms/servicebus-jms-queue)                                  |
+| servicebus       | [spring-cloud-azure-starter-servicebus-jms:4.0.0-beta.1]                                       | [servicebus-jms-topic](servicebus/spring-cloud-azure-sample-servicebus-jms/servicebus-jms-topic)                                  |
 | servicebus       | [azure-spring-cloud-starter-servicebus:2.9.0]                                                  | [servicebus-integration](servicebus/azure-spring-cloud-starter-servicebus/servicebus-integration)                                 |
 | servicebus       | [azure-spring-cloud-starter-servicebus:2.9.0]                                                  | [servicebus-messaging](servicebus/azure-spring-cloud-starter-servicebus/servicebus-messaging)                                     |
 | servicebus       | [azure-spring-cloud-starter-servicebus:2.9.0]                                                  | [servicebus-operation](servicebus/azure-spring-cloud-starter-servicebus/servicebus-operation)                                     |
@@ -79,7 +79,7 @@
 [azure-spring-boot-starter-storage:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-storage/3.9.0/jar
 [azure-spring-boot-starter-active-directory:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-active-directory/3.9.0/jar
 [azure-spring-boot-starter-active-directory-b2c:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-active-directory-b2c/3.9.0/jar
-[azure-spring-boot-starter-servicebus-jms:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-servicebus-jms/3.9.0/jar
+[spring-cloud-azure-starter-servicebus-jms:4.0.0-beta.1]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-servicebus-jms/4.0.0-beta.1/jar
 [azure-spring-cloud-starter-servicebus:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-servicebus/2.9.0/jar
 [azure-spring-cloud-starter-storage-queue:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-storage-queue/2.9.0/jar
 [azure-security-keyvault-jca:2.1.0]: https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca

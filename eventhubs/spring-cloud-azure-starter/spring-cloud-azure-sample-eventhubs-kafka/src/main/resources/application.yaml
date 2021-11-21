@@ -1,20 +1,16 @@
 spring:
   cloud:
     azure:
-      profile:
-        tenant-id: ${SPRING_TENANT_ID}
-        subscription-id: ${SPRING_SUBSCRIPTION_ID}
-# This is not required since Spring Cloud Azure support https://docs.microsoft.com/en-us/azure/developer/java/sdk/identity
-# you only need to login with az cli / vs code or Intellij Azure Toolkit
-# then credential information will be left out of properties
-#      credential:
-#        client-id: ${SPRING_CLIENT_ID}
-#        client-secret: ${SPRING_CLIENT_SECRET}
       eventhubs:
-        namespace: ${EVENTHUB_NAMESPACE_NAME_SAMPLE_EVENTHUBS_KAFKA}
-        resource:
-          resource-group: ${SPRING_RESOURCE_GROUP}
-
+        connection-string: ${AZURE_EVENTHUBS_CONNECTION_STRING}
+##  Configure these commented out properties if you prefer using Azure Resource Manager
+#      profile:
+#        subscription-id: ${AZURE_SUBSCRIPTION_ID}
+#      eventhubs:
+#        namespace: ${AZURE_EVENTHUBS_NAMESPACE}
+#        resource:
+#          resource-group: ${AZURE_EVENTHUBS_RESOURCE_GROUP}
+##
     stream:
       function:
         definition: consume;supply

@@ -12,8 +12,8 @@ urlFragment: "spring-cloud-azure-sample-eventhubs-kafka"
 
 ## Key concepts
 
-This code sample demonstrates how to use the Spring Cloud Azure Starter and Spring Cloud Starter Stream Kafka for Azure Event Hub. The sample app exposes a RESTful API to receive
-string message. Then message is sent through Azure Event Hub to a bean `consumer`
+This code sample demonstrates how to use the Spring Cloud Azure Starter and Spring Cloud Starter Stream Kafka for Azure Event Hubs. The sample app exposes a RESTful API to receive
+string message. Then message is sent through Azure Event Hubs to a bean `consumer`
 which simply logs the message.
 
 ## Getting started
@@ -30,11 +30,15 @@ Running this sample will be charged by Azure. You can check the usage and bill a
    The credential is not required since Spring Cloud Azure support https://docs.microsoft.com/en-us/azure/developer/java/sdk/identity,
    you only need to log in with az cli / vs code or Intellij Azure Toolkit, then credential information will be left out of properties
 
-3. Create [Azure Event Hubs][create-event-hubs]. 
+3. Create [Azure Event Hubs][create-event-hubs]. Please notice that Event Hubs for Kafka is only supported for [Standard and Dedicated tier namespaces](https://azure.microsoft.com/pricing/details/event-hubs/).
 
 ## Examples
 
-1.  Update
+### Use Event Hubs connection string
+
+The simplest way to connect to Event Hubs for Kafka is with the connection string. 
+
+1. Update
     [application.yaml][application.yaml]
     file
     
@@ -42,20 +46,8 @@ Running this sample will be charged by Azure. You can check the usage and bill a
     spring:
       cloud:
         azure:
-          profile:
-            tenant-id: ${SPRING_TENANT_ID}
-            subscription-id: ${SPRING_SUBSCRIPTION_ID}
-    # This is not required since Spring Cloud Azure support https://docs.microsoft.com/en-us/azure/developer/java/sdk/identity
-    # you only need to login with az cli / vs code or Intellij Azure Toolkit
-    # then credential information will be left out of properties
-    #      credential:
-    #        client-id: ${SPRING_CLIENT_ID}
-    #        client-secret: ${SPRING_CLIENT_SECRET}
           eventhubs:
-            namespace: ${EVENTHUB_NAMESPACE_NAME_SAMPLE_EVENTHUBS_KAFKA}
-            resource:
-              resource-group: ${SPRING_RESOURCE_GROUP}
-    
+            connection-string: ${AZURE_EVENTHUBS_CONNECTION_STRING}
         stream:
           function:
             definition: consume;supply
@@ -66,19 +58,55 @@ Running this sample will be charged by Azure. You can check the usage and bill a
             supply-out-0:
               destination: sample-eventhubs-kafka
     ```
-    > :notes: Please note that currently we do not support the automatic creation of EventHubs namespace resources, but Event hubs Entities is possible.
 
-1.  Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
+2. Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
 
-1.  Send a POST request
+3. Send a POST request
 
         $ curl -X POST http://localhost:8080/messages?message=hello
 
-1.  Verify in your app’s logs that a similar message was posted:
+4. Verify in your app’s logs that a similar message was posted:
 
     `New message received: hello`
 
-1.  Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
+5. Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
+
+### Use Azure Resource Manager to retrieve connection string
+
+If you don't want to configure connection string in your application, it's also possible to use Azure Resource Manager to retrieve the connection string. And you could use credentials stored in Azure CLI or other local development tool, like Visual Studio Code or Intellij IDEA to authenticate with Azure Resource Manager. Or Managed Identity if your application is deployed to Azure Cloud. Just make sure the principal have sufficient permission to read resource metadata.
+
+1. Update
+   [application.yaml][application.yaml]
+   file
+
+    ```yaml
+    spring:
+      cloud:
+        azure:
+          profile:
+            subscription-id: ${AZURE_SUBSCRIPTION_ID}
+          eventhubs:
+            namespace: ${AZURE_EVENTHUBS_NAMESPACE}
+            resource:
+              resource-group: ${AZURE_EVENTHUBS_RESOURCE_GROUP}
+        stream:
+          function:
+            definition: consume;supply
+          bindings:
+            consume-in-0:
+              destination: sample-eventhubs-kafka
+              group: $Default
+            supply-out-0:
+              destination: sample-eventhubs-kafka
+    ```
+2. Add the Azure Resource Manager dependency
+```xml
+<dependency>
+  <groupId>com.azure.spring</groupId>
+  <artifactId>spring-cloud-azure-resourcemanager</artifactId>
+</dependency>
+```
+3. Repeat steps 2 to 5 of the first example.
 
 ## Troubleshooting
 

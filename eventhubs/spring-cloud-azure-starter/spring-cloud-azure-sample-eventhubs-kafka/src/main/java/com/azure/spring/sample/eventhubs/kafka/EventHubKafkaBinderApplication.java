@@ -16,7 +16,7 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 /**
- * @author Warren Zhu
+ *
  */
 @SpringBootApplication
 public class EventHubKafkaBinderApplication {

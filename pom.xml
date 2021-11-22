@@ -74,13 +74,13 @@
     <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/multiple-property-source</module>
     <module>mediaservices/azure-spring-boot-sample-mediaservices</module>
     <module>servicebus/azure-messaging-servicebus/servicebus</module>
-    <module>servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-queue</module>
-    <module>servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-topic</module>
+    <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue</module>
+    <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-topic</module>
     <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder</module>
     <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-multibinders</module>
     <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder</module>
     <module>servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces</module>
-    <module>servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespaces</module>
+    <module>servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace</module>
     <module>storage/spring-cloud-azure-starter-storage-blob/storage-blob-sample</module>
     <module>storage/spring-cloud-azure-starter-storage-file-share/storage-file-sample</module>
     <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation</module>

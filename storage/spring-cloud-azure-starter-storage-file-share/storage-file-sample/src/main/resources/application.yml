@@ -1,0 +1,16 @@
+# Storage account name length should be between 3 and 24 and use numbers and lower-case letters only
+# Configuration
+spring:
+  cloud:
+    azure:
+      storage:
+        fileshare:
+          account-name: [storage-account-name]
+          account-key: [storage-account-access-key]
+          endpoint:  [Fill storage File service endpoint URL copied from portal]
+# Resource location, used in this sample
+resource:
+  file: [azure-file://[your-fileshareName]/[your-fileName]]
+
+
+

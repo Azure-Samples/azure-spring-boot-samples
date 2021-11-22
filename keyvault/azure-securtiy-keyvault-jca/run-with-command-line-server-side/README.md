@@ -1,13 +1,3 @@
----
-page_type: sample
-languages:
-- java
-products:
-- azure-key-vault
-description: "Sample of useing azure-security-keyvault-jca.jar via command line in server side"
-urlFragment: "azure-spring-boot-sample-run-with-command-line-server-side"
----
-
 # Use azure-security-keyvault-jca.jar via Command Line in server side
 
 ## Key concepts

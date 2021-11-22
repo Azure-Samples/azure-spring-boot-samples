@@ -27,10 +27,12 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 1. Create Azure Service Bus namespaces and two queue entities with name of `queue1` and `queue2`. Please see 
    [how to create][create-service-bus]. Note: this sample takes queue as example, it's also applied with Service Bus topic.
 
-## Examples
+We have several ways to config the Spring Integration for Service
+Bus. You can choose anyone of them.
 
-1. Update [application.yaml]. If you choose to use service principal or managed identity, update the `application-sp.yaml` or
- `application-mi.yaml` respectively.
+#### Method 1: Connection string based usage
+
+1. Update [application.yaml].
     ```yaml
     servicebus.producers[0]:
       entity-name: queue1
@@ -45,7 +47,39 @@ Running this sample will be charged by Azure. You can check the usage and bill a
       entity-type: queue
       connection-string: [connection-string-for-queue1-receive]
     ``` 
+#### Method 2: Service principal based usage
+
+1.  Create a service principal for use in by your app. Please follow
+    [create service principal from Azure CLI][create-sp-using-azure-cli].
+
+1.  Add Role Assignment for Service Bus. See
+    [Service principal for Azure resources with Service Bus][role-assignment]
+    to add role assignment for Service Bus. Assign `Contributor` role for service bus.
+
+1.  Update [application-sp.yaml][application-sp.yaml].
+    > We should specify `spring.profiles.active=sp` to run the Spring Boot application.
+    For App Service, please add a configuration entry for this.
     
+#### Method 3: MSI credential based usage
+
+##### Set up managed identity
+
+Please follow [create managed identity][create-managed-identity] to set up managed identity.
+
+##### Add Role Assignment for Service Bus
+
+1.  See [Managed identities for Azure resources with Service Bus][role-assignment]
+    to add role assignment for Service Bus. Assign `Contributor` role for managed identity.
+
+
+##### Update MSI related properties
+
+1.  Update [application-mi.yaml][application-mi.yaml].
+    > We should specify `spring.profiles.active=mi` to run the Spring Boot application.
+For App Service, please add a configuration entry for this.
+
+## Examples
+ 
 1.  Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
 
 1. Send a POST request to service bus queue
@@ -70,10 +104,13 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 [azure-account]: https://azure.microsoft.com/account/
 [azure-portal]: https://ms.portal.azure.com/
 [create-service-bus]: https://docs.microsoft.com/azure/service-bus-messaging/service-bus-create-namespace-portal
-[create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-managed-identity.md
-[create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-sp-using-azure-cli.md
+[create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-managed-identity.md
+[create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-sp-using-azure-cli.md
 
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces/src/main/resources/application.yaml
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces/src/main/resources/application.yaml
 
+[application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces/src/main/resources/application-mi.yaml
+[application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces/src/main/resources/application-sp.yaml
+[role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
 
 

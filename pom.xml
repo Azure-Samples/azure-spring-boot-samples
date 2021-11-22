@@ -71,7 +71,8 @@
     <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side</module>
     <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side</module>
     <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side</module>
-    <module>keyvault/azure-spring-boot-starter-keyvault-secrets/keyvault-secrets</module>
+    <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/single-property-source</module>
+    <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/multiple-property-source</module>
     <module>mediaservices/azure-spring-boot-sample-mediaservices</module>
     <module>servicebus/azure-messaging-servicebus/servicebus</module>
     <module>servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-queue</module>

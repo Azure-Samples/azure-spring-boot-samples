@@ -27,7 +27,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 ## Examples                                           
 ### Config the sample
 
-1. Update [application.properties](https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-sample-servicebus-jms/servicebus-jms-queue/src/main/resources/application.properties)
+1. Update [application.properties](https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue/src/main/resources/application.properties)
     ```properties
     # Fill service bus namespace connection string copied from portal
     spring.jms.servicebus.connection-string=[servicebus-namespace-connection-string]
@@ -45,7 +45,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 ### How to run
 1. Run with Maven
     ```
-    cd azure-spring-boot-samples/servicebus/spring-cloud-azure-sample-servicebus-jms/servicebus-jms-queue
+    cd azure-spring-boot-samples/servicebus/spring-cloud-azure-starter-servicebus-jms
     mvn spring-boot:run
     ```
 
@@ -74,5 +74,5 @@ Type | Reference Link
 
 <!-- LINKS -->
 
-[QueueSendController]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-sample-servicebus-jms/servicebus-jms-queue/src/main/java/com/azure/spring/sample/jms/queue/QueueSendController.java
-[QueueReceiveController]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-sample-servicebus-jms/servicebus-jms-queue/src/main/java/com/azure/spring/sample/jms/queue/QueueReceiveController.java
+[QueueSendController]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue/src/main/java/com/azure/spring/sample/jms/queue/QueueSendController.java
+[QueueReceiveController]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue/src/main/java/com/azure/spring/sample/jms/queue/QueueReceiveController.java

@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    azure:
+      eventhubs:
+        connection-string: ${AZURE_EVENTHUBS_CONNECTION_STRING}
+##  Configure these commented out properties if you prefer using Azure Resource Manager
+#      profile:
+#        subscription-id: ${AZURE_SUBSCRIPTION_ID}
+#      eventhubs:
+#        namespace: ${AZURE_EVENTHUBS_NAMESPACE}
+#        resource:
+#          resource-group: ${AZURE_EVENTHUBS_RESOURCE_GROUP}
+##
+    stream:
+      function:
+        definition: consume;supply
+      bindings:
+        consume-in-0:
+          destination: sample-eventhubs-kafka
+          group: $Default
+        supply-out-0:
+          destination: sample-eventhubs-kafka

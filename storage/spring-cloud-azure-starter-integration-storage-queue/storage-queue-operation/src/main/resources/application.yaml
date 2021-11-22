@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    azure:
+      storage:
+        queue:
+          account-name: [account-name]
+          account-key: [account-key]

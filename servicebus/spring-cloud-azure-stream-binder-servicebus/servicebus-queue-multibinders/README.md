@@ -133,9 +133,9 @@ processing.
 
 The binder provides the following configuration options:
 
-##### Serivce Bus Queue Producer Properties
+##### Service Bus Producer Properties
 
-It supports the following configurations with the format of `spring.cloud.stream.servicebus.<channelName>.producer`.
+It supports the following configurations with the format of `spring.cloud.stream.servicebus.bindings.<channelName>.producer`.
 
 **_sync_**
 
@@ -150,7 +150,7 @@ Effective only if `sync` is set to true. The amount of time to wait for a respon
 
 Default: `10000`
  
-##### Service Bus Queue Consumer Properties
+##### Service Bus Consumer Properties
 
 It supports the following configurations with the format of `spring.cloud.stream.servicebus.bindings.<channelName>.consumer`.
 

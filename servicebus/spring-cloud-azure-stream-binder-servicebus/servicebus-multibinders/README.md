@@ -5,7 +5,7 @@ languages:
 products:
 - azure-service-bus
 description: "Spring Cloud Azure Stream Binder Sample project for Multiple Service Bus Namespaces client library"
-urlFragment: "spring-cloud-azure-sample-service-bus-queue-multi-binders"
+urlFragment: "spring-cloud-azure-sample-service-bus-multi-binders"
 ---
 
 # Spring Cloud Azure Stream Binder for Multiple Service Bus Namespaces Code Sample shared library for Java
@@ -13,7 +13,7 @@ urlFragment: "spring-cloud-azure-sample-service-bus-queue-multi-binders"
 ## Key concepts
 This code sample demonstrates how to use the Spring Cloud Stream Binder for 
 multiple Azure Service Bus namespaces. In this sample you will bind to two Service Bus namespaces separately through 
-two queue binders.The sample app has two operating modes. One way is to expose a Restful API to receive string message,
+two binders.The sample app has two operating modes. One way is to expose a Restful API to receive string message,
 another way is to automatically provide string messages. These messages are published to a service bus.
 The sample will also consume messages from the same service bus.
 
@@ -82,10 +82,16 @@ and bill at [this link][azure-account].
                         connection-string: [servicebus-namespace-2-connection-string]
           servicebus:
             bindings:
-              consume1-out-0:
+              consume1-in-0:
+                consumer:
+                  checkpoint-mode: MANUAL
+              supply1-out-0:
                 producer:
                   entity-type: topic
-              consume2-out-0:
+              consume2-in-0:
+                consumer:
+                  checkpoint-mode: MANUAL
+              supply2-out-0:
                 producer:
                   entity-type: queue
           poller:
@@ -274,9 +280,9 @@ To | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.TO | String | 
 [deploy-to-app-service-via-ftp]: https://docs.microsoft.com/azure/app-service/deploy-ftp
 [managed-identities]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-multibinders/src/main/resources/application.yaml
-[application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-multibinders/src/main/resources/application-mi.yaml
-[application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-multibinders/src/main/resources/application-sp.yaml
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-multibinders/src/main/resources/application.yaml
+[application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-multibinders/src/main/resources/application-mi.yaml
+[application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-multibinders/src/main/resources/application-sp.yaml
 
 
 

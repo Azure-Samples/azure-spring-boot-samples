@@ -1,29 +1,20 @@
 spring:
   cloud:
-    azure:
-      credential:
-        client-id: [ client-id ]
-        client-secret: [ client-secret ]
-      profile:
-        tenant-id: [ tenant-id ]
-      servicebus:
-        namespace: [ servicebus-namespace ]
-
     stream:
       function:
         definition: consume1;supply1;consume2;supply2
       bindings:
         consume1-in-0:
-          destination: [ servicebus-topic-1-name ]
-          group: [ servicebus-topic-1-subscription-name ]
+          destination: [servicebus-topic-1-name]
+          group: [servicebus-topic-1-subscription-name]
         supply1-out-0:
-          destination: [ servicebus-topic-1-name-same-as-above ]
+          destination: [servicebus-topic-1-name-same-as-above]
         consume2-in-0:
           binder: servicebus-2
-          destination: [ servicebus-queue-1-name ]
+          destination: [servicebus-queue-1-name]
         supply2-out-0:
           binder: servicebus-2
-          destination: [ servicebus-queue-1-name-same-as-above ]
+          destination: [servicebus-queue-1-name-same-as-above]
       binders:
         servicebus-1:
           type: servicebus
@@ -33,7 +24,7 @@ spring:
               cloud:
                 azure:
                   servicebus:
-                    connection-string: [ servicebus-namespace-1-connection-string ]
+                    connection-string: [servicebus-namespace-1-connection-string]
         servicebus-2:
           type: servicebus
           default-candidate: false
@@ -42,13 +33,19 @@ spring:
               cloud:
                 azure:
                   servicebus:
-                    connection-string: [ servicebus-namespace-2-connection-string ]
+                    connection-string: [servicebus-namespace-2-connection-string]
       servicebus:
         bindings:
-          consume1-out-0:
+          consume1-in-0:
+            consumer:
+              checkpoint-mode: MANUAL
+          supply1-out-0:
             producer:
               entity-type: topic
-          consume2-out-0:
+          consume2-in-0:
+            consumer:
+              checkpoint-mode: MANUAL
+          supply2-out-0:
             producer:
               entity-type: queue
       poller:

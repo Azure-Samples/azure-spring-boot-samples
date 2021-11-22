@@ -2,11 +2,10 @@ spring:
   cloud:
     azure:
       credential:
-        managed-identity-client-id: [ managed-identity-client-id ]
+        client-id: [ client-id ]
+        client-secret: [ client-secret ]
       profile:
         tenant-id: [ tenant-id ]
-      servicebus:
-        namespace: [ servicebus-namespace ]
     stream:
       function:
         definition: consume1;supply1;consume2;supply2
@@ -43,10 +42,16 @@ spring:
                     connection-string: [ servicebus-namespace-2-connection-string ]
       servicebus:
         bindings:
-          consume1-out-0:
+          consume1-in-0:
+            consumer:
+              checkpoint-mode: MANUAL
+          supply1-out-0:
             producer:
               entity-type: topic
-          consume2-out-0:
+          consume2-in-0:
+            consumer:
+              checkpoint-mode: MANUAL
+          supply2-out-0:
             producer:
               entity-type: queue
       poller:

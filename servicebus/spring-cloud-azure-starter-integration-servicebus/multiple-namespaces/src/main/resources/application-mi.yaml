@@ -1,0 +1,24 @@
+servicebus.producers[0]:
+  entity-name: queue1
+  entity-type: queue
+  namespace: [servicebus-namespace-for-queue1]
+  credential:
+    managed-identity-client-id: [managed-identity-client-id-for-queue1-send]
+  profile:
+    tenant-id: [tenant-id]
+servicebus.producers[1]:
+  entity-name: queue2
+  entity-type: queue
+  namespace: [servicebus-namespace-for-queue2]
+  credential:
+    managed-identity-client-id: [managed-identity-client-id-for-queue2-send]
+  profile:
+    tenant-id: [tenant-id]
+servicebus.processors[0]:
+  entity-name: queue1
+  entity-type: queue
+  namespace: [servicebus-namespace-for-queue1]
+  credential:
+    managed-identity-client-id: [managed-identity-client-id-for-queue1-receive]
+  profile:
+    tenant-id: [tenant-id]

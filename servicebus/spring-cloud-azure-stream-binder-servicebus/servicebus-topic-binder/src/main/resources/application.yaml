@@ -2,16 +2,16 @@ spring:
   cloud:
     azure:
       servicebus:
-        connection-string: [servicebus-namespace-connection-string]
+        connection-string: ${AZURE_SERVICEBUS_BINDER_CONNECTION_STRING}
     stream:
       function:
         definition: consume;supply
       bindings:
         consume-in-0:
-          destination: [servicebus-topic-name]
-          group: [topic-subscription-name]
+          destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
+          group: ${AZURE_SERVICEBUS_TOPIC_SUBSCRIPTION_NAME}
         supply-out-0:
-          destination: [servicebus-topic-name-same-as-above]
+          destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
       servicebus:
         bindings:
           consume-in-0:

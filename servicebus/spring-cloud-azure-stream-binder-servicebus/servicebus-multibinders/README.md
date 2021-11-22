@@ -51,16 +51,16 @@ and bill at [this link][azure-account].
             definition: consume1;supply1;consume2;supply2
           bindings:
             consume1-in-0:
-              destination: [servicebus-topic-1-name]
-              group: [servicebus-topic-1-subscription-name]
+              destination: ${AZURE_SERVICEBUS_QUEUE_OR_TOPIC_NAME}
+              #group: ${AZURE_SERVICEBUS_TOPIC_SUBSCRIPTION_NAME}
             supply1-out-0:
-              destination: [servicebus-topic-1-name-same-as-above]
+              destination: ${AZURE_SERVICEBUS_QUEUE_OR_TOPIC_NAME}
             consume2-in-0:
               binder: servicebus-2
-              destination: [servicebus-queue-1-name]
+              destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
             supply2-out-0:
               binder: servicebus-2
-              destination: [servicebus-queue-1-name-same-as-above]
+              destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
           binders:
             servicebus-1:
               type: servicebus
@@ -70,7 +70,7 @@ and bill at [this link][azure-account].
                   cloud:
                     azure:
                       servicebus:
-                        connection-string: [servicebus-namespace-1-connection-string]
+                        connection-string: ${AZURE_SERVICEBUS1_BINDER_CONNECTION_STRING}
             servicebus-2:
               type: servicebus
               default-candidate: false
@@ -79,7 +79,7 @@ and bill at [this link][azure-account].
                   cloud:
                     azure:
                       servicebus:
-                        connection-string: [servicebus-namespace-2-connection-string]
+                        connection-string: ${AZURE_SERVICEBUS2_BINDER_CONNECTION_STRING}
           servicebus:
             bindings:
               consume1-in-0:

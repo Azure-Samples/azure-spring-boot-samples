@@ -2,19 +2,19 @@ spring:
   cloud:
     azure:
       credential:
-        managed-identity-client-id: [ managed-identity-client-id ]
+        managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID]
       profile:
-        tenant-id: [ tenant-id ]
+        tenant-id: ${AZURE_TENANT_ID}
       servicebus:
-        namespace: [servicebus-namespace]
+        namespace: ${AZURE_SERVICEBUS_BINDER_NAMESPACE}
     stream:
       function:
         definition: consume;supply
       bindings:
         consume-in-0:
-          destination: [ servicebus-queue-name ]
+          destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
         supply-out-0:
-          destination: [ servicebus-queue-name-same-as-above ]
+          destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
       servicebus:
         bindings:
           consume-in-0:

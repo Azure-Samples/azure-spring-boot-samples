@@ -13,14 +13,14 @@
 
 | Azure Service    | Azure Spring Starter Dependency                                                                | Sample Project                                                                                                                    |
 |------------------|------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------|
-| AAD              | [azure-spring-boot-starter-active-directory-b2c:3.9.0]                                         | [aad-b2c-resource-server](aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-resource-server)                             |
-| AAD              | [azure-spring-boot-starter-active-directory-b2c:3.9.0]                                         | [aad-b2c-web-application](aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-web-application)                             |
-| AAD              | [azure-spring-boot-starter-active-directory:3.9.0]                                             | [aad-resource-server-by-filter-stateless](aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter-stateless) |
-| AAD              | [azure-spring-boot-starter-active-directory:3.9.0]                                             | [aad-resource-server-by-filter](aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter)                     |
-| AAD              | [azure-spring-boot-starter-active-directory:3.9.0]                                             | [aad-resource-server-obo](aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo)                                 |
-| AAD              | [azure-spring-boot-starter-active-directory:3.9.0]                                             | [aad-resource-server](aad/azure-spring-boot-starter-active-directory/aad-resource-server)                                         |
-| AAD              | [azure-spring-boot-starter-active-directory:3.9.0]                                             | [aad-web-application](aad/azure-spring-boot-starter-active-directory/aad-web-application)                                         |
-| AAD              | [azure-spring-boot-starter-active-directory:3.9.0]                                             | [aad-webapp-resource-server](aad/azure-spring-boot-starter-active-directory/aad-web-application-and-resource-server)              |
+| AAD              | [spring-cloud-azure-starter-active-directory-b2c:4.0.0.beta-1]                                 | [aad-b2c-resource-server](aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server)                             |
+| AAD              | [spring-cloud-azure-starter-active-directory-b2c:4.0.0.beta-1]                                 | [aad-b2c-web-application](aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application)                             |
+| AAD              | [spring-cloud-azure-starter-active-directory:4.0.0.beta-1]                                     | [aad-resource-server-by-filter-stateless](aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless) |
+| AAD              | [spring-cloud-azure-starter-active-directory:4.0.0.beta-1]                                     | [aad-resource-server-by-filter](aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter)                     |
+| AAD              | [spring-cloud-azure-starter-active-directory:4.0.0.beta-1]                                     | [aad-resource-server-obo](aad/spring-cloud-azure-starter-active-directory/aad-resource-server-obo)                                 |
+| AAD              | [spring-cloud-azure-starter-active-directory:4.0.0.beta-1]                                     | [aad-resource-server](aad/spring-cloud-azure-starter-active-directory/aad-resource-server)                                         |
+| AAD              | [spring-cloud-azure-starter-active-directory:4.0.0.beta-1]                                     | [aad-web-application](aad/spring-cloud-azure-starter-active-directory/aad-web-application)                                         |
+| AAD              | [spring-cloud-azure-starter-active-directory:4.0.0.beta-1]                                     | [aad-webapp-resource-server](aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server)              |
 | appconfiguration | [azure-spring-boot-starter-cosmos:3.9.0]                                                       | [azure-appconfiguration-conversion-sample-initial](appconfiguration/azure-appconfiguration-conversion-sample-initial)             |
 | appconfiguration | [spring-cloud-azure-appconfiguration-config:1.3.0]                                             | [azure-appconfiguration-sample](appconfiguration/azure-appconfiguration-sample)                                                   |
 | appconfiguration | [spring-cloud-azure-feature-management:1.3.0]                                                  | [feature-management-sample](appconfiguration/feature-management-sample)                                                           |
@@ -42,7 +42,7 @@
 | keyvault         | [azure-spring-boot-starter-keyvault-certificates:3.2.0]                                        | [keyvault-certificates-server-side](keyvault/azure-security-keyvault-jca/run-with-command-line-server-side)   |
 | keyvault         | [azure-security-keyvault-jca:2.1.0]                                                            | [run-with-command-line-server-side](keyvault/azure-security-keyvault-jca/run-with-command-line-client-side)   |
 | keyvault         | [azure-security-keyvault-jca:2.1.0]                                                            | [run-with-command-line-client-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side)   |
-| keyvault         | [azure-spring-boot-starter-keyvault-secrets:3.9.0]                                             | [keyvault-secrets](keyvault/azure-spring-boot-starter-keyvault-secrets/keyvault-secrets)                                          |
+| keyvault         | [spring-cloud-azure-starter-keyvault-secrets:4.0.0-beta.1]                                     | [keyvault-secrets](keyvault/spring-cloud-azure-starter-keyvault-secrets/keyvault-secrets)                                          |
 | mediaservices    | [azure-media:0.9.8]                                                                            | [azure-spring-boot-sample-mediaservices](mediaservices/azure-spring-boot-sample-mediaservices)                                    |
 | servicebus       | [azure-messaging-servicebus:7.4.0]                                                             | [servicebus](servicebus/azure-messaging-servicebus/servicebus)                                                                    |
 | servicebus       | [spring-cloud-azure-starter-servicebus-jms:4.0.0-beta.1]                                       | [servicebus-jms-queue](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue)                                  |
@@ -68,16 +68,16 @@
 [spring-cloud-starter-azure-appconfiguration-config:1.3.0]: https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-starter-azure-appconfiguration-config/1.3.0/jar
 [azure-messaging-servicebus:7.4.0]: https://search.maven.org/artifact/com.azure/azure-messaging-servicebus/7.4.0/jar
 [azure-media:0.9.8]: https://search.maven.org/artifact/com.microsoft.azure/azure-media/0.9.8/jar
-[azure-spring-boot-starter-keyvault-secrets:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-secrets/3.9.0/jar
+[spring-cloud-azure-starter-keyvault-secrets:4.0.0-beta.1]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-keyvault-secrets/4.0.0-beta.1/jar
 [azure-spring-boot-starter-keyvault-certificates:3.2.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-certificates/3.2.0/jar
 [azure-spring-cloud-stream-binder-eventhubs:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-stream-binder-eventhubs/2.9.0/jar
 [azure-spring-cloud-starter-eventhubs:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-eventhubs/2.9.0/jar
 [azure-spring-boot-starter-cosmos:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-cosmos/3.9.0/jar
 [spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.1]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-stream-binder-servicebus/4.0.0-beta.1/jar
 [azure-spring-boot-starter-storage:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-storage/3.9.0/jar
-[azure-spring-boot-starter-active-directory:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-active-directory/3.9.0/jar
-[azure-spring-boot-starter-active-directory-b2c:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-active-directory-b2c/3.9.0/jar
-[spring-cloud-azure-starter-servicebus-jms:4.0.0-beta.1]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-servicebus-jms/4.0.0-beta.1/jar
+[spring-cloud-azure-starter-active-directory:4.0.0.beta-1]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-active-directory/3.9.0/jar
+[spring-cloud-azure-starter-active-directory-b2c:4.0.0.beta-1]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-active-directory-b2c/3.9.0/jar
+[azure-spring-boot-starter-servicebus-jms:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-servicebus-jms/3.9.0/jar
 [spring-cloud-azure-starter-integration-servicebus:4.0.0-beta.1]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-integration-servicebus/4.0.0-beta.1/jar
 [azure-spring-cloud-starter-storage-queue:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-storage-queue/2.9.0/jar
 [azure-security-keyvault-jca:2.1.0]: https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca

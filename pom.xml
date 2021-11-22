@@ -42,15 +42,14 @@
   </dependencyManagement>
 
   <modules>
-    <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
-    <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server</module>
-    <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter</module>
-    <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter-stateless</module>
-    <module>aad/azure-spring-boot-starter-active-directory/aad-resource-server-obo</module>
-    <module>aad/azure-spring-boot-starter-active-directory/aad-web-application</module>
-    <module>aad/azure-spring-boot-starter-active-directory/aad-web-application-and-resource-server</module>
-    <module>aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-web-application</module>
-    <module>aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-resource-server</module>
+    <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server</module>
+    <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter</module>
+    <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless</module>
+    <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-obo</module>
+    <module>aad/spring-cloud-azure-starter-active-directory/aad-web-application</module>
+    <module>aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server</module>
+    <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application</module>
+    <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-complete</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-initial</module>
     <module>appconfiguration/azure-appconfiguration-sample</module>
@@ -71,7 +70,8 @@
     <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side</module>
     <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side</module>
     <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side</module>
-    <module>keyvault/azure-spring-boot-starter-keyvault-secrets/keyvault-secrets</module>
+    <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/single-property-source</module>
+    <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/multiple-property-source</module>
     <module>mediaservices/azure-spring-boot-sample-mediaservices</module>
     <module>servicebus/azure-messaging-servicebus/servicebus</module>
     <module>servicebus/azure-spring-boot-starter-servicebus-jms/servicebus-jms-queue</module>

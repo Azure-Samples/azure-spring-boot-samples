@@ -159,30 +159,13 @@ Please follow [create managed identity][create-managed-identity] to set up manag
 
 ##### Redeploy Application
 
-If you update the `spring.cloud.azure.managed-identity.client-id`
+If you update the `spring.cloud.azure.credential.managed-identity-client-id`
 property after deploying the app, or update the role assignment for
 services, please try to redeploy the app again.
 
 > You can follow 
 > [Deploy a Spring Boot JAR file to Azure App Service][deploy-spring-boot-application-to-app-service] 
 > to deploy this application to App Service
-
-#### Enable auto create
-
-If you want to auto create the Azure Service Bus instances, make sure you add such properties 
-(only support the service principal and managed identity cases):
-
-```yaml
-spring:
-  cloud:
-    azure:
-      credential:
-        subscription-id: [subscription-id]
-        cloud: Azure
-      resource:
-        region: [region]
-```
-
 
 ## Examples
 
@@ -208,7 +191,7 @@ spring:
 
 The binder provides the following configuration options:
 
-##### Serivce Bus Queue Producer Properties
+##### Service Bus Producer Properties
 
 It supports the following configurations with the format of `spring.cloud.stream.servicebus.bindings.<channelName>.producer`.
 
@@ -225,7 +208,7 @@ Effective only if `sync` is set to true. The amount of time to wait for a respon
 
 Default: `10000`
  
-##### Service Bus Queue Consumer Properties
+##### Service Bus Consumer Properties
 
 It supports the following configurations with the format of `spring.cloud.stream.servicebus.bindings.<channelName>.consumer`.
 

@@ -43,8 +43,6 @@
 | keyvault         | [azure-security-keyvault-jca:2.1.0]                                                            | [run-with-command-line-server-side](keyvault/azure-security-keyvault-jca/run-with-command-line-client-side)   |
 | keyvault         | [azure-security-keyvault-jca:2.1.0]                                                            | [run-with-command-line-client-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side)   |
 | keyvault         | [spring-cloud-azure-starter-keyvault-secrets:4.0.0-beta.1]                                     | [keyvault-secrets](keyvault/spring-cloud-azure-starter-keyvault-secrets/keyvault-secrets)                                          |
-| mediaservices    | [azure-media:0.9.8]                                                                            | [azure-spring-boot-sample-mediaservices](mediaservices/azure-spring-boot-sample-mediaservices)                                    |
-| servicebus       | [azure-messaging-servicebus:7.4.0]                                                             | [servicebus](servicebus/azure-messaging-servicebus/servicebus)                                                                    |
 | servicebus       | [spring-cloud-azure-starter-servicebus-jms:4.0.0-beta.1]                                       | [servicebus-jms-queue](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue)                                  |
 | servicebus       | [spring-cloud-azure-starter-servicebus-jms:4.0.0-beta.1]                                       | [servicebus-jms-topic](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-topic)                                  |
 | servicebus       | [spring-cloud-azure-starter-integration-servicebus:4.0.0-beta.1]                               | [single-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespaces)                                 |
@@ -66,8 +64,6 @@
 [spring-cloud-azure-appconfiguration-config:1.3.0]: https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-azure-appconfiguration-config/1.3.0/jar
 [azure-spring-boot-starter-cosmos:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-cosmos/3.9.0/jar
 [spring-cloud-starter-azure-appconfiguration-config:1.3.0]: https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-starter-azure-appconfiguration-config/1.3.0/jar
-[azure-messaging-servicebus:7.4.0]: https://search.maven.org/artifact/com.azure/azure-messaging-servicebus/7.4.0/jar
-[azure-media:0.9.8]: https://search.maven.org/artifact/com.microsoft.azure/azure-media/0.9.8/jar
 [spring-cloud-azure-starter-keyvault-secrets:4.0.0-beta.1]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-keyvault-secrets/4.0.0-beta.1/jar
 [azure-spring-boot-starter-keyvault-certificates:3.2.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-certificates/3.2.0/jar
 [azure-spring-cloud-stream-binder-eventhubs:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-stream-binder-eventhubs/2.9.0/jar

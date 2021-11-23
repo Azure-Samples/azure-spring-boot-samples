@@ -39,7 +39,7 @@ Bus. You can choose anyone of them.
       cloud:
         azure:
           servicebus:
-            connection-string: [servicebus-namespace-connection-string] 
+            connection-string: ${AZURE_SERVICEBUS_BINDER_CONNECTION_STRING} 
     ```
 
 #### Method 2: Service principal based usage
@@ -57,12 +57,12 @@ Bus. You can choose anyone of them.
       cloud:
         azure:
           credential:
-            client-id: [ client-id ]
-            client-secret: [ client-secret ]
+            client-id: ${AZURE_CLIENT_ID}
+            client-secret: ${AZURE_CLIENT_SECRET}
           profile:
-            tenant-id: [ tenant-id ]
+            tenant-id: ${AZURE_TENANT_ID}
           servicebus:
-            namespace: [servicebus-namespace]
+            namespace: ${AZURE_SERVICEBUS_BINDER_NAMESPACE}
     ```
     > We should specify `spring.profiles.active=sp` to run the Spring Boot application.
     For App Service, please add a configuration entry for this.
@@ -86,11 +86,11 @@ Please follow [create managed identity][create-managed-identity] to set up manag
       cloud:
         azure:
           credential:
-            managed-identity-client-id: [managed-identity-client-id]
+            managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID}
           profile:
-            tenant-id: [tenant-id]
+            tenant-id: ${AZURE_TENANT_ID}
           servicebus:
-            namespace: [servicebus-namespace]
+            namespace: ${AZURE_SERVICEBUS_NAMESPACE}
     ```
     > We should specify `spring.profiles.active=mi` to run the Spring Boot application.
     For App Service, please add a configuration entry for this.

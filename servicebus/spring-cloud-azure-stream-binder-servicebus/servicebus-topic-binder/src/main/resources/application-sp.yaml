@@ -2,28 +2,21 @@ spring:
   cloud:
     azure:
       credential:
-        client-id: [ client-id ]
-        client-secret: [ client-secret ]
+        client-id: ${AZURE_CLIENT_ID}
+        client-secret: ${AZURE_CLIENT_SECRET}
       profile:
-        tenant-id: [ tenant-id ]
-
-#    Uncomment below configurations if you want to enable auto creating resources.
-#        subscription-id: [subscription-id]
-#        cloud: Azure
-#      resource:
-#        region: [region]
-
+        tenant-id: ${AZURE_TENANT_ID}
       servicebus:
-        namespace: [servicebus-namespace]
+        namespace: ${AZURE_SERVICEBUS_NAMESPACE}
     stream:
       function:
         definition: consume;supply
       bindings:
         consume-in-0:
-          destination: [ servicebus-topic-name ]
-          group: [ topic-subscription-name ]
+          destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
+          group: ${AZURE_SERVICEBUS_TOPIC_SUBSCRIPTION_NAME}
         supply-out-0:
-          destination: [ servicebus-topic-name-same-as-above ]
+          destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
       servicebus:
         bindings:
           consume-in-0:

@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    azure:
+      storage:
+        queue:
+          profile:
+            tenant-id: [tenant-id]
+          account-name: [storage-account]
+          credential:
+            client-id: [service-principal-id]
+            client-secret: [service-principal-secret]
+          resource:
+            resource-group: [resource-group]
+

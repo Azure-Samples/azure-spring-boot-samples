@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    azure:
+      credential:
+        managed-identity-client-id: [managed-identity-client-id]
+      profile:
+        tenant-id: [tenant-id]
+      servicebus:
+        namespace: [servicebus-namespace]

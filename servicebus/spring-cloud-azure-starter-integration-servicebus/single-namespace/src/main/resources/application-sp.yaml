@@ -1,0 +1,10 @@
+spring:
+  cloud:
+    azure:
+      credential:
+        client-id: [client-id]
+        client-secret: [client-secret]
+      profile:
+        tenant-id: [tenant-id]
+      servicebus:
+        namespace: [namespace]

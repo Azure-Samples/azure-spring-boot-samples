@@ -3,12 +3,9 @@
 
 package com.azure.spring.sample.storage.resource;
 
-import com.azure.spring.core.resource.AzureStorageBlobProtocolResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.WritableResource;
 import org.springframework.util.StreamUtils;
@@ -23,7 +20,6 @@ import java.nio.charset.Charset;
  */
 @RestController
 @RequestMapping("blob")
-@ConditionalOnBean(AzureStorageBlobProtocolResolver.class)
 public class BlobController {
 
     final static Logger logger = LoggerFactory.getLogger(BlobController.class);

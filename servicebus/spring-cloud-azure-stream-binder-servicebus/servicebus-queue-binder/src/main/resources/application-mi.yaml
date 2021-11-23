@@ -6,7 +6,7 @@ spring:
       profile:
         tenant-id: ${AZURE_TENANT_ID}
       servicebus:
-        namespace: ${AZURE_SERVICEBUS_BINDER_NAMESPACE}
+        namespace: ${AZURE_SERVICEBUS_NAMESPACE}
     stream:
       function:
         definition: consume;supply

@@ -2,9 +2,9 @@ spring:
   cloud:
     azure:
       credential:
-        client-id: [client-id]
-        client-secret: [client-secret]
+        client-id: ${AZURE_CLIENT_ID}
+        client-secret: ${AZURE_CLIENT_SECRET}
       profile:
-        tenant-id: [tenant-id]
+        tenant-id: ${AZURE_TENANT_ID}
       servicebus:
-        namespace: [namespace]
+        namespace: ${AZURE_SERVICEBUS_NAMESPACE}

@@ -2,7 +2,7 @@ spring:
   cloud:
     azure:
       servicebus:
-        connection-string: ${AZURE_SERVICEBUS_BINDER_CONNECTION_STRING}
+        connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING}
     stream:
       function:
         definition: consume;supply

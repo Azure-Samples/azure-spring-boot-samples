@@ -12,8 +12,8 @@ urlFragment: "spring-cloud-azure-sample-service-bus-multi-binders"
 
 ## Key concepts
 This code sample demonstrates how to use the Spring Cloud Stream Binder for 
-multiple Azure Service Bus namespaces. In this sample you will bind to two Service Bus namespaces separately through 
-two binders.The sample app has two operating modes. One way is to expose a Restful API to receive string message,
+multiple Azure Service Bus namespaces. In this sample you will bind to two Service Bus namespaces separately through
+a queue binder and a topic binder..The sample app has two operating modes. One way is to expose a Restful API to receive string message,
 another way is to automatically provide string messages. These messages are published to a service bus.
 The sample will also consume messages from the same service bus.
 
@@ -26,7 +26,7 @@ and bill at [this link][azure-account].
 
 ### Create Azure resources
 
-1.  Create two queues in different Service Bus namespaces.
+1.  Create a queue and a topic in different Service Bus namespaces.
     Please see [how to create][create-service-bus].
 
 1.  **[Optional]** if you want to use service principal, please follow 
@@ -51,10 +51,10 @@ and bill at [this link][azure-account].
             definition: consume1;supply1;consume2;supply2
           bindings:
             consume1-in-0:
-              destination: ${AZURE_SERVICEBUS_QUEUE_OR_TOPIC_NAME}
-              #group: ${AZURE_SERVICEBUS_TOPIC_SUBSCRIPTION_NAME}
+              destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
+              group: ${AZURE_SERVICEBUS_TOPIC_SUBSCRIPTION_NAME}
             supply1-out-0:
-              destination: ${AZURE_SERVICEBUS_QUEUE_OR_TOPIC_NAME}
+              destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
             consume2-in-0:
               binder: servicebus-2
               destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
@@ -70,7 +70,7 @@ and bill at [this link][azure-account].
                   cloud:
                     azure:
                       servicebus:
-                        connection-string: ${AZURE_SERVICEBUS1_BINDER_CONNECTION_STRING}
+                        connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_1}
             servicebus-2:
               type: servicebus
               default-candidate: false
@@ -79,7 +79,7 @@ and bill at [this link][azure-account].
                   cloud:
                     azure:
                       servicebus:
-                        connection-string: ${AZURE_SERVICEBUS2_BINDER_CONNECTION_STRING}
+                        connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_2}
           servicebus:
             bindings:
               consume1-in-0:

@@ -44,7 +44,7 @@ Service Bus Topic. You can choose anyone of them.
       cloud:
         azure:
           servicebus:
-            connection-string: ${AZURE_SERVICEBUS_BINDER_CONNECTION_STRING} 
+            connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING} 
         stream:
           function:
             definition: consume;supply
@@ -90,7 +90,7 @@ Service Bus Topic. You can choose anyone of them.
           profile:
             tenant-id: ${AZURE_TENANT_ID}
           servicebus:
-            namespace: ${AZURE_SERVICEBUS_BINDER_NAMESPACE}
+            namespace: ${AZURE_SERVICEBUS_NAMESPACE}
         stream:
           function:
             definition: consume;supply
@@ -142,7 +142,7 @@ Please follow [create managed identity][create-managed-identity] to set up manag
           profile:
             tenant-id: ${AZURE_TENANT_ID}
           servicebus:
-            namespace: ${AZURE_SERVICEBUS_BINDER_NAMESPACE}
+            namespace: ${AZURE_SERVICEBUS_NAMESPACE}
         stream:
           function:
             definition: consume;supply

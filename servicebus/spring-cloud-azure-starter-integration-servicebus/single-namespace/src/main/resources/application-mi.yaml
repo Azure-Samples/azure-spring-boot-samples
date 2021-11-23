@@ -2,8 +2,8 @@ spring:
   cloud:
     azure:
       credential:
-        managed-identity-client-id: [managed-identity-client-id]
+        managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID]
       profile:
-        tenant-id: [tenant-id]
+        tenant-id: ${AZURE_TENANT_ID}
       servicebus:
-        namespace: [servicebus-namespace]
+        namespace: ${AZURE_SERVICEBUS_NAMESPACE}

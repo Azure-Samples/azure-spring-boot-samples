@@ -14,7 +14,7 @@ spring:
 #        region: [region]
 
       servicebus:
-        namespace: ${AZURE_SERVICEBUS_BINDER_NAMESPACE}
+        namespace: ${AZURE_SERVICEBUS_NAMESPACE}
     stream:
       function:
         definition: consume;supply

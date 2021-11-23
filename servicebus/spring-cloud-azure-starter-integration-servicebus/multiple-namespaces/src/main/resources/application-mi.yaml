@@ -1,24 +1,24 @@
 servicebus.producers[0]:
   entity-name: queue1
   entity-type: queue
-  namespace: [servicebus-namespace-for-queue1]
+  namespace: ${AZURE_SERVICEBUS_NAMESPACE_1}
   credential:
-    managed-identity-client-id: [managed-identity-client-id-for-queue1-send]
+    managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID]
   profile:
-    tenant-id: [tenant-id]
+    tenant-id: ${AZURE_TENANT_ID}
 servicebus.producers[1]:
   entity-name: queue2
   entity-type: queue
-  namespace: [servicebus-namespace-for-queue2]
+  namespace: ${AZURE_SERVICEBUS_NAMESPACE_2}
   credential:
-    managed-identity-client-id: [managed-identity-client-id-for-queue2-send]
+    managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID]
   profile:
-    tenant-id: [tenant-id]
+    tenant-id: ${AZURE_TENANT_ID}
 servicebus.processors[0]:
   entity-name: queue1
   entity-type: queue
-  namespace: [servicebus-namespace-for-queue1]
+  namespace: ${AZURE_SERVICEBUS_NAMESPACE_3}
   credential:
-    managed-identity-client-id: [managed-identity-client-id-for-queue1-receive]
+    managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID]
   profile:
-    tenant-id: [tenant-id]
+    tenant-id: ${AZURE_TENANT_ID}

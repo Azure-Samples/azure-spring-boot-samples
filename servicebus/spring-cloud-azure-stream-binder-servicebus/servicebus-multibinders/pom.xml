@@ -12,7 +12,7 @@
 
   <artifactId>spring-cloud-azure-sample-stream-binder-servicebus-multiple</artifactId>
   <groupId>com.azure.spring</groupId>
-  <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:spring-cloud-azure-sample-stream-binder-servicebus-multiple;dependency} -->
+  <version>1.0.0</version> <!-- {com.azure.spring:spring-cloud-azure-sample-stream-binder-servicebus-multiple;dependency} -->
   <name>Spring Cloud Azure Sample Service Bus Queue Multiple Binders</name>
 
   <dependencies>
@@ -50,7 +50,7 @@
       <plugin>
         <groupId>com.microsoft.azure</groupId>
         <artifactId>azure-webapp-maven-plugin</artifactId>
-        <version>1.14.0</version> <!-- {x-version-update;com.microsoft.azure:azure-webapp-maven-plugin;external_dependency} -->
+        <version>1.14.0</version> <!-- {com.microsoft.azure:azure-webapp-maven-plugin;external_dependency} -->
         <configuration>
           <schemaVersion>V2</schemaVersion>
           <subscriptionId>[your-subscription-id]</subscriptionId>

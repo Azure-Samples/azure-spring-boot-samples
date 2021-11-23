@@ -2,9 +2,9 @@ spring:
   cloud:
     azure:
       eventhubs:
-        connection-string: [connection-string]
+        connection-string: ${AZURE_EVENTHUBS_CONNECTION_STRING}
         processor:
           checkpoint-store:
-            container-name: [container-name]
-            account-name: [account-name]
-            account-key: [account-key]
+            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+            account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
+            account-key: ${AZURE_STORAGE_ACCOUNT-KEY}

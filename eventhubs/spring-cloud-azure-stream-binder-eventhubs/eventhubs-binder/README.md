@@ -43,57 +43,67 @@ Event Hubs. You can choose anyone of them.
 #### Method 1: Connection string based usage
 
 1.  Update [application.yaml][application.yaml].
-
     ```yaml
     spring:
       cloud:
         azure:
           eventhubs:
-            # Fill event hub namespace connection string copied from portal
-            connection-string: [eventhub-namespace-connection-string] 
-            # Fill checkpoint storage account name, access key and container 
+            connection-string: ${AZURE_EVENTHUBS_CONNECTION_STRING}
             processor:
               checkpoint-store:
-                container-name: [checkpoint-container]
-                account-name: [checkpoint-storage-account]
-                account-key: [checkpoint-access-key]
+                container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
+                account-key: ${AZURE_STORAGE_ACCOUNT_KEY}
         stream:
           function:
             definition: consume;supply
           bindings:
             consume-in-0:
-              destination: [eventhub-name]
-              group: [consumer-group]
+              destination: ${AZURE_EVENTHUB_NAME}
+              group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
+              consumer:
+                batch-mode: false # false is default value
             supply-out-0:
-              destination: [the-same-eventhub-name-as-above]
+              destination: ${SAME_AS_ABOVE_DESTINATION}
+          eventhubs:
+            bindings:
+              consume-in-0:
+                consumer:
+                  checkpoint:
+                    mode: MANUAL # RECORD | MANUAL
+          default:
+            producer:
+              errorChannelEnabled: true
+          poller:
+            initial-delay: 0
+            fixed-delay: 1000
     ```
     
 #### Using Batch Consuming
 To enable [batch consuming][spring-cloud-stream-batch0-consumer] feature, you should add below configuration in the `batch` profile.
+
 ```yaml
 spring:
   cloud:
     azure:
       eventhubs:
-        connection-string:  [connection-string]
+        connection-string:  ${AZURE_EVENTHUBS_CONNECTION_STRING}
         processor:
           checkpoint-store:
-            container-name: [container-name]
-            account-name: [account-name]
-            account-key: [account-key]
+            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+            account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
+            account-key: ${AZURE_STORAGE_ACCOUNT_KEY}
     stream:
       function:
         definition: consume;supply
       bindings:
-
         consume-in-0:
-          content-type: text/plain # string message must specify this value
-          destination: [event hub destination]
-          group: [event hub group]
+          destination: ${AZURE_EVENTHUB_NAME}
+          group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
           consumer:
             batch-mode: true
         supply-out-0:
-          destination: [same as above destination]
+          destination: ${SAME_AS_ABOVE_DESTINATION}
       eventhubs:
         bindings:
           consume-in-0:
@@ -103,7 +113,12 @@ spring:
                 max-wait-time: 1m # Optional, the default value is null
               checkpoint:
                 mode: BATCH # BATCH | MANUAL
-
+      default:
+        producer:
+          errorChannelEnabled: true
+      poller:
+        initial-delay: 0
+        fixed-delay: 1000
 ```
 For checkpointing mode as BATCH, you can use below code to send messages and consume in batches, 
 see the [BatchProducerAndConsumerConfiguration.java][BatchProducerAndConsumerConfiguration]
@@ -167,28 +182,27 @@ For checkpointing mode as MANUAL, you can use below code to send messages and co
       cloud:
         azure:
           profile:
-            tenant-id: [ tenant-id ]
+            tenant-id: ${AZURE_TENANT_ID}
           credential:
-            client-id: [ client-id ]
-            client-secret: [ client-secret ]
-          resource-group: ${resource-group]
+            client-id: ${AZURE_CLIENT_ID}
+            client-secret: ${AZURE_CLIENT_SECRET}
           eventhubs:
             resource:
-              resource-group: [ resource-group ]
-            namespace: [eventhub-namespace]
+              resource-group: ${AZURE_RESOURCE_GROUP}
+            namespace: ${AZURE_EVENTHUBS_NAMESPACE}
             processor:
               checkpoint-store:
-                container-name: [ container-name ]
-                account-name: [ account-name ]
+                container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                account-name:  ${AZURE_STORAGE_ACCOUNT_NAME}
         stream:
           function:
             definition: consume;supply
           bindings:
             consume-in-0:
-              destination: [eventhub-name]
-              group: [consumer-group]
+              destination: ${AZURE_EVENTHUB_NAME}
+              group: ${AZURE_EVENTHUB_NAME}
             supply-out-0:
-              destination: [the-same-eventhub-name-as-above]
+              destination: ${SAME_AS_ABOVE_DESTINATION}
           eventhubs:
             bindings:
               consume-in-0:
@@ -200,8 +214,8 @@ For checkpointing mode as MANUAL, you can use below code to send messages and co
           poller:
             initial-delay: 0
             fixed-delay: 1000
-       
-    ```
+    
+    ```   
     > We should specify `spring.profiles.active=sp` to run the Spring Boot application.
     For App Service, please add a configuration entry for this.
 
@@ -225,29 +239,24 @@ Please follow [create managed identity][create-managed-identity] to set up manag
       cloud:
         azure:
           credential:
-            managed-identity-client-id: [ managed-identity-client-id ]
+            managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID}
           profile:
-            tenant-id: [ tenant-id ]
-    #     Uncomment below configurations if you want to enable auto creating resources.
-    #      auto-create-resources: true
-    #      environment: Azure
-    #      region: [ region ]
+            tenant-id: ${AZURE_TENANT_ID}
           eventhubs:
-            namespace: [eventhub-namespace]
+            namespace: ${AZURE_EVENTHUBS_NAMESPACE}
             processor:
               checkpoint-store:
-                container-name: [ container-name ]
-                account-name: [ account-name ]
+                container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
         stream:
           function:
             definition: consume;supply
           bindings:
             consume-in-0:
-              destination: [eventhub-name]
-              group: [consumer-group]
+              destination: ${AZURE_EVENTHUB_NAME}
+              group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
             supply-out-0:
-              destination: [the-same-eventhub-name-as-above]
-    
+              destination: ${SAME_AS_ABOVE_DESTINATION}
           eventhubs:
             bindings:
               consume-in-0:
@@ -259,7 +268,6 @@ Please follow [create managed identity][create-managed-identity] to set up manag
           poller:
             initial-delay: 0
             fixed-delay: 1000
-    
     ```
     > We should specify `spring.profiles.active=mi` to run the Spring Boot application.
     For App Service, please add a configuration entry for this.
@@ -321,11 +329,12 @@ services, please try to redeploy the app again.
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
 
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder/src/spring-cloud-azure_4.0/resources/application-mi.yaml
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder/src/spring-cloud-azure_4.0/resources/application.yaml
-[application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder/src/spring-cloud-azure_4.0/resources/application-sp.yaml
+[application-mi.yaml]: src/main/resources/application-mi.yaml
+[application.yaml]: src/main/resources/application.yaml
+[application-sp.yaml]: src/main/resources/application-sp.yaml
 [StreamBridge]: https://docs.spring.io/spring-cloud-stream/docs/3.1.3/reference/html/spring-cloud-stream.html#_sending_arbitrary_data_to_an_output_e_g_foreign_event_driven_sources
 [spring-cloud-stream-batch0-consumer]: https://docs.spring.io/spring-cloud-stream/docs/3.1.4/reference/html/spring-cloud-stream.html#_batch_consumers
-[BatchProducerAndConsumerConfiguration]: ./src/spring-cloud-azure_4.0/java/com/azure/spring/sample/eventhubs/binder/BatchProducerAndConsumerConfiguration.java
+[BatchProducerAndConsumerConfiguration]: 
+src/main/java/com/azure/spring/sample/eventhubs/binder/BatchProducerAndConsumerConfiguration.java
 
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable

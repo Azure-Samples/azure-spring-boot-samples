@@ -2,28 +2,27 @@ spring:
   cloud:
     azure:
       profile:
-        tenant-id: [ tenant-id ]
+        tenant-id: ${AZURE_TENANT_ID}
       credential:
-        client-id: [ client-id ]
-        client-secret: [ client-secret ]
-      resource-group: ${resource-group]
+        client-id: ${AZURE_CLIENT_ID}
+        client-secret: ${AZURE_CLIENT_SECRET}
       eventhubs:
         resource:
-          resource-group: [ resource-group ]
-        namespace: [eventhub-namespace]
+          resource-group: ${AZURE_RESOURCE_GROUP}
+        namespace: ${AZURE_EVENTHUBS_NAMESPACE}
         processor:
           checkpoint-store:
-            container-name: [ container-name ]
-            account-name: [ account-name ]
+            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+            account-name:  ${AZURE_STORAGE_ACCOUNT_NAME}
     stream:
       function:
         definition: consume;supply
       bindings:
         consume-in-0:
-          destination: [eventhub-name]
-          group: [consumer-group]
+          destination: ${AZURE_EVENTHUB_NAME}
+          group: ${AZURE_EVENTHUB_NAME}
         supply-out-0:
-          destination: [the-same-eventhub-name-as-above]
+          destination: ${SAME_AS_ABOVE_DESTINATION}
       eventhubs:
         bindings:
           consume-in-0:

@@ -41,20 +41,18 @@ Bus. You can choose anyone of them.
 > 
 #### Method 1: Connection string based usage
 
-1. Update [application.yaml]. If you choose to use
-   service principal or managed identity, update the `application-sp.yaml` or
-   `application-mi.yaml` respectively.
+1. Update [application.yaml].
     ```yaml
     spring:
-        cloud:
-            azure:
-                eventhubs:
-                    connection-string: [connection-string]
-                    processor:
-                        checkpoint-store:
-                          container-name: [container-name]
-                          account-name: [account-name]
-                          account-key: [account-key]
+      cloud:
+        azure:
+          eventhubs:
+            connection-string: ${AZURE_EVENTHUBS_CONNECTION_STRING}
+            processor:
+              checkpoint-store:
+                container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
+                account-key: ${AZURE_STORAGE_ACCOUNT-KEY}
     ```
 
 1.  Update event hub name and consumer group in
@@ -75,18 +73,18 @@ Bus. You can choose anyone of them.
       cloud:
         azure:
           profile:
-            tenant-id: [tenant-id]
+            tenant-id: ${AZURE_TENANT_ID}
           credential:
-            client-id: [client-id]
-            client-secret: [client-secret]
+            client-id: ${AZURE_CLIENT_ID}
+            client-secret: ${AZURE_CLIENT_SECRET}
           eventhubs:
             resource:
-              resource-group: [resource-group]
-            namespace: [namespace]
+              resource-group: ${AZURE_RESOURCE_GROUP}
+            namespace: ${AZURE_EVENTHUBS_NAMESPACE}
             processor:
               checkpoint-store:
-                container-name: [container-name]
-                account-name: [account-name]
+                container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                account-name:  ${AZURE_STORAGE_ACCOUNT_NAME}
     ```
     > We should specify `spring.profiles.active=sp` to run the Spring Boot application.
     For App Service, please add a configuration entry for this.
@@ -110,19 +108,15 @@ Please follow [create managed identity][create-managed-identity] to set up manag
       cloud:
         azure:
           credential:
-            managed-identity-client-id: [ managed-identity-client-id ]
+            managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID}
           profile:
-            tenant-id: [ tenant-id ]
-          #        msi-enabled: true
-          #        client-id: [the-id-of-managed-identity]
-          #        resource-group: [ resource-group ]
-          #        subscription-id: [ subscription-id ]
+            tenant-id: ${AZURE_TENANT_ID}
           eventhubs:
-            namespace: [eventhub-namespace]
+            namespace: ${AZURE_EVENTHUBS_NAMESPACE}
             processor:
               checkpoint-store:
-                container-name: [container-name]
-                account-name: [account-name]
+                container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                account-name:  ${AZURE_STORAGE_ACCOUNT_NAME}
     ```
     > We should specify `spring.profiles.active=mi` to run the Spring Boot application.
     For App Service, please add a configuration entry for this.
@@ -167,9 +161,10 @@ services, please try to redeploy the app again.
 [create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-sp-using-azure-cli.md
 [eventhub-operation]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-integration-eventhubs/src/spring-cloud-azure_4.0/java/com/azure/spring/integration/eventhub/api/EventHubOperation.java
 
-[receive-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration/src/spring-cloud-azure_4.0/java/com/azure/spring/sample/eventhubs/ReceiveController.java
-[send-controller]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration/src/spring-cloud-azure_4.0/java/com/azure/spring/sample/eventhubs/SendController.java
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration/src/spring-cloud-azure_4.0/resources/application.yaml
-
+[receive-controller]: src/main/java/com/azure/spring/sample/eventhubs/ReceiveController.java
+[send-controller]: src/main/java/com/azure/spring/sample/eventhubs/SendController.java
+[application.yaml]: src/main/resources/application.yaml
+[application-sp.yaml]: src/main/resources/application-sp.yaml
+[application-mi.yaml]: src/main/resources/application-mi.yaml
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
 

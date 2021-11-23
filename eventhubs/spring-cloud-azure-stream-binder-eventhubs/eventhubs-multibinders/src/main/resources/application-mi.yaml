@@ -2,25 +2,25 @@ spring:
   cloud:
     azure:
       credential:
-        managed-identity-client-id: [ managed-identity-client-id ]
+        managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID}
       profile:
-        tenant-id: [ tenant-id ]
+        tenant-id: : ${AZURE_TENANT_ID}
     stream:
       function:
         definition: consume1;supply1;consume2;supply2
       bindings:
         consume1-in-0:
-          destination: ${eventhub-1-name]
-          group: ${consumer-group]
+          destination:  ${AZURE_EVENTHUB_1_NAME}
+          group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
         supply1-out-0:
-          destination: ${the-same-eventhub-1-name-as-above]
+          destination: ${THE_SAME_EVENTHUB_1_NAME_AS_ABOVE}
         consume2-in-0:
           binder: eventhub-2
-          destination: ${eventhub-2-name]
-          group: ${consumer-group]
+          destination: ${AZURE_EVENTHUB_2_NAME}
+          group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
         supply2-out-0:
           binder: eventhub-2
-          destination: ${the-same-eventhub-2-name-as-above]
+          destination: ${THE_SAME_EVENTHUB_2_NAME_AS_ABOVE}
 
       binders:
         eventhub-1:
@@ -31,11 +31,11 @@ spring:
               cloud:
                 azure:
                   eventhubs:
-                    namespace: ${first-eventhub-namespace]
+                    namespace: ${FIRST_EVENTHUB_NAMESPACE}
                     processor:
                       checkpoint-store:
-                        container-name: [ container-name ]
-                        account-name: [ account-name ]
+                        container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                        account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
         eventhub-2:
           type: eventhubs
           default-candidate: false
@@ -44,11 +44,11 @@ spring:
               cloud:
                 azure:
                   eventhubs:
-                    namespace: ${second-eventhub-namespace]
+                    namespace: ${SECOND_EVENTHUB_NAMESPACE}
                     processor:
                       checkpoint-store:
-                        container-name: [ container-name ]
-                        account-name: [ account-name ]
+                        container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                        account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
       eventhubs:
         bindings:
           consume1-in-0:

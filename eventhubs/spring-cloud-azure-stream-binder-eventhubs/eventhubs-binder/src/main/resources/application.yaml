@@ -1,27 +1,24 @@
 spring:
-  profiles:
-    active: [profile-name, default is 'default']
   cloud:
     azure:
       eventhubs:
-        connection-string: [connection-string]
+        connection-string: ${AZURE_EVENTHUBS_CONNECTION_STRING}
         processor:
           checkpoint-store:
-            container-name: [container-name]
-            account-name: [account-name]
-            account-key: [account-key]
+            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+            account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
+            account-key: ${AZURE_STORAGE_ACCOUNT_KEY}
     stream:
       function:
         definition: consume;supply
       bindings:
-
         consume-in-0:
-          destination: [event-hub name]
-          group: [event hub group name, default is $Default]
+          destination: ${AZURE_EVENTHUB_NAME}
+          group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
           consumer:
             batch-mode: false # false is default value
         supply-out-0:
-          destination: [same as above destination]
+          destination: ${SAME_AS_ABOVE_DESTINATION}
       eventhubs:
         bindings:
           consume-in-0:

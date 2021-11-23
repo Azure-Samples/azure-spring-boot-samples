@@ -49,25 +49,25 @@ Event Hubs. You can choose anyone of them.
 
     ```yaml
     spring:
+      profiles:
+        active: manual
       cloud:
         stream:
-          # To specify which functional bean to bind to the external destination(s) exposed by the bindings
           function:
             definition: consume1;supply1;consume2;supply2
           bindings:
             consume1-in-0:
-              destination: [eventhub-1-name]
-              group: [consumer-group]
+              destination: ${AZURE_EVENTHUB_1_NAME}
+              group:  ${AZURE_EVENTHUB_CONSUMER_GROUP}
             supply1-out-0:
-              destination: [the-same-eventhub-1-name-as-above]
+              destination: ${THE_SAME_EVENTHUB_1_NAME_AS_ABOVE]
             consume2-in-0:
               binder: eventhub-2
-              destination: [eventhub-2-name]
-              group: [consumer-group]
+              destination: ${AZURE_EVENTHUB_2_NAME}
+              group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
             supply2-out-0:
               binder: eventhub-2
-              destination: [the-same-eventhub-2-name-as-above]
-          
+              destination: ${THE_SAME_EVENTHUB_2_NAME_AS_ABOVE}
           binders:
             eventhub-1:
               type: eventhubs
@@ -77,39 +77,40 @@ Event Hubs. You can choose anyone of them.
                   cloud:
                     azure:
                       eventhubs:
-                        connection-string: [connection-string-of-first-eventhub-namespace]
+                        connection-string: ${CONNECTION_STRING_OF_FIRST_EVENTHUB_NAMESPACE}
                         processor:
                           checkpoint-store:
-                            container-name: [container-name]
-                            account-name: [account-name]
-                            account-key: [account-key]
+                            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                            account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
+                            account-key:  ${AZURE_STORAGE_ACCOUNT_KEY}
             eventhub-2:
-              type: eventhub
+              type: eventhubs
               default-candidate: false
               environment:
                 spring:
                   cloud:
                     azure:
                       eventhubs:
-                        connection-string: [connection-string-of-second-eventhub-namespace]
+                        connection-string: ${CONNECTION_STRING_OF_SECOND_EVENTHUB_NAMESPACE}
                         processor:
                           checkpoint-store:
-                            container-name: [container-name]
-                            account-name: [account-name]
-                            account-key: [account-key]
-          eventhub:
+                            container-name: ${AZURE_STORAGE_CONTAINER_2_NAME}
+                            account-name: ${AZURE_STORAGE_ACCOUNT_2_NAME}
+                            account-key:  ${AZURE_STORAGE_ACCOUNT_2_KEY}
+          eventhubs:
             bindings:
               consume1-in-0:
                 consumer:
-                  checkpoint-mode: MANUAL
+                  checkpoint:
+                    mode: MANUAL
               consume2-in-0:
                 consumer:
-                  checkpoint-mode: MANUAL
+                  checkpoint:
+                    mode: MANUAL
           poller:
             initial-delay: 0
             fixed-delay: 1000
     ```
-
 > The **defaultCandidate** configuration item:
 Whether the binder configuration is a candidate for being considered a
 default binder, or can be used only when explicitly referenced. This
@@ -130,36 +131,31 @@ processing.
    to add role assignment for Event Hubs. Assign `Contributor` role for event hubs.
 
 3. Update [application-sp.yaml][application-sp.yaml].
-    ```yaml
+     ```yaml
     spring:
       cloud:
         azure:
           profile:
-            tenant-id: [ tenant-id ]
+            tenant-id: ${AZURE_TENANT_ID}
           credential:
-            client-id: [ client-id ]
-            client-secret: [ client-secret ]
-            resource-group: ${resource-group]
-        #     Uncomment below configurations if you want to enable auto creating resources.
-        #      auto-create-resources: true
-        #      region: [region]
-        #      subscription-id: [subscription-id]
+            client-id: ${AZURE_CLIENT_ID}
+            client-secret: ${AZURE_CLIENT_SECRET}
         stream:
           function:
             definition: consume1;supply1;consume2;supply2
           bindings:
             consume1-in-0:
-              destination: [eventhub-1-name]
-              group: [consumer-group]
+              destination: ${AZURE_EVENTHUB_1_NAME}
+              group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
             supply1-out-0:
-              destination: [the-same-eventhub-1-name-as-above]
+              destination: ${THE_SAME_EVENTHUB_1_NAME_AS_ABOVE]
             consume2-in-0:
               binder: eventhub-2
-              destination: [eventhub-1-name]
-              group: [consumer-group]
+              destination: ${AZURE_EVENTHUB_2_NAME}
+              group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
             supply2-out-0:
               binder: eventhub-2
-              destination: [the-same-eventhub-2-name-as-above]
+              destination: ${THE_SAME_EVENTHUB_2_NAME_AS_ABOVE}
           binders:
             eventhub-1:
               type: eventhub
@@ -169,11 +165,11 @@ processing.
                   cloud:
                     azure:
                       eventhubs:
-                        namespace: [first-eventhub-namespace]
+                        namespace: ${FIRST_EVENTHUB_NAMESPACE}
                         processor:
                           checkpoint-store:
-                            container-name: [ container-name ]
-                            account-name: [ account-name ]
+                            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                            account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
             eventhub-2:
               type: eventhub
               default-candidate: false
@@ -182,11 +178,11 @@ processing.
                   cloud:
                     azure:
                       eventhubs:
-                        namespace: [second-eventhub-namespace]
+                        namespace: ${SECOND_EVENTHUB_NAMESPACE}
                         processor:
                           checkpoint-store:
-                            container-name: [ container-name ]
-                            account-name: [ account-name ]
+                            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                            account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
           eventhubs:
             bindings:
               consume1-in-0:
@@ -198,8 +194,7 @@ processing.
           poller:
             initial-delay: 0
             fixed-delay: 1000
-         
-    ```
+    ```    
    > We should specify `spring.profiles.active=sp` to run the Spring Boot application.
    For App Service, please add a configuration entry for this.
 
@@ -223,25 +218,25 @@ Please follow [create managed identity][create-managed-identity] to set up manag
       cloud:
         azure:
           credential:
-            managed-identity-client-id: [ managed-identity-client-id ]
+            managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID}
           profile:
-            tenant-id: [ tenant-id ]
+            tenant-id: : ${AZURE_TENANT_ID}
         stream:
           function:
             definition: consume1;supply1;consume2;supply2
           bindings:
             consume1-in-0:
-              destination: ${eventhub-1-name]
-              group: ${consumer-group]
+              destination:  ${AZURE_EVENTHUB_1_NAME}
+              group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
             supply1-out-0:
-              destination: ${the-same-eventhub-1-name-as-above]
+              destination: ${THE_SAME_EVENTHUB_1_NAME_AS_ABOVE}
             consume2-in-0:
               binder: eventhub-2
-              destination: ${eventhub-2-name]
-              group: ${consumer-group]
+              destination: ${AZURE_EVENTHUB_2_NAME}
+              group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
             supply2-out-0:
               binder: eventhub-2
-              destination: ${the-same-eventhub-2-name-as-above]
+              destination: ${THE_SAME_EVENTHUB_2_NAME_AS_ABOVE}
     
           binders:
             eventhub-1:
@@ -252,11 +247,11 @@ Please follow [create managed identity][create-managed-identity] to set up manag
                   cloud:
                     azure:
                       eventhubs:
-                        namespace: ${first-eventhub-namespace]
+                        namespace: ${FIRST_EVENTHUB_NAMESPACE}
                         processor:
                           checkpoint-store:
-                            container-name: [ container-name ]
-                            account-name: [ account-name ]
+                            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                            account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
             eventhub-2:
               type: eventhubs
               default-candidate: false
@@ -265,11 +260,11 @@ Please follow [create managed identity][create-managed-identity] to set up manag
                   cloud:
                     azure:
                       eventhubs:
-                        namespace: ${second-eventhub-namespace]
+                        namespace: ${SECOND_EVENTHUB_NAMESPACE}
                         processor:
                           checkpoint-store:
-                            container-name: [ container-name ]
-                            account-name: [ account-name ]
+                            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                            account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
           eventhubs:
             bindings:
               consume1-in-0:
@@ -281,8 +276,7 @@ Please follow [create managed identity][create-managed-identity] to set up manag
           poller:
             initial-delay: 0
             fixed-delay: 1000
-         
-    ```
+    ```    
     > We should specify `spring.profiles.active=mi` to run the Spring Boot application.
     For App Service, please add a configuration entry for this.
 
@@ -341,7 +335,9 @@ services, please try to redeploy the app again.
 [managed-identities]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/
 
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders/src/main/resources/application.yaml
+[application-mi.yaml]: src/main/resources/application-mi.yaml
+[application.yaml]: src/main/resources/application.yaml
+[application-sp.yaml]: src/main/resources/application-sp.yaml
 
 
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable

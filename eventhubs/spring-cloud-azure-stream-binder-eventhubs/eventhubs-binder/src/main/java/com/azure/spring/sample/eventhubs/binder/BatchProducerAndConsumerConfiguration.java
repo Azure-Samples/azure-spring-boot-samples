@@ -47,12 +47,6 @@ public class BatchProducerAndConsumerConfiguration {
                         ((List<Object>) message.getHeaders().get(EventHubsHeaders.ENQUEUED_TIME)).get(i));
             }
 
-
-       /*     Checkpointer checkpointer = (Checkpointer) message.getHeaders().get(CHECKPOINTER);
-            checkpointer.success()
-                    .doOnSuccess(success -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
-                    .doOnError(error -> LOGGER.error("Exception found", error))
-                    .subscribe();*/
         };
     }
 

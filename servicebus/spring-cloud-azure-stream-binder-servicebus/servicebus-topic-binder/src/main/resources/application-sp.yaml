@@ -6,13 +6,6 @@ spring:
         client-secret: ${AZURE_CLIENT_SECRET}
       profile:
         tenant-id: ${AZURE_TENANT_ID}
-
-#    Uncomment below configurations if you want to enable auto creating resources.
-#        subscription-id: [subscription-id]
-#        cloud: Azure
-#      resource:
-#        region: [region]
-
       servicebus:
         namespace: ${AZURE_SERVICEBUS_NAMESPACE}
     stream:

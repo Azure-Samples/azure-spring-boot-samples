@@ -12,7 +12,7 @@
 
   <artifactId>spring-cloud-azure-sample-stream-binder-servicebus-queue</artifactId>
   <groupId>com.azure.spring</groupId>
-  <version>1.0.0</version> <!-- {com.azure.spring:spring-cloud-azure-sample-stream-binder-servicebus-queue;dependency} -->
+  <version>1.0.0</version>
   <name>Spring Cloud Azure Sample Service Bus Queue Binder</name>
 
 
@@ -40,43 +40,4 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
-
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-      </plugin>
-
-      <!-- mvn azure-webapp:config -->
-      <plugin>
-        <groupId>com.microsoft.azure</groupId>
-        <artifactId>azure-webapp-maven-plugin</artifactId>
-        <version>1.14.0</version> <!-- {com.microsoft.azure:azure-webapp-maven-plugin;external_dependency} -->
-        <configuration>
-          <schemaVersion>V2</schemaVersion>
-          <subscriptionId>[your-subscription-id]</subscriptionId>
-          <resourceGroup>[your-resource-group]</resourceGroup>
-          <appName>[your-app-name]</appName>
-          <region>[your-region]</region>
-          <pricingTier>P1v2</pricingTier>
-          <runtime>
-            <os>Linux</os>
-            <javaVersion>Java 8</javaVersion>
-            <webContainer>Java SE</webContainer>
-          </runtime>
-          <deployment>
-            <resources>
-              <resource>
-                <directory>${project.basedir}/target</directory>
-                <includes>
-                  <include>*.jar</include>
-                </includes>
-              </resource>
-            </resources>
-          </deployment>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
 </project>

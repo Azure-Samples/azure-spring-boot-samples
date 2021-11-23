@@ -86,7 +86,7 @@ Please follow [create managed identity][create-managed-identity] to set up manag
       cloud:
         azure:
           credential:
-            managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID]
+            managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID}
           profile:
             tenant-id: ${AZURE_TENANT_ID}
           servicebus:

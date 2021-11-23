@@ -40,8 +40,8 @@
 | eventhubs        | [azure-spring-cloud-stream-binder-eventhubs:2.9.0]                                             | [eventhubs-multibinders](eventhubs/azure-spring-cloud-stream-binder-eventhubs/eventhubs-multibinders)                             |
 | keyvault         | [azure-spring-boot-starter-keyvault-certificates:3.10.0]                                       | [keyvault-certificates-client-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side)   |
 | keyvault         | [azure-spring-boot-starter-keyvault-certificates:3.10.0]                                       | [keyvault-certificates-server-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side)   |
-| keyvault         | N/A                                                                                            | [run-with-command-line-server-side](keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side)   |
-| keyvault         | N/A                                                                                            | [run-with-command-line-client-side](keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side)   |
+| keyvault         | [azure-security-keyvault-jca:2.2.0]                                                            | [run-with-command-line-server-side](keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side)   |
+| keyvault         | [azure-security-keyvault-jca:2.2.0]                                                            | [run-with-command-line-client-side](keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side)   |
 | keyvault         | [spring-cloud-azure-starter-keyvault-secrets:4.0.0-beta.2]                                     | [keyvault-secrets](keyvault/spring-cloud-azure-starter-keyvault-secrets/keyvault-secrets)                                          |
 | servicebus       | [spring-cloud-azure-starter-servicebus-jms:4.0.0-beta.2]                                       | [servicebus-jms-queue](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue)                                  |
 | servicebus       | [spring-cloud-azure-starter-servicebus-jms:4.0.0-beta.2]                                       | [servicebus-jms-topic](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-topic)                                  |
@@ -75,4 +75,5 @@
 [azure-security-keyvault-jca:2.1.0]: https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca
 [spring-cloud-azure-starter-integration-storage-queue:4.0.0-beta.2]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-integration-storage-queue/4.0.0-beta.2/jar
 [spring-cloud-azure-starter-storage-file-share:4.0.0-beta.2]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-storage-file-share/4.0.0-beta.2/jar
-[spring-cloud-azure-starter-storage-blob:4.0.0-beta.2]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-storage-blob/4.0.0-beta.2/jar 
+[spring-cloud-azure-starter-storage-blob:4.0.0-beta.2]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-storage-blob/4.0.0-beta.2/jar
+[azure-security-keyvault-jca:2.2.0]: https://search.maven.org/artifact/com.azure/azure-security-keyvault-jca/2.2.0/jar

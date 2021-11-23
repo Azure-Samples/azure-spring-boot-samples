@@ -27,13 +27,22 @@ and bill at [this link][azure-account].
 
 ### Create Azure resources
 
-1.  Create two Event Hubs in different Event Hub namespace. Please refer to 
+1. Create two Event Hubs in different Event Hub namespace. Please refer to 
     [Azure Event Hubs][create-event-hubs].
     Please note `Basic` tier is unsupported.
 
-1.  Create [Azure Storage][create-azure-storage] for checkpoint use.
+2. Create [Azure Storage][create-azure-storage] for checkpoint use.
 
-## Examples
+### Configuration credential options
+
+We have several ways to config the Spring Cloud Stream Binder for Azure
+Event Hubs. You can choose anyone of them.
+
+>[!Important]
+>
+>  When using the Restful API to send messages, the **Active profiles** must contain `manual`.
+
+#### Method 1: Connection string based usage
 
 1.  Update stream binding related properties in
     [application.yaml][application.yaml].
@@ -111,6 +120,184 @@ processing.
 >
 >  When using the Restful API to send messages, the **Active profiles** must contain `manual`.
 
+#### Method 2: Service principal based usage
+
+1. Create a service principal for use in by your app. Please follow
+   [create service principal from Azure CLI][create-sp-using-azure-cli].
+
+2. Add Role Assignment for Event Hubs. See
+   [Service principal for Azure resources with Event Hubs][role-assignment]
+   to add role assignment for Event Hubs. Assign `Contributor` role for event hubs.
+
+3. Update [application-sp.yaml][application-sp.yaml].
+    ```yaml
+    spring:
+      cloud:
+        azure:
+          profile:
+            tenant-id: [ tenant-id ]
+          credential:
+            client-id: [ client-id ]
+            client-secret: [ client-secret ]
+            resource-group: ${resource-group]
+        #     Uncomment below configurations if you want to enable auto creating resources.
+        #      auto-create-resources: true
+        #      region: [region]
+        #      subscription-id: [subscription-id]
+        stream:
+          function:
+            definition: consume1;supply1;consume2;supply2
+          bindings:
+            consume1-in-0:
+              destination: [eventhub-1-name]
+              group: [consumer-group]
+            supply1-out-0:
+              destination: [the-same-eventhub-1-name-as-above]
+            consume2-in-0:
+              binder: eventhub-2
+              destination: [eventhub-1-name]
+              group: [consumer-group]
+            supply2-out-0:
+              binder: eventhub-2
+              destination: [the-same-eventhub-2-name-as-above]
+          binders:
+            eventhub-1:
+              type: eventhub
+              default-candidate: true
+              environment:
+                spring:
+                  cloud:
+                    azure:
+                      eventhubs:
+                        namespace: [first-eventhub-namespace]
+                        processor:
+                          checkpoint-store:
+                            container-name: [ container-name ]
+                            account-name: [ account-name ]
+            eventhub-2:
+              type: eventhub
+              default-candidate: false
+              environment:
+                spring:
+                  cloud:
+                    azure:
+                      eventhubs:
+                        namespace: [second-eventhub-namespace]
+                        processor:
+                          checkpoint-store:
+                            container-name: [ container-name ]
+                            account-name: [ account-name ]
+          eventhubs:
+            bindings:
+              consume1-in-0:
+                consumer:
+                  checkpoint-mode: MANUAL
+              consume2-in-0:
+                consumer:
+                  checkpoint-mode: MANUAL
+          poller:
+            initial-delay: 0
+            fixed-delay: 1000
+         
+    ```
+   > We should specify `spring.profiles.active=sp` to run the Spring Boot application.
+   For App Service, please add a configuration entry for this.
+
+#### Method 3: MSI credential based usage
+
+##### Set up managed identity
+
+Please follow [create managed identity][create-managed-identity] to set up managed identity.
+
+##### Add Role Assignment for Event Hubs
+
+1.  See [Managed identities for Azure resources with Event Hubs][role-assignment]
+    to add role assignment for Event Hubs. Assign `Contributor` role for managed identity.
+
+
+##### Update MSI related properties
+
+1.  Update [application-mi.yaml][application-mi.yaml].
+    ```yaml
+    spring:
+      cloud:
+        azure:
+          credential:
+            managed-identity-client-id: [ managed-identity-client-id ]
+          profile:
+            tenant-id: [ tenant-id ]
+        stream:
+          function:
+            definition: consume1;supply1;consume2;supply2
+          bindings:
+            consume1-in-0:
+              destination: ${eventhub-1-name]
+              group: ${consumer-group]
+            supply1-out-0:
+              destination: ${the-same-eventhub-1-name-as-above]
+            consume2-in-0:
+              binder: eventhub-2
+              destination: ${eventhub-2-name]
+              group: ${consumer-group]
+            supply2-out-0:
+              binder: eventhub-2
+              destination: ${the-same-eventhub-2-name-as-above]
+    
+          binders:
+            eventhub-1:
+              type: eventhubs
+              default-candidate: true
+              environment:
+                spring:
+                  cloud:
+                    azure:
+                      eventhubs:
+                        namespace: ${first-eventhub-namespace]
+                        processor:
+                          checkpoint-store:
+                            container-name: [ container-name ]
+                            account-name: [ account-name ]
+            eventhub-2:
+              type: eventhubs
+              default-candidate: false
+              environment:
+                spring:
+                  cloud:
+                    azure:
+                      eventhubs:
+                        namespace: ${second-eventhub-namespace]
+                        processor:
+                          checkpoint-store:
+                            container-name: [ container-name ]
+                            account-name: [ account-name ]
+          eventhubs:
+            bindings:
+              consume1-in-0:
+                consumer:
+                  checkpoint-mode: MANUAL
+              consume2-in-0:
+                consumer:
+                  checkpoint-mode: MANUAL
+          poller:
+            initial-delay: 0
+            fixed-delay: 1000
+         
+    ```
+    > We should specify `spring.profiles.active=mi` to run the Spring Boot application.
+    For App Service, please add a configuration entry for this.
+
+##### Redeploy Application
+
+If you update the `spring.cloud.azure.credential.managed-identity-client-id`
+property after deploying the app, or update the role assignment for
+services, please try to redeploy the app again.
+
+> You can follow
+> [Deploy a Spring Boot JAR file to Azure App Service][deploy-spring-boot-application-to-app-service]
+> to deploy this application to App Service
+
+## Examples
+
 1.  Run the `mvn clean spring-boot:run` in the root of the code sample
     to get the app running.
 
@@ -155,3 +342,6 @@ processing.
 
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
 [application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders/src/main/resources/application.yaml
+
+
+[deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable

@@ -1,12 +1,18 @@
 spring:
   cloud:
     azure:
-      msi-enabled: true
-      client-id: [the-id-of-managed-identity]
-      resource-group: [ resource-group ]
-      subscription-id: [ subscription-id ]
+      credential:
+        managed-identity-client-id: [ managed-identity-client-id ]
+      profile:
+        tenant-id: [ tenant-id ]
+#        msi-enabled: true
+#        client-id: [the-id-of-managed-identity]
+#        resource-group: [ resource-group ]
+#        subscription-id: [ subscription-id ]
       eventhubs:
         namespace: [eventhub-namespace]
-        checkpoint-storage-account: [checkpoint-storage-account]
-        checkpoint-container: [checkpoint-container]
+        processor:
+          checkpoint-store:
+            container-name: [container-name]
+            account-name: [account-name]
 

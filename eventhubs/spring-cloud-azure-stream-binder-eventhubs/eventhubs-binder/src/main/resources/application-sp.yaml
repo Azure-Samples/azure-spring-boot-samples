@@ -1,22 +1,20 @@
 spring:
   cloud:
     azure:
-      client-id: [service-principal-id]
-      client-secret: [service-principal-secret]
-      tenant-id: [tenant-id]
-      resource-group: [resource-group]
-
-#     Uncomment below configurations if you want to enable auto creating resources.
-#
-#      subscription-id: [ subscription-id ]
-#      auto-create-resources: true
-#      environment: Azure
-#      region: [ region ]
-
-      eventhub:
+      profile:
+        tenant-id: [ tenant-id ]
+      credential:
+        client-id: [ client-id ]
+        client-secret: [ client-secret ]
+      resource-group: ${resource-group]
+      eventhubs:
+        resource:
+          resource-group: [ resource-group ]
         namespace: [eventhub-namespace]
-        checkpoint-storage-account: [checkpoint-storage-account]
-        checkpoint-container: [checkpoint-container]
+        processor:
+          checkpoint-store:
+            container-name: [ container-name ]
+            account-name: [ account-name ]
     stream:
       function:
         definition: consume;supply
@@ -26,8 +24,7 @@ spring:
           group: [consumer-group]
         supply-out-0:
           destination: [the-same-eventhub-name-as-above]
-
-      eventhub:
+      eventhubs:
         bindings:
           consume-in-0:
             consumer:

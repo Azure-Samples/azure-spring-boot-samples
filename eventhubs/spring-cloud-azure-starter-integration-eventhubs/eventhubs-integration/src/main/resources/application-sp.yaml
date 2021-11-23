@@ -1,12 +1,17 @@
 spring:
   cloud:
     azure:
-      client-id: [service-principal-id]
-      client-secret: [service-principal-secret]
-      tenant-id: [tenant-id]
-      resource-group: [resource-group]
-      eventhub:
-        namespace: [eventhub-namespace]
-        checkpoint-storage-account: [checkpoint-storage-account]
-        checkpoint-container: [checkpoint-container]
+      profile:
+        tenant-id: [tenant-id]
+      credential:
+        client-id: [client-id]
+        client-secret: [client-secret]
+      eventhubs:
+        resource:
+          resource-group: [resource-group]
+        namespace: [namespace]
+        processor:
+          checkpoint-store:
+            container-name: [container-name]
+            account-name: [account-name]
 

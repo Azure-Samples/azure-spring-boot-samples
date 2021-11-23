@@ -8,7 +8,7 @@ description: "Azure Spring Cloud Stream Binder Sample project for Event Hub clie
 urlFragment: "spring-cloud-azure-stream-binder-eventhubs"
 ---
 
-# Spring Cloud Azure Stream Binder for Event Hub Sample shared library for Java
+# Spring Cloud Azure Stream Binder for Event Hubs Sample shared library for Java
 
 ## Key concepts
 
@@ -23,9 +23,15 @@ endpoint from the same application.
 Running this sample will be charged by Azure. You can check the usage and bill at 
 [here][azure-account].
 
-
-
 ### Create Azure resources
+
+1. Create [Azure Event Hubs][create-event-hubs].
+    Please note `Basic` tier is unsupported. After creating the Azure Event Hub, you
+    can create your own Consumer Group or use the default "$Default" Consumer Group.
+
+2. Create [Azure Storage][create-azure-storage] for checkpoint usage.
+
+### Configuration credential options
 
 We have several ways to config the Spring Cloud Stream Binder for Azure
 Event Hubs. You can choose anyone of them.
@@ -34,14 +40,7 @@ Event Hubs. You can choose anyone of them.
 >
 >  When using the Restful API to send messages, the **Active profiles** must contain `manual`.
 
-
 #### Method 1: Connection string based usage
-
-1.  Create [Azure Event Hubs][create-event-hubs].
-    Please note `Basic` tier is unsupported. After creating the Azure Event Hub, you 
-    can create your own Consumer Group or use the default "$Default" Consumer Group.
-
-1.  Create [Azure Storage][create-azure-storage] for checkpoint usage.
 
 1.  Update [application.yaml][application.yaml].
 
@@ -68,7 +67,7 @@ Event Hubs. You can choose anyone of them.
             supply-out-0:
               destination: [the-same-eventhub-name-as-above]
     ```
-
+    
 #### Using Batch Consuming
 To enable [batch consuming][spring-cloud-stream-batch0-consumer] feature, you should add below configuration in the `batch` profile.
 ```yaml
@@ -153,6 +152,127 @@ For checkpointing mode as MANUAL, you can use below code to send messages and co
         };
     }
 ```
+#### Method 2: Service principal based usage
+
+1. Create a service principal for use in by your app. Please follow
+   [create service principal from Azure CLI][create-sp-using-azure-cli].
+
+2. Add Role Assignment for Event Hubs. See
+   [Service principal for Azure resources with Event Hubs][role-assignment]
+   to add role assignment for Event Hubs. Assign `Contributor` role for event hubs.
+
+3. Update [application-sp.yaml][application-sp.yaml].
+    ```yaml
+    spring:
+      cloud:
+        azure:
+          profile:
+            tenant-id: [ tenant-id ]
+          credential:
+            client-id: [ client-id ]
+            client-secret: [ client-secret ]
+          resource-group: ${resource-group]
+          eventhubs:
+            resource:
+              resource-group: [ resource-group ]
+            namespace: [eventhub-namespace]
+            processor:
+              checkpoint-store:
+                container-name: [ container-name ]
+                account-name: [ account-name ]
+        stream:
+          function:
+            definition: consume;supply
+          bindings:
+            consume-in-0:
+              destination: [eventhub-name]
+              group: [consumer-group]
+            supply-out-0:
+              destination: [the-same-eventhub-name-as-above]
+          eventhubs:
+            bindings:
+              consume-in-0:
+                consumer:
+                  checkpoint-mode: MANUAL
+          default:
+            producer:
+              errorChannelEnabled: true
+          poller:
+            initial-delay: 0
+            fixed-delay: 1000
+       
+    ```
+    > We should specify `spring.profiles.active=sp` to run the Spring Boot application.
+    For App Service, please add a configuration entry for this.
+
+#### Method 3: MSI credential based usage
+
+##### Set up managed identity
+
+Please follow [create managed identity][create-managed-identity] to set up managed identity.
+
+##### Add Role Assignment for Event Hubs
+
+1.  See [Managed identities for Azure resources with Event Hubs][role-assignment]
+    to add role assignment for Event Hubs. Assign `Contributor` role for managed identity.
+
+
+##### Update MSI related properties
+
+1.  Update [application-mi.yaml][application-mi.yaml].
+    ```yaml
+    spring:
+      cloud:
+        azure:
+          credential:
+            managed-identity-client-id: [ managed-identity-client-id ]
+          profile:
+            tenant-id: [ tenant-id ]
+    #     Uncomment below configurations if you want to enable auto creating resources.
+    #      auto-create-resources: true
+    #      environment: Azure
+    #      region: [ region ]
+          eventhubs:
+            namespace: [eventhub-namespace]
+            processor:
+              checkpoint-store:
+                container-name: [ container-name ]
+                account-name: [ account-name ]
+        stream:
+          function:
+            definition: consume;supply
+          bindings:
+            consume-in-0:
+              destination: [eventhub-name]
+              group: [consumer-group]
+            supply-out-0:
+              destination: [the-same-eventhub-name-as-above]
+    
+          eventhubs:
+            bindings:
+              consume-in-0:
+                consumer:
+                  checkpoint-mode: MANUAL
+          default:
+            producer:
+              errorChannelEnabled: true
+          poller:
+            initial-delay: 0
+            fixed-delay: 1000
+    
+    ```
+    > We should specify `spring.profiles.active=mi` to run the Spring Boot application.
+    For App Service, please add a configuration entry for this.
+
+##### Redeploy Application
+
+If you update the `spring.cloud.azure.credential.managed-identity-client-id`
+property after deploying the app, or update the role assignment for
+services, please try to redeploy the app again.
+
+> You can follow
+> [Deploy a Spring Boot JAR file to Azure App Service][deploy-spring-boot-application-to-app-service]
+> to deploy this application to App Service
 
 ## Examples
 
@@ -201,9 +321,11 @@ For checkpointing mode as MANUAL, you can use below code to send messages and co
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
 
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder/src/main/resources/application-mi.yaml
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder/src/main/resources/application.yaml
-[application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder/src/main/resources/application-sp.yaml
+[application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder/src/spring-cloud-azure_4.0/resources/application-mi.yaml
+[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder/src/spring-cloud-azure_4.0/resources/application.yaml
+[application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder/src/spring-cloud-azure_4.0/resources/application-sp.yaml
 [StreamBridge]: https://docs.spring.io/spring-cloud-stream/docs/3.1.3/reference/html/spring-cloud-stream.html#_sending_arbitrary_data_to_an_output_e_g_foreign_event_driven_sources
 [spring-cloud-stream-batch0-consumer]: https://docs.spring.io/spring-cloud-stream/docs/3.1.4/reference/html/spring-cloud-stream.html#_batch_consumers
-[BatchProducerAndConsumerConfiguration]: ./src/main/java/com/azure/spring/sample/eventhubs/binder/BatchProducerAndConsumerConfiguration.java
+[BatchProducerAndConsumerConfiguration]: ./src/spring-cloud-azure_4.0/java/com/azure/spring/sample/eventhubs/binder/BatchProducerAndConsumerConfiguration.java
+
+[deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable

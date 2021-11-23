@@ -1,21 +1,20 @@
 spring:
   cloud:
     azure:
-      msi-enabled: true
-      client-id: [the-id-of-managed-identity]
-      resource-group: [resource-group]
-      subscription-id: [subscription-id]
-
+      credential:
+        managed-identity-client-id: [ managed-identity-client-id ]
+      profile:
+        tenant-id: [ tenant-id ]
 #     Uncomment below configurations if you want to enable auto creating resources.
-#
 #      auto-create-resources: true
 #      environment: Azure
 #      region: [ region ]
-
-      eventhub:
+      eventhubs:
         namespace: [eventhub-namespace]
-        checkpoint-storage-account: [checkpoint-storage-account]
-        checkpoint-container: [checkpoint-container]
+        processor:
+          checkpoint-store:
+            container-name: [ container-name ]
+            account-name: [ account-name ]
     stream:
       function:
         definition: consume;supply
@@ -26,7 +25,7 @@ spring:
         supply-out-0:
           destination: [the-same-eventhub-name-as-above]
 
-      eventhub:
+      eventhubs:
         bindings:
           consume-in-0:
             consumer:

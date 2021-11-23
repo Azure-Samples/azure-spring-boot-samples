@@ -1,12 +1,13 @@
 spring:
   cloud:
     azure:
-      client-id: [service-principal-id]
-      client-secret: [service-principal-secret]
-      tenant-id: [tenant-id]
-      resource-group: [resource-group]
-      
-#     Uncomment below configurations if you want to enable auto creating resources.      
+      profile:
+        tenant-id: [ tenant-id ]
+      credential:
+        client-id: [ client-id ]
+        client-secret: [ client-secret ]
+        resource-group: ${resource-group]
+#     Uncomment below configurations if you want to enable auto creating resources.
 #      auto-create-resources: true
 #      region: [region]
 #      subscription-id: [subscription-id]
@@ -26,7 +27,6 @@ spring:
         supply2-out-0:
           binder: eventhub-2
           destination: [the-same-eventhub-2-name-as-above]
-
       binders:
         eventhub-1:
           type: eventhub
@@ -35,10 +35,12 @@ spring:
             spring:
               cloud:
                 azure:
-                  eventhub:
+                  eventhubs:
                     namespace: [first-eventhub-namespace]
-                    checkpoint-storage-account: [checkpoint-storage-account]
-                    checkpoint-container: [checkpoint-container-1]
+                    processor:
+                      checkpoint-store:
+                        container-name: [ container-name ]
+                        account-name: [ account-name ]
         eventhub-2:
           type: eventhub
           default-candidate: false
@@ -46,11 +48,13 @@ spring:
             spring:
               cloud:
                 azure:
-                  eventhub:
+                  eventhubs:
                     namespace: [second-eventhub-namespace]
-                    checkpoint-storage-account: [checkpoint-storage-account]
-                    checkpoint-container: [checkpoint-container-2]
-      eventhub:
+                    processor:
+                      checkpoint-store:
+                        container-name: [ container-name ]
+                        account-name: [ account-name ]
+      eventhubs:
         bindings:
           consume1-in-0:
             consumer:

@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    azure:
+      credential:
+        managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID}
+      profile:
+        tenant-id: ${AZURE_TENANT_ID}
+      eventhubs:
+        namespace: ${AZURE_EVENTHUBS_NAMESPACE}
+        processor:
+          checkpoint-store:
+            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+            account-name:  ${AZURE_STORAGE_ACCOUNT_NAME}

@@ -7,17 +7,11 @@ spring:
 # If AAD properties is not configured, global properties will be used.
 #      credential:
 #        client-id:
-#        client-secret:
-#      profile:
-#        tenant-id:
       active-directory:
         enabled: true
         credential:
           client-id: ${client-id}
-          client-secret: ${client-secret}
-        profile:
-          tenant-id: ${tenant-id}
-        user-group:
-          allowed-groups: group1,group2
+        session-stateless: true
+        app-id-uri: ${app-id-uri}
 
 

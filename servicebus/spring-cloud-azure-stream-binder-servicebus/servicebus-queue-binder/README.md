@@ -1,13 +1,3 @@
----
-page_type: sample
-languages:
-- java
-products:
-- azure-service-bus
-description: "Spring Cloud Azure Stream Binder for Service Bus queue Sample shared library for Java"
-urlFragment: "spring-cloud-azure-sample-stream-binder-servicebus-queue"
----
-
 # Spring Cloud Azure Stream Binder for Service Bus queue Sample shared library for Java
 
 ## Key concepts

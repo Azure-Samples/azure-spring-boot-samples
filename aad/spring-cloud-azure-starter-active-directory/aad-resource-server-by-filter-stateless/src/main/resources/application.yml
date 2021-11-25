@@ -10,8 +10,8 @@ spring:
       active-directory:
         enabled: true
         credential:
-          client-id: ${client-id}
+          client-id: ${AZURE_CLIENT_ID}
         session-stateless: true
-        app-id-uri: ${app-id-uri}
+        app-id-uri: ${APP_ID_URI}
 
 

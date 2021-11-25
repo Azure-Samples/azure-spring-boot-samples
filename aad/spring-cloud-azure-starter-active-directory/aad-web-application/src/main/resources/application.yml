@@ -15,10 +15,10 @@ spring:
       active-directory:
         enabled: true
         credential:
-          client-id: ${client-id}
-          client-secret: ${client-secret}
+          client-id: ${AZURE_CLIENT_ID}
+          client-secret: ${AZURE_CLIENT_SECRET}
         profile:
-          tenant-id: ${tenant-id}
+          tenant-id: ${AZURE_TENANT_ID}
         user-group:
           allowed-group-names: <group1>,<group2>
           allowed-group-ids: <group1-id>,<group2-id>    # When 'all' is used, all group id can be obtained.
@@ -33,8 +33,8 @@ spring:
               - https://graph.microsoft.com/Directory.Read.All
     #      webapiA:  # This is used to demonstrate on-behalf-of function. Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow
     #        scopes:
-    #          - <Web-API-A-app-id-url>/Obo.WebApiA.ExampleScope
+    #          - ${WEB_API_A_APP_ID_URL}/Obo.WebApiA.ExampleScope
     #      webapiB:  # This is used to demonstrate client_credentials type. Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow
     #        scopes:
-    #          - api://<Web-API-B-app-id-url>/.default
+    #          - api://${WEB_API_B_APP_ID_URL}/.default
     #        authorization-grant-type: client_credentials

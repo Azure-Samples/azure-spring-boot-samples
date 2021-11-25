@@ -104,7 +104,7 @@ spring:
               - https://graph.microsoft.com/Directory.Read.All
 #          webapiA:
 #            scopes:
-#              - <Web-API-A-app-id-url>/Obo.WebApiA.ExampleScope
+#              - ${WEB_API_A_APP_ID_URL}/Obo.WebApiA.ExampleScope
           
 #     enable-full-list is used to control whether to list all group ids, default is false
     

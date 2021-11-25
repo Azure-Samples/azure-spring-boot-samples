@@ -35,18 +35,18 @@ Follow the guide of [AAD B2C user flows creation](https://docs.microsoft.com/azu
 
 #### application.yml
 
-1. Fill in `${your-tenant-authorization-server-base-uri}` from **Azure AD B2C** portal `App registrations` blade, select **Endpoints**, copy the base endpoint uri(Global cloud format may looks like
+1. Fill in `${AUTHORIZATION_SERVER_BASE_URI}` from **Azure AD B2C** portal `App registrations` blade, select **Endpoints**, copy the base endpoint uri(Global cloud format may looks like
 `https://{your-tenant-name}.b2clogin.com/{your-tenant-name}.onmicrosoft.com`, China Cloud looks like `https://{your-tenant-name}.b2clogin.cn/{your-tenant-name}.partner.onmschina.cn`). 
 
     **NOTE**: The `spring.cloud.azure.active-directory.b2c.tenant` has been deprecated. Please use `spring.cloud.azure.active-directory.b2c.base-uri` instead.
 
 2. Select one registered instance under `Applications` from portal, and then:
-    1. Fill in `${your-client-id}` from `Application ID`.
-    2. Fill in `${your-client-secret}` from one of `Keys`.
+    1. Fill in `${AZURE_CLIENT_ID}` from `Application ID`.
+    2. Fill in `${AZURE_CLIENT_SECRET}` from one of `Keys`.
 3. Add your user flows defined on the Azure Portal under the `user-flows` configuration, which is a map, you can give each user flow a key and the value will be the name of user flow defined in AAD B2C. 
    By default, we use the key `sign-up-or-sign-in` for a **login** user flow and `password-reset` for the **Password reset** type user flow, you can choose to override them.
-4. Fill in `${your-login-user-flow-key}` with the key of your login user flow, we will use the value `sign-up-or-sign-in` to look up the user-flows map if this property is not provided.   
-5. Replace `${your-logout-success-url}` to `http://localhost:8080/login`.
+4. Fill in `${LOGIN_USER_FLOW_KEY}` with the key of your login user flow, we will use the value `sign-up-or-sign-in` to look up the user-flows map if this property is not provided.   
+5. Replace `${LOGOUT_SUCCESS_URL}` to `http://localhost:8080/login`.
 
 ```yaml
 spring:
@@ -55,16 +55,16 @@ spring:
       active-directory:
         b2c:
           enabled: true
-          base-uri: ${your-tenant-authorization-server-base-uri}
-          client-id: ${your-client-id}
-          client-secret: ${your-client-secret}
-          login-flow: ${your-login-user-flow-key}               # default to sign-up-or-sign-in, will look up the user-flows map with provided key.
-          logout-success-url: ${your-logout-success-url}
+          base-uri: ${AUTHORIZATION_SERVER_BASE_URI}
+          client-id: ${AZURE_CLIENT_ID}
+          client-secret: ${AZURE_CLIENT_SECRET}
+          login-flow: ${LOGIN_USER_FLOW_KEY}               # default to sign-up-or-sign-in, will look up the user-flows map with provided key.
+          logout-success-url: ${LOGOUT_SUCCESS_URL}
           user-flows:
-            password-reset: ${your-profile-edit-user-flow}
-            profile-edit: ${your-password-reset-user-flow}
-            sign-up-or-sign-in: ${your-sign-up-or-in-user-flow}
-          user-name-attribute-name: ${your-user-name-claim}
+            password-reset: ${PROFILE_EDIT_FLOW_NAME}
+            profile-edit: ${PASSWORD_RESET_USER_FLOW_NAME}
+            sign-up-or-sign-in: ${SIGN_UP_OR_SIGN_IN_FLOW_NAME}
+          user-name-attribute-name: ${USER_NAME_CLAIM}
 ```
 
 **NOTE**: If both `tenant` and `baseUri` are configured at the same time, only `baseUri` takes effect.

@@ -18,8 +18,8 @@ spring:
       active-directory:
         enabled: true
         credential:
-          client-id: ${client-id}
+          client-id: ${AZURE_CLIENT_ID}
         profile:
-          tenant-id: ${tenant-id}
-        app-id-uri:  ${your-app-id-uri}
+          tenant-id: ${AZURE_TENANT_ID}
+        app-id-uri:  ${APP_ID_URI}
 

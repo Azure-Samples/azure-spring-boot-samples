@@ -60,8 +60,8 @@
 [spring-cloud-starter-azure-appconfiguration-config:1.3.0]: https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-starter-azure-appconfiguration-config/1.3.0/jar
 [spring-cloud-azure-starter-keyvault-secrets:4.0.0-beta.2]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-keyvault-secrets/4.0.0-beta.2/jar
 [azure-spring-boot-starter-keyvault-certificates:3.2.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-certificates/3.10.0/jar
-[azure-spring-cloud-stream-binder-eventhubs:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-stream-binder-eventhubs/2.9.0/jar
-[azure-spring-cloud-starter-eventhubs:2.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-starter-eventhubs/2.9.0/jar
+[spring-cloud-azure-stream-binder-eventhubs:4.0.0-beta.2]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-stream-binder-eventhubs/4.0.0-beta.2/jar
+[spring-cloud-azure-starter-integration-eventhubs:4.0.0-beta.2]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-integration-eventhubs/4.0.0-beta.2/jar
 [spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.2]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-stream-binder-servicebus/4.0.0-beta.2/jar
 [spring-cloud-azure-starter-active-directory:4.0.0-beta.2]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-active-directory/4.0.0-beta.2/jar
 [spring-cloud-azure-starter-active-directory-b2c:4.0.0-beta.2]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-active-directory-b2c/4.0.0-beta.2/jar

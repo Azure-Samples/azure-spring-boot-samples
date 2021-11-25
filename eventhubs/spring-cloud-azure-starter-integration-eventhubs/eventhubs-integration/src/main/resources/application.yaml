@@ -7,4 +7,4 @@ spring:
           checkpoint-store:
             container-name: ${AZURE_STORAGE_CONTAINER_NAME}
             account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
-            account-key: ${AZURE_STORAGE_ACCOUNT-KEY}
+            account-key: ${AZURE_STORAGE_ACCOUNT_KEY}

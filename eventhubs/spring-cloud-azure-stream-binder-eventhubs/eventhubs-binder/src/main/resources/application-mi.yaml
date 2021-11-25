@@ -24,7 +24,8 @@ spring:
         bindings:
           consume-in-0:
             consumer:
-              checkpoint-mode: MANUAL
+              checkpoint:
+                mode: MANUAL
       default:
         producer:
           errorChannelEnabled: true

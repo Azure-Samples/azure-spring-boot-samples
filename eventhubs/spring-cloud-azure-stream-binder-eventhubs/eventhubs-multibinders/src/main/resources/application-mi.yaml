@@ -53,10 +53,12 @@ spring:
         bindings:
           consume1-in-0:
             consumer:
-              checkpoint-mode: MANUAL
+              checkpoint:
+                mode: MANUAL
           consume2-in-0:
             consumer:
-              checkpoint-mode: MANUAL
+              checkpoint:
+                mode: MANUAL
       poller:
         initial-delay: 0
         fixed-delay: 1000

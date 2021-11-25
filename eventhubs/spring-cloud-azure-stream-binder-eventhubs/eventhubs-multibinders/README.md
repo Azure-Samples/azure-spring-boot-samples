@@ -4,19 +4,19 @@ languages:
 - java
 products:
 - azure-event-hubs
-description: "Spring Cloud Azure Stream Binder Sample project for Multiple Event Hub Namespace client 
-  library"
-urlFragment: "spring-cloud-azure-sample-eventhubs-multibinders"
+description: "Spring Cloud Azure Stream Binder Sample project for Multiple Event Hubs Namespace client library"
+urlFragment: "spring-cloud-azure-stream-multibinders-sample-eventhubs"
 ---
 
-# Spring Cloud Azure Stream Binder for Multiple Event Hub Namespace Code Sample shared library for Java
+# Spring Cloud Azure Stream Binder for Multiple Event Hubs Namespace Code Sample shared library for Java
 
 ## Key concepts
-This sample demonstrates how to use the Spring Cloud Stream Binder
-for multiple Azure Event Hubs namespaces. In this sample you will bind to
-two Event Hub namespaces separately through two binders. The sample app has two operating modes.
+This sample demonstrates how to use the `Spring Cloud Stream Binder`
+for multiple `Azure Event Hubs` namespaces. In this sample you will bind to
+two Event Hubs namespaces separately through two binders. The sample app has two operating modes.
 One way is to expose a Restful API to receive string message, another way is to automatically provide string messages.
-These messages are published to an event hub. The sample will also consume messages from the same event hub.
+These messages are published to one event hub. The sample will also consume messages from the same 
+event hub.
 
 ## Getting started
 
@@ -29,7 +29,6 @@ and bill at [this link][azure-account].
 
 1. Create two Event Hubs in different Event Hub namespace. Please refer to 
     [Azure Event Hubs][create-event-hubs].
-    Please note `Basic` tier is unsupported.
 
 2. Create [Azure Storage][create-azure-storage] for checkpoint use.
 
@@ -187,10 +186,12 @@ processing.
             bindings:
               consume1-in-0:
                 consumer:
-                  checkpoint-mode: MANUAL
+                  checkpoint:
+                    mode: MANUAL
               consume2-in-0:
                 consumer:
-                  checkpoint-mode: MANUAL
+                  checkpoint:
+                    mode: MANUAL
           poller:
             initial-delay: 0
             fixed-delay: 1000
@@ -200,19 +201,16 @@ processing.
 
 #### Method 3: MSI credential based usage
 
-##### Set up managed identity
+1. Set up managed identity
 
 Please follow [create managed identity][create-managed-identity] to set up managed identity.
 
-##### Add Role Assignment for Event Hubs
+2. Add Role Assignment for Event Hubs
 
-1.  See [Managed identities for Azure resources with Event Hubs][role-assignment]
+See [Managed identities for Azure resources with Event Hubs][role-assignment]
     to add role assignment for Event Hubs. Assign `Contributor` role for managed identity.
 
-
-##### Update MSI related properties
-
-1.  Update [application-mi.yaml][application-mi.yaml].
+3. Update [application-mi.yaml][application-mi.yaml].
     ```yaml
     spring:
       cloud:
@@ -269,14 +267,17 @@ Please follow [create managed identity][create-managed-identity] to set up manag
             bindings:
               consume1-in-0:
                 consumer:
-                  checkpoint-mode: MANUAL
+                  checkpoint:
+                    mode: MANUAL
               consume2-in-0:
                 consumer:
-                  checkpoint-mode: MANUAL
+                  checkpoint:
+                    mode: MANUAL
           poller:
             initial-delay: 0
             fixed-delay: 1000
     ```    
+   
     > We should specify `spring.profiles.active=mi` to run the Spring Boot application.
     For App Service, please add a configuration entry for this.
 
@@ -333,11 +334,8 @@ services, please try to redeploy the app again.
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
 [deploy-to-app-service-via-ftp]: https://docs.microsoft.com/azure/app-service/deploy-ftp
 [managed-identities]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/
-
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
 [application-mi.yaml]: src/main/resources/application-mi.yaml
 [application.yaml]: src/main/resources/application.yaml
 [application-sp.yaml]: src/main/resources/application-sp.yaml
-
-
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable

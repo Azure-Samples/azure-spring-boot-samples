@@ -27,15 +27,15 @@ Bus. You can choose anyone of them.
     servicebus.producers[0]:
       entity-name: queue1
       entity-type: queue
-      connection-string: [connection-string-for-queue1-send]
+      connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_1}
     servicebus.producers[1]:
       entity-name: queue2
       entity-type: queue
-      connection-string: [connection-string-for-queue2-send]
+      connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_2}
     servicebus.processors[0]:
       entity-name: queue1
       entity-type: queue
-      connection-string: [connection-string-for-queue1-receive]
+      connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_3}
     ``` 
 #### Method 2: Service principal based usage
 

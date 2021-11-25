@@ -36,7 +36,7 @@ jdk 11.0.12 or above
    ```
 1. Get the azure-security-keyvault-jca.jar. You can download the latest published jar from maven
    repository [azure-security-keyvault-jca]. When this document is written, the latest jar is
-   azure-security-keyvault-jca.2.1.0.jar
+   azure-security-keyvault-jca.2.2.0.jar
 1. Make a directory, for example, sample_client. Then put the 3 files into sample_client folder
     - java.security
     - run-with-command-line-client-1.0.0.jar

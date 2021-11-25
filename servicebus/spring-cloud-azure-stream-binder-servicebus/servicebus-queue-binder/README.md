@@ -34,15 +34,15 @@ Bus Queue. You can choose anyone of them.
       cloud:
         azure:
           servicebus:
-            connection-string: [servicebus-namespace-connection-string] 
+            connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING} 
         stream:
           function:
             definition: consume;supply
           bindings: 
             consume-in-0: 
-              destination: [servicebus-queue-name]
+              destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
             supply-out-0:
-              destination: [servicebus-queue-name-same-as-above]
+              destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
           servicebus:
             bindings:
               consume-in-0:
@@ -74,20 +74,20 @@ Bus Queue. You can choose anyone of them.
       cloud:
         azure:
           credential:
-            client-id: [ client-id ]
-            client-secret: [ client-secret ]
+            client-id: ${AZURE_CLIENT_ID}
+            client-secret: ${AZURE_CLIENT_SECRET}
           profile:
-            tenant-id: [ tenant-id ]
+            tenant-id: ${AZURE_TENANT_ID}
           servicebus:
-            namespace: [servicebus-namespace]
+            namespace: ${AZURE_SERVICEBUS_NAMESPACE}
         stream:
           function:
             definition: consume;supply
           bindings:
             consume-in-0:
-              destination: [ servicebus-queue-name ]
+              destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
             supply-out-0:
-              destination: [ servicebus-queue-name-same-as-above ]
+              destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
           servicebus:
             bindings:
               consume-in-0:
@@ -124,19 +124,19 @@ Please follow [create managed identity][create-managed-identity] to set up manag
       cloud:
         azure:
           credential:
-            managed-identity-client-id: [managed-identity-client-id]
+            managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID}
           profile:
-            tenant-id: [tenant-id]
+            tenant-id: ${AZURE_TENANT_ID}
           servicebus:
-            namespace: [servicebus-namespace]
+            namespace: ${AZURE_SERVICEBUS_NAMESPACE}
         stream:
           function:
             definition: consume;supply
           bindings:
             consume-in-0:
-              destination: [ servicebus-queue-name ]
+              destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
             supply-out-0:
-              destination: [ servicebus-queue-name-same-as-above ]
+              destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
           servicebus:
             bindings:
               consume-in-0:

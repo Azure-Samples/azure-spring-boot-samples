@@ -1,27 +1,27 @@
 servicebus.producers[0]:
   entity-name: queue1
   entity-type: queue
-  namespace: [servicebus-namespace-for-queue1]
+  namespace: ${AZURE_SERVICEBUS_NAMESPACE_1}
   credential:
-    client-id: [client-id-for-queue1-send]
-    client-secret: [client-secret-for-queue1-send]
+    client-id: ${AZURE_CLIENT_ID}
+    client-secret: ${AZURE_CLIENT_SECRET}
   profile:
-    tenant-id: [tenant-id]
+    tenant-id: ${AZURE_TENANT_ID}
 servicebus.producers[1]:
   entity-name: queue2
   entity-type: queue
-  namespace: [servicebus-namespace-for-queue2]
+  namespace: ${AZURE_SERVICEBUS_NAMESPACE_2}
   credential:
-    client-id: [client-id-for-queue2-send]
-    client-secret: [client-secret-for-queue2-send]
+    client-id: ${AZURE_CLIENT_ID}
+    client-secret: ${AZURE_CLIENT_SECRET}
   profile:
-    tenant-id: [tenant-id]
+    tenant-id: ${AZURE_TENANT_ID}
 servicebus.processors[0]:
   entity-name: queue1
   entity-type: queue
-  namespace: [servicebus-namespace-for-queue1]
+  namespace: ${AZURE_SERVICEBUS_NAMESPACE_3}
   credential:
-    client-id: [client-id-for-queue1-receive]
-    client-secret: [client-secret-for-queue1-receive]
+    client-id: ${AZURE_CLIENT_ID}
+    client-secret: ${AZURE_CLIENT_SECRET}
   profile:
-    tenant-id: [tenant-id]
+    tenant-id: ${AZURE_TENANT_ID}

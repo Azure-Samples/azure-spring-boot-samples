@@ -4,16 +4,16 @@ languages:
 - java
 products:
 - azure-event-hubs
-description: "Azure Spring Cloud Sample project for Event Hub Integration client library"
-urlFragment: "azure-spring-integration-eventhubs-sample"
+description: "Spring Cloud Azure Starter Integration Sample project for Event Hubs client library"  
+urlFragment: "spring-cloud-azure-starter-integration-sample-eventhubs"
 ---
 
-# Spring Cloud Azure Event Hubs Integration Code Sample shared library for Java
+# Spring Cloud Azure Starter Integration for Event Hubs Code Sample shared library for Java
 
 ## Key concepts
 
-This sample demonstrates how to use Spring Integration for Azure
-Event Hubs.
+This sample demonstrates how to use `Spring Integration` for `Azure
+Event Hubs`.
 
 
 ## Getting started
@@ -32,8 +32,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 
 ### Configuration credential options
 
-We have several ways to config the Spring Integration for Service
-Bus. You can choose anyone of them.
+We have several ways to config the Spring Integration for Event Hubs. You can choose anyone of them.
 
 >[!Important]
 >
@@ -41,7 +40,7 @@ Bus. You can choose anyone of them.
 > 
 #### Method 1: Connection string based usage
 
-1. Update [application.yaml].
+1. Update [application.yaml][application.yaml].
     ```yaml
     spring:
       cloud:
@@ -151,6 +150,8 @@ services, please try to redeploy the app again.
 
 ## Contributing
 
+
+<!-- LINKS -->
 [azure-account]: https://azure.microsoft.com/account/
 [azure-portal]: https://ms.portal.azure.com/
 [create-event-hubs]: https://docs.microsoft.com/azure/event-hubs/
@@ -158,7 +159,6 @@ services, please try to redeploy the app again.
 [create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-managed-identity.md
 [create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-sp-using-azure-cli.md
 [eventhub-operation]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-integration-eventhubs/src/spring-cloud-azure_4.0/java/com/azure/spring/integration/eventhub/api/EventHubOperation.java
-
 [receive-controller]: src/main/java/com/azure/spring/sample/eventhubs/ReceiveController.java
 [send-controller]: src/main/java/com/azure/spring/sample/eventhubs/SendController.java
 [application.yaml]: src/main/resources/application.yaml

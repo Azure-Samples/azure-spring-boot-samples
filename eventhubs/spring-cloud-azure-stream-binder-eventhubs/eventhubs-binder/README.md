@@ -4,8 +4,8 @@ languages:
 - java
 products:
 - azure-event-hubs
-description: "Azure Spring Cloud Stream Binder Sample project for Event Hub client library"
-urlFragment: "spring-cloud-azure-stream-binder-eventhubs"
+description: "Spring Cloud Azure Stream Binder Sample project for Event Hubs client library"  
+urlFragment: "spring-cloud-azure-stream-binder-sample-eventhubs"
 ---
 
 # Spring Cloud Azure Stream Binder for Event Hubs Sample shared library for Java
@@ -205,7 +205,8 @@ For checkpointing mode as MANUAL, you can use below code to send messages and co
             bindings:
               consume-in-0:
                 consumer:
-                  checkpoint-mode: MANUAL
+                  checkpoint:
+                    mode: MANUAL
           default:
             producer:
               errorChannelEnabled: true
@@ -259,7 +260,8 @@ Please follow [create managed identity][create-managed-identity] to set up manag
             bindings:
               consume-in-0:
                 consumer:
-                  checkpoint-mode: MANUAL
+                  checkpoint:
+                    mode: MANUAL
           default:
             producer:
               errorChannelEnabled: true
@@ -317,7 +319,6 @@ services, please try to redeploy the app again.
 
 
 <!-- LINKS -->
-
 [azure-account]: https://azure.microsoft.com/account/
 [azure-portal]: https://ms.portal.azure.com/
 [create-event-hubs]: https://docs.microsoft.com/azure/event-hubs/ 
@@ -325,7 +326,6 @@ services, please try to redeploy the app again.
 [create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-sp-using-azure-cli.md
 [create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-managed-identity.md
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
-
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
 [application-mi.yaml]: src/main/resources/application-mi.yaml
 [application.yaml]: src/main/resources/application.yaml
@@ -334,5 +334,4 @@ services, please try to redeploy the app again.
 [spring-cloud-stream-batch0-consumer]: https://docs.spring.io/spring-cloud-stream/docs/3.1.4/reference/html/spring-cloud-stream.html#_batch_consumers
 [BatchProducerAndConsumerConfiguration]: 
 src/main/java/com/azure/spring/sample/eventhubs/binder/BatchProducerAndConsumerConfiguration.java
-
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable

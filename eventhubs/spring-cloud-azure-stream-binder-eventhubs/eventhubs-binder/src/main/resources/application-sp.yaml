@@ -1,0 +1,35 @@
+spring:
+  cloud:
+    azure:
+      profile:
+        tenant-id: ${AZURE_TENANT_ID}
+      credential:
+        client-id: ${AZURE_CLIENT_ID}
+        client-secret: ${AZURE_CLIENT_SECRET}
+      eventhubs:
+        namespace: ${AZURE_EVENTHUBS_NAMESPACE}
+        processor:
+          checkpoint-store:
+            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+            account-name:  ${AZURE_STORAGE_ACCOUNT_NAME}
+    stream:
+      function:
+        definition: consume;supply
+      bindings:
+        consume-in-0:
+          destination: ${AZURE_EVENTHUB_NAME}
+          group: ${AZURE_EVENTHUB_NAME}
+        supply-out-0:
+          destination: ${SAME_AS_ABOVE_DESTINATION}
+      eventhubs:
+        bindings:
+          consume-in-0:
+            consumer:
+              checkpoint:
+                mode: MANUAL
+      default:
+        producer:
+          errorChannelEnabled: true
+      poller:
+        initial-delay: 0
+        fixed-delay: 1000

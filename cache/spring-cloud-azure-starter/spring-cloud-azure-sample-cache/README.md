@@ -1,13 +1,3 @@
----
-page_type: sample
-languages:
-- java
-  products:
-- azure-cache-redis
-  description: "Azure Spring Cloud Sample project for redis cache"
-  urlFragment: "azure-spring-cloud-sample-cache"
----
-
 # Spring Cloud Azure Sample redis cache
 
 ## Key concepts

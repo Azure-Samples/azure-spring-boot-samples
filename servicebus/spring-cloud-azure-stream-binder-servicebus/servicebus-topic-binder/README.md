@@ -1,13 +1,3 @@
----
-page_type: sample
-languages:
-- java
-products:
-- azure-service-bus
-description: "Spring Cloud Azure Stream Binder Sample project for Service Bus Topic client library"
-urlFragment: "spring-cloud-azure-sample-service-bus-topic-binder"
----
-
 # Spring Cloud Azure Stream Binder for Service Bus topic Sample shared library for Java
 
 ## Key concepts

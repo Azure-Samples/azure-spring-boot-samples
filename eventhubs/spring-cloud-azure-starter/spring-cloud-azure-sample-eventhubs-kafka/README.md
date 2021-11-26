@@ -1,13 +1,3 @@
----
-page_type: sample
-languages:
-- java
-products:
-- azure-event-hubs
-description: "Spring Cloud Azure Stream Kafka Sample project for Event Hubs"
-urlFragment: "spring-cloud-azure-sample-eventhubs-kafka"
----
-
 # Spring Cloud Azure Sample Stream Event Hubs Kafka
 
 ## Key concepts

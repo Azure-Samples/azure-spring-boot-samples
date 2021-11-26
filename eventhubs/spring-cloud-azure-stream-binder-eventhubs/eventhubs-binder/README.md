@@ -1,14 +1,4 @@
----
-page_type: sample
-languages:
-- java
-products:
-- azure-event-hubs
-description: "Spring Cloud Azure Stream Binder Sample project for Event Hubs client library"  
-urlFragment: "spring-cloud-azure-stream-binder-sample-eventhubs"
----
-
-# Spring Cloud Azure Stream Binder for Event Hubs Sample shared library for Java
+# Azure Spring Cloud Stream Binder for Event Hub Code Sample shared library for Java
 
 ## Key concepts
 
@@ -21,7 +11,9 @@ endpoint from the same application.
 ## Getting started
 
 Running this sample will be charged by Azure. You can check the usage and bill at 
-[here][azure-account].
+[this link][azure-account].
+
+
 
 ### Create Azure resources
 

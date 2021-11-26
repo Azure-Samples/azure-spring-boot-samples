@@ -39,4 +39,39 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+      <!-- mvn azure-webapp:config deploy -->
+      <!-- used to deploy to app service  -->
+      <plugin>
+        <groupId>com.microsoft.azure</groupId>
+        <artifactId>azure-webapp-maven-plugin</artifactId>
+        <version>2.2.1</version>
+        <configuration>
+          <schemaVersion>v2</schemaVersion>
+
+
+          <pricingTier>P1v2</pricingTier>
+          <region>eastasia</region>
+          <deployment>
+            <resources>
+              <resource>
+                <directory>${project.basedir}/target</directory>
+                <includes>
+                  <include>*.jar</include>
+                </includes>
+              </resource>
+            </resources>
+          </deployment>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+
 </project>

@@ -10,7 +10,6 @@
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
-  <groupId>com.azure.spring</groupId>
   <artifactId>spring-cloud-azure-starter-active-directory-webapp-resource-server</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>

@@ -9,7 +9,6 @@
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
-  <groupId>com.azure.spring</groupId>
   <artifactId>spring-cloud-azure-starter-active-directory-resource-server-obo</artifactId>
   <version>1.0.0</version>
   <name>Azure Spring Boot Azure AD Starter Sample - Resource Server OBO</name>

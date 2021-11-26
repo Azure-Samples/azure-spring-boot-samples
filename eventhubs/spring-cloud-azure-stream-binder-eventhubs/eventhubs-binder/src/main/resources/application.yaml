@@ -15,8 +15,6 @@ spring:
         consume-in-0:
           destination: ${AZURE_EVENTHUB_NAME}
           group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
-          consumer:
-            batch-mode: false # false is default value
         supply-out-0:
           destination: ${SAME_AS_ABOVE_DESTINATION}
       eventhubs:

@@ -1,4 +1,4 @@
-# Azure Spring Cloud Stream Binder for Event Hub Code Sample shared library for Java
+# Spring Cloud Azure Stream Binder for Event Hub Code Sample shared library for Java
 
 ## Key concepts
 
@@ -52,8 +52,6 @@ Event Hubs. You can choose anyone of them.
             consume-in-0:
               destination: ${AZURE_EVENTHUB_NAME}
               group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
-              consumer:
-                batch-mode: false # false is default value
             supply-out-0:
               destination: ${SAME_AS_ABOVE_DESTINATION}
           eventhubs:
@@ -179,22 +177,6 @@ services, please try to redeploy the app again.
 > [Deploy a Spring Boot JAR file to Azure App Service][deploy-spring-boot-application-to-app-service]
 > to deploy this application to App Service
 
-#### Enable sync message
-To enable message sending in a synchronized way with Spring Cloud Stream 3.x,
-azure-spring-cloud-stream-binder-eventhubs supports the sync producer mode to get responses for sent messages.
-By enabling following configuration, you could use [StreamBridge][StreamBridge] for the synchronized message producing.
-
-```yaml
-spring:
-  cloud:
-    stream:
-      eventhubs:
-        bindings:
-          supply-out-0:
-            producer:
-              sync: true
-```
-
 ## Examples
 
 1.  Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
@@ -225,6 +207,23 @@ spring:
 1.  Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
 
 ## Enhancement
+
+### Enable sync message
+To enable message sending in a synchronized way with Spring Cloud Stream 3.x,
+azure-spring-cloud-stream-binder-eventhubs supports the sync producer mode to get responses for sent messages.
+By enabling following configuration, you could use [StreamBridge][StreamBridge] for the synchronized message producing.
+
+```yaml
+spring:
+  cloud:
+    stream:
+      eventhubs:
+        bindings:
+          supply-out-0:
+            producer:
+              sync: true
+```
+
 ### Using Batch Consuming
 To enable [batch consuming][spring-cloud-stream-batch0-consumer] feature, you should add below configuration in the `batch` profile.
 

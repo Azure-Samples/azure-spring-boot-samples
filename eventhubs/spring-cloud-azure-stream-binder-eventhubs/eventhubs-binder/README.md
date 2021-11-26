@@ -1,4 +1,4 @@
-# Azure Spring Cloud Stream Binder for Event Hub Code Sample shared library for Java
+# Spring Cloud Azure Stream Binder for Event Hub Code Sample shared library for Java
 
 ## Key concepts
 

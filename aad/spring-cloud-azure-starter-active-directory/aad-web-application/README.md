@@ -87,9 +87,11 @@ spring:
     azure:
       active-directory:
         enabled: true
-        client-id: <client-id>
-        client-secret: <client-secret>
-        tenant-id: <tenant-id>
+        credential:
+          client-id: ${AZURE_CLIENT_ID}
+          client-secret: ${AZURE_CLIENT_SECRET}
+        profile:
+          tenant-id: ${AZURE_TENANT_ID}
         user-group:
           allowed-group-names: <group1>,<group2>
           allowed-group-ids: <group1-id>,<group2-id>   # When 'all' is used, all group id can be obtained.
@@ -137,7 +139,8 @@ spring:
     azure:
       active-directory:
         enabled: true
-        tenant-id: common
+        profile:
+          tenant-id: ${AZURE_TENANT_ID}
 ```
 ---
 ### Meet with `AADSTS240002: Input id_token cannot be used as 'urn:ietf:params:oauth:grant-type:jwt-bearer' grant` error.

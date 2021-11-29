@@ -54,9 +54,11 @@ spring:
     azure:
       active-directory:
         enabled: true
-        client-id: <Web-API-A-client-id>
-        client-secret: <Web-API-A-client-secret>
-        tenant-id: <Tenant-id-registered-by-application>
+        credential:
+          client-id: ${AZURE_CLIENT_ID}
+          client-secret: ${AZURE_CLIENT_SECRET}
+        profile:
+          tenant-id: ${AZURE_TENANT_ID}
         app-id-uri: ${WEB_API_A_APP_ID_URL}
         authorization-clients:
           graph:

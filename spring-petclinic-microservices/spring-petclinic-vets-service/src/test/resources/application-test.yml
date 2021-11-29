@@ -1,0 +1,10 @@
+
+spring:
+  datasource:
+    schema: classpath*:db/hsqldb/schema.sql
+    data: classpath*:db/hsqldb/data.sql
+
+vets:
+  cache:
+    ttl: 10
+    heap-size: 10

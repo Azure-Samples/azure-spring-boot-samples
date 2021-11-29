@@ -1,0 +1,28 @@
+spring:
+  cloud:
+    config:
+      uri: http://localhost:8888
+  application:
+    name: api-gateway
+---
+spring:
+  profiles: docker
+  cloud:
+    config:
+      uri: http://config-server:8888
+server:
+  port: 8080
+---
+spring:
+  profiles: local
+  cloud:
+    config:
+      uri: http://localhost:8888
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+server:
+  port: 8080
+
+

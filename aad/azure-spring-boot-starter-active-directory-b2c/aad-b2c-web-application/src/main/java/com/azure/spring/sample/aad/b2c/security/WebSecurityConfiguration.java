@@ -24,6 +24,6 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .anyRequest().authenticated()
                 .and()
             .apply(configurer);
-        // @formatter:off
+        // @formatter:on
     }
 }

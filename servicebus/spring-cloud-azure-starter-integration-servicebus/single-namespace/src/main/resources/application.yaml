@@ -2,4 +2,4 @@ spring:
   cloud:
     azure:
       servicebus:
-        namespace: sb-servicebusnamespace
+        namespace: sb-servicebusapp-xrdhv

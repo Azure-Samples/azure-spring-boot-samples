@@ -7,6 +7,7 @@ You will build an application that use Azure Servicebus Queues and Topics to sen
 
 ## What You Need
 
+- An Azure [subscription](https://azure.microsoft.com/en-us/free/)
 - [Terraform](https://www.terraform.io/)
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=mac) 
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
@@ -15,7 +16,43 @@ You will build an application that use Azure Servicebus Queues and Topics to sen
 
 ## Prevision Azure Resources required to run this sample.
 
-## Provision the Resources
+### Authenticate using the Azure CLI
+Terraform must authenticate to Azure to create infrastructure.
+
+In your terminal, use the Azure CLI tool to setup your account permissions locally.
+
+```shell
+az login
+```
+
+Your browser window will open and you will be prompted to enter your Azure login credentials. After successful authentication, your terminal will display your subscription information. You do not need to save this output as it is saved in your system for Terraform to use.
+
+```shell
+You have logged in. Now let us find all the subscriptions to which you have access...
+
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "home-Tenant-Id",
+    "id": "subscription-id",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Subscription-Name",
+    "state": "Enabled",
+    "tenantId": "0envbwi39-TenantId",
+    "user": {
+      "name": "your-username@domain.com",
+      "type": "user"
+    }
+  }
+]
+```
+
+```shell
+az account set --subscription <your-subscription-id>
+```
+
+### Provision the Resources
 1. Before running terraform, there're two parameters needed to be updated in the `./terraform/variables.tf` file.
 
 ```shell
@@ -36,10 +73,6 @@ variable "service_principal_id" {
 ```shell
 
 cd terraform
-
-# Login to azure-cli
-az login
-az account set --subscription <your-subscription-id>
 
 # 
 terraform init
@@ -79,6 +112,8 @@ If you want to upload with Intellj plugins you can check this [doc](https://docs
 
 
 ## Clean up Resources
+
+The terraform destroy command terminates resources managed by your Terraform project. To destroy the resources you created.
 
 ```shell
 terraform destroy

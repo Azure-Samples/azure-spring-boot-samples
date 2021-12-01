@@ -8,9 +8,18 @@ terraform {
       source  = "aztfmod/azurecaf"
       version = "1.2.6"
     }
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = "~> 2.10.0"
+    }
   }
 }
 
+# TODO
+# Configure the Azure Active Directory Provider
+provider "azuread" {
+  tenant_id = "72f988bf-86f1-41af-91ab-2d7cd011db47"
+}
 
 provider "azurerm" {
   features {}
@@ -21,7 +30,6 @@ resource "azurecaf_name" "resource_group" {
   resource_type = "azurerm_resource_group"
   random_length = 5
   clean_input   = true
-
 }
 
 resource "azurerm_resource_group" "main" {
@@ -107,6 +115,32 @@ resource "azurerm_role_assignment" "servicebus_data_owner" {
   principal_id         = var.service_principal_id
 }
 
-
-
+# create an application
+#resource "random_string" "application" {
+#  length  = 6
+#  special = false
+#}
+#
+#resource "azuread_application" "example" {
+#  display_name = format("%s-%s","app",random_string.application.result)
+#}
+#
+#resource "azuread_service_principal" "example" {
+#  application_id = azuread_application.example.application_id
+#}
+#
+#resource "random_string" "password" {
+#  length  = 32
+#  special = true
+#}
+#
+#resource "azuread_service_principal_password" "example" {
+#  service_principal_id = azuread_service_principal.example.object_id
+#}
+#
+#resource "azurerm_role_assignment" "servicebus_data_owner" {
+#  scope                = azurerm_servicebus_namespace.servicebus_namespace.id
+#  role_definition_name = "Azure Service Bus Data Owner"
+#  principal_id         = azuread_service_principal_password.example.service_principal_id
+#}
 

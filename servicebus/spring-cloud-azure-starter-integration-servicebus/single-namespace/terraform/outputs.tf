@@ -5,6 +5,6 @@ output "resource_group" {
 
 
 output "servicebus_namespace" {
-  value       = azurerm_servicebus_namespace.application.name
+  value       = azurerm_servicebus_namespace.servicebus_namespace.name
   description = "The servicebus namespace."
 }

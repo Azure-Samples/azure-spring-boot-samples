@@ -37,15 +37,15 @@ resource "azurerm_resource_group" "main" {
 data "azurerm_client_config" "current" {}
 
 
-resource "azurecaf_name" "servicebus_namespace" {
+resource "azurecaf_name" "servicebus" {
   name          = var.application_name
   resource_type = "azurerm_servicebus_namespace"
   random_length = 5
   clean_input   = true
 }
 
-resource "azurerm_servicebus_namespace" "application" {
-  name                = azurecaf_name.servicebus_namespace.result
+resource "azurerm_servicebus_namespace" "servicebus_namespace" {
+  name                = azurecaf_name.servicebus.result
   location            = var.location
   resource_group_name = azurerm_resource_group.main.name
 
@@ -60,7 +60,7 @@ resource "azurecaf_name" "servicebus_namespace_authorization_rule" {
 
 resource "azurerm_servicebus_namespace_authorization_rule" "application" {
   name                = azurecaf_name.servicebus_namespace_authorization_rule.result
-  namespace_name      = azurerm_servicebus_namespace.application.name
+  namespace_name      = azurerm_servicebus_namespace.servicebus_namespace.name
   resource_group_name = azurerm_resource_group.main.name
 
   listen = true
@@ -71,7 +71,7 @@ resource "azurerm_servicebus_namespace_authorization_rule" "application" {
 
 resource "azurerm_servicebus_queue" "application" {
   name                = "queue1"
-  namespace_name      = azurerm_servicebus_namespace.application.name
+  namespace_name      = azurerm_servicebus_namespace.servicebus_namespace.name
   resource_group_name = azurerm_resource_group.main.name
 
   enable_partitioning   = false
@@ -89,20 +89,20 @@ resource "azurecaf_name" "topic" {
 
 resource "azurerm_servicebus_topic" "application" {
   name                = "topic1"
-  namespace_name      = azurerm_servicebus_namespace.application.name
+  namespace_name      = azurerm_servicebus_namespace.servicebus_namespace.name
   resource_group_name = azurerm_resource_group.main.name
 }
 
 resource "azurerm_servicebus_subscription" "application" {
   name                = "group1"
   resource_group_name = azurerm_resource_group.main.name
-  namespace_name      = azurerm_servicebus_namespace.application.name
+  namespace_name      = azurerm_servicebus_namespace.servicebus_namespace.name
   topic_name          = azurerm_servicebus_topic.application.name
   max_delivery_count  = 1
 }
 
 resource "azurerm_role_assignment" "servicebus_data_owner" {
-  scope                = azurerm_servicebus_namespace.application.id
+  scope                = azurerm_servicebus_namespace.servicebus_namespace.id
   role_definition_name = "Azure Service Bus Data Owner"
   principal_id         = var.service_principal_id
 }

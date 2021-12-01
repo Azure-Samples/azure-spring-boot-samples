@@ -16,16 +16,12 @@ provider "azurerm" {
   features {}
 }
 
-locals {
-  // If an environment is set up (dev, test, prod...), it is used in the application name
-  environment = var.environment == "" ? "dev" : var.environment
-}
-
 resource "azurecaf_name" "resource_group" {
   name          = var.application_name
   resource_type = "azurerm_resource_group"
-  suffixes      = [local.environment]
-#  suffixes      = "sb_dev"
+  random_length = 5
+  clean_input   = true
+
 }
 
 resource "azurerm_resource_group" "main" {
@@ -34,17 +30,18 @@ resource "azurerm_resource_group" "main" {
 
   tags = {
     "terraform"        = "true"
-    "environment"      = local.environment
     "application-name" = var.application_name
   }
 }
 
 data "azurerm_client_config" "current" {}
 
+
 resource "azurecaf_name" "servicebus_namespace" {
-   name          = var.servicebusnamespace
-   resource_type = "azurerm_servicebus_namespace"
- # suffixes      = [var.environment]
+  name          = var.application_name
+  resource_type = "azurerm_servicebus_namespace"
+  random_length = 5
+  clean_input   = true
 }
 
 resource "azurerm_servicebus_namespace" "application" {
@@ -59,7 +56,6 @@ resource "azurerm_servicebus_namespace" "application" {
 resource "azurecaf_name" "servicebus_namespace_authorization_rule" {
   name          = var.application_name
   resource_type = "azurerm_servicebus_namespace_authorization_rule"
-  #suffixes      = [var.environment]
 }
 
 resource "azurerm_servicebus_namespace_authorization_rule" "application" {
@@ -86,23 +82,16 @@ resource "azurerm_servicebus_queue" "application" {
   default_message_ttl   = "P14D"
 }
 
-#resource "azurecaf_name" "topic" {
-#  name          = "topic1"
-#  resource_type = "azurerm_servicebus_topic"
-#  #suffixes      = [var.environment]
-#}
+resource "azurecaf_name" "topic" {
+  name          = "topic1"
+  resource_type = "azurerm_servicebus_topic"
+}
 
 resource "azurerm_servicebus_topic" "application" {
   name                = "topic1"
   namespace_name      = azurerm_servicebus_namespace.application.name
   resource_group_name = azurerm_resource_group.main.name
 }
-
-#resource "azurecaf_name" "subscription" {
-#  name          = "group1"
-#  resource_type = "azurerm_servicebus_subscription"
-#  #suffixes      = [var.environment]
-#}
 
 resource "azurerm_servicebus_subscription" "application" {
   name                = "group1"

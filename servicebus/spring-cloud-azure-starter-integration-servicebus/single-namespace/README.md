@@ -13,6 +13,7 @@ You will build an application that use Azure Servicebus Queues and Topics to sen
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
 - JDK8
 - Maven
+- jq
 
 ## Prevision Azure Resources required to run this sample.
 
@@ -87,6 +88,24 @@ Open your terminal, and input the command below.
 
 ```shell
 mvn clean spring-boot:run
+```
+
+### Get Environment
+Run the command below
+
+Note: Make user `jq` has been installed.
+
+```shell
+ terraform output -json | jq -r '
+  . as $in
+  | keys[]
+  | ($in[.].value | tostring) as $value
+  | ($in[.].sensitive | tostring) as $sensitive
+  | [
+    (. | ascii_upcase) + "=" + $value
+    ]
+  | .[]'  
+  
 ```
 
 

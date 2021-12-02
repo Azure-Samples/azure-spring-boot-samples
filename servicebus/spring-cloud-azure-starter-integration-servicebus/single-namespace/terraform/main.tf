@@ -109,11 +109,20 @@ resource "azurerm_servicebus_subscription" "application" {
   max_delivery_count  = 1
 }
 
+data "azurerm_client_config" "client_config" {
+}
+
 resource "azurerm_role_assignment" "servicebus_data_owner" {
   scope                = azurerm_servicebus_namespace.servicebus_namespace.id
   role_definition_name = "Azure Service Bus Data Owner"
-  principal_id         = var.service_principal_id
+  principal_id         = data.azurerm_client_config.client_config.object_id
 }
+
+#resource "azurerm_role_assignment" "servicebus_data_owner" {
+#  scope                = azurerm_servicebus_namespace.servicebus_namespace.id
+#  role_definition_name = "Azure Service Bus Data Owner"
+#  principal_id         = var.service_principal_id
+#}
 
 # create an application
 #resource "random_string" "application" {

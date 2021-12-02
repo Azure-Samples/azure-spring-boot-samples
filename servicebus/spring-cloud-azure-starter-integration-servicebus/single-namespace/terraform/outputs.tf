@@ -4,11 +4,15 @@ output "resource_group" {
 }
 
 
-output "servicebus_namespace" {
+output "SERVICEBUS_NAMESPACE" {
   value       = azurerm_servicebus_namespace.servicebus_namespace.name
   description = "The servicebus namespace."
 }
 
+output "SERVICEBUS_NAMESPACE_ID" {
+  value       = azurerm_servicebus_namespace.servicebus_namespace.id
+  description = "The servicebus namespace id."
+}
 
 #output "AZURE_CLIENT_ID" {
 #  value       = azuread_service_principal_password.example.service_principal_id

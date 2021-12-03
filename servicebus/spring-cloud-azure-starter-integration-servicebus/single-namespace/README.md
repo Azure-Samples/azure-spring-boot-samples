@@ -125,15 +125,24 @@ In your terminal, run `mvn clean spring-boot:run`.
 mvn clean spring-boot:run
 ```
 
+## Verify this sample
 
+1. Send a POST request to service bus queue
 
-## Run on Azure Spring Cloud
-You can also run the application on [Azure App Services.](https://azure.microsoft.com/services/app-service/)
+        $ curl -X POST http://localhost:8080/queues?message=hello
 
+2. Verify in your app’s logs that a similar message was posted:
 
-### Deploy With Intellj plugin
-If you want to upload with Intellj plugins you can check this [doc](https://docs.microsoft.com/en-us/azure/developer/java/toolkit-for-intellij/create-hello-world-web-app#deploying-web-app-to-azure) for guides.
+        New message received: 'hello'
+        Message 'hello' successfully checkpointed
+3. Send a POST request to service bus topic
 
+        $ curl -X POST http://localhost:8080/topics?message=hello
+
+4. Verify in your app’s logs that a similar message was posted:
+
+        New message received: 'hello'
+        Message 'hello' successfully checkpointed
 
 ## Clean up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.

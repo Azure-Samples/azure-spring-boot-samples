@@ -138,7 +138,7 @@ mvn clean spring-boot:run
 ```
 
 
-## Examples
+## Verify this sample
 Send a POST request to service bus queue
 ```shell
  $ curl -X POST http://localhost:8080/queues?message=hello

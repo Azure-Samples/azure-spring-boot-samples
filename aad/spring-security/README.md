@@ -10,4 +10,3 @@ Please refer to [docs] to get more information about how to use the samples in t
 [Spring Boot]: https://spring.io/projects/spring-boot
 [spring-security]: https://github.com/spring-projects/spring-security
 [docs]: docs
-[spring-boot-2.5.x]: https://github.com/Azure-Samples/spring-boot-application-with-azure-active-directory/tree/spring-boot-2.5.x

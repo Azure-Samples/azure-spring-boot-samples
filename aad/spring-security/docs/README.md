@@ -45,7 +45,7 @@ To be done.
 [Azure Active Directory]: https://azure.microsoft.com/services/active-directory/
 [Spring Boot]: https://spring.io/projects/spring-boot
 [spring-security]: https://github.com/spring-projects/spring-security
-[creating a new github issue]: https://github.com/Azure-Samples/spring-boot-application-with-azure-active-directory/issues/new
+[creating a new github issue]: https://github.com/Azure-Samples/azure-spring-boot-samples/issues/new
 [homework answers]: homework-answers.md
 [01-basic-scenario]: servlet/oauth2/01-basic-scenario.md
 [02-check-permissions-by-claims-in-access-token]: servlet/oauth2/02-check-permissions-by-claims-in-access-token.md

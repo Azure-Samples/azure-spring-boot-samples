@@ -16,7 +16,7 @@
 
 
 # 1. About
-This doc demonstrates how to use [Azure Active Directory] in [Spring Boot] application.
+This repo demonstrates how to use [Azure Active Directory] in [Spring Boot] application by [spring-security].
 
 # 2. Ask for help
 If you have any question about these samples, please ask by [creating a new github issue].
@@ -44,6 +44,7 @@ To be done.
 
 [Azure Active Directory]: https://azure.microsoft.com/services/active-directory/
 [Spring Boot]: https://spring.io/projects/spring-boot
+[spring-security]: https://github.com/spring-projects/spring-security
 [creating a new github issue]: https://github.com/Azure-Samples/spring-boot-application-with-azure-active-directory/issues/new
 [homework answers]: homework-answers.md
 [01-basic-scenario]: servlet/oauth2/01-basic-scenario.md

@@ -379,7 +379,9 @@ hs_err_pid*
 target
 .classpath
 .project
-*.iml### Terraform template
+*.iml
+
+### Terraform template
 # Local .terraform directories
 **/.terraform/*
 
@@ -414,4 +416,3 @@ override.tf.json
 # Ignore CLI configuration files
 .terraformrc
 terraform.rc
-

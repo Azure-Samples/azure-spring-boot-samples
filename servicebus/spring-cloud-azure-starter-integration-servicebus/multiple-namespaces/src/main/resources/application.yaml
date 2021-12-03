@@ -1,13 +1,12 @@
 servicebus.producers[0]:
   entity-name: queue1
   entity-type: queue
-  connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_1}
+  namespace: ${AZURE_SERVICEBUS_NAMESPACE_01}
 servicebus.producers[1]:
   entity-name: queue2
   entity-type: queue
-  connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_2}
+  namespace: ${AZURE_SERVICEBUS_NAMESPACE_02}
 servicebus.processors[0]:
   entity-name: queue1
   entity-type: queue
-  connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_3}
-
+  namespace: ${AZURE_SERVICEBUS_NAMESPACE_03}

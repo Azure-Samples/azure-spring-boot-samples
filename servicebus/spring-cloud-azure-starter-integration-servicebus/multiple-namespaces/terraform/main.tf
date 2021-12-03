@@ -15,12 +15,6 @@ terraform {
   }
 }
 
-# TODO
-# Configure the Azure Active Directory Provider
-provider "azuread" {
-  tenant_id = "72f988bf-86f1-41af-91ab-2d7cd011db47"
-}
-
 provider "azurerm" {
   features {}
 }
@@ -42,9 +36,7 @@ resource "azurerm_resource_group" "main" {
   }
 }
 
-data "azurerm_client_config" "current" {}
-
-
+# =================== servicebus_01 ================
 resource "azurecaf_name" "servicebus_01" {
   name          = var.application_name
   resource_type = "azurerm_servicebus_namespace"
@@ -74,6 +66,7 @@ resource "azurerm_servicebus_queue" "application_queue_01" {
   default_message_ttl   = "P14D"
 }
 
+# =================== servicebus_02 ================
 resource "azurecaf_name" "servicebus_02" {
   name          = var.application_name
   resource_type = "azurerm_servicebus_namespace"
@@ -103,6 +96,7 @@ resource "azurerm_servicebus_queue" "application_queue_02" {
   default_message_ttl   = "P14D"
 }
 
+# =================== servicebus_03 ================
 resource "azurecaf_name" "servicebus_03" {
   name          = var.application_name
   resource_type = "azurerm_servicebus_namespace"

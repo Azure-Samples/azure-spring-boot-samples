@@ -62,14 +62,14 @@ After login Azure CLI with your accout, now you can use the terraform script to 
 
 ```shell
 # 
-cd terraform
 
+# in the root directory of the sample
 # Initialize your Terraform configuration
-terraform init
+terraform -chdir=./terraform init
 
 # Apply your Terraform Configuration
 # Type `yes` at the confirmation prompt to proceed.
-terraform apply
+terraform -chdir=./terraform apply
 
 ```
 
@@ -81,16 +81,21 @@ It may take a few minutes to run the script. After successful running, you will 
 ```shell
 
 ...
-azurerm_servicebus_namespace_authorization_rule.application: Creation complete after 13s ...
-azurerm_servicebus_subscription.application: Creation complete after 7s ...
-azurerm_role_assignment.servicebus_data_owner: Still creating... [20s elapsed]
-azurerm_role_assignment.servicebus_data_owner: Creation complete after 28s ...
+azurerm_role_assignment.servicebus_02_data_owner: Still creating... 
+azurerm_role_assignment.servicebus_03_data_owner: Still creating... 
+azurerm_role_assignment.servicebus_01_data_owner: Still creating... 
+azurerm_role_assignment.servicebus_01_data_owner: Creation complete after 29s... 
+azurerm_role_assignment.servicebus_03_data_owner: Creation complete after 29s... 
+azurerm_role_assignment.servicebus_02_data_owner: Creation complete after 29s... 
 
-Apply complete! Resources: 11 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 14 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-SERVICEBUS_NAMESPACE = "${YOUR_SERVICEBUS_NAMESPACE}"
+AZURE_SERVICEBUS_NAMESPACE_01 = "${YOUR_SERVICEBUS_NAMESPACE_01}"
+AZURE_SERVICEBUS_NAMESPACE_02 = "${YOUR_SERVICEBUS_NAMESPACE_02}"
+AZURE_SERVICEBUS_NAMESPACE_03 = "${YOUR_SERVICEBUS_NAMESPACE_03}"
+
 
 ```
 
@@ -100,7 +105,7 @@ You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser t
 Running the command below to get environment values:
 
 ```shell
- terraform output -json | jq -r --arg prefix "export " '$prefix + (
+ terraform -chdir=./terraform output -json | jq -r --arg prefix "export " '$prefix + (
   . as $in
   | keys[]
   | ($in[.].value | tostring) as $value
@@ -124,21 +129,28 @@ Copy the output and paste it in you terminal to export the value to your local e
 
 ## Run locally
 
-In your terminal, change your directory to the root of the sample, and run `mvn clean spring-boot:run`.
+In your terminal, run `mvn clean spring-boot:run`.
 
 
 ```shell
+# in the root directory of the sample
 mvn clean spring-boot:run
 ```
 
 
+## Examples
+Send a POST request to service bus queue
+```shell
+ $ curl -X POST http://localhost:8080/queues?message=hello
+```
 
-## Run on Azure Spring Cloud
-You can also run the application on [Azure App Services.](https://azure.microsoft.com/services/app-service/)
-
-
-### Deploy With Intellj plugin
-If you want to upload with Intellj plugins you can check this [doc](https://docs.microsoft.com/en-us/azure/developer/java/toolkit-for-intellij/create-hello-world-web-app#deploying-web-app-to-azure) for guides.
+Verify in your app’s logs that a similar message was posted:
+```shell
+Message was sent successfully for queue1.
+New message received: 'hello'
+Message 'hello' successfully checkpointed
+Message was sent successfully for queue2.
+```
 
 
 ## Clean up Resources
@@ -148,7 +160,7 @@ The terraform destroy command terminates resources managed by your Terraform pro
 To destroy the resources you created.
 
 ```shell
-terraform destroy
+terraform -chdir=./terraform destroy
 ```
 
 

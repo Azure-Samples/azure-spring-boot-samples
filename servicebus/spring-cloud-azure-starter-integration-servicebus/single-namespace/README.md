@@ -59,15 +59,13 @@ az account set --subscription <your-subscription-id>
 After login Azure CLI with your accout, now you can use the terraform script to create Azure Resources.
 
 ```shell
-# 
-cd terraform
-
+# In the root directory of the sample
 # Initialize your Terraform configuration
-terraform init
+terraform -chdir=./terraform init
 
 # Apply your Terraform Configuration
 # Type `yes` at the confirmation prompt to proceed.
-terraform apply
+terraform -chdir=./terraform apply
 
 ```
 
@@ -98,7 +96,7 @@ You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser t
 Running the command below to get environment values:
 
 ```shell
- terraform output -json | jq -r --arg prefix "export " '$prefix + (
+ terraform -chdir=./terraform output -json | jq -r --arg prefix "export " '$prefix + (
   . as $in
   | keys[]
   | ($in[.].value | tostring) as $value
@@ -120,7 +118,7 @@ Copy the output and paste it in you terminal to export the value to your local e
 
 ## Run locally
 
-In your terminal, change your directory to the root of the sample, and run `mvn clean spring-boot:run`.
+In your terminal, run `mvn clean spring-boot:run`.
 
 
 ```shell
@@ -144,7 +142,7 @@ The terraform destroy command terminates resources managed by your Terraform pro
 To destroy the resources you created.
 
 ```shell
-terraform destroy
+terraform -chdir=./terraform destroy
 ```
 
 

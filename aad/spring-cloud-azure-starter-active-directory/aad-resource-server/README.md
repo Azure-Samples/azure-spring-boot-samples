@@ -53,8 +53,9 @@ spring:
     azure:
       active-directory:
         enabled: true
-        client-id: <client-id>
-        app-id-uri: <app-id-uri>
+        credential:
+          client-id: ${AZURE_CLIENT_ID}
+          app-id-uri: ${APP_ID_URI}
 ```
 
 ### Run with Maven

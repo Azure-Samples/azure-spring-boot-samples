@@ -51,8 +51,8 @@ public class TodoListController {
     @RequestMapping({"/"})
     public ModelAndView index() {
         ModelAndView model = new ModelAndView("index");
-        model.addObject("aad_clientId", aadAuthenticationProperties.getClientId());
-        model.addObject("aad_tenantId", aadAuthenticationProperties.getTenantId());
+        model.addObject("aad_clientId", aadAuthenticationProperties.getCredential().getClientId());
+        model.addObject("aad_tenantId", aadAuthenticationProperties.getProfile().getTenantId());
         model.addObject("aad_redirectUri", Optional
                                                        .ofNullable(aadAuthenticationProperties.getRedirectUriTemplate())
                                                        .orElse("http://localhost:8080/") );

@@ -95,9 +95,11 @@ spring:
     azure:
       active-directory:
         enabled: true
-        tenant-id: <your-tenant-id>
-        client-id: <your-client-id>
-        client-secret: <your-client-secret>
+        credential:
+          client-id: ${AZURE_CLIENT_ID}
+          client-secret: ${AZURE_CLIENT_SECRET}
+        profile:
+          tenant-id: ${AZURE_TENANT_ID}
         # Optional, default value is http://localhost:8080/
         redirect-uri-template: <your-redirect-uri>
         # groups that you created in your Azure AD tenant

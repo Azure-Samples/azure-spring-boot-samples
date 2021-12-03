@@ -1,106 +1,155 @@
-# Spring Cloud Azure Service Bus Integration Code Sample shared library for Java
+# Using Servicebus Queue and Topic With Spring Integration
 
-## Key concepts
+This code sample demonstrates how to use Spring Integration for Azure Service Bus with multiple destinations. 
 
-This code sample demonstrates how to use Spring Integration for Azure Service Bus with multiple destinations. It shows how to use Spring Integration for Azure Service Bus to send and receive messages from one queue in one Service Bus namespace and then forward them to another queue in another Service Bus namespace.
-
-
-## Getting started
-
-Running this sample will be charged by Azure. You can check the usage and bill at
-[this link][azure-account].
+## What You Will build
 
 
+You will build an application that using Spring Integration for Azure Service Bus to send and receive messages from one queue in one Service Bus namespace and then forward them to another queue in another Service Bus namespace.
 
-### Create Azure resources
+## What You Need
 
-1. Create Azure Service Bus namespaces and two queue entities with name of `queue1` and `queue2`. Please see 
-   [how to create][create-service-bus]. Note: this sample takes queue as example, it's also applied with Service Bus topic.
+- [An Azure subscription](https://azure.microsoft.com/en-us/free/)
+- [Terraform](https://www.terraform.io/)
+- [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=mac)
+- [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
+- [jq](https://stedolan.github.io/jq/)
+- JDK8
+- Maven
 
-We have several ways to config the Spring Integration for Service
-Bus. You can choose anyone of them.
+## Prevision Azure Resources required to run this sample.
 
-#### Method 1: Connection string based usage
+### Authenticate using the Azure CLI
+Terraform must authenticate to Azure to create infrastructure.
 
-1. Update [application.yaml].
-    ```yaml
-    servicebus.producers[0]:
-      entity-name: queue1
-      entity-type: queue
-      connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_1}
-    servicebus.producers[1]:
-      entity-name: queue2
-      entity-type: queue
-      connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_2}
-    servicebus.processors[0]:
-      entity-name: queue1
-      entity-type: queue
-      connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_3}
-    ``` 
-#### Method 2: Service principal based usage
+In your terminal, use the Azure CLI tool to setup your account permissions locally.
 
-1.  Create a service principal for use in by your app. Please follow
-    [create service principal from Azure CLI][create-sp-using-azure-cli].
+```shell
+az login
+```
 
-1.  Add Role Assignment for Service Bus. See
-    [Service principal for Azure resources with Service Bus][role-assignment]
-    to add role assignment for Service Bus. Assign `Contributor` role for service bus.
+Your browser window will open and you will be prompted to enter your Azure login credentials. After successful authentication, your terminal will display your subscription information. You do not need to save this output as it is saved in your system for Terraform to use.
 
-1.  Update [application-sp.yaml][application-sp.yaml].
-    > We should specify `spring.profiles.active=sp` to run the Spring Boot application.
-    For App Service, please add a configuration entry for this.
-    
-#### Method 3: MSI credential based usage
+```shell
+You have logged in. Now let us find all the subscriptions to which you have access...
 
-##### Set up managed identity
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "home-Tenant-Id",
+    "id": "subscription-id",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Subscription-Name",
+    "state": "Enabled",
+    "tenantId": "0envbwi39-TenantId",
+    "user": {
+      "name": "your-username@domain.com",
+      "type": "user"
+    }
+  }
+]
+```
 
-Please follow [create managed identity][create-managed-identity] to set up managed identity.
+If you have more than one subscriptions, specify the subscription-id you want to use with command below:
+```shell
+az account set --subscription <your-subscription-id>
+```
 
-##### Add Role Assignment for Service Bus
+### Provision the Resources
 
-1.  See [Managed identities for Azure resources with Service Bus][role-assignment]
-    to add role assignment for Service Bus. Assign `Contributor` role for managed identity.
+After login Azure CLI with your accout, now you can use the terraform script to create Azure Resources.
+
+```shell
+# 
+cd terraform
+
+# Initialize your Terraform configuration
+terraform init
+
+# Apply your Terraform Configuration
+# Type `yes` at the confirmation prompt to proceed.
+terraform apply
+
+```
 
 
-##### Update MSI related properties
 
-1.  Update [application-mi.yaml][application-mi.yaml].
-    > We should specify `spring.profiles.active=mi` to run the Spring Boot application.
-For App Service, please add a configuration entry for this.
 
-## Examples
- 
-1.  Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
+It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
-1. Send a POST request to service bus queue
+```shell
 
-        $ curl -X POST http://localhost:8080/queues?message=hello
+...
+azurerm_servicebus_namespace_authorization_rule.application: Creation complete after 13s ...
+azurerm_servicebus_subscription.application: Creation complete after 7s ...
+azurerm_role_assignment.servicebus_data_owner: Still creating... [20s elapsed]
+azurerm_role_assignment.servicebus_data_owner: Creation complete after 28s ...
 
-1.  Verify in your app’s logs that a similar message was posted:
+Apply complete! Resources: 11 added, 0 changed, 0 destroyed.
 
-        Message was sent successfully for queue1.
-        New message received: 'hello'
-        Message 'hello' successfully checkpointed
-        Message was sent successfully for queue2.
+Outputs:
 
-1.  Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
+SERVICEBUS_NAMESPACE = "${YOUR_SERVICEBUS_NAMESPACE}"
 
-## Troubleshooting
+```
 
-## Next steps
+You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
 
-## Contributing
+### Export output to your local Environment
+Running the command below to get environment values:
 
-[azure-account]: https://azure.microsoft.com/account/
-[azure-portal]: https://ms.portal.azure.com/
-[create-service-bus]: https://docs.microsoft.com/azure/service-bus-messaging/service-bus-create-namespace-portal
-[create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-managed-identity.md
-[create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-sp-using-azure-cli.md
+```shell
+ terraform output -json | jq -r --arg prefix "export " '$prefix + (
+  . as $in
+  | keys[]
+  | ($in[.].value | tostring) as $value
+  | ($in[.].sensitive | tostring) as $sensitive
+  | [
+    (. | ascii_upcase) + "=" + $value
+    ]
+  | .[])'  
+  
+```
 
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces/src/main/resources/application.yaml
+you will get output like this
+```shell
+export AZURE_SERVICEBUS_NAMESPACE_01=<your-servicebus-namespace-01>
+export AZURE_SERVICEBUS_NAMESPACE_02=<your-servicebus-namespace-02>
+export AZURE_SERVICEBUS_NAMESPACE_03=<your-servicebus-namespace-03>
+```
 
-[application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces/src/main/resources/application-mi.yaml
-[application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces/src/main/resources/application-sp.yaml
-[role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
+Copy the output and paste it in you terminal to export the value to your local environment.
+
+
+## Run locally
+
+In your terminal, change your directory to the root of the sample, and run `mvn clean spring-boot:run`.
+
+
+```shell
+mvn clean spring-boot:run
+```
+
+
+
+## Run on Azure Spring Cloud
+You can also run the application on [Azure App Services.](https://azure.microsoft.com/services/app-service/)
+
+
+### Deploy With Intellj plugin
+If you want to upload with Intellj plugins you can check this [doc](https://docs.microsoft.com/en-us/azure/developer/java/toolkit-for-intellij/create-hello-world-web-app#deploying-web-app-to-azure) for guides.
+
+
+## Clean up Resources
+After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
+
+The terraform destroy command terminates resources managed by your Terraform project.   
+To destroy the resources you created.
+
+```shell
+terraform destroy
+```
+
 
 

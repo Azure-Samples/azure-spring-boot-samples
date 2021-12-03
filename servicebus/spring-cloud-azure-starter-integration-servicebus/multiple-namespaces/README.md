@@ -1,4 +1,4 @@
-# Using Servicebus Queue and Topic With Spring Integration
+# Using Spring Integration for Azure Service Bus with multiple destinations. 
 
 This code sample demonstrates how to use Spring Integration for Azure Service Bus with multiple destinations. 
 
@@ -61,7 +61,6 @@ az account set --subscription <your-subscription-id>
 After login Azure CLI with your accout, now you can use the terraform script to create Azure Resources.
 
 ```shell
-# 
 
 # in the root directory of the sample
 # Initialize your Terraform configuration

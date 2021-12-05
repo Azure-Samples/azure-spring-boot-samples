@@ -50,6 +50,7 @@
     <module>aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server</module>
     <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application</module>
     <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server</module>
+    <module>aad/spring-security</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-complete</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-initial</module>
     <module>appconfiguration/azure-appconfiguration-sample</module>

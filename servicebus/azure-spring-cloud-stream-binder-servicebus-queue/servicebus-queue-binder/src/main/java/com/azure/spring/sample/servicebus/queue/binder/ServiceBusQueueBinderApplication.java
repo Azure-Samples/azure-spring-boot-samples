@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.messaging.Message;
 
 import java.util.function.Consumer;
@@ -36,5 +37,18 @@ public class ServiceBusQueueBinderApplication {
                 return null;
             });
         };
+    }
+
+    // Replace destination with spring.cloud.stream.bindings.consume-in-0.destination
+    // Replace group with spring.cloud.stream.bindings.consume-in-0.group
+    @ServiceActivator(inputChannel = "{destination}.{group}.errors")
+    public void consumerError(Message<?> message) {
+        LOGGER.error("Handling customer ERROR: " + message);
+    }
+
+    // Replace destination with spring.cloud.stream.bindings.supply-out-0.destination
+    @ServiceActivator(inputChannel = "queue2.errors")
+    public void producerError(Message<?> message) {
+        LOGGER.error("Handling Producer ERROR: " + message);
     }
 }

@@ -53,6 +53,9 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace" {
 
   sku            = "Standard"
   zone_redundant = false
+  provisioner "local-exec" {
+    command = "echo 'export SERVICEBUS_NAMESPACE=${azurerm_servicebus_namespace.servicebus_namespace.name}' >> environment_values.sh"
+  }
 }
 
 resource "azurecaf_name" "servicebus_namespace_authorization_rule" {

@@ -4,7 +4,6 @@
 package com.azure.spring.sample.aad.controller;
 
 import com.azure.spring.cloud.autoconfigure.aad.filter.UserPrincipal;
-import com.azure.spring.cloud.autoconfigure.aad.graph.Membership;
 import com.azure.spring.cloud.autoconfigure.aad.properties.AADAuthenticationProperties;
 import com.azure.spring.sample.aad.model.TodoItem;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,11 +109,7 @@ public class TodoListController {
     public ResponseEntity<String> deleteTodoItem(@PathVariable("id") int id,
                                                  PreAuthenticatedAuthenticationToken authToken) {
         final UserPrincipal current = (UserPrincipal) authToken.getPrincipal();
-        Membership membership = new Membership(
-            "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx",
-            Membership.OBJECT_TYPE_GROUP,
-            "group1");
-        if (current.isMemberOf(aadAuthenticationProperties, membership.getDisplayName())) {
+        if (current.isMemberOf(aadAuthenticationProperties, "group1")) {
             return todoList.stream()
                            .filter(i -> i.getID() == id)
                            .findFirst()

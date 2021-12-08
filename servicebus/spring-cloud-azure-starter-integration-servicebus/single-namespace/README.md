@@ -96,6 +96,7 @@ You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser t
 Running the command below to export environment values:
 
 ```shell
+ rm     ./terraform/environment_values.sh
  source ./terraform/environment_values.sh 
 ```
 

@@ -93,28 +93,11 @@ SERVICEBUS_NAMESPACE = "${YOUR_SERVICEBUS_NAMESPACE}"
 You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
 
 ### Export output to your local Environment
-Running the command below to get environment values:
+Running the command below to export environment values:
 
 ```shell
- terraform -chdir=./terraform output -json | jq -r --arg prefix "export " '$prefix + (
-  . as $in
-  | keys[]
-  | ($in[.].value | tostring) as $value
-  | ($in[.].sensitive | tostring) as $sensitive
-  | [
-    (. | ascii_upcase) + "=" + $value
-    ]
-  | .[])'  
-  
+ source ./terraform/environment_values.sh 
 ```
-
-you will get output like this
-```shell
-export SERVICEBUS_NAMESPACE=<your-servicebus-namespace>
-```
-
-Copy the output and paste it in you terminal to export the value to your local environment.
-
 
 ## Run locally
 

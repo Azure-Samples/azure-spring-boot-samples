@@ -352,9 +352,6 @@ MigrationBackup/
 # Compiled class file
 *.class
 
-# Log file
-*.log
-
 # BlueJ files
 *.ctxt
 
@@ -380,3 +377,6 @@ target
 .classpath
 .project
 *.iml
+
+# Property file used for local test.
+**/application-develop.yml

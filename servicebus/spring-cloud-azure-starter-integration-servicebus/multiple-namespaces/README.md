@@ -13,7 +13,6 @@ You will build an application that using Spring Integration for Azure Service Bu
 - [Terraform](https://www.terraform.io/)
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=mac)
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
-- [jq](https://stedolan.github.io/jq/)
 - JDK8
 - Maven
 
@@ -104,7 +103,6 @@ You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser t
 Running the command below to export environment values:
 
 ```shell
- rm     ./terraform/environment_values.sh
  source ./terraform/environment_values.sh 
 ```
 

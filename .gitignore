@@ -417,3 +417,4 @@ override.tf.json
 .terraformrc
 terraform.rc
 **/terraform/environment_values.sh
+**/terraform/.terraform.lock.hcl

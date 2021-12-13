@@ -12,6 +12,10 @@ terraform {
       source  = "hashicorp/azuread"
       version = "~> 2.10.0"
     }
+    nullresource = {
+      source  = "hashicorp/null"
+      version = "~> 3.1.0"
+    }
   }
 }
 
@@ -42,6 +46,12 @@ resource "azurecaf_name" "servicebus_01" {
   resource_type = "azurerm_servicebus_namespace"
   random_length = 5
   clean_input   = true
+}
+
+resource "null_resource" "null" {
+  provisioner "local-exec" {
+    command = "rm environment_values.sh"
+  }
 }
 
 resource "azurerm_servicebus_namespace" "servicebus_namespace_01" {

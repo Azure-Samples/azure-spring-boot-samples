@@ -1,0 +1,62 @@
+spring:
+  profiles:
+    active: manual
+  cloud:
+    stream:
+      function:
+        definition: consume1;supply1;consume2;supply2
+      bindings:
+        consume1-in-0:
+          destination: ${AZURE_EVENTHUB_1_NAME}
+          group:  ${AZURE_EVENTHUB_CONSUMER_GROUP}
+        supply1-out-0:
+          destination: ${THE_SAME_EVENTHUB_1_NAME_AS_ABOVE]
+        consume2-in-0:
+          binder: eventhub-2
+          destination: ${AZURE_EVENTHUB_2_NAME}
+          group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
+        supply2-out-0:
+          binder: eventhub-2
+          destination: ${THE_SAME_EVENTHUB_2_NAME_AS_ABOVE}
+      binders:
+        eventhub-1:
+          type: eventhubs
+          default-candidate: true
+          environment:
+            spring:
+              cloud:
+                azure:
+                  eventhubs:
+                    connection-string: ${CONNECTION_STRING_OF_FIRST_EVENTHUB_NAMESPACE}
+                    processor:
+                      checkpoint-store:
+                        container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                        account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
+                        account-key:  ${AZURE_STORAGE_ACCOUNT_KEY}
+        eventhub-2:
+          type: eventhubs
+          default-candidate: false
+          environment:
+            spring:
+              cloud:
+                azure:
+                  eventhubs:
+                    connection-string: ${CONNECTION_STRING_OF_SECOND_EVENTHUB_NAMESPACE}
+                    processor:
+                      checkpoint-store:
+                        container-name: ${AZURE_STORAGE_CONTAINER_2_NAME}
+                        account-name: ${AZURE_STORAGE_ACCOUNT_2_NAME}
+                        account-key:  ${AZURE_STORAGE_ACCOUNT_2_KEY}
+      eventhubs:
+        bindings:
+          consume1-in-0:
+            consumer:
+              checkpoint:
+                mode: MANUAL
+          consume2-in-0:
+            consumer:
+              checkpoint:
+                mode: MANUAL
+      poller:
+        initial-delay: 0
+        fixed-delay: 1000

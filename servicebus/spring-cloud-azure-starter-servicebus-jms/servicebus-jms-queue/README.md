@@ -1,13 +1,3 @@
----
-page_type: sample
-languages:
-- java
-products:
-- azure-service-bus
-description: "Azure Spring Boot Sample project for Spring JMS with Service Bus Queue client library"
-urlFragment: "azure-spring-boot-sample-service-bus-jms-queue"
----
-
 # Sample for Spring JMS with Azure Service Bus Queue Spring Cloud client library for Java
 
 ## Key concepts

@@ -1,13 +1,3 @@
----
-page_type: sample
-languages:
-- java
-products:
-- azure-active-directory-b2c
-description: "Sample project for Azure AD B2C Spring Boot resource server client library"
-urlFragment: "azure-spring-boot-sample-active-directory-b2c-resource-server"
----
-
 # Sample for Azure AD B2C Resource server Spring Boot client library for Java
 
 ## Key concepts
@@ -96,12 +86,12 @@ spring:
       active-directory:
         b2c:
           enabled: true
-          tenant-id: ${your-tenant-id}
-          app-id-uri: ${your-app-id-uri}         # If you are using v1.0 token, please configure app-id-uri for `aud` verification
-          client-id: ${your-client-id}           # If you are using v2.0 token, please configure client-id for `aud` verification
-          base-uri: ${your-base-uri}             # Such as: https://xxxxb2c.b2clogin.com
+          tenant-id: ${AZURE_TENANT_ID}
+          app-id-uri: ${APP_ID_URI}         # If you are using v1.0 token, please configure app-id-uri for `aud` verification
+          client-id: ${AZURE_CLIENT_ID}           # If you are using v2.0 token, please configure client-id for `aud` verification
+          base-uri: ${AZURE_AD_BASE_URI}             # Such as: https://xxxxb2c.b2clogin.com
           user-flows:
-            sign-up-or-sign-in: ${sign-up-or-sign-in-user-flow-name}
+            sign-up-or-sign-in: ${SIGN_UP_OR_SIGN_IN_USER_FLOW_NAME}
 ```
 
 ### Run with Maven

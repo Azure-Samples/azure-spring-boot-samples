@@ -1,14 +1,3 @@
----
-page_type: sample
-languages:
-- java
-products:
-- Azure Spring Integration Starters 
-description: "Deploy Spring microservices using Spring Integration starters for Azure"
-  urlFragment: "spring-petclinic-microservices"
-
----
-
 # Deploy Spring Microservices using Azure Spring starters for Cosmos DB, Redis, KeyVault
 
 Azure Spring Cloud enables you to easily run a Spring Boot based microservices application on Azure.

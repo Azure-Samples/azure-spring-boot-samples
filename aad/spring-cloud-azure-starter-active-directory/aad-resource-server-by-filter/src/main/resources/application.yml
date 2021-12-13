@@ -1,20 +1,23 @@
-# By default, spring.cloud.azure.active-directory.environment property has value `global`,
-# supported value is global, cn. Please refer to the README for details.
-# spring.cloud.azure.active-directory.environment=global
+
 spring:
   cloud:
     azure:
+# Properties like spring.cloud.azure.credential.client-id are global properties.
+# Properties like spring.cloud.azure.active-directory.credential.client-id are AAD properties.
+# If AAD properties is not configured, global properties will be used.
+#      credential:
+#        client-id:
+#        client-secret:
+#      profile:
+#        tenant-id:
       active-directory:
         enabled: true
-        tenant-id: <your-tenant-id>
-        client-id: <your-client-id>
-        client-secret: <your-client-secret>
-        # Optional, default value is http://localhost:8080/
-        # redirect-uri-template: <your-redirect-uri>
-        # groups that you created in your Azure AD tenant
+        credential:
+          client-id: ${AZURE_CLIENT_ID}
+          client-secret: ${AZURE_CLIENT_SECRET}
+        profile:
+          tenant-id: ${AZURE_TENANT_ID}
         user-group:
           allowed-groups: group1,group2
-        # Optional, the default value is
-        # environment: global
 
 

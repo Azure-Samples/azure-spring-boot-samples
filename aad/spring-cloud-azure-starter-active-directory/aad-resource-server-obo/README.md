@@ -44,10 +44,12 @@ spring:
     azure:
       active-directory:
         enabled: true
-        client-id: <Web-API-A-client-id>
-        client-secret: <Web-API-A-client-secret>
-        tenant-id: <Tenant-id-registered-by-application>
-        app-id-uri: <Web-API-A-app-id-url>
+        credential:
+          client-id: ${AZURE_CLIENT_ID}
+          client-secret: ${AZURE_CLIENT_SECRET}
+        profile:
+          tenant-id: ${AZURE_TENANT_ID}
+        app-id-uri: ${WEB_API_A_APP_ID_URL}
         authorization-clients:
           graph:
             scopes:
@@ -55,11 +57,11 @@ spring:
           webapiB:         # When authorization-grant-type is null, on behalf of flow is used by default
             authorization-grant-type: on_behalf_of
             scopes:
-              - <Web-API-B-app-id-url>/WebApiB.ExampleScope
+              - ${WEB_API_B_APP_ID_URL}/WebApiB.ExampleScope
           webapiC:
             authorization-grant-type: client_credentials
             scopes:
-              - <Web-API-C-app-id-url>/.default
+              - ${WEB_API_C_APP_ID_URL}/.default
 ```
 
 ### Run with Maven

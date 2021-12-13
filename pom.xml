@@ -50,6 +50,7 @@
     <module>aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server</module>
     <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application</module>
     <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server</module>
+    <module>aad/spring-security</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-complete</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-initial</module>
     <module>appconfiguration/azure-appconfiguration-sample</module>
@@ -60,12 +61,11 @@
     <module>cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>
-    <module>eventhubs/azure-spring-cloud-starter-eventhubs/eventhubs-integration</module>
-    <module>eventhubs/azure-spring-cloud-starter-eventhubs/eventhubs-messaging</module>
-    <module>eventhubs/azure-spring-cloud-starter-eventhubs/eventhubs-operation</module>
+    <module>eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration</module>
+
     <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
-    <module>eventhubs/azure-spring-cloud-stream-binder-eventhubs/eventhubs-binder</module>
-    <module>eventhubs/azure-spring-cloud-stream-binder-eventhubs/eventhubs-multibinders</module>
+    <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder</module>
+    <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders</module>
     <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side</module>
     <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side</module>
     <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side</module>

@@ -352,9 +352,6 @@ MigrationBackup/
 # Compiled class file
 *.class
 
-# Log file
-*.log
-
 # BlueJ files
 *.ctxt
 
@@ -418,3 +415,7 @@ override.tf.json
 terraform.rc
 **/terraform/environment_values.sh
 **/terraform/.terraform.lock.hcl
+
+
+# Property file used for local test.
+**/application-develop.yml

@@ -9,7 +9,7 @@ output "AZURE_SERVICEBUS_NAMESPACE_02" {
 }
 
 output "AZURE_SERVICEBUS_NAMESPACE_03" {
-  value       = azurerm_servicebus_namespace.servicebus_namespace_03.name
+  value       = azurerm_servicebus_namespace.servicebus_namespace_01.name
   description = "The servicebus_03 namespace."
 }
 

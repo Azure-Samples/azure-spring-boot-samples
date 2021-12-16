@@ -126,8 +126,10 @@ Send a POST request to service bus queue
 Verify in your app’s logs that a similar message was posted:
 ```shell
 Message was sent successfully for queue1.
+...
 New message received: 'hello'
 Message 'hello' successfully checkpointed
+...
 Message was sent successfully for queue2.
 ```
 

@@ -31,7 +31,7 @@ public class BatchProducerAndConsumerConfiguration {
     public Supplier<Message<String>> supply() {
         return () -> {
             LOGGER.info("Sending message, sequence " + i++);
-            return MessageBuilder.withPayload("\"Hello world " + i + "\"").build();
+            return MessageBuilder.withPayload("\"Hello world " + i++ + "\"").build();
         };
     }
 

@@ -419,3 +419,5 @@ terraform.rc
 
 # Property file used for local test.
 **/application-develop.yml
+
+.history/

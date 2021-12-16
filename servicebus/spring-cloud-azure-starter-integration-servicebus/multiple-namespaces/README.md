@@ -50,14 +50,14 @@ You have logged in. Now let us find all the subscriptions to which you have acce
 ]
 ```
 
-If you have more than one subscriptions, specify the subscription-id you want to use with command below:
+If you have more than one subscription, specify the subscription-id you want to use with command below:
 ```shell
 az account set --subscription <your-subscription-id>
 ```
 
 ### Provision the Resources
 
-After login Azure CLI with your accout, now you can use the terraform script to create Azure Resources.
+After login Azure CLI with your account, now you can use the terraform script to create Azure Resources.
 
 ```shell
 

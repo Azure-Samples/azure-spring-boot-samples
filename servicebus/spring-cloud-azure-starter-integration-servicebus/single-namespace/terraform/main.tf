@@ -52,7 +52,7 @@ resource "azurecaf_name" "servicebus" {
 
 resource "null_resource" "null" {
   provisioner "local-exec" {
-    command = "rm environment_values.sh"
+    command = "touch environment_values.sh && rm environment_values.sh"
   }
 }
 

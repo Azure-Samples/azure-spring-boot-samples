@@ -271,6 +271,10 @@ For checkpointing mode as MANUAL, you can use below code to send messages and co
     }
 ```
 
+NOTE: in the batch-consuming mode, the default content type of Spring Cloud Stream binder is **application/json**, so make sure the message payload is aligned with the content-type. For example, when using the default content type of **application/json** to received messages with **String** payload, the payload should be a JSON String, surrounded with double quotes. While for **text/plain** content type, it can be a **String** object directly.
+
+For more details, please refer to the official doc of [Spring Cloud Stream Content Type Negotiation][content-type-negotiation].
+
 ## Examples
 
 1.  Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
@@ -324,3 +328,4 @@ For checkpointing mode as MANUAL, you can use below code to send messages and co
 [StreamBridge]: https://docs.spring.io/spring-cloud-stream/docs/3.1.3/reference/html/spring-cloud-stream.html#_sending_arbitrary_data_to_an_output_e_g_foreign_event_driven_sources
 [spring-cloud-stream-batch0-consumer]: https://docs.spring.io/spring-cloud-stream/docs/3.1.4/reference/html/spring-cloud-stream.html#_batch_consumers
 [BatchConsumerConfiguration]: ./src/main/java/com/azure/spring/sample/eventhubs/binder/BatchConsumerConfiguration.java
+[content-type-negotiation]: https://docs.spring.io/spring-cloud-stream/docs/current/reference/html/spring-cloud-stream.html#content-type-management

@@ -277,7 +277,7 @@ see the [BatchProducerAndConsumerConfiguration.java][BatchProducerAndConsumerCon
     public Supplier<Message<String>> supply() {
         return () -> {
             LOGGER.info("Sending message, sequence " + i);
-            return MessageBuilder.withPayload("\"Hello world"+ i++ +"\"").build();
+            return MessageBuilder.withPayload("\"Hello world "+ i++ +"\"").build();
         };
     }
 ```
@@ -308,10 +308,15 @@ For checkpointing mode as MANUAL, you can use below code to send messages and co
     public Supplier<Message<String>> supply() {
         return () -> {
             LOGGER.info("Sending message, sequence " + i);
-            return MessageBuilder.withPayload("\"Hello world"+ i++ +"\"").build();
+            return MessageBuilder.withPayload("\"Hello world "+ i++ +"\"").build();
         };
     }
 ```
+
+NOTE: in the batch-consuming mode, the default content type of Spring Cloud Stream binder is **application/json**, so make sure the message payload is aligned with the content-type. For example, when using the default content type of **application/json** to received messages with **String** payload, the payload should be a JSON String, surrounded with double quotes for the original String text. While for **text/plain** content type, it can be a **String** object directly.
+
+For more details, please refer to the official doc of [Spring Cloud Stream Content Type Negotiation][content-type-negotiation].
+
 ## Troubleshooting
 
 ## Next steps
@@ -336,3 +341,4 @@ For checkpointing mode as MANUAL, you can use below code to send messages and co
 [BatchProducerAndConsumerConfiguration]: 
 src/main/java/com/azure/spring/sample/eventhubs/binder/BatchProducerAndConsumerConfiguration.java
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
+[content-type-negotiation]: https://docs.spring.io/spring-cloud-stream/docs/current/reference/html/spring-cloud-stream.html#content-type-management

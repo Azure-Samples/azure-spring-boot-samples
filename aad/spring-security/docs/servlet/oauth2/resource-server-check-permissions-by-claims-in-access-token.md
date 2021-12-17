@@ -30,7 +30,7 @@ This section shows this scenario:
 5. Resource server check whether current signed-in user has permission to specific method.
 
 # 2. Get sample applications
-Get samples applications from in GitHub: [02-check-permissions-by-claims-in-access-token].
+Get samples applications from in GitHub: [resource-server-check-permissions-by-claims-in-access-token].
 
 # 3. Create resources in Azure
 
@@ -89,7 +89,7 @@ Read [document about assigning users and groups to roles], assign **user-1** to 
 [Spring Security]: https://spring.io/projects/spring-security
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [access token]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
-[02-check-permissions-by-claims-in-access-token]: ../../../servlet/oauth2/02-check-permissions-by-claims-in-access-token
+[resource-server-check-permissions-by-claims-in-access-token]: ../../../servlet/oauth2/resource-server-check-permissions-by-claims-in-access-token
 [document about creating an Azure AD tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant
 [document about registering an application]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
 [document about adding users]: https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory
@@ -101,7 +101,7 @@ Read [document about assigning users and groups to roles], assign **user-1** to 
 [document about assigning users and groups to roles]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles
 [document about declaring roles for an application]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#declare-roles-for-an-application
 [document about assigning users and groups to roles]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles
-[client]: ../../../servlet/oauth2/02-check-permissions-by-claims-in-access-token/client
-[resource-server]: ../../../servlet/oauth2/02-check-permissions-by-claims-in-access-token/resource-server
+[client]: ../../../servlet/oauth2/resource-server-check-permissions-by-claims-in-access-token/client
+[resource-server]: ../../../servlet/oauth2/resource-server-check-permissions-by-claims-in-access-token/resource-server
 [Edge]: https://www.microsoft.com/edge?r=1
 [InPrivate window]: https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2

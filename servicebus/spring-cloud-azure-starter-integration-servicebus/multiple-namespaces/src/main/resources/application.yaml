@@ -9,4 +9,10 @@ servicebus.producers[1]:
 servicebus.processors[0]:
   entity-name: queue1
   entity-type: queue
-  namespace: ${AZURE_SERVICEBUS_NAMESPACE_03}
+  namespace: ${AZURE_SERVICEBUS_NAMESPACE_01}
+
+#reduce some noise
+logging.level:
+  com.azure.core: warn
+  com.azure.identity: warn
+  com.azure.messaging: warn

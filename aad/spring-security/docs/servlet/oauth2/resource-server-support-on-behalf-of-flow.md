@@ -35,7 +35,7 @@ This section shows this scenario:
 6. resource-server-2 validate the [access token] by validating the signature, and checking these claims: `aud`, `nbf` and `exp`.
 
 # 2. Get sample applications
-Get samples applications from in GitHub: [04-on-behalf-of-flow].
+Get samples applications from in GitHub: [resource-server-support-on-behalf-of-flow].
 
 # 3. Create resources in Azure
 
@@ -104,7 +104,7 @@ Read [document about exposing an api], pre-authorize resource-server-1 to access
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [access token]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
 [on behalf of flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow
-[04-on-behalf-of-flow]: ../../../servlet/oauth2/04-on-behalf-of-flow
+[resource-server-support-on-behalf-of-flow]: ../../../servlet/oauth2/resource-server-support-on-behalf-of-flow
 [document about creating an Azure AD tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant
 [document about registering an application]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
 [document about adding users]: https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory
@@ -112,9 +112,9 @@ Read [document about exposing an api], pre-authorize resource-server-1 to access
 [document about adding a redirect URI]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri
 [document about exposing an api]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis
 [document about Application manifest]: https://docs.microsoft.com/azure/active-directory/develop/reference-app-manifest#accesstokenacceptedversion-attribute
-[client]: ../../../servlet/oauth2/04-on-behalf-of-flow/client
-[resource-server-1]: ../../../servlet/oauth2/04-on-behalf-of-flow/resource-server-1
-[resource-server-2]: ../../../servlet/oauth2/04-on-behalf-of-flow/resource-server-2
+[client]: ../../../servlet/oauth2/resource-server-support-on-behalf-of-flow/client
+[resource-server-1]: ../../../servlet/oauth2/resource-server-support-on-behalf-of-flow/resource-server-1
+[resource-server-2]: ../../../servlet/oauth2/resource-server-support-on-behalf-of-flow/resource-server-2
 [Edge]: https://www.microsoft.com/edge?r=1
 [InPrivate window]: https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2
 

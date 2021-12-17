@@ -30,10 +30,11 @@ Each sample has homework, you can get the answer in [homework answers].
 
 ### 4.1.1. OAuth 2
 
-1. [client-access-resource-server]
-2. [resource-server-check-permissions-by-claims-in-access-token]
-3. [client-access-multiple-resource-server]
-4. [resource-server-support-on-behalf-of-flow]
+1. [login]
+2. [client-access-resource-server]
+3. [resource-server-check-permissions-by-claims-in-access-token]
+4. [client-access-multiple-resource-server]
+5. [resource-server-support-on-behalf-of-flow]
 
 ### 4.1.2. SAML2
 To be done.
@@ -47,6 +48,7 @@ To be done.
 [spring-security]: https://github.com/spring-projects/spring-security
 [creating a new github issue]: https://github.com/Azure-Samples/azure-spring-boot-samples/issues/new
 [homework answers]: homework-answers.md
+[login]: servlet/oauth2/login.md
 [client-access-resource-server]: servlet/oauth2/client-access-resource-server.md
 [resource-server-check-permissions-by-claims-in-access-token]: servlet/oauth2/resource-server-check-permissions-by-claims-in-access-token.md
 [client-access-multiple-resource-server]: servlet/oauth2/client-access-multiple-resource-server.md

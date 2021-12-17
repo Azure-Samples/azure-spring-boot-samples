@@ -7,7 +7,7 @@ You will build an application that use Azure Servicebus Queues and Topics to sen
 
 ## What You Need
 
-- [An Azure subscription](https://azure.microsoft.com/en-us/free/)
+- [An Azure subscription](https://azure.microsoft.com/free/)
 - [Terraform](https://www.terraform.io/)
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=mac)
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
@@ -95,7 +95,7 @@ You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser t
 Running the command below to export environment values:
 
 ```shell
- source ./terraform/environment_values.sh 
+ source ./terraform/setup_env.sh
 ```
 
 ## Run locally

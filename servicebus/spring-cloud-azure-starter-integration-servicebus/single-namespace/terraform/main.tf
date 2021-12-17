@@ -40,20 +40,11 @@ resource "azurerm_resource_group" "main" {
   }
 }
 
-data "azurerm_client_config" "current" {}
-
-
 resource "azurecaf_name" "servicebus" {
   name          = var.application_name
   resource_type = "azurerm_servicebus_namespace"
   random_length = 5
   clean_input   = true
-}
-
-resource "null_resource" "null" {
-  provisioner "local-exec" {
-    command = "touch environment_values.sh && rm environment_values.sh"
-  }
 }
 
 resource "azurerm_servicebus_namespace" "servicebus_namespace" {
@@ -63,9 +54,6 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace" {
 
   sku            = "Standard"
   zone_redundant = false
-  provisioner "local-exec" {
-    command = "echo 'export SERVICEBUS_NAMESPACE=${azurerm_servicebus_namespace.servicebus_namespace.name}' >> environment_values.sh"
-  }
 }
 
 resource "azurecaf_name" "servicebus_namespace_authorization_rule" {

@@ -9,7 +9,7 @@ You will build an application that using Spring Integration for Azure Service Bu
 
 ## What You Need
 
-- [An Azure subscription](https://azure.microsoft.com/en-us/free/)
+- [An Azure subscription](https://azure.microsoft.com/free/)
 - [Terraform](https://www.terraform.io/)
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=mac)
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)

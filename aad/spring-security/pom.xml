@@ -15,16 +15,17 @@
   </properties>
 
   <modules>
-    <module>servlet/oauth2/01-basic-scenario/client</module>
-    <module>servlet/oauth2/01-basic-scenario/resource-server</module>
-    <module>servlet/oauth2/02-check-permissions-by-claims-in-access-token/client</module>
-    <module>servlet/oauth2/02-check-permissions-by-claims-in-access-token/resource-server</module>
-    <module>servlet/oauth2/03-multiple-resource-server/client</module>
-    <module>servlet/oauth2/03-multiple-resource-server/resource-server-1</module>
-    <module>servlet/oauth2/03-multiple-resource-server/resource-server-2</module>
-    <module>servlet/oauth2/04-on-behalf-of-flow/client</module>
-    <module>servlet/oauth2/04-on-behalf-of-flow/resource-server-1</module>
-    <module>servlet/oauth2/04-on-behalf-of-flow/resource-server-2</module>
+    <module>servlet/oauth2/login</module>
+    <module>servlet/oauth2/client-access-resource-server/client</module>
+    <module>servlet/oauth2/client-access-resource-server/resource-server</module>
+    <module>servlet/oauth2/resource-server-check-permissions-by-claims-in-access-token/client</module>
+    <module>servlet/oauth2/resource-server-check-permissions-by-claims-in-access-token/resource-server</module>
+    <module>servlet/oauth2/client-access-multiple-resource-server/client</module>
+    <module>servlet/oauth2/client-access-multiple-resource-server/resource-server-1</module>
+    <module>servlet/oauth2/client-access-multiple-resource-server/resource-server-2</module>
+    <module>servlet/oauth2/resource-server-support-on-behalf-of-flow/client</module>
+    <module>servlet/oauth2/resource-server-support-on-behalf-of-flow/resource-server-1</module>
+    <module>servlet/oauth2/resource-server-support-on-behalf-of-flow/resource-server-2</module>
   </modules>
 
 </project>

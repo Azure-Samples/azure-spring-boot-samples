@@ -12,11 +12,11 @@
 
 ## 1.1. Question 9
 Question: 
-9. In [01-client]'s **application.yml**, the property **spring.security.oauth2.client.registration.scope** contains **openid** and **profile**. what will happen if we delete **openid** or **scope**?
+9. In [client-access-resource-server/client]'s **application.yml**, the property **spring.security.oauth2.client.registration.scope** contains **openid** and **profile**. what will happen if we delete **openid** or **scope**?
 
 Answer:
 1. If **openid** been deleted, when sign in, it will have error like **AADSTS70011: The provided request must include a 'scope' input parameter. The provided value for the input parameter 'scope' is not valid**.
-2. If **profile** been deleted, when sign in, [01-client] will throw exception like **Missing attribute 'name' in attributes**.
+2. If **profile** been deleted, when sign in, [client-access-resource-server/client] will throw exception like **Missing attribute 'name' in attributes**.
 3. If **offline_access** been deleted, user can sign in without any problem. And user can access **http://localhost:8080/resource-server** without any problem. But after one hour, user can not access **http://localhost:8080/resource-server** anymore, because access token has been expired. **offline_access** is used to get refresh token, and refresh token can be used to get another access token when current access token expired.
 4. Please refer to [document about OpenID Connect scopes] to get more information.
 
@@ -50,7 +50,7 @@ Answer:
 
 
 
-[01-client]: ../servlet/oauth2/01-basic-scenario/client
+[client-access-resource-server/client]: ../servlet/oauth2/client-access-resource-server/client
 [document about OpenID Connect scopes]: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
 [document about incremental and dynamic user consent]: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#incremental-and-dynamic-user-consent
 [document about admin consent]: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#admin-consent

@@ -80,10 +80,8 @@ It may take a few minutes to run the script. After successful running, you will 
 
 ...
 azurerm_role_assignment.servicebus_02_data_owner: Still creating... 
-azurerm_role_assignment.servicebus_03_data_owner: Still creating... 
 azurerm_role_assignment.servicebus_01_data_owner: Still creating... 
 azurerm_role_assignment.servicebus_01_data_owner: Creation complete after 29s... 
-azurerm_role_assignment.servicebus_03_data_owner: Creation complete after 29s... 
 azurerm_role_assignment.servicebus_02_data_owner: Creation complete after 29s... 
 
 Apply complete! Resources: 14 added, 0 changed, 0 destroyed.
@@ -92,9 +90,6 @@ Outputs:
 
 AZURE_SERVICEBUS_NAMESPACE_01 = "${YOUR_SERVICEBUS_NAMESPACE_01}"
 AZURE_SERVICEBUS_NAMESPACE_02 = "${YOUR_SERVICEBUS_NAMESPACE_02}"
-AZURE_SERVICEBUS_NAMESPACE_03 = "${YOUR_SERVICEBUS_NAMESPACE_03}"
-
-
 ```
 
 You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
@@ -103,7 +98,7 @@ You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser t
 Running the command below to export environment values:
 
 ```shell
- source ./terraform/environment_values.sh 
+ source ./terraform/setup_env.sh
 ```
 
 ## Run locally

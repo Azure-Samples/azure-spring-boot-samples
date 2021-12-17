@@ -48,11 +48,7 @@ resource "azurecaf_name" "servicebus_01" {
   clean_input   = true
 }
 
-resource "null_resource" "null" {
-  provisioner "local-exec" {
-    command = "touch environment_values.sh && rm environment_values.sh"
-  }
-}
+
 
 resource "azurerm_servicebus_namespace" "servicebus_namespace_01" {
   name                = azurecaf_name.servicebus_01.result
@@ -61,14 +57,6 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace_01" {
 
   sku            = "Standard"
   zone_redundant = false
-
-  provisioner "local-exec" {
-    command = <<EOT
-    echo 'export AZURE_SERVICEBUS_NAMESPACE_01=${azurerm_servicebus_namespace.servicebus_namespace_01.name}' >> environment_values.sh
-    echo 'export AZURE_SERVICEBUS_NAMESPACE_03=${azurerm_servicebus_namespace.servicebus_namespace_01.name}' >> environment_values.sh
-    EOT
-    
-  }
 }
 
 resource "azurerm_servicebus_queue" "application_queue_01" {
@@ -100,9 +88,7 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace_02" {
   sku            = "Standard"
   zone_redundant = false
 
-  provisioner "local-exec" {
-    command = "echo 'export AZURE_SERVICEBUS_NAMESPACE_02=${azurerm_servicebus_namespace.servicebus_namespace_02.name}' >> environment_values.sh"
-  }
+
 }
 
 resource "azurerm_servicebus_queue" "application_queue_02" {

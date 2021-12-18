@@ -37,6 +37,7 @@ resource "azurerm_resource_group" "main" {
   tags = {
     "terraform"        = "true"
     "application-name" = var.application_name
+    "spring-cloud-azure-sample" = "true"
   }
 }
 
@@ -54,6 +55,10 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace" {
 
   sku            = "Standard"
   zone_redundant = false
+
+  tags = {
+    "spring-cloud-azure-sample" = "true"
+  }
 }
 
 resource "azurecaf_name" "servicebus_namespace_authorization_rule" {

@@ -37,6 +37,7 @@ resource "azurerm_resource_group" "main" {
   tags = {
     "terraform"        = "true"
     "application-name" = var.application_name
+    "spring-cloud-azure-sample" = "true"
   }
 }
 
@@ -48,8 +49,6 @@ resource "azurecaf_name" "servicebus_01" {
   clean_input   = true
 }
 
-
-
 resource "azurerm_servicebus_namespace" "servicebus_namespace_01" {
   name                = azurecaf_name.servicebus_01.result
   location            = var.location
@@ -57,6 +56,10 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace_01" {
 
   sku            = "Standard"
   zone_redundant = false
+
+  tags = {
+    "spring-cloud-azure-sample" = "true"
+  }
 }
 
 resource "azurerm_servicebus_queue" "application_queue_01" {
@@ -88,7 +91,9 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace_02" {
   sku            = "Standard"
   zone_redundant = false
 
-
+  tags = {
+    "spring-cloud-azure-sample" = "true"
+  }
 }
 
 resource "azurerm_servicebus_queue" "application_queue_02" {

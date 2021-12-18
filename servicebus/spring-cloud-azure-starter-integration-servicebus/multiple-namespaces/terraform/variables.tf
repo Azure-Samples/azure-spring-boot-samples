@@ -9,3 +9,9 @@ variable "location" {
   description = "The Azure region where all resources in this example should be created"
   default     = "eastus"
 }
+
+variable "sample_tag_value" {
+  type        = string
+  description = "The value of spring-cloud-azure-sample tag"
+  default     = "true"
+}

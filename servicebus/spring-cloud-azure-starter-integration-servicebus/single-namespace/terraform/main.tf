@@ -37,7 +37,7 @@ resource "azurerm_resource_group" "main" {
   tags = {
     "terraform"        = "true"
     "application-name" = var.application_name
-    "spring-cloud-azure-sample" = "true"
+    "spring-cloud-azure-sample" = var.sample_tag_value
   }
 }
 
@@ -57,7 +57,7 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace" {
   zone_redundant = false
 
   tags = {
-    "spring-cloud-azure-sample" = "true"
+    "spring-cloud-azure-sample" = var.sample_tag_value
   }
 }
 

@@ -8,14 +8,6 @@ terraform {
       source  = "aztfmod/azurecaf"
       version = "1.2.6"
     }
-    azuread = {
-      source  = "hashicorp/azuread"
-      version = "~> 2.10.0"
-    }
-    nullresource = {
-      source  = "hashicorp/null"
-      version = "~> 3.1.0"
-    }
   }
 }
 

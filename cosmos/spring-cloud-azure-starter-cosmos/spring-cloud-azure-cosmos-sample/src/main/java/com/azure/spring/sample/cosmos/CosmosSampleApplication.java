@@ -31,8 +31,8 @@ public class CosmosSampleApplication implements CommandLineRunner {
     @Autowired
     private CosmosClient client;
 
-    private final String databaseName = "AzureCosmosSampleDB";
-    private final String containerName = "AzureCosmosSampleContainer";
+    private final String databaseName = "products";
+    private final String containerName = "users";
     private final String documentId = UUID.randomUUID().toString();
     private final String documentLastName = "Peterson";
 
@@ -55,20 +55,20 @@ public class CosmosSampleApplication implements CommandLineRunner {
      * Create Database
      */
     private void createDatabaseIfNotExists() throws Exception {
-        logger.info("Create database " + databaseName + " if not exists...");
+        logger.info("Create database " + databaseName + " if not exists.........");
 
         //  Create database if not exists
         CosmosDatabaseResponse databaseResponse = client.createDatabaseIfNotExists(databaseName);
         database = client.getDatabase(databaseResponse.getProperties().getId());
 
-        logger.info("Done.");
+        logger.info("Exec getDatabase() is Done.");
     }
 
     /**
      * Create container
      */
     private void createContainerIfNotExists() throws Exception {
-        logger.info("Create container " + containerName + " if not exists.");
+        logger.info("Create container " + containerName + " if not exists.........");
 
         //  Create container if not exists
         CosmosContainerProperties containerProperties =
@@ -81,7 +81,7 @@ public class CosmosSampleApplication implements CommandLineRunner {
         CosmosContainerResponse containerResponse = database.createContainerIfNotExists(containerProperties, throughputProperties);
         container = database.getContainer(containerResponse.getProperties().getId());
 
-        logger.info("Done.");
+        logger.info("Exec createContainerIfNotExists() is Done.");
     }
 
     /**
@@ -98,9 +98,9 @@ public class CosmosSampleApplication implements CommandLineRunner {
 
         // Insert this item as a document
         // Explicitly specifying the /pk value improves performance.
-        container.createItem(family,new PartitionKey(family.getLastName()),new CosmosItemRequestOptions());
+        container.createItem(family,new PartitionKey(family.getId()),new CosmosItemRequestOptions());
 
-        logger.info("Done.");
+        logger.info("Exec createDocument() is Done.");
     }
 
     private void queryAllDocuments() throws Exception {
@@ -120,6 +120,6 @@ public class CosmosSampleApplication implements CommandLineRunner {
             logger.info(String.format("First query result: Family with (/id, partition key) = (%s,%s)",family.getId(),family.getLastName()));
         }
 
-        logger.info("Done.");
+        logger.info("Exec executeQueryPrintSingleResult() is Done.");
     }
 }

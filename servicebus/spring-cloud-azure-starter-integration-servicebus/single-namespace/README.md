@@ -3,7 +3,7 @@
 This guide walks you through the process of accessing Servicebus Queues and Topics with Spring Integration.
 
 ## What You Will build
-You will build an application that use Azure Servicebus Queues and Topics to send and receive messages withs [Spring Integration](https://spring.io/projects/spring-integration) APIs.
+You will build an application that use Azure Servicebus Queues and Topics to send and receive messages with [Spring Integration](https://spring.io/projects/spring-integration) APIs.
 
 ## What You Need
 

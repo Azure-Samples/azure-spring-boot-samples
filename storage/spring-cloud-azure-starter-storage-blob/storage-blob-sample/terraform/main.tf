@@ -8,14 +8,6 @@ terraform {
       source  = "aztfmod/azurecaf"
       version = "1.2.6"
     }
-    azuread = {
-      source  = "hashicorp/azuread"
-      version = "~> 2.10.0"
-    }
-    nullresource = {
-      source  = "hashicorp/null"
-      version = "~> 3.1.0"
-    }
   }
 }
 
@@ -35,15 +27,9 @@ resource "azurerm_resource_group" "main" {
   location = var.location
 
   tags = {
+    "spring-cloud-azure-sample" = var.sample_tag_value
     "terraform"        = "true"
     "application-name" = var.application_name
-  }
-}
-
-
-resource "null_resource" "null" {
-  provisioner "local-exec" {
-    command = "rm -f environment_values.sh"
   }
 }
 
@@ -63,11 +49,10 @@ resource "azurerm_storage_account" "application" {
   account_replication_type = "LRS"
   allow_blob_public_access = true
 
-  provisioner "local-exec" {
-    command = <<EOT
-              echo 'export AZURE_STORAGE_ACCOUNT=${azurerm_storage_account.application.name}' >> environment_values.sh
-              echo 'export STORAGE_CONTAINER_NAME=${var.container_name}' >> environment_values.sh
-              EOT
+  tags = {
+    "spring-cloud-azure-sample" = var.sample_tag_value
+    "terraform"        = "true"
+    "application-name" = var.application_name
   }
 }
 

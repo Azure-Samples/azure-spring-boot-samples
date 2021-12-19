@@ -15,3 +15,9 @@ variable "container_name" {
   description = "The container name of the blob storage"
   default     = "blobcontainer"
 }
+
+variable "sample_tag_value" {
+  type        = string
+  description = "The value of spring-cloud-azure-sample tag"
+  default     = "true"
+}

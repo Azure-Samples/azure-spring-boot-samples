@@ -292,8 +292,8 @@ services, please try to redeploy the app again.
 
 1.  Verify in your app’s logs that a similar message was posted:
 
-        [1] New message1 received: 'hello'
-        [1] Message1 'hello' successfully checkpointed
+         New message1 received: 'hello'
+         Message1 'hello' successfully checkpointed
 
 1.  Send another POST request to test the other binder
 
@@ -301,8 +301,8 @@ services, please try to redeploy the app again.
 
 1.  Verify in your app’s logs that a similar message was posted:
 
-        [2] New message2 received: 'hello'
-        [2] Message2 'hello' successfully checkpointed
+         New message2 received: 'hello'
+         Message2 'hello' successfully checkpointed
 
 6.  Delete the resources on [Azure Portal][azure-portal]
     to avoid unexpected charges.

@@ -13,13 +13,15 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 
 ### Create Azure resources
 
-1.  Create [Azure Storage][create-azure-storage]. 
+1. Create [Azure Storage][create-azure-storage]. 
     
-1.  **[Optional]** if you want to use service principal, please follow
+2. **[Optional]** if you want to use service principal, please follow
     [create service principal from Azure CLI][create-sp-using-azure-cli] to create one.
 
-1.  **[Optional]** if you want to use managed identity, please follow
+3. **[Optional]** if you want to use managed identity, please follow
     [create managed identity][create-managed-identity] to set up managed identity.
+
+4. **[Optional]** if you use managed identity or service principal, please assign `Storage Queue Data Contributor` role for     managed identity or service principal.
 
 ## Examples
 
@@ -47,10 +49,6 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 1.  Send a POST request
 
         $ curl -X POST localhost:8080/messages?message=hello
-
-1.  Receive the message you posted
-
-        $ curl -X GET localhost:8080/messages
 
 1.  Verify in your app’s logs that a similar message was posted:
 

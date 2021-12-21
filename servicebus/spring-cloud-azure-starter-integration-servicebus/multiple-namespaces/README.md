@@ -44,7 +44,8 @@ Bus. You can choose anyone of them.
 
 1.  Add Role Assignment for Service Bus. See
     [Service principal for Azure resources with Service Bus][role-assignment]
-    to add role assignment for Service Bus. Assign `Contributor` role for service bus.
+    to add role assignment for Service Bus. Assign `
+    Azure Service Bus Data Owner` role for service bus.
 
 1.  Update [application-sp.yaml][application-sp.yaml].
     > We should specify `spring.profiles.active=sp` to run the Spring Boot application.
@@ -59,7 +60,8 @@ Please follow [create managed identity][create-managed-identity] to set up manag
 ##### Add Role Assignment for Service Bus
 
 1.  See [Managed identities for Azure resources with Service Bus][role-assignment]
-    to add role assignment for Service Bus. Assign `Contributor` role for managed identity.
+    to add role assignment for Service Bus. Assign `
+    Azure Service Bus Data Owner` role for managed identity.
 
 
 ##### Update MSI related properties
@@ -70,20 +72,24 @@ For App Service, please add a configuration entry for this.
 
 ## Examples
  
-1.  Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
+1. Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
 
-1. Send a POST request to service bus queue
+2. Send a POST request to service bus queue
 
         $ curl -X POST http://localhost:8080/queues?message=hello
 
-1.  Verify in your app’s logs that a similar message was posted:
+   or when the app runs on App Service or VM
+
+        $ curl -d -X POST https://[your-app-URL]/queues?message=hello
+
+3. Verify in your app’s logs that a similar message was posted:
 
         Message was sent successfully for queue1.
         New message received: 'hello'
         Message 'hello' successfully checkpointed
         Message was sent successfully for queue2.
 
-1.  Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
+4. Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
 
 ## Troubleshooting
 

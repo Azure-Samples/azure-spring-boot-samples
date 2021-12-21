@@ -39,7 +39,8 @@ Bus. You can choose anyone of them.
 
 1.  Add Role Assignment for Service Bus. See
     [Service principal for Azure resources with Service Bus][role-assignment]
-    to add role assignment for Service Bus. Assign `Contributor` role for service bus.
+    to add role assignment for Service Bus. Assign `
+    Azure Service Bus Data Owner` role for service bus.
 
 1.  Update [application-sp.yaml][application-sp.yaml].
     ```yaml
@@ -65,7 +66,8 @@ Please follow [create managed identity][create-managed-identity] to set up manag
 ##### Add Role Assignment for Service Bus
 
 1.  See [Managed identities for Azure resources with Service Bus][role-assignment]
-    to add role assignment for Service Bus. Assign `Contributor` role for managed identity.
+    to add role assignment for Service Bus. Assign `
+    Azure Service Bus Data Owner` role for managed identity.
 
 
 ##### Update MSI related properties
@@ -111,6 +113,9 @@ services, please try to redeploy the app again.
 4. Send a POST request to service bus queue
 
         $ curl -X POST http://localhost:8080/queues?message=hello
+   or when the app runs on App Service or VM
+
+        $ curl -d -X POST https://[your-app-URL]/queues?message=hello
 
 5. Verify in your app’s logs that a similar message was posted:
 
@@ -120,12 +125,16 @@ services, please try to redeploy the app again.
 
         $ curl -X POST http://localhost:8080/topics?message=hello
 
-7. Verify in your app’s logs that a similar message was posted:
+   or when the app runs on App Service or VM
+
+        $ curl -d -X POST http://[your-app-URL]/topics?message=hello
+
+8. Verify in your app’s logs that a similar message was posted:
 
         New message received: 'hello'
         Message 'hello' successfully checkpointed
 
-8. Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
+9. Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
 
 ## Enhancement
 ### Set Service Bus message headers

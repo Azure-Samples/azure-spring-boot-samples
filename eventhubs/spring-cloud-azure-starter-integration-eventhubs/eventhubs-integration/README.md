@@ -54,7 +54,7 @@ We have several ways to config the Spring Integration for Event Hubs. You can ch
 
 2. Add Role Assignment for Event Hubs. See
     [Service principal for Azure resources with Event Hubs][role-assignment]
-    to add role assignment for Event Hubs. Assign `Contributor` role for event hubs.
+    to add role assignment for Event Hubs. Assign `Azure Event Hubs Data Owner` role for event hubs.
 
 3. Update [application-sp.yaml][application-sp.yaml].
     ```yaml
@@ -84,7 +84,7 @@ Please follow [create managed identity][create-managed-identity] to set up manag
 ##### Add Role Assignment for Event Hubs
 
 1.  See [Managed identities for Azure resources with Event Hubs][role-assignment]
-    to add role assignment for Event Hubs. Assign `Contributor` role for managed identity.
+    to add role assignment for Event Hubs. Assign `Azure Event Hubs Data Owner` role for managed identity.
 
 
 ##### Update MSI related properties
@@ -124,7 +124,7 @@ services, please try to redeploy the app again.
 
 2. Send a POST request
 
-        $ ~~curl -X POST http://localhost:8080/messages?message=hello~~
+        $ curl -X POST http://localhost:8080/messages?message=hello
 
 3. Verify in your app’s logs that a similar message was posted:
 

@@ -24,8 +24,8 @@ import reactor.util.function.Tuple2;
 @Configuration(proxyBeanMethods = false)
 @AutoConfigureAfter(AzureServiceBusAutoConfiguration.class)
 @Import({
-    AzureServiceBusMessagingAutoConfiguration.ServiceBusTemplateConfiguration.class,
-    AzureServiceBusMessagingAutoConfiguration.ProcessorContainerConfiguration.class
+    MultipleNamespacesAzureServiceBusMessagingAutoConfiguration.ServiceBusTemplateConfiguration.class,
+    MultipleNamespacesAzureServiceBusMessagingAutoConfiguration.ProcessorContainerConfiguration.class
 })
 public class MultipleNamespacesAzureServiceBusMessagingAutoConfiguration {
     /**

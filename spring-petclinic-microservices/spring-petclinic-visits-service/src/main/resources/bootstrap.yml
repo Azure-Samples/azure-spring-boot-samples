@@ -10,14 +10,18 @@ spring:
     name: visits-service
 ---
 spring:
-  profiles: docker
+  proficonfig:
+    activate:
+      on-profileles: docker
   cloud:
     config:
       uri: http://config-server:8888
 
 ---
 spring:
-  profiles: local
+  config:
+    activate:
+      on-profile: local
   cloud:
     config:
       uri: http://localhost:8888

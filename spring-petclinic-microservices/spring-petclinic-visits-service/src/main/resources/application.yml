@@ -1,0 +1,10 @@
+azure:
+  keyvault:
+    client-id: ${AZURE_KEYVAULT_CLIENTID}
+    client-key: ${AZURE_KEYVAULT_CLIENTKEY}
+    enabled: true
+    refresh-interval: 1800000
+    secret-keys: cosmosdburi,cosmosdbkey,cosmosdbsecondarykey, redisuri, redispassword
+    tenant-id: ${AZURE_KEYVAULT_TENANTID}
+    token-acquire-timeout-seconds: 60
+    uri: ${AZURE_KEYVAULT_URI}

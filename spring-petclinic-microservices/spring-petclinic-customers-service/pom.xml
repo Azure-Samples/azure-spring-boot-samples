@@ -20,6 +20,11 @@
     </properties>
 
 	<dependencies>
+        <!-- Enable Bootstrap -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
 
         <!-- Spring Boot -->
         <dependency>
@@ -38,7 +43,7 @@
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-spring-data-cosmos</artifactId>
-            <version>3.2.0</version>
+            <version>3.16.0</version> <!-- {x-version-update;com.azure:azure-spring-data-cosmos;dependency} -->
         </dependency>
         <dependency>
             <groupId>com.azure.spring</groupId>

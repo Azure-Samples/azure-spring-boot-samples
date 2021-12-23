@@ -1,5 +1,10 @@
 spring:
   cloud:
+    # With Spring Boot 2.4,
+    # the bootstrap context initialization (bootstrap.yml,
+    # bootstrap.properties) of property sources was deprecated.
+    bootstrap:
+      enabled: true
     loadbalancer:
       ribbon:
         enabled: false

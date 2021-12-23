@@ -145,7 +145,6 @@ more about Spring on Azure, go to:
 
 This Spring microservices sample is forked from
 [spring-petclinic/spring-petclinic-microservices](https://github.com/spring-petclinic/spring-petclinic-microservices)
-- see [Petclinic README](./README-petclinic.md).
 
 ## Contributing
 

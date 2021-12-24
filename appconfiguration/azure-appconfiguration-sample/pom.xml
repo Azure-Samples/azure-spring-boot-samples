@@ -14,11 +14,29 @@
   <version>2.0.0</version> <!-- {x-version-update;com.azure.spring:azure-appconfiguration-sample;dependency} -->
   <name>Spring Cloud Azure App Configuration Sample</name>
 
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <version.spring.cloud>2020.0.4</version.spring.cloud>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${version.spring.cloud}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <dependencies>
     <dependency>
-      <groupId>com.microsoft.azure</groupId>
-      <artifactId>spring-cloud-azure-appconfiguration-config</artifactId>
-      <version>1.3.0</version><!-- {x-version-update;com.microsoft.azure:spring-cloud-azure-appconfiguration-config;dependency} -->
+      <groupId>com.azure.spring</groupId>
+      <artifactId>azure-spring-cloud-appconfiguration-config</artifactId>
+      <version>2.2.0</version>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>

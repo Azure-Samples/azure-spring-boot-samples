@@ -2,8 +2,7 @@
 
 ## Key concepts
 
-This sample demonstrates how to use `Spring Integration` for `Azure
-Event Hubs`.
+This sample demonstrates how to use `Spring Integration` for `Azure Event Hubs`.
 
 
 ## Getting started
@@ -23,6 +22,11 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 ### Configuration credential options
 
 We have several ways to config the Spring Integration for Event Hubs. You can choose anyone of them.
+
+> [!IMPORTANT]  
+> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
+> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
+
 
 >[!Important]
 >

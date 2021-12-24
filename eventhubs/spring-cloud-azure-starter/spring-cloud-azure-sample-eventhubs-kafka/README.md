@@ -22,6 +22,11 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 
 3. Create [Azure Event Hubs][create-event-hubs]. Please notice that Event Hubs for Kafka is only supported for [Standard and Dedicated tier namespaces](https://azure.microsoft.com/pricing/details/event-hubs/).
 
+
+> [!IMPORTANT]  
+> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
+> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
+
 ## Examples
 
 ### Use Event Hubs connection string

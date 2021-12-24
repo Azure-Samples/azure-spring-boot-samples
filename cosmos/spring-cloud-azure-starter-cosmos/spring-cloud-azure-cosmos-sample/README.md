@@ -1,4 +1,4 @@
-# Using Servicebus Queue and Topic With Spring Integration
+# Using CosmosDB With cosmosClient
 
 This guide walks you through the process of accessing Azure CosmosDB with cosmosClient.
 

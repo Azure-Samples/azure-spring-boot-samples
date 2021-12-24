@@ -1,7 +1,8 @@
 # Using Spring Cloud Azure Starter Data Cosmos
+This guide demonstrates how to use Azure Cosmos DB via Spring Boot Starter `spring-cloud-azure-starter-data-cosmos` to store data in and retrieve data from your Azure Cosmos DB.
 
 ## What You Will build
-You will build an application that use Azure Cosmos to save and query data with Spring Data.
+You will build an application to write data to and query data from Azure Cosmos DB via `spring-cloud-azure-starter-data-cosmos`.
 
 ## What You Need
 

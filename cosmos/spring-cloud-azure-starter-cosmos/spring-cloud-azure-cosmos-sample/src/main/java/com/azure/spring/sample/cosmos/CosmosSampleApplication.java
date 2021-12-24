@@ -5,13 +5,9 @@ package com.azure.spring.sample.cosmos;
 import com.azure.cosmos.CosmosClient;
 import com.azure.cosmos.CosmosContainer;
 import com.azure.cosmos.CosmosDatabase;
-import com.azure.cosmos.models.CosmosContainerProperties;
-import com.azure.cosmos.models.CosmosContainerResponse;
-import com.azure.cosmos.models.CosmosDatabaseResponse;
 import com.azure.cosmos.models.CosmosItemRequestOptions;
 import com.azure.cosmos.models.CosmosQueryRequestOptions;
 import com.azure.cosmos.models.PartitionKey;
-import com.azure.cosmos.models.ThroughputProperties;
 import com.azure.cosmos.util.CosmosPagedIterable;
 import com.azure.spring.sample.cosmos.common.Family;
 import org.slf4j.Logger;
@@ -45,8 +41,8 @@ public class CosmosSampleApplication implements CommandLineRunner {
     }
 
     public void run(String... var1) throws Exception {
-        createDatabaseIfNotExists();
-        createContainerIfNotExists();
+        getDatabase();
+        getContainer();
         createDocument();
         queryAllDocuments();
     }
@@ -54,12 +50,11 @@ public class CosmosSampleApplication implements CommandLineRunner {
     /**
      * Create Database
      */
-    private void createDatabaseIfNotExists() throws Exception {
-        logger.info("Create database " + databaseName + " if not exists.........");
+    private void getDatabase() throws Exception {
+        logger.info("Get database " + databaseName + " .........");
 
-        //  Create database if not exists
-        CosmosDatabaseResponse databaseResponse = client.createDatabaseIfNotExists(databaseName);
-        database = client.getDatabase(databaseResponse.getProperties().getId());
+        //  Get database
+        database = client.getDatabase(databaseName);
 
         logger.info("Exec getDatabase() is Done.");
     }
@@ -67,21 +62,13 @@ public class CosmosSampleApplication implements CommandLineRunner {
     /**
      * Create container
      */
-    private void createContainerIfNotExists() throws Exception {
-        logger.info("Create container " + containerName + " if not exists.........");
+    private void getContainer() throws Exception {
+        logger.info("Get container " + containerName + " if not exists.........");
 
-        //  Create container if not exists
-        CosmosContainerProperties containerProperties =
-                new CosmosContainerProperties(containerName, "/lastName");
+        //  Get container
+        container = database.getContainer(containerName);
 
-        // Provision throughput
-        ThroughputProperties throughputProperties = ThroughputProperties.createManualThroughput(400);
-
-        //  Create container with 200 RU/s
-        CosmosContainerResponse containerResponse = database.createContainerIfNotExists(containerProperties, throughputProperties);
-        container = database.getContainer(containerResponse.getProperties().getId());
-
-        logger.info("Exec createContainerIfNotExists() is Done.");
+        logger.info("Exec getContainer() is Done.");
     }
 
     /**

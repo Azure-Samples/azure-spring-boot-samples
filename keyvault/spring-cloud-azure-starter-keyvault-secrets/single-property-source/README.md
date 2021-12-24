@@ -1,21 +1,115 @@
+# Using Key Vault Secrets With Spring Cloud Azure Key Vault Secrets Starter
 
-# Spring Cloud Azure Starter Key Vault Secrets Sample
+This sample illustrates the simplest usage of `spring-cloud-azure-starter-keyvault-secrets`. 
+To learn all features, please refer to [reference doc](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html).
 
-This sample illustrates the simplest usage of `spring-cloud-azure-starter-keyvault-secrets`. To learn all features, please refer to [reference doc](https://microsoft.github.io/spring-cloud-azure/docs/4.0.0-beta.1/reference/html/index.html).
+## What You Will build
 
-## Create Azure resources
 
-1. Read [document about register an application](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app), register an application. get the `Application (client) ID`: **${AZURE_CLIENT_ID}**, and create a secret, get the `Client Secret Value`: **${AZURE_CLIENT_SECRET}**.
-2. Read [document about create key vault](https://docs.microsoft.com/en-us/azure/key-vault/general/quick-create-portal), get the `Directory ID`: **${AZURE_TENANT_ID}** and `Vault URI` **${ENDPOINT}**.
-3. Read [document about assign Key Vault access policy](https://docs.microsoft.com/en-us/azure/key-vault/general/assign-access-policy?tabs=azure-portal), assign `Secret Management` template to the client(or principal) we created in step 1.
+## What You Need
 
-## Fill the values in application.yml
-Fill these values in application.yml: **${AZURE_TENANT_ID}**, **${AZURE_CLIENT_ID}**, **${AZURE_CLIENT_SECRET}**, **${ENDPOINT}**.
+- [An Azure subscription](https://azure.microsoft.com/free/)
+- [Terraform](https://www.terraform.io/)
+- [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=mac)
+- [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
+- JDK8
+- Maven
 
-## Start application
+## Prevision Azure Resources required to run this sample.
+
+### Authenticate using the Azure CLI
+Terraform must authenticate to Azure to create infrastructure.
+
+In your terminal, use the Azure CLI tool to setup your account permissions locally.
+
+```shell
+az login
+```
+
+Your browser window will open and you will be prompted to enter your Azure login credentials. After successful authentication, your terminal will display your subscription information. You do not need to save this output as it is saved in your system for Terraform to use.
+
+```shell
+You have logged in. Now let us find all the subscriptions to which you have access...
+
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "home-Tenant-Id",
+    "id": "subscription-id",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Subscription-Name",
+    "state": "Enabled",
+    "tenantId": "0envbwi39-TenantId",
+    "user": {
+      "name": "your-username@domain.com",
+      "type": "user"
+    }
+  }
+]
+```
+
+If you have more than one subscription, specify the subscription-id you want to use with command below:
+```shell
+az account set --subscription <your-subscription-id>
+```
+
+### Provision the Resources
+
+After login Azure CLI with your account, now you can use the terraform script to create Azure Resources.
+
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=./terraform init
+
+# Apply your Terraform Configuration
+# Type `yes` at the confirmation prompt to proceed.
+terraform -chdir=./terraform apply
+
+```
+
+
+
+It may take a few minutes to run the script. After successful running, you will see prompt information like below:
+
+```shell
+
+
+```
+
+You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
+
+### Export output to your local Environment
+Running the command below to export environment values:
+
+```shell
+ source ./terraform/setup_env.sh
+```
+
+## Run locally
+
+In your terminal, run `mvn clean spring-boot:run`.
+
+
+```shell
+mvn clean spring-boot:run
+```
+
+## Verify this sample
+
 Start the application, you will see a log like this:
 ```text
 property springDataSourceUrl in Azure Key Vault: <spring-data-source-url-value>
 ```
 
 
+## Clean up Resources
+After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
+
+The terraform destroy command terminates resources managed by your Terraform project.   
+To destroy the resources you created.
+
+```shell
+terraform -chdir=./terraform destroy
+```

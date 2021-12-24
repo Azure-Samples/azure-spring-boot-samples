@@ -1,9 +1,9 @@
 # Using Servicebus Queue and Topic With Spring Integration
 
-This guide walks you through the process of accessing Azure cosmos with CosmosClient.
+This guide walks you through the process of accessing Azure CosmosDB with cosmosClient.
 
 ## What You Will build
-You will build an application that use Azure Servicebus Queues and Topics to send and receive messages withs [Spring Integration](https://spring.io/projects/spring-integration) APIs.
+You will build an application that read and write data with Azure CosmosDB using cosmosClient.
 
 ## What You Need
 
@@ -109,7 +109,7 @@ mvn clean spring-boot:run
 ```
 
 ## Verify this sample  
-Verify in your app’s logs that a similar message was posted:
+Verify in your app’s logs that similar messages were posted:
 ```shell
 ...
 Exec getDatabase() is Done.
@@ -126,7 +126,7 @@ Exec executeQueryPrintSingleResult() is Done.
 ## Clean up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
 
-The terraform destroy command terminates resources managed by your Terraform project.   
+The terraform destroy command terminates resources managed by your terraform project.   
 To destroy the resources you created.
 
 ```shell

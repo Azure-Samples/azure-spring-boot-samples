@@ -108,7 +108,7 @@ In your terminal, run `mvn clean spring-boot:run`.
 mvn clean spring-boot:run
 ```
 
-## Verify this sample
+## Verify this Sample
 
 1. Send a POST request to service bus queue
 

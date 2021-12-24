@@ -107,7 +107,7 @@ In your terminal, run `mvn clean spring-boot:run`.
 mvn clean spring-boot:run
 ```
 
-## Verify this sample
+## Verify this Sample
 Send a POST request to update file contents:
 ```shell
 $ curl http://localhost:8080/blob -d "new message" -H "Content-Type: text/plain"

@@ -109,7 +109,7 @@ In your terminal, run `mvn clean spring-boot:run`.
 mvn clean spring-boot:run
 ```
 
-## Verify this sample  
+## Verify this Sample  
 Verify in your app’s logs that similar messages were posted:
 ```shell
 ...

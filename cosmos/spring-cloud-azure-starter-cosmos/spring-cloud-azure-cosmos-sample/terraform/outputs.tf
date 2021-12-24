@@ -5,7 +5,7 @@ output "azure_cosmos_endpoint" {
 
 output "azure_cosmos_account" {
   value       = azurerm_cosmosdb_account.application.name
-  description = "Azure Storage account created."
+  description = "Azure Cosmos DB account created."
 }
 
 output "resource_group_name" {

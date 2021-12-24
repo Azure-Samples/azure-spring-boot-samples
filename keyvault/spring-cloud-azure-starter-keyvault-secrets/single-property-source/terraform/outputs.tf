@@ -1,4 +1,4 @@
 output "keyvault_uri" {
   value       = azurerm_key_vault.kv_account.vault_uri
-  description = "The keyvault uri."
+  description = "The key vault uri."
 }

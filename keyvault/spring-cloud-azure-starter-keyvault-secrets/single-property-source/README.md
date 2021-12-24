@@ -16,7 +16,7 @@ You will build an application that use `spring-cloud-azure-starter-keyvault-secr
 - JDK8
 - Maven
 
-## Prevision Azure Resources required to run this sample.
+## Prevision Azure Resources required to run this sample
 
 ### Authenticate using the Azure CLI
 Terraform must authenticate to Azure to create infrastructure.
@@ -106,7 +106,7 @@ Running the command below to export environment values:
  source ./terraform/setup_env.sh
 ```
 
-## Run locally
+## Run Locally
 
 In your terminal, run `mvn clean spring-boot:run`.
 

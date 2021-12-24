@@ -115,7 +115,7 @@ In your terminal, run `mvn clean spring-boot:run`.
 mvn clean spring-boot:run
 ```
 
-## Verify this sample
+## Verify this Sample
 
 Start the application, you will see a log like this:
 

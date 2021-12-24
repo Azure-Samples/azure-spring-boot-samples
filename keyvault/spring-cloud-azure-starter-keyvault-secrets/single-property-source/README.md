@@ -1,10 +1,11 @@
 # Using Key Vault Secrets With Spring Cloud Azure Key Vault Secrets Starter
 
 This sample illustrates the simplest usage of `spring-cloud-azure-starter-keyvault-secrets`. 
-To learn all features, please refer to [reference doc](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html).
+To learn all features, please refer to [reference doc](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#secret-management).
 
 ## What You Will build
 
+You will build an application that use `spring-cloud-azure-starter-keyvault-secrets` to retrieve secrets from [Azure Key Vault](https://azure.microsoft.com/services/key-vault/).
 
 ## What You Need
 
@@ -68,7 +69,6 @@ terraform -chdir=./terraform init
 terraform -chdir=./terraform apply
 
 ```
-
 
 
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:

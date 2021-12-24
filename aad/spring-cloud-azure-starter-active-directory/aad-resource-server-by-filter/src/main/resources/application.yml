@@ -19,5 +19,5 @@ spring:
           tenant-id: ${AZURE_TENANT_ID}
         user-group:
           allowed-groups: group1,group2
-
+        redirect-uri-template: http://localhost:8080/
 

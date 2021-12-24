@@ -8,7 +8,7 @@ You will build an application to write data to and query data from Azure Cosmos 
 
 - [An Azure subscription](https://azure.microsoft.com/free/)
 - [Terraform](https://www.terraform.io/)
-- [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=mac)
+- [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
 - JDK8
 - Maven

@@ -1,18 +1,19 @@
-# Using CosmosDB With cosmosClient
+# Using Cosmos DB With CosmosClient
 
-This guide walks you through the process of accessing Azure CosmosDB with cosmosClient.
+This guide walks you through the process of accessing Azure Cosmos DB with CosmosClient.
 
 ## What You Will build
-You will build an application that read and write data with Azure CosmosDB using cosmosClient.
+You will build an application that read and write data with Azure Cosmos DB using CosmosClient.
 
 ## What You Need
 
 - [An Azure subscription](https://azure.microsoft.com/free/)
 - [Terraform](https://www.terraform.io/)
-- [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=mac)
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
-- JDK8
+- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
 - Maven
+- You can also import the code straight into your IDE:
+    - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
 ## Prevision Azure Resources required to run this sample.
 

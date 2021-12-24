@@ -11,10 +11,11 @@ You will build an application that using Spring Integration for Azure Service Bu
 
 - [An Azure subscription](https://azure.microsoft.com/free/)
 - [Terraform](https://www.terraform.io/)
-- [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
-- JDK8
+- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
 - Maven
+- You can also import the code straight into your IDE:
+    - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
 ## Prevision Azure Resources required to run this sample.
 

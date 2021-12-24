@@ -1,9 +1,9 @@
-# Using CosmosDB With cosmosClient
+# Using Cosmos DB With CosmosClient
 
-This guide walks you through the process of accessing Azure CosmosDB with cosmosClient.
+This guide walks you through the process of accessing Azure Cosmos DB with CosmosClient.
 
 ## What You Will build
-You will build an application that read and write data with Azure CosmosDB using cosmosClient.
+You will build an application that read and write data with Azure Cosmos DB using CosmosClient.
 
 ## What You Need
 

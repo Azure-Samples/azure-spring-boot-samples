@@ -1,6 +1,6 @@
 output "azure_cosmos_endpoint" {
   value       = azurerm_cosmosdb_account.application.endpoint
-  description = "Azure Storage endpoint."
+  description = "Azure Cosmos DB endpoint."
 }
 
 output "azure_cosmos_account" {

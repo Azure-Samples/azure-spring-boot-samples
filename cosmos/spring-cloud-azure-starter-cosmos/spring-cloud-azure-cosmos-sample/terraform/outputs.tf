@@ -1,6 +1,6 @@
 output "azure_cosmos_endpoint" {
   value       = azurerm_cosmosdb_account.application.endpoint
-  description = "Azure Storage endpoint."
+  description = "Azure Cosmos DB endpoint."
 }
 
 output "azure_cosmos_account" {
@@ -15,7 +15,7 @@ output "resource_group_name" {
 
 output "cosmos_application_id" {
   value       = azurerm_cosmosdb_account.application.id
-  description = "Cosmos account application id."
+  description = "Azure Cosmos DB account application id."
 }
 
 output "object_id" {

@@ -63,7 +63,7 @@ public class CosmosSampleApplication implements CommandLineRunner {
      * Create container
      */
     private void getContainer() throws Exception {
-        logger.info("Get container " + containerName + " if not exists.........");
+        logger.info("Get container " + containerName + " .........");
 
         //  Get container
         container = database.getContainer(containerName);

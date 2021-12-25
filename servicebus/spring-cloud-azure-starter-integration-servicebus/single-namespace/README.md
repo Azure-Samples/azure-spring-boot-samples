@@ -92,7 +92,7 @@ SERVICEBUS_NAMESPACE = "${YOUR_SERVICEBUS_NAMESPACE}"
 
 You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
 
-### Export output to your local Environment
+### Export output to your local environment
 Running the command below to export environment values:
 
 ```shell

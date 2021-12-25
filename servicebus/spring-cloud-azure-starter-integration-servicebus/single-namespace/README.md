@@ -14,7 +14,7 @@ You will build an application that use Azure Servicebus Queues and Topics to sen
 - JDK8
 - Maven
 
-## Provision Azure Resources required to run this sample.
+## Provision Azure Resources required to run this sample
 If the Azure Resources running the sample are not by running the terraform script provided in the sample code, please attention:
 > [!IMPORTANT]  
 > If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource 
@@ -102,7 +102,7 @@ Running the command below to export environment values:
  source ./terraform/setup_env.sh
 ```
 
-## Run locally
+## Run Locally
 
 In your terminal, run `mvn clean spring-boot:run`.
 

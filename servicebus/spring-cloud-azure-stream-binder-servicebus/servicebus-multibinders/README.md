@@ -27,11 +27,6 @@ and bill at [this link][azure-account].
 
 ## Examples
 
-> [!IMPORTANT]  
-> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
-> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
-
-
 1.  Update stream binding related properties in
     [application.yaml][application.yaml]. If you choose to use 
     service principal or managed identity, update the [application-sp.yaml][application-sp.yaml] or 

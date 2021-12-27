@@ -11,10 +11,11 @@ You will build an application that using Spring Integration for Azure Service Bu
 
 - [An Azure subscription](https://azure.microsoft.com/free/)
 - [Terraform](https://www.terraform.io/)
-- [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=mac)
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
-- JDK8
+- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
 - Maven
+- You can also import the code straight into your IDE:
+    - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
 ## Provision Azure Resources required to run this sample
 If the Azure Resources running the sample are not created by running the terraform script provided in the sample code, please attention:
@@ -99,7 +100,7 @@ AZURE_SERVICEBUS_NAMESPACE_02 = "${YOUR_SERVICEBUS_NAMESPACE_02}"
 
 You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
 
-### Export output to your local Environment
+### Export output to your local environment
 Running the command below to export environment values:
 
 ```shell
@@ -117,7 +118,7 @@ mvn clean spring-boot:run
 ```
 
 
-## Verify this sample
+## Verify this Sample
 Send a POST request to service bus queue
 ```shell
  $ curl -X POST http://localhost:8080/queues?message=hello

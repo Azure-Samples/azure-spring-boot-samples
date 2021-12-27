@@ -57,5 +57,6 @@ public class CosmosSampleApplication implements CommandLineRunner {
         Assert.state(result.getLastName().equals(testUser.getLastName()), "query result lastName doesn't match!");
 
         LOGGER.info("findOne in User collection get result: {}", result.toString());
+        LOGGER.info("spring-cloud-azure-data-cosmos-sample successfully run.");
     }
 }

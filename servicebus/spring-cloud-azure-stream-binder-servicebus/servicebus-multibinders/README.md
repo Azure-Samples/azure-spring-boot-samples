@@ -16,13 +16,13 @@ and bill at [this link][azure-account].
 
 ### Create Azure resources
 
-1. Create a queue and a topic in different Service Bus namespaces.
+1.  Create a queue and a topic in different Service Bus namespaces.
     Please see [how to create][create-service-bus].
 
-2. **[Optional]** if you want to use service principal, please follow 
+1.  **[Optional]** if you want to use service principal, please follow 
     [create service principal from Azure CLI][create-sp-using-azure-cli] to create one.
 
-3. **[Optional]** if you want to use managed identity, please follow
+1.  **[Optional]** if you want to use managed identity, please follow
     [create managed identity][create-managed-identity] to set up managed identity. 
 
 ## Examples

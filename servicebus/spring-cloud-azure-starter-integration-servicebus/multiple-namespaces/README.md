@@ -23,7 +23,6 @@ If the Azure Resources running the sample are not created by running the terrafo
 > If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
 > please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
 
-
 ### Authenticate using the Azure CLI
 Terraform must authenticate to Azure to create infrastructure.
 

@@ -14,7 +14,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 
 
 
-### Basic Usage
+### Create Azure resources
 
 We have several ways to config the Spring Cloud Stream Binder for Service
 Bus Queue. You can choose anyone of them.

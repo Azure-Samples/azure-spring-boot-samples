@@ -13,7 +13,7 @@
   <artifactId>spring-cloud-azure-starter-integration-sample-servicebus</artifactId>
   <groupId>com.azure.spring</groupId>
   <version>1.0.0</version>
-  <name>Spring Cloud Azure Starter Integration Sample Service Bus</name>
+  <name>Spring Cloud Azure Starter Integration Sample Servicebus</name>
 
   <dependencies>
     <dependency>

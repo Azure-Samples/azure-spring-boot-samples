@@ -15,7 +15,7 @@
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>Azure Spring Boot Starter Sample - Cosmos DB</name>
+  <name>Spring Cloud Azure Data Cosmos Sample</name>
   <description>Sample project for Spring Cloud Azure Starter Data Cosmos</description>
 
   <dependencies>

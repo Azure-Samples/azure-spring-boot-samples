@@ -14,7 +14,7 @@
     <artifactId>run-with-command-line-server-side</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>run-with-command-line-server-side</name>
+    <name>Run With Command Line Server Side</name>
     <description>Sample project for a pure spring-boot webapp that is agnostic about Azure key vault</description>
 
     <properties>

@@ -12,7 +12,7 @@
   <artifactId>feature-management-sample</artifactId>
   <groupId>com.azure.spring</groupId>
   <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:feature-management-sample;dependency} -->
-  <name>Feature Management Sample</name>
+  <name>Spring Cloud Azure Appconfiguration Feature Management Sample</name>
 
   <dependencies>
     <dependency>

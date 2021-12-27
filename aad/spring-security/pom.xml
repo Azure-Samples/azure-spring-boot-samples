@@ -8,6 +8,7 @@
   <artifactId>spring-boot-application-with-azure-active-directory</artifactId>
   <version>2.5.6-SNAPSHOT</version>
   <packaging>pom</packaging>
+  <name>Spring Boot Application With Azure Active Directory</name>
 
   <properties>
     <maven.compiler.source>11</maven.compiler.source>

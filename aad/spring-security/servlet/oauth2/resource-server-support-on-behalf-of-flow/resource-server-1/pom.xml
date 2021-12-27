@@ -15,6 +15,7 @@
   <artifactId>servlet-oauth2-resourc-server-support-on-behalf-of-flow-resource-server-1-application</artifactId>
   <version>2.5.6-SNAPSHOT</version>
   <packaging>jar</packaging>
+  <name>Servlet oauth2 Resourc Server Support on Behalf of Flow Resource Server Application - 1</name>
 
   <dependencies>
     <dependency>

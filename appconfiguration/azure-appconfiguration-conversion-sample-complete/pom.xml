@@ -12,7 +12,7 @@
   <artifactId>spring-cloud-azure-appconfiguration-convert-sample-complete</artifactId>
   <groupId>com.azure.spring</groupId>
   <version>2.0.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-appconfiguration-convert-sample-complete;dependency} -->
-  <name>Azure App Configuration Conversion Sample</name>
+  <name>Spring Cloud Azure Appconfiguration Convert Sample Complete</name>
   <description>Sample project to show conversion to Azure App Configuration</description>
 
   <dependencyManagement>

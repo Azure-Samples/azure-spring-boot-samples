@@ -13,7 +13,8 @@
   <groupId>com.azure.spring</groupId>
   <artifactId>azure-spring-boot-samples</artifactId>
   <packaging>pom</packaging>
-  <version>1.0.0</version><!-- Need not change for every release-->
+  <version>1.0.0</version>
+  <name>Azure Spring Boot Samples</name>
 
 
   <properties>

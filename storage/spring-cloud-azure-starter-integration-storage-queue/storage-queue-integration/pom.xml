@@ -13,7 +13,7 @@
   <artifactId>azure-spring-integration-sample-storage-queue</artifactId>
   <groupId>com.azure.spring</groupId>
   <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-integration-sample-storage-queue;dependency} -->
-  <name>Azure Spring Integration Sample Storage Queue</name>
+  <name>Spring Cloud Azure Integration Storage Queue Sample</name>
 
   <dependencies>
     <dependency>

@@ -12,7 +12,7 @@
   <artifactId>azure-appconfiguration-sample</artifactId>
   <groupId>com.azure.spring</groupId>
   <version>2.0.0</version> <!-- {x-version-update;com.azure.spring:azure-appconfiguration-sample;dependency} -->
-  <name>Spring Cloud Azure App Configuration Sample</name>
+  <name>Spring Cloud Azure Appconfiguration Sample</name>
 
   <dependencies>
     <dependency>

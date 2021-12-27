@@ -14,7 +14,7 @@
     <artifactId>spring-cloud-azure-sample-stream-eventhubs-multibinders</artifactId>
     <groupId>com.azure.spring</groupId>
     <version>1.0.0</version>
-    <name>Spring Cloud Azure Sample Stream Event Hubs Multiple Binders</name>
+    <name>Spring Cloud Azure Stream Event Hubs Multiple Binders Sample</name>
 
     <dependencies>
         <dependency>

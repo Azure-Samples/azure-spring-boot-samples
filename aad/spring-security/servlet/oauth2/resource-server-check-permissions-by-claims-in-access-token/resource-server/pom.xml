@@ -15,6 +15,7 @@
   <artifactId>servlet-oauth2-resourc-server-check-permissions-by-claims-in-access-token-resource-server-application</artifactId>
   <version>2.5.6-SNAPSHOT</version>
   <packaging>jar</packaging>
+  <name>Servlet oauth2 Resourc Server Check Permissions by Claims in Access Token Resource Server Application</name>
 
   <dependencies>
     <dependency>

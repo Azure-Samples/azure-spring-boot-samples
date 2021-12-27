@@ -15,6 +15,7 @@
   <artifactId>servlet-oauth2-client-access-multiple-resource-server-client-application</artifactId>
   <version>2.5.6-SNAPSHOT</version>
   <packaging>jar</packaging>
+  <name>Servlet oauth2 Client Access Multiple Resource Server Client Application</name>
 
   <dependencies>
     <dependency>

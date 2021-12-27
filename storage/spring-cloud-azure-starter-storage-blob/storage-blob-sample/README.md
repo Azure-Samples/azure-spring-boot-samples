@@ -2,7 +2,7 @@
 
 This code sample demonstrates how to read and write files with the [Spring Resource](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#resources) abstraction for Azure Storage using the Spring Cloud Azure storage starter.
 
-## What You Will build
+## What You Will Build
 You will build an application that use Spring Resource abstraction to read and write data with [Azure Storage Blob](https://azure.microsoft.com/services/storage/blobs/).
 
 ## What You Need
@@ -15,13 +15,13 @@ You will build an application that use Spring Resource abstraction to read and w
 - You can also import the code straight into your IDE:
     - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
-## Provision Azure Resources required to run this sample
+## Provision Azure Resources Required to Run This Sample
 If the Azure Resources running the sample are not created by running the terraform script provided in the sample code, please attention:
 > [!IMPORTANT]  
 > If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
 > please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
 
-### Authenticate using the Azure CLI
+### Authenticate Using the Azure CLI
 Terraform must authenticate to Azure to create infrastructure.
 
 In your terminal, use the Azure CLI tool to setup your account permissions locally.
@@ -95,7 +95,7 @@ Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
 
 You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
 
-### Export output to your local environment
+### Export Output to Your Local Environment
 Running the command below to export environment values:
 
 ```shell
@@ -111,7 +111,7 @@ In your terminal, run `mvn clean spring-boot:run`.
 mvn clean spring-boot:run
 ```
 
-## Verify this Sample
+## Verify This Sample
 Send a POST request to update file contents:
 ```shell
 $ curl http://localhost:8080/blob -d "new message" -H "Content-Type: text/plain"
@@ -123,7 +123,7 @@ Verify by sending a GET request
 $ curl -XGET http://localhost:8080/blob
 ```
 
-## Clean up Resources
+## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
 
 The terraform destroy command terminates resources managed by your Terraform project.   

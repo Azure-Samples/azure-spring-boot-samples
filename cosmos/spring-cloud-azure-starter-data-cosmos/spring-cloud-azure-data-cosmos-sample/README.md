@@ -1,7 +1,7 @@
 # Using Spring Cloud Azure Starter Data Cosmos
 This guide demonstrates how to use Azure Cosmos DB via Spring Boot Starter `spring-cloud-azure-starter-data-cosmos` to store data in and retrieve data from your Azure Cosmos DB.
 
-## What You Will build
+## What You Will Build
 You will build an application to write data to and query data from Azure Cosmos DB via `spring-cloud-azure-starter-data-cosmos`.
 
 ## What You Need
@@ -14,13 +14,13 @@ You will build an application to write data to and query data from Azure Cosmos 
 - You can also import the code straight into your IDE:
     - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
-## Provision Azure Resources required to run this sample
+## Provision Azure Resources Required to Run This Sample
 If the Azure Resources running the sample are not created by running the terraform script provided in the sample code, please attention:
 > [!IMPORTANT]  
 > If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
 > please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
 
-### Authenticate using the Azure CLI
+### Authenticate Using the Azure CLI
 Terraform must authenticate to Azure to create infrastructure.
 
 In your terminal, use the Azure CLI tool to setup your account permissions locally.
@@ -98,7 +98,7 @@ Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
 
 You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
 
-### Export output to your local environment
+### Export Output to Your Local Environment
 Running the command below to export environment values:
 
 ```shell
@@ -114,7 +114,7 @@ In your terminal, run `mvn clean spring-boot:run`.
 mvn clean spring-boot:run
 ```
 
-## Verify this Sample
+## Verify This Sample
 
 Verify in your app’s logs that a similar message was posted:
 ```shell
@@ -126,7 +126,7 @@ spring-cloud-azure-data-cosmos-sample successfully run.
 ```
 
 
-## Clean up Resources
+## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
 
 The terraform destroy command terminates resources managed by your Terraform project.   

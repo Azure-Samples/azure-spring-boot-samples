@@ -1,4 +1,4 @@
-# Using Spring Integration for Azure Service Bus with multiple destinations. 
+# Using Spring Integration for Azure Service Bus with multiple destinations 
 
 This code sample demonstrates how to use Spring Integration for Azure Service Bus with multiple destinations. 
 

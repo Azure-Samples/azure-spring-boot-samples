@@ -16,7 +16,7 @@ You will build an application that read and write data with Azure Cosmos DB usin
     - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
 ## Provision Azure Resources required to run this sample
-If the Azure Resources running the sample are not by running the terraform script provided in the sample code, please attention:
+If the Azure Resources running the sample are not created by running the terraform script provided in the sample code, please attention:
 > [!IMPORTANT]  
 > If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
 > please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.

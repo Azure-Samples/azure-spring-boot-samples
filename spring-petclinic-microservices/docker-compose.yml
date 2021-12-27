@@ -25,6 +25,7 @@ services:
     depends_on:
      - config-server
      - discovery-server
+     - api-gateway
     entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "org.springframework.boot.loader.JarLauncher"]
     ports:
     - 8081:8081
@@ -38,6 +39,7 @@ services:
     depends_on:
      - config-server
      - discovery-server
+     - api-gateway
     entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "org.springframework.boot.loader.JarLauncher"]
     ports:
      - 8082:8082
@@ -52,6 +54,7 @@ services:
     depends_on:
      - config-server
      - discovery-server
+     - api-gateway
     entrypoint: ["./dockerize","-wait=tcp://discovery-server:8761","-timeout=60s","--","java", "org.springframework.boot.loader.JarLauncher"]
     ports:
      - 8083:8083
@@ -69,15 +72,6 @@ services:
     ports:
      - 8080:8080
 
-  tracing-server:
-    image: openzipkin/zipkin
-    container_name: tracing-server
-    mem_limit: 512M
-    environment:
-    - JAVA_OPTS=-XX:+UnlockExperimentalVMOptions -Djava.security.egd=file:/dev/./urandom
-    ports:
-     - 9411:9411
-
   admin-server:
     image: springcommunity/spring-petclinic-admin-server
     container_name: admin-server
@@ -91,16 +85,25 @@ services:
 
   ## Grafana / Prometheus
 
-  grafana-server:
-    build: ./docker/grafana
-    container_name: grafana-server
-    mem_limit: 256M
-    ports:
-    - 3000:3000
+  # grafana-server:
+  #  build: ./docker/grafana
+  #  container_name: grafana-server
+  #  mem_limit: 256M
+  #  ports:
+  #  - 3000:3000
 
-  prometheus-server:
-    build: ./docker/prometheus
-    container_name: prometheus-server
-    mem_limit: 256M
-    ports:
-    - 9091:9090
+  #prometheus-server:
+  #  build: ./docker/prometheus
+  #  container_name: prometheus-server
+  #  mem_limit: 256M
+  #  ports:
+  #  - 9091:9090
+
+  #tracing-server:
+  #  image: openzipkin/zipkin
+  #  container_name: tracing-server
+  #  mem_limit: 512M
+  #  environment:
+  #  - JAVA_OPTS=-XX:+UnlockExperimentalVMOptions -Djava.security.egd=file:/dev/./urandom
+  #  ports:
+  #   - 9411:9411

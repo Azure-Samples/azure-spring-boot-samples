@@ -27,20 +27,19 @@
 
   <properties>
     <java.version>1.8</java.version>
-    <assertj.version>3.11.1</assertj.version>
+    <assertj.version>3.21.0</assertj.version>
 
 <!--    <spring-boot.version>2.3.4.RELEASE</spring-boot.version>-->
 <!--    <spring-cloud.version>Hoxton.SR8</spring-cloud.version>-->
 
 <!--      <spring-boot.version>2.5.4</spring-boot.version>-->
       <spring-cloud.version>2020.0.3</spring-cloud.version>
-<!--    <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>-->
 
     <docker.image.prefix>springcommunity</docker.image.prefix>
     <docker.image.exposed.port>9090</docker.image.exposed.port>
     <docker.image.dockerfile.dir>${basedir}</docker.image.dockerfile.dir>
     <docker.image.dockerize.version>v0.6.1</docker.image.dockerize.version>
-    <docker.plugin.version>1.2.0</docker.plugin.version>
+    <docker.plugin.version>1.2.2</docker.plugin.version>
   </properties>
 
   <dependencyManagement>
@@ -99,27 +98,6 @@
               </execution>
             </executions>
           </plugin>
-
-          <!-- Spring Boot Actuator displays build-related information if a META-INF/build-info.properties file is present -->
-<!--          <plugin>-->
-<!--            <groupId>pl.project13.maven</groupId>-->
-<!--            <artifactId>git-commit-id-plugin</artifactId>-->
-<!--            <executions>-->
-<!--              <execution>-->
-<!--                <goals>-->
-<!--                  <goal>revision</goal>-->
-<!--                </goals>-->
-<!--              </execution>-->
-<!--            </executions>-->
-<!--            <configuration>-->
-<!--              <verbose>true</verbose>-->
-<!--              <dateFormat>yyyy-MM-dd'T'HH:mm:ssZ</dateFormat>-->
-<!--              <generateGitPropertiesFile>true</generateGitPropertiesFile>-->
-<!--              <generateGitPropertiesFilename>${project.build.outputDirectory}/git.properties-->
-<!--              </generateGitPropertiesFilename>-->
-<!--              <failOnNoGitDirectory>false</failOnNoGitDirectory>-->
-<!--            </configuration>-->
-<!--          </plugin>-->
         </plugins>
       </build>
 

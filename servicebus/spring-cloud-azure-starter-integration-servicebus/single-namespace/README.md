@@ -9,10 +9,11 @@ You will build an application that use Azure Servicebus Queues and Topics to sen
 
 - [An Azure subscription](https://azure.microsoft.com/free/)
 - [Terraform](https://www.terraform.io/)
-- [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=mac)
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
-- JDK8
+- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
 - Maven
+- You can also import the code straight into your IDE:
+    - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
 ## Prevision Azure Resources required to run this sample
 
@@ -91,7 +92,7 @@ SERVICEBUS_NAMESPACE = "${YOUR_SERVICEBUS_NAMESPACE}"
 
 You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
 
-### Export output to your local Environment
+### Export output to your local environment
 Running the command below to export environment values:
 
 ```shell
@@ -107,7 +108,7 @@ In your terminal, run `mvn clean spring-boot:run`.
 mvn clean spring-boot:run
 ```
 
-## Verify this sample
+## Verify this Sample
 
 1. Send a POST request to service bus queue
 

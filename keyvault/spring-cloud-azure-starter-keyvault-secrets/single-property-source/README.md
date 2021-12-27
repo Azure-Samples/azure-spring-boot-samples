@@ -18,7 +18,7 @@ You will build an application that use `spring-cloud-azure-starter-keyvault-secr
     - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
 ## Provision Azure Resources Required to Run This Sample
-If the Azure Resources running the sample are not created by running the terraform script provided in the sample code, please attention:
+This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
 > [!IMPORTANT]  
 > If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
 > please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.

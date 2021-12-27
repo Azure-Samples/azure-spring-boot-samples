@@ -3,7 +3,7 @@
 This sample illustrates the simplest usage of `spring-cloud-azure-starter-keyvault-secrets`. 
 To learn all features, please refer to [reference doc](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#secret-management).
 
-## What You Will build
+## What You Will Build
 
 You will build an application that use `spring-cloud-azure-starter-keyvault-secrets` to retrieve secrets from [Azure Key Vault](https://azure.microsoft.com/services/key-vault/).
 
@@ -17,9 +17,13 @@ You will build an application that use `spring-cloud-azure-starter-keyvault-secr
 - You can also import the code straight into your IDE:
     - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
-## Prevision Azure Resources required to run this sample
+## Provision Azure Resources Required to Run This Sample
+This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
+> [!IMPORTANT]  
+> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
+> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
 
-### Authenticate using the Azure CLI
+### Authenticate Using the Azure CLI
 Terraform must authenticate to Azure to create infrastructure.
 
 In your terminal, use the Azure CLI tool to setup your account permissions locally.
@@ -100,7 +104,7 @@ Outputs:
 
 You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
 
-### Export output to your local environment
+### Export Output to Your Local Environment
 Running the command below to export environment values:
 
 ```shell
@@ -116,7 +120,7 @@ In your terminal, run `mvn clean spring-boot:run`.
 mvn clean spring-boot:run
 ```
 
-## Verify this Sample
+## Verify This Sample
 
 Start the application, you will see a log like this:
 
@@ -125,7 +129,7 @@ property springDataSourceUrl in Azure Key Vault: this is a test value
 ```
 
 
-## Clean up Resources
+## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
 
 The terraform destroy command terminates resources managed by your Terraform project.   

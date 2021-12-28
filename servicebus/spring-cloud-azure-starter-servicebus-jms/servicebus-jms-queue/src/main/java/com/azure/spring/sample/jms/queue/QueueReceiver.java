@@ -9,11 +9,11 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class QueueReceiveController {
+public class QueueReceiver {
 
-    private static final String QUEUE_NAME = "que001";
+    private   final String QUEUE_NAME = "q1";
 
-    private final Logger LOGGER = LoggerFactory.getLogger(QueueReceiveController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(QueueReceiver.class);
 
     @JmsListener(destination = QUEUE_NAME, containerFactory = "jmsListenerContainerFactory")
     public void receiveMessage(User user) {

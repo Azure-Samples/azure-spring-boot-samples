@@ -1,0 +1,8 @@
+spring:
+  jms:
+    listener:
+      concurrency: [NUM_OF_CONSUMERS]
+    servicebus:
+      connection-string: [SERVICEBUS_CONNECTION_STRING]
+      idle-timeout: 1800000
+

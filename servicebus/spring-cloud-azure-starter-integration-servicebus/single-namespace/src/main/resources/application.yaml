@@ -2,4 +2,4 @@ spring:
   cloud:
     azure:
       servicebus:
-        connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING}
+        namespace: ${SERVICEBUS_NAMESPACE}

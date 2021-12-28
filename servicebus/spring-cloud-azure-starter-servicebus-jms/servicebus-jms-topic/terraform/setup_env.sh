@@ -1,0 +1,1 @@
+export servicebusnamespaceconnectionstring=$(terraform -chdir=./terraform output -raw connection_string)

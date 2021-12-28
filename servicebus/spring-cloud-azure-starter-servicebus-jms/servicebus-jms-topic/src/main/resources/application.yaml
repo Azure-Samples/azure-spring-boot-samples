@@ -1,0 +1,11 @@
+spring:
+  jms:
+    servicebus:
+      connection-string: ${servicebus-namespace-connection-string}
+      idle-timeout: 1800000
+      pricing-tier: Standard
+      topic-client-id: thisclientid
+
+
+
+

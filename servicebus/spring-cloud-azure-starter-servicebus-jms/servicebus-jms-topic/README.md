@@ -44,7 +44,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 
 2. Send a POST request to service bus topic.
     ```
-    $ curl -X POST localhost:8080/topic?message=hello
+    $ curl  http://localhost:8080/topic?message=hello -d ""
     ```
 
 3. Verify in your app's logs that a similar message was posted:

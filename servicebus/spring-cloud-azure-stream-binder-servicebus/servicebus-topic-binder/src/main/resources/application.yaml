@@ -1,25 +1,27 @@
 spring:
-  cloud:
-    azure:
-      servicebus:
-        connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING}
-    stream:
-      function:
-        definition: consume;supply
-      bindings:
-        consume-in-0:
-          destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
-          group: ${AZURE_SERVICEBUS_TOPIC_SUBSCRIPTION_NAME}
-        supply-out-0:
-          destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
-      servicebus:
-        bindings:
-          consume-in-0:
-            consumer:
-              checkpoint-mode: MANUAL
-          supply-out-0:
-            producer:
-              entity-type: topic
-      poller:
-        fixed-delay: 1000
-        initial-delay: 0
+  profiles:
+    active: sp
+#  cloud:
+#    azure:
+#      servicebus:
+#        connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING}
+#    stream:
+#      function:
+#        definition: consume;supply
+#      bindings:
+#        consume-in-0:
+#          destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
+#          group: ${AZURE_SERVICEBUS_TOPIC_SUBSCRIPTION_NAME}
+#        supply-out-0:
+#          destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
+#      servicebus:
+#        bindings:
+#          consume-in-0:
+#            consumer:
+#              checkpoint-mode: MANUAL
+#          supply-out-0:
+#            producer:
+#              entity-type: topic
+#      poller:
+#        fixed-delay: 1000
+#        initial-delay: 0

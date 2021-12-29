@@ -14,7 +14,7 @@
   <artifactId>spring-cloud-azure-starter-active-directory-b2c-resource-server</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
-  <name>Azure Spring Boot Starter Sample - B2C Resource Server</name>
+  <name>Spring-Cloud-Azure-Starter-Active-Directory-B2C Sample: Resource Server</name>
 
   <dependencyManagement>
     <dependencies>

@@ -13,7 +13,7 @@
   <artifactId>spring-cloud-azure-starter-active-directory-resource-server</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
-  <name>Spring Cloud Azure Starter Active Directory Resource Server</name>
+  <name>Spring-Cloud-Azure-Starter-Active-Directory Sample: Resource Server</name>
 
   <dependencyManagement>
     <dependencies>

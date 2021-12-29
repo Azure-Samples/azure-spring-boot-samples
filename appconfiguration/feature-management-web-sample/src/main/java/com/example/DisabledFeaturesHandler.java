@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class DisabledFeaturesHandler implements IDisabledFeaturesHandler {
+public class DisabledFeaturesHandler implements IDisabledFeaturesHandler{
 
     @Override
     public HttpServletResponse handleDisabledFeatures(HttpServletRequest request, HttpServletResponse response) {

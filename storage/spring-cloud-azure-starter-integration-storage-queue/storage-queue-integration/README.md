@@ -21,7 +21,6 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 3. **[Optional]** if you want to use managed identity, please follow
     [create managed identity][create-managed-identity] to set up managed identity.
 
-4. **[Optional]** if you use managed identity or service principal, please assign `Storage Queue Data Contributor` role for     managed identity or service principal.
 
 ## Examples
 

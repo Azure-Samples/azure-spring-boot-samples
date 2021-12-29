@@ -7,7 +7,7 @@ import com.azure.spring.cloud.feature.manager.entities.FeatureFilterEvaluationCo
 import org.springframework.stereotype.Component;
 
 @Component("Random")
-public class Random implements FeatureFilter {
+public class Random implements FeatureFilter{
 
     @Override
     public boolean evaluate(FeatureFilterEvaluationContext context) {

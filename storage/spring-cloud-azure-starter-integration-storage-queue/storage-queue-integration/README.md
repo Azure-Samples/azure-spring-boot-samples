@@ -21,7 +21,6 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 1.  **[Optional]** if you want to use managed identity, please follow
     [create managed identity][create-managed-identity] to set up managed identity.
 
-
 ## Examples
 
 1.  Update stream binding related properties in

@@ -46,7 +46,6 @@ services:
     env_file:
       - keyvault.env
 
-
   vets-service:
     image: springcommunity/spring-petclinic-vets-service
     container_name: vets-service
@@ -84,8 +83,7 @@ services:
      - 9090:9090
 
   ## Grafana / Prometheus
-
-  # grafana-server:
+  #grafana-server:
   #  build: ./docker/grafana
   #  container_name: grafana-server
   #  mem_limit: 256M

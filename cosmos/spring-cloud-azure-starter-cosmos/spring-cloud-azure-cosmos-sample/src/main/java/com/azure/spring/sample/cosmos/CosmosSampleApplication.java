@@ -5,13 +5,9 @@ package com.azure.spring.sample.cosmos;
 import com.azure.cosmos.CosmosClient;
 import com.azure.cosmos.CosmosContainer;
 import com.azure.cosmos.CosmosDatabase;
-import com.azure.cosmos.models.CosmosContainerProperties;
-import com.azure.cosmos.models.CosmosContainerResponse;
-import com.azure.cosmos.models.CosmosDatabaseResponse;
 import com.azure.cosmos.models.CosmosItemRequestOptions;
 import com.azure.cosmos.models.CosmosQueryRequestOptions;
 import com.azure.cosmos.models.PartitionKey;
-import com.azure.cosmos.models.ThroughputProperties;
 import com.azure.cosmos.util.CosmosPagedIterable;
 import com.azure.spring.sample.cosmos.common.Family;
 import org.slf4j.Logger;
@@ -31,8 +27,8 @@ public class CosmosSampleApplication implements CommandLineRunner {
     @Autowired
     private CosmosClient client;
 
-    private final String databaseName = "AzureCosmosSampleDB";
-    private final String containerName = "AzureCosmosSampleContainer";
+    private final String databaseName = "products";
+    private final String containerName = "users";
     private final String documentId = UUID.randomUUID().toString();
     private final String documentLastName = "Peterson";
 
@@ -45,8 +41,8 @@ public class CosmosSampleApplication implements CommandLineRunner {
     }
 
     public void run(String... var1) throws Exception {
-        createDatabaseIfNotExists();
-        createContainerIfNotExists();
+        getDatabase();
+        getContainer();
         createDocument();
         queryAllDocuments();
     }
@@ -54,34 +50,25 @@ public class CosmosSampleApplication implements CommandLineRunner {
     /**
      * Create Database
      */
-    private void createDatabaseIfNotExists() throws Exception {
-        logger.info("Create database " + databaseName + " if not exists...");
+    private void getDatabase() throws Exception {
+        logger.info("Get database " + databaseName + " .........");
 
-        //  Create database if not exists
-        CosmosDatabaseResponse databaseResponse = client.createDatabaseIfNotExists(databaseName);
-        database = client.getDatabase(databaseResponse.getProperties().getId());
+        //  Get database
+        database = client.getDatabase(databaseName);
 
-        logger.info("Done.");
+        logger.info("Exec getDatabase() is Done.");
     }
 
     /**
      * Create container
      */
-    private void createContainerIfNotExists() throws Exception {
-        logger.info("Create container " + containerName + " if not exists.");
+    private void getContainer() throws Exception {
+        logger.info("Get container " + containerName + " .........");
 
-        //  Create container if not exists
-        CosmosContainerProperties containerProperties =
-                new CosmosContainerProperties(containerName, "/lastName");
+        //  Get container
+        container = database.getContainer(containerName);
 
-        // Provision throughput
-        ThroughputProperties throughputProperties = ThroughputProperties.createManualThroughput(400);
-
-        //  Create container with 200 RU/s
-        CosmosContainerResponse containerResponse = database.createContainerIfNotExists(containerProperties, throughputProperties);
-        container = database.getContainer(containerResponse.getProperties().getId());
-
-        logger.info("Done.");
+        logger.info("Exec getContainer() is Done.");
     }
 
     /**
@@ -98,9 +85,9 @@ public class CosmosSampleApplication implements CommandLineRunner {
 
         // Insert this item as a document
         // Explicitly specifying the /pk value improves performance.
-        container.createItem(family,new PartitionKey(family.getLastName()),new CosmosItemRequestOptions());
+        container.createItem(family,new PartitionKey(family.getId()),new CosmosItemRequestOptions());
 
-        logger.info("Done.");
+        logger.info("Exec createDocument() is Done.");
     }
 
     private void queryAllDocuments() throws Exception {
@@ -120,6 +107,6 @@ public class CosmosSampleApplication implements CommandLineRunner {
             logger.info(String.format("First query result: Family with (/id, partition key) = (%s,%s)",family.getId(),family.getLastName()));
         }
 
-        logger.info("Done.");
+        logger.info("Exec executeQueryPrintSingleResult() is Done.");
     }
 }

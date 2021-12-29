@@ -1,73 +1,137 @@
+# Using Spring Cloud Azure Starter Data Cosmos
+This guide demonstrates how to use Azure Cosmos DB via Spring Boot Starter `spring-cloud-azure-starter-data-cosmos` to store data in and retrieve data from your Azure Cosmos DB.
 
+## What You Will Build
+You will build an application to write data to and query data from Azure Cosmos DB via `spring-cloud-azure-starter-data-cosmos`.
 
-# Sample project for Spring Cloud Azure Starter Data Cosmos
+## What You Need
 
-## Key concepts
-This sample project demonstrates how to use Azure Cosmos DB via Spring Boot Starter `spring-cloud-azure-starter-data-cosmos` to store data in and retrieve data from your Azure Cosmos DB.
+- [An Azure subscription](https://azure.microsoft.com/free/)
+- [Terraform](https://www.terraform.io/)
+- [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
+- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
+- Maven
+- You can also import the code straight into your IDE:
+    - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
-## Getting started
+## Provision Azure Resources Required to Run This Sample
+This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
+> [!IMPORTANT]  
+> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
+> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
 
+### Authenticate Using the Azure CLI
+Terraform must authenticate to Azure to create infrastructure.
 
+In your terminal, use the Azure CLI tool to setup your account permissions locally.
 
-### Create an Azure Cosmos DB on Azure
-
-1. Go to [Azure portal](https://portal.azure.com/) and click +New .
-2. Click Databases, and then click Azure Cosmos DB to create your database. 
-3. Navigate to the database you have created, and click Access keys and copy your URI and access keys for your database.
-                                                                                                                                  
-## Examples
-
-### Config the sample
-
-1. Navigate to `src/main/resources` and open `application.yml`.
-2. replace below properties in `application.yml` with information of your database.
-
-```yaml
-spring:
-  cloud:
-    azure:
-      cosmos:
-        key: [your-cosmos-key]
-        endpoint: [your-cosmos-endpoint]
-        database: [your-cosmos-database]
+```shell
+az login
 ```
 
-3. (Optional) Add Spring Boot Actuator
+Your browser window will open and you will be prompted to enter your Azure login credentials. After successful authentication, your terminal will display your subscription information. You do not need to save this output as it is saved in your system for Terraform to use.
 
-```yaml
-management:
-  health:
-    azure-cosmos:
-      enabled: true
-```   
+```shell
+You have logged in. Now let us find all the subscriptions to which you have access...
 
-    If you choose to add Spring Boot Actuator for Cosmos DB, add `management.health.azure-cosmos.enabled=true` to application.properties.
-    Call `http://{hostname}:{port}/actuator/health/cosmos` to get the Cosmos DB health info. 
-
-### Run with Maven
-```
-cd azure-spring-boot-samples/cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample
-mvn spring-boot:run
-```
-
-## Troubleshooting
-### Known issue
-
-Directly running the sample app from IDE IntelliJ or Eclipse has below security exception if using the *released* starter. The root cause is that the release `spring-data-azure-cosmosdb` jar is code-signed by us. We're working actively to resolve this issue. 
-
-```
-Caused by: java.lang.SecurityException: class "com.microsoft.azure.sample.User_Accessor_yhb3bq"'s signer information does not match signer information of other classes in the same package
-	at java.lang.ClassLoader.checkCerts(ClassLoader.java:898) ~[na:1.8.0_131]
-	at java.lang.ClassLoader.preDefineClass(ClassLoader.java:668) ~[na:1.8.0_131]
-	at java.lang.ClassLoader.defineClass(ClassLoader.java:761) ~[na:1.8.0_131]
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "home-Tenant-Id",
+    "id": "subscription-id",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Subscription-Name",
+    "state": "Enabled",
+    "tenantId": "0envbwi39-TenantId",
+    "user": {
+      "name": "your-username@domain.com",
+      "type": "user"
+    }
+  }
+]
 ```
 
-If `com.fasterxml.jackson.databind.JsonMappingException` is thrown during deserialization, with error message `Can not construct instance of {your.pojo.class}: no suitable constructor found, can not deserialize from Object value (missing default constructor...`, add [Lombok annotatations](https://projectlombok.org/features/all) `@Data` and `@AllArgsConstructor` for your POJO class, or use [Jackson annotations](https://github.com/FasterXML/jackson-annotations#using-constructors-or-factory-methods) `@JsonCreator` and `@JsonProperty` for the full argument constructor.
+If you have more than one subscription, specify the subscription-id you want to use with command below:
+```shell
+az account set --subscription <your-subscription-id>
+```
 
-## Next steps
+### Provision the Resources
 
-Please refer to [this article](https://docs.microsoft.com/java/azure/spring-framework/configure-spring-boot-starter-java-app-with-cosmos-db) for the tutorial about how to use the Spring Boot Starter with Azure Cosmos DB API.
+After login Azure CLI with your account, now you can use the terraform script to create Azure Resources.
 
-## Contributing
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=./terraform init
 
-<!-- LINKS -->
+# Apply your Terraform Configuration
+# Type `yes` at the confirmation prompt to proceed.
+terraform -chdir=./terraform apply
+
+```
+
+
+It may take a few minutes to run the script. After successful running, you will see prompt information like below:
+
+```shell
+
+azurecaf_name.resource_group: Creating...
+azurecaf_name.cosmos: Creating...
+azurerm_resource_group.main: Creating...
+azurerm_cosmosdb_account.application: Creating...
+...
+...
+azurerm_cosmosdb_account.application: Creation complete after 2m26s ...
+azurerm_cosmosdb_sql_database.db: Creating...
+...
+azurerm_cosmosdb_sql_database.db: Creation complete after 41s ...
+azurerm_cosmosdb_sql_container.application: Creating...
+azurerm_cosmosdb_sql_container.application: Still creating... [10s elapsed]
+azurerm_cosmosdb_sql_container.application: Creation complete after 39s ...
+...
+...
+Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
+
+```
+
+You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
+
+### Export Output to Your Local Environment
+Running the command below to export environment values:
+
+```shell
+ source ./terraform/setup_env.sh
+```
+
+## Run Locally
+
+In your terminal, run `mvn clean spring-boot:run`.
+
+
+```shell
+mvn clean spring-boot:run
+```
+
+## Verify This Sample
+
+Verify in your app’s logs that a similar message was posted:
+```shell
+
+...
+Deleted all data in container.
+...
+spring-cloud-azure-data-cosmos-sample successfully run.
+```
+
+
+## Clean Up Resources
+After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
+
+The terraform destroy command terminates resources managed by your Terraform project.   
+To destroy the resources you created.
+
+```shell
+terraform -chdir=./terraform destroy
+```

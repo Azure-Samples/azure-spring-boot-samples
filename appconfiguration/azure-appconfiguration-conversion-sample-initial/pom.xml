@@ -16,12 +16,26 @@
   <name>Azure App Configuration Conversion Sample</name>
   <description>Sample project to show conversion to Azure App Configuration</description>
 
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <version.spring.cloud>2020.0.4</version.spring.cloud>
+    <version.spring.cloud.azure>4.0.0-beta.3</version.spring.cloud.azure>
+  </properties>
+
   <dependencyManagement>
     <dependencies>
       <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${version.spring.cloud}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
         <groupId>com.azure.spring</groupId>
-        <artifactId>azure-spring-boot-bom</artifactId>
-        <version>3.10.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-boot-bom;current} -->
+        <artifactId>spring-cloud-azure-dependencies</artifactId>
+        <version>${version.spring.cloud.azure}</version>
         <type>pom</type>
         <scope>import</scope>
       </dependency>
@@ -31,7 +45,11 @@
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>azure-spring-boot-starter-cosmos</artifactId>
+      <artifactId>spring-cloud-azure-starter-cosmos</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.azure</groupId>
+      <artifactId>azure-spring-data-cosmos</artifactId>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
@@ -41,10 +59,6 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-logging</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.hibernate.validator</groupId>
-      <artifactId>hibernate-validator</artifactId>
     </dependency>
   </dependencies>
 </project>

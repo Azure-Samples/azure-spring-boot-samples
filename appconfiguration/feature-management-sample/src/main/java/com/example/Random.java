@@ -2,13 +2,12 @@
 // Licensed under the MIT License.
 package com.example;
 
+import com.azure.spring.cloud.feature.manager.FeatureFilter;
+import com.azure.spring.cloud.feature.manager.entities.FeatureFilterEvaluationContext;
 import org.springframework.stereotype.Component;
 
-import com.microsoft.azure.spring.cloud.feature.manager.FeatureFilter;
-import com.microsoft.azure.spring.cloud.feature.manager.entities.FeatureFilterEvaluationContext;
-
 @Component("Random")
-public class Random implements FeatureFilter{
+public class Random implements FeatureFilter {
 
     @Override
     public boolean evaluate(FeatureFilterEvaluationContext context) {

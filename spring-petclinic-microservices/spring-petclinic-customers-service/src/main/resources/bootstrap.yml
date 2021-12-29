@@ -17,9 +17,7 @@ spring:
 
 ---
 spring:
-  config:
-    activate:
-      on-profile: local
+  profiles: local
   cloud:
     config:
       uri: http://localhost:8888

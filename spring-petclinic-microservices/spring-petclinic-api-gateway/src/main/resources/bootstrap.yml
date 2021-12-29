@@ -6,9 +6,7 @@ spring:
     name: api-gateway
 ---
 spring:
-  config:
-    activate:
-      on-profile: docker
+  profiles: docker
   cloud:
     config:
       uri: http://config-server:8888
@@ -16,9 +14,7 @@ server:
   port: 8080
 ---
 spring:
-  config:
-    activate:
-      on-profile: local
+  profiles: local
   cloud:
     config:
       uri: http://localhost:8888

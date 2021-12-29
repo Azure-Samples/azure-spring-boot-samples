@@ -67,7 +67,7 @@ Service Bus Topic. You can choose anyone of them.
         
 1.  Add Role Assignment for Service Bus. See
     [Service principal for Azure resources with Service Bus][role-assignment]
-    to add role assignment for Service Bus. Assign `Azure Service Bus Data Owner` role for managed identity.        
+    to add role assignment for Service Bus. Assign `Contributor` role for managed identity.        
     
 1.  Update [application-sp.yaml].
     ```yaml
@@ -117,7 +117,7 @@ Please follow [create managed identity][create-managed-identity] to set up manag
         
 1.  Add Role Assignment for Service Bus. See
     [Managed identities for Azure resources with Service Bus][role-assignment]
-    to add role assignment for Service Bus. Assign `Azure Service Bus Data Owner` role for managed identity.
+    to add role assignment for Service Bus. Assign `Contributor` role for managed identity.
     
 
 ##### Update MSI related properties

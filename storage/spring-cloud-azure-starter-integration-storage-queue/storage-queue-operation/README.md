@@ -13,8 +13,8 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 
 ### Create Azure resources
 
-1.  Create [Azure Storage][create-azure-storage].
-
+1.  Create [Azure Storage][create-azure-storage]. 
+    
 1.  **[Optional]** if you want to use service principal, please follow
     [create service principal from Azure CLI][create-sp-using-azure-cli] to create one.
 

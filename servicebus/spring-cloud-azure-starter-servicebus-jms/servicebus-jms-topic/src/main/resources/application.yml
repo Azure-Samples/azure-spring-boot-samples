@@ -1,0 +1,10 @@
+spring:
+  jms:
+    listener:
+      concurrency: [NUM_OF_CONSUMERS]
+    servicebus:
+      connection-string: [SERVICEBUS_NAMESPACE_CONNECTION_STRING]
+      idle-timeout: 1800000
+      topic-client-id: [TOPIC_CLIENT_ID] # user defined
+topic: [TOPIC_NAME]
+subscription: [SUBSCRIPTION_NAME]

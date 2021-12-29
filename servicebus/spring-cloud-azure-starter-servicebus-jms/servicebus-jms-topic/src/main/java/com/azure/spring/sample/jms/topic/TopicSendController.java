@@ -6,6 +6,7 @@ package com.azure.spring.sample.jms.topic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class TopicSendController {
-
-    private static final String TOPIC_NAME = "tpc001";
-
     private static final Logger logger = LoggerFactory.getLogger(TopicSendController.class);
+
+    @Value("${topic}")
+    private String TOPIC_NAME;
 
     @Autowired
     private JmsTemplate jmsTemplate;

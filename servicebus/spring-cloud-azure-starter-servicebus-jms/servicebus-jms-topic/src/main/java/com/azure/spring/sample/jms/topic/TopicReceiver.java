@@ -9,16 +9,11 @@ import org.springframework.jms.annotation.JmsListener;
 import org.springframework.stereotype.Component;
 
 @Component
-public class TopicReceiveController {
+public class TopicReceiver {
+    private final Logger logger = LoggerFactory.getLogger(TopicReceiver.class);
 
-    private static final String TOPIC_NAME = "tpc001";
-
-    private static final String SUBSCRIPTION_NAME = "sub001";
-
-    private final Logger logger = LoggerFactory.getLogger(TopicReceiveController.class);
-
-    @JmsListener(destination = TOPIC_NAME, containerFactory = "topicJmsListenerContainerFactory",
-            subscription = SUBSCRIPTION_NAME)
+    @JmsListener(destination = "${topic}", containerFactory = "topicJmsListenerContainerFactory",
+            subscription = "${subscription}")
     public void receiveMessage(User user) {
 
         logger.info("Received message from topic: {}", user.getName());

@@ -44,11 +44,11 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 
 1.  Send a POST request
 
-        $ curl -X POST localhost:8080/messages?message=hello
+        $ curl -X POST http://localhost:8080/messages?message=hello
 
 1.  Receive the message you posted
 
-        $ curl -X GET localhost:8080/messages
+        $ curl -X GET http://localhost:8080/messages
 
 1.  Verify in your app’s logs that a similar message was posted:
 

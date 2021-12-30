@@ -33,4 +33,36 @@ resource "azurerm_resource_group" "main" {
   }
 }
 
-# @TOOD
+
+resource "azurecaf_name" "storage_account" {
+  name          = var.application_name
+  resource_type = "azurerm_storage_account"
+  random_length = 5
+  clean_input   = true
+}
+
+# storage
+resource "azurerm_storage_account" "storage_account" {
+  name                     = azurecaf_name.storage_account.result
+  resource_group_name      = azurerm_resource_group.main.name
+  location                 = var.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+}
+
+resource "azurerm_storage_queue" "queue" {
+  name                 = "example"
+  storage_account_name = azurerm_storage_account.storage_account.name
+}
+
+# assign roles
+data "azurerm_client_config" "client_config" {
+}
+
+resource "azurerm_role_assignment" "servicebus_data_owner" {
+  scope                = azurerm_storage_account.storage_account.id
+  role_definition_name = "Storage Queue Data Contributor"
+  principal_id         = data.azurerm_client_config.client_config.object_id
+}
+
+

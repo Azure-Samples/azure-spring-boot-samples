@@ -68,14 +68,13 @@ resource "azurerm_servicebus_namespace_authorization_rule" "application" {
   manage = true
 }
 
-
 resource "azurerm_servicebus_topic" "application" {
   name                = "tpc001"
   namespace_name      = azurerm_servicebus_namespace.servicebus_namespace.name
   resource_group_name = azurerm_resource_group.main.name
 }
 
-#resource "azurerm_servicebus_subscription" "application" {
+resource "azurerm_servicebus_subscription" "application" {
   name                = "sub001"
   resource_group_name = azurerm_resource_group.main.name
   namespace_name      = azurerm_servicebus_namespace.servicebus_namespace.name

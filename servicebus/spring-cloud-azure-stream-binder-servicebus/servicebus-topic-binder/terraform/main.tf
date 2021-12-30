@@ -68,7 +68,6 @@ resource "azurerm_servicebus_namespace_authorization_rule" "application" {
   manage = true
 }
 
-
 resource "azurerm_servicebus_topic" "application" {
   name                = "tpc001"
   namespace_name      = azurerm_servicebus_namespace.servicebus_namespace.name

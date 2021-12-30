@@ -124,7 +124,7 @@ services, please try to redeploy the app again.
 
 2. Send a POST request
 
-        $ ~~curl -X POST http://localhost:8080/messages?message=hello~~
+        $ ~~ curl -X POST http://localhost:8080/messages?message=hello ~~
 
 3. Verify in your app’s logs that a similar message was posted:
 
@@ -151,8 +151,8 @@ services, please try to redeploy the app again.
 [eventhub-operation]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-integration-eventhubs/src/spring-cloud-azure_4.0/java/com/azure/spring/integration/eventhub/api/EventHubOperation.java
 [receive-controller]: src/main/java/com/azure/spring/sample/eventhubs/ReceiveController.java
 [send-controller]: src/main/java/com/azure/spring/sample/eventhubs/SendController.java
-[application.yaml]: src/main/resources/application.yaml
-[application-sp.yaml]: src/main/resources/application-sp.yaml
+[application.yaml]: src/main/resources/application-cs.yaml
+[application-sp.yaml]: src/main/resources/application.yaml
 [application-mi.yaml]: src/main/resources/application-mi.yaml
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
 

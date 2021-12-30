@@ -1,23 +1,21 @@
 spring:
-  profiles:
-    active: manual
   cloud:
     stream:
       function:
         definition: consume1;supply1;consume2;supply2
       bindings:
         consume1-in-0:
-          destination: ${AZURE_EVENTHUB_1_NAME}
-          group:  ${AZURE_EVENTHUB_CONSUMER_GROUP}
+          destination: ${AZURE_EVENTHUB_NAME_01}
+          group: ${AZURE_EVENTHUB_CONSUMER_GROUP_01}
         supply1-out-0:
-          destination: ${THE_SAME_EVENTHUB_1_NAME_AS_ABOVE]
+          destination: ${AZURE_EVENTHUB_NAME_01}
         consume2-in-0:
           binder: eventhub-2
-          destination: ${AZURE_EVENTHUB_2_NAME}
-          group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
+          destination: ${AZURE_EVENTHUB_NAME_02}
+          group: ${AZURE_EVENTHUB_CONSUMER_GROUP_02}
         supply2-out-0:
           binder: eventhub-2
-          destination: ${THE_SAME_EVENTHUB_2_NAME_AS_ABOVE}
+          destination: ${AZURE_EVENTHUB_NAME_02}
       binders:
         eventhub-1:
           type: eventhubs
@@ -27,12 +25,11 @@ spring:
               cloud:
                 azure:
                   eventhubs:
-                    connection-string: ${CONNECTION_STRING_OF_FIRST_EVENTHUB_NAMESPACE}
+                    namespace: ${EVENTHUB_NAMESPACE_01}
                     processor:
                       checkpoint-store:
                         container-name: ${AZURE_STORAGE_CONTAINER_NAME}
                         account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
-                        account-key:  ${AZURE_STORAGE_ACCOUNT_KEY}
         eventhub-2:
           type: eventhubs
           default-candidate: false
@@ -41,12 +38,11 @@ spring:
               cloud:
                 azure:
                   eventhubs:
-                    connection-string: ${CONNECTION_STRING_OF_SECOND_EVENTHUB_NAMESPACE}
+                    namespace: ${EVENTHUB_NAMESPACE_02}
                     processor:
                       checkpoint-store:
-                        container-name: ${AZURE_STORAGE_CONTAINER_2_NAME}
-                        account-name: ${AZURE_STORAGE_ACCOUNT_2_NAME}
-                        account-key:  ${AZURE_STORAGE_ACCOUNT_2_KEY}
+                        container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                        account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
       eventhubs:
         bindings:
           consume1-in-0:

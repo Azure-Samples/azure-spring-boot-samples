@@ -1,2 +1,1 @@
-# @TODO
-# export TODO=$(terraform -chdir=./terraform output -raw TODO)
+export account_name=$(terraform -chdir=./terraform output -raw account_name)

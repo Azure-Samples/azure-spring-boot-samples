@@ -326,6 +326,6 @@ services, please try to redeploy the app again.
 [managed-identities]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
 [application-mi.yaml]: src/main/resources/application-mi.yaml
-[application.yaml]: src/main/resources/application.yaml
+[application.yaml]: src/main/resources/application-cs.yaml
 [application-sp.yaml]: src/main/resources/application-sp.yaml
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable

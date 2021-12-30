@@ -36,7 +36,7 @@ resource "azurerm_resource_group" "main" {
 # =================== eventhubs ================
 resource "azurecaf_name" "eventhubs" {
   name          = var.application_name
-  resource_type = "azurerm_servicebus_namespace"
+  resource_type = "azurerm_eventhub_namespace"
   random_length = 5
   clean_input   = true
 }

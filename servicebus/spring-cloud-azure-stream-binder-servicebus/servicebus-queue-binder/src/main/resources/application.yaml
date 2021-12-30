@@ -1,10 +1,8 @@
 spring:
-  profiles:
-    active: sp
   cloud:
     azure:
       servicebus:
-        connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING}
+        namespace: ${AZURE_SERVICEBUS_NAMESPACE}
     stream:
       function:
         definition: consume;supply

@@ -2,7 +2,7 @@ spring:
   cloud:
     azure:
       servicebus:
-        namespace: ${AZURE_SERVICEBUS_NAMESPACE}
+        connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING}
     stream:
       function:
         definition: consume;supply

@@ -334,8 +334,8 @@ For more details, please refer to the official doc of [Spring Cloud Stream Conte
 [deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
 [role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
 [application-mi.yaml]: src/main/resources/application-mi.yaml
-[application.yaml]: src/main/resources/application.yaml
-[application-sp.yaml]: src/main/resources/application-sp.yaml
+[application.yaml]: src/main/resources/application-cs.yaml
+[application-sp.yaml]: src/main/resources/application.yaml
 [StreamBridge]: https://docs.spring.io/spring-cloud-stream/docs/3.1.3/reference/html/spring-cloud-stream.html#_sending_arbitrary_data_to_an_output_e_g_foreign_event_driven_sources
 [spring-cloud-stream-batch0-consumer]: https://docs.spring.io/spring-cloud-stream/docs/3.1.4/reference/html/spring-cloud-stream.html#_batch_consumers
 [BatchProducerAndConsumerConfiguration]: 

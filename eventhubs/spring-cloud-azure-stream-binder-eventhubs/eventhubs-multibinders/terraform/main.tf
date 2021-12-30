@@ -36,16 +36,16 @@ resource "azurerm_resource_group" "main" {
 data "azurerm_client_config" "current" {
 }
 
-# =================== eventhubs ================
-resource "azurecaf_name" "eventhubs" {
+# =================== eventhubs_01 ================
+resource "azurecaf_name" "eventhubs_01" {
   name          = var.application_name
   resource_type = "azurerm_eventhub_namespace"
   random_length = 5
   clean_input   = true
 }
 
-resource "azurerm_eventhub_namespace" "eventhubs_namespace" {
-  name                = azurecaf_name.eventhubs.result
+resource "azurerm_eventhub_namespace" "eventhubs_namespace_01" {
+  name                = azurecaf_name.eventhubs_01.result
   location            = var.location
   resource_group_name = azurerm_resource_group.main.name
   sku                 = "Standard"
@@ -56,16 +56,50 @@ resource "azurerm_eventhub_namespace" "eventhubs_namespace" {
   }
 }
 
-resource "azurerm_eventhub" "eventhubs" {
-  name                = "eh1"
-  namespace_name      = azurerm_eventhub_namespace.eventhubs_namespace.name
+resource "azurerm_eventhub" "eventhubs_01" {
+  name                = "eh_01"
+  namespace_name      = azurerm_eventhub_namespace.eventhubs_namespace_01.name
   resource_group_name = azurerm_resource_group.main.name
   partition_count     = 2
   message_retention   = 1
 }
 
-resource "azurerm_role_assignment" "eventhub_data_owner" {
-  scope                = azurerm_eventhub.eventhubs.id
+resource "azurerm_role_assignment" "eventhub_data_owner_01" {
+  scope                = azurerm_eventhub.eventhubs_01.id
+  role_definition_name = "Azure Event Hubs Data Owner"
+  principal_id         = data.azurerm_client_config.current.object_id
+}
+
+# =================== eventhubs_02 ================
+resource "azurecaf_name" "eventhubs_02" {
+  name          = var.application_name
+  resource_type = "azurerm_eventhub_namespace"
+  random_length = 5
+  clean_input   = true
+}
+
+resource "azurerm_eventhub_namespace" "eventhubs_namespace_02" {
+  name                = azurecaf_name.eventhubs_01.result
+  location            = var.location
+  resource_group_name = azurerm_resource_group.main.name
+  sku                 = "Standard"
+  capacity            = 1
+
+  tags = {
+    terraform_azure_sample = var.sample_tag_value
+  }
+}
+
+resource "azurerm_eventhub" "eventhubs_02" {
+  name                = "eh_02"
+  namespace_name      = azurerm_eventhub_namespace.eventhubs_namespace_02.name
+  resource_group_name = azurerm_resource_group.main.name
+  partition_count     = 2
+  message_retention   = 1
+}
+
+resource "azurerm_role_assignment" "eventhub_data_owner_02" {
+  scope                = azurerm_eventhub.eventhubs_02.id
   role_definition_name = "Azure Event Hubs Data Owner"
   principal_id         = data.azurerm_client_config.current.object_id
 }
@@ -95,6 +129,7 @@ resource "azurerm_storage_account" "storage_account" {
   }
 }
 
+# resource storage container
 resource "azurerm_storage_container" "storage_container" {
   name                  = "eventhubs-integration-sample"
   storage_account_name  = azurerm_storage_account.storage_account.name

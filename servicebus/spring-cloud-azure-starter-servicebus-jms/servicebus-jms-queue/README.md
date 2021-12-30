@@ -47,6 +47,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 3. Verify in your app's logs that a similar message was posted:
     ```
     Sending message
+    ...
     Received message from queue: hello
     ```
     

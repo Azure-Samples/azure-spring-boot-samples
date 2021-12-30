@@ -33,7 +33,7 @@ resource "azurerm_resource_group" "main" {
   }
 }
 
-resource "azurecaf_name" "servicebus" {
+resource "azurecaf_name" "azurecaf_name_servicebus" {
   name = var.application_name
   resource_type = "azurerm_servicebus_namespace"
   random_length = 5
@@ -41,7 +41,7 @@ resource "azurecaf_name" "servicebus" {
 }
 
 resource "azurerm_servicebus_namespace" "servicebus_namespace" {
-  name = azurecaf_name.servicebus.result
+  name = azurecaf_name.azurecaf_name_servicebus.result
   location = var.location
   resource_group_name = azurerm_resource_group.main.name
 

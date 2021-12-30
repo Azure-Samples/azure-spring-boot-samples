@@ -33,7 +33,7 @@ resource "azurerm_resource_group" "main" {
   }
 }
 
-resource "azurecaf_name" "servicebus" {
+resource "azurecaf_name" "azurecaf_name_servicebus" {
   name = var.application_name
   resource_type = "azurerm_servicebus_namespace"
   random_length = 5
@@ -41,7 +41,7 @@ resource "azurecaf_name" "servicebus" {
 }
 
 resource "azurerm_servicebus_namespace" "servicebus_namespace" {
-  name = azurecaf_name.servicebus.result
+  name = azurecaf_name.azurecaf_name_servicebus.result
   location = var.location
   resource_group_name = azurerm_resource_group.main.name
 
@@ -68,20 +68,19 @@ resource "azurerm_servicebus_namespace_authorization_rule" "application" {
   manage = true
 }
 
-resource "azurerm_servicebus_topic" "application" {
+resource "azurerm_servicebus_topic" "servicebus_topic" {
   name = "tpc001"
   namespace_name = azurerm_servicebus_namespace.servicebus_namespace.name
   resource_group_name = azurerm_resource_group.main.name
 }
 
-resource "azurerm_servicebus_subscription" "application" {
+resource "azurerm_servicebus_subscription" "servicebus_subscription" {
   name = "sub001"
   resource_group_name = azurerm_resource_group.main.name
   namespace_name = azurerm_servicebus_namespace.servicebus_namespace.name
-  topic_name = azurerm_servicebus_topic.application.name
+  topic_name = azurerm_servicebus_topic.servicebus_topic.name
   max_delivery_count = 1
 }
-
 
 data "azurerm_client_config" "client_config" {
 }

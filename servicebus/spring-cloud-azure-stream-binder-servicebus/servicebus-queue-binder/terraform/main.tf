@@ -33,7 +33,7 @@ resource "azurerm_resource_group" "main" {
   }
 }
 
-resource "azurecaf_name" "servicebus" {
+resource "azurecaf_name" "azurecaf_name_servicebus" {
   name = var.application_name
   resource_type = "azurerm_servicebus_namespace"
   random_length = 5
@@ -41,7 +41,7 @@ resource "azurecaf_name" "servicebus" {
 }
 
 resource "azurerm_servicebus_namespace" "servicebus_namespace" {
-  name = azurecaf_name.servicebus.result
+  name = azurecaf_name.azurecaf_name_servicebus.result
   location = var.location
   resource_group_name = azurerm_resource_group.main.name
 
@@ -53,13 +53,13 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace" {
   }
 }
 
-resource "azurecaf_name" "servicebus_namespace_authorization_rule" {
+resource "azurecaf_name" "azurecaf_name_authorization_rule" {
   name = var.application_name
   resource_type = "azurerm_servicebus_namespace_authorization_rule"
 }
 
 resource "azurerm_servicebus_namespace_authorization_rule" "application" {
-  name = azurecaf_name.servicebus_namespace_authorization_rule.result
+  name = azurecaf_name.azurecaf_name_authorization_rule.result
   namespace_name = azurerm_servicebus_namespace.servicebus_namespace.name
   resource_group_name = azurerm_resource_group.main.name
 
@@ -82,11 +82,11 @@ resource "azurerm_servicebus_queue" "queue" {
 }
 
 
-data "azurerm_client_config" "client_config" {
+data "azurerm_client_config" "current" {
 }
 
 resource "azurerm_role_assignment" "servicebus_data_owner" {
   scope = azurerm_servicebus_namespace.servicebus_namespace.id
   role_definition_name = "Azure Service Bus Data Owner"
-  principal_id = data.azurerm_client_config.client_config.object_id
+  principal_id = data.azurerm_client_config.current.object_id
 }

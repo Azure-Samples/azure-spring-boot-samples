@@ -34,7 +34,7 @@ resource "azurerm_resource_group" "main" {
 }
 
 # =================== eventhubs ================
-resource "azurecaf_name" "eventhubs" {
+resource "azurecaf_name" "azurecaf_name_eventhubs" {
   name = var.application_name
   resource_type = "azurerm_eventhub_namespace"
   random_length = 5
@@ -42,7 +42,7 @@ resource "azurecaf_name" "eventhubs" {
 }
 
 resource "azurerm_eventhub_namespace" "eventhubs_namespace" {
-  name = azurecaf_name.eventhubs.result
+  name = azurecaf_name.azurecaf_name_eventhubs.result
   location = var.location
   resource_group_name = azurerm_resource_group.main.name
   sku = "Standard"

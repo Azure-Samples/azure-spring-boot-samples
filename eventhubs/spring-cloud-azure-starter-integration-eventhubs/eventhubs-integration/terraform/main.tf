@@ -37,7 +37,7 @@ data "azurerm_client_config" "current" {
 }
 
 # =================== eventhubs ================
-resource "azurecaf_name" "eventhubs" {
+resource "azurecaf_name" "azurecaf_name_eventhubs" {
   name = var.application_name
   resource_type = "azurerm_eventhub_namespace"
   random_length = 5
@@ -45,7 +45,7 @@ resource "azurecaf_name" "eventhubs" {
 }
 
 resource "azurerm_eventhub_namespace" "eventhubs_namespace" {
-  name = azurecaf_name.eventhubs.result
+  name = azurecaf_name.azurecaf_name_eventhubs.result
   location = var.location
   resource_group_name = azurerm_resource_group.main.name
   sku = "Standard"
@@ -72,7 +72,7 @@ resource "azurerm_role_assignment" "eventhub_data_owner" {
 
 
 # =================== storage ================
-resource "azurecaf_name" "storage_account" {
+resource "azurecaf_name" "azurecaf_name_storage_account" {
   name = var.application_name
   resource_type = "azurerm_storage_account"
   random_length = 5
@@ -80,7 +80,7 @@ resource "azurecaf_name" "storage_account" {
 }
 
 resource "azurerm_storage_account" "storage_account" {
-  name = azurecaf_name.storage_account.result
+  name = azurecaf_name.azurecaf_name_storage_account.result
   resource_group_name = azurerm_resource_group.main.name
   location = var.location
   account_tier = "Standard"
@@ -100,13 +100,13 @@ resource "azurerm_storage_container" "storage_container" {
   container_access_type = "container"
 }
 
-resource "azurerm_role_assignment" "storage_account_contributor" {
+resource "azurerm_role_assignment" "role_storage_account_contributor" {
   scope = azurerm_storage_account.storage_account.id
   role_definition_name = "Storage Account Contributor"
   principal_id = data.azurerm_client_config.current.object_id
 }
 
-resource "azurerm_role_assignment" "storage_container_owner" {
+resource "azurerm_role_assignment" "role_storage_container_owner" {
   scope = azurerm_storage_container.storage_container.resource_manager_id
   role_definition_name = "Storage Blob Data Owner"
   principal_id = data.azurerm_client_config.current.object_id

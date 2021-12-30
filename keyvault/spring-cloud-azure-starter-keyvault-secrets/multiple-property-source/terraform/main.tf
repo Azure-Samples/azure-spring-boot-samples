@@ -38,7 +38,7 @@ data "azurerm_client_config" "current" {
 }
 
 // ===========azurerm_key_vault_01===========
-resource "azurecaf_name" "kv_01" {
+resource "azurecaf_name" "azurecaf_name_kv_01" {
   name = var.application_name
   resource_type = "azurerm_resource_group"
   random_length = 5
@@ -46,7 +46,7 @@ resource "azurecaf_name" "kv_01" {
 }
 
 resource "azurerm_key_vault" "kv_account_01" {
-  name = azurecaf_name.kv_01.result
+  name = azurecaf_name.azurecaf_name_kv_01.result
   location = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   enabled_for_disk_encryption = true
@@ -99,7 +99,7 @@ resource "azurerm_key_vault_secret" "kv_both_01" {
 
 
 // ===========azurerm_key_vault_02===========
-resource "azurecaf_name" "kv_02" {
+resource "azurecaf_name" "azurecaf_name_kv_02" {
   name = var.application_name
   resource_type = "azurerm_resource_group"
   random_length = 5
@@ -107,7 +107,7 @@ resource "azurecaf_name" "kv_02" {
 }
 
 resource "azurerm_key_vault" "kv_account_02" {
-  name = azurecaf_name.kv_02.result
+  name = azurecaf_name.azurecaf_name_kv_02.result
   location = azurerm_resource_group.main.location
   resource_group_name = azurerm_resource_group.main.name
   enabled_for_disk_encryption = true
@@ -151,7 +151,6 @@ resource "azurerm_key_vault_secret" "kv_02" {
   value = "This is a single test value in key vault 2"
   key_vault_id = azurerm_key_vault.kv_account_02.id
 }
-
 
 resource "azurerm_key_vault_secret" "kv_02_both" {
   name = "secret-name-in-key-vault-both"

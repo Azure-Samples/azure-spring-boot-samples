@@ -23,7 +23,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 
 ## Examples
 
-1.  Update stream binding related properties in
+1. Update stream binding related properties in
     `application.yaml`. If you choose to use
     service principal or managed identity, update the `application-sp.yaml` or
     `application-mi.yaml` respectively.
@@ -41,23 +41,19 @@ Running this sample will be charged by Azure. You can check the usage and bill a
    **SendController.java** and
    **ReceiveController.java**.
 
-1.  Run the `mvn spring-boot:run` in the root of the code sample to get
+3. Run the `mvn spring-boot:run` in the root of the code sample to get
     the app running.
 
-1.  Send a POST request
+4. Send a POST request
 
-        $ curl -X POST localhost:8080/messages?message=hello
+        $ curl -X POST http://localhost:8080/messages?message=hello
 
-1.  Receive the message you posted
-
-        $ curl -X GET localhost:8080/messages
-
-1.  Verify in your app’s logs that a similar message was posted:
+7. Verify in your app’s logs that a similar message was posted:
 
         New message received: 'hello'
         Message 'hello' successfully checkpointed
 
-1.  Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
+8. Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
 
 
 ## Troubleshooting

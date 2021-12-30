@@ -6,7 +6,6 @@
 #          account-name: [account-name]
 #          account-key: [account-key]
 
-
 spring:
   cloud:
     azure:

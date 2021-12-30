@@ -1,7 +1,16 @@
+#spring:
+#  cloud:
+#    azure:
+#      storage:
+#        queue:
+#          account-name: [account-name]
+#          account-key: [account-key]
+
+
 spring:
   cloud:
     azure:
       storage:
         queue:
-          account-name: [account-name]
-          account-key: [account-key]
+          account-name: ${account_name}
+

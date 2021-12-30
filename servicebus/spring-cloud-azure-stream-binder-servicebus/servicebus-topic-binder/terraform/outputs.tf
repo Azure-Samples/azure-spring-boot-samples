@@ -6,7 +6,6 @@ output "AZURE_SERVICEBUS_NAMESPACE" {
 output "AZURE_SERVICEBUS_TOPIC_NAME" {
   value = azurerm_servicebus_topic.servicebus_topic.name
   description = "The name of created topic in the service bus namespace."
-
 }
 
 output "AZURE_SERVICEBUS_TOPIC_SUBSCRIPTION_NAME" {

@@ -54,7 +54,7 @@ resource "azurerm_eventhub_namespace" "eventhubs_namespace" {
 }
 
 resource "azurerm_eventhub" "eventhubs" {
-  name                = "eventhub"
+  name                = "eventhubs_kafka"
   namespace_name      = azurerm_eventhub_namespace.eventhubs_namespace.name
   resource_group_name = azurerm_resource_group.main.name
   partition_count     = 2

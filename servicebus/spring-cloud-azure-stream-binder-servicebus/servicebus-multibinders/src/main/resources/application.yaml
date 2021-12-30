@@ -1,6 +1,5 @@
 spring:
   cloud:
-    azure:
     stream:
       function:
         definition: consume1;supply1;consume2;supply2
@@ -25,7 +24,7 @@ spring:
               cloud:
                 azure:
                   servicebus:
-                    namespace: ${AZURE_SERVICEBUS_NAMESPACE_1}
+                    namespace: ${AZURE_SERVICEBUS_NAMESPACE_01}
         servicebus-2:
           type: servicebus
           default-candidate: false
@@ -34,7 +33,7 @@ spring:
               cloud:
                 azure:
                   servicebus:
-                    namespace: ${AZURE_SERVICEBUS_NAMESPACE_2}
+                    namespace: ${AZURE_SERVICEBUS_NAMESPACE_02}
       servicebus:
         bindings:
           consume1-in-0:

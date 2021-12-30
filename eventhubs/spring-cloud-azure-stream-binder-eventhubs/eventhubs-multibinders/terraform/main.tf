@@ -64,7 +64,7 @@ resource "azurerm_eventhub" "eventhubs_01" {
   message_retention = 1
 }
 
-resource "azurerm_role_assignment" "role_eventhub_data_owner_01" {
+resource "azurerm_role_assignment" "role_eventhubs_data_owner_01" {
   scope = azurerm_eventhub.eventhubs_01.id
   role_definition_name = "Azure Event Hubs Data Owner"
   principal_id = data.azurerm_client_config.current.object_id
@@ -98,7 +98,7 @@ resource "azurerm_eventhub" "eventhubs_02" {
   message_retention = 1
 }
 
-resource "azurerm_role_assignment" "role_eventhub_data_owner_02" {
+resource "azurerm_role_assignment" "role_eventhubs_data_owner_02" {
   scope = azurerm_eventhub.eventhubs_02.id
   role_definition_name = "Azure Event Hubs Data Owner"
   principal_id = data.azurerm_client_config.current.object_id
@@ -141,7 +141,7 @@ resource "azurerm_role_assignment" "role_storage_account_contributor" {
   principal_id = data.azurerm_client_config.current.object_id
 }
 
-resource "azurerm_role_assignment" "role_storage_container_owner" {
+resource "azurerm_role_assignment" "role_storage_blob_data_owner" {
   scope = azurerm_storage_container.storage_container.resource_manager_id
   role_definition_name = "Storage Blob Data Owner"
   principal_id = data.azurerm_client_config.current.object_id

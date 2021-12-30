@@ -58,7 +58,7 @@ resource "azurerm_storage_queue" "queue" {
 data "azurerm_client_config" "current" {
 }
 
-resource "azurerm_role_assignment" "servicebus_data_owner" {
+resource "azurerm_role_assignment" "role_storage_queue_data_contributor" {
   scope = azurerm_storage_account.storage_account.id
   role_definition_name = "Storage Queue Data Contributor"
   principal_id = data.azurerm_client_config.current.object_id

@@ -85,7 +85,7 @@ resource "azurerm_servicebus_subscription" "servicebus_subscription" {
 data "azurerm_client_config" "client_config" {
 }
 
-resource "azurerm_role_assignment" "servicebus_data_owner" {
+resource "azurerm_role_assignment" "role_servicebus_data_owner" {
   scope = azurerm_servicebus_namespace.servicebus_namespace.id
   role_definition_name = "Azure Service Bus Data Owner"
   principal_id = data.azurerm_client_config.client_config.object_id

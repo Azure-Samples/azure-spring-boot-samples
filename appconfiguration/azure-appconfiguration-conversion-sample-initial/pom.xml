@@ -20,16 +20,11 @@
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>spring-cloud-azure-starter-cosmos</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.azure</groupId>
-      <artifactId>azure-spring-data-cosmos</artifactId>
+      <artifactId>spring-cloud-azure-starter-data-cosmos</artifactId>
     </dependency>
     <dependency>
       <groupId>com.google.guava</groupId>
       <artifactId>guava</artifactId>
-      <version>25.0-jre</version> <!-- {x-version-update;cosmos_com.google.guava:guava;external_dependency} -->
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>

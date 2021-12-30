@@ -1,7 +1,7 @@
 variable "application_name" {
   type        = string
   description = "The name of your application"
-   default     = "eventhubs-binder"
+  default     = "eventhubs-binder"
 }
 
 variable "location" {

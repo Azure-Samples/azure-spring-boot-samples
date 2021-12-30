@@ -1,4 +1,3 @@
-
 output "AZURE_STORAGE_ACCOUNT_NAME" {
   value = azurerm_storage_account.storage_account.name
 }

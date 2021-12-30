@@ -1,6 +1,6 @@
 terraform {
   required_providers {
-    azurerm = {
+    azurerm  = {
       source  = "hashicorp/azurerm"
       version = ">= 2.75"
     }
@@ -96,7 +96,6 @@ resource "azurerm_key_vault_secret" "kv_both_01" {
   value        = "This is a both test value in key vault 1"
   key_vault_id = azurerm_key_vault.kv_account_01.id
 }
-
 
 
 // ===========azurerm_key_vault_02===========

@@ -1,6 +1,6 @@
 terraform {
   required_providers {
-    azurerm = {
+    azurerm  = {
       source  = "hashicorp/azurerm"
       version = ">= 2.75"
     }
@@ -28,8 +28,8 @@ resource "azurerm_resource_group" "main" {
 
   tags = {
     "spring-cloud-azure-sample" = var.sample_tag_value
-    "terraform"        = "true"
-    "application-name" = var.application_name
+    "terraform"                 = "true"
+    "application-name"          = var.application_name
   }
 }
 
@@ -51,8 +51,8 @@ resource "azurerm_storage_account" "application" {
 
   tags = {
     "spring-cloud-azure-sample" = var.sample_tag_value
-    "terraform"        = "true"
-    "application-name" = var.application_name
+    "terraform"                 = "true"
+    "application-name"          = var.application_name
   }
 }
 

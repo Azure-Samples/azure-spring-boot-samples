@@ -3,4 +3,4 @@ spring:
     azure:
       storage:
         queue:
-          account-name: ${account_name}
+          account-name: ${ACCOUNT_NAME}

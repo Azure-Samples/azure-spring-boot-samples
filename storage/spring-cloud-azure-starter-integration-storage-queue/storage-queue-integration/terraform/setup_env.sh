@@ -1,1 +1,1 @@
-export account_name=$(terraform -chdir=./terraform output -raw account_name)
+export ACCOUNT_NAME=$(terraform -chdir=./terraform output -raw ACCOUNT_NAME)

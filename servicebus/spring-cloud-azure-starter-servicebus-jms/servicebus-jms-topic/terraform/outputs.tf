@@ -1,12 +1,9 @@
-output "connection_string" {
+output "CONNECTION_STRING" {
   value = azurerm_servicebus_namespace.servicebus_namespace.default_primary_connection_string
   description = "The servicebus namespace."
-  sensitive = true
 }
 
-
-output "topic_client_id" {
-  value = azurerm_servicebus_topic.application
+output "TOPIC_CLIENT_ID" {
+  value = "topic_client_id"
   description = "The servicebus namespace."
-  sensitive = true
 }

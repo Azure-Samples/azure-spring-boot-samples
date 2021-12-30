@@ -1,7 +1,7 @@
 spring:
   jms:
     servicebus:
-      connection-string: ${servicebusnamespaceconnectionstring}
+      connection-string: ${SERVICEBUS_NAMESPACE_CONNECTION_STRING}
       idle-timeout: 1800000
       pricing-tier: Standard
       topic-client-id: thisclientid

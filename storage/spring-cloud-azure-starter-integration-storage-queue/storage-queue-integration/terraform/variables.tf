@@ -1,17 +1,17 @@
 variable "application_name" {
-  type        = string
+  type = string
   description = "The name of your application"
-  default     = "storage-queue-integration"
+  default = "storage-queue-integration"
 }
 
 variable "location" {
-  type        = string
+  type = string
   description = "The Azure region where all resources in this example should be created"
-  default     = "eastus"
+  default = "eastus"
 }
 
 variable "sample_tag_value" {
-  type        = string
+  type = string
   description = "The value of spring-cloud-azure-sample tag"
-  default     = "true"
+  default = "true"
 }

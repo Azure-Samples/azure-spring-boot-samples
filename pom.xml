@@ -44,22 +44,16 @@
         <groupId>com.azure.spring</groupId>
         <artifactId>azure-spring-cloud-appconfiguration-config</artifactId>
         <version>${version.spring-cloud-appconfiguration-config}</version>
-        <type>pom</type>
-        <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>com.azure.spring</groupId>
         <artifactId>azure-spring-cloud-feature-management</artifactId>
         <version>${version.spring-cloud-feature-management}</version>
-        <type>pom</type>
-        <scope>import</scope>
       </dependency>
       <dependency>
         <groupId>com.azure.spring</groupId>
         <artifactId>azure-spring-cloud-feature-management-web</artifactId>
         <version>${version.spring-cloud-feature-management}</version>
-        <type>pom</type>
-        <scope>import</scope>
       </dependency>
     </dependencies>
   </dependencyManagement>

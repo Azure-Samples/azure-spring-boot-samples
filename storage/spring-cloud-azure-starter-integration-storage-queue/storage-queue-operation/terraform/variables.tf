@@ -1,7 +1,7 @@
 variable "application_name" {
   type        = string
   description = "The name of your application"
-  default     = "storage_queue_operation"
+  default     = "storage-queue-operation"
 }
 
 variable "location" {

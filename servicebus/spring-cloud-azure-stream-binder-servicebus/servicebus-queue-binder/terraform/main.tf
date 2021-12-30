@@ -58,7 +58,7 @@ resource "azurecaf_name" "azurecaf_name_authorization_rule" {
   resource_type = "azurerm_servicebus_namespace_authorization_rule"
 }
 
-resource "azurerm_servicebus_namespace_authorization_rule" "application" {
+resource "azurerm_servicebus_namespace_authorization_rule" "authorization_rule" {
   name = azurecaf_name.azurecaf_name_authorization_rule.result
   namespace_name = azurerm_servicebus_namespace.servicebus_namespace.name
   resource_group_name = azurerm_resource_group.main.name

@@ -134,24 +134,18 @@ mvn clean spring-boot:run
 
 ## Verify This Sample
 
-1.  Send a POST request
+1.  Verify in your app’s logs that similar messages were posted:
 
 ```shell
+New message received: 'Hello world, 17' ...
+Message 'Hello world, 17' successfully checkpointed
+...
+New message received: 'Hello world, 18' ...
+Message 'Hello world, 18' successfully checkpointed
+...
+New message received: 'Hello world, 27' ...
+Message 'Hello world, 27' successfully checkpointed
 
-$ ### Send messages through imperative.  
-$ curl -X POST http://localhost:8080/messages/imperative/staticalDestination?message=hello
-$ curl -X POST http://localhost:8080/messages/imperative/dynamicDestination?message=hello
-
-$ ### Send messages through reactive.
-$ curl -X POST http://localhost:8080/messages/reactive?message=hello
-
-```
-
-2.  Verify in your app’s logs that similar messages were posted:
-
-```shell
-New message received: 'hello', partition key: 2002572479, sequence number: 4, offset: 768, enqueued time: 2021-06-03T01:47:36.859Z
-Message 'hello' successfully checkpointed
 ```
 
 

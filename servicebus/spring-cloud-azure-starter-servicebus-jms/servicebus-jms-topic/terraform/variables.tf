@@ -22,3 +22,10 @@ variable "pricing_tier" {
   default = "Standard"
 }
 
+variable "topic_client_id" {
+  type = string
+  description = "The topic client id."
+  default = "topic-client-id"
+}
+
+

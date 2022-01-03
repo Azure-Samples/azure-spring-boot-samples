@@ -8,3 +8,8 @@ output "PRICING_TIER" {
   value = var.pricing_tier
   description = "The pricing tier of Service Bus."
 }
+
+output "TOPIC_CLIENT_ID" {
+  value = var.topic_client_id
+  description = "The topic client id."
+}

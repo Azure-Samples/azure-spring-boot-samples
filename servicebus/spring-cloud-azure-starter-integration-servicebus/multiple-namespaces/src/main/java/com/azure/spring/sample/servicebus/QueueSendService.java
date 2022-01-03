@@ -13,11 +13,11 @@ import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
+import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFutureCallback;
-import org.springframework.web.bind.annotation.RestController;
 
 
-@RestController
+@Service
 public class QueueSendService {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(QueueSendService.class);

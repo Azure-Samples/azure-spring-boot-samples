@@ -27,19 +27,15 @@
 
   <properties>
     <java.version>1.8</java.version>
-    <assertj.version>3.21.0</assertj.version>
-
-<!--    <spring-boot.version>2.3.4.RELEASE</spring-boot.version>-->
-<!--    <spring-cloud.version>Hoxton.SR8</spring-cloud.version>-->
-
-<!--      <spring-boot.version>2.5.4</spring-boot.version>-->
-      <spring-cloud.version>2020.0.3</spring-cloud.version>
-
+    <spring-cloud.version>2020.0.3</spring-cloud.version>
     <docker.image.prefix>springcommunity</docker.image.prefix>
     <docker.image.exposed.port>9090</docker.image.exposed.port>
     <docker.image.dockerfile.dir>${basedir}</docker.image.dockerfile.dir>
     <docker.image.dockerize.version>v0.6.1</docker.image.dockerize.version>
     <docker.plugin.version>1.2.2</docker.plugin.version>
+    <spring-boot-admin.version>2.5.5</spring-boot-admin.version>
+    <spring-cloud-azure.version>4.0.0-beta.2</spring-cloud-azure.version>
+    <azure-spring-data-cosmos.version>3.16.0</azure-spring-data-cosmos.version><!-- {x-version-update;com.azure:azure-spring-data-cosmos;dependency} -->
   </properties>
 
   <dependencyManagement>
@@ -52,12 +48,15 @@
         <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>org.assertj</groupId>
-        <artifactId>assertj-core</artifactId>
-        <version>${assertj.version}</version>
-        <scope>test</scope>
+        <groupId>com.azure</groupId>
+        <artifactId>azure-spring-data-cosmos</artifactId>
+        <version>${azure-spring-data-cosmos.version}</version>
       </dependency>
-
+      <dependency>
+        <groupId>com.azure.spring</groupId>
+        <artifactId>spring-cloud-azure-starter-keyvault-secrets</artifactId>
+        <version>${spring-cloud-azure.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 

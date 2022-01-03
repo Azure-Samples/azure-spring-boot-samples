@@ -35,10 +35,9 @@ In addition, you will need the following:
 
 ## Clone and build the repo
 
-### Create a new folder and clone the sample app repository to your Azure Cloud account
+### Clone the sample app repository 
 
 ```bash
-    mkdir source-code
     git clone https://github.com/Azure-Samples/azure-spring-boot-samples
 ```
 

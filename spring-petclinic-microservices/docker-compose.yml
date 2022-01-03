@@ -5,6 +5,8 @@ services:
     image: springcommunity/spring-petclinic-config-server
     container_name: config-server
     mem_limit: 512M
+    volumes:
+      - "${HOME}/.azure:/root/.azure"
     ports:
      - 8888:8888
 
@@ -12,6 +14,8 @@ services:
     image: springcommunity/spring-petclinic-discovery-server
     container_name: discovery-server
     mem_limit: 512M
+    volumes:
+      - "${HOME}/.azure:/root/.azure"
     depends_on:
       - config-server
     entrypoint: ["./dockerize","-wait=tcp://config-server:8888","-timeout=60s","--","java", "org.springframework.boot.loader.JarLauncher"]
@@ -22,6 +26,8 @@ services:
     image: springcommunity/spring-petclinic-customers-service
     container_name: customers-service
     mem_limit: 512M
+    volumes:
+      - "${HOME}/.azure:/root/.azure"
     depends_on:
      - config-server
      - discovery-server
@@ -35,6 +41,8 @@ services:
     image: springcommunity/spring-petclinic-visits-service
     container_name: visits-service
     mem_limit: 512M
+    volumes:
+      - "${HOME}/.azure:/root/.azure"
     depends_on:
      - config-server
      - discovery-server
@@ -49,6 +57,8 @@ services:
     image: springcommunity/spring-petclinic-vets-service
     container_name: vets-service
     mem_limit: 512M
+    volumes:
+      - "${HOME}/.azure:/root/.azure"
     depends_on:
      - config-server
      - discovery-server
@@ -62,6 +72,8 @@ services:
     image: springcommunity/spring-petclinic-api-gateway
     container_name: api-gateway
     mem_limit: 512M
+    volumes:
+      - "${HOME}/.azure:/root/.azure"
     depends_on:
      - config-server
      - discovery-server
@@ -73,6 +85,8 @@ services:
     image: springcommunity/spring-petclinic-admin-server
     container_name: admin-server
     mem_limit: 512M
+    volumes:
+      - "${HOME}/.azure:/root/.azure"
     depends_on:
      - config-server
      - discovery-server

@@ -5,7 +5,7 @@ string message. Then message is sent through Azure Event Hubs to a bean `consume
 which simply logs the message.
 
 ## What You Will Build
-You will build an application using the Spring Cloud Azure Starter and Spring Cloud Starter Stream Kafka to send and receive messages with Azure Event Hubs.
+You will build an application using the Spring Cloud Azure Starter and Spring Cloud Starter Stream Kafka to send and receive messages for Azure Event Hubs.
 
 ## What You Need
 

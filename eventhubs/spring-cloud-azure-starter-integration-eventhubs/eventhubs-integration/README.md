@@ -4,7 +4,7 @@ This sample demonstrates how to use `Spring Integration` for `Azure
 Event Hubs`.
 
 ## What You Will Build
-You will build an application to send and receive messages with Event Hubs using Spring Integration.
+You will build an application to send and receive messages for Event Hubs using Spring Integration.
 
 ## What You Need
 

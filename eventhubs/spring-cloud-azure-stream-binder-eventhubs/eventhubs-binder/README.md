@@ -8,7 +8,7 @@ These messages are published to one `Event Hub` instance and then consumed by on
 endpoint from the same application.
 
 ## What You Will Build
-You will build an application using `Spring Cloud Stream Binder` to send and receive messages with `Azure Event Hubs`.
+You will build an application using `Spring Cloud Stream Binder` to send and receive messages for `Azure Event Hubs`.
 
 ## What You Need
 

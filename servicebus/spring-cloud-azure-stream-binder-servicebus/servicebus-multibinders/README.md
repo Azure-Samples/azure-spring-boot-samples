@@ -8,7 +8,7 @@ The sample will also consume messages from the same service bus.
 
 
 ## What You Will Build
-You will build an application using Spring Cloud Stream to send and receive messages with multiple Azure Service Bus namespaces.
+You will build an application using Spring Cloud Stream to send and receive messages for multiple Azure Service Bus namespaces.
 
 ## What You Need
 

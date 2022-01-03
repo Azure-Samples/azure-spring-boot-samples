@@ -4,7 +4,7 @@ This sample project demonstrates how to use Spring JMS for Azure Service Bus Que
 
 
 ## What You Will Build
-You will build an application using Spring JMS to send and receive messages with Azure Service Bus Queue.
+You will build an application using Spring JMS to send and receive messages for Azure Service Bus Queue.
 
 ## What You Need
 

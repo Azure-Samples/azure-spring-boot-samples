@@ -129,7 +129,7 @@ mvn clean spring-boot:run
 
 ## Verify This Sample
 
-Start the application, you will see a log like this:
+Start the application, you will see logs like this:
 ```text
 secretNameInKeyVault1: secret-value-1
 secretNameInKeyVault2: secret-name-in-key-vault-2-value-2

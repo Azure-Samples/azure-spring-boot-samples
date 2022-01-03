@@ -8,22 +8,19 @@ import com.azure.spring.service.servicebus.properties.ServiceBusEntityType;
 import com.azure.spring.servicebus.core.ServiceBusTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 import org.springframework.util.concurrent.ListenableFutureCallback;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
 @RestController
-public class QueueSendController {
+public class QueueSendService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(QueueSendController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(QueueSendService.class);
     private static final String OUTPUT_CHANNEL_QUEUE1 = "queue1.output";
     private static final String QUEUE_NAME = "queue1";
 

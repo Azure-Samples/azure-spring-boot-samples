@@ -22,9 +22,9 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-public class QueueReceiveController {
+public class QueueReceiveService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(QueueReceiveController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(QueueReceiveService.class);
     private static final String INPUT_CHANNEL = "queue1.input";
     private static final String OUTPUT_CHANNEL_QUEUE2 = "queue2.output";
     private static final String FORWARD_QUEUE_NAME = "queue2";

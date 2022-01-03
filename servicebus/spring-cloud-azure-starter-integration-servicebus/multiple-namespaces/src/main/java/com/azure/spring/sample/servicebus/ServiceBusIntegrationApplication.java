@@ -10,6 +10,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.config.EnableIntegration;
+import com.azure.spring.sample.servicebus.QueueSendService.QueueSendGateway;
 
 @SpringBootApplication
 @EnableIntegration
@@ -18,7 +19,7 @@ import org.springframework.integration.config.EnableIntegration;
 public class ServiceBusIntegrationApplication implements CommandLineRunner {
 
     @Autowired
-    QueueSendController.QueueSendGateway messagingGateway;
+    QueueSendGateway messagingGateway;
 
     public static void main(String[] args) {
         SpringApplication.run(ServiceBusIntegrationApplication.class, args);

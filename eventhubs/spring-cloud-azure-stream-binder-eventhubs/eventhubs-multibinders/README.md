@@ -8,7 +8,7 @@ These messages are published to one event hub. The sample will also consume mess
 event hub.
 
 ## What You Will Build
-@TODO_description
+You will build an application using `Spring Cloud Stream Binder` to send and receive messages for multiple `Azure Event Hubs` namespaces.
 
 ## What You Need
 

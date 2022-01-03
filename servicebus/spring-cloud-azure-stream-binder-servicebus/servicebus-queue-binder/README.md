@@ -8,7 +8,7 @@ These messages are published to a service bus queue. The sample will also consum
 
 
 ## What You Will Build
-@TODO_description
+You will build an application using Spring Cloud Stream to send and receive messages for Azure Service Bus Queue.
 
 ## What You Need
 

@@ -118,10 +118,7 @@ mvn clean spring-boot:run
 
 
 ## Verify This Sample
-Send a POST request to service bus queue
-```shell
- $ curl -X POST http://localhost:8080/queues?message=hello
-```
+
 
 Verify in your app’s logs that a similar message was posted:
 ```shell

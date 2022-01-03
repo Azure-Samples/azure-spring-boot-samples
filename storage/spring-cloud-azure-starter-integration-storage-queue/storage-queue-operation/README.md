@@ -129,7 +129,7 @@ mvn clean spring-boot:run
 
         $ curl -X GET http://localhost:8080/messages
 
-1.  Verify in your app’s logs that a similar message was posted:
+1.  Verify in your app’s logs that similar messages were posted:
 
         Message arrived! Payload: hello
         Message 'hello' successfully checkpointed

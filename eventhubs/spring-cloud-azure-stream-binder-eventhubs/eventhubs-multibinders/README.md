@@ -133,23 +133,21 @@ mvn clean spring-boot:run
 
 ## Verify This Sample
 
-1.  Send a POST request to test the default binder
+1.  Verify in your app’s logs that similar messages were posted:
 
-        $ curl -X POST http://localhost:8080/messages1?message=hello
+```shell
 
-1.  Verify in your app’s logs that a similar message was posted:
+...
+Message1 'GenericMessage [payload=Hello world1, 11,... ]' successfully checkpointed
+Message1 'GenericMessage [payload=Hello world1, 12,... ]' successfully checkpointed
+...
 
-        [1] New message1 received: 'hello'
-        [1] Message1 'hello' successfully checkpointed
+Message1 'GenericMessage [payload=Hello world1, 23,... ]' successfully checkpointed
+...
+Message2 'GenericMessage [payload=Hello world2, 25,... ]' successfully checkpointed
+...
 
-1.  Send another POST request to test the other binder
-
-        $ curl -X POST http://localhost:8080/messages2?message=hello
-
-1.  Verify in your app’s logs that a similar message was posted:
-
-        [2] New message2 received: 'hello'
-        [2] Message2 'hello' successfully checkpointed
+```
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.

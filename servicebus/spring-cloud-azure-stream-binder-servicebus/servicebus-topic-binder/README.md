@@ -128,7 +128,7 @@ mvn clean spring-boot:run
 ## Verify This Sample
 
 
-1.  Verify in your app’s logs that a similar message was posted:
+1.  Verify in your app’s logs that similar messages were posted:
 
 ```shell
 ...

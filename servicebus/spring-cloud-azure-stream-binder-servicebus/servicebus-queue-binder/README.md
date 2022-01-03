@@ -130,15 +130,23 @@ mvn clean spring-boot:run
 
 ## Verify This Sample
 
-1.  Send a POST request
 
-        $ curl -X POST http://localhost:8080/messages?message=hello
+1.  Verify in your app’s logs that a similar message was posted:
 
+```shell
+...
+New message received: 'Hello world, 2'
+...
+Message 'Hello world, 2' successfully checkpointed
+...
+...
+New message received: 'Hello world, 3'
+...
+Message 'Hello world, 3' successfully checkpointed
+...
+...
 
-2.  Verify in your app’s logs that a similar message was posted:
-
-        New message received: 'hello'
-        Message 'hello' successfully checkpointed
+```
 
 
 ## Clean Up Resources

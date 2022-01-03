@@ -1,290 +1,137 @@
-# Spring Cloud Azure Stream Binder for Multiple Event Hubs Namespace Code Sample shared library for Java
+# Spring Cloud Azure Stream Binder for Multiple Event Hubs Namespace Code Sample shared library for Java 
 
-## Key concepts
 This sample demonstrates how to use the `Spring Cloud Stream Binder`
 for multiple `Azure Event Hubs` namespaces. In this sample you will bind to
 two Event Hubs namespaces separately through two binders. The sample app has two operating modes.
 One way is to expose a Restful API to receive string message, another way is to automatically provide string messages.
-These messages are published to one event hub. The sample will also consume messages from the same 
+These messages are published to one event hub. The sample will also consume messages from the same
 event hub.
 
-## Getting started
+## What You Will Build
+@TODO_description
 
-Running this sample will be charged by Azure. You can check the usage
-and bill at [this link][azure-account].
+## What You Need
+
+- [An Azure subscription](https://azure.microsoft.com/free/)
+- [Terraform](https://www.terraform.io/)
+- [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
+- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
+- Maven
+- You can also import the code straight into your IDE:
+    - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
+
+## Provision Azure Resources Required to Run This Sample
+This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
+> [!IMPORTANT]  
+> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
+> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
+
+### Authenticate Using the Azure CLI
+Terraform must authenticate to Azure to create infrastructure.
+
+In your terminal, use the Azure CLI tool to setup your account permissions locally.
+
+```shell
+az login
+```
+
+Your browser window will open and you will be prompted to enter your Azure login credentials. After successful authentication, your terminal will display your subscription information. You do not need to save this output as it is saved in your system for Terraform to use.
+
+```shell
+You have logged in. Now let us find all the subscriptions to which you have access...
+
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "home-Tenant-Id",
+    "id": "subscription-id",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Subscription-Name",
+    "state": "Enabled",
+    "tenantId": "0envbwi39-TenantId",
+    "user": {
+      "name": "your-username@domain.com",
+      "type": "user"
+    }
+  }
+]
+```
+
+If you have more than one subscription, specify the subscription-id you want to use with command below: 
+```shell
+az account set --subscription <your-subscription-id>
+```
+
+### Provision the Resources
+
+After login Azure CLI with your account, now you can use the terraform script to create Azure Resources.
+
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=./terraform init
+
+# Apply your Terraform Configuration
+# Type `yes` at the confirmation prompt to proceed.
+terraform -chdir=./terraform apply
+
+```
 
 
 
-### Create Azure resources
 
-1. Create two Event Hubs in different Event Hub namespace. Please refer to 
-    [Azure Event Hubs][create-event-hubs].
+It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
-2. Create [Azure Storage][create-azure-storage] for checkpoint use.
+```shell
 
-### Configuration credential options
+azurecaf_name.azurecaf_name_storage_account: Creating...
+azurecaf_name.resource_group: Creating...
+...
+azurecaf_name.azurecaf_name_storage_account: Creation complete ...
+azurecaf_name.resource_group: Creation complete after 0s ...
+azurecaf_name.azurecaf_name_eventhubs_01: Creation complete after 0s ...
+azurerm_resource_group.main: Creating...
+azurerm_resource_group.main: Creation complete after 5s ...
+azurerm_eventhub_namespace.eventhubs_namespace_02: Creating...
+...
+azurerm_eventhub.eventhubs_02: Creation complete after ...
+azurerm_role_assignment.role_eventhubs_data_owner_02: Creating...
+azurerm_eventhub.eventhubs_01: Creation complete after ...
+azurerm_role_assignment.role_eventhubs_data_owner_01: Creating...
+...
+azurerm_role_assignment.role_eventhubs_data_owner_02: Creation complete ...
+azurerm_role_assignment.role_eventhubs_data_owner_01: Creation complete ...
+...
 
-We have several ways to config the Spring Cloud Stream Binder for Azure
-Event Hubs. You can choose anyone of them.
+Apply complete! Resources: 15 added, 0 changed, 0 destroyed.
 
->[!Important]
->
->  When using the Restful API to send messages, the **Active profiles** must contain `manual`.
+Outputs:
 
-#### Method 1: Connection string based usage
+...
 
-1.  Update stream binding related properties in
-    [application.yaml][application.yaml].
 
-    ```yaml
-    spring:
-      profiles:
-        active: manual
-      cloud:
-        stream:
-          function:
-            definition: consume1;supply1;consume2;supply2
-          bindings:
-            consume1-in-0:
-              destination: ${AZURE_EVENTHUB_1_NAME}
-              group:  ${AZURE_EVENTHUB_CONSUMER_GROUP}
-            supply1-out-0:
-              destination: ${THE_SAME_EVENTHUB_1_NAME_AS_ABOVE]
-            consume2-in-0:
-              binder: eventhub-2
-              destination: ${AZURE_EVENTHUB_2_NAME}
-              group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
-            supply2-out-0:
-              binder: eventhub-2
-              destination: ${THE_SAME_EVENTHUB_2_NAME_AS_ABOVE}
-          binders:
-            eventhub-1:
-              type: eventhubs
-              default-candidate: true
-              environment:
-                spring:
-                  cloud:
-                    azure:
-                      eventhubs:
-                        connection-string: ${CONNECTION_STRING_OF_FIRST_EVENTHUB_NAMESPACE}
-                        processor:
-                          checkpoint-store:
-                            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
-                            account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
-                            account-key:  ${AZURE_STORAGE_ACCOUNT_KEY}
-            eventhub-2:
-              type: eventhubs
-              default-candidate: false
-              environment:
-                spring:
-                  cloud:
-                    azure:
-                      eventhubs:
-                        connection-string: ${CONNECTION_STRING_OF_SECOND_EVENTHUB_NAMESPACE}
-                        processor:
-                          checkpoint-store:
-                            container-name: ${AZURE_STORAGE_CONTAINER_2_NAME}
-                            account-name: ${AZURE_STORAGE_ACCOUNT_2_NAME}
-                            account-key:  ${AZURE_STORAGE_ACCOUNT_2_KEY}
-          eventhubs:
-            bindings:
-              consume1-in-0:
-                consumer:
-                  checkpoint:
-                    mode: MANUAL
-              consume2-in-0:
-                consumer:
-                  checkpoint:
-                    mode: MANUAL
-          poller:
-            initial-delay: 0
-            fixed-delay: 1000
-    ```
-> The **defaultCandidate** configuration item:
-Whether the binder configuration is a candidate for being considered a
-default binder, or can be used only when explicitly referenced. This
-allows adding binder configurations without interfering with the default
-processing.
+```
 
->[!Important]
->
->  When using the Restful API to send messages, the **Active profiles** must contain `manual`.
+You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
 
-#### Method 2: Service principal based usage
+### Export Output to Your Local Environment
+Running the command below to export environment values:
 
-1. Create a service principal for use in by your app. Please follow
-   [create service principal from Azure CLI][create-sp-using-azure-cli].
+```shell
+ source ./terraform/setup_env.sh
+```
 
-2. Add Role Assignment for Event Hubs. See
-   [Service principal for Azure resources with Event Hubs][role-assignment]
-   to add role assignment for Event Hubs. Assign `Contributor` role for event hubs.
+## Run Locally
 
-3. Update [application-sp.yaml][application-sp.yaml].
-     ```yaml
-    spring:
-      cloud:
-        azure:
-          profile:
-            tenant-id: ${AZURE_TENANT_ID}
-          credential:
-            client-id: ${AZURE_CLIENT_ID}
-            client-secret: ${AZURE_CLIENT_SECRET}
-        stream:
-          function:
-            definition: consume1;supply1;consume2;supply2
-          bindings:
-            consume1-in-0:
-              destination: ${AZURE_EVENTHUB_1_NAME}
-              group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
-            supply1-out-0:
-              destination: ${THE_SAME_EVENTHUB_1_NAME_AS_ABOVE]
-            consume2-in-0:
-              binder: eventhub-2
-              destination: ${AZURE_EVENTHUB_2_NAME}
-              group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
-            supply2-out-0:
-              binder: eventhub-2
-              destination: ${THE_SAME_EVENTHUB_2_NAME_AS_ABOVE}
-          binders:
-            eventhub-1:
-              type: eventhub
-              default-candidate: true
-              environment:
-                spring:
-                  cloud:
-                    azure:
-                      eventhubs:
-                        namespace: ${FIRST_EVENTHUB_NAMESPACE}
-                        processor:
-                          checkpoint-store:
-                            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
-                            account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
-            eventhub-2:
-              type: eventhub
-              default-candidate: false
-              environment:
-                spring:
-                  cloud:
-                    azure:
-                      eventhubs:
-                        namespace: ${SECOND_EVENTHUB_NAMESPACE}
-                        processor:
-                          checkpoint-store:
-                            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
-                            account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
-          eventhubs:
-            bindings:
-              consume1-in-0:
-                consumer:
-                  checkpoint:
-                    mode: MANUAL
-              consume2-in-0:
-                consumer:
-                  checkpoint:
-                    mode: MANUAL
-          poller:
-            initial-delay: 0
-            fixed-delay: 1000
-    ```    
-   > We should specify `spring.profiles.active=sp` to run the Spring Boot application.
-   For App Service, please add a configuration entry for this.
+In your terminal, run `mvn clean spring-boot:run`.
 
-#### Method 3: MSI credential based usage
 
-1. Set up managed identity
+```shell
+mvn clean spring-boot:run
+```
 
-Please follow [create managed identity][create-managed-identity] to set up managed identity.
-
-2. Add Role Assignment for Event Hubs
-
-See [Managed identities for Azure resources with Event Hubs][role-assignment]
-    to add role assignment for Event Hubs. Assign `Contributor` role for managed identity.
-
-3. Update [application-mi.yaml][application-mi.yaml].
-    ```yaml
-    spring:
-      cloud:
-        azure:
-          credential:
-            managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID}
-          profile:
-            tenant-id: : ${AZURE_TENANT_ID}
-        stream:
-          function:
-            definition: consume1;supply1;consume2;supply2
-          bindings:
-            consume1-in-0:
-              destination:  ${AZURE_EVENTHUB_1_NAME}
-              group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
-            supply1-out-0:
-              destination: ${THE_SAME_EVENTHUB_1_NAME_AS_ABOVE}
-            consume2-in-0:
-              binder: eventhub-2
-              destination: ${AZURE_EVENTHUB_2_NAME}
-              group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
-            supply2-out-0:
-              binder: eventhub-2
-              destination: ${THE_SAME_EVENTHUB_2_NAME_AS_ABOVE}
-    
-          binders:
-            eventhub-1:
-              type: eventhubs
-              default-candidate: true
-              environment:
-                spring:
-                  cloud:
-                    azure:
-                      eventhubs:
-                        namespace: ${FIRST_EVENTHUB_NAMESPACE}
-                        processor:
-                          checkpoint-store:
-                            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
-                            account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
-            eventhub-2:
-              type: eventhubs
-              default-candidate: false
-              environment:
-                spring:
-                  cloud:
-                    azure:
-                      eventhubs:
-                        namespace: ${SECOND_EVENTHUB_NAMESPACE}
-                        processor:
-                          checkpoint-store:
-                            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
-                            account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
-          eventhubs:
-            bindings:
-              consume1-in-0:
-                consumer:
-                  checkpoint:
-                    mode: MANUAL
-              consume2-in-0:
-                consumer:
-                  checkpoint:
-                    mode: MANUAL
-          poller:
-            initial-delay: 0
-            fixed-delay: 1000
-    ```    
-   
-    > We should specify `spring.profiles.active=mi` to run the Spring Boot application.
-    For App Service, please add a configuration entry for this.
-
-##### Redeploy Application
-
-If you update the `spring.cloud.azure.credential.managed-identity-client-id`
-property after deploying the app, or update the role assignment for
-services, please try to redeploy the app again.
-
-> You can follow
-> [Deploy a Spring Boot JAR file to Azure App Service][deploy-spring-boot-application-to-app-service]
-> to deploy this application to App Service
-
-## Examples
-
-1.  Run the `mvn clean spring-boot:run` in the root of the code sample
-    to get the app running.
+## Verify This Sample
 
 1.  Send a POST request to test the default binder
 
@@ -304,28 +151,16 @@ services, please try to redeploy the app again.
         [2] New message2 received: 'hello'
         [2] Message2 'hello' successfully checkpointed
 
-6.  Delete the resources on [Azure Portal][azure-portal]
-    to avoid unexpected charges.
+## Clean Up Resources
+After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
 
-## Troubleshooting
+The terraform destroy command terminates resources managed by your Terraform project.   
+To destroy the resources you created.
 
-## Next steps
+```shell
+terraform -chdir=./terraform destroy
+```
 
-## Contributing
 
 
-<!-- LINKS -->
-[azure-account]: https://azure.microsoft.com/account/
-[azure-portal]: https://ms.portal.azure.com/
-[create-event-hubs]: https://docs.microsoft.com/azure/event-hubs/
-[create-azure-storage]: https://docs.microsoft.com/azure/storage/
-[create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-sp-using-azure-cli.md
-[create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/create-managed-identity.md
-[deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
-[deploy-to-app-service-via-ftp]: https://docs.microsoft.com/azure/app-service/deploy-ftp
-[managed-identities]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/
-[role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[application-mi.yaml]: src/main/resources/application-mi.yaml
-[application.yaml]: src/main/resources/application-cs.yaml
-[application-sp.yaml]: src/main/resources/application-sp.yaml
-[deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
+

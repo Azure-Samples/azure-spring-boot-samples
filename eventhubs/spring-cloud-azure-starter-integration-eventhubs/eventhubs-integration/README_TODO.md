@@ -1,9 +1,10 @@
-# @TODO_title 
+# Spring Cloud Azure Starter Integration for Event Hubs Code Sample shared library for Java
 
-@TODO_description
+This sample demonstrates how to use `Spring Integration` for `Azure
+Event Hubs`.
 
 ## What You Will Build
-@TODO_description
+You will build an application to send and receive messages with Event Hubs using Spring Integration.
 
 ## What You Need
 
@@ -129,7 +130,20 @@ mvn clean spring-boot:run
 
 ## Verify This Sample
 
-@TODO_Verify
+1. Send a POST request
+
+```shell
+curl -X POST http://localhost:8080/messages?message=hello 
+```
+
+
+2. Verify in your app’s logs that a similar message was posted:
+
+```shell
+New message received: 'hello'
+Message 'hello' successfully checkpointed 
+```
+        
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.

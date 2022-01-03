@@ -1,131 +1,167 @@
-# Spring Cloud Azure Stream Binder for Multiple Service Bus Namespaces Code Sample shared library for Java
+# Spring Cloud Azure Stream Binder for Multiple Service Bus Namespaces Code Sample shared library for Java 
 
-## Key concepts
-This code sample demonstrates how to use the Spring Cloud Stream Binder for 
+This code sample demonstrates how to use the Spring Cloud Stream Binder for
 multiple Azure Service Bus namespaces. In this sample you will bind to two Service Bus namespaces separately through
 a queue binder and a topic binder..The sample app has two operating modes. One way is to expose a Restful API to receive string message,
 another way is to automatically provide string messages. These messages are published to a service bus.
 The sample will also consume messages from the same service bus.
 
-## Getting started
 
-Running this sample will be charged by Azure. You can check the usage
-and bill at [this link][azure-account].
+## What You Will Build
+You will build an application using Spring Cloud Stream to send and receive messages with multiple Azure Service Bus namespaces.
+
+## What You Need
+
+- [An Azure subscription](https://azure.microsoft.com/free/)
+- [Terraform](https://www.terraform.io/)
+- [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
+- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
+- Maven
+- You can also import the code straight into your IDE:
+    - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
+
+## Provision Azure Resources Required to Run This Sample
+This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
+> [!IMPORTANT]  
+> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
+> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
+
+### Authenticate Using the Azure CLI
+Terraform must authenticate to Azure to create infrastructure.
+
+In your terminal, use the Azure CLI tool to setup your account permissions locally.
+
+```shell
+az login
+```
+
+Your browser window will open and you will be prompted to enter your Azure login credentials. After successful authentication, your terminal will display your subscription information. You do not need to save this output as it is saved in your system for Terraform to use.
+
+```shell
+You have logged in. Now let us find all the subscriptions to which you have access...
+
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "home-Tenant-Id",
+    "id": "subscription-id",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Subscription-Name",
+    "state": "Enabled",
+    "tenantId": "0envbwi39-TenantId",
+    "user": {
+      "name": "your-username@domain.com",
+      "type": "user"
+    }
+  }
+]
+```
+
+If you have more than one subscription, specify the subscription-id you want to use with command below: 
+```shell
+az account set --subscription <your-subscription-id>
+```
+
+### Provision the Resources
+
+After login Azure CLI with your account, now you can use the terraform script to create Azure Resources.
+
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=./terraform init
+
+# Apply your Terraform Configuration
+# Type `yes` at the confirmation prompt to proceed.
+terraform -chdir=./terraform apply
+
+```
 
 
 
-### Create Azure resources
 
-1.  Create a queue and a topic in different Service Bus namespaces.
-    Please see [how to create][create-service-bus].
+It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
-1.  **[Optional]** if you want to use service principal, please follow 
-    [create service principal from Azure CLI][create-sp-using-azure-cli] to create one.
+```shell
 
-1.  **[Optional]** if you want to use managed identity, please follow
-    [create managed identity][create-managed-identity] to set up managed identity. 
+azurecaf_name.azurecaf_name_authorization_rule_02: Creating...
+azurecaf_name.azurecaf_name_servicebus_02: Creating...
+azurecaf_name.resource_group: Creating...
+azurecaf_name.servicebus_01: Creating...
+azurecaf_name.azurecaf_name_authorization_rule_01: Creating...
+...
+azurecaf_name.azurecaf_name_servicebus_02: Creation complete after 0s ...
+azurecaf_name.resource_group: Creation complete after 0s ...
+azurerm_resource_group.main: Creating...
+azurerm_resource_group.main: Creation complete after 3s ...
+azurerm_servicebus_namespace.servicebus_namespace_02: Creating...
+...
+azurerm_servicebus_subscription.servicebus_namespace_01_sub: Creation complete ...
+azurerm_servicebus_queue.servicebus_namespace_02_queue: Creation complete ...
+...
+azurerm_role_assignment.role_servicebus_data_owner_01: Creation complete ...
+azurerm_role_assignment.role_servicebus_data_owner_02: Creation complete ...
 
-## Examples
+Apply complete! Resources: 15 added, 0 changed, 0 destroyed.
 
-1.  Update stream binding related properties in
-    [application.yaml][application.yaml]. If you choose to use 
-    service principal or managed identity, update the [application-sp.yaml][application-sp.yaml] or 
-    [application-mi.yaml][application-mi.yaml] respectively.
+Outputs:
 
-    ```yaml
-    spring:
-      cloud:
-        stream:
-          #To specify which functional bean to bind to the external destination(s) exposed by the bindings
-          function:
-            definition: consume1;supply1;consume2;supply2
-          bindings:
-            consume1-in-0:
-              destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
-              group: ${AZURE_SERVICEBUS_TOPIC_SUBSCRIPTION_NAME}
-            supply1-out-0:
-              destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
-            consume2-in-0:
-              binder: servicebus-2
-              destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
-            supply2-out-0:
-              binder: servicebus-2
-              destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
-          binders:
-            servicebus-1:
-              type: servicebus
-              default-candidate: true
-              environment:
-                spring:
-                  cloud:
-                    azure:
-                      servicebus:
-                        connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_1}
-            servicebus-2:
-              type: servicebus
-              default-candidate: false
-              environment:
-                spring:
-                  cloud:
-                    azure:
-                      servicebus:
-                        connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_2}
-          servicebus:
-            bindings:
-              consume1-in-0:
-                consumer:
-                  checkpoint-mode: MANUAL
-              supply1-out-0:
-                producer:
-                  entity-type: topic
-              consume2-in-0:
-                consumer:
-                  checkpoint-mode: MANUAL
-              supply2-out-0:
-                producer:
-                  entity-type: queue
-          poller:
-            initial-delay: 0
-            fixed-delay: 1000
+...
+```
 
-    ```
+You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
 
-> The **defaultCandidate** configuration item:
-Whether the binder configuration is a candidate for being considered a
-default binder, or can be used only when explicitly referenced. This
-allows adding binder configurations without interfering with the default
-processing.
+### Export Output to Your Local Environment
+Running the command below to export environment values:
 
->[!Important]
->
->  When using the Restful API to send messages, the **Active profiles** must contain `manual`.
+```shell
+ source ./terraform/setup_env.sh
+```
 
-1.  Run the `mvn clean spring-boot:run` in the root of the code sample
-    to get the app running.
+## Run Locally
+
+In your terminal, run `mvn clean spring-boot:run`.
+
+
+```shell
+mvn clean spring-boot:run
+```
+
+## Verify This Sample
 
 1.  Send a POST request to test the default binder
 
         $ curl -X POST http://localhost:8080/messages1?message=hello
 
-1.  Verify in your app’s logs that a similar message was posted:
+2.  Verify in your app’s logs that a similar message was posted:
 
         [1] New message1 received: 'hello'
         [1] Message1 'hello' successfully checkpointed
 
-1.  Send another POST request to test the other binder
+3.  Send another POST request to test the other binder
 
         $ curl -X POST http://localhost:8080/messages2?message=hello
 
-1.  Verify in your app’s logs that a similar message was posted:
+4.  Verify in your app’s logs that a similar message was posted:
 
         [2] New message2 received: 'hello'
         [2] Message2 'hello' successfully checkpointed
 
-6.  Delete the resources on [Azure Portal][azure-portal]
-    to avoid unexpected charges.
+
+## Clean Up Resources
+After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
+
+The terraform destroy command terminates resources managed by your Terraform project.   
+To destroy the resources you created.
+
+```shell
+terraform -chdir=./terraform destroy
+```
+
 
 ## Enhancement
-### Configuration Options 
+### Configuration Options
 
 The binder provides the following configuration options:
 
@@ -135,7 +171,7 @@ It supports the following configurations with the format of `spring.cloud.stream
 
 **_sync_**
 
-Whether the producer should act in a synchronous manner with respect to writing messages into a stream. If true, the 
+Whether the producer should act in a synchronous manner with respect to writing messages into a stream. If true, the
 producer will wait for a response after a send operation.
 
 Default: `false`
@@ -145,7 +181,7 @@ Default: `false`
 Effective only if `sync` is set to true. The amount of time to wait for a response after a send operation, in milliseconds.
 
 Default: `10000`
- 
+
 ##### Service Bus Consumer Properties
 
 It supports the following configurations with the format of `spring.cloud.stream.servicebus.bindings.<channelName>.consumer`.
@@ -195,9 +231,9 @@ Default: `false`
 
 **_requeueRejected_**
 
-Controls if is a message that trigger any exception in consumer will be force to DLQ. 
+Controls if is a message that trigger any exception in consumer will be force to DLQ.
 Set it to `true` if a message that trigger any exception in consumer will be force to DLQ.
-Set it to `false` if a message that trigger any exception in consumer will be re-queued. 
+Set it to `false` if a message that trigger any exception in consumer will be re-queued.
 
 Default: `false`
 
@@ -252,27 +288,6 @@ ReplyToSessionId | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.
 SessionID | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.SESSION_ID | String | N/A
 TimeToLive | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.TIME_TO_LIVE | Duration | N/A
 To | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.TO | String | N/A
-
-## Troubleshooting
-
-## Next steps
-
-## Contributing
-
-
-<!-- LINKS -->
-[azure-account]: https://azure.microsoft.com/account/
-[azure-portal]: https://ms.portal.azure.com/
-[create-service-bus]: https://docs.microsoft.com/azure/service-bus-messaging/service-bus-create-namespace-portal
-[create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-sp-using-azure-cli.md
-[create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-managed-identity.md
-[deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
-[deploy-to-app-service-via-ftp]: https://docs.microsoft.com/azure/app-service/deploy-ftp
-[managed-identities]: https://docs.microsoft.com/azure/active-directory/managed-identities-azure-resources/
-[role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-multibinders/src/main/resources/application.yaml
-[application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-multibinders/src/main/resources/application-mi.yaml
-[application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-multibinders/src/main/resources/application-sp.yaml
 
 
 

@@ -130,21 +130,24 @@ mvn clean spring-boot:run
 
 ## Verify This Sample
 
-1.  Send a POST request to test the default binder
 
-        $ curl -X POST http://localhost:8080/messages1?message=hello
+1.  Verify in your app’s logs that a similar message was posted:
 
-2.  Verify in your app’s logs that a similar message was posted:
-
-        [1] New message1 received: 'hello'
-        [1] Message1 'hello' successfully checkpointed
-
-3.  Send another POST request to test the other binder
-
-        $ curl -X POST http://localhost:8080/messages2?message=hello
-
-4.  Verify in your app’s logs that a similar message was posted:
-
+```shell
+...
+Message 'Hello world1, 3' successfully checkpointed
+...
+...
+Message 'Hello world1, 4' successfully checkpointed
+...
+...
+Message 'Hello world2, 3' successfully checkpointed
+...
+...
+Message 'Hello world2, 5' successfully checkpointed
+...
+...
+```
         [2] New message2 received: 'hello'
         [2] Message2 'hello' successfully checkpointed
 

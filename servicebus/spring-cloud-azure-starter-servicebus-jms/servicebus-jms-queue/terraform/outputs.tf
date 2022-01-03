@@ -3,3 +3,8 @@ output "SERVICEBUS_NAMESPACE_CONNECTION_STRING" {
   description = "The connection_string of servicebus namespace."
   sensitive = true
 }
+
+output "PRICING_TIER" {
+  value = var.pricing_tier
+  description = "The pricing tier of Service Bus."
+}

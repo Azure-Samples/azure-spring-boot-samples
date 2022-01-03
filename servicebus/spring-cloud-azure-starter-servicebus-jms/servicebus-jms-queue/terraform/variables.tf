@@ -15,3 +15,9 @@ variable "sample_tag_value" {
   description = "The value of spring-cloud-azure-sample tag."
   default = "true"
 }
+
+variable "pricing_tier" {
+  type = string
+  description = "The pricing tier of Service Bus."
+  default = "Standard"
+}

@@ -3,7 +3,7 @@ spring:
     servicebus:
       connection-string: ${SERVICEBUS_NAMESPACE_CONNECTION_STRING}
       idle-timeout: 1800000
-      pricing-tier: Standard
+      pricing-tier: ${PRICING_TIER}
       topic-client-id: thisclientid
 
 

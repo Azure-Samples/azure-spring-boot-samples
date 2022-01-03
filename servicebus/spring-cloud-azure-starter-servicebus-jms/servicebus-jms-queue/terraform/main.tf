@@ -45,7 +45,7 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace" {
   location = var.location
   resource_group_name = azurerm_resource_group.main.name
 
-  sku = "Standard"
+  sku = var.pricing_tier
   zone_redundant = false
 
   tags = {

@@ -37,9 +37,7 @@ Running this sample will be charged by Azure. You can check the usage and bill a
             access-key: [storage-account-access-key]
     ```
 
-2. Update queue name in 
-   **SendController.java** and
-   **ReceiveController.java**.
+2. Update queue name in **SendController.java** and **ReceiveController.java**.
 
 1.  Run the `mvn spring-boot:run` in the root of the code sample to get
     the app running.

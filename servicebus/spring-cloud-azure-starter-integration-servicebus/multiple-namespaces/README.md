@@ -123,7 +123,7 @@ Send a POST request to service bus queue
  $ curl -X POST http://localhost:8080/queues?message=hello
 ```
 
-Verify in your app’s logs that a similar message was posted:
+Verify in your app’s logs that similar messages were posted:
 ```shell
 Message was sent successfully for queue1.
 ...

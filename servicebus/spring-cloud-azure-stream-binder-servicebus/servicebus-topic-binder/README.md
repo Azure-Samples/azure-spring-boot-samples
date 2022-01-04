@@ -1,193 +1,163 @@
-# Spring Cloud Azure Stream Binder for Service Bus topic Sample shared library for Java
+# Spring Cloud Azure Stream Binder for Service Bus topic Sample shared library for Java 
 
-## Key concepts
 
 This code sample demonstrates how to use the Spring Cloud Stream binder for Azure Service Bus topic. The sample app has two operating modes.
 One way is to expose a Restful API to receive string message, another way is to automatically provide string messages.
 These messages are published to a service bus topic. The sample will also consume messages from the same service bus topic.
 
-## Getting started
 
-Running this sample will be charged by Azure. You can check the usage and bill at 
-[this link][azure-account].
+## What You Will Build
+You will build an application using Spring Cloud Stream to send and receive messages for Azure Service Bus Topic.
+
+## What You Need
+
+- [An Azure subscription](https://azure.microsoft.com/free/)
+- [Terraform](https://www.terraform.io/)
+- [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
+- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
+- Maven
+- You can also import the code straight into your IDE:
+    - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
+
+## Provision Azure Resources Required to Run This Sample
+This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
+> [!IMPORTANT]  
+> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
+> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
+
+### Authenticate Using the Azure CLI
+Terraform must authenticate to Azure to create infrastructure.
+
+In your terminal, use the Azure CLI tool to setup your account permissions locally.
+
+```shell
+az login
+```
+
+Your browser window will open and you will be prompted to enter your Azure login credentials. After successful authentication, your terminal will display your subscription information. You do not need to save this output as it is saved in your system for Terraform to use.
+
+```shell
+You have logged in. Now let us find all the subscriptions to which you have access...
+
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "home-Tenant-Id",
+    "id": "subscription-id",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Subscription-Name",
+    "state": "Enabled",
+    "tenantId": "0envbwi39-TenantId",
+    "user": {
+      "name": "your-username@domain.com",
+      "type": "user"
+    }
+  }
+]
+```
+
+If you have more than one subscription, specify the subscription-id you want to use with command below: 
+```shell
+az account set --subscription <your-subscription-id>
+```
+
+### Provision the Resources
+
+After login Azure CLI with your account, now you can use the terraform script to create Azure Resources.
+
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=./terraform init
+
+# Apply your Terraform Configuration
+# Type `yes` at the confirmation prompt to proceed.
+terraform -chdir=./terraform apply
+
+```
 
 
 
-### Create Azure resources
 
-We have several ways to config the Spring Cloud Stream Binder for Azure
-Service Bus Topic. You can choose anyone of them.
+It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
->[!Important]
->
->  When using the Restful API to send messages, the **Active profiles** must contain `manual`.
+```shell
 
-#### Method 1: Connection string based usage
+azurecaf_name.azurecaf_name_servicebus: Creating...
+azurecaf_name.resource_group: Creating...
+azurecaf_name.servicebus_namespace_authorization_rule: Creating...
+azurecaf_name.azurecaf_name_servicebus: Creation complete after 0s [id=ggntexahlqdfmbkj]
+azurecaf_name.resource_group: Creation complete after 0s [id=euikvcxceagwuaqw]
+azurecaf_name.servicebus_namespace_authorization_rule: Creation complete after 0s [id=kifnoeclhdayfgek]
+azurerm_resource_group.main: Creating...
+azurerm_resource_group.main: Creation complete after 5s ...
+...
+...
+azurerm_servicebus_namespace_authorization_rule.authorization_rule: Creation complete after 15s ...
+azurerm_role_assignment.role_servicebus_data_owner: Still creating... 
+azurerm_servicebus_subscription.servicebus_subscription: Still creating... 
+azurerm_servicebus_subscription.servicebus_subscription: Creation complete after 15s ...
+azurerm_role_assignment.role_servicebus_data_owner: Creation complete after 28s ...
 
-1.  Create Azure Service Bus namespace and topic.
-    Please see [how to create][create-service-bus].
+Apply complete! Resources: 9 added, 0 changed, 0 destroyed.
 
-1.  Update [application.yaml].
-    ```yaml
-    
-    spring:
-      cloud:
-        azure:
-          servicebus:
-            connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING} 
-        stream:
-          function:
-            definition: consume;supply
-          bindings: 
-            consume-in-0: 
-              destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
-              group: ${AZURE_SERVICEBUS_TOPIC_SUBSCRIPTION_NAME}
-            supply-out-0:
-              destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
-          servicebus:
-            bindings:
-              consume-in-0:
-                consumer:
-                  checkpoint-mode: MANUAL
-              supply-out-0:
-                producer:
-                  entity-type: topic
-          poller:
-            fixed-delay: 1000
-            initial-delay: 0
-    ```
+Outputs:
 
-#### Method 2: Service principal based usage
+...
+```
 
-1.  Create a service principal for use in by your app. Please follow 
-    [create service principal from Azure CLI][create-sp-using-azure-cli].
+You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
 
-1.  Create Azure Service Bus namespace and queue.
-        Please see [how to create][create-service-bus].
-        
-1.  Add Role Assignment for Service Bus. See
-    [Service principal for Azure resources with Service Bus][role-assignment]
-    to add role assignment for Service Bus. Assign `Contributor` role for managed identity.        
-    
-1.  Update [application-sp.yaml].
-    ```yaml
-    spring:
-      cloud:
-        azure:
-          credential:
-            client-id: ${AZURE_CLIENT_ID}
-            client-secret: ${AZURE_CLIENT_SECRET}
-          profile:
-            tenant-id: ${AZURE_TENANT_ID}
-          servicebus:
-            namespace: ${AZURE_SERVICEBUS_NAMESPACE}
-        stream:
-          function:
-            definition: consume;supply
-          bindings:
-            consume-in-0:
-              destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
-              group: ${AZURE_SERVICEBUS_TOPIC_SUBSCRIPTION_NAME}
-            supply-out-0:
-              destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
-          servicebus:
-            bindings:
-              consume-in-0:
-                consumer:
-                  checkpoint-mode: MANUAL
-              supply-out-0:
-                producer:
-                  entity-type: topic
-          poller:
-            fixed-delay: 1000
-            initial-delay: 0
-    ```
-    > We should specify `spring.profiles.active=sp` to run the Spring Boot application.     
-        
-#### Method 3: MSI credential based usage
+### Export Output to Your Local Environment
+Running the command below to export environment values:
 
-##### Set up managed identity
+```shell
+ source ./terraform/setup_env.sh
+```
 
-Please follow [create managed identity][create-managed-identity] to set up managed identity.
+## Run Locally
 
-##### Create other Azure resources
+In your terminal, run `mvn clean spring-boot:run`.
 
-1.  Create Azure Service Bus namespace and queue.
-        Please see [how to create][create-service-bus].
-        
-1.  Add Role Assignment for Service Bus. See
-    [Managed identities for Azure resources with Service Bus][role-assignment]
-    to add role assignment for Service Bus. Assign `Contributor` role for managed identity.
-    
 
-##### Update MSI related properties
+```shell
+mvn clean spring-boot:run
+```
 
-1.  Update [application-mi.yaml]
-    ```yaml
-    spring:
-      cloud:
-        azure:
-          credential:
-            managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID}
-          profile:
-            tenant-id: ${AZURE_TENANT_ID}
-          servicebus:
-            namespace: ${AZURE_SERVICEBUS_NAMESPACE}
-        stream:
-          function:
-            definition: consume;supply
-          bindings:
-            consume-in-0:
-              destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
-              group: ${AZURE_SERVICEBUS_TOPIC_SUBSCRIPTION_NAME}
-            supply-out-0:
-              destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
-          servicebus:
-            bindings:
-              consume-in-0:
-                consumer:
-                  checkpoint-mode: MANUAL
-              supply-out-0:
-                producer:
-                  entity-type: topic
-          poller:
-            fixed-delay: 1000
-            initial-delay: 0
-    ```
-    > We should specify `spring.profiles.active=mi` to run the Spring Boot application. 
-      For App Service, please add a configuration entry for this.
+## Verify This Sample
 
-##### Redeploy Application
 
-If you update the `spring.cloud.azure.credential.managed-identity-client-id`
-property after deploying the app, or update the role assignment for
-services, please try to redeploy the app again.
+1.  Verify in your app’s logs that similar messages were posted:
 
-> You can follow 
-> [Deploy a Spring Boot JAR file to Azure App Service][deploy-spring-boot-application-to-app-service] 
-> to deploy this application to App Service
+```shell
+...
+...
+New message received: 'Hello world, 2'
+...
+Message 'Hello world, 2' successfully checkpointed
+...
+New message received: 'Hello world, 3'
+...
+Message 'Hello world, 3' successfully checkpointed
+...
+...
+```
 
-## Examples
+## Clean Up Resources
+After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
 
-1.  Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
+The terraform destroy command terminates resources managed by your Terraform project.   
+To destroy the resources you created.
 
-1.  Send a POST request
+```shell
+terraform -chdir=./terraform destroy
+```
 
-        $ curl -X POST http://localhost:8080/messages?message=hello
 
-    or when the app runs on App Service or VM
-
-        $ curl -d -X POST https://[your-app-URL]/messages?message=hello
-
-1.  Verify in your app’s logs that a similar message was posted:
-
-        New message received: 'hello'
-        Message 'hello' successfully checkpointed
-
-1.  Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
 
 ## Enhancement
-### Configuration Options 
+### Configuration Options
 
 The binder provides the following configuration options:
 
@@ -197,7 +167,7 @@ It supports the following configurations with the format of `spring.cloud.stream
 
 **_sync_**
 
-Whether the producer should act in a synchronous manner with respect to writing messages into a stream. If true, the 
+Whether the producer should act in a synchronous manner with respect to writing messages into a stream. If true, the
 producer will wait for a response after a send operation.
 
 Default: `false`
@@ -207,7 +177,7 @@ Default: `false`
 Effective only if `sync` is set to true. The amount of time to wait for a response after a send operation, in milliseconds.
 
 Default: `10000`
- 
+
 ##### Service Bus Consumer Properties
 
 It supports the following configurations with the format of `spring.cloud.stream.servicebus.bindings.<channelName>.consumer`.
@@ -257,9 +227,9 @@ Default: `false`
 
 **_requeueRejected_**
 
-Controls if is a message that trigger any exception in consumer will be force to DLQ. 
+Controls if is a message that trigger any exception in consumer will be force to DLQ.
 Set it to `true` if a message that trigger any exception in consumer will be force to DLQ.
-Set it to `false` if a message that trigger any exception in consumer will be re-queued. 
+Set it to `false` if a message that trigger any exception in consumer will be re-queued.
 
 Default: `false`
 
@@ -315,22 +285,3 @@ SessionID | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.SESSION
 TimeToLive | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.TIME_TO_LIVE | Duration | N/A
 To | com.azure.spring.servicebus.support.ServiceBusMessageHeaders.TO | String | N/A
 
-## Troubleshooting
-
-## Next steps
-
-## Contributing
-
-<!-- LINKS -->
-
-[azure-account]: https://azure.microsoft.com/account/
-[azure-portal]: https://ms.portal.azure.com/
-[create-service-bus]: https://docs.microsoft.com/azure/service-bus-messaging/service-bus-create-namespace-portal
-[create-azure-storage]: https://docs.microsoft.com/azure/storage/
-[create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-sp-using-azure-cli.md
-[create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-managed-identity.md
-[deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
-[role-assignment]: https://docs.microsoft.com/azure/role-based-access-control/role-assignments-portal
-[application-mi.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder/src/main/resources/application-mi.yaml
-[application-sp.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder/src/main/resources/application-sp.yaml
-[application.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder/src/main/resources/application.yaml

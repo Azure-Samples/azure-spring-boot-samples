@@ -1,1 +1,1 @@
-export ENDPOINT=$(terraform -chdir=./terraform output -raw keyvault_uri)
+export ENDPOINT=$(terraform -chdir=./terraform output -raw KEYVAULT_URI)

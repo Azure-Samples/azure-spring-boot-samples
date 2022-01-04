@@ -40,7 +40,7 @@ data "azurerm_client_config" "current" {
 // ===========azurerm_key_vault===========
 resource "azurecaf_name" "kv" {
   name          = var.application_name
-  resource_type = "azurerm_resource_group"
+  resource_type = "azurerm_key_vault"
   random_length = 5
   clean_input   = true
 }

@@ -1,6 +1,3 @@
-# With Spring Boot 2.4,
-# the bootstrap context initialization (bootstrap.yml,
-# bootstrap.properties) of property sources was deprecated.
 spring:
   cloud:
     bootstrap:

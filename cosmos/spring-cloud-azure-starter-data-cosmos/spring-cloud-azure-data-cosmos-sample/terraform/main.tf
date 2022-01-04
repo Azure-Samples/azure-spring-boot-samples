@@ -1,11 +1,11 @@
 terraform {
   required_providers {
     azurerm = {
-      source = "hashicorp/azurerm"
+      source  = "hashicorp/azurerm"
       version = ">= 2.75"
     }
     azurecaf = {
-      source = "aztfmod/azurecaf"
+      source  = "aztfmod/azurecaf"
       version = "1.2.10"
     }
   }
@@ -16,14 +16,14 @@ provider "azurerm" {
 }
 
 resource "azurecaf_name" "resource_group" {
-  name = var.application_name
+  name          = var.application_name
   resource_type = "azurerm_resource_group"
   random_length = 5
-  clean_input = true
+  clean_input   = true
 }
 
 resource "azurerm_resource_group" "main" {
-  name = azurecaf_name.resource_group.result
+  name     = azurecaf_name.resource_group.result
   location = var.location
 
   tags = {
@@ -32,18 +32,18 @@ resource "azurerm_resource_group" "main" {
 }
 
 resource "azurecaf_name" "cosmos" {
-  name = var.application_name
+  name          = var.application_name
   resource_type = "azurerm_cosmosdb_account"
   random_length = 5
-  clean_input = true
+  clean_input   = true
 }
 
 resource "azurerm_cosmosdb_account" "application" {
-  name = azurecaf_name.cosmos.result
-  location = var.location
+  name                = azurecaf_name.cosmos.result
+  location            = var.location
   resource_group_name = azurerm_resource_group.main.name
-  offer_type = "Standard"
-  kind = "GlobalDocumentDB"
+  offer_type          = "Standard"
+  kind                = "GlobalDocumentDB"
 
   enable_automatic_failover = true
 
@@ -52,7 +52,7 @@ resource "azurerm_cosmosdb_account" "application" {
   }
 
   geo_location {
-    location = var.location
+    location          = var.location
     failover_priority = 0
   }
 
@@ -62,20 +62,20 @@ resource "azurerm_cosmosdb_account" "application" {
 }
 
 resource "azurerm_cosmosdb_sql_database" "db" {
-  name = var.cosmos_database_name
+  name                = var.cosmos_database_name
   resource_group_name = azurerm_resource_group.main.name
-  account_name = azurerm_cosmosdb_account.application.name
-  throughput = 400
+  account_name        = azurerm_cosmosdb_account.application.name
+  throughput          = 400
 }
 
 resource "azurerm_cosmosdb_sql_container" "application" {
-  name = "users"
-  resource_group_name = azurerm_cosmosdb_account.application.resource_group_name
-  account_name = azurerm_cosmosdb_account.application.name
-  database_name = azurerm_cosmosdb_sql_database.db.name
-  partition_key_path = "/id"
+  name                  = "users"
+  resource_group_name   = azurerm_cosmosdb_account.application.resource_group_name
+  account_name          = azurerm_cosmosdb_account.application.name
+  database_name         = azurerm_cosmosdb_sql_database.db.name
+  partition_key_path    = "/id"
   partition_key_version = 1
-  throughput = 400
+  throughput            = 400
 }
 
 # Used to get object_id

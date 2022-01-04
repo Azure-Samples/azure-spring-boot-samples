@@ -1,23 +1,23 @@
 variable "application_name" {
-  type = string
+  type        = string
   description = "The name of your application."
-  default = "storage-blob-sample"
+  default     = "storage-blob-sample"
 }
 
 variable "location" {
-  type = string
+  type        = string
   description = "The Azure region where all resources in this example should be created."
-  default = "eastus"
+  default     = "eastus"
 }
 
 variable "container_name" {
-  type = string
+  type        = string
   description = "The container name of the blob storage"
-  default = "blobcontainer"
+  default     = "blobcontainer"
 }
 
 variable "sample_tag_value" {
-  type = string
+  type        = string
   description = "The value of spring-cloud-azure-sample tag."
-  default = "true"
+  default     = "true"
 }

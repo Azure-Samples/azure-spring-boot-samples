@@ -1,31 +1,31 @@
 variable "application_name" {
-  type = string
+  type        = string
   description = "The name of your application."
-  default = "servicebus-jms-topic"
+  default     = "servicebus-jms-topic"
 }
 
 variable "location" {
-  type = string
+  type        = string
   description = "The Azure region where all resources in this example should be created."
-  default = "eastus"
+  default     = "eastus"
 }
 
 variable "sample_tag_value" {
-  type = string
+  type        = string
   description = "The value of spring-cloud-azure-sample tag."
-  default = "true"
+  default     = "true"
 }
 
 variable "pricing_tier" {
-  type = string
+  type        = string
   description = "The pricing tier of Service Bus."
-  default = "Standard"
+  default     = "Standard"
 }
 
 variable "topic_client_id" {
-  type = string
+  type        = string
   description = "The topic client id."
-  default = "topic-client-id"
+  default     = "topic-client-id"
 }
 
 

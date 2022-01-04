@@ -37,7 +37,9 @@ Running this sample will be charged by Azure. You can check the usage and bill a
             access-key: [storage-account-access-key]
     ```
 
-2. Update queue name in **SendController.java** and **ReceiveController.java**.
+2. Update queue name in
+   **SendController.java** and
+   **ReceiveController.java**.
 
 1.  Run the `mvn spring-boot:run` in the root of the code sample to get
     the app running.
@@ -45,6 +47,10 @@ Running this sample will be charged by Azure. You can check the usage and bill a
 1.  Send a POST request
 
         $ curl -X POST localhost:8080/messages?message=hello
+
+1.  Receive the message you posted
+
+        $ curl -X GET localhost:8080/messages
 
 1.  Verify in your app’s logs that a similar message was posted:
 

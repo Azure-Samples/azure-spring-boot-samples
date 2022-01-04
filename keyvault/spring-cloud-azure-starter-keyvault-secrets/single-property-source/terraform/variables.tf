@@ -1,7 +1,7 @@
 variable "application_name" {
   type        = string
   description = "The name of your application."
-  default     = "single-property-keyvault"
+  default     = "keyvault"
 }
 
 variable "location" {

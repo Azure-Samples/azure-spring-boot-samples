@@ -30,10 +30,6 @@
     </dependency>
     <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>azure-spring-cloud-feature-management</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.azure.spring</groupId>
       <artifactId>azure-spring-cloud-feature-management-web</artifactId>
     </dependency>
     <dependency>

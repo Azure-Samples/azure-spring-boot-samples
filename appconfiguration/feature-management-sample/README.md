@@ -15,7 +15,7 @@ Start the application and check the resulting console output to check the return
 $ mvn spring-boot:run
 ```
 
-2. Check the returned value. The feature `Beta` has one filter `Random` which defines. You should see the following information displayed: **RUNNING : application** or **RUNNING : beta**.
+2. Check the returned value. The feature `Beta` has one filter `Random` which defines the Beta feature will be activated randomly with some chance value. You should see the following information displayed: **RUNNING : application** or **RUNNING : beta**.
 
 ### More details
 

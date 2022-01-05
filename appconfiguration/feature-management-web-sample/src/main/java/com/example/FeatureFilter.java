@@ -10,12 +10,11 @@ import javax.servlet.ServletException;
 import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 
+import com.azure.spring.cloud.feature.manager.FeatureManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.microsoft.azure.spring.cloud.feature.manager.FeatureManager;
 
 @Component
 public class FeatureFilter implements Filter {

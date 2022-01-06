@@ -29,7 +29,7 @@ public class SendController {
     private static final String EVENTHUB_NAME = "eh1";
 
     @Autowired
-    EventHubOutboundGateway messagingGateway;
+    private EventHubOutboundGateway messagingGateway;
 
     /**
      * Posts a message to an Azure Event Hub

@@ -14,7 +14,7 @@
     <artifactId>run-with-command-line-client-side</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>Azure-Security-Keyvault-Jca Sample: Run With Command Line: Client Side</name>
+    <name>Azure-Security-Keyvault-JCA Sample: Run With Command Line: Client Side</name>
     <description>Sample project for running an http client with Azure key vault via command line</description>
 
     <properties>

@@ -19,7 +19,7 @@ import com.azure.spring.sample.servicebus.QueueSendService.QueueSendGateway;
 public class ServiceBusIntegrationApplication implements CommandLineRunner {
 
     @Autowired
-    QueueSendGateway messagingGateway;
+    private QueueSendGateway messagingGateway;
 
     public static void main(String[] args) {
         SpringApplication.run(ServiceBusIntegrationApplication.class, args);

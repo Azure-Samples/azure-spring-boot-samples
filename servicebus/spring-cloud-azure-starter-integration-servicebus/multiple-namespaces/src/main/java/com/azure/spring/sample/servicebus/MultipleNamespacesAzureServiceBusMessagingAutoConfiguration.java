@@ -39,7 +39,7 @@ public class MultipleNamespacesAzureServiceBusMessagingAutoConfiguration {
     private static final String INPUT_CHANNEL = "queue1.input";
 
     @Autowired
-    CustomizedServiceBusProperties properties;
+    private CustomizedServiceBusProperties properties;
 
     /**
      * Configure the {@link ServiceBusProcessorContainer}

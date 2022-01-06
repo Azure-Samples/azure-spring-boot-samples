@@ -11,7 +11,7 @@
 
   <artifactId>azure-appconfiguration-sample</artifactId>
   <groupId>com.azure.spring</groupId>
-  <version>2.0.0</version> <!-- {x-version-update;com.azure.spring:azure-appconfiguration-sample;dependency} -->
+  <version>2.0.0</version>
   <name>Load Configuration Properties From App Configuration Service to Spring Environment</name>
 
   <dependencies>

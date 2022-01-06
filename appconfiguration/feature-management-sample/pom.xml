@@ -12,7 +12,7 @@
   <artifactId>feature-management-sample</artifactId>
   <groupId>com.azure.spring</groupId>
   <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:feature-management-sample;dependency} -->
-  <name>Manage Features and Get Configurations From Azure Configuration Service</name>
+  <name>Manage Features and Get Configurations From App Configuration Service</name>
 
   <dependencies>
     <dependency>

@@ -30,7 +30,7 @@ public class QueueReceiveService {
     private static final String FORWARD_QUEUE_NAME = "queue2";
 
     @Autowired
-    QueueForwardGateway messagingGateway;
+    private QueueForwardGateway messagingGateway;
 
     /**
      * This message receiver binding with {@link ServiceBusInboundChannelAdapter}

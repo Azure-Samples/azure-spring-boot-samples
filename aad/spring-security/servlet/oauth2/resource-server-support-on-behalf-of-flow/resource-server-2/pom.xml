@@ -15,7 +15,7 @@
   <artifactId>servlet-oauth2-resourc-server-support-on-behalf-of-flow-resource-server-2-application</artifactId>
   <version>2.5.6-SNAPSHOT</version>
   <packaging>jar</packaging>
-  <name>Spring-Security Sample: Servlet oauth2: Resource Server Support On-Behalf-of Flow: Resource Server 2 Application</name>
+  <name>Spring-Security Sample: Servlet: OAuth2: Resource Server Support On-Behalf-of Flow: Resource Server 2 Application</name>
 
   <dependencies>
     <dependency>

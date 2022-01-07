@@ -13,7 +13,7 @@
   <artifactId>spring-cloud-azure-sample-eventhubs-kafka</artifactId>
   <groupId>com.azure.spring</groupId>
   <version>1.0.0</version>
-  <name>Spring Cloud Azure Sample Event Hubs Kafka</name>
+  <name>Communicate to Event Hubs via Spring Cloud Stream Kafka Binder</name>
 
   <dependencies>
     <!-- Add the spring-cloud-azure-resourcemanager dependency when want to use the Azure Resource Manager to retrieve connection string   -->

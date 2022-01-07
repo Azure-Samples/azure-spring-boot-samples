@@ -1,22 +1,27 @@
-# Using Servicebus Queue and Topic With Spring Integration 
+# Using Service Bus Queue and Topic With Spring Integration 
 
 This guide walks you through the process of accessing Servicebus Queues and Topics with Spring Integration.
 
-## What You Will build
+## What You Will Build
 You will build an application that use Azure Servicebus Queues and Topics to send and receive messages with [Spring Integration](https://spring.io/projects/spring-integration) APIs.
 
 ## What You Need
 
 - [An Azure subscription](https://azure.microsoft.com/free/)
 - [Terraform](https://www.terraform.io/)
-- [IntelliJ IDEA](https://www.jetbrains.com/idea/download/#section=mac)
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
-- JDK8
+- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
 - Maven
+- You can also import the code straight into your IDE:
+    - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
-## Prevision Azure Resources required to run this sample.
+## Provision Azure Resources Required to Run This Sample
+This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
+> [!IMPORTANT]  
+> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource 
+> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
 
-### Authenticate using the Azure CLI  
+### Authenticate Using the Azure CLI  
 Terraform must authenticate to Azure to create infrastructure.
 
 In your terminal, use the Azure CLI tool to setup your account permissions locally.
@@ -91,14 +96,14 @@ SERVICEBUS_NAMESPACE = "${YOUR_SERVICEBUS_NAMESPACE}"
 
 You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
 
-### Export output to your local Environment
+### Export Output to Your Local Environment
 Running the command below to export environment values:
 
 ```shell
  source ./terraform/setup_env.sh
 ```
 
-## Run locally
+## Run Locally
 
 In your terminal, run `mvn clean spring-boot:run`.
 
@@ -107,7 +112,7 @@ In your terminal, run `mvn clean spring-boot:run`.
 mvn clean spring-boot:run
 ```
 
-## Verify this sample
+## Verify This Sample
 
 1. Send a POST request to service bus queue
 
@@ -126,7 +131,7 @@ mvn clean spring-boot:run
         New message received: 'hello'
         Message 'hello' successfully checkpointed
 
-## Clean up Resources
+## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
 
 The terraform destroy command terminates resources managed by your Terraform project.   

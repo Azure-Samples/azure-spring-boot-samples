@@ -14,6 +14,7 @@
   <artifactId>spring-cloud-azure-starter-keyvault-secrets-sample-single-property-source</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
+  <name>Spring-Cloud-Azure-Starter-Keyvault-Secrets Sample: Single Property Source</name>
 
   <dependencies>
     <dependency>

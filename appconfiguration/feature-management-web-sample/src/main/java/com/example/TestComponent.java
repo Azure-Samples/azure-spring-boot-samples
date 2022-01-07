@@ -4,10 +4,9 @@ package com.example;
 
 import java.util.concurrent.ExecutionException;
 
+import com.azure.spring.cloud.feature.manager.FeatureManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-
-import com.microsoft.azure.spring.cloud.feature.manager.FeatureManager;
 
 @Component
 public class TestComponent {

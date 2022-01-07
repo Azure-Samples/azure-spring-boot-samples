@@ -5,9 +5,9 @@ package com.example;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.azure.spring.cloud.feature.manager.IDisabledFeaturesHandler;
 import org.springframework.stereotype.Component;
 
-import com.microsoft.azure.spring.cloud.feature.manager.IDisabledFeaturesHandler;
 
 @Component
 public class DisabledFeaturesHandler implements IDisabledFeaturesHandler{

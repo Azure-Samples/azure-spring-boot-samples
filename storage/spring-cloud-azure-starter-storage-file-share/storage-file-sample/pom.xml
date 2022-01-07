@@ -13,7 +13,7 @@
   <artifactId>storage-file-sample</artifactId>
   <groupId>com.azure.spring</groupId>
   <version>1.0.0</version>
-  <name>Spring Cloud Azure Storage File Share Sample</name>
+  <name>Read and Write Files with the Spring Resource for Azure Storage File</name>
 
   <dependencies>
     <dependency>

@@ -14,7 +14,7 @@
   <groupId>com.azure.spring</groupId>
   <artifactId>spring-cloud-azure-sample-servicebus-jms-queue</artifactId>
   <version>1.0.0</version>
-  <name>Spring Cloud Azure Sample Service Bus JMS Queue</name>
+  <name>Communicate to Service Bus Queue via JMS API</name>
 
 
   <dependencies>

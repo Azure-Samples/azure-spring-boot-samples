@@ -12,7 +12,7 @@
   <groupId>org.springframework.samples</groupId>
   <artifactId>spring-petclinic-microservices</artifactId>
   <version>2.3.6</version>
-  <name>${project.artifactId}</name>
+  <name>Spring PetClinic Microservices</name>
   <packaging>pom</packaging>
 
   <modules>

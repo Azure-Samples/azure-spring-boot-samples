@@ -13,7 +13,7 @@
     <artifactId>spring-cloud-azure-starter-integration-sample-eventhubs</artifactId>
     <groupId>com.azure.spring</groupId>
     <version>1.0.0</version>
-    <name>Spring Cloud Azure Starter Integration Sample Event Hubs</name>
+    <name>Communicate to Event Hubs via Spring Integration</name>
 
     <dependencies>
         <dependency>

@@ -1,4 +1,4 @@
-# Deploy Spring Microservices using Azure Spring starters for Cosmos DB, Redis, KeyVault
+# Deploy Spring Microservices using Azure Spring starters for Cosmos DB, Redis, Key Vault
 
 Azure Spring Cloud enables you to easily run a Spring Boot based microservices application on Azure.
 

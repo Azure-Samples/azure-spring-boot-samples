@@ -10,8 +10,8 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>feature-management-web-sample</artifactId>
   <groupId>com.azure.spring</groupId>
+  <artifactId>feature-management-web-sample</artifactId>
   <version>1.0.0</version>
   <name>Manage Features and Get Configurations From App Configuration Service For Web Service</name>
 

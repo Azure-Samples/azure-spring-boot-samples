@@ -99,7 +99,7 @@ In order to start entire infrastructure using Docker, you have to build images b
 executing command below from a project root:
 
 ```shell
-./mvnw clean install -P buildDocker -DskipTests
+mvn clean install -P buildDocker -DskipTests
 ```
 
 

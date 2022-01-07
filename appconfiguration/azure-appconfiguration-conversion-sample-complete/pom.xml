@@ -13,7 +13,7 @@
   <artifactId>spring-cloud-azure-appconfiguration-convert-sample-complete</artifactId>
   <groupId>com.azure.spring</groupId>
   <version>1.0.0</version>
-  <name>Convert Cosmos DB Application using App Configuration and Key Vault Complete</name>
+  <name>Convert Cosmos DB Application Using App Configuration and Key Vault Complete</name>
   <description>Sample project to show conversion to Azure App Configuration</description>
 
   <dependencies>

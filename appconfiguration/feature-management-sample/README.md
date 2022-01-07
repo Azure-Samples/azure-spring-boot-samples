@@ -5,7 +5,7 @@ This sample describes how to use [spring-cloud-feature-management](https://githu
 ## Key concepts
 ## Getting started
 
-
+`azure-spring-cloud-feature-management` doesn't require use of the App Configuration service, but can be integrated with it. The next section shows how to use the library without the App Configuration service, the section after shows how to update the example to use it with the App Configuration service.
 
 ### How to run without App Configuration Service
 Start the application and check the resulting console output to check the returned value.
@@ -15,7 +15,60 @@ Start the application and check the resulting console output to check the return
 $ mvn spring-boot:run
 ```
 
-2. Check the returned value. The feature `Beta` has one filter `Random` which defines the Beta feature will be activated randomly with some chance value. You should see the following information displayed: **RUNNING : application** or **RUNNING : beta**.
+1. Check the returned value. The feature `Beta` has one filter `Random` which defines the Beta feature will be activated randomly with some chance value. You should see the following information displayed: **RUNNING : application** or **RUNNING : beta**.
+
+### How to run with Azure Configuration Service
+
+#### Prepare data
+
+1. Create a Configuration Store if not exist.
+
+```azurecli
+az appconfig create --resource-group <your-resource-group> --name <name-of-your-new-store> --sku Standard
+```
+
+1. Import the data file src/main/resources/data/sample-data.json into the Configuration Store created above. Under `For language` select `Other`. Under `File type` select `Yaml` or using the azure cli:
+
+```azurecli
+az appconfig kv import -n <name-of-your-new-store> -s file --path <location-of-your-properties-file> --format properties --prefix /application/
+```
+
+It will have you confirm the feature flag before loading it.
+
+#### Updating the application
+
+1. Add the azure-spring-cloud-appconfiguration-config dependency,
+
+```xml
+<dependency>
+    <groupId>com.azure.spring</groupId>
+    <artifactId>azure-spring-cloud-appconfiguration-config-web</artifactId>
+    <version>2.3.0</version>
+</dependency>
+```
+
+2. Create a file named bootstrap.properties in the resources folder and add the connection string to it.
+
+```properties
+spring.cloud.azure.appconfiguration.stores[0].connection-string= <your-connection-string>
+```
+
+Note: You can get your connection string from the portal from Access Keys or using the cli:
+
+```azurecli
+az appconfig credential list --resource-group <your-resource-group> --name <name-of-your-new-store>
+```
+
+3. Delete application.yml.
+
+#### Run the application
+
+1. Load features from application.yml
+```
+$ mvn spring-boot:run
+```
+
+1. Check the returned value. The feature `Beta` has one filter `Random` which defines the Beta feature will be activated randomly with some chance value. You should see the following information displayed: **RUNNING : application** or **RUNNING : beta**.
 
 ### More details
 

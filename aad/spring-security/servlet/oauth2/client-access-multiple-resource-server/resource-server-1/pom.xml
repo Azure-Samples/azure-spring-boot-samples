@@ -11,9 +11,8 @@
     <relativePath>../../../../../../pom.xml</relativePath>
   </parent>
 
-  <groupId>com.azure.spring</groupId>
   <artifactId>servlet-oauth2-client-access-multiple-resource-server-resourc-server-1-application</artifactId>
-  <version>2.5.6-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <dependencies>

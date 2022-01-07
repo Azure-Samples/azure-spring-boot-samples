@@ -11,9 +11,8 @@
     <relativePath>../../../../../../pom.xml</relativePath>
   </parent>
 
-  <groupId>com.azure.spring</groupId>
   <artifactId>servlet-oauth2-resourc-server-check-permissions-by-claims-in-access-token-client-application</artifactId>
-  <version>2.5.6-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <dependencies>

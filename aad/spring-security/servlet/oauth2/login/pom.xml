@@ -11,9 +11,8 @@
     <relativePath>../../../../../pom.xml</relativePath>
   </parent>
 
-  <groupId>com.azure.spring</groupId>
   <artifactId>servlet-oauth2-login</artifactId>
-  <version>2.5.6-SNAPSHOT</version>
+  <version>1.0.0</version>
   <packaging>jar</packaging>
   <name>Spring-Security Sample: Servlet: OAuth2: Login</name>
 

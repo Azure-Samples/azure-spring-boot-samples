@@ -13,7 +13,8 @@
   <groupId>com.azure.spring</groupId>
   <artifactId>azure-spring-boot-samples</artifactId>
   <packaging>pom</packaging>
-  <version>1.0.0</version><!-- Need not change for every release-->
+  <version>1.0.0</version>
+  <name>Azure Spring Boot Samples</name>
 
 
   <properties>
@@ -85,7 +86,6 @@
     <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>
     <module>eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration</module>
-
     <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
     <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder</module>
     <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders</module>

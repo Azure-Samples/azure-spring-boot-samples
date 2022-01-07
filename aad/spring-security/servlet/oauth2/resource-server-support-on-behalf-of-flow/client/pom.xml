@@ -14,6 +14,7 @@
   <artifactId>servlet-oauth2-resourc-server-support-on-behalf-of-flow-client-application</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
+  <name>Spring-Security Sample: Servlet: OAuth2: Resource Server Support On-Behalf-of Flow: Client Application</name>
 
   <dependencies>
     <dependency>

@@ -10,10 +10,10 @@
   </parent>
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>feature-management-sample</artifactId>
   <groupId>com.azure.spring</groupId>
-  <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:feature-management-sample;dependency} -->
-  <name>Feature Management Sample</name>
+  <artifactId>feature-management-sample</artifactId>
+  <version>1.0.0</version>
+  <name>Manage Features and Get Configurations From App Configuration</name>
 
   <dependencies>
     <dependency>

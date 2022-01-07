@@ -3,17 +3,17 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>org.springframework.samples.petclinic.config</groupId>
-	<artifactId>spring-petclinic-config-server</artifactId>
-	<packaging>jar</packaging>
-	<description>Spring PetClinic Config Server</description>
+    <groupId>org.springframework.samples.petclinic.config</groupId>
+    <artifactId>spring-petclinic-config-server</artifactId>
+    <packaging>jar</packaging>
+    <description>Spring PetClinic Config Server</description>
     <name>Spring Petclinic Config Server</name>
 
     <parent>
         <groupId>org.springframework.samples</groupId>
         <artifactId>spring-petclinic-microservices</artifactId>
-         <version>2.3.6</version>
-   </parent>
+        <version>2.3.6</version>
+    </parent>
 
     <properties>
         <docker.image.exposed.port>8888</docker.image.exposed.port>

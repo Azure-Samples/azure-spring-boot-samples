@@ -13,7 +13,7 @@
   <artifactId>spring-cloud-azure-starter-integration-sample-servicebus-multiple-namespaces</artifactId>
   <groupId>com.azure.spring</groupId>
   <version>1.0.0</version>
-  <name>Communicate to Multiple Service Bus Namespaces via Spring Integration Framework</name>
+  <name>Communicate to Multiple Service Bus Namespaces via Spring Integration</name>
 
   <dependencies>
     <dependency>

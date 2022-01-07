@@ -14,7 +14,7 @@
     <artifactId>spring-cloud-azure-sample-stream-eventhubs-multibinders</artifactId>
     <groupId>com.azure.spring</groupId>
     <version>1.0.0</version>
-    <name>Communicate to Multiple Event Hubs Namespaces via Spring Cloud Stream Framework</name>
+    <name>Communicate to Multiple Event Hubs Namespaces via Spring Cloud Stream</name>
 
     <dependencies>
         <dependency>

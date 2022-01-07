@@ -8,7 +8,7 @@
     <artifactId>spring-petclinic-admin-server</artifactId>
     <packaging>jar</packaging>
     <description>Spring Boot Admin server</description>
-    <name>Spring Petclinic Admin Server</name>
+    <name>Spring PetClinic Admin Server</name>
 
     <parent>
         <groupId>org.springframework.samples</groupId>

@@ -22,6 +22,9 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <version.spring.cloud>2020.0.3</version.spring.cloud>
     <version.spring.cloud.azure>4.0.0-beta.2</version.spring.cloud.azure>
+    <version.spring-cloud-appconfiguration-config>2.2.0</version.spring-cloud-appconfiguration-config>
+    <version.spring-cloud-feature-management>2.1.0</version.spring-cloud-feature-management>
+    <version.guava>25.0-jre</version.guava>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -38,6 +41,26 @@
         <version>${version.spring.cloud.azure}</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.azure.spring</groupId>
+        <artifactId>azure-spring-cloud-appconfiguration-config</artifactId>
+        <version>${version.spring-cloud-appconfiguration-config}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.azure.spring</groupId>
+        <artifactId>azure-spring-cloud-feature-management</artifactId>
+        <version>${version.spring-cloud-feature-management}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.azure.spring</groupId>
+        <artifactId>azure-spring-cloud-feature-management-web</artifactId>
+        <version>${version.spring-cloud-feature-management}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.google.guava</groupId>
+        <artifactId>guava</artifactId>
+        <version>${version.guava}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

@@ -12,7 +12,7 @@ You will:
 
 - Build existing Spring microservices applications
 - Provision azure resources required for the application
-- Run the application locally with CosmosDB backend, Azure Redis Cache and using KeyVault for
+- Run the application locally with Cosmos DB backend, Azure Redis Cache and using Key Vault for
   storing secrets
 - Open the application
 
@@ -75,7 +75,6 @@ Open `.scripts/setup-env-variables-azure.sh` and enter the following information
 
 ```bash
 
-export SUBSCRIPTION=subscription-id # customize this
 export RESOURCE_GROUP=resource-group-name # customize this
 export LOCATION=SouthCentralUS  #customize this
 export COSMOSDB_NAME=mycosmosdbaccname  # customize this
@@ -125,7 +124,7 @@ You can then access petclinic here: http://localhost:8080/
 
 ![Spring Petclinic Microservices screenshot](docs/application-screenshot.png)
 
-**Architecture diagram of the Spring Petclinic Microservices with CosmosDB**
+**Architecture diagram of the Spring Petclinic Microservices with Cosmos DB**
 
 ![Spring Petclinic Microservices architecture](docs/microservices-architecture-diagram-cosmosdb.jpg)
 

@@ -21,6 +21,11 @@
     </properties>
 
 	<dependencies>
+        <!-- Enable Bootstrap -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
         <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -29,7 +34,6 @@
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-spring-data-cosmos</artifactId>
-            <version>3.2.0</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
@@ -38,11 +42,6 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
         </dependency>
 
         <!-- Spring Cloud -->
@@ -54,13 +53,15 @@
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
+
+        <!-- Spring Cloud Azure -->
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
+            <groupId>com.azure</groupId>
+            <artifactId>azure-spring-data-cosmos</artifactId>
         </dependency>
         <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
+            <groupId>com.azure.spring</groupId>
+            <artifactId>spring-cloud-azure-starter-keyvault-secrets</artifactId>
         </dependency>
 
         <!-- Third parties -->
@@ -87,17 +88,10 @@
             <artifactId>validation-api</artifactId>
         </dependency>
 
-
-
         <!-- Testing -->
         <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>
@@ -108,16 +102,6 @@
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>com.azure</groupId>
-            <artifactId>azure-spring-data-cosmos</artifactId>
-            <version>3.2.0</version>
-        </dependency>
-        <dependency>
-            <groupId>com.azure.spring</groupId>
-            <artifactId>azure-spring-boot-starter-keyvault-secrets</artifactId>
-            <version>3.10.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-boot-starter-keyvault-secrets;dependency} -->
         </dependency>
     </dependencies>
 

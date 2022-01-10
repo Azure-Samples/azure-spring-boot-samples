@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
 # ==== Resource Group ====
-export SUBSCRIPTION=subscription-id # customize this
 export RESOURCE_GROUP=resource-group-name # customize this
 export LOCATION=SouthCentralUS  #customize this
 export COSMOSDB_NAME=mycosmosdbaccname  # customize this

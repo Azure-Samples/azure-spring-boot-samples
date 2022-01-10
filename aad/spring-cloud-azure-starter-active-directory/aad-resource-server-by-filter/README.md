@@ -57,7 +57,7 @@ As a first step you'll need to:
    - In the **Name** section, enter a meaningful application name that will be displayed to users of the app, for example `Spring Boot Sample`.
    - In the **Supported account types** section, select **Accounts in any organizational directory**.
    - Choose **Single-page application(SPA)** as application type.
-   - Add `http://localhost:8080` as the `Reply URL` under Redirect URI.
+   - Add `http://localhost:8080/` as the `Reply URL` under Redirect URI.
    - Select **Register** to create the application. ![register_the application](docs/application-registration-1.png "register the application")![register_the application](docs/application-registration-2.png "register the application")
    - After creating the application, on the application **Overview** page, click the **Redirect URIs** to edit, select the **Access tokens** and **ID tokens**, and click **Save**. ![accept tokens](docs/tokens-to-accept.png "accept tokens")
 1. On the app **Overview** page, find the **Application (client) ID** value and record it for later. You'll need it to configure the application.properties file for this project.
@@ -100,8 +100,7 @@ spring:
           client-secret: ${AZURE_CLIENT_SECRET}
         profile:
           tenant-id: ${AZURE_TENANT_ID}
-        # Optional, default value is http://localhost:8080/
-        redirect-uri-template: <your-redirect-uri>
+        redirect-uri-template: http://localhost:8080/
         # groups that you created in your Azure AD tenant
         user-group:
           allowed-groups: group1,group2

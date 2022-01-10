@@ -1,4 +1,4 @@
-# Deploy Spring Microservices using Azure Spring starters for Cosmos DB, Redis, KeyVault
+# Deploy Spring Microservices using Azure Spring starters for Cosmos DB, Redis, Key Vault
 
 Azure Spring Cloud enables you to easily run a Spring Boot based microservices application on Azure.
 
@@ -12,7 +12,7 @@ You will:
 
 - Build existing Spring microservices applications
 - Provision azure resources required for the application
-- Run the application locally with CosmosDB backend, Azure Redis Cache and using KeyVault for
+- Run the application locally with Cosmos DB backend, Azure Redis Cache and using Key Vault for
   storing secrets
 - Open the application
 
@@ -26,20 +26,18 @@ or sign up for a
 
 In addition, you will need the following:
 
-| [Azure CLI version 2.0.67 or higher](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest)
-| [Java 8](https://www.azul.com/downloads/azure-only/zulu/?version=java-8-lts&architecture=x86-64-bit&package=jdk)
-| [Maven](https://maven.apache.org/download.cgi)
-| [MySQL CLI](https://dev.mysql.com/downloads/shell/)
-| [Git](https://git-scm.com/)
-| [Jq](https://stedolan.github.io/jq/)
-|
+- [Azure CLI version 2.0.67 or higher](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest)
+- [Java 8](https://www.azul.com/downloads/azure-only/zulu/?version=java-8-lts&architecture=x86-64-bit&package=jdk)
+- [Maven](https://maven.apache.org/download.cgi)
+- [MySQL CLI](https://dev.mysql.com/downloads/shell/)
+- [Git](https://git-scm.com/)
+- [Jq](https://stedolan.github.io/jq/)
 
 ## Clone and build the repo
 
-### Create a new folder and clone the sample app repository to your Azure Cloud account
+### Clone the sample app repository 
 
 ```bash
-    mkdir source-code
     git clone https://github.com/Azure-Samples/azure-spring-boot-samples
 ```
 
@@ -77,7 +75,6 @@ Open `.scripts/setup-env-variables-azure.sh` and enter the following information
 
 ```bash
 
-export SUBSCRIPTION=subscription-id # customize this
 export RESOURCE_GROUP=resource-group-name # customize this
 export LOCATION=SouthCentralUS  #customize this
 export COSMOSDB_NAME=mycosmosdbaccname  # customize this
@@ -98,13 +95,23 @@ make sure keyvault.env file is created at the root of the repo.
 ## Starting services locally with docker-compose
 
 In order to start entire infrastructure using Docker, you have to build images by
-executing `./mvnw clean install -P buildDocker -DskipTests`
-from a project root. Once images are ready, you can start them with a single command
-`docker-compose up`. Containers startup order is coordinated
-with [`dockerize` script](https://github.com/jwilder/dockerize). After starting services it takes a
-while for API Gateway to be in sync with service registry, so don't be scared of initial Spring
-Cloud Gateway timeouts. You can track services availability using Eureka dashboard available by
-default at http://localhost:8761.
+executing command below from a project root:
+
+```shell
+mvn clean install -P buildDocker -DskipTests
+```
+
+
+Once images are ready, you can start them with a single command.
+
+
+```shell
+docker-compose up
+```
+
+Containers startup order is coordinated with [`dockerize` script](https://github.com/jwilder/dockerize). After starting services it takes a while for API Gateway to be in sync with service registry, so don't be scared of initial Spring
+Cloud Gateway timeouts.   
+You can track services availability using Eureka dashboard available by default at `http://localhost:8761`.
 
 ## Understanding the Spring Petclinic application
 
@@ -117,7 +124,7 @@ You can then access petclinic here: http://localhost:8080/
 
 ![Spring Petclinic Microservices screenshot](docs/application-screenshot.png)
 
-**Architecture diagram of the Spring Petclinic Microservices with CosmosDB**
+**Architecture diagram of the Spring Petclinic Microservices with Cosmos DB**
 
 ![Spring Petclinic Microservices architecture](docs/microservices-architecture-diagram-cosmosdb.jpg)
 
@@ -145,7 +152,6 @@ more about Spring on Azure, go to:
 
 This Spring microservices sample is forked from
 [spring-petclinic/spring-petclinic-microservices](https://github.com/spring-petclinic/spring-petclinic-microservices)
-- see [Petclinic README](./README-petclinic.md).
 
 ## Contributing
 

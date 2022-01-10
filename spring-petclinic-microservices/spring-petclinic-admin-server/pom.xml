@@ -8,6 +8,7 @@
     <artifactId>spring-petclinic-admin-server</artifactId>
     <packaging>jar</packaging>
     <description>Spring Boot Admin server</description>
+    <name>Spring PetClinic Admin Server</name>
 
     <parent>
         <groupId>org.springframework.samples</groupId>
@@ -16,12 +17,16 @@
       </parent>
 
     <properties>
-        <spring-boot-admin.version>2.2.2</spring-boot-admin.version>
         <docker.image.exposed.port>9090</docker.image.exposed.port>
         <docker.image.dockerfile.dir>${basedir}/../docker</docker.image.dockerfile.dir>
     </properties>
 
     <dependencies>
+        <!-- Enable Bootstrap -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
         <!-- Spring Boot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>

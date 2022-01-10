@@ -7,7 +7,7 @@ import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
 import org.springframework.data.annotation.Id;
 
-@Container(containerName = "mycollection")
+@Container(containerName = "users")
 public class User {
     @Id
     private String id;

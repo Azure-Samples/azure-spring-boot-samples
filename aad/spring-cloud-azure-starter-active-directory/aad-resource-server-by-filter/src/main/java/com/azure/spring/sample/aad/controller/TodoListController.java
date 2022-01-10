@@ -52,9 +52,8 @@ public class TodoListController {
         ModelAndView model = new ModelAndView("index");
         model.addObject("aad_clientId", aadAuthenticationProperties.getCredential().getClientId());
         model.addObject("aad_tenantId", aadAuthenticationProperties.getProfile().getTenantId());
-        model.addObject("aad_redirectUri", Optional
-                                                       .ofNullable(aadAuthenticationProperties.getRedirectUriTemplate())
-                                                       .orElse("http://localhost:8080/") );
+        model.addObject("aad_redirectUri", Optional.ofNullable(aadAuthenticationProperties.getRedirectUriTemplate())
+                                                   .orElse("http://localhost:8080/"));
         return model;
     }
 
@@ -94,7 +93,7 @@ public class TodoListController {
     @RequestMapping(value = "/api/todolist", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> updateTodoItem(@RequestBody TodoItem item) {
         final List<TodoItem> find =
-                todoList.stream().filter(i -> i.getID() == item.getID()).collect(Collectors.toList());
+            todoList.stream().filter(i -> i.getID() == item.getID()).collect(Collectors.toList());
         if (!find.isEmpty()) {
             todoList.set(todoList.indexOf(find.get(0)), item);
             return new ResponseEntity<>("Entity is updated", HttpStatus.OK);

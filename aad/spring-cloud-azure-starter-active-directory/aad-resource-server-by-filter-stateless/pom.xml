@@ -13,8 +13,8 @@
 
   <artifactId>spring-cloud-azure-starter-active-directory-resource-server-by-filter-stateless</artifactId>
   <version>1.0.0</version>
-
-  <name>Azure Spring Boot Starter Sample - Azure AD Stateless Spring Security Integration</name>
+  <packaging>jar</packaging>
+  <name>Spring-Cloud-Azure-Starter-Active-Directory Sample: Stateless Resource Server by Filter</name>
   <description>Sample project using the AAD stateless app-role filter for AAD integration in Spring Security</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
 

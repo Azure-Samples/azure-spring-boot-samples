@@ -15,7 +15,7 @@
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>Spring Cloud Azure Cosmos Sample</name>
+  <name>Read and Write Data with Azure Cosmos DB Using CosmosClient</name>
   <description>Sample project for Spring Cloud Azure Starter Cosmos</description>
 
   <dependencies>

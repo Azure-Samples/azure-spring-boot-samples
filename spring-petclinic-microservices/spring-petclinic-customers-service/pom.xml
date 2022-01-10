@@ -7,6 +7,7 @@
 	<artifactId>spring-petclinic-customers-service</artifactId>
 	<packaging>jar</packaging>
 	<description>Spring PetClinic Customers Service</description>
+	<name>Spring PetClinic Customers Service</name>
 
 	<parent>
 		<groupId>org.springframework.samples</groupId>
@@ -20,6 +21,11 @@
     </properties>
 
 	<dependencies>
+        <!-- Enable Bootstrap -->
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-bootstrap</artifactId>
+        </dependency>
 
         <!-- Spring Boot -->
         <dependency>
@@ -38,12 +44,10 @@
         <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-spring-data-cosmos</artifactId>
-            <version>3.2.0</version>
         </dependency>
         <dependency>
             <groupId>com.azure.spring</groupId>
-            <artifactId>azure-spring-boot-starter-keyvault-secrets</artifactId>
-            <version>3.10.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-boot-starter-keyvault-secrets;dependency} -->
+            <artifactId>spring-cloud-azure-starter-keyvault-secrets</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
@@ -62,14 +66,6 @@
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-starter-sleuth</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-sleuth-zipkin</artifactId>
         </dependency>
 
         <!-- Third parties -->

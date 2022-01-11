@@ -60,9 +60,12 @@ resource "azurerm_key_vault" "kv_account_01" {
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = data.azurerm_client_config.current.object_id
 
-    key_permissions = [
+    secret_permissions = [
       "Get",
-      "Delete",
+      "List",
+      "Set",
+      "Purge",
+      "Delete"
     ]
   }
 
@@ -134,4 +137,3 @@ resource "azurerm_key_vault_secret" "key_vault_secret_common_02" {
   value        = "key_vault_secret_common_02: secret-name-in-key-vault-both: value"
   key_vault_id = azurerm_key_vault.kv_account_02.id
 }
-

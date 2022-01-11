@@ -104,14 +104,20 @@ resource "azurerm_servicebus_queue" "application_queue_02" {
 data "azurerm_client_config" "client_config" {
 }
 
-resource "azurerm_role_assignment" "servicebus_01_data_owner" {
-  scope                = azurerm_servicebus_namespace.servicebus_namespace_01.id
-  role_definition_name = "Azure Service Bus Data Owner"
+resource "azurerm_role_assignment" "servicebus_01_data_sender" {
+  scope                = azurerm_servicebus_queue.application_queue_01.id
+  role_definition_name = "Azure Service Bus Data Sender"
   principal_id         = data.azurerm_client_config.client_config.object_id
 }
 
-resource "azurerm_role_assignment" "servicebus_02_data_owner" {
-  scope                = azurerm_servicebus_namespace.servicebus_namespace_02.id
-  role_definition_name = "Azure Service Bus Data Owner"
+resource "azurerm_role_assignment" "servicebus_01_data_receiver" {
+  scope                = azurerm_servicebus_queue.application_queue_01.id
+  role_definition_name = "Azure Service Bus Data Receiver"
+  principal_id         = data.azurerm_client_config.client_config.object_id
+}
+
+resource "azurerm_role_assignment" "servicebus_02_data_sender" {
+  scope                = azurerm_servicebus_queue.application_queue_02.id
+  role_definition_name = "Azure Service Bus Data Sender"
   principal_id         = data.azurerm_client_config.client_config.object_id
 }

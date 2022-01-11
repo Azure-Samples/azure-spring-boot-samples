@@ -1,5 +1,4 @@
-# Spring Cloud Azure Stream Binder for Event Hub Code Sample shared library for Java
-
+# Using Spring Cloud Stream Binder for Azure Event Hubs
 
 This code sample demonstrates how to use the `Spring Cloud Stream Binder` for `Azure Event Hubs`.The
 sample app has two operating modes.

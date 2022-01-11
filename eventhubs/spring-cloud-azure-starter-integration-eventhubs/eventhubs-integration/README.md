@@ -1,7 +1,6 @@
-# Spring Cloud Azure Starter Integration for Event Hubs Code Sample shared library for Java
+# Using Spring Integration for Azure Event Hubs
 
-This sample demonstrates how to use `Spring Integration` for `Azure
-Event Hubs`.
+This sample demonstrates how to use `Spring Integration` for `Azure Event Hubs`.
 
 ## What You Will Build
 You will build an application to send and receive messages for Event Hubs using Spring Integration.

@@ -1,9 +1,9 @@
-# Spring Cloud Azure Stream Binder for Multiple Event Hubs Namespace Code Sample shared library for Java 
+# Using Spring Cloud Stream Binder for Multiple Event Hubs Namespaces
 
 This sample demonstrates how to use the `Spring Cloud Stream Binder`
 for multiple `Azure Event Hubs` namespaces. In this sample you will bind to
 two Event Hubs namespaces separately through two binders. The sample app has two operating modes.
-One way is to expose a Restful API to receive string message, another way is to automatically provide string messages.
+One way is to expose a RESTful API to receive string message, another way is to automatically provide string messages.
 These messages are published to one event hub. The sample will also consume messages from the same
 event hub.
 

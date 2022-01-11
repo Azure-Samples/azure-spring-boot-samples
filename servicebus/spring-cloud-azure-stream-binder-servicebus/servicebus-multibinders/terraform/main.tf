@@ -131,8 +131,7 @@ resource "azurerm_servicebus_namespace_authorization_rule" "namespace_authorizat
 
 resource "azurerm_servicebus_queue" "servicebus_namespace_02_queue" {
   name                = "que001"
-  namespace_name      = azurerm_servicebus_namespace.servicebus_namespace_02.name
-  resource_group_name = azurerm_resource_group.main.name
+  namespace_id      = azurerm_servicebus_namespace.servicebus_namespace_02.id
 
   enable_partitioning   = false
   max_delivery_count    = 10

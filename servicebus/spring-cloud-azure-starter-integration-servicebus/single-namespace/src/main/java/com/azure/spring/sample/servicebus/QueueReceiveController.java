@@ -44,7 +44,7 @@ public class QueueReceiveController {
     public ServiceBusInboundChannelAdapter queueMessageChannelAdapter(
         @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel, ServiceBusProcessorContainer processorContainer) {
         ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(processorContainer, QUEUE_NAME,
-            new CheckpointConfig(CheckpointMode.MANUAL));
+                null, new CheckpointConfig(CheckpointMode.MANUAL));
         adapter.setOutputChannel(inputChannel);
         return adapter;
     }

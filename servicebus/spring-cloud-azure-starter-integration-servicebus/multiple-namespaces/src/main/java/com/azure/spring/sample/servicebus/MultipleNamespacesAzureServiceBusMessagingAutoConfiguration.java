@@ -1,7 +1,7 @@
 package com.azure.spring.sample.servicebus;
 
 import com.azure.spring.cloud.autoconfigure.servicebus.AzureServiceBusAutoConfiguration;
-import com.azure.spring.cloud.autoconfigure.servicebus.AzureServiceBusMessagingAutoConfiguration;
+import com.azure.spring.messaging.ConsumerIdentifier;
 import com.azure.spring.messaging.PropertiesSupplier;
 import com.azure.spring.servicebus.core.ServiceBusProcessorContainer;
 import com.azure.spring.servicebus.core.ServiceBusTemplate;
@@ -19,7 +19,6 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
-import reactor.util.function.Tuple2;
 
 @Configuration(proxyBeanMethods = false)
 @AutoConfigureAfter(AzureServiceBusAutoConfiguration.class)
@@ -37,7 +36,7 @@ public class MultipleNamespacesAzureServiceBusMessagingAutoConfiguration {
         @Bean
         @ConditionalOnMissingBean
         public ServiceBusProcessorFactory defaultServiceBusNamespaceProcessorFactory(
-            ObjectProvider<PropertiesSupplier<Tuple2<String, String>, ProcessorProperties>> suppliers) {
+            ObjectProvider<PropertiesSupplier<ConsumerIdentifier, ProcessorProperties>> suppliers) {
             return new DefaultServiceBusNamespaceProcessorFactory(null, suppliers.getIfAvailable());
         }
 
@@ -70,9 +69,9 @@ public class MultipleNamespacesAzureServiceBusMessagingAutoConfiguration {
         @Bean
         @ConditionalOnMissingBean
         @ConditionalOnBean(ServiceBusProducerFactory.class)
-        public ServiceBusTemplate serviceBusTemplate(ServiceBusProducerFactory senderClientfactory,
+        public ServiceBusTemplate serviceBusTemplate(ServiceBusProducerFactory senderClientFactory,
                                                      ServiceBusMessageConverter messageConverter) {
-            ServiceBusTemplate serviceBusTemplate = new ServiceBusTemplate(senderClientfactory);
+            ServiceBusTemplate serviceBusTemplate = new ServiceBusTemplate(senderClientFactory);
             serviceBusTemplate.setMessageConverter(messageConverter);
             return serviceBusTemplate;
         }

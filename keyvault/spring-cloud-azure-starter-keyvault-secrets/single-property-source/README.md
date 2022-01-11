@@ -18,10 +18,6 @@ You will build an application that use `spring-cloud-azure-starter-keyvault-secr
     - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
 ## Provision Azure Resources Required to Run This Sample
-This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
-> [!IMPORTANT]  
-> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
-> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
 
 ### Authenticate Using the Azure CLI
 Terraform must authenticate to Azure to create infrastructure.
@@ -75,11 +71,10 @@ terraform -chdir=./terraform apply
 
 ```
 
-
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell
-
+...
 azurecaf_name.kv: Creating...
 azurecaf_name.resource_group: Creating...
 azurecaf_name.resource_group: Creation complete after ...
@@ -98,8 +93,6 @@ Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
 Outputs:
 
 ...
-
-
 ```
 
 You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
@@ -115,7 +108,6 @@ Running the command below to export environment values:
 
 In your terminal, run `mvn clean spring-boot:run`.
 
-
 ```shell
 mvn clean spring-boot:run
 ```
@@ -127,7 +119,6 @@ Start the application, you will see a log like this:
 ```text
 property springDataSourceUrl in Azure Key Vault: this is a test value
 ```
-
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.

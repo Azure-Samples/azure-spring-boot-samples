@@ -3,6 +3,7 @@
 This sample illustrates the simplest usage of `spring-cloud-azure-starter-keyvault-secrets`. To learn all features, please refer to [reference doc](https://microsoft.github.io/spring-cloud-azure/docs/4.0.0-beta.2/reference/html/index.html).
 
 ## What You Will Build
+
 You will build an application that use `spring-cloud-azure-starter-keyvault-secrets` to retrieve multiple secrets from multiple [Azure Key Vault](https://azure.microsoft.com/services/key-vault/).
 
 ## What You Need
@@ -16,10 +17,6 @@ You will build an application that use `spring-cloud-azure-starter-keyvault-secr
     - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
 ## Provision Azure Resources Required to Run This Sample
-This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
-> [!IMPORTANT]  
-> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
-> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
 
 ### Authenticate Using the Azure CLI
 Terraform must authenticate to Azure to create infrastructure.
@@ -59,7 +56,6 @@ az account set --subscription <your-subscription-id>
 ```
 
 ### Provision the Resources
-
 After login Azure CLI with your account, now you can use the terraform script to create Azure Resources.
 
 ```shell
@@ -73,14 +69,10 @@ terraform -chdir=./terraform apply
 
 ```
 
-
-
-
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell
-
-
+...
 azurecaf_name.azurecaf_name_kv_02: Creating...
 azurecaf_name.azurecaf_name_kv_01: Creating...
 azurecaf_name.resource_group: Creating...
@@ -119,9 +111,7 @@ Running the command below to export environment values:
 ```
 
 ## Run Locally
-
 In your terminal, run `mvn clean spring-boot:run`.
-
 
 ```shell
 mvn clean spring-boot:run
@@ -138,7 +128,6 @@ secretNameInKeyVaultBoth: secret-value-1
 
 We can see that property-source-1 have higher priority.
 
-
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
 
@@ -148,7 +137,3 @@ To destroy the resources you created.
 ```shell
 terraform -chdir=./terraform destroy
 ```
-
-
-
-

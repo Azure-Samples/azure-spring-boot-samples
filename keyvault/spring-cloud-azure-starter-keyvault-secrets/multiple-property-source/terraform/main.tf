@@ -64,19 +64,6 @@ resource "azurerm_key_vault" "kv_account_01" {
       "Get",
       "Delete",
     ]
-
-    secret_permissions = [
-      "Get",
-      "List",
-      "Set",
-      "Purge",
-      "Delete"
-    ]
-
-    storage_permissions = [
-      "Get",
-      "Delete",
-    ]
   }
 
   tags = {
@@ -85,15 +72,15 @@ resource "azurerm_key_vault" "kv_account_01" {
   }
 }
 
-resource "azurerm_key_vault_secret" "kv_01" {
+resource "azurerm_key_vault_secret" "key_vault_secret_01" {
   name         = "secret-name-in-key-vault-1"
-  value        = "This is a single test value in key vault 1"
+  value        = "key_vault_secret_01: secret-name-in-key-vault-1: value"
   key_vault_id = azurerm_key_vault.kv_account_01.id
 }
 
-resource "azurerm_key_vault_secret" "kv_both_01" {
+resource "azurerm_key_vault_secret" "key_vault_secret_common_01" {
   name         = "secret-name-in-key-vault-both"
-  value        = "This is a both test value in key vault 1"
+  value        = "key_vault_secret_common_01: secret-name-in-key-vault-both: value"
   key_vault_id = azurerm_key_vault.kv_account_01.id
 }
 
@@ -121,22 +108,12 @@ resource "azurerm_key_vault" "kv_account_02" {
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = data.azurerm_client_config.current.object_id
 
-    key_permissions = [
-      "Get",
-      "Delete",
-    ]
-
     secret_permissions = [
       "Get",
       "List",
       "Set",
       "Purge",
       "Delete"
-    ]
-
-    storage_permissions = [
-      "Get",
-      "Delete",
     ]
   }
 
@@ -146,15 +123,15 @@ resource "azurerm_key_vault" "kv_account_02" {
   }
 }
 
-resource "azurerm_key_vault_secret" "kv_02" {
+resource "azurerm_key_vault_secret" "key_vault_secret_02" {
   name         = "secret-name-in-key-vault-2"
-  value        = "This is a single test value in key vault 2"
+  value        = "key_vault_secret_02: secret-name-in-key-vault-2: value"
   key_vault_id = azurerm_key_vault.kv_account_02.id
 }
 
-resource "azurerm_key_vault_secret" "kv_02_both" {
+resource "azurerm_key_vault_secret" "key_vault_secret_common_02" {
   name         = "secret-name-in-key-vault-both"
-  value        = "This is a both test value in key vault 2"
+  value        = "key_vault_secret_common_02: secret-name-in-key-vault-both: value"
   key_vault_id = azurerm_key_vault.kv_account_02.id
 }
 

@@ -3,6 +3,7 @@
 
 package com.azure.spring.sample.servicebus;
 
+import com.azure.spring.messaging.ConsumerIdentifier;
 import com.azure.spring.messaging.PropertiesSupplier;
 import com.azure.spring.servicebus.core.properties.ProcessorProperties;
 import com.azure.spring.servicebus.core.properties.ProducerProperties;
@@ -13,7 +14,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.config.EnableIntegration;
-import reactor.util.function.Tuple2;
 
 @SpringBootApplication
 @EnableIntegration
@@ -34,7 +34,7 @@ public class ServiceBusIntegrationApplication {
     }
 
     @Bean
-    public PropertiesSupplier<Tuple2<String, String>, ProcessorProperties> processorPropertiesSupplier() {
+    public PropertiesSupplier<ConsumerIdentifier, ProcessorProperties> processorPropertiesSupplier() {
         return properties.processorPropertiesSupplier();
     }
 

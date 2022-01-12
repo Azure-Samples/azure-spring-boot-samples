@@ -56,7 +56,7 @@ public class QueueReceiveController {
     @Bean
     public ServiceBusInboundChannelAdapter queueMessageChannelAdapter(
         @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel, ServiceBusProcessorContainer processorContainer) {
-        ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(processorContainer, RECEIVE_QUEUE_NAME,
+        ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(processorContainer, RECEIVE_QUEUE_NAME, null,
             new CheckpointConfig(CheckpointMode.MANUAL));
         adapter.setOutputChannel(inputChannel);
         return adapter;

@@ -130,7 +130,6 @@ mvn clean spring-boot:run
 
 ```shell
 ...
-...
 New message received: 'Hello world, 2'
 ...
 Message 'Hello world, 2' successfully checkpointed
@@ -138,7 +137,6 @@ Message 'Hello world, 2' successfully checkpointed
 New message received: 'Hello world, 3'
 ...
 Message 'Hello world, 3' successfully checkpointed
-...
 ...
 ```
 
@@ -151,8 +149,6 @@ To destroy the resources you created.
 ```shell
 terraform -chdir=./terraform destroy
 ```
-
-
 
 ## Enhancement
 ### Configuration Options

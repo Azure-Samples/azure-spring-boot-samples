@@ -78,9 +78,6 @@ terraform -chdir=./terraform apply
 
 ```
 
-
-
-
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell

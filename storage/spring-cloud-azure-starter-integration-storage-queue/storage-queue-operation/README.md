@@ -1,4 +1,4 @@
-# Spring Cloud Azure Storage Queue Operation Code Sample shared library for Java 
+# Spring Cloud Azure Storage Queue Operation Code Sample  
 
 This code sample demonstrates how to use [Storage Queue Operation][storage-queue-operation].
 
@@ -73,9 +73,6 @@ terraform -chdir=./terraform apply
 
 ```
 
-
-
-
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell
@@ -123,11 +120,11 @@ mvn clean spring-boot:run
 
 1.  Send a POST request
 
-        $ curl -X POST http://localhost:8080/messages?message=hello
+        curl -X POST http://localhost:8080/messages?message=hello
 
 1.  Receive the message you posted
 
-        $ curl -X GET http://localhost:8080/messages
+        curl -X GET http://localhost:8080/messages
 
 1.  Verify in your app’s logs that similar messages were posted:
 
@@ -143,7 +140,6 @@ To destroy the resources you created.
 ```shell
 terraform -chdir=./terraform destroy
 ```
-
 
 <!-- LINKS -->
 [storage-queue-operation]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-integration-storage-queue/src/main/java/com/azure/spring/integration/storage/queue/StorageQueueOperation.java

@@ -1,4 +1,4 @@
-# Spring Cloud Azure Storage Queue Integration Code Sample shared library for Java
+# Using Spring Integration for Azure Storage Queue
 
 This code sample demonstrates how to use Spring Integration for Azure Storage Queue.
 
@@ -73,9 +73,6 @@ terraform -chdir=./terraform apply
 
 ```
 
-
-
-
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell
@@ -111,7 +108,6 @@ Running the command below to export environment values:
 
 In your terminal, run `mvn clean spring-boot:run`.
 
-
 ```shell
 mvn clean spring-boot:run
 ```
@@ -120,7 +116,7 @@ mvn clean spring-boot:run
 
 1. Send a POST request
 
-        $ curl -X POST http://localhost:8080/messages?message=hello
+        curl -X POST http://localhost:8080/messages?message=hello
 
 2. Verify in your app’s logs that similar messages were posted:
 
@@ -136,7 +132,3 @@ To destroy the resources you created.
 ```shell
 terraform -chdir=./terraform destroy
 ```
-
-
-
-

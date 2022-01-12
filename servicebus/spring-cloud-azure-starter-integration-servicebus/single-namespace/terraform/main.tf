@@ -53,21 +53,6 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace" {
   }
 }
 
-resource "azurecaf_name" "servicebus_namespace_authorization_rule" {
-  name          = var.application_name
-  resource_type = "azurerm_servicebus_namespace_authorization_rule"
-}
-
-resource "azurerm_servicebus_namespace_authorization_rule" "authorization_rule" {
-  name                = azurecaf_name.servicebus_namespace_authorization_rule.result
-  namespace_name      = azurerm_servicebus_namespace.servicebus_namespace.name
-  resource_group_name = azurerm_resource_group.main.name
-
-  listen = true
-  send   = true
-  manage = true
-}
-
 resource "azurerm_servicebus_queue" "application" {
   name                = "queue1"
   namespace_id        = azurerm_servicebus_namespace.servicebus_namespace.id
@@ -87,15 +72,13 @@ resource "azurecaf_name" "topic" {
 
 resource "azurerm_servicebus_topic" "application" {
   name                = "topic1"
-  namespace_name      = azurerm_servicebus_namespace.servicebus_namespace.name
-  resource_group_name = azurerm_resource_group.main.name
+  namespace_id        = azurerm_servicebus_namespace.servicebus_namespace.id
 }
 
 resource "azurerm_servicebus_subscription" "application" {
   name                = "group1"
-  resource_group_name = azurerm_resource_group.main.name
-  namespace_name      = azurerm_servicebus_namespace.servicebus_namespace.name
-  topic_name          = azurerm_servicebus_topic.application.name
+  topic_id            = azurerm_servicebus_topic.application.id
+
   max_delivery_count  = 1
 }
 

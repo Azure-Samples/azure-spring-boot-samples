@@ -58,32 +58,15 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace_01" {
   }
 }
 
-resource "azurecaf_name" "azurecaf_name_authorization_rule_01" {
-  name          = var.application_name
-  resource_type = "azurerm_servicebus_namespace_authorization_rule"
-}
-
-resource "azurerm_servicebus_namespace_authorization_rule" "namespace_authorization_rule_01" {
-  name                = azurecaf_name.azurecaf_name_authorization_rule_01.result
-  namespace_name      = azurerm_servicebus_namespace.servicebus_namespace_01.name
-  resource_group_name = azurerm_resource_group.main.name
-
-  listen = true
-  send   = true
-  manage = true
-}
-
 resource "azurerm_servicebus_topic" "servicebus_namespace_01_topic" {
   name                = "tpc001"
-  namespace_name      = azurerm_servicebus_namespace.servicebus_namespace_01.name
-  resource_group_name = azurerm_resource_group.main.name
+  namespace_id        = azurerm_servicebus_namespace.servicebus_namespace_01.id
 }
 
 resource "azurerm_servicebus_subscription" "servicebus_namespace_01_sub" {
   name                = "sub001"
-  resource_group_name = azurerm_resource_group.main.name
-  namespace_name      = azurerm_servicebus_namespace.servicebus_namespace_01.name
-  topic_name          = azurerm_servicebus_topic.servicebus_namespace_01_topic.name
+  topic_id            = azurerm_servicebus_topic.servicebus_namespace_01_topic.id
+
   max_delivery_count  = 1
 }
 
@@ -112,21 +95,6 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace_02" {
   tags = {
     "spring-cloud-azure-sample" = var.sample_tag_value
   }
-}
-
-resource "azurecaf_name" "azurecaf_name_authorization_rule_02" {
-  name          = var.application_name
-  resource_type = "azurerm_servicebus_namespace_authorization_rule"
-}
-
-resource "azurerm_servicebus_namespace_authorization_rule" "namespace_authorization_rule_02" {
-  name                = azurecaf_name.azurecaf_name_authorization_rule_02.result
-  namespace_name      = azurerm_servicebus_namespace.servicebus_namespace_02.name
-  resource_group_name = azurerm_resource_group.main.name
-
-  listen = true
-  send   = true
-  manage = true
 }
 
 resource "azurerm_servicebus_queue" "servicebus_namespace_02_queue" {

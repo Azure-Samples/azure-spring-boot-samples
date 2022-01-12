@@ -121,12 +121,12 @@ mvn clean spring-boot:run
 
 Start the application, you will see logs like this:
 ```text
-secretNameInKeyVault1: secret-value-1
-secretNameInKeyVault2: secret-name-in-key-vault-2-value-2
-secretNameInKeyVaultBoth: secret-value-1
+sampleProperty1: key_vault_secret_01: sampleProperty1: value
+sampleProperty2: key_vault_secret_02: sampleProperty2: value
+samplePropertyInMultipleKeyVault: key_vault_secret_01: samplePropertyInMultipleKeyVault: value
 ```
 
-We can see that property-source-1 have higher priority.
+We can see that key_vault_secret_01 have higher priority.
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.

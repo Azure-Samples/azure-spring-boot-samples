@@ -11,21 +11,21 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SampleApplication implements CommandLineRunner {
 
-    @Value("${secret-name-in-key-vault-1}")
-    private String secretNameInKeyVault1;
-    @Value("${secret-name-in-key-vault-2}")
-    private String secretNameInKeyVault2;
-    @Value("${secret-name-in-key-vault-both}")
-    private String secretNameInKeyVaultBoth;
+    @Value("${sampleProperty1}")
+    private String sampleProperty1;
+    @Value("${sampleProperty2}")
+    private String sampleProperty2;
+    @Value("${samplePropertyInMultipleKeyVault}")
+    private String samplePropertyInMultipleKeyVault;
 
     public static void main(String[] args) {
         SpringApplication.run(SampleApplication.class, args);
     }
 
     public void run(String[] args) {
-        System.out.println("secretNameInKeyVault1: " + secretNameInKeyVault1);
-        System.out.println("secretNameInKeyVault2: " + secretNameInKeyVault2);
-        System.out.println("secretNameInKeyVaultBoth: " + secretNameInKeyVaultBoth);
+        System.out.println("sampleProperty1: " + sampleProperty1);
+        System.out.println("sampleProperty2: " + sampleProperty2);
+        System.out.println("samplePropertyInMultipleKeyVault: " + samplePropertyInMultipleKeyVault);
     }
 
 }

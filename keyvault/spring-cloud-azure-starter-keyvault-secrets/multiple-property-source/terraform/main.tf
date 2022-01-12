@@ -76,14 +76,14 @@ resource "azurerm_key_vault" "kv_account_01" {
 }
 
 resource "azurerm_key_vault_secret" "key_vault_secret_01" {
-  name         = "secret-name-in-key-vault-1"
-  value        = "key_vault_secret_01: secret-name-in-key-vault-1: value"
+  name         = "sampleProperty1"
+  value        = "key_vault_secret_01: sampleProperty1: value"
   key_vault_id = azurerm_key_vault.kv_account_01.id
 }
 
 resource "azurerm_key_vault_secret" "key_vault_secret_common_01" {
-  name         = "secret-name-in-key-vault-both"
-  value        = "key_vault_secret_common_01: secret-name-in-key-vault-both: value"
+  name         = "samplePropertyInMultipleKeyVault"
+  value        = "key_vault_secret_01: samplePropertyInMultipleKeyVault: value"
   key_vault_id = azurerm_key_vault.kv_account_01.id
 }
 
@@ -127,13 +127,13 @@ resource "azurerm_key_vault" "kv_account_02" {
 }
 
 resource "azurerm_key_vault_secret" "key_vault_secret_02" {
-  name         = "secret-name-in-key-vault-2"
-  value        = "key_vault_secret_02: secret-name-in-key-vault-2: value"
+  name         = "sampleProperty2"
+  value        = "key_vault_secret_02: sampleProperty2: value"
   key_vault_id = azurerm_key_vault.kv_account_02.id
 }
 
 resource "azurerm_key_vault_secret" "key_vault_secret_common_02" {
-  name         = "secret-name-in-key-vault-both"
-  value        = "key_vault_secret_common_02: secret-name-in-key-vault-both: value"
+  name         = "samplePropertyInMultipleKeyVault"
+  value        = "key_vault_secret_02: samplePropertyInMultipleKeyVault: value"
   key_vault_id = azurerm_key_vault.kv_account_02.id
 }

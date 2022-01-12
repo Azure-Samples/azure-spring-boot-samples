@@ -126,7 +126,7 @@ mvn clean spring-boot:run
 
 1. Send a POST request to service bus queue
 
-        $ curl -X POST http://localhost:8080/queues?message=hello
+        curl -X POST http://localhost:8080/queues?message=hello
 
 2. Verify in your app’s logs that similar messages were posted:
 
@@ -134,7 +134,7 @@ mvn clean spring-boot:run
         Message 'hello' successfully checkpointed
 3. Send a POST request to service bus topic
 
-        $ curl -X POST http://localhost:8080/topics?message=hello
+        curl -X POST http://localhost:8080/topics?message=hello
 
 4. Verify in your app’s logs that similar messages were posted:
 

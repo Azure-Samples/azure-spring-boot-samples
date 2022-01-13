@@ -11,7 +11,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class ApplicationConfiguration {
 
     @Bean
-    public static WebClient webClient(ClientRegistrationRepository clientRegistrationRepository,
+    public WebClient webClient(ClientRegistrationRepository clientRegistrationRepository,
                                       OAuth2AuthorizedClientRepository authorizedClientRepository) {
         ServletOAuth2AuthorizedClientExchangeFilterFunction function =
             new ServletOAuth2AuthorizedClientExchangeFilterFunction(clientRegistrationRepository,

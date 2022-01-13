@@ -11,15 +11,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SampleApplication implements CommandLineRunner {
 
-    @Value("${spring-data-source-url}")
-    private String springDataSourceUrl;
+    @Value("${sampleProperty}")
+    private String sampleProperty;
 
     public static void main(String[] args) {
         SpringApplication.run(SampleApplication.class, args);
     }
 
-    public void run(String[] args) {
-        System.out.println("property springDataSourceUrl in Azure Key Vault: " + springDataSourceUrl);
+    @Override
+    public void run(String... args) {
+        System.out.println("sampleProperty: " + sampleProperty);
     }
-
 }

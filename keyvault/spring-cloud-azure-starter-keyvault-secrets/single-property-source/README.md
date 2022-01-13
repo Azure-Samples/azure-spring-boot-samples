@@ -117,7 +117,7 @@ mvn clean spring-boot:run
 Start the application, you will see a log like this:
 
 ```text
-property springDataSourceUrl in Azure Key Vault: this is a test value
+sampleProperty: kv: sampleProperty: value
 ```
 
 ## Clean Up Resources

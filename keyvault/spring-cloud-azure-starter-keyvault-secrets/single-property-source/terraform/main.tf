@@ -76,7 +76,7 @@ resource "azurerm_key_vault" "kv_account" {
 }
 
 resource "azurerm_key_vault_secret" "kv" {
-  name         = "spring-data-source-url"
-  value        = "this is a test value"
+  name         = "sampleProperty"
+  value        = "kv: sampleProperty: value"
   key_vault_id = azurerm_key_vault.kv_account.id
 }

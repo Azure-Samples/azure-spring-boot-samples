@@ -1,0 +1,19 @@
+# Please fill these placeholders before running this application:
+# 1. ${TENANT-ID}
+# 2. ${RESOURCE-SERVER-2-CLIENT-ID}
+
+logging:
+  level:
+    root: DEBUG
+server:
+  port: 8082
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://login.microsoftonline.com/${TENANT-ID}/discovery/v2.0/keys
+          issuer-uri: https://login.microsoftonline.com/${TENANT-ID}/v2.0
+          audiences: ${RESOURCE-SERVER-2-CLIENT-ID}
+  profiles:
+    active: develop

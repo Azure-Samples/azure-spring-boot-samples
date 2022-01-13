@@ -18,7 +18,8 @@ public class ResourceServer1Controller {
     }
 
     @GetMapping("/resource-server-1")
-    public String hello(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
+    public String hello(
+        @RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8081")
@@ -29,7 +30,8 @@ public class ResourceServer1Controller {
     }
 
     @GetMapping("/resource-server-1/resource-server-2")
-    public String resourceServer2hello(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
+    public String resourceServer2hello(
+        @RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8081/resource-server-2")

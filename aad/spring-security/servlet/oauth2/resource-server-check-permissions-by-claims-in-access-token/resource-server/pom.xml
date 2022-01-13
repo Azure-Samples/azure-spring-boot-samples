@@ -11,7 +11,7 @@
     <relativePath>../../../../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>servlet-oauth2-resourc-server-check-permissions-by-claims-in-access-token-resource-server-application</artifactId>
+  <artifactId>servlet-oauth2-resource-server-check-permissions-by-claims-in-access-token-resource-server-application</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
   <name>Spring-Security Sample: Servlet: OAuth2: Resource Server Check Permissions by Claims in Access Token: Resource Server Application</name>

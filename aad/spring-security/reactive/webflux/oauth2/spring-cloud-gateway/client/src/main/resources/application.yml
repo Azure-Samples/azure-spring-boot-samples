@@ -1,0 +1,35 @@
+# Please fill these placeholders before running this application:
+# 1. ${TENANT-ID}
+# 2. ${CLIENT-1-CLIENT-ID}
+# 3. ${CLIENT-1-CLIENT-SECRET}
+# 4. ${RESOURCE-SERVER-1-CLIENT-ID}
+# 5. ${RESOURCE-SERVER-2-CLIENT-ID}
+
+logging:
+  level:
+    root: DEBUG
+server:
+  port: 8080
+spring:
+  security:
+    oauth2:
+      client:
+        provider: # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2login-common-oauth2-provider
+          azure-active-directory:
+            issuer-uri: https://login.microsoftonline.com/${TENANT-ID}/v2.0 # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#webflux-oauth2-login-openid-provider-configuration
+            user-name-attribute: name
+        registration:
+          client-1-resource-server-1:
+            provider: azure-active-directory
+            client-name: client-1-resource-server-1
+            client-id: ${CLIENT-1-CLIENT-ID}
+            client-secret: ${CLIENT-1-CLIENT-SECRET}
+            scope: api://${RESOURCE-SERVER-1-CLIENT-ID}/resource-server-1.scope-1
+          client-1-resource-server-2:
+            provider: azure-active-directory
+            client-name: client-1-resource-server-2
+            client-id: ${CLIENT-1-CLIENT-ID}
+            client-secret: ${CLIENT-1-CLIENT-SECRET}
+            scope: api://${RESOURCE-SERVER-2-CLIENT-ID}/resource-server-2.scope-1
+  profiles:
+    active: develop

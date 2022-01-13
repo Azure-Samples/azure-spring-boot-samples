@@ -10,7 +10,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class AADSampleConfiguration {
 
     @Bean
-    public static WebClient webClient(OAuth2AuthorizedClientManager oAuth2AuthorizedClientManager) {
+    public WebClient webClient(OAuth2AuthorizedClientManager oAuth2AuthorizedClientManager) {
         ServletOAuth2AuthorizedClientExchangeFilterFunction function =
             new ServletOAuth2AuthorizedClientExchangeFilterFunction(oAuth2AuthorizedClientManager);
         return WebClient.builder()

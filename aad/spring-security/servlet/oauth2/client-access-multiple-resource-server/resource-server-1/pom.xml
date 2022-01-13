@@ -11,7 +11,7 @@
     <relativePath>../../../../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>servlet-oauth2-client-access-multiple-resource-server-resourc-server-1-application</artifactId>
+  <artifactId>servlet-oauth2-client-access-multiple-resource-server-resource-server-1-application</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
   <name>Spring-Security Sample: Servlet: OAuth2: Client Access Multiple Resource Server: Resource Server 1 Application</name>

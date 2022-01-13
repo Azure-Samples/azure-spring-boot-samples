@@ -6,7 +6,6 @@ a queue binder and a topic binder..The sample app has two operating modes. One w
 another way is to automatically provide string messages. These messages are published to a service bus.
 The sample will also consume messages from the same service bus.
 
-
 ## What You Will Build
 You will build an application using Spring Cloud Stream to send and receive messages for multiple Azure Service Bus namespaces.
 
@@ -78,9 +77,6 @@ terraform -chdir=./terraform apply
 
 ```
 
-
-
-
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell
@@ -124,13 +120,11 @@ Running the command below to export environment values:
 
 In your terminal, run `mvn clean spring-boot:run`.
 
-
 ```shell
 mvn clean spring-boot:run
 ```
 
 ## Verify This Sample
-
 
 1.  Verify in your app’s logs that similar messages were posted:
 
@@ -148,10 +142,12 @@ Message 'Hello world2, 3' successfully checkpointed
 Message 'Hello world2, 5' successfully checkpointed
 ...
 ...
-```
-        [2] New message2 received: 'hello'
-        [2] Message2 'hello' successfully checkpointed
 
+Sending message2...
+...
+New message2 received...
+
+```
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.

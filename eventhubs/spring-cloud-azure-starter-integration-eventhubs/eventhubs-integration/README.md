@@ -1,158 +1,159 @@
-# Spring Cloud Azure Starter Integration for Event Hubs Code Sample shared library for Java
+# Using Spring Integration for Azure Event Hubs
 
-## Key concepts
+This sample demonstrates how to use `Spring Integration` for `Azure Event Hubs`.
 
-This sample demonstrates how to use `Spring Integration` for `Azure
-Event Hubs`.
+## What You Will Build
+You will build an application to send and receive messages for Event Hubs using Spring Integration.
 
+## What You Need
 
-## Getting started
+- [An Azure subscription](https://azure.microsoft.com/free/)
+- [Terraform](https://www.terraform.io/)
+- [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
+- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
+- Maven
+- You can also import the code straight into your IDE:
+    - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
-Running this sample will be charged by Azure. You can check the usage and bill at
-[this link][azure-account].
+## Provision Azure Resources Required to Run This Sample
+This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
+> [!IMPORTANT]  
+> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
+> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
 
+### Authenticate Using the Azure CLI
+Terraform must authenticate to Azure to create infrastructure.
 
-### Create Azure resources
+In your terminal, use the Azure CLI tool to setup your account permissions locally.
 
-1. Create [Azure Event Hubs][create-event-hubs].
-    After creating the Azure Event Hubs, you
-    can create your own Consumer Group or use the default "$Default" Consumer Group.
+```shell
+az login
+```
 
-2. Create [Azure Storage][create-azure-storage] for checkpoint use.
+Your browser window will open and you will be prompted to enter your Azure login credentials. After successful authentication, your terminal will display your subscription information. You do not need to save this output as it is saved in your system for Terraform to use.
 
-### Configuration credential options
+```shell
+You have logged in. Now let us find all the subscriptions to which you have access...
 
-We have several ways to config the Spring Integration for Event Hubs. You can choose anyone of them.
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "home-Tenant-Id",
+    "id": "subscription-id",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Subscription-Name",
+    "state": "Enabled",
+    "tenantId": "0envbwi39-TenantId",
+    "user": {
+      "name": "your-username@domain.com",
+      "type": "user"
+    }
+  }
+]
+```
 
->[!Important]
->
->  When using the Restful API to send messages, the **Active profiles** must contain `manual`.
-> 
-#### Method 1: Connection string based usage
+If you have more than one subscription, specify the subscription-id you want to use with command below: 
+```shell
+az account set --subscription <your-subscription-id>
+```
 
-1. Update [application.yaml][application.yaml].
-    ```yaml
-    spring:
-      cloud:
-        azure:
-          eventhubs:
-            connection-string: ${AZURE_EVENTHUBS_CONNECTION_STRING}
-            processor:
-              checkpoint-store:
-                container-name: ${AZURE_STORAGE_CONTAINER_NAME}
-                account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
-                account-key: ${AZURE_STORAGE_ACCOUNT_KEY}
-    ```
+### Provision the Resources
 
-1.  Update event hub name and consumer group in
-    [ReceiveController][receive-controller] and [SendController][send-controller].
+After login Azure CLI with your account, now you can use the terraform script to create Azure Resources.
 
-#### Method 2: Service principal based usage
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=./terraform init
 
-1. Create a service principal for use in by your app. Please follow
-    [create service principal from Azure CLI][create-sp-using-azure-cli].
+# Apply your Terraform Configuration
+# Type `yes` at the confirmation prompt to proceed.
+terraform -chdir=./terraform apply
 
-2. Add Role Assignment for Event Hubs. See
-    [Service principal for Azure resources with Event Hubs][role-assignment]
-    to add role assignment for Event Hubs. Assign `Contributor` role for event hubs.
-
-3. Update [application-sp.yaml][application-sp.yaml].
-    ```yaml
-    spring:
-      cloud:
-        azure:
-          profile:
-            tenant-id: ${AZURE_TENANT_ID}
-          credential:
-            client-id: ${AZURE_CLIENT_ID}
-            client-secret: ${AZURE_CLIENT_SECRET}
-          eventhubs:
-            namespace: ${AZURE_EVENTHUBS_NAMESPACE}
-            processor:
-              checkpoint-store:
-                container-name: ${AZURE_STORAGE_CONTAINER_NAME}
-                account-name:  ${AZURE_STORAGE_ACCOUNT_NAME}
-    ```
-    > We should specify `spring.profiles.active=sp` to run the Spring Boot application.
-    For App Service, please add a configuration entry for this.
-#### Method 3: MSI credential based usage
-
-##### Set up managed identity
-
-Please follow [create managed identity][create-managed-identity] to set up managed identity.
-
-##### Add Role Assignment for Event Hubs
-
-1.  See [Managed identities for Azure resources with Event Hubs][role-assignment]
-    to add role assignment for Event Hubs. Assign `Contributor` role for managed identity.
+```
 
 
-##### Update MSI related properties
-
-1.  Update [application-mi.yaml][application-mi.yaml].
-    ```yaml
-    spring:
-      cloud:
-        azure:
-          credential:
-            managed-identity-client-id: ${AZURE_MANAGED_IDENTITY_CLIENT_ID}
-          profile:
-            tenant-id: ${AZURE_TENANT_ID}
-          eventhubs:
-            namespace: ${AZURE_EVENTHUBS_NAMESPACE}
-            processor:
-              checkpoint-store:
-                container-name: ${AZURE_STORAGE_CONTAINER_NAME}
-                account-name:  ${AZURE_STORAGE_ACCOUNT_NAME}
-    ```
-    > We should specify `spring.profiles.active=mi` to run the Spring Boot application.
-    For App Service, please add a configuration entry for this.
-
-##### Redeploy Application
-
-If you update the `spring.cloud.azure.credential.managed-identity-client-id`
-property after deploying the app, or update the role assignment for
-services, please try to redeploy the app again.
-
-> You can follow
-> [Deploy a Spring Boot JAR file to Azure App Service][deploy-spring-boot-application-to-app-service]
-> to deploy this application to App Service
-
-## Examples
-
-1. Run the `mvn spring-boot:run` in the root of the code sample to get the app running.
-
-2. Send a POST request
-
-        $ ~~curl -X POST http://localhost:8080/messages?message=hello~~
-
-3. Verify in your app’s logs that a similar message was posted:
-
-        New message received: 'hello'
-        Message 'hello' successfully checkpointed
-
-4. Delete the resources on [Azure Portal][azure-portal] to avoid unexpected charges.
 
 
-## Troubleshooting
+It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
-## Next steps
-
-## Contributing
+```shell
 
 
-<!-- LINKS -->
-[azure-account]: https://azure.microsoft.com/account/
-[azure-portal]: https://ms.portal.azure.com/
-[create-event-hubs]: https://docs.microsoft.com/azure/event-hubs/
-[create-azure-storage]: https://docs.microsoft.com/azure/storage/
-[create-managed-identity]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-managed-identity.md
-[create-sp-using-azure-cli]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0/create-sp-using-azure-cli.md
-[eventhub-operation]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-integration-eventhubs/src/spring-cloud-azure_4.0/java/com/azure/spring/integration/eventhub/api/EventHubOperation.java
-[receive-controller]: src/main/java/com/azure/spring/sample/eventhubs/ReceiveController.java
-[send-controller]: src/main/java/com/azure/spring/sample/eventhubs/SendController.java
-[application.yaml]: src/main/resources/application.yaml
-[application-sp.yaml]: src/main/resources/application-sp.yaml
-[application-mi.yaml]: src/main/resources/application-mi.yaml
-[deploy-spring-boot-application-to-app-service]: https://docs.microsoft.com/java/azure/spring-framework/deploy-spring-boot-java-app-with-maven-plugin?toc=%2Fazure%2Fapp-service%2Fcontainers%2Ftoc.json&view=azure-java-stable
+azurerm_resource_group.main: Creating...
+azurerm_resource_group.main: Creation complete after 3s ...
+azurerm_storage_account.storage_account: Creating...
+azurerm_eventhub_namespace.eventhubs_namespace: Still creating... [10s elapsed]
+...
+azurerm_storage_account.storage_account: Creation complete after 38s ...
+azurerm_storage_container.storage_container: Creating...
+azurerm_role_assignment.role_storage_account_contributor: Creating...
+azurerm_storage_container.storage_container: Creation complete after 1s ...
+azurerm_role_assignment.role_storage_blob_data_owner: Creating...
+...
+azurerm_role_assignment.role_storage_blob_data_owner: Creation complete after 25s ...
+azurerm_role_assignment.role_storage_account_contributor: Creation complete after 29s ...
+...
+azurerm_eventhub_namespace.eventhubs_namespace: Creation complete after 1m23s ...
+azurerm_eventhub.eventhubs: Creating...
+azurerm_eventhub.eventhubs: Creation complete after 7s ...
+azurerm_role_assignment.role_eventhubs_data_owner: Creating...
+...
+azurerm_role_assignment.role_eventhubs_data_owner: Creation complete after 24s ...
+
+Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
+
+Outputs:
+...
+
+```
+
+You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
+
+### Export Output to Your Local Environment
+Running the command below to export environment values:
+
+```shell
+ source ./terraform/setup_env.sh
+```
+
+## Run Locally
+
+In your terminal, run `mvn clean spring-boot:run`.
+
+
+```shell
+mvn clean spring-boot:run
+```
+
+## Verify This Sample
+
+1. Send a POST request
+
+```shell
+curl -X POST http://localhost:8080/messages?message=hello 
+```
+
+
+2. Verify in your app’s logs that similar messages were posted:
+
+```shell
+New message received: 'hello'
+Message 'hello' successfully checkpointed 
+```
+        
+
+## Clean Up Resources
+After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
+
+The terraform destroy command terminates resources managed by your Terraform project.   
+To destroy the resources you created.
+
+```shell
+terraform -chdir=./terraform destroy
+```
+
+
+
 

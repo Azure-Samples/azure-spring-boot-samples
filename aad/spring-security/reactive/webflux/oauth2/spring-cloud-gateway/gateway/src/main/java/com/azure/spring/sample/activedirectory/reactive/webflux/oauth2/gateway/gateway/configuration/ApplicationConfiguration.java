@@ -24,7 +24,7 @@ import java.util.function.Predicate;
 public class ApplicationConfiguration {
 
     @Value("${spring.security.oauth2.resourceserver.jwt.audiences}")
-    List<String> audiences;
+    private List<String> audiences;
 
     private final OAuth2ResourceServerProperties.Jwt properties;
 

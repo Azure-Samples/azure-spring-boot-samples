@@ -106,7 +106,6 @@ Running the command below to export environment values:
 
 In your terminal, run `mvn clean spring-boot:run`.
 
-
 ```shell
 mvn clean spring-boot:run
 ```
@@ -114,13 +113,13 @@ mvn clean spring-boot:run
 ## Verify This Sample
 Send a POST request to update file contents:
 ```shell
-$ curl http://localhost:8080/blob -d "new message" -H "Content-Type: text/plain"
+curl http://localhost:8080/blob -d "new message" -H "Content-Type: text/plain"
 ```
 
 Verify by sending a GET request
 
 ```shell
-$ curl -XGET http://localhost:8080/blob
+curl -XGET http://localhost:8080/blob
 ```
 
 ## Clean Up Resources

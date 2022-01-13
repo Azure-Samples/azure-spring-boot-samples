@@ -28,8 +28,8 @@ resource "azurerm_resource_group" "main" {
 
   tags = {
     "spring-cloud-azure-sample" = var.sample_tag_value
-    "terraform"        = "true"
-    "application-name" = var.application_name
+    "terraform"                 = "true"
+    "application-name"          = var.application_name
   }
 }
 
@@ -51,8 +51,8 @@ resource "azurerm_storage_account" "application" {
 
   tags = {
     "spring-cloud-azure-sample" = var.sample_tag_value
-    "terraform"        = "true"
-    "application-name" = var.application_name
+    "terraform"                 = "true"
+    "application-name"          = var.application_name
   }
 }
 
@@ -65,7 +65,7 @@ resource "azurerm_storage_container" "application" {
   container_access_type = "container"
 }
 
-resource "azurerm_role_assignment" "storage_blob_contributor" {
+resource "azurerm_role_assignment" "role_storage_blob_data_contributor" {
   scope                = azurerm_storage_container.application.resource_manager_id
   role_definition_name = "Storage Blob Data Contributor"
   principal_id         = data.azurerm_client_config.current.object_id

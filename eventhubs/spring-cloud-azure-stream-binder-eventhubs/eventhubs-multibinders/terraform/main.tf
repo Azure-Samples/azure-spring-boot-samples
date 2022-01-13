@@ -130,7 +130,7 @@ resource "azurerm_storage_account" "storage_account" {
 
 # resource storage container
 resource "azurerm_storage_container" "storage_container" {
-  name                  = "eventhubs-integration-sample"
+  name                  = "eventhubs-multibinders-sample"
   storage_account_name  = azurerm_storage_account.storage_account.name
   container_access_type = "container"
 }

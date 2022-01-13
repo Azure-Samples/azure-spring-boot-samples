@@ -33,22 +33,22 @@ Get samples applications from in GitHub: [spring-cloud-gateway](../../../../reac
 # 3. Create resources in Azure
 
 ## 3.1. Create a tenant
-Read [document about creating an Azure AD tenant](https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant), create a new tenant. Get the tenant-id: **${tenant-id}**.
+Read [document about creating an Azure AD tenant](https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant), create a new tenant. Get the tenant-id: **${TENANT-ID}**.
 
 ## 3.2. Add a new user
 Read [document about adding users](https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory), add a new user: **user-1@${tenant-name}.com**. Get the user's password.
 
 ## 3.3. Register client-1
-Read [document about registering an application](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app), register an application named **client-1**. Get the client-id: **${client-1-client-id}**.
+Read [document about registering an application](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app), register an application named **client-1**. Get the client-id: **${CLIENT-1-CLIENT-ID}**.
 
 ## 3.4. Add a client secret for client-1
-Read [document about adding a client secret](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-client-secret), add a client secret. Get the client-secret value: **${client-1-client-secret}**.
+Read [document about adding a client secret](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-client-secret), add a client secret. Get the client-secret value: **${CLIENT-1-CLIENT-SECRET}**.
 
 ## 3.5. Add a redirect URI for client-1
 Read [document about adding a redirect URI](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-redirect-uri), add 2 redirect URIs: **http://localhost:8080/login/oauth2/code/client-1-resource-server-1**, **http://localhost:8080/login/oauth2/code/client-1-resource-server-2**.
 
 ## 3.6. Register resource-server-1
-Read [document about registering an application](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app), register an application named **resource-server-1**. Get the client-id: **${resource-server-1-client-id}**.
+Read [document about registering an application](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app), register an application named **resource-server-1**. Get the client-id: **${RESOURCE-SERVER-1-CLIENT-ID}**.
 
 ## 3.7. Expose apis for resource-server-1
 Read [document about exposing an api](https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis), expose 2 scopes for resource-server-1: **resource-server-1.scope-1** and **resource-server-1.scope-2**, choose **Admins and users** for **Who can consent** option.
@@ -57,7 +57,7 @@ Read [document about exposing an api](https://docs.microsoft.com/azure/active-di
 Read [document about Application manifest](https://docs.microsoft.com/azure/active-directory/develop/reference-app-manifest#accesstokenacceptedversion-attribute), set `accessTokenAcceptedVersion` to `2`.
 
 ## 3.9. Register resource-server-2
-Read [document about registering an application](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app), register an application named **resource-server-2**. Get the client-id: **${resource-server-2-client-id}**.
+Read [document about registering an application](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app), register an application named **resource-server-2**. Get the client-id: **${RESOURCE-SERVER-2-CLIENT-ID}**.
 
 ## 3.10. Expose apis for resource-server-2
 Read [document about exposing an api](https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis), expose 2 scopes for resource-server-2: **resource-server-2.scope-1** and **resource-server-2.scope-2**, choose **Admins and users** for **Who can consent** option.

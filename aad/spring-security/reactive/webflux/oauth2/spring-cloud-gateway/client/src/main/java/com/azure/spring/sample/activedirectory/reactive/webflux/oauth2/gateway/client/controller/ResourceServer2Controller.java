@@ -19,7 +19,8 @@ public class ResourceServer2Controller {
     }
 
     @GetMapping("/resource-server-2")
-    public Mono<String> hello(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-2") OAuth2AuthorizedClient client1ResourceServer1) {
+    public Mono<String> hello(
+        @RegisteredOAuth2AuthorizedClient("client-1-resource-server-2") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8083/resource-server-2")

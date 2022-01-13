@@ -18,7 +18,8 @@ public class ResourceServerController {
     }
 
     @GetMapping("/resource-server-1")
-    public String hello(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
+    public String hello(
+        @RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8081/")
@@ -29,7 +30,8 @@ public class ResourceServerController {
     }
 
     @GetMapping("/resource-server-1/scope/resource-server-1-scope-1")
-    public String resourceServer1Scope1(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
+    public String resourceServer1Scope1(
+        @RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8081/scope/resource-server-1-scope-1")
@@ -40,7 +42,8 @@ public class ResourceServerController {
     }
 
     @GetMapping("/resource-server-1/scope/resource-server-1-scope-2")
-    public String resourceServer1Scope2(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
+    public String resourceServer1Scope2(
+        @RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8081/scope/resource-server-1-scope-2")
@@ -51,7 +54,8 @@ public class ResourceServerController {
     }
 
     @GetMapping("/resource-server-1/role/resource-server-1-role-1")
-    public String resourceServer1Role1(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
+    public String resourceServer1Role1(
+        @RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8081/role/resource-server-1-role-1")
@@ -62,7 +66,8 @@ public class ResourceServerController {
     }
 
     @GetMapping("/resource-server-1/role/resource-server-1-role-2")
-    public String resourceServer1Role2(@RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
+    public String resourceServer1Role2(
+        @RegisteredOAuth2AuthorizedClient("client-1-resource-server-1") OAuth2AuthorizedClient client1ResourceServer1) {
         return webClient
             .get()
             .uri("http://localhost:8081/role/resource-server-1-role-2")

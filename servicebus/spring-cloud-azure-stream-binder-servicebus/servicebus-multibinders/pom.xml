@@ -13,7 +13,7 @@
   <artifactId>spring-cloud-azure-sample-stream-binder-servicebus-multiple</artifactId>
   <groupId>com.azure.spring</groupId>
   <version>1.0.0</version>
-  <name>Spring Cloud Azure Sample Service Bus Queue Multiple Binders</name>
+  <name>Communicate to Multiple Service Bus Namespaces via Spring Cloud Stream</name>
 
   <dependencies>
     <dependency>

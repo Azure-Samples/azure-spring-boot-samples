@@ -2,12 +2,11 @@ spring:
   cloud:
     azure:
       eventhubs:
-        connection-string: ${AZURE_EVENTHUBS_CONNECTION_STRING}
+        namespace: ${AZURE_EVENTHUBS_NAMESPACE}
         processor:
           checkpoint-store:
             container-name: ${AZURE_STORAGE_CONTAINER_NAME}
-            account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
-            account-key: ${AZURE_STORAGE_ACCOUNT_KEY}
+            account-name:  ${AZURE_STORAGE_ACCOUNT_NAME}
     stream:
       function:
         definition: consume;supply
@@ -16,7 +15,7 @@ spring:
           destination: ${AZURE_EVENTHUB_NAME}
           group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
         supply-out-0:
-          destination: ${SAME_AS_ABOVE_DESTINATION}
+          destination: ${AZURE_EVENTHUB_NAME}
       eventhubs:
         bindings:
           consume-in-0:

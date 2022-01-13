@@ -24,7 +24,7 @@ output "object_id" {
 }
 
 output "cosmos_database_name" {
-  value       = var.cosmos_database_name
+  value = var.cosmos_database_name
 }
 
 

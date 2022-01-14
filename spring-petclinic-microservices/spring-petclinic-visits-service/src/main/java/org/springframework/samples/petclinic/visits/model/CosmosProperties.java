@@ -6,14 +6,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @Getter
 @Setter
-@ConfigurationProperties(prefix = "azure.cosmos")
+@ConfigurationProperties(prefix = "spring.cloud.azure.cosmos")
 class CosmosProperties {
 
-  private String uri;
+  private String endpoint;
 
   private String key;
-
-  private String secondaryKey;
 
   private String database;
 

@@ -35,7 +35,6 @@
     <docker.plugin.version>1.2.2</docker.plugin.version>
     <spring-boot-admin.version>2.5.5</spring-boot-admin.version>
     <spring-cloud-azure.version>4.0.0-beta.2</spring-cloud-azure.version>
-    <azure-spring-data-cosmos.version>3.16.0</azure-spring-data-cosmos.version><!-- {x-version-update;com.azure:azure-spring-data-cosmos;dependency} -->
   </properties>
 
   <dependencyManagement>
@@ -48,9 +47,9 @@
         <scope>import</scope>
       </dependency>
       <dependency>
-        <groupId>com.azure</groupId>
-        <artifactId>azure-spring-data-cosmos</artifactId>
-        <version>${azure-spring-data-cosmos.version}</version>
+        <groupId>com.azure.spring</groupId>
+        <artifactId>spring-cloud-azure-starter-data-cosmos</artifactId>
+        <version>${spring-cloud-azure.version}</version>
       </dependency>
       <dependency>
         <groupId>com.azure.spring</groupId>

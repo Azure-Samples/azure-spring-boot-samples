@@ -50,7 +50,7 @@ public class CustomersAppConfiguration extends AbstractCosmosConfiguration {
     DirectConnectionConfig directConnectionConfig = new DirectConnectionConfig();
     GatewayConnectionConfig gatewayConnectionConfig = new GatewayConnectionConfig();
     return new CosmosClientBuilder()
-        .endpoint(properties.getUri())
+        .endpoint(properties.getEndpoint())
         .credential(azureKeyCredential)
         .directMode(directConnectionConfig, gatewayConnectionConfig);
   }
@@ -64,7 +64,7 @@ public class CustomersAppConfiguration extends AbstractCosmosConfiguration {
   }
 
   public void switchToSecondaryKey() {
-    this.azureKeyCredential.update(properties.getSecondaryKey());
+    this.azureKeyCredential.update(properties.getKey());
   }
 
   @Override

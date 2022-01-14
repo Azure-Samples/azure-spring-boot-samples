@@ -13,12 +13,22 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.channel.DirectChannel;
 import org.springframework.messaging.MessageChannel;
 
+/**
+ * Configuration Class for EventHubIntegration sample.
+ */
 @Configuration
 public class EventHubIntegrationConfiguration {
     private static final String INPUT_CHANNEL = "input";
     private static final String EVENTHUB_NAME = "eh1";
     private static final String CONSUMER_GROUP = "$Default";
 
+    /**
+     * {@link EventHubsInboundChannelAdapter} binding with {@link MessageChannel} has name {@value INPUT_CHANNEL}
+     *
+     * @param inputChannel the MessageChannel binding with EventHubsInboundChannelAdapter
+     * @param processorContainer instance of EventHubsProcessorContainer
+     * @return instance of EventHubsInboundChannelAdapter
+     */
     @Bean
     public EventHubsInboundChannelAdapter messageChannelAdapter(
             @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel,
@@ -32,6 +42,11 @@ public class EventHubIntegrationConfiguration {
         return adapter;
     }
 
+    /**
+     * {@link MessageChannel} with name {@value INPUT_CHANNEL}
+     *
+     * @return {@link MessageChannel}
+     */
     @Bean
     public MessageChannel input() {
         return new DirectChannel();

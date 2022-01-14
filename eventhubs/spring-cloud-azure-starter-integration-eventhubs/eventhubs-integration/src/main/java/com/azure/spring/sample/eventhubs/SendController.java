@@ -40,9 +40,14 @@ public class SendController {
         return message;
     }
 
-    @Bean
-    @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
-    public MessageHandler messageSender(EventHubsTemplate queueOperation) {
+  /**
+   * This message sender binds with {@link MessagingGateway} via {@link MessageChannel} has name
+   * {@value OUTPUT_CHANNEL}
+   *
+   */
+  @Bean
+  @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
+  public MessageHandler messageSender(EventHubsTemplate queueOperation) {
         DefaultMessageHandler handler = new DefaultMessageHandler(EVENTHUB_NAME, queueOperation);
         handler.setSendCallback(new ListenableFutureCallback<Void>() {
             @Override

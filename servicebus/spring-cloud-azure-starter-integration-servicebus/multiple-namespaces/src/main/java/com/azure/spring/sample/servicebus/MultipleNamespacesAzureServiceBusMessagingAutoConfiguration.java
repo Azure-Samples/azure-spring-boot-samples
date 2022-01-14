@@ -91,6 +91,13 @@ public class MultipleNamespacesAzureServiceBusMessagingAutoConfiguration {
         }
     }
 
+    /**
+     * {@link ServiceBusInboundChannelAdapter} binding with {@link MessageChannel} has name {@value INPUT_CHANNEL}
+     *
+     * @param inputChannel the MessageChannel binding with ServiceBusInboundChannelAdapter
+     * @param processorContainer instance of ServiceBusProcessorContainer
+     * @return instance of ServiceBusInboundChannelAdapter
+     */
     @Bean
     public ServiceBusInboundChannelAdapter queueMessageChannelAdapter(
             @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel, ServiceBusProcessorContainer processorContainer) {
@@ -100,6 +107,11 @@ public class MultipleNamespacesAzureServiceBusMessagingAutoConfiguration {
         return adapter;
     }
 
+    /**
+     * {@link MessageChannel} with name {@value INPUT_CHANNEL}
+     *
+     * @return {@link MessageChannel}
+     */
     @Bean(name = INPUT_CHANNEL)
     public MessageChannel input() {
         return new DirectChannel();

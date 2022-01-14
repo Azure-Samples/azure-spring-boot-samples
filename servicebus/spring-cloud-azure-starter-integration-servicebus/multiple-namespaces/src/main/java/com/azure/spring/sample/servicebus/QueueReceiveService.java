@@ -47,6 +47,14 @@ public class QueueReceiveService {
         this.messagingGateway.send(message);
     }
 
+
+    /**
+     * Get messages from {@link MessageChannel} with name {@value OUTPUT_CHANNEL_QUEUE2}
+     * and send messages to queue with name {@value FORWARD_QUEUE_NAME}.
+     *
+     * @param serviceBusTemplate template to send messages
+     * @return instance of {@link MessageChannel}
+     */
     @Bean
     @ServiceActivator(inputChannel = OUTPUT_CHANNEL_QUEUE2)
     public MessageHandler queueMessageForwarder(ServiceBusTemplate serviceBusTemplate) {

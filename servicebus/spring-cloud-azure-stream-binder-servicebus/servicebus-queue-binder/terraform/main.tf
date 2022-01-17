@@ -54,8 +54,8 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace" {
 }
 
 resource "azurerm_servicebus_queue" "queue" {
-  name                = "que001"
-  namespace_id      = azurerm_servicebus_namespace.servicebus_namespace.id
+  name         = "que001"
+  namespace_id = azurerm_servicebus_namespace.servicebus_namespace.id
 
   enable_partitioning   = false
   max_delivery_count    = 10

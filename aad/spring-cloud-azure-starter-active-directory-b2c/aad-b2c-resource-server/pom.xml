@@ -10,10 +10,10 @@
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
-  <groupId>com.azure.spring</groupId>
   <artifactId>spring-cloud-azure-starter-active-directory-b2c-resource-server</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
+
   <name>Spring-Cloud-Azure-Starter-Active-Directory-B2C Sample: Resource Server</name>
 
   <dependencyManagement>

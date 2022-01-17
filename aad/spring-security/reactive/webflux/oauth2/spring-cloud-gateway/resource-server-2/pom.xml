@@ -14,6 +14,7 @@
   <artifactId>spring-security-sample-reactive-webflux-oauth2-spring-cloud-gateway-resource-server-2-application</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
+
   <name>Spring Security Sample: Reactive: Webflux: OAuth2: Spring Cloud Gateway: Resource Server 2 Application</name>
 
   <dependencies>

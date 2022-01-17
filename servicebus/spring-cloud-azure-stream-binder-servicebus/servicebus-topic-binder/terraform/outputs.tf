@@ -11,6 +11,4 @@ output "AZURE_SERVICEBUS_TOPIC_NAME" {
 output "AZURE_SERVICEBUS_TOPIC_SUBSCRIPTION_NAME" {
   value       = azurerm_servicebus_subscription.servicebus_subscription.name
   description = "The name of created subscription in the service bus namespace."
-
 }
-

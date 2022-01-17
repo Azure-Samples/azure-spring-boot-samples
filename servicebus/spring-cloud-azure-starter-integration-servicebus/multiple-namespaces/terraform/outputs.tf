@@ -7,5 +7,3 @@ output "AZURE_SERVICEBUS_NAMESPACE_02" {
   value       = azurerm_servicebus_namespace.servicebus_namespace_02.name
   description = "The name of servicebus_02 namespace."
 }
-
-

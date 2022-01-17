@@ -27,5 +27,3 @@ variable "topic_client_id" {
   description = "The topic client id."
   default     = "topic-client-id"
 }
-
-

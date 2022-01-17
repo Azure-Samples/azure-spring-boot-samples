@@ -114,4 +114,3 @@ resource "azurerm_role_assignment" "role_servicebus_data_owner_02" {
   role_definition_name = "Azure Service Bus Data Owner"
   principal_id         = data.azurerm_client_config.client_config.object_id
 }
-

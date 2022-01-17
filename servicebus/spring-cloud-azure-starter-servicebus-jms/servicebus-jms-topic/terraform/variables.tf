@@ -1,7 +1,7 @@
 variable "application_name" {
   type        = string
   description = "The name of your application."
-  default     = "multiple-namespaces-servicebus"
+  default     = "servicebus-jms-topic"
 }
 
 variable "location" {
@@ -14,4 +14,10 @@ variable "sample_tag_value" {
   type        = string
   description = "The value of spring-cloud-azure-sample tag."
   default     = "true"
+}
+
+variable "pricing_tier" {
+  type        = string
+  description = "The pricing tier of Service Bus."
+  default     = "Standard"
 }

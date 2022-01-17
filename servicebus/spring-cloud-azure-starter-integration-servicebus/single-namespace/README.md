@@ -73,24 +73,34 @@ terraform -chdir=./terraform apply
 
 ```
 
-
-
-
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell
-
+azurecaf_name.servicebus: Creating...
+azurecaf_name.topic: Creating...
+azurecaf_name.resource_group: Creating...
+azurecaf_name.resource_group: Creation complete after 0s [id=mvwycgvrvqxrbyiy]
+azurecaf_name.servicebus: Creation complete after 0s [id=kfvxhnbckoaabrfh]
+azurecaf_name.topic: Creation complete after 0s [id=tixdrtltwgohxbde]
 ...
-azurerm_servicebus_namespace_authorization_rule.application: Creation complete after 13s ...
-azurerm_servicebus_subscription.application: Creation complete after 7s ...
-azurerm_role_assignment.servicebus_data_owner: Still creating... [20s elapsed]
-azurerm_role_assignment.servicebus_data_owner: Creation complete after 28s ...
+azurerm_servicebus_namespace.servicebus_namespace: Creating...
+...
+azurerm_servicebus_namespace.servicebus_namespace: ...
+azurerm_servicebus_queue.application: Creating...
+azurerm_servicebus_topic.application: Creating...
+azurerm_role_assignment.role_servicebus_data_owner: Creating...
+...
+azurerm_servicebus_subscription.application: Creating...
+azurerm_servicebus_queue.application: Creation complete after 9s ...
+...
+azurerm_role_assignment.role_servicebus_data_owner: Still creating... [30s elapsed]
+azurerm_role_assignment.role_servicebus_data_owner: ...
 
-Apply complete! Resources: 11 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 9 added, 0 changed, 0 destroyed.
 
 Outputs:
 
-SERVICEBUS_NAMESPACE = "${YOUR_SERVICEBUS_NAMESPACE}"
+...
 
 ```
 
@@ -116,17 +126,17 @@ mvn clean spring-boot:run
 
 1. Send a POST request to service bus queue
 
-        $ curl -X POST http://localhost:8080/queues?message=hello
+        curl -X POST http://localhost:8080/queues?message=hello
 
-2. Verify in your app’s logs that a similar message was posted:
+2. Verify in your app’s logs that similar messages were posted:
 
         New message received: 'hello'
         Message 'hello' successfully checkpointed
 3. Send a POST request to service bus topic
 
-        $ curl -X POST http://localhost:8080/topics?message=hello
+        curl -X POST http://localhost:8080/topics?message=hello
 
-4. Verify in your app’s logs that a similar message was posted:
+4. Verify in your app’s logs that similar messages were posted:
 
         New message received: 'hello'
         Message 'hello' successfully checkpointed

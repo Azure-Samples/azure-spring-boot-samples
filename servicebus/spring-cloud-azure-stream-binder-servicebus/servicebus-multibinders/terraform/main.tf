@@ -15,6 +15,7 @@ provider "azurerm" {
   features {}
 }
 
+# resource_group
 resource "azurecaf_name" "resource_group" {
   name          = var.application_name
   resource_type = "azurerm_resource_group"
@@ -33,7 +34,10 @@ resource "azurerm_resource_group" "main" {
   }
 }
 
-# =================== servicebus_01 ================
+data "azurerm_client_config" "client_config" {
+}
+
+# servicebus_namespace_01 with topic and subscription
 resource "azurecaf_name" "servicebus_01" {
   name          = var.application_name
   resource_type = "azurerm_servicebus_namespace"
@@ -54,20 +58,26 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace_01" {
   }
 }
 
-resource "azurerm_servicebus_queue" "application_queue_01" {
-  name         = "queue1"
-  namespace_id = azurerm_servicebus_namespace.servicebus_namespace_01.id
-
-  enable_partitioning   = false
-  max_delivery_count    = 10
-  lock_duration         = "PT30S"
-  max_size_in_megabytes = 1024
-  requires_session      = false
-  default_message_ttl   = "P14D"
+resource "azurerm_servicebus_topic" "servicebus_namespace_01_topic" {
+  name                = "tpc001"
+  namespace_id        = azurerm_servicebus_namespace.servicebus_namespace_01.id
 }
 
-# =================== servicebus_02 ================
-resource "azurecaf_name" "servicebus_02" {
+resource "azurerm_servicebus_subscription" "servicebus_namespace_01_sub" {
+  name                = "sub001"
+  topic_id            = azurerm_servicebus_topic.servicebus_namespace_01_topic.id
+
+  max_delivery_count  = 1
+}
+
+resource "azurerm_role_assignment" "role_servicebus_data_owner_01" {
+  scope                = azurerm_servicebus_namespace.servicebus_namespace_01.id
+  role_definition_name = "Azure Service Bus Data Owner"
+  principal_id         = data.azurerm_client_config.client_config.object_id
+}
+
+# servicebus_namespace_02 with queue
+resource "azurecaf_name" "azurecaf_name_servicebus_02" {
   name          = var.application_name
   resource_type = "azurerm_servicebus_namespace"
   random_length = 5
@@ -75,7 +85,7 @@ resource "azurecaf_name" "servicebus_02" {
 }
 
 resource "azurerm_servicebus_namespace" "servicebus_namespace_02" {
-  name                = azurecaf_name.servicebus_02.result
+  name                = azurecaf_name.azurecaf_name_servicebus_02.result
   location            = var.location
   resource_group_name = azurerm_resource_group.main.name
 
@@ -87,9 +97,9 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace_02" {
   }
 }
 
-resource "azurerm_servicebus_queue" "application_queue_02" {
-  name         = "queue2"
-  namespace_id = azurerm_servicebus_namespace.servicebus_namespace_02.id
+resource "azurerm_servicebus_queue" "servicebus_namespace_02_queue" {
+  name                = "que001"
+  namespace_id      = azurerm_servicebus_namespace.servicebus_namespace_02.id
 
   enable_partitioning   = false
   max_delivery_count    = 10
@@ -99,23 +109,8 @@ resource "azurerm_servicebus_queue" "application_queue_02" {
   default_message_ttl   = "P14D"
 }
 
-data "azurerm_client_config" "client_config" {
-}
-
-resource "azurerm_role_assignment" "role_servicebus_01_data_sender" {
-  scope                = azurerm_servicebus_queue.application_queue_01.id
-  role_definition_name = "Azure Service Bus Data Sender"
-  principal_id         = data.azurerm_client_config.client_config.object_id
-}
-
-resource "azurerm_role_assignment" "role_servicebus_01_data_receiver" {
-  scope                = azurerm_servicebus_queue.application_queue_01.id
-  role_definition_name = "Azure Service Bus Data Receiver"
-  principal_id         = data.azurerm_client_config.client_config.object_id
-}
-
-resource "azurerm_role_assignment" "role_servicebus_02_data_sender" {
-  scope                = azurerm_servicebus_queue.application_queue_02.id
-  role_definition_name = "Azure Service Bus Data Sender"
+resource "azurerm_role_assignment" "role_servicebus_data_owner_02" {
+  scope                = azurerm_servicebus_namespace.servicebus_namespace_02.id
+  role_definition_name = "Azure Service Bus Data Owner"
   principal_id         = data.azurerm_client_config.client_config.object_id
 }

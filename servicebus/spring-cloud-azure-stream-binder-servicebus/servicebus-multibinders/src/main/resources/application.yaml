@@ -24,7 +24,7 @@ spring:
               cloud:
                 azure:
                   servicebus:
-                    connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_1}
+                    namespace: ${AZURE_SERVICEBUS_NAMESPACE_01}
         servicebus-2:
           type: servicebus
           default-candidate: false
@@ -33,7 +33,7 @@ spring:
               cloud:
                 azure:
                   servicebus:
-                    connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_2}
+                    namespace: ${AZURE_SERVICEBUS_NAMESPACE_02}
       servicebus:
         bindings:
           consume1-in-0:

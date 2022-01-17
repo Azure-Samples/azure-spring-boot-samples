@@ -55,8 +55,8 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace_01" {
 }
 
 resource "azurerm_servicebus_queue" "application_queue_01" {
-  name                = "queue1"
-  namespace_id        = azurerm_servicebus_namespace.servicebus_namespace_01.id
+  name         = "queue1"
+  namespace_id = azurerm_servicebus_namespace.servicebus_namespace_01.id
 
   enable_partitioning   = false
   max_delivery_count    = 10
@@ -88,8 +88,8 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace_02" {
 }
 
 resource "azurerm_servicebus_queue" "application_queue_02" {
-  name                = "queue2"
-  namespace_id      = azurerm_servicebus_namespace.servicebus_namespace_02.id
+  name         = "queue2"
+  namespace_id = azurerm_servicebus_namespace.servicebus_namespace_02.id
 
   enable_partitioning   = false
   max_delivery_count    = 10

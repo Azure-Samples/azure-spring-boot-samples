@@ -1,8 +1,10 @@
 package com.azure.spring.sample.servicebus;
 
 import com.azure.spring.cloud.autoconfigure.servicebus.AzureServiceBusAutoConfiguration;
-import com.azure.spring.cloud.autoconfigure.servicebus.AzureServiceBusMessagingAutoConfiguration;
+import com.azure.spring.integration.servicebus.inbound.ServiceBusInboundChannelAdapter;
 import com.azure.spring.messaging.PropertiesSupplier;
+import com.azure.spring.messaging.checkpoint.CheckpointConfig;
+import com.azure.spring.messaging.checkpoint.CheckpointMode;
 import com.azure.spring.servicebus.core.ServiceBusProcessorContainer;
 import com.azure.spring.servicebus.core.ServiceBusTemplate;
 import com.azure.spring.servicebus.core.processor.DefaultServiceBusNamespaceProcessorFactory;
@@ -13,12 +15,16 @@ import com.azure.spring.servicebus.core.properties.ProcessorProperties;
 import com.azure.spring.servicebus.core.properties.ProducerProperties;
 import com.azure.spring.servicebus.support.converter.ServiceBusMessageConverter;
 import org.springframework.beans.factory.ObjectProvider;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.autoconfigure.AutoConfigureAfter;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
+import org.springframework.integration.channel.DirectChannel;
+import org.springframework.messaging.MessageChannel;
 import reactor.util.function.Tuple2;
 
 @Configuration(proxyBeanMethods = false)
@@ -28,6 +34,13 @@ import reactor.util.function.Tuple2;
     MultipleNamespacesAzureServiceBusMessagingAutoConfiguration.ProcessorContainerConfiguration.class
 })
 public class MultipleNamespacesAzureServiceBusMessagingAutoConfiguration {
+
+    private static final String RECEIVE_QUEUE_NAME = "queue1";
+    private static final String INPUT_CHANNEL = "queue1.input";
+
+    @Autowired
+    private CustomizedServiceBusProperties properties;
+
     /**
      * Configure the {@link ServiceBusProcessorContainer}
      */
@@ -76,5 +89,41 @@ public class MultipleNamespacesAzureServiceBusMessagingAutoConfiguration {
             serviceBusTemplate.setMessageConverter(messageConverter);
             return serviceBusTemplate;
         }
+    }
+
+    /**
+     * {@link ServiceBusInboundChannelAdapter} binding with {@link MessageChannel} has name {@value INPUT_CHANNEL}
+     *
+     * @param inputChannel the MessageChannel binding with ServiceBusInboundChannelAdapter
+     * @param processorContainer instance of ServiceBusProcessorContainer
+     * @return instance of ServiceBusInboundChannelAdapter
+     */
+    @Bean
+    public ServiceBusInboundChannelAdapter queueMessageChannelAdapter(
+            @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel, ServiceBusProcessorContainer processorContainer) {
+        ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(processorContainer, RECEIVE_QUEUE_NAME,
+                new CheckpointConfig(CheckpointMode.MANUAL));
+        adapter.setOutputChannel(inputChannel);
+        return adapter;
+    }
+
+    /**
+     * {@link MessageChannel} with name {@value INPUT_CHANNEL}
+     *
+     * @return {@link MessageChannel}
+     */
+    @Bean(name = INPUT_CHANNEL)
+    public MessageChannel input() {
+        return new DirectChannel();
+    }
+
+    @Bean
+    public PropertiesSupplier<String, ProducerProperties> producerPropertiesSupplier() {
+        return properties.producerPropertiesSupplier();
+    }
+
+    @Bean
+    public PropertiesSupplier<Tuple2<String, String>, ProcessorProperties> processorPropertiesSupplier() {
+        return properties.processorPropertiesSupplier();
     }
 }

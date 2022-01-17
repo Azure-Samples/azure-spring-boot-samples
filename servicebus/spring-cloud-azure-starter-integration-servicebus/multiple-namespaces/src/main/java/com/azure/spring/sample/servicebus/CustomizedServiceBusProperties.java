@@ -18,6 +18,9 @@ import java.util.stream.Collectors;
 
 import static com.azure.spring.servicebus.core.processor.DefaultServiceBusNamespaceProcessorFactory.INVALID_SUBSCRIPTION;
 
+/**
+ * Property class for Service Bus multiple namespaces sample.
+ */
 @ConfigurationProperties("servicebus")
 public class CustomizedServiceBusProperties {
 

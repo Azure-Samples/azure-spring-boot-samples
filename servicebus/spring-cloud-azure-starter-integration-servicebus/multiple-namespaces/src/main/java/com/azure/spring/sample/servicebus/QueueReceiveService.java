@@ -6,37 +6,31 @@ package com.azure.spring.sample.servicebus;
 import com.azure.spring.integration.handler.DefaultMessageHandler;
 import com.azure.spring.integration.servicebus.inbound.ServiceBusInboundChannelAdapter;
 import com.azure.spring.messaging.AzureHeaders;
-import com.azure.spring.messaging.checkpoint.CheckpointConfig;
-import com.azure.spring.messaging.checkpoint.CheckpointMode;
 import com.azure.spring.messaging.checkpoint.Checkpointer;
 import com.azure.spring.service.servicebus.properties.ServiceBusEntityType;
-import com.azure.spring.servicebus.core.ServiceBusProcessorContainer;
 import com.azure.spring.servicebus.core.ServiceBusTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.annotation.ServiceActivator;
-import org.springframework.integration.channel.DirectChannel;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 import org.springframework.messaging.handler.annotation.Header;
+import org.springframework.stereotype.Service;
 import org.springframework.util.concurrent.ListenableFutureCallback;
-import org.springframework.web.bind.annotation.RestController;
 
-@RestController
-public class QueueReceiveController {
+@Service
+public class QueueReceiveService {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(QueueReceiveController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(QueueReceiveService.class);
     private static final String INPUT_CHANNEL = "queue1.input";
-    private static final String RECEIVE_QUEUE_NAME = "queue1";
-    private static final String OUTPUT_CHANNEL = "queue2.output";
+    private static final String OUTPUT_CHANNEL_QUEUE2 = "queue2.output";
     private static final String FORWARD_QUEUE_NAME = "queue2";
 
     @Autowired
-    QueueForwardGateway messagingGateway;
+    private QueueForwardGateway messagingGateway;
 
     /**
      * This message receiver binding with {@link ServiceBusInboundChannelAdapter}
@@ -53,22 +47,16 @@ public class QueueReceiveController {
         this.messagingGateway.send(message);
     }
 
-    @Bean
-    public ServiceBusInboundChannelAdapter queueMessageChannelAdapter(
-        @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel, ServiceBusProcessorContainer processorContainer) {
-        ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(processorContainer, RECEIVE_QUEUE_NAME,
-            new CheckpointConfig(CheckpointMode.MANUAL));
-        adapter.setOutputChannel(inputChannel);
-        return adapter;
-    }
 
-    @Bean(name = INPUT_CHANNEL)
-    public MessageChannel input() {
-        return new DirectChannel();
-    }
-
+    /**
+     * Get messages from {@link MessageChannel} with name {@value OUTPUT_CHANNEL_QUEUE2}
+     * and send messages to queue with name {@value FORWARD_QUEUE_NAME}.
+     *
+     * @param serviceBusTemplate template to send messages
+     * @return instance of {@link MessageChannel}
+     */
     @Bean
-    @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
+    @ServiceActivator(inputChannel = OUTPUT_CHANNEL_QUEUE2)
     public MessageHandler queueMessageForwarder(ServiceBusTemplate serviceBusTemplate) {
         serviceBusTemplate.setDefaultEntityType(ServiceBusEntityType.QUEUE);
         DefaultMessageHandler handler = new DefaultMessageHandler(FORWARD_QUEUE_NAME, serviceBusTemplate);
@@ -89,9 +77,9 @@ public class QueueReceiveController {
 
     /**
      * Message gateway binding with {@link MessageHandler}
-     * via {@link MessageChannel} has name {@value OUTPUT_CHANNEL}
+     * via {@link MessageChannel} has name {@value OUTPUT_CHANNEL_QUEUE2}
      */
-    @MessagingGateway(defaultRequestChannel = OUTPUT_CHANNEL)
+    @MessagingGateway(defaultRequestChannel = OUTPUT_CHANNEL_QUEUE2)
     public interface QueueForwardGateway {
         void send(String text);
     }

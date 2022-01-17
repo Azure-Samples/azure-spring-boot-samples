@@ -13,6 +13,7 @@
   <groupId>com.azure.spring</groupId>
   <artifactId>azure-appconfiguration-sample</artifactId>
   <version>1.0.0</version>
+  <packaging>jar</packaging>
   <name>Load Configuration Properties From App Configuration to Spring Environment</name>
 
 

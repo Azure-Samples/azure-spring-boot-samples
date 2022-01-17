@@ -13,6 +13,7 @@
   <artifactId>spring-cloud-azure-sample-stream-binder-servicebus-topic</artifactId>
   <groupId>com.azure.spring</groupId>
   <version>1.0.0</version>
+  <packaging>jar</packaging>
   <name>Communicate to a Single Service Bus Topic via Spring Cloud Stream</name>
 
   <dependencies>

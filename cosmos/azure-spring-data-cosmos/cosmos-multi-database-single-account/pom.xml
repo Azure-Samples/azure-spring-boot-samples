@@ -12,6 +12,7 @@
   <groupId>com.azure.spring</groupId>
   <artifactId>azure-spring-boot-sample-cosmos-multi-database-single-account</artifactId>
   <version>1.0.0</version>
+  <packaging>jar</packaging>
   <name>Using Cosmos DB with Multi Database Single Account</name>
   <description>Azure Spring Boot Sample Cosmos Multi Database Single Account</description>
 

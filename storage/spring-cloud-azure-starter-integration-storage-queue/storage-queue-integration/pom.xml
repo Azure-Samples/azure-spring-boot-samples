@@ -12,7 +12,8 @@
 
   <artifactId>azure-spring-integration-sample-storage-queue</artifactId>
   <groupId>com.azure.spring</groupId>
-  <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-integration-sample-storage-queue;dependency} -->
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
   <name>Using Storage Queue with Spring Integration</name>
 
   <dependencies>

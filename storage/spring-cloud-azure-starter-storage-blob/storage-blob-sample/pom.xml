@@ -13,6 +13,7 @@
   <artifactId>storage-blob-sample</artifactId>
   <groupId>com.azure.spring</groupId>
   <version>1.0.0</version>
+  <packaging>jar</packaging>
   <name>Read and Write Blobs with the Spring Resource for Azure Storage Blob</name>
 
   <dependencies>

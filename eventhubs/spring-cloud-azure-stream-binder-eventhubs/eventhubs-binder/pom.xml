@@ -13,6 +13,7 @@
     <artifactId>spring-cloud-azure-sample-stream-eventhubs-binder</artifactId>
     <groupId>com.azure.spring</groupId>
     <version>1.0.0</version>
+    <packaging>jar</packaging>
     <name>Communicate to a Single Event Hubs Namespace via Spring Cloud Stream</name>
 
     <properties>

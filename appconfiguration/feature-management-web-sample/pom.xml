@@ -13,6 +13,7 @@
   <groupId>com.azure.spring</groupId>
   <artifactId>feature-management-web-sample</artifactId>
   <version>1.0.0</version>
+  <packaging>jar</packaging>
   <name>Manage Features and Get Configurations From App Configuration For Web Service</name>
 
   <dependencies>

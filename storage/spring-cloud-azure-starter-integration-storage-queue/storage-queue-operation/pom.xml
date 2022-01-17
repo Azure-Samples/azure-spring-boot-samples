@@ -13,7 +13,8 @@
 
   <artifactId>azure-spring-cloud-sample-storage-queue-operation</artifactId>
   <groupId>com.azure.spring</groupId>
-  <version>1.0.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-sample-storage-queue-operation;dependency} -->
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
   <name>Usage of Storage Queue Operation</name>
 
   <dependencies>

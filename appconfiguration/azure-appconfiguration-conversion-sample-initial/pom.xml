@@ -14,6 +14,7 @@
   <groupId>com.azure.spring</groupId>
   <artifactId>azure-appconfiguration-convert-sample-initial</artifactId>
   <version>1.0.0</version>
+  <packaging>jar</packaging>
   <name>Convert Cosmos DB Application Using App Configuration and Key Vault Initial</name>
   <description>Sample project to show conversion to Azure App Configuration</description>
 

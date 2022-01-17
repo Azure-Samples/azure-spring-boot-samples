@@ -11,6 +11,7 @@
 
   <artifactId>spring-cloud-azure-starter-active-directory-resource-server-obo</artifactId>
   <version>1.0.0</version>
+  <packaging>jar</packaging>
   <name>Spring-Cloud-Azure-Starter-Active-Directory Sample: Resource Server with On-Behalf-of Feature</name>
   <description>Azure AD Spring Security Integration Spring Boot Resource Server OBO</description>
 

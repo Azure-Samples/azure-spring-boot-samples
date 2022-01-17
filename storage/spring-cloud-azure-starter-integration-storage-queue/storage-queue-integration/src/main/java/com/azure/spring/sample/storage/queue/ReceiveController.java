@@ -33,7 +33,6 @@ public class ReceiveController {
     @InboundChannelAdapter(channel = INPUT_CHANNEL, poller = @Poller(fixedDelay = "1000"))
     public StorageQueueMessageSource storageQueueMessageSource(StorageQueueOperation storageQueueOperation) {
         storageQueueOperation.setCheckpointMode(CheckpointMode.MANUAL);
-        storageQueueOperation.setVisibilityTimeoutInSeconds(10);
 
         return new StorageQueueMessageSource(STORAGE_QUEUE_NAME, storageQueueOperation);
     }

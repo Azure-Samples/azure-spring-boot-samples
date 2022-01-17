@@ -16,6 +16,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * Property class for Service Bus multiple namespaces sample.
+ */
 @ConfigurationProperties("servicebus")
 public class CustomizedServiceBusProperties {
 

@@ -61,7 +61,7 @@ az account set --subscription <your-subscription-id>
 
 ### Provision the Resources
 
-After login Azure CLI with your account, at least two variables `azure_subscription_id` and `azure_tenant_id` according to the returned information in the *./terraform/variables.tf*.
+After login Azure CLI with your account, at least one variable `azure_subscription_id` needs to be configured according to the returned information in the *./terraform/variables.tf*.
 
 Now you can use the terraform script to create Azure Resources.
 
@@ -136,14 +136,3 @@ To destroy the resources you created.
 ```shell
 terraform -chdir=./terraform destroy
 ```
-
-## Troubleshooting
-
-- Meet with  `Creating topics with default partitions/replication factor are only supported in CreateTopicRequest version 4+` error.
-
-  ```text
-  o.s.c.s.b.k.p.KafkaTopicProvisioner      : Failed to create topics
-    org.apache.kafka.common.errors.UnsupportedVersionException: Creating topics with default partitions/replication factor are only supported in CreateTopicRequest version 4+. The following topics need values for partitions and replicas
-  ```
-
-  When this error is found, add this configuration item `spring.cloud.stream.kafka.binder.replicationFactor`, with the value set to at least 1. For more information, see [Spring Cloud Stream Kafka Binder Reference Guide](https://docs.spring.io/spring-cloud-stream-binder-kafka/docs/current/reference/html/spring-cloud-stream-binder-kafka.html).

@@ -2,7 +2,6 @@ spring:
   cloud:
     azure:
       profile:
-        tenant-id: ${AZURE_TENANT_ID}
         subscription-id: ${AZURE_SUBSCRIPTION_ID}
       redis:
         name: ${AZURE_CACHE_REDIS_DNS_NAME}

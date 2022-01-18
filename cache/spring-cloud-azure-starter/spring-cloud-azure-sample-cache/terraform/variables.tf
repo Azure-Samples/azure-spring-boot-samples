@@ -21,9 +21,3 @@ variable "azure_subscription_id" {
   description = "After executing command 'az login', copy the 'id' value form the response."
   default     = "<your-azure-subscription-id>"
 }
-
-variable "azure_tenant_id" {
-  type        = string
-  description = "After executing command 'az login', copy the 'tenantId' value form the response."
-  default     = "<your-azure_tenant_id>"
-}

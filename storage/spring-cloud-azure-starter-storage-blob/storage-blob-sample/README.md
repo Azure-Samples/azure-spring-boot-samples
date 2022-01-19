@@ -128,5 +128,5 @@ The terraform destroy command terminates resources managed by your Terraform pro
 To destroy the resources you created.
 
 ```shell
-terraform -chdir=./terraform destroy
+terraform -chdir=./terraform destroy -auto-approve
 ```

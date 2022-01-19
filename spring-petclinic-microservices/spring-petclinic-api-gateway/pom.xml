@@ -18,7 +18,6 @@
 
   <properties>
     <webjars-bootstrap.version>3.3.7-1</webjars-bootstrap.version>
-    <webjars-jquery-ui.version>1.11.4</webjars-jquery-ui.version>
     <webjars-jquery.version>3.1.1-1</webjars-jquery.version>
     <webjars-angular.version>1.6.4</webjars-angular.version>
     <webjars-angular-ui-router.version>1.0.3</webjars-angular-ui-router.version>
@@ -28,8 +27,8 @@
   </properties>
 
   <dependencies>
-      <!-- Enable Bootstrap -->
-      <dependency>
+    <!-- Enable Bootstrap -->
+    <dependency>
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-bootstrap</artifactId>
     </dependency>

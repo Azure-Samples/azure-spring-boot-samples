@@ -84,8 +84,8 @@
       <scope>runtime</scope>
     </dependency>
     <dependency>
-      <groupId>com.azure</groupId>
-      <artifactId>azure-spring-data-cosmos</artifactId>
+      <groupId>com.azure.spring</groupId>
+      <artifactId>spring-cloud-azure-starter-data-cosmos</artifactId>
     </dependency>
     <dependency>
       <groupId>com.azure.spring</groupId>

@@ -33,11 +33,7 @@ public class QueueSendController {
     @PostMapping("/queue")
     public String postMessage(@RequestParam String message) {
         LOGGER.info("Sending message");
-        try {
-            jmsTemplate.convertAndSend(queueName, new User(message));
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        jmsTemplate.convertAndSend(queueName, new User(message));
         return message;
     }
 }

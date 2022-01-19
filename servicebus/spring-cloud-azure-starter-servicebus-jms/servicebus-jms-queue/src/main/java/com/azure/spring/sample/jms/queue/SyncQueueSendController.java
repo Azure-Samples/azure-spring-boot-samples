@@ -42,7 +42,7 @@ public class SyncQueueSendController {
     private JmsMessagingTemplate jmsMessagingTemplate;
 
     @Autowired
-    private ConnectionFactory cf;
+    private ConnectionFactory connectionFactory;
 
     /**
      * For sync sending of message.
@@ -59,7 +59,7 @@ public class SyncQueueSendController {
                                               .createSession(false, Session.AUTO_ACKNOWLEDGE);
         ObjectMessage objectMessage = session.createObjectMessage(new User(message));
         objectMessage.setJMSCorrelationID(UUID.randomUUID().toString());
-        objectMessage.setJMSReplyTo(cf.createContext().createTemporaryQueue());
+        objectMessage.setJMSReplyTo(connectionFactory.createContext().createTemporaryQueue());
         objectMessage.setJMSExpiration(1000L);
         objectMessage.setJMSDeliveryMode(DeliveryMode.NON_PERSISTENT);
 

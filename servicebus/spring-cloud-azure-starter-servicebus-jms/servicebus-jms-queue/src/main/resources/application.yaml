@@ -2,5 +2,8 @@ spring:
   jms:
     servicebus:
       connection-string: ${SERVICEBUS_NAMESPACE_CONNECTION_STRING}
-      idle-timeout: 1800000
+      idle-timeout: 5m
       pricing-tier: ${PRICING_TIER}
+      pool:
+        enabled: true # To be true to enable the JmsPoolConnectionFactory bean. Default false.
+queuename: que001

@@ -8,19 +8,19 @@ You will build an application using Spring JMS to send and receive messages for 
 
 ## What You Need
 
-- [An Azure subscription](https://azure.microsoft.com/free/)
-- [Terraform](https://www.terraform.io/)
-- [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
-- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
+- [An Azure subscription]
+- [Terraform]
+- [Azure CLI]
+- [JDK8] or later
 - Maven
-- You can also import the code straight into your IDE:
-    - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
+- You can also import the code directly into your IDE:
+    - [IntelliJ IDEA]
 
 ## Provision Azure Resources Required to Run This Sample
 This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
 > [!IMPORTANT]  
 > If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
-> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
+> please refer to [Authorize access with Azure AD] to make sure the security principal has been granted the sufficient permission to access the Azure resource.
 
 ### Authenticate Using the Azure CLI
 Terraform must authenticate to Azure to create infrastructure.
@@ -69,7 +69,7 @@ After login Azure CLI with your account, now you can use the terraform script to
 terraform -chdir=./terraform init
 
 # Apply your Terraform Configuration
-# Type `yes` at the confirmation prompt to proceed.
+# Type `yes` at the confirmation prompt to continue.
 terraform -chdir=./terraform apply
 
 ```
@@ -97,7 +97,7 @@ Outputs:
 
 ```
 
-You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
+You can go to [Azure portal] in your web browser to check the resources you created.
 
 ### Export Output to Your Local Environment
 Running the command below to export environment values:
@@ -108,22 +108,28 @@ Running the command below to export environment values:
 
 ## Run Locally
 
-In your terminal, run `mvn clean spring-boot:run`.
-
-
+Navigate to the project root directory, then run the maven command:
 ```shell
 mvn clean spring-boot:run
 ```
 
 ## Verify This Sample
 
+1. Logs like below messages can be seen.
+   ```
+     ...
+     Sending message: Hello World, 0
+     Sending message: Hello World, 1
+     Received message from queue: Hello World, 0
+     ...
+    ```
 
-1. Send a POST request to service bus queue.
+2. [Optional] Send a POST request to service bus queue.
     ```
     curl -d "" http://localhost:8080/queue?message=hello 
     ```
 
-2. Verify in your app's logs that a similar message was posted:
+3. [Optional] Verify in your app's logs that a similar message was posted:
     ```
     Sending message
     ...
@@ -141,6 +147,17 @@ To destroy the resources you created.
 terraform -chdir=./terraform destroy
 ```
 
+<!-- LINKS -->
+[Azure Portal]: https://ms.portal.azure.com/
 
+[Authorize access with Azure AD]: https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#authorize-access-with-azure-active-directory
 
+[IntelliJ IDEA]: https://www.jetbrains.com/idea/download
 
+[An Azure subscription]: https://azure.microsoft.com/free/
+
+[Terraform]: https://www.terraform.io/
+
+[Azure CLI]: https://docs.microsoft.com/cli/azure/install-azure-cli
+
+[JDK8]: https://www.oracle.com/java/technologies/downloads/

@@ -61,7 +61,7 @@ az account set --subscription <your-subscription-id>
 
 ### Provision the Resources
 
-After login Azure CLI with your account, at least one variable `azure_subscription_id` needs to be configured according to the returned information in the *./terraform/variables.tf*.
+After login Azure CLI with your account, now you can use the terraform script to create Azure Resources.
 
 Now you can use the terraform script to create Azure Resources.
 
@@ -71,8 +71,7 @@ Now you can use the terraform script to create Azure Resources.
 terraform -chdir=./terraform init
 
 # Apply your Terraform Configuration
-# Type `yes` at the confirmation prompt to proceed.
-terraform -chdir=./terraform apply
+terraform -chdir=./terraform apply -auto-approve
 ```
 
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
@@ -80,8 +79,8 @@ It may take a few minutes to run the script. After successful running, you will 
 ```shell
 
 azurecaf_name.resource_group: Creating...
-azurecaf_name.azurecaf_name_dns_redis: Creating...
-azurecaf_name.azurecaf_name_dns_redis: Creation complete after 0s ...
+azurecaf_name.azurecaf_name_redis: Creating...
+azurecaf_name.azurecaf_name_redis: Creation complete after 0s ...
 azurerm_redis_cache.redis: Still creating...
 azurerm_redis_cache.redis: Still creating...
 azurerm_redis_cache.redis: Creation complete after ...
@@ -99,20 +98,18 @@ You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser t
 Running the command below to export environment values:
 
 ```shell
- source ./terraform/setup_env.sh
+source ./terraform/setup_env.sh
 ```
 
 ## Run Locally
 
 In your terminal, run `mvn clean spring-boot:run`.
 
-
 ```shell
 mvn clean spring-boot:run
 ```
 
 ## Verify This Sample
-
 
 1. Send a GET request to check, where `name` could be any string:
 
@@ -126,7 +123,6 @@ $ curl -XGET http://localhost:8080/{name}
 $ keys *
 ```
 
-
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
 
@@ -134,5 +130,5 @@ The terraform destroy command terminates resources managed by your Terraform pro
 To destroy the resources you created.
 
 ```shell
-terraform -chdir=./terraform destroy
+terraform -chdir=./terraform destroy -auto-approve
 ```

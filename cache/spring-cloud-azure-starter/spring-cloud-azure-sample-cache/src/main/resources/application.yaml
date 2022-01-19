@@ -4,6 +4,6 @@ spring:
       profile:
         subscription-id: ${AZURE_SUBSCRIPTION_ID}
       redis:
-        name: ${AZURE_CACHE_REDIS_DNS_NAME}
+        name: ${AZURE_CACHE_REDIS_NAME}
         resource:
           resource-group: ${AZURE_RESOURCE_GROUP}

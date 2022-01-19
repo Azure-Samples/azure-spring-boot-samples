@@ -15,9 +15,3 @@ variable "sample_tag_value" {
   description = "The value of spring-cloud-azure-sample tag."
   default     = "true"
 }
-
-variable "azure_subscription_id" {
-  type        = string
-  description = "After executing command 'az login', copy the 'id' value form the response."
-  default     = "<your-azure-subscription-id>"
-}

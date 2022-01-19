@@ -34,15 +34,17 @@ resource "azurerm_resource_group" "main" {
 }
 
 # =================== redis ================
-resource "azurecaf_name" "azurecaf_name_dns_redis" {
+data "azurerm_subscription" "current" { }
+
+resource "azurecaf_name" "azurecaf_name_redis" {
   name          = var.application_name
-  resource_type = "azurerm_eventhub_namespace"
+  resource_type = "azurerm_redis_cache"
   random_length = 5
   clean_input   = true
 }
 
 resource "azurerm_redis_cache" "redis" {
-  name                = azurecaf_name.azurecaf_name_dns_redis.result
+  name                = azurecaf_name.azurecaf_name_redis.result
   location            = var.location
   resource_group_name = azurerm_resource_group.main.name
   capacity            = 0

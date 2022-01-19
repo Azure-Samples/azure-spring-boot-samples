@@ -1,5 +1,5 @@
 output "AZURE_SUBSCRIPTION_ID" {
-  value       = var.azure_subscription_id
+  value       = data.azurerm_subscription.current.subscription_id
   description = "The subscription ID of the resource."
 }
 
@@ -8,7 +8,7 @@ output "AZURE_RESOURCE_GROUP" {
   description = "The resource group name of the resource."
 }
 
-output "AZURE_CACHE_REDIS_DNS_NAME" {
+output "AZURE_CACHE_REDIS_NAME" {
   value       = azurerm_redis_cache.redis.name
   description = "The DNS name of the Redis instance."
 }

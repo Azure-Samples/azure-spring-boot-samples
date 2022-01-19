@@ -1,6 +1,6 @@
 # Spring Cloud Azure Sample Stream Event Hubs Kafka 
 
-This sample demonstrates how to use the Spring Cloud Azure Starter and Spring Cloud Starter Stream Kafka for Azure Event Hubs. The sample app exposes a RESTful API to receive
+This sample demonstrates how to use the Spring Cloud Azure Starter and Spring Cloud Starter Stream Kafka for Azure Event Hubs(Basic pricing tier is not supported). The sample app exposes a RESTful API to receive
 string message. Then message is sent through Azure Event Hubs to a bean `consumer`
 which simply logs the message.
 
@@ -70,8 +70,7 @@ After login Azure CLI with your account, now you can use the terraform script to
 terraform -chdir=./terraform init
 
 # Apply your Terraform Configuration
-# Type `yes` at the confirmation prompt to proceed.
-terraform -chdir=./terraform apply
+terraform -chdir=./terraform apply -auto-approve
 
 ```
 
@@ -143,7 +142,7 @@ The terraform destroy command terminates resources managed by your Terraform pro
 To destroy the resources you created.
 
 ```shell
-terraform -chdir=./terraform destroy
+terraform -chdir=./terraform destroy -auto-approve
 ```
 
 ## Troubleshooting

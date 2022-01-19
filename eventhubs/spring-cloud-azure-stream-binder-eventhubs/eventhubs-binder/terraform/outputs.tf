@@ -23,3 +23,8 @@ output "AZURE_EVENTHUB_CONSUMER_GROUP" {
   value       = "$Default"
   description = "The value of default consumer group."
 }
+
+output "RESOURCE_GROUP" {
+  value = azurerm_resource_group.main.name
+  description = "The resource group name."
+}

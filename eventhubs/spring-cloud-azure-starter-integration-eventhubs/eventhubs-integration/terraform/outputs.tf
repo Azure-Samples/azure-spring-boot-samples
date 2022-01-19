@@ -12,3 +12,8 @@ output "AZURE_STORAGE_CONTAINER_NAME" {
   value       = azurerm_storage_container.storage_container.name
   description = "The container name created in storage account."
 }
+
+output "RESOURCE_GROUP" {
+  value = azurerm_resource_group.main.name
+  description = "The resource group name."
+}

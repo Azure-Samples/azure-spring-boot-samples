@@ -3,7 +3,7 @@ output "ACCOUNT_NAME" {
   description = "The name of storage account."
 }
 
-output "RESOURCE_GROUP" {
+output "RESOURCE_GROUP_NAME" {
   value = azurerm_resource_group.main.name
   description = "The resource group name."
 }

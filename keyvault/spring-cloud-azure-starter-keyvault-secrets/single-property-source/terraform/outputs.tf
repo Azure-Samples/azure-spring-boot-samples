@@ -3,7 +3,7 @@ output "KEYVAULT_URI" {
   description = "The key vault uri."
 }
 
-output "RESOURCE_GROUP" {
+output "RESOURCE_GROUP_NAME" {
   value = azurerm_resource_group.main.name
   description = "The resource group name."
 }

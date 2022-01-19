@@ -8,7 +8,7 @@ output "storage_container_name" {
   description = "Azure Storage container name."
 }
 
-output "resource_group" {
+output "resource_group_name" {
   value = azurerm_resource_group.main.name
   description = "The resource group name."
 }

@@ -13,7 +13,7 @@ output "AZURE_STORAGE_CONTAINER_NAME" {
   description = "The container name created in storage account."
 }
 
-output "RESOURCE_GROUP" {
+output "RESOURCE_GROUP_NAME" {
   value = azurerm_resource_group.main.name
   description = "The resource group name."
 }

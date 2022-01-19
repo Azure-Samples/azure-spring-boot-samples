@@ -13,7 +13,7 @@ output "AZURE_SERVICEBUS_TOPIC_SUBSCRIPTION_NAME" {
   description = "The name of created subscription in the service bus namespace."
 }
 
-output "RESOURCE_GROUP" {
+output "RESOURCE_GROUP_NAME" {
   value = azurerm_resource_group.main.name
   description = "The resource group name."
 }

@@ -25,7 +25,7 @@ output "AZURE_SERVICEBUS_QUEUE_NAME" {
   description = "The queue name in service bus namespace 02."
 }
 
-output "RESOURCE_GROUP" {
+output "RESOURCE_GROUP_NAME" {
   value = azurerm_resource_group.main.name
   description = "The resource group name."
 }

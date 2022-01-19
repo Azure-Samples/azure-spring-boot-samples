@@ -14,7 +14,7 @@ output "EVENTHUBS_KAFKA" {
   description = "The name of created event hubs."
 }
 
-output "RESOURCE_GROUP" {
+output "RESOURCE_GROUP_NAME" {
   value = azurerm_resource_group.main.name
   description = "The resource group name."
 }

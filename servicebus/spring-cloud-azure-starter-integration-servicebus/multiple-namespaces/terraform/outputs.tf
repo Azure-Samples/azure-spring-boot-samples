@@ -8,7 +8,7 @@ output "AZURE_SERVICEBUS_NAMESPACE_02" {
   description = "The name of servicebus_02 namespace."
 }
 
-output "RESOURCE_GROUP" {
+output "RESOURCE_GROUP_NAME" {
   value = azurerm_resource_group.main.name
   description = "The resource group name."
 }

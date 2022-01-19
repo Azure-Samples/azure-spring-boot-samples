@@ -9,7 +9,7 @@ output "PRICING_TIER" {
   description = "The pricing tier of Service Bus."
 }
 
-output "RESOURCE_GROUP" {
+output "RESOURCE_GROUP_NAME" {
   value = azurerm_resource_group.main.name
   description = "The resource group name."
 }

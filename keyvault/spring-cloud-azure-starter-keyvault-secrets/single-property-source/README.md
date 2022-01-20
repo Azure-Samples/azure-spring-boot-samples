@@ -1,7 +1,7 @@
 # Using Key Vault Secrets With Spring Cloud Azure Key Vault Secrets Starter
 
 This sample illustrates the simplest usage of `spring-cloud-azure-starter-keyvault-secrets`. 
-To learn all features, please refer to [reference doc](https://microsoft.github.io/spring-cloud-azure/docs/current/reference/html/index.html#secret-management).
+To learn all features, please refer to [reference doc](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html#secret-management).
 
 ## What You Will Build
 

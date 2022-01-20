@@ -12,5 +12,9 @@ output "AZURE_EVENTHUBS_CONNECTION_STRING" {
 output "EVENTHUBS_KAFKA" {
   value       = azurerm_eventhub.eventhubs.name
   description = "The name of created event hubs."
+}
 
+output "RESOURCE_GROUP_NAME" {
+  value = azurerm_resource_group.main.name
+  description = "The resource group name."
 }

@@ -7,3 +7,8 @@ output "AZURE_SERVICEBUS_QUEUE_NAME" {
   value       = azurerm_servicebus_queue.queue.name
   description = "The name of created queue in the service bus namespace."
 }
+
+output "RESOURCE_GROUP_NAME" {
+  value = azurerm_resource_group.main.name
+  description = "The resource group name."
+}

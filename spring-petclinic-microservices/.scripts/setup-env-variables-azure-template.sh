@@ -18,7 +18,6 @@ echo "Creating CosmosDB Account, it may take a few minutes"
 az cosmosdb create --name $COSMOSDB_NAME --resource-group $RESOURCE_GROUP
 COSMOS_KEYS=$(az cosmosdb keys list --name $COSMOSDB_NAME --resource-group $RESOURCE_GROUP --type keys)
 COSMOS_PRIMARY_KEY=$(echo $COSMOS_KEYS | jq -r .primaryMasterKey)
-COSMOS_SECONDARY_KEY=$(echo $COSMOS_KEYS | jq -r .secondaryMasterKey)
 COSMOSDB_URI=$(az cosmosdb  show --name $COSMOSDB_NAME --resource-group $RESOURCE_GROUP | jq -r .documentEndpoint)
 
 # ==== Create Redis Cache Account ====
@@ -49,7 +48,6 @@ az keyvault set-policy -n $KEYVAULT_NAME --key-permissions get list \
 echo "add keys to keyvault"
 az keyvault secret set --vault-name $KEYVAULT_NAME --name cosmosdburi --value $COSMOSDB_URI
 az keyvault secret set --vault-name $KEYVAULT_NAME --name cosmosdbkey --value $COSMOS_PRIMARY_KEY
-az keyvault secret set --vault-name $KEYVAULT_NAME --name cosmosdbsecondarykey --value $COSMOS_SECONDARY_KEY
 az keyvault secret set --vault-name $KEYVAULT_NAME --name redisuri --value $REDIS_HOSTNAME
 az keyvault secret set --vault-name $KEYVAULT_NAME --name redispassword --value $REDIS_PASSWORD
 

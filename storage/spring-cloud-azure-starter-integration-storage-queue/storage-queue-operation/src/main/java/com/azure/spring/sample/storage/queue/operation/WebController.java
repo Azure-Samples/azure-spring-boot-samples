@@ -4,9 +4,8 @@
 package com.azure.spring.sample.storage.queue.operation;
 
 import com.azure.spring.messaging.AzureHeaders;
-import com.azure.spring.messaging.checkpoint.CheckpointMode;
 import com.azure.spring.messaging.checkpoint.Checkpointer;
-import com.azure.spring.storage.queue.core.StorageQueueOperation;
+import com.azure.spring.storage.queue.core.StorageQueueTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.Duration;
+
 /**
  * @author Miao Cao
  */
@@ -26,7 +27,7 @@ public class WebController {
     private static final String STORAGE_QUEUE_NAME = "example";
 
     @Autowired
-    StorageQueueOperation storageQueueOperation;
+    StorageQueueTemplate storageQueueOperation;
 
     @PostMapping("/messages")
     public String send(@RequestParam("message") String message) {
@@ -40,8 +41,7 @@ public class WebController {
     @GetMapping("/messages")
     public String receive() {
         this.storageQueueOperation.setMessagePayloadType(String.class);
-        this.storageQueueOperation.setCheckpointMode(CheckpointMode.MANUAL);
-        Message<?> message = this.storageQueueOperation.receiveAsync(STORAGE_QUEUE_NAME).block();
+        Message<?> message = this.storageQueueOperation.receiveAsync(STORAGE_QUEUE_NAME, Duration.ofSeconds(30)).block();
         if (message == null) {
             LOGGER.info("You have no new messages.");
             return null;

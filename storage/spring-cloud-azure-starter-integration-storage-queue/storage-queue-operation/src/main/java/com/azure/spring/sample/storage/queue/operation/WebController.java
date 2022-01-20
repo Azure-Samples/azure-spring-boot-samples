@@ -41,7 +41,7 @@ public class WebController {
     @GetMapping("/messages")
     public String receive() {
         this.storageQueueOperation.setMessagePayloadType(String.class);
-        Message<?> message = this.storageQueueOperation.receiveAsync(STORAGE_QUEUE_NAME, Duration.ofMillis(30)).block();
+        Message<?> message = this.storageQueueOperation.receiveAsync(STORAGE_QUEUE_NAME, Duration.ofSeconds(30)).block();
         if (message == null) {
             LOGGER.info("You have no new messages.");
             return null;

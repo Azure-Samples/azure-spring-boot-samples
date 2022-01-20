@@ -4,7 +4,7 @@
 package com.azure.spring.sample.storage.queue;
 
 import com.azure.spring.integration.handler.DefaultMessageHandler;
-import com.azure.spring.storage.queue.core.StorageQueueTemplate;
+import com.azure.spring.storage.queue.core.StorageQueueOperation;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,7 +43,7 @@ public class SendController {
 
     @Bean
     @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
-    public MessageHandler messageSender(StorageQueueTemplate storageQueueOperation) {
+    public MessageHandler messageSender(StorageQueueOperation storageQueueOperation) {
         DefaultMessageHandler handler = new DefaultMessageHandler(STORAGE_QUEUE_NAME, storageQueueOperation);
         handler.setSendCallback(new ListenableFutureCallback<Void>() {
             @Override

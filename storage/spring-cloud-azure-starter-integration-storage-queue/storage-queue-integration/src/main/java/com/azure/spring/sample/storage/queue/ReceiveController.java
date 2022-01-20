@@ -7,7 +7,7 @@ import com.azure.spring.integration.storage.queue.inbound.StorageQueueMessageSou
 import com.azure.spring.messaging.AzureHeaders;
 import com.azure.spring.messaging.checkpoint.CheckpointMode;
 import com.azure.spring.messaging.checkpoint.Checkpointer;
-import com.azure.spring.storage.queue.core.StorageQueueOperation;
+import com.azure.spring.storage.queue.core.StorageQueueTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Bean;
@@ -31,8 +31,8 @@ public class ReceiveController {
 
     @Bean
     @InboundChannelAdapter(channel = INPUT_CHANNEL, poller = @Poller(fixedDelay = "1000"))
-    public StorageQueueMessageSource storageQueueMessageSource(StorageQueueOperation storageQueueOperation) {
-        storageQueueOperation.setCheckpointMode(CheckpointMode.MANUAL);
+    public StorageQueueMessageSource storageQueueMessageSource(StorageQueueTemplate storageQueueOperation) {
+
 
         return new StorageQueueMessageSource(STORAGE_QUEUE_NAME, storageQueueOperation);
     }

@@ -74,7 +74,7 @@ terraform -chdir=./terraform init
 terraform -chdir=./terraform apply -auto-approve
 ```
 
-It may take a few minutes to run the script. After successful running, you will see prompt information like below:
+It may take around 15 minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell
 

@@ -35,6 +35,14 @@ public class StorageApplication implements CommandLineRunner {
         SpringApplication.run(StorageApplication.class, args);
     }
 
+    /**
+     * This is used to initialize some data in Azure Storage Blob.
+     * So users can use `curl -XGET http://localhost:8080/blob/getFileNamesWithProtocolResolver` to test
+     * AzureStorageBlobProtocolResolver without initializing data.
+     *
+     * @param args
+     * @throws Exception
+     */
     @Override
     public void run(String... args) throws Exception {
 

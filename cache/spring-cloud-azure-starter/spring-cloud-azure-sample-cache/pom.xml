@@ -11,7 +11,7 @@
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>spring-cloud-azure-cache-sample</artifactId>
+  <artifactId>spring-cloud-azure-sample-cache</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

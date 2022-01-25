@@ -1,13 +1,9 @@
 spring:
   cloud:
     azure:
-      credential:
-        client-id: [service-principal-id]
-        client-secret: [service-principal-secret]
       profile:
-        tenant-id: [tenant-id]
-        subscription-id: [subscription-id]
+        subscription-id: ${AZURE_SUBSCRIPTION_ID}
       redis:
-        name: [azure-cache-for-redis-instance-name]
+        name: ${AZURE_CACHE_REDIS_NAME}
         resource:
-          resource-group: [resource-group]
+          resource-group: ${AZURE_RESOURCE_GROUP}

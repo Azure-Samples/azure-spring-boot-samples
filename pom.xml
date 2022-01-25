@@ -32,6 +32,7 @@
     <module>appconfiguration/azure-appconfiguration-sample</module>
     <module>appconfiguration/feature-management-sample</module>
     <module>appconfiguration/feature-management-web-sample</module>
+    <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
     <module>cloudfoundry/azure-cloud-foundry-service-sample</module>
     <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample</module>
     <module>cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample</module>

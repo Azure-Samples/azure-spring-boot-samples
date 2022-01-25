@@ -117,7 +117,7 @@ mvn clean spring-boot:run
 $ curl -XGET http://localhost:8080/{name}
 ```
 
-fix2. Confirm from Azure Redis Cache console in Azure Portal:
+2. Confirm from Azure Redis Cache console in Azure Portal:
 
 ```shell
 $ keys *

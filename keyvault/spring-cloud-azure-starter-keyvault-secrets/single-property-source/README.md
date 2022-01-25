@@ -70,6 +70,18 @@ terraform -chdir=./terraform apply -auto-approve
 
 ```
 
+If you are using Powershell, use the following command instead: 
+
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=terraform init
+
+# Apply your Terraform Configuration
+terraform -chdir=terraform apply -auto-approve
+
+```
+
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell
@@ -101,6 +113,12 @@ Running the command below to export environment values:
 
 ```shell
  source ./terraform/setup_env.sh
+```
+
+If you are using Powershell, use the following command instead:
+
+```shell
+ . terraform\setup_env.ps1
 ```
 
 ## Run Locally

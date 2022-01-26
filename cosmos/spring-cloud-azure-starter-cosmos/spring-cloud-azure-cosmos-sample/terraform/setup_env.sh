@@ -10,3 +10,5 @@ writeOnlyRoleDefinitionId=$(terraform -chdir=./terraform output -raw cosmos_appl
 az cosmosdb sql role assignment create --account-name $azure_cosmos_account --resource-group $resourceGroupName --scope "/" --principal-id $principalId --role-definition-id $readOnlyRoleDefinitionId
 # assign current Cosmos DB Built-in Data Contributor
 az cosmosdb sql role assignment create --account-name $azure_cosmos_account --resource-group $resourceGroupName --scope "/" --principal-id $principalId --role-definition-id $writeOnlyRoleDefinitionId
+
+echo AZURE_COSMOS_ENDPOINT=$AZURE_COSMOS_ENDPOINT

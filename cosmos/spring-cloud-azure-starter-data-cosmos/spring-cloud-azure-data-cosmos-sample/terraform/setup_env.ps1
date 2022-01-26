@@ -9,6 +9,9 @@ $readOnlyRoleDefinitionId=$(terraform -chdir=terraform output -raw cosmos_applic
 $writeOnlyRoleDefinitionId=$(terraform -chdir=terraform output -raw cosmos_application_id)+"/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002"
 # assign current Cosmos DB Built-in Data Reader
 # https://docs.microsoft.com/azure/cosmos-db/how-to-setup-rbac#using-the-azure-cli-1
-az cosmosdb sql role assignment create --account-name $azure_cosmos_account --resource-group $resourceGroupName --scope "/" --principal-id $principalId --role-definition-id $readOnlyRoleDefinitionId
-# assign current Cosmos DB Built-in Data Contributor
-az cosmosdb sql role assignment create --account-name $azure_cosmos_account --resource-group $resourceGroupName --scope "/" --principal-id $principalId --role-definition-id $writeOnlyRoleDefinitionId
+# az cosmosdb sql role assignment create --account-name $azure_cosmos_account --resource-group $resourceGroupName --scope "/" --principal-id $principalId --role-definition-id $readOnlyRoleDefinitionId
+# # assign current Cosmos DB Built-in Data Contributor
+# az cosmosdb sql role assignment create --account-name $azure_cosmos_account --resource-group $resourceGroupName --scope "/" --principal-id $principalId --role-definition-id $writeOnlyRoleDefinitionId
+
+echo AZURE_COSMOS_ENDPOINT=$env:AZURE_COSMOS_ENDPOINT
+echo COSMOS_DATABASE=$env:COSMOS_DATABASE

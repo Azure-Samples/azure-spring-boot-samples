@@ -1,0 +1,1 @@
+$env:SERVICEBUS_NAMESPACE=$(terraform -chdir=terraform output -raw SERVICEBUS_NAMESPACE)

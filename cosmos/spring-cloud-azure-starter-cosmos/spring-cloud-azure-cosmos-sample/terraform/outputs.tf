@@ -8,11 +8,6 @@ output "azure_cosmos_account" {
   description = "Azure Cosmos DB account created."
 }
 
-output "resource_group_name" {
-  value       = azurerm_resource_group.main.name
-  description = "The Azure resource group name."
-}
-
 output "cosmos_application_id" {
   value       = azurerm_cosmosdb_account.application.id
   description = "Azure Cosmos DB account application id."

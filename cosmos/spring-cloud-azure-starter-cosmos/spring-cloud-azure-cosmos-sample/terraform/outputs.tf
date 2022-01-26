@@ -18,8 +18,4 @@ output "object_id" {
   description = "Current user's object_id."
 }
 
-output "resource_group_name" {
-  value = azurerm_resource_group.main.name
-  description = "The resource group name."
-}
 

@@ -74,9 +74,6 @@ terraform -chdir=./terraform apply -auto-approve
 
 ```
 
-
-
-
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell
@@ -107,7 +104,7 @@ You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser t
 Running the command below to export environment values:
 
 ```shell
- source ./terraform/setup_env.sh
+source ./terraform/setup_env.sh
 ```
 
 ## Run Locally
@@ -144,6 +141,41 @@ To destroy the resources you created.
 ```shell
 terraform -chdir=./terraform destroy -auto-approve
 ```
+
+### Use Azure Resource Manager to retrieve connection string
+
+If you don't want to configure connection string in your application, it's also possible to use Azure Resource Manager to retrieve the connection string. Just make sure the principal have sufficient permission to read resource metadata.
+
+1. After [Provision the Resources](#provision-the-resources) step, active the [application-rm.yaml][application-rm.yaml] profile file.
+
+    ```yaml
+    spring:
+      cloud:
+        azure:
+          profile:
+            subscription-id: ${AZURE_SUBSCRIPTION_ID}
+          eventhubs:
+            namespace: ${AZURE_EVENTHUBS_NAMESPACE}
+            resource:
+              resource-group: ${AZURE_EVENTHUBS_RESOURCE_GROUP}
+        stream:
+          function:
+            definition: consume;supply
+          bindings:
+            consume-in-0:
+              destination: ${EVENTHUBS_KAFKA}
+              group: $Default
+            supply-out-0:
+              destination: ${EVENTHUBS_KAFKA}
+    ```
+2. Add the Azure Resource Manager dependency
+```xml
+<dependency>
+  <groupId>com.azure.spring</groupId>
+  <artifactId>spring-cloud-azure-resourcemanager</artifactId>
+</dependency>
+```
+3. Repeat steps [Run Locally](#run-locally) with the command `mvn clean spring-boot:run -Dspring-boot.run.profiles=rm` and [Verify This Sample](#verify-this-sample).
 
 ## Troubleshooting
 

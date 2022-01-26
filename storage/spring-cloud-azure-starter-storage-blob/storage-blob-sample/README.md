@@ -110,16 +110,36 @@ mvn clean spring-boot:run
 ```
 
 ## Verify This Sample
-Send a POST request to update file contents:
-```shell
-curl http://localhost:8080/blob -d "new message" -H "Content-Type: text/plain"
-```
+1. Write and read a file.  
+    1.1 Send a POST request to update file contents.
+    ```shell
+    curl http://localhost:8080/blob -d "new message" -H "Content-Type: text/plain"
+    ```
+    1.2 Verify by sending a GET request.  
+    ```shell
+    curl -XGET http://localhost:8080/blob
+    ```
 
-Verify by sending a GET request
+2. [Optional] Using resourceLoader to get Azure Storage Blob resource with filename.
+    ```shell
+    curl -XGET http://localhost:8080/blob/getResourceWithResourceLoader/fileName1.txt
+    ```
+    
+    Verify in app's log that a similar messages was posted:
+    ```shell
+    Blob content retrieved: fileName=fileName1.txt, fileContent=data1
+    ```
 
-```shell
-curl -XGET http://localhost:8080/blob
-```
+3. [Optional] Using AzureStorageBlobProtocolResolver to get Azure Storage Blob resources with file pattern.
+    ```shell
+    curl -XGET http://localhost:8080/blob/getFileNamesWithProtocolResolver
+    ```
+    
+    Verify in app's log that a similar messages was posted:
+    ```shell
+    10 resources founded with pattern:*.txt
+    ```
+
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.

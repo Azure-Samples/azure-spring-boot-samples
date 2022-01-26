@@ -12,3 +12,4 @@ az cosmosdb sql role assignment create --account-name $azure_cosmos_account --re
 az cosmosdb sql role assignment create --account-name $azure_cosmos_account --resource-group $resourceGroupName --scope "/" --principal-id $principalId --role-definition-id $writeOnlyRoleDefinitionId
 
 echo AZURE_COSMOS_ENDPOINT=$AZURE_COSMOS_ENDPOINT
+

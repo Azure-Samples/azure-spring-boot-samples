@@ -150,6 +150,14 @@ After running the sample, if you don't want to run the sample, remember to destr
 The terraform destroy command terminates resources managed by your Terraform project.   
 To destroy the resources you created.
 
+#### Run with Bash
+
 ```shell
 terraform -chdir=./terraform destroy -auto-approve
+```
+
+#### Run with Powershell
+
+```shell
+terraform -chdir=terraform destroy -auto-approve
 ```

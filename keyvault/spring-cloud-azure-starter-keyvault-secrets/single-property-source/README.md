@@ -10,7 +10,7 @@ You will build an application that use `spring-cloud-azure-starter-keyvault-secr
 ## What You Need
 
 - [An Azure subscription](https://azure.microsoft.com/free/)
-- [Terraform](https://www.terraform.io/) latest version
+- [Terraform](https://www.terraform.io/)
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
 - [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
 - Maven

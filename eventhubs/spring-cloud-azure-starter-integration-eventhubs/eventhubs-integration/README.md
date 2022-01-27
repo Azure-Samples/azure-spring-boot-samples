@@ -62,6 +62,8 @@ az account set --subscription <your-subscription-id>
 
 After login Azure CLI with your account, now you can use the terraform script to create Azure Resources.
 
+#### Run with Bash
+
 ```shell
 # In the root directory of the sample
 # Initialize your Terraform configuration
@@ -72,8 +74,17 @@ terraform -chdir=./terraform apply -auto-approve
 
 ```
 
+#### Run with Powershell
 
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=terraform init
 
+# Apply your Terraform Configuration
+terraform -chdir=terraform apply -auto-approve
+
+```
 
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
@@ -113,8 +124,16 @@ You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser t
 ### Export Output to Your Local Environment
 Running the command below to export environment values:
 
+#### Run with Bash
+
 ```shell
  source ./terraform/setup_env.sh
+```
+
+#### Run with Powershell
+
+```shell
+ . terraform\setup_env.ps1
 ```
 
 ## Run Locally

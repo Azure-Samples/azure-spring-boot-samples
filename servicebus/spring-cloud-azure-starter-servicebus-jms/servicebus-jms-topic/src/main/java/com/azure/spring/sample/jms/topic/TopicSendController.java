@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class TopicSendController {
 
-    private static final String TOPIC_NAME = "tpc001";
-
     private static final Logger logger = LoggerFactory.getLogger(TopicSendController.class);
+
+    private static final String TOPIC_NAME = "tpc001";
 
     @Autowired
     private JmsTemplate jmsTemplate;

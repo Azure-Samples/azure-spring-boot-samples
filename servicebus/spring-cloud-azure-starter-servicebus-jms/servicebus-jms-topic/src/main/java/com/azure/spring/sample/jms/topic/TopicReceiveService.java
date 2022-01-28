@@ -6,16 +6,16 @@ package com.azure.spring.sample.jms.topic;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jms.annotation.JmsListener;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
-public class TopicReceiveController {
+@Service
+public class TopicReceiveService {
 
     private static final String TOPIC_NAME = "tpc001";
 
     private static final String SUBSCRIPTION_NAME = "sub001";
 
-    private final Logger logger = LoggerFactory.getLogger(TopicReceiveController.class);
+    private final Logger logger = LoggerFactory.getLogger(TopicReceiveService.class);
 
     @JmsListener(destination = TOPIC_NAME, containerFactory = "topicJmsListenerContainerFactory",
             subscription = SUBSCRIPTION_NAME)

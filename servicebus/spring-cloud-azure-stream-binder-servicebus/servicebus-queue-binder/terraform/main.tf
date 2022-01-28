@@ -15,6 +15,8 @@ provider "azurerm" {
   features {}
 }
 
+data "azurerm_subscription" "current" { }
+
 resource "azurecaf_name" "resource_group" {
   name          = var.application_name
   resource_type = "azurerm_resource_group"

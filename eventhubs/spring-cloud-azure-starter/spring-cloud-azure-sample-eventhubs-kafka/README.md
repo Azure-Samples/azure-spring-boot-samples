@@ -142,40 +142,22 @@ To destroy the resources you created.
 terraform -chdir=./terraform destroy -auto-approve
 ```
 
-### Use Azure Resource Manager to retrieve connection string
+## (Optional) Use Azure Resource Manager to Retrieve Connection String
 
-If you don't want to configure connection string in your application, it's also possible to use Azure Resource Manager to retrieve the connection string. Just make sure the principal have sufficient permission to read resource metadata.
+If you don't want to configure the connection string in your application, it's also possible to use Azure Resource Manager to retrieve the connection string. Just make sure the principal has sufficient permission to read resource metadata.
 
-1. After [Provision the Resources](#provision-the-resources) step, active the [application-rm.yaml][application-rm.yaml] profile file.
+1. Uncomment the Azure Resource Manager dependency in the *pom.xml* file.
 
-    ```yaml
-    spring:
-      cloud:
-        azure:
-          profile:
-            subscription-id: ${AZURE_SUBSCRIPTION_ID}
-          eventhubs:
-            namespace: ${AZURE_EVENTHUBS_NAMESPACE}
-            resource:
-              resource-group: ${AZURE_EVENTHUBS_RESOURCE_GROUP}
-        stream:
-          function:
-            definition: consume;supply
-          bindings:
-            consume-in-0:
-              destination: ${EVENTHUBS_KAFKA}
-              group: $Default
-            supply-out-0:
-              destination: ${EVENTHUBS_KAFKA}
-    ```
-2. Add the Azure Resource Manager dependency
 ```xml
 <dependency>
   <groupId>com.azure.spring</groupId>
   <artifactId>spring-cloud-azure-resourcemanager</artifactId>
 </dependency>
 ```
-3. Repeat steps [Run Locally](#run-locally) with the command `mvn clean spring-boot:run -Dspring-boot.run.profiles=rm` and [Verify This Sample](#verify-this-sample).
+
+2. Run locally with the command `mvn clean spring-boot:run -Dspring-boot.run.profiles=rm` to activate the [application-rm.yaml][application-rm.yaml] profile file.
+
+3. [Verify This Sample](#verify-this-sample).
 
 ## Troubleshooting
 
@@ -188,4 +170,5 @@ If you don't want to configure connection string in your application, it's also 
 
   When this error is found, add this configuration item `spring.cloud.stream.kafka.binder.replicationFactor`, with the value set to at least 1. For more information, see [Spring Cloud Stream Kafka Binder Reference Guide](https://docs.spring.io/spring-cloud-stream-binder-kafka/docs/current/reference/html/spring-cloud-stream-binder-kafka.html).
 
-- [application-rm.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-cloud-azure_4.0.0-beta.4/eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka/src/main/resources/application-rm.yaml
+
+[application-rm.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-cloud-azure_4.0.0-beta.4/eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka/src/main/resources/application-rm.yaml

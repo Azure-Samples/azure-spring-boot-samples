@@ -19,7 +19,7 @@ output "AZURE_EVENTHUBS_RESOURCE_GROUP" {
   description = "The Event Hubs resource group name."
 }
 
-output "AZURE_SUBSCRIPTION_ID" {
+output "AZURE_EVENTHUBS_SUBSCRIPTION_ID" {
   value       = data.azurerm_subscription.current.subscription_id
   description = "The subscription ID of the resource."
 }

@@ -2,7 +2,7 @@ spring:
   cloud:
     azure:
       profile:
-        subscription-id: ${AZURE_SUBSCRIPTION_ID}
+        subscription-id: ${AZURE_EVENTHUBS_SUBSCRIPTION_ID}
       eventhubs:
         namespace: ${AZURE_EVENTHUBS_NAMESPACE}
         resource:

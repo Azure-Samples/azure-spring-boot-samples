@@ -6,14 +6,14 @@ package com.azure.spring.sample.jms.queue;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.jms.annotation.JmsListener;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
-public class QueueReceiveController {
+@Service
+public class QueueReceiveService {
 
     private static final String QUEUE_NAME = "que001";
 
-    private final Logger LOGGER = LoggerFactory.getLogger(QueueReceiveController.class);
+    private final Logger LOGGER = LoggerFactory.getLogger(QueueReceiveService.class);
 
     @JmsListener(destination = QUEUE_NAME, containerFactory = "jmsListenerContainerFactory")
     public void receiveMessage(User user) {

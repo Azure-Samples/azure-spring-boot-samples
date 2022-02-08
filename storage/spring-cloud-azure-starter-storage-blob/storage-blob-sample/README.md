@@ -62,6 +62,8 @@ az account set --subscription <your-subscription-id>
 
 After login Azure CLI with your account, now you can use the terraform script to create Azure Resources.
 
+#### Run with Bash
+
 ```shell
 # In the root directory of the sample
 # Initialize your Terraform configuration
@@ -69,6 +71,18 @@ terraform -chdir=./terraform init
 
 # Apply your Terraform Configuration
 terraform -chdir=./terraform apply -auto-approve
+
+```
+
+#### Run with Powershell
+
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=terraform init
+
+# Apply your Terraform Configuration
+terraform -chdir=terraform apply -auto-approve
 
 ```
 
@@ -97,8 +111,16 @@ You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser t
 ### Export Output to Your Local Environment
 Running the command below to export environment values:
 
+#### Run with Bash
+
 ```shell
 source ./terraform/setup_env.sh
+```
+
+#### Run with Powershell
+
+```shell
+ . terraform\setup_env.ps1
 ```
 
 ## Run Locally
@@ -110,16 +132,36 @@ mvn clean spring-boot:run
 ```
 
 ## Verify This Sample
-Send a POST request to update file contents:
-```shell
-curl http://localhost:8080/blob -d "new message" -H "Content-Type: text/plain"
-```
+1. Write and read a file.  
+    1.1 Send a POST request to update file contents.
+    ```shell
+    curl http://localhost:8080/blob -d "new message" -H "Content-Type: text/plain"
+    ```
+    1.2 Verify by sending a GET request.  
+    ```shell
+    curl -XGET http://localhost:8080/blob
+    ```
 
-Verify by sending a GET request
+2. [Optional] Using resourceLoader to get Azure Storage Blob resource with filename.
+    ```shell
+    curl -XGET http://localhost:8080/blob/getResourceWithResourceLoader/fileName1.txt
+    ```
+    
+    Verify in app's log that a similar messages was posted:
+    ```shell
+    Blob content retrieved: fileName=fileName1.txt, fileContent=data1
+    ```
 
-```shell
-curl -XGET http://localhost:8080/blob
-```
+3. [Optional] Using AzureStorageBlobProtocolResolver to get Azure Storage Blob resources with file pattern.
+    ```shell
+    curl -XGET http://localhost:8080/blob/getFileNamesWithProtocolResolver
+    ```
+    
+    Verify in app's log that a similar messages was posted:
+    ```shell
+    10 resources founded with pattern:*.txt
+    ```
+
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
@@ -127,6 +169,14 @@ After running the sample, if you don't want to run the sample, remember to destr
 The terraform destroy command terminates resources managed by your Terraform project.   
 To destroy the resources you created.
 
+#### Run with Bash
+
 ```shell
 terraform -chdir=./terraform destroy -auto-approve
+```
+
+#### Run with Powershell
+
+```shell
+terraform -chdir=terraform destroy -auto-approve
 ```

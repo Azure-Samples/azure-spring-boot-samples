@@ -34,6 +34,8 @@ resource "azurerm_resource_group" "main" {
 }
 
 # =================== eventhubs ================
+data "azurerm_subscription" "current" { }
+
 resource "azurecaf_name" "azurecaf_name_eventhubs" {
   name          = var.application_name
   resource_type = "azurerm_eventhub_namespace"

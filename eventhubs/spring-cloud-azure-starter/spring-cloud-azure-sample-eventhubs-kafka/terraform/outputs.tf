@@ -14,7 +14,12 @@ output "EVENTHUBS_KAFKA" {
   description = "The name of created event hubs."
 }
 
-output "RESOURCE_GROUP_NAME" {
+output "AZURE_EVENTHUBS_RESOURCE_GROUP" {
   value = azurerm_resource_group.main.name
-  description = "The resource group name."
+  description = "The Event Hubs resource group name."
+}
+
+output "AZURE_EVENTHUBS_SUBSCRIPTION_ID" {
+  value       = data.azurerm_subscription.current.subscription_id
+  description = "The subscription ID of the resource."
 }

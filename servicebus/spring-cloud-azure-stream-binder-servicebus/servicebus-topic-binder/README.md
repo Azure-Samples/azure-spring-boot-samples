@@ -126,7 +126,7 @@ Running the command below to export environment values:
 #### Run with Bash
 
 ```shell
- source ./terraform/setup_env.sh
+source ./terraform/setup_env.sh
 ```
 
 #### Run with Powershell
@@ -178,3 +178,22 @@ terraform -chdir=./terraform destroy -auto-approve
 ```shell
 terraform -chdir=terraform destroy -auto-approve
 ```
+
+## (Optional) Use Azure Resource Manager to Retrieve Connection String
+
+If you don't want to configure the connection string in your application, it's also possible to use Azure Resource Manager to retrieve the connection string. Just make sure the principal has sufficient permission to read resource metadata.
+
+1. Uncomment the Azure Resource Manager dependency in the *pom.xml* file.
+
+```xml
+<dependency>
+  <groupId>com.azure.spring</groupId>
+  <artifactId>spring-cloud-azure-resourcemanager</artifactId>
+</dependency>
+```
+
+2. Run locally with the command `mvn clean spring-boot:run -Dspring-boot.run.profiles=rm` to activate the [application-rm.yaml][application-rm.yaml] profile file.
+
+3. [Verify This Sample](#verify-this-sample).
+
+[application-rm.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0.0-beta.4/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder/src/main/resources/application-rm.yaml

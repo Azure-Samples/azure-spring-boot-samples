@@ -115,7 +115,7 @@ Running the command below to export environment values:
 #### Run with Bash
 
 ```shell
- source ./terraform/setup_env.sh
+source ./terraform/setup_env.sh
 ```
 
 #### Run with Powershell

@@ -1,0 +1,18 @@
+spring:
+  cloud:
+    azure:
+      profile:
+        subscription-id: ${AZURE_EVENTHUBS_SUBSCRIPTION_ID}
+      eventhubs:
+        namespace: ${AZURE_EVENTHUBS_NAMESPACE}
+        resource:
+          resource-group: ${AZURE_EVENTHUBS_RESOURCE_GROUP}
+    stream:
+      function:
+        definition: consume;supply
+      bindings:
+        consume-in-0:
+          destination: ${EVENTHUBS_KAFKA}
+          group: $Default
+        supply-out-0:
+          destination: ${EVENTHUBS_KAFKA}

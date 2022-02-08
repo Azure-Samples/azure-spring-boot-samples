@@ -18,6 +18,13 @@
   <name>Communicate to a Single Service Bus Topic via Spring Cloud Stream</name>
 
   <dependencies>
+    <!-- Add the spring-cloud-azure-resourcemanager dependency when want to use the Azure Resource Manager to retrieve connection string   -->
+    <!--
+    <dependency>
+      <groupId>com.azure.spring</groupId>
+      <artifactId>spring-cloud-azure-resourcemanager</artifactId>
+    </dependency>
+    -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>

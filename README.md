@@ -1,3 +1,10 @@
+# Spring Cloud Azure Samples
+This is a sample project for demonstration purposes.   
+The project demonstrates how to use Spring Cloud Azure to develop applications.    
+The sample project contains 42 samples, and it still grows.    
+The samples are grouped by Azure services and Spring Cloud Azure libraries.    
+For example: [single-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespaces), it located in the path [/servicebus/spring-cloud-azure-starter-integration-servicebus].
+
 
 ## Current Branch Supported versions
 - [spring-boot-dependencies:2.5.2](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-dependencies/2.5.2/spring-boot-dependencies-2.5.2.pom).
@@ -52,6 +59,26 @@
 | Storage          | [spring-cloud-azure-starter-storage-file-share:4.0.0-beta.2]                                   | [storage-file-sample](storage/spring-cloud-azure-starter-storage-file-share/storage-file-sample)     |
 | Storage          | [spring-cloud-azure-starter-integration-storage-queue:4.0.0-beta.2]                            | [storage-queue-integration](storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration)                           |
 | Storage          | [spring-cloud-azure-starter-integration-storage-queue:4.0.0-beta.2]                            | [storage-queue-operation](storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation)                               |
+
+## Running Samples
+With terraform scripts and default Token Credential, most samples in the project can be run with the same 4 steps below:
+
+```shell
+# Step1 Initialize Terraform
+terraform -chdir=./terraform init
+
+# Step2 Apply your Terraform Configuration
+terraform -chdir=./terraform apply -auto-approve
+
+# Step3 Export Environment Valuables
+source ./terraform/setup_env.sh
+
+# Step4 Run With Maven
+mvn clean spring-boot:run
+```
+It supports both Bash environment and PowerShell environment.   
+Please refer to README.md under each sample for detailed information.
+
 
 ###
 [azure-spring-boot-starter-cosmos:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-cosmos/3.9.0/jar

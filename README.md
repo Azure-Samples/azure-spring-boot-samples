@@ -21,11 +21,11 @@
 | AAD               | [spring-cloud-azure-starter-active-directory:4.0.0-beta.3]          | [aad-resource-server](aad/spring-cloud-azure-starter-active-directory/aad-resource-server)                                         |
 | AAD               | [spring-cloud-azure-starter-active-directory:4.0.0-beta.3]          | [aad-web-application](aad/spring-cloud-azure-starter-active-directory/aad-web-application)                                         |
 | AAD               | [spring-cloud-azure-starter-active-directory:4.0.0-beta.3]          | [aad-webapp-resource-server](aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server)              |
-| App Configuration | [azure-spring-boot-starter-cosmos:3.10.0]                           | [azure-appconfiguration-conversion-sample-initial](appconfiguration/azure-appconfiguration-conversion-sample-initial)              |
-| App Configuration | [spring-cloud-azure-appconfiguration-config:1.3.0]                  | [azure-appconfiguration-sample](appconfiguration/azure-appconfiguration-sample)                                                    |
-| App Configuration | [spring-cloud-azure-feature-management:1.3.0]                       | [feature-management-sample](appconfiguration/feature-management-sample)                                                            |
-| App Configuration | [spring-cloud-azure-feature-management:1.3.0]                       | [feature-management-web-sample](appconfiguration/feature-management-web-sample)                                                    |
-| App Configuration | [spring-cloud-starter-azure-appconfiguration-config:1.3.0]          | [azure-appconfiguration-conversion-sample-complete](appconfiguration/azure-appconfiguration-conversion-sample-complete)            |
+| App Configuration | [spring-cloud-azure-starter-data-cosmos:4.0.0-beta.3]               | [azure-appconfiguration-conversion-sample-initial](appconfiguration/azure-appconfiguration-conversion-sample-initial)              |
+| App Configuration | [azure-spring-cloud-appconfiguration-config:2.2.0]                  | [azure-appconfiguration-sample](appconfiguration/azure-appconfiguration-sample)                                                    |
+| App Configuration | [azure-spring-cloud-feature-management:2.1.0]                       | [feature-management-sample](appconfiguration/feature-management-sample)                                                            |
+| App Configuration | [azure-spring-cloud-feature-management:2.1.0]                       | [feature-management-web-sample](appconfiguration/feature-management-web-sample)                                                    |
+| App Configuration | [azure-spring-cloud-appconfiguration-config:2.2.0]          | [azure-appconfiguration-conversion-sample-complete](appconfiguration/azure-appconfiguration-conversion-sample-complete)            |
 | Cache             | N/A                                                                 | [azure-spring-cloud-sample-cache](cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache)                                |
 | Cloud Foundry     | N/A                                                                 | [azure-cloud-foundry-service-sample](cloudfoundry/azure-cloud-foundry-service-sample)                                              |
 | Cosmos DB         | [azure-spring-data-cosmos:3.13.1]                                   | [cosmos-multi-database-multi-account](cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account)                         |
@@ -56,10 +56,10 @@
 ###
 [azure-spring-boot-starter-cosmos:3.10.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-cosmos/3.10.0/jar
 [spring-cloud-azure-feature-management:1.3.0]: https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-azure-feature-management/1.3.0/jar
-[spring-cloud-azure-appconfiguration-config:1.3.0]: https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-azure-appconfiguration-config/1.3.0/jar
+[azure-spring-cloud-appconfiguration-config:2.2.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-appconfiguration-config-web/2.2.0/jar
 [spring-cloud-starter-azure-appconfiguration-config:1.3.0]: https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-starter-azure-appconfiguration-config/1.3.0/jar
 [spring-cloud-azure-starter-keyvault-secrets:4.0.0-beta.3]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-keyvault-secrets/4.0.0-beta.3/jar
-[azure-spring-boot-starter-keyvault-certificates:3.2.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-certificates/3.10.0/jar
+[azure-spring-boot-starter-keyvault-certificates:3.10.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-certificates/3.10.0/jar
 [spring-cloud-azure-stream-binder-eventhubs:4.0.0-beta.3]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-stream-binder-eventhubs/4.0.0-beta.3/jar
 [spring-cloud-azure-starter-integration-eventhubs:4.0.0-beta.3]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-integration-eventhubs/4.0.0-beta.3/jar
 [spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.3]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-stream-binder-servicebus/4.0.0-beta.3/jar
@@ -73,3 +73,5 @@
 [spring-cloud-azure-starter-integration-storage-queue:4.0.0-beta.3]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-integration-storage-queue/4.0.0-beta.3/jar
 [spring-cloud-azure-starter-storage-file-share:4.0.0-beta.3]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-storage-file-share/4.0.0-beta.3/jar
 [spring-cloud-azure-starter-storage-blob:4.0.0-beta.3]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-storage-blob/4.0.0-beta.3/jar
+[spring-cloud-azure-starter-data-cosmos:4.0.0-beta.3]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-data-cosmos/4.0.0-beta.3/jar
+[azure-spring-cloud-feature-management:2.1.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-feature-management/2.1.0/jar

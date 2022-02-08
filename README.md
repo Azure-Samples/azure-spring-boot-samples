@@ -1,15 +1,15 @@
 # Spring Cloud Azure Samples
-This is a sample project for demonstration purposes.   
-The project demonstrates how to use [Spring Cloud Azure](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html) to develop applications.    
-The sample project contains 42 samples, and it still grows.    
-These samples are grouped by Azure services and Spring Cloud Azure libraries.    
+- This is a sample project for demonstration purposes.   
+- The project demonstrates how to use [Spring Cloud Azure](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html) to develop applications.    
+- The sample project contains 42 samples, and it still grows.    
+- These samples are grouped by Azure services and Spring Cloud Azure libraries.    
 
-> For example: [single-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespaces), it located in the path `/servicebus/spring-cloud-azure-starter-integration-servicebus`.
->
->  **servicebus**: The Azure service [single-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespaces) integrated with.
->
-> **spring-cloud-azure-starter-integration-servicebus**: the dependency [single-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespaces) depends on.
-
+    > For example: [single-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespaces), it located in the path `/servicebus/spring-cloud-azure-starter-integration-servicebus`.
+    >
+    >  **servicebus**: The Azure service [single-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespaces) integrated with.
+    >
+    > **spring-cloud-azure-starter-integration-servicebus**: the dependency [single-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespaces) depends on.
+    
 
 ## Current Branch Supported versions
 - [spring-boot-dependencies:2.5.2](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-dependencies/2.5.2/spring-boot-dependencies-2.5.2.pom).
@@ -65,7 +65,7 @@ These samples are grouped by Azure services and Spring Cloud Azure libraries.
 | Storage          | [spring-cloud-azure-starter-integration-storage-queue:4.0.0-beta.2]                            | [storage-queue-integration](storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration)                           |
 | Storage          | [spring-cloud-azure-starter-integration-storage-queue:4.0.0-beta.2]                            | [storage-queue-operation](storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation)                               |
 
-## Running Samples
+## Running Samples With Terraform
 With [terraform](https://www.terraform.io/) scripts and [DefaultAzureCredential](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html#defaultazurecredential), most samples in the project can be run with the same 4 steps below:
 
 ```shell

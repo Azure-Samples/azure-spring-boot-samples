@@ -4,11 +4,11 @@
 - The sample project contains 42 samples, and it still grows.    
 - These samples are grouped by Azure services and [Spring Cloud Azure libraries](https://github.com/Azure/azure-sdk-for-java/tree/feature/azure-spring-cloud-4.0/sdk/spring).    
 
-    > For example: [single-namespace](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace), it located in the path `/servicebus/spring-cloud-azure-starter-integration-servicebus`.
+    > For example: [Use Spring Integration with single Azure Service Bus namespace](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace), it located in the path `/servicebus/spring-cloud-azure-starter-integration-servicebus`.
     >
-    >  **servicebus**: The Azure service [single-namespace](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace) integrated with.
+    >  **servicebus**: The Azure service that the sample integrated with.
     >
-    > **spring-cloud-azure-starter-integration-servicebus**: the dependency [single-namespace](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace) depends on.
+    > **spring-cloud-azure-starter-integration-servicebus**: The dependency that the sample depends on.
     
 
 ## Current Branch Supported versions

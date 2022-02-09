@@ -4,11 +4,11 @@
 - The sample project contains 42 samples, and it still grows.    
 - These samples are grouped by Azure services and [Spring Cloud Azure libraries](https://github.com/Azure/azure-sdk-for-java/tree/feature/azure-spring-cloud-4.0/sdk/spring).    
 
-    > For example: [single-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespaces), it located in the path `/servicebus/spring-cloud-azure-starter-integration-servicebus`.
+    > For example: [single-namespace](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace), it located in the path `/servicebus/spring-cloud-azure-starter-integration-servicebus`.
     >
-    >  **servicebus**: The Azure service [single-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespaces) integrated with.
+    >  **servicebus**: The Azure service [single-namespace](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace) integrated with.
     >
-    > **spring-cloud-azure-starter-integration-servicebus**: the dependency [single-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespaces) depends on.
+    > **spring-cloud-azure-starter-integration-servicebus**: the dependency [single-namespace](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace) depends on.
     
 
 ## Current Branch Supported versions
@@ -55,7 +55,7 @@
 | Key Vault        | [spring-cloud-azure-starter-keyvault-secrets:4.0.0-beta.2]                                     | [keyvault-secrets](keyvault/spring-cloud-azure-starter-keyvault-secrets/keyvault-secrets)                                          |
 | Service Bus      | [spring-cloud-azure-starter-servicebus-jms:4.0.0-beta.2]                                       | [servicebus-jms-queue](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue)                                  |
 | Service Bus      | [spring-cloud-azure-starter-servicebus-jms:4.0.0-beta.2]                                       | [servicebus-jms-topic](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-topic)                                  |
-| Service Bus      | [spring-cloud-azure-starter-integration-servicebus:4.0.0-beta.2]                               | [single-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespaces)                                 |
+| Service Bus      | [spring-cloud-azure-starter-integration-servicebus:4.0.0-beta.2]                               | [single-namespace](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace)                                 |
 | Service Bus      | [spring-cloud-azure-starter-integration-servicebus:4.0.0-beta.2]                               | [multiple-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces)                                 |
 | Service Bus      | [spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.2]                                     | [servicebus-queue-binder](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder)                   |
 | Service Bus      | [spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.2]                                     | [servicebus-queue-multibinders](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-multibinders)       |

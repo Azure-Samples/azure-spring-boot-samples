@@ -1,3 +1,15 @@
+# Spring Cloud Azure Samples
+- This is a sample project for demonstration purposes.   
+- The project demonstrates how to use [Spring Cloud Azure](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html) to develop applications.    
+- The sample project contains 42 samples, and it still grows.    
+- These samples are grouped by Azure services and [Spring Cloud Azure libraries](https://github.com/Azure/azure-sdk-for-java/tree/feature/azure-spring-cloud-4.0/sdk/spring).    
+
+    > For example: [Use Spring Integration with single Azure Service Bus namespace](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace), it located in the path `/servicebus/spring-cloud-azure-starter-integration-servicebus`.
+    >
+    >  **servicebus**: The Azure service that the sample integrated with.
+    >
+    > **spring-cloud-azure-starter-integration-servicebus**: The dependency that the sample depends on.
+    
 
 ## Current Branch Supported versions
 - [spring-boot-dependencies:2.5.2](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-dependencies/2.5.2/spring-boot-dependencies-2.5.2.pom).
@@ -43,7 +55,7 @@
 | Key Vault        | [spring-cloud-azure-starter-keyvault-secrets:4.0.0-beta.2]                                     | [keyvault-secrets](keyvault/spring-cloud-azure-starter-keyvault-secrets/keyvault-secrets)                                          |
 | Service Bus      | [spring-cloud-azure-starter-servicebus-jms:4.0.0-beta.2]                                       | [servicebus-jms-queue](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue)                                  |
 | Service Bus      | [spring-cloud-azure-starter-servicebus-jms:4.0.0-beta.2]                                       | [servicebus-jms-topic](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-topic)                                  |
-| Service Bus      | [spring-cloud-azure-starter-integration-servicebus:4.0.0-beta.2]                               | [single-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespaces)                                 |
+| Service Bus      | [spring-cloud-azure-starter-integration-servicebus:4.0.0-beta.2]                               | [single-namespace](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace)                                 |
 | Service Bus      | [spring-cloud-azure-starter-integration-servicebus:4.0.0-beta.2]                               | [multiple-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces)                                 |
 | Service Bus      | [spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.2]                                     | [servicebus-queue-binder](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder)                   |
 | Service Bus      | [spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.2]                                     | [servicebus-queue-multibinders](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-multibinders)       |
@@ -53,13 +65,33 @@
 | Storage          | [spring-cloud-azure-starter-integration-storage-queue:4.0.0-beta.2]                            | [storage-queue-integration](storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration)                           |
 | Storage          | [spring-cloud-azure-starter-integration-storage-queue:4.0.0-beta.2]                            | [storage-queue-operation](storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation)                               |
 
+## Running Samples With Terraform
+With [terraform](https://www.terraform.io/) scripts and [DefaultAzureCredential](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html#defaultazurecredential), most samples in the project can be run with the same 4 steps below:
+
+```shell
+# Step1 Initialize Terraform
+terraform -chdir=./terraform init
+
+# Step2 Apply your Terraform Configuration
+terraform -chdir=./terraform apply -auto-approve
+
+# Step3 Export Environment Valuables
+source ./terraform/setup_env.sh
+
+# Step4 Run With Maven
+mvn clean spring-boot:run
+```
+It supports both Bash environment and [PowerShell](https://docs.microsoft.com/en-us/powershell/) environment.   
+Please refer to [README.md](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace/README.md) under each sample for detailed information.
+
+
 ###
 [azure-spring-boot-starter-cosmos:3.9.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-cosmos/3.9.0/jar
 [spring-cloud-azure-feature-management:1.3.0]: https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-azure-feature-management/1.3.0/jar
 [spring-cloud-azure-appconfiguration-config:1.3.0]: https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-azure-appconfiguration-config/1.3.0/jar
 [spring-cloud-starter-azure-appconfiguration-config:1.3.0]: https://search.maven.org/artifact/com.microsoft.azure/spring-cloud-starter-azure-appconfiguration-config/1.3.0/jar
 [spring-cloud-azure-starter-keyvault-secrets:4.0.0-beta.2]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-keyvault-secrets/4.0.0-beta.2/jar
-[azure-spring-boot-starter-keyvault-certificates:3.2.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-certificates/3.10.0/jar
+[azure-spring-boot-starter-keyvault-certificates:3.10.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-certificates/3.10.0/jar
 [spring-cloud-azure-stream-binder-eventhubs:4.0.0-beta.2]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-stream-binder-eventhubs/4.0.0-beta.2/jar
 [spring-cloud-azure-starter-integration-eventhubs:4.0.0-beta.2]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-integration-eventhubs/4.0.0-beta.2/jar
 [spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.2]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-stream-binder-servicebus/4.0.0-beta.2/jar

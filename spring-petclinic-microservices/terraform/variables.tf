@@ -1,7 +1,7 @@
 variable "application_name" {
   type        = string
   description = "The name of your application."
-  default     = "data-petclinic-sample"
+  default     = "petclinicsample"
 }
 
 variable "location" {
@@ -10,20 +10,8 @@ variable "location" {
   default     = "eastus"
 }
 
-variable "cosmos_database_name" {
-  type        = string
-  description = "The cosmos database name"
-  default     = "end2endsample"
-}
-
 variable "sample_tag_value" {
   type        = string
   description = "The value of spring-cloud-azure-sample tag."
   default     = "true"
-}
-
-variable "redis_cache_name" {
-  type        = string
-  description = "The redis cache name"
-  default     = "redis-petclinic"
 }

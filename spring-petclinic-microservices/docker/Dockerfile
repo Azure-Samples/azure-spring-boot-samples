@@ -1,4 +1,16 @@
-FROM openjdk:11-jre as builder
+#FROM mcr.microsoft.com/openjdk/jdk:11-ubuntu as builder
+FROM alpine:latest as builder
+RUN apk add py3-pip
+RUN apk add gcc musl-dev python3-dev libffi-dev openssl-dev cargo make
+RUN pip install azure-cli
+RUN az login
+
+ENV JAVA_HOME="/usr/lib/jvm/default-jvm/"
+RUN apk add openjdk11
+
+# Has to be set explictly to find binaries
+ENV PATH=$PATH:${JAVA_HOME}/bin
+
 WORKDIR application
 ARG ARTIFACT_NAME
 COPY ${ARTIFACT_NAME}.jar application.jar

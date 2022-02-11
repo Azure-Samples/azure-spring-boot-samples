@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.samples</groupId>
     <artifactId>spring-petclinic-microservices</artifactId>
-    <version>2.3.6</version>
+    <version>1.0.0</version>
   </parent>
 
   <groupId>org.springframework.samples.petclinic.config</groupId>
@@ -26,12 +26,6 @@
       <groupId>org.springframework.cloud</groupId>
       <artifactId>spring-cloud-starter-bootstrap</artifactId>
     </dependency>
-    <!-- Spring Boot -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
 
     <!-- Spring Cloud -->
     <dependency>
@@ -43,18 +37,6 @@
     <dependency>
       <groupId>org.jolokia</groupId>
       <artifactId>jolokia-core</artifactId>
-    </dependency>
-
-    <!-- Testing -->
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-api</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.junit.jupiter</groupId>
-      <artifactId>junit-jupiter-engine</artifactId>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 

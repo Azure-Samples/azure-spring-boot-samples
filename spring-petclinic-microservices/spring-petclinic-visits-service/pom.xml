@@ -6,7 +6,7 @@
   <parent>
     <groupId>org.springframework.samples</groupId>
     <artifactId>spring-petclinic-microservices</artifactId>
-    <version>2.3.6</version>
+    <version>1.0.0</version>
   </parent>
 
   <groupId>org.springframework.samples.petclinic.visits</groupId>
@@ -53,8 +53,8 @@
 
     <!-- Spring Cloud Azure -->
     <dependency>
-      <groupId>com.azure</groupId>
-      <artifactId>azure-spring-data-cosmos</artifactId>
+      <groupId>com.azure.spring</groupId>
+      <artifactId>spring-cloud-azure-starter-data-cosmos</artifactId>
     </dependency>
     <dependency>
       <groupId>com.azure.spring</groupId>
@@ -75,7 +75,6 @@
       <groupId>org.jolokia</groupId>
       <artifactId>jolokia-core</artifactId>
     </dependency>
-
     <dependency>
       <groupId>io.micrometer</groupId>
       <artifactId>micrometer-registry-prometheus</artifactId>
@@ -83,22 +82,6 @@
     <dependency>
       <groupId>javax.validation</groupId>
       <artifactId>validation-api</artifactId>
-    </dependency>
-
-    <!-- Testing -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>jakarta.persistence</groupId>
-      <artifactId>jakarta.persistence-api</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>test</scope>
     </dependency>
   </dependencies>
 

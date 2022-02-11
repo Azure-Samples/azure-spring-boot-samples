@@ -22,7 +22,7 @@
       <dependency>
         <groupId>com.azure.spring</groupId>
         <artifactId>azure-spring-cloud-dependencies</artifactId>
-        <version>2.10.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-dependencies;current} -->
+        <version>2.11.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-cloud-dependencies;dependency} -->
         <type>pom</type>
         <scope>import</scope>
       </dependency>

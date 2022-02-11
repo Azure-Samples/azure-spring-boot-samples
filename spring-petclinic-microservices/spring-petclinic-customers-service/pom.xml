@@ -43,7 +43,7 @@
         <dependency>
             <groupId>com.azure.spring</groupId>
             <artifactId>azure-spring-boot-starter-keyvault-secrets</artifactId>
-            <version>3.10.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-boot-starter-keyvault-secrets;dependency} -->
+            <version>3.11.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-boot-starter-keyvault-secrets;dependency} -->
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>

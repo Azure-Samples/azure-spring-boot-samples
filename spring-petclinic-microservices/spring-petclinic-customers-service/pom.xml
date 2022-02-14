@@ -93,6 +93,11 @@
       <scope>compile</scope>
     </dependency>
 
+    <dependency>
+      <groupId>jakarta.persistence</groupId>
+      <artifactId>jakarta.persistence-api</artifactId>
+    </dependency>
+
     <!--   Dependencies for AAD # For sample only
      <dependency>
          <groupId>com.azure.spring</groupId>

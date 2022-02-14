@@ -1,86 +1,161 @@
 # Azure Spring Boot Sample Cosmos Multi Database Multi Account for Java
 
-## Key concepts
-## Getting started
+This guide demonstrates how to use Azure Cosmos DB via `azure-spring-data-cosmos` to store data in and retrieve data from your Azure Cosmos DB.
 
+## What You Will Build
+You will build an application to write data to and query data from Azure Cosmos DB via `azure-spring-data-cosmos`.
 
+## What You Need
 
-### Configure Cosmos Database
-1. Log into <https://portal.azure.com>.
+- [An Azure subscription](https://azure.microsoft.com/free/)
+- [Terraform](https://www.terraform.io/)
+- [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
+- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
+- Maven
+- You can also import the code straight into your IDE:
+    - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
-1. Click `Create a resource`.
+## Provision Azure Resources Required to Run This Sample
+This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
+> [!IMPORTANT]  
+> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
+> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
 
-1. Input `Azure Cosmos DB`.
+### Authenticate Using the Azure CLI
+Terraform must authenticate to Azure to create infrastructure.
 
-1. Click `Azure Cosmos DB`
-    ![Find Cosmos Resource 01](resource/creating-cosmos-01.png)
+In your terminal, use the Azure CLI tool to setup your account permissions locally.
 
-    ![Find Cosmos Resource 02](resource/creating-cosmos-02.png)
-
-1. Click **Create**.
-
-    ![Create new Cosmos](resource/creating-cosmos-03.png)
-
-1. On the **Create key vault** page, input `Subscription`, `Resource group`, `Account Name`, then click `Review + Create`.
-
-    ![Specify the options](resource/specify-the-options.png)
-
-    ![Create Cosmos resource](resource/create-cosmos-resource.png)
-
-1. When complete, click `Go to resource`.
-
-    ![Go to resource](resource/go-to-resource.png)
-
-1. Click **Keys** in the left navigation pane, copy your **URI**, the **PRIMARY KEY** and **SECONDARY KEY**;
-
-    ![Get Connect Info](resource/get-connect-info.png)
-
-1. Replace the content in `application.properties` with the obtained information.
-
-1. We need to create another cosmos DB as the secondary like the steps above.
-
-1. Add MYSQL connection attributes in `application.properties`.
-
-## Key concepts
-## Examples
-### Configure application.yml
-```yaml
-# primary account cosmos config
-azure.cosmos.primary.uri=your-primary-cosmosDb-uri
-azure.cosmos.primary.key=your-primary-cosmosDb-key
-azure.cosmos.primary.secondary-key=your-primary-cosmosDb-secondary-key
-azure.cosmos.primary.database=your-primary-cosmosDb-dbName
-azure.cosmos.primary.populate-query-metrics=if-populate-query-metrics
-
-# secondary account cosmos config
-azure.cosmos.secondary.uri=your-secondary-cosmosDb-uri
-azure.cosmos.secondary.key=your-secondary-cosmosDb-key
-azure.cosmos.secondary.secondary-key=your-secondary-cosmosDb-secondary-key
-azure.cosmos.secondary.database=your-secondary-cosmosDb-dbName
-azure.cosmos.secondary.populate-query-metrics=if-populate-query-metrics
-
-#mysql connection attributes
-spring.jpa.hibernate.ddl-auto=update
-spring.datasource.url=jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
-spring.datasource.username=your-mysql-username
-spring.datasource.password=your-mysql-password
-```
-
-### Run with Maven
 ```shell
-cd azure-spring-boot-samples/cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account
-mvn spring-boot:run
+az login
 ```
+
+Your browser window will open and you will be prompted to enter your Azure login credentials. After successful authentication, your terminal will display your subscription information. You do not need to save this output as it is saved in your system for Terraform to use.
+
+```shell
+You have logged in. Now let us find all the subscriptions to which you have access...
+
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "home-Tenant-Id",
+    "id": "subscription-id",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Subscription-Name",
+    "state": "Enabled",
+    "tenantId": "0envbwi39-TenantId",
+    "user": {
+      "name": "your-username@domain.com",
+      "type": "user"
+    }
+  }
+]
+```
+
+If you have more than one subscription, specify the subscription-id you want to use with command below:
+```shell
+az account set --subscription <your-subscription-id>
+```
+
+### Provision the Resources
+
+After login Azure CLI with your account, now you can use the terraform script to create Azure Resources.
+
+#### Run with Bash
+
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=./terraform init
+
+# Apply your Terraform Configuration
+terraform -chdir=./terraform apply -auto-approve
+
+```
+
+#### Run with Powershell
+
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=terraform init
+
+# Apply your Terraform Configuration
+terraform -chdir=terraform apply -auto-approve
+
+```
+
+It may take a few minutes to run the script. After successful running, you will see prompt information like below:
+
+```shell
+
+azurecaf_name.resource_group: Creating...
+azurecaf_name.cosmos_02: Creating...
+azurecaf_name.cosmos_01: Creating...
+azurecaf_name.resource_group: Creation complete after 0s [id=lsayywncwrhxslhx]
+azurecaf_name.cosmos_01: Creation complete after 0s [id=horcpnoxqwmegvlx]
+azurecaf_name.cosmos_02: Creation complete after 0s [id=horcpnoxqwmegvlx]
+azurerm_resource_group.main: Creating......
+...
+azurerm_cosmosdb_account.application_01: Creating...
+azurerm_cosmosdb_account.application_02: Creating...
+...
+azurerm_cosmosdb_sql_database.db_01: Creating...
+...
+...
+Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
+
+```
+
+You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
+
+### Export Output to Your Local Environment
+Running the command below to export environment values:
+
+#### Run with Bash
+
+```shell
+source ./terraform/setup_env.sh
+```
+
+#### Run with Powershell
+
+```shell
+ . terraform\setup_env.ps1
+```
+
+## Run Locally
+
+In your terminal, run `mvn clean spring-boot:run`.
+
+
+```shell
+mvn clean spring-boot:run
+```
+
+## Verify This Sample
 
 Verify Result:
 The corresponding data is added to the mysql database and cosmos database
     ![Result in MYSQL](resource/result-in-mysql.png)
     ![Result in Primary Cosmos Database](resource/result-in-primary-cosmos-database.png)
     ![Result in Secondary Cosmos Database](resource/result-in-secondary-cosmos-database.png)
-    
-## Troubleshooting
-## Next steps
-## Contributing
 
-<!-- LINKS -->
+## Clean Up Resources
+After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
 
+The terraform destroy command terminates resources managed by your Terraform project.   
+To destroy the resources you created.
+
+#### Run with Bash
+
+```shell
+terraform -chdir=./terraform destroy -auto-approve
+```
+
+#### Run with Powershell
+
+```shell
+terraform -chdir=terraform destroy -auto-approve
+```

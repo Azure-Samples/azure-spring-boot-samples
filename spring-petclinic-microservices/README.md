@@ -130,7 +130,7 @@ azurerm_cosmosdb_account.application: Creating...
 azurerm_key_vault.kv_account: Still creating... [10s elapsed]
 ...
 
-Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
 
 Outputs:
 ...
@@ -142,13 +142,6 @@ You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser t
 
 #### Run with Bash
 
-Open `terraform/setup_env.sh` and enter the following information:
-
-```bash
-export REDIS_NAME=redis-petclinic-samples #customize this
-export APP_NAME_FOR_KEYVAULT=app-petclinic-samples #customize this
-```
-
 Running the command below to export environment values:
 
 ```shell
@@ -156,13 +149,6 @@ Running the command below to export environment values:
 ```
 
 #### Run with Powershell
-
-Open `terraform/setup_env.ps1` and enter the following information:
-
-```bash
-$REDIS_NAME='redis-petclinic-samples' #customize this
-$APP_NAME_FOR_KEYVAULT='app-petclinic-samples' #customize this
-```
 
 Running the command below to export environment values:
 
@@ -181,13 +167,13 @@ To destroy the resources you created.
 #### Run with Bash
 
 ```shell
-az group delete --name $RESOURCE_GROUP
+az group delete --name $(terraform -chdir=./terraform output -raw resource_group_name)
 ```
 
 #### Run with Powershell
 
 ```shell
-az group delete --name $env:RESOURCE_GROUP
+az group delete --name $(terraform -chdir=terraform output -raw resource_group_name)
 ```
 
 ## Starting services locally with docker-compose

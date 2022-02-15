@@ -11,7 +11,7 @@ output "azure_cosmos_account" {
 output "azure_cosmos_key" {
   value       = azurerm_cosmosdb_account.application.primary_key
   description = "Azure Cosmos DB account key."
-  sensitive = true
+  sensitive   = true
 }
 
 output "resource_group_name" {
@@ -24,21 +24,27 @@ output "cosmos_application_id" {
   description = "Cosmos account application id."
 }
 
-output "object_id" {
-  value       = data.azurerm_client_config.current.object_id
-  description = "Current user's object_id."
-}
-
 output "keyvault_url" {
   value       = azurerm_key_vault.kv_account.vault_uri
   description = "The key vault uri."
 }
 
 output "azurerm_key_vault_account" {
-  value = azurerm_key_vault.kv_account.name
+  value       = azurerm_key_vault.kv_account.name
   description = "The key vault account created."
 }
 
 output "location" {
   value = azurerm_cosmosdb_account.application.location
+  description = "The Azure region name."
+}
+
+output "redis-name" {
+  value = azurecaf_name.redis.result
+  description = "The redis name created."
+}
+
+output "service-principal-name" {
+  value = azurecaf_name.service-principal.result
+  description = "The service principal name created."
 }

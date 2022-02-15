@@ -1,11 +1,15 @@
+if ! [ -x "$(command -v jq)" ]; then
+  echo 'jq is not installed.' >&2
+  exit 1
+fi
 export AZURE_KEYVAULT_URI=$(terraform -chdir=./terraform output -raw keyvault_url)
 export RESOURCE_GROUP=$(terraform -chdir=./terraform output -raw resource_group_name)
 export KEYVAULT_NAME=$(terraform -chdir=./terraform output -raw azurerm_key_vault_account)
 export COSMOSDB_URI=$(terraform -chdir=./terraform output -raw azure_cosmos_endpoint)
 export COSMOS_PRIMARY_KEY=$(terraform -chdir=./terraform output -raw azure_cosmos_key)
 export LOCATION=$(terraform -chdir=./terraform output -raw location)
-export REDIS_NAME=redis-petclinic-samples #customize this
-export APP_NAME_FOR_KEYVAULT=app-petclinic-samples #customize this
+export REDIS_NAME=$(terraform -chdir=./terraform output -raw redis-name)
+export APP_NAME_FOR_KEYVAULT=$(terraform -chdir=./terraform output -raw service-principal-name)
 
 # ==== Create Redis Cache Account ====
 echo "Creating Redis Cache Account, it may take a few minutes"

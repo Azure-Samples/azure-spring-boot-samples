@@ -1,17 +1,21 @@
+$result=Test-Path -path "jq";
+if($result -eq $False){
+echo 'jq is not installed.'
+}
 $AZURE_KEYVAULT_URI=$(terraform -chdir=terraform output -raw keyvault_url)
-$env:RESOURCE_GROUP=$(terraform -chdir=terraform output -raw resource_group_name)
+$RESOURCE_GROUP=$(terraform -chdir=terraform output -raw resource_group_name)
 $KEYVAULT_NAME=$(terraform -chdir=terraform output -raw azurerm_key_vault_account)
 $COSMOSDB_URI=$(terraform -chdir=terraform output -raw azure_cosmos_endpoint)
 $COSMOS_PRIMARY_KEY=$(terraform -chdir=terraform output -raw azure_cosmos_key)
 $LOCATION=$(terraform -chdir=terraform output -raw location)
-$REDIS_NAME='redis-petclinic-samples' #customize this
-$APP_NAME_FOR_KEYVAULT='app-petclinic-samples' #customize this
+$REDIS_NAME=$(terraform -chdir=terraform output -raw redis-name)
+$APP_NAME_FOR_KEYVAULT=$(terraform -chdir=terraform output -raw service-principal-name)
 
 # ==== Create Redis Cache Account ====
 echo "Creating Redis Cache Account, it may take a few minutes"
-az redis create --name $REDIS_NAME  --resource-group $env:RESOURCE_GROUP --sku Basic --vm-size c0 --location $LOCATION
-$REDIS_HOSTNAME=az redis show --name $REDIS_NAME --resource-group $env:RESOURCE_GROUP | jq -r .hostName
-$REDIS_PASSWORD=az redis list-keys --name $REDIS_NAME --resource-group $env:RESOURCE_GROUP | jq -r .primaryKey
+az redis create --name $REDIS_NAME  --resource-group $RESOURCE_GROUP --sku Basic --vm-size c0 --location $LOCATION
+$REDIS_HOSTNAME=az redis show --name $REDIS_NAME --resource-group $RESOURCE_GROUP | jq -r .hostName
+$REDIS_PASSWORD=az redis list-keys --name $REDIS_NAME --resource-group $RESOURCE_GROUP | jq -r .primaryKey
 
 # ==== Create service principal ====
 echo "Creating service principal, it may take a few minutes"
@@ -22,7 +26,7 @@ $AZURE_KEYVAULT_TENANTID=$SERVICE_PRINCIPAL | jq -r .tenant
 $AZURE_KEYVAULT_CLIENTKEY=$SERVICE_PRINCIPAL | jq -r .password
 
 # set keyvault policy
-az keyvault set-policy -n $KEYVAULT_NAME --key-permissions get list --certificate-permissions get list --secret-permissions get list --resource-group $env:RESOURCE_GROUP --spn $AZURE_KEYVAULT_CLIENTID
+az keyvault set-policy -n $KEYVAULT_NAME --key-permissions get list --certificate-permissions get list --secret-permissions get list --resource-group $RESOURCE_GROUP --spn $AZURE_KEYVAULT_CLIENTID
 
 # ==== add keys to keyvault ====
 echo "add keys to keyvault"

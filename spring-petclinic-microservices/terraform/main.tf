@@ -1,6 +1,6 @@
 terraform {
   required_providers {
-    azurerm = {
+    azurerm  = {
       source  = "hashicorp/azurerm"
       version = ">= 2.75"
     }
@@ -101,4 +101,20 @@ resource "azurerm_key_vault" "kv_account" {
     "terraform"                 = "true"
     "spring-cloud-azure-sample" = var.sample_tag_value
   }
+}
+
+// ===========azurerm_redis_name===========
+resource "azurecaf_name" "redis" {
+  name          = var.application_name
+  resource_type = "azurerm_redis_cache"
+  random_length = 5
+  clean_input   = true
+}
+
+// ===========service_principal_name===========
+resource "azurecaf_name" "service-principal" {
+  name          = var.application_name
+  resource_type = "azurerm_app_configuration"
+  random_length = 5
+  clean_input   = true
 }

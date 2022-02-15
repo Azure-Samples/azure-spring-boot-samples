@@ -3,8 +3,10 @@
 name: CI-Azure-Spring-Boot-Samples
 
 # Controls when the workflow will run
-on: push
-
+on: 
+ push:
+   branches-ignore:
+    - spring-cloud-azure_4.0.0-beta.4
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"

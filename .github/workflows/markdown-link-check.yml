@@ -1,0 +1,13 @@
+name: Markdown links Check 
+
+on:
+  push:
+    branches-ignore:
+     - spring-cloud-azure_4.0.0-beta.4
+
+jobs:
+  markdown-link-check:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: gaurav-nelson/github-action-markdown-link-check@v1

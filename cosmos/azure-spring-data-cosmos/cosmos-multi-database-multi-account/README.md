@@ -17,9 +17,6 @@ You will build an application to write data to and query data from Azure Cosmos 
 
 ## Provision Azure Resources Required to Run This Sample
 This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
-> [!IMPORTANT]  
-> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
-> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
 
 ### Authenticate Using the Azure CLI
 Terraform must authenticate to Azure to create infrastructure.
@@ -104,7 +101,7 @@ azurerm_cosmosdb_account.application_02: Creating...
 azurerm_cosmosdb_sql_database.db_01: Creating...
 ...
 ...
-Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 13 added, 0 changed, 0 destroyed.
 
 ```
 

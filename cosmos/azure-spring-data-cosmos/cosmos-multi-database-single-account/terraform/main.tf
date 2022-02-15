@@ -1,6 +1,6 @@
 terraform {
   required_providers {
-    azurerm = {
+    azurerm  = {
       source  = "hashicorp/azurerm"
       version = ">= 2.75"
     }
@@ -67,8 +67,3 @@ resource "azurerm_cosmosdb_sql_database" "db" {
   account_name        = azurerm_cosmosdb_account.application.name
   throughput          = 400
 }
-
-# Used to get object_id
-data "azurerm_client_config" "current" {
-}
-

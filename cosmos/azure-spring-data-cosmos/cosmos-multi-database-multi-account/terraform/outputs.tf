@@ -32,11 +32,28 @@ output "azure_cosmos02_secondary_key" {
   sensitive = true
 }
 
-output "object_id" {
-  value       = data.azurerm_client_config.current.object_id
-  description = "Current user's object_id."
+output "azurerm_resource_group_name" {
+  value = azurerm_resource_group.main.name
+  description = "Azure resource group name."
 }
 
 output "cosmos_database_name" {
   value = var.cosmos_database_name
+  description = "Azure Cosmos database name."
+}
+
+output "mysql_username" {
+  value = azurerm_mysql_server.mysql.administrator_login
+  description = "Azure MySQL username."
+}
+
+output "mysql_password" {
+  value = azurerm_mysql_server.mysql.administrator_login_password
+  description = "Azure MySQL password."
+  sensitive = true
+}
+
+output "mysql_url" {
+  value = azurerm_mysql_server.mysql.name
+  description = "Azure MySQL URL."
 }

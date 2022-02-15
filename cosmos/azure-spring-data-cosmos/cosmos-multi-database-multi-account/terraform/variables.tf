@@ -12,7 +12,7 @@ variable "location" {
 
 variable "cosmos_database_name" {
   type        = string
-  description = "The cosmos database name"
+  description = "The cosmos database name."
   default     = "cosmos-database"
 }
 

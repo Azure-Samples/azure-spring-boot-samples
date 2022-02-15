@@ -14,9 +14,9 @@ azure:
       populate-query-metrics: if-populate-query-metrics
 spring:
   datasource:
-    username: your-mysql-username
-    password: your-mysql-password
-    url: jdbc:mysql://${MYSQL_HOST:localhost}:3306/db_example
+    username: ${AZURE_MYSQL_USERNAME}@${AZURE_MYSQL_HOST}
+    password: ${AZURE_MYSQL_PASSWORD}
+    url: jdbc:mysql://${AZURE_MYSQL_HOST}.mysql.database.azure.com:3306/db_example
   jpa:
     hibernate:
       ddl-auto: update

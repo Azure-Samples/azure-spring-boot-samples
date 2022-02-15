@@ -17,14 +17,10 @@ output "azure_cosmos_secondary_key" {
 
 output "cosmos_application_id" {
   value       = azurerm_cosmosdb_account.application.id
-  description = "Cosmos account application id."
-}
-
-output "object_id" {
-  value       = data.azurerm_client_config.current.object_id
-  description = "Current user's object_id."
+  description = "Azure Cosmos account application id."
 }
 
 output "cosmos_database_name" {
   value = var.cosmos_database_name
+  description = "Azure Cosmos database name."
 }

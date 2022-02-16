@@ -3,13 +3,7 @@
 
 name: Java CI with Maven[adopt] 
 
-on:
-  push:
-    branches-ignore:
-     - spring-cloud-azure_4.0.0-beta.4
-  pull_request:
-    branches-ignore:
-     - spring-cloud-azure_4.0.0-beta.4
+on: [push, pull_request]
 
 jobs:
   java-ci-with-maven-adopt:

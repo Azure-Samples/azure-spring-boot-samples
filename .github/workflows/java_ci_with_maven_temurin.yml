@@ -12,10 +12,8 @@ on:
      - spring-cloud-azure_4.0.0-beta.4
 
 jobs:
-  build:
-
+  java-ci-with-maven-temurin:
     runs-on: ubuntu-latest
-
     steps:
     - uses: actions/checkout@v2
     - name: Set up JDK 11

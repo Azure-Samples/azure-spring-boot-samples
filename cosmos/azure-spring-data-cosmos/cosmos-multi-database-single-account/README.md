@@ -133,6 +133,13 @@ mvn clean spring-boot:run
 
 ## Verify This Sample
 
+Verify in your app’s logs that similar messages were posted:
+```shell
+...
+1024: 1024@geek.com 1k Mars
+2048: 2048@geek.com 2k Mars
+```
+
 Verify Result:
 The corresponding data is added to cosmos database
 ![Result in Cosmos Database1](resource/result-in-cosmos-database1.png)

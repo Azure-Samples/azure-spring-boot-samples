@@ -15,10 +15,6 @@ output "azure_cosmos_secondary_key" {
   sensitive = true
 }
 
-output "cosmos_application_id" {
-  value       = azurerm_cosmosdb_account.application.id
-  description = "Azure Cosmos account application id."
-}
 
 output "cosmos_database_name" {
   value = var.cosmos_database_name

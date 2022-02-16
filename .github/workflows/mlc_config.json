@@ -15,5 +15,6 @@
     {
       "pattern": "^http://proxyserver"
     }
-  ]
+  ],
+  "aliveStatusCodes": [200, 403]
 }

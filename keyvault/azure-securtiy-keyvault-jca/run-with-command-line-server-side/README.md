@@ -90,4 +90,4 @@ jdk 11.0.12 or above
 
 <!-- LINKS -->
 [azure-security-keyvault-jca]: https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca
-[client sample]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/keyvault/azure-security-keyvault-jca/run-with-command-line-client-side/README.md
+[client sample]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side/README.md

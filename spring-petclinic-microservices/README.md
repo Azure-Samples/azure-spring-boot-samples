@@ -33,7 +33,7 @@ In order to deploy a Java app to cloud, you need an Azure subscription. If you d
 an Azure subscription, you can activate your
 [MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)
 or sign up for a
-[free Azure account]((https://azure.microsoft.com/free/)).
+[free Azure account](https://azure.microsoft.com/free/).
 
 In addition, you will need the following:
 

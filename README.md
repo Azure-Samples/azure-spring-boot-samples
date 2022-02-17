@@ -1,3 +1,7 @@
+https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/.github/workflows/codeql-analysis.yml/badge.svg?branch=215_updategithubactions_beta.4  
+https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/.github/workflows/markdown-link-check.yml/badge.svg?branch=215_updategithubactions_beta.4    
+https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/.github/workflows/java_ci_with_maven_adopt.yml/badge.svg?branch=215_updategithubactions_beta.4    
+
 # Spring Cloud Azure Samples
 - This is a sample project for demonstration purposes.   
 - The project demonstrates how to use [Spring Cloud Azure](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html) to develop applications.    

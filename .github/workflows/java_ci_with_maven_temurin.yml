@@ -3,7 +3,13 @@
 
 name: Java CI with Maven[temurin] 
 
-on: [push, pull_request]
+on:
+  push:
+    branches-ignore:
+      - spring-cloud-azure_4.0.0-beta.4
+  pull_request:
+    branches-ignore:
+      - spring-cloud-azure_4.0.0-beta.4
 
 jobs:
   java-ci-with-maven-temurin:

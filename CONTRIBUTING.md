@@ -1,14 +1,3 @@
-## Github actions of this repo
-
-There are several github actions in this repo to do some basic checks with pull requests or branches.
-
-| Action Name                                                                                                                               | Note                         |
-|-------------------------------------------------------------------------------------------------------------------------------------------| ---------------------------- |
-| [codeql-analysis](https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/.github/workflows/codeql-analysis.yml)             | Code analysis                |
-| [markdown-link-check](https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/.github/workflows/markdown-link-check.yml)     | Check broken markdown links. |
-| [java-ci-with-maven](https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/.github/workflows/java_ci_with_maven_adopt.yml) | Maven build check.           |
-
-
 ## How to develop codes to this repo.
 
 

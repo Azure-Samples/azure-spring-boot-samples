@@ -14,7 +14,10 @@
     },
     {
       "pattern": "^http://proxyserver"
+    },
+    {
+      "pattern": "^https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca"
     }
   ],
-  "aliveStatusCodes": [200, 403]
+  "aliveStatusCodes": [200]
 }

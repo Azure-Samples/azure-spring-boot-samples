@@ -182,3 +182,8 @@ terraform -chdir=./terraform destroy -auto-approve
 ```shell
 terraform -chdir=terraform destroy -auto-approve
 ```
+## Enhancement
+###[Enable sync message](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#producer-properties)
+To enable message sending in a synchronized way with Spring Cloud Stream 3.x, azure-spring-cloud-stream-binder-eventhubs supports the sync producer mode to get responses for sent messages. By enabling following configuration, you could use [StreamBridge](https://docs.spring.io/spring-cloud-stream/docs/3.1.3/reference/html/spring-cloud-stream.html#_sending_arbitrary_data_to_an_output_e_g_foreign_event_driven_sources) for the synchronized message producing.
+###[Using Batch Consuming](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#batch-consumer-support)
+[usage sample](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#batch-consumer-support-2)

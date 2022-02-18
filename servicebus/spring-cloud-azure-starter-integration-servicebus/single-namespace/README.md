@@ -179,7 +179,5 @@ terraform -chdir=./terraform destroy -auto-approve
 ```shell
 terraform -chdir=terraform destroy -auto-approve
 ```
-
-
-
-
+## Enhancement
+[Set Service Bus message headers](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#si-sb-headers)

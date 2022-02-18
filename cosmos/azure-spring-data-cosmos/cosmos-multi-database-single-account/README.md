@@ -1,65 +1,163 @@
 # Azure Spring Boot Sample Cosmos Multi Database Single Account for Java
+This guide demonstrates how to use Azure Cosmos DB via `azure-spring-data-cosmos` to store data in and retrieve data from your Azure Cosmos DB.
 
-## Key concepts
-## Getting started
+## What You Will Build
+You will build an application to write data to and query data from Azure Cosmos DB via `azure-spring-data-cosmos`.
 
+## What You Need
 
+- [An Azure subscription](https://azure.microsoft.com/free/)
+- [Terraform](https://www.terraform.io/)
+- [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
+- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
+- Maven
+- You can also import the code straight into your IDE:
+    - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
-### Configure Cosmos Database
-1. Log into <https://portal.azure.com>.
+## Provision Azure Resources Required to Run This Sample
 
-1. Click `Create a resource`.
+### Authenticate Using the Azure CLI
+Terraform must authenticate to Azure to create infrastructure.
 
-1. Input `Azure Cosmos DB`.
+In your terminal, use the Azure CLI tool to setup your account permissions locally.
 
-1. Click `Azure Cosmos DB`
-    ![Find Cosmos Resource 01](resource/creating-cosmos-01.png)
-
-    ![Find Cosmos Resource 02](resource/creating-cosmos-02.png)
-
-1. Click **Create**.
-
-    ![Create new Cosmos](resource/creating-cosmos-03.png)
-
-1. On the **Create key vault** page, input `Subscription`, `Resource group`, `Account Name`, then click `Review + Create`.
-
-    ![Specify the options](resource/specify-the-options.png)
-
-    ![Create Cosmos resource](resource/create-cosmos-resource.png)
-
-1. When complete, click `Go to resource`.
-
-    ![Go to resource](resource/go-to-resource.png)
-
-1. Click **Keys** in the left navigation pane, copy your **URI**, the **PRIMARY KEY** and **SECONDARY KEY**;
-
-    ![Get Connect Info](resource/get-connect-info.png)
-
-## Key concepts
-## Examples
-### Configure application.yml
-```yaml
-azure.cosmos.uri=your-cosmosDb-uri
-azure.cosmos.key=your-cosmosDb-key
-azure.cosmos.secondary-key=your-cosmosDb-secondary-key
-azure.cosmos.database=your-cosmosDb-dbName
-azure.cosmos.populate-query-metrics=if-populate-query-metrics
+```shell
+az login
 ```
 
-### Run with Maven
+Your browser window will open and you will be prompted to enter your Azure login credentials. After successful authentication, your terminal will display your subscription information. You do not need to save this output as it is saved in your system for Terraform to use.
+
 ```shell
-cd azure-spring-boot-samples/cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account
-mvn spring-boot:run
+You have logged in. Now let us find all the subscriptions to which you have access...
+
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "home-Tenant-Id",
+    "id": "subscription-id",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Subscription-Name",
+    "state": "Enabled",
+    "tenantId": "0envbwi39-TenantId",
+    "user": {
+      "name": "your-username@domain.com",
+      "type": "user"
+    }
+  }
+]
+```
+
+If you have more than one subscription, specify the subscription-id you want to use with command below:
+```shell
+az account set --subscription <your-subscription-id>
+```
+
+### Provision the Resources
+
+After login Azure CLI with your account, now you can use the terraform script to create Azure Resources.
+
+#### Run with Bash
+
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=./terraform init
+
+# Apply your Terraform Configuration
+terraform -chdir=./terraform apply -auto-approve
+
+```
+
+#### Run with Powershell
+
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=terraform init
+
+# Apply your Terraform Configuration
+terraform -chdir=terraform apply -auto-approve
+
+```
+
+It may take a few minutes to run the script. After successful running, you will see prompt information like below:
+
+```shell
+
+azurecaf_name.resource_group: Creating...
+azurecaf_name.cosmos: Creating...
+azurerm_resource_group.main: Creating...
+azurerm_cosmosdb_account.application: Creating...
+...
+...
+azurerm_cosmosdb_account.application: Creation complete after 2m26s ...
+azurerm_cosmosdb_sql_database.db: Creating...
+...
+azurerm_cosmosdb_sql_database.db: Creation complete after 41s ...
+...
+...
+Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
+
+```
+
+You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
+
+### Export Output to Your Local Environment
+Running the command below to export environment values:
+
+#### Run with Bash
+
+```shell
+source ./terraform/setup_env.sh
+```
+
+#### Run with Powershell
+
+```shell
+ . terraform\setup_env.ps1
+```
+
+## Run Locally
+
+In your terminal, run `mvn clean spring-boot:run`.
+
+
+```shell
+mvn clean spring-boot:run
+```
+
+## Verify This Sample
+
+Verify in your app’s logs that similar messages were posted:
+```shell
+...
+Data added successfully .........
+...
+Get database1User 1024: 1024@geek.com 1k Mars .........
+...
+Get database2User 2048: 2048@geek.com 2k Mars .........
 ```
 
 Verify Result:
 The corresponding data is added to cosmos database
-    ![Result in Cosmos Database1](resource/result-in-cosmos-database1.png)
-    ![Result in Cosmos Database2](resource/result-in-cosmos-database2.png)
-    
-## Troubleshooting
-## Next steps
-## Contributing
+![Result in Cosmos Database1](resource/result-in-cosmos-database1.png)
+![Result in Cosmos Database2](resource/result-in-cosmos-database2.png)
 
-<!-- LINKS -->
+## Clean Up Resources
+After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
 
+The terraform destroy command terminates resources managed by your Terraform project.   
+To destroy the resources you created.
+
+#### Run with Bash
+
+```shell
+terraform -chdir=./terraform destroy -auto-approve
+```
+
+#### Run with Powershell
+
+```shell
+terraform -chdir=terraform destroy -auto-approve
+```

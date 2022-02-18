@@ -46,10 +46,6 @@ You will:
 This will take a few minutes.
 
 ## Provision Azure Resources Required to Run This Sample
-This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
-> [!IMPORTANT]  
-> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
-> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
 
 ### Authenticate Using the Azure CLI
 Terraform must authenticate to Azure to create infrastructure.
@@ -119,9 +115,11 @@ terraform -chdir=terraform apply -auto-approve
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell
-azurecaf_name.kv: Creating...
-azurecaf_name.cosmos: Creating...
 azurecaf_name.resource_group: Creating...
+azurecaf_name.redis: Creating...
+azurecaf_name.service-principal: Creating...
+azurecaf_name.cosmos: Creating...
+azurecaf_name.kv: Creating...
 ...
 azurerm_resource_group.main: Creating...
 ...
@@ -130,7 +128,7 @@ azurerm_cosmosdb_account.application: Creating...
 azurerm_key_vault.kv_account: Still creating... [10s elapsed]
 ...
 
-Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
+Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
 
 Outputs:
 ...
@@ -158,24 +156,6 @@ Running the command below to export environment values:
 
 make sure keyvault.env file is created at the root of the repo.
 
-### Clean Up Resources
-After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
-
-The terraform destroy command terminates resources managed by your Terraform project.   
-To destroy the resources you created.
-
-#### Run with Bash
-
-```shell
-az group delete --name $(terraform -chdir=./terraform output -raw resource_group_name)
-```
-
-#### Run with Powershell
-
-```shell
-az group delete --name $(terraform -chdir=terraform output -raw resource_group_name)
-```
-
 ## Starting services locally with docker-compose
 
 In order to start entire infrastructure using Docker, you have to build images by
@@ -196,6 +176,24 @@ docker-compose up
 Containers startup order is coordinated with [`dockerize` script](https://github.com/jwilder/dockerize). After starting services it takes a while for API Gateway to be in sync with service registry, so don't be scared of initial Spring
 Cloud Gateway timeouts.   
 You can track services availability using Eureka dashboard available by default at `http://localhost:8761`.
+
+## Clean Up Resources
+After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
+
+The terraform destroy command terminates resources managed by your Terraform project.   
+To destroy the resources you created.
+
+### Run with Bash
+
+```shell
+az group delete --name $(terraform -chdir=./terraform output -raw resource_group_name)
+```
+
+### Run with Powershell
+
+```shell
+az group delete --name $(terraform -chdir=terraform output -raw resource_group_name)
+```
 
 ## Understanding the Spring Petclinic application
 

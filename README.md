@@ -1,6 +1,6 @@
-![codeql-analysis](https://github.com/Azure-Samples/azure-spring-boot-samples/actions/workflows/codeql-analysis.yml/badge.svg?branch=spring-cloud-azure_4.0.0-beta.3)   
-![markdown-link-check](https://github.com/Azure-Samples/azure-spring-boot-samples/actions/workflows/markdown-link-check.yml/badge.svg?branch=spring-cloud-azure_4.0.0-beta.3)   
-![java_ci_with_maven_adopt](https://github.com/Azure-Samples/azure-spring-boot-samples/actions/workflows/java_ci_with_maven_adopt.yml/badge.svg?branch=spring-cloud-azure_4.0.0-beta.3)
+![codeql-analysis](https://github.com/Azure-Samples/azure-spring-boot-samples/actions/workflows/codeql-analysis.yml/badge.svg)   
+![markdown-link-check](https://github.com/Azure-Samples/azure-spring-boot-samples/actions/workflows/markdown-link-check.yml/badge.svg)   
+![java_ci_with_maven_adopt](https://github.com/Azure-Samples/azure-spring-boot-samples/actions/workflows/java_ci_with_maven_adopt.yml/badge.svg)
 
 ## Current Branch Supported versions
 - [spring-boot-dependencies:2.5.4](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-dependencies/2.5.4/spring-boot-dependencies-2.5.4.pom).

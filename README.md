@@ -1,5 +1,5 @@
-![codeql-analysis](https://github.com/Azure-Samples/azure-spring-boot-samples/actions/workflows/codeql-analysis.yml/badge.svg)   
-![markdown-link-check](https://github.com/Azure-Samples/azure-spring-boot-samples/actions/workflows/markdown-link-check.yml/badge.svg)   
+![codeql-analysis](https://github.com/Azure-Samples/azure-spring-boot-samples/actions/workflows/codeql-analysis.yml/badge.svg)
+![markdown-link-check](https://github.com/Azure-Samples/azure-spring-boot-samples/actions/workflows/markdown-link-check.yml/badge.svg)
 ![java_ci_with_maven_adopt](https://github.com/Azure-Samples/azure-spring-boot-samples/actions/workflows/java_ci_with_maven_adopt.yml/badge.svg)
 
 ## Current Branch Supported versions

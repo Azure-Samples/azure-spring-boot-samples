@@ -1,8 +1,8 @@
 # Please fill these placeholders before running this application:
 # 1. ${tenant-id}
 # 2. ${client-1-client-id}
-# 4. ${resource-server-1-client-id}
-# 5. ${client-1-certificate-password}
+# 3. ${client-1-certificate-path}
+# 4. ${client-1-certificate-password}
 
 logging:
   level:

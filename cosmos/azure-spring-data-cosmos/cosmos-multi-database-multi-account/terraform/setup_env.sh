@@ -11,8 +11,6 @@ export AZURE_COSMOS_DATABASE_2=$(terraform -chdir=./terraform output -raw cosmos
 export AZURE_MYSQL_USERNAME=$(terraform -chdir=./terraform output -raw mysql_username)
 export AZURE_MYSQL_PASSWORD=$(terraform -chdir=./terraform output -raw mysql_password)
 export AZURE_MYSQL_HOST=$(terraform -chdir=./terraform output -raw mysql_url)
-AZ_RESOURCE_GROUP=$(terraform -chdir=./terraform output -raw azurerm_resource_group_name)
-az mysql server firewall-rule create --resource-group $AZ_RESOURCE_GROUP --server-name $AZURE_MYSQL_HOST --name allowip --start-ip-address "0.0.0.0" --end-ip-address "255.255.255.255"
 
 echo AZURE_COSMOS_URI_1=$AZURE_COSMOS_URI_1
 echo AZURE_COSMOS_DATABASE_1=$AZURE_COSMOS_DATABASE_1

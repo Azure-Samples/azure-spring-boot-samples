@@ -15,10 +15,6 @@ You will build an application to write data to and query data from Azure Cosmos 
     - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
 ## Provision Azure Resources Required to Run This Sample
-This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
-> [!IMPORTANT]  
-> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
-> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
 
 ### Authenticate Using the Azure CLI
 Terraform must authenticate to Azure to create infrastructure.
@@ -136,8 +132,11 @@ mvn clean spring-boot:run
 Verify in your app’s logs that similar messages were posted:
 ```shell
 ...
-1024: 1024@geek.com 1k Mars
-2048: 2048@geek.com 2k Mars
+Data added successfully .........
+...
+Get database1User 1024: 1024@geek.com 1k Mars .........
+...
+Get database2User 2048: 2048@geek.com 2k Mars .........
 ```
 
 Verify Result:

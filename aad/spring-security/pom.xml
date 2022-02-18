@@ -28,6 +28,7 @@
     <module>reactive/webflux/oauth2/spring-cloud-gateway/resource-server-1</module>
     <module>reactive/webflux/oauth2/spring-cloud-gateway/resource-server-2</module>
     <module>servlet/oauth2/login</module>
+    <module>servlet/oauth2/login-authenticate-using-private-key-jwt</module>
     <module>servlet/oauth2/client-access-resource-server/client</module>
     <module>servlet/oauth2/client-access-resource-server/resource-server</module>
     <module>servlet/oauth2/resource-server-check-permissions-by-claims-in-access-token/client</module>

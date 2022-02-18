@@ -8,6 +8,8 @@ import com.azure.spring.data.cosmos.repository.support.CosmosEntityInformation;
 import com.azure.spring.sample.cosmos.multi.database.repository1.User1;
 import com.azure.spring.sample.cosmos.multi.database.repository1.User1Repository;
 import com.azure.spring.sample.cosmos.multi.database.repository2.User2;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
@@ -19,6 +21,8 @@ import javax.annotation.PreDestroy;
 
 @SpringBootApplication
 public class MultiDatabaseApplication implements CommandLineRunner {
+
+    private static final Logger logger = LoggerFactory.getLogger(MultiDatabaseApplication.class);
 
     @Autowired
     private User1Repository user1Repository;
@@ -46,9 +50,9 @@ public class MultiDatabaseApplication implements CommandLineRunner {
 
         User1 database1UserGet = database1Template.findById(User1.class.getSimpleName(), user1.getId(), User1.class).block();
         // Same to userRepository1.findById(user.getId()).block()
-        System.out.println(database1UserGet);
+        logger.info("Get database1User " + database1UserGet + " .........");
         User2 database2UserGet = database2Template.findById(User2.class.getSimpleName(), user2.getId(), User2.class).block();
-        System.out.println(database2UserGet);
+        logger.info("Get database2User " + database2UserGet + " .........");
     }
 
     @PostConstruct
@@ -58,6 +62,7 @@ public class MultiDatabaseApplication implements CommandLineRunner {
         // Same to this.userRepository1.save(user).block();
         database2Template.createContainerIfNotExists(user2Info).block();
         database2Template.insert(User2.class.getSimpleName(), user2, new PartitionKey(user2.getName())).block();
+        logger.info("Data added successfully" + " .........");
     }
 
     @PreDestroy

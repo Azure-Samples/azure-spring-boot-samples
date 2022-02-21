@@ -24,6 +24,7 @@ You will:
 - [MySQL CLI](https://dev.mysql.com/downloads/shell/)
 - [Git](https://git-scm.com/)
 - [Jq](https://stedolan.github.io/jq/)
+- [Docker](https://www.docker.com/)
 - [Maven](https://maven.apache.org/download.cgi)
 - You can also import the code straight into your IDE:
     - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)

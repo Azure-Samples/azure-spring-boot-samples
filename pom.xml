@@ -7,7 +7,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.5.5</version>
+    <version>2.6.2</version>
   </parent>
 
   <groupId>com.azure.spring</groupId>
@@ -16,6 +16,18 @@
   <version>1.0.0</version>
 
   <name>Azure Spring Boot Samples</name>
+
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <version.guava>25.0-jre</version.guava>
+    <version.spring.cloud>2021.0.0</version.spring.cloud>
+    <version.azure-spring-data-cosmos>3.17.0</version.azure-spring-data-cosmos>
+    <version.spring.cloud.azure>4.0.0-beta.4</version.spring.cloud.azure>
+    <version.spring-cloud-appconfiguration-config>2.3.0</version.spring-cloud-appconfiguration-config>
+    <version.spring-cloud-feature-management>2.2.0</version.spring-cloud-feature-management>
+    <version.azure-spring-boot-starter-keyvault-certificates>3.13.0</version.azure-spring-boot-starter-keyvault-certificates>
+  </properties>
 
   <modules>
     <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server</module>
@@ -106,21 +118,9 @@
       <dependency>
         <groupId>com.azure.spring</groupId>
         <artifactId>azure-spring-boot-starter-keyvault-certificates</artifactId>
-        <version>${version.azure-spring-boot-bom}</version>
+        <version>${version.azure-spring-boot-starter-keyvault-certificates}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
-
-  <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <version.spring.cloud>2021.0.0</version.spring.cloud>
-    <version.spring.cloud.azure>4.0.0-beta.4</version.spring.cloud.azure>
-    <version.spring-cloud-appconfiguration-config>2.3.0</version.spring-cloud-appconfiguration-config>
-    <version.spring-cloud-feature-management>2.2.0</version.spring-cloud-feature-management>
-    <version.guava>25.0-jre</version.guava>
-    <version.azure-spring-data-cosmos>3.17.0</version.azure-spring-data-cosmos>
-    <version.azure-spring-boot-bom>3.13.0</version.azure-spring-boot-bom>
-  </properties>
 
 </project>

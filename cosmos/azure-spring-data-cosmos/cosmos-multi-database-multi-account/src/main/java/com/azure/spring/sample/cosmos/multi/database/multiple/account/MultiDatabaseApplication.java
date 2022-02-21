@@ -10,6 +10,8 @@ import com.azure.spring.sample.cosmos.multi.database.multiple.account.repository
 import com.azure.spring.sample.cosmos.multi.database.multiple.account.repository.cosmos.CosmosUserRepository;
 import com.azure.spring.sample.cosmos.multi.database.multiple.account.repository.mysql.MysqlUser;
 import com.azure.spring.sample.cosmos.multi.database.multiple.account.repository.mysql.MysqlUserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.CommandLineRunner;
@@ -21,6 +23,8 @@ import javax.annotation.PreDestroy;
 
 @SpringBootApplication
 public class MultiDatabaseApplication implements CommandLineRunner {
+
+    private static final Logger logger = LoggerFactory.getLogger(MultiDatabaseApplication.class);
 
     @Autowired
     private CosmosUserRepository cosmosUserRepository;
@@ -51,7 +55,7 @@ public class MultiDatabaseApplication implements CommandLineRunner {
         mysqlUserRepository.save(mysqlUser);
         mysqlUserRepository.findAll().forEach(System.out::println);
         CosmosUser secondaryCosmosUserGet = secondaryDatabaseTemplate.findById(CosmosUser.class.getSimpleName(), cosmosUser.getId(), CosmosUser.class);
-        System.out.println(secondaryCosmosUserGet);
+        logger.info("Get secondaryCosmosUser " + secondaryCosmosUserGet + " .........");
     }
 
 
@@ -62,6 +66,7 @@ public class MultiDatabaseApplication implements CommandLineRunner {
         // Same to this.cosmosUserRepository.save(user).block();
         secondaryDatabaseTemplate.createContainerIfNotExists(userInfo);
         secondaryDatabaseTemplate.insert(CosmosUser.class.getSimpleName(), cosmosUser, new PartitionKey(cosmosUser.getName()));
+        logger.info("Data added successfully" + " .........");
    }
 
     @PreDestroy

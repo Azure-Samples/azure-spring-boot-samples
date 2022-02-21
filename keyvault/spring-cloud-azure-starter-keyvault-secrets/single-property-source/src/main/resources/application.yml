@@ -4,4 +4,6 @@ spring:
       keyvault:
         secret:
           property-source-enabled: true
-          endpoint: ${ENDPOINT}
+          property-sources:
+            - name: key-vault
+              endpoint: ${ENDPOINT}

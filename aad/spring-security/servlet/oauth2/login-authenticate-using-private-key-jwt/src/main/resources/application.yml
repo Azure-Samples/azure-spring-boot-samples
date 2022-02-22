@@ -20,6 +20,7 @@ spring:
           client-1:
             provider: azure-active-directory
             client-id: ${client-1-client-id}
+            client-authentication-method: private_key_jwt
             client-certificate-path: ${client-1-certificate-path}
             client-certificate-password: ${client-1-certificate-password}
             scope: openid, profile

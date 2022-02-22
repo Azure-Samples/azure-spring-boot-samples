@@ -189,7 +189,11 @@ terraform -chdir=terraform destroy -auto-approve
 ```
 
 ## Enhancement
+
 ###Configuration Options
+
 ####[Service Bus Producer Properties](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#producer-properties-2)
+
 ####[Service Bus Consumer Properties](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#consumer-properties)
+
 ###[Set Service Bus message headers](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#scs-sb-headers)

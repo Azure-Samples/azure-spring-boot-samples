@@ -34,8 +34,7 @@ public class AzureActiveDirectoryJwtClientAuthenticationParametersConverter<T ex
 
         ClientRegistration registration = authorizationGrantRequest.getClientRegistration();
         ClientAuthenticationMethod method = registration.getClientAuthenticationMethod();
-        if (!ClientAuthenticationMethod.PRIVATE_KEY_JWT.equals(registration.getClientAuthenticationMethod())
-            && !ClientAuthenticationMethod.CLIENT_SECRET_JWT.equals(method)) {
+        if (!ClientAuthenticationMethod.PRIVATE_KEY_JWT.equals(registration.getClientAuthenticationMethod())) {
             return null;
         }
 

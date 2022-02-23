@@ -2,16 +2,10 @@ package com.azure.spring.sample.reactive.servlet.oauth2.login.jwt.azure.activedi
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.nimbusds.jose.JOSEException;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.bind.DatatypeConverter;
-import java.io.IOException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
 import java.util.Base64;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -23,8 +17,7 @@ public class AzureActiveDirectoryCertificateSignedAssertionFactoryTest {
     private static final String TEST_CLIENT_ID = "test-client-id";
 
     @Test
-    public void testPfx() throws UnrecoverableKeyException, CertificateException, KeyStoreException, IOException,
-        NoSuchAlgorithmException, JOSEException {
+    public void testPfx() throws AzureActiveDirectoryAssertionException {
         test(new AzureActiveDirectoryCertificateSignedJwtAssertionFactory(
             "src/test/resources/encrypted-private-key-and-certificate.pfx", "myPassword1", TEST_TENANT_ID,
             TEST_CLIENT_ID));
@@ -33,15 +26,14 @@ public class AzureActiveDirectoryCertificateSignedAssertionFactoryTest {
     // TODO support pem file.
     @Disabled("Pem file is not supported now.")
     @Test
-    public void testPem() throws UnrecoverableKeyException, CertificateException, KeyStoreException, IOException,
-        NoSuchAlgorithmException, JOSEException {
+    public void testPem() throws AzureActiveDirectoryAssertionException {
         test(new AzureActiveDirectoryCertificateSignedJwtAssertionFactory(
             "src/test/resources/encrypted-private-key-and-certificate.pem", "myPassword1", TEST_TENANT_ID,
             TEST_CLIENT_ID));
     }
 
-    public void test(AzureActiveDirectoryCertificateSignedJwtAssertionFactory factory) throws JOSEException,
-        JsonProcessingException {
+    public void test(AzureActiveDirectoryCertificateSignedJwtAssertionFactory factory)
+        throws AzureActiveDirectoryAssertionException {
         String assertion = factory.createJwtAssertion();
         String[] chunks = assertion.split("\\.");
         Base64.Decoder decoder = Base64.getUrlDecoder();
@@ -53,7 +45,13 @@ public class AzureActiveDirectoryCertificateSignedAssertionFactoryTest {
         assertNotNull(signature);
 
         ObjectMapper mapper = new ObjectMapper();
-        AssertionHeader assertionHeader = mapper.readValue(header, AssertionHeader.class);
+        AssertionHeader assertionHeader = null;
+        try {
+            assertionHeader = mapper.readValue(header, AssertionHeader.class);
+        } catch (JsonProcessingException exception) {
+            // It's OK to print stacktrace here, because it's just test code.
+            exception.printStackTrace();
+        }
         assertNotNull(assertionHeader);
         assertEquals("RS256", assertionHeader.alg);
         assertEquals("JWT", assertionHeader.typ);
@@ -61,7 +59,13 @@ public class AzureActiveDirectoryCertificateSignedAssertionFactoryTest {
         assertEquals("D829DB4885D1C22B1207F72F533DFA8125861174",
             DatatypeConverter.printHexBinary(Base64.getUrlDecoder().decode(assertionHeader.x5t)));
 
-        AssertionClaims assertionClaims = mapper.readValue(payload, AssertionClaims.class);
+        AssertionClaims assertionClaims = null;
+        try {
+            assertionClaims = mapper.readValue(payload, AssertionClaims.class);
+        } catch (JsonProcessingException exception) {
+            // It's OK to print stacktrace here, because it's just test code.
+            exception.printStackTrace();
+        }
         assertNotNull(assertionClaims);
         assertEquals(String.format("https://login.microsoftonline.com/%s/v2.0", TEST_TENANT_ID), assertionClaims.aud);
         assertNotNull(assertionClaims.exp);

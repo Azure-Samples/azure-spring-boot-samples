@@ -1,6 +1,5 @@
 package com.azure.spring.sample.reactive.servlet.oauth2.login.jwt.azure.activedirectory;
 
-import com.nimbusds.jose.JOSEException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.convert.converter.Converter;
@@ -40,20 +39,20 @@ public class AzureActiveDirectoryJwtClientAuthenticationParametersConverter<T ex
 
         try {
             return createParameters(registration);
-        } catch (JOSEException e) {
-            LOGGER.error("Failed to create parameters.", e);
+        } catch (AzureActiveDirectoryAssertionException exception) {
+            LOGGER.error("Failed to create parameters.", exception);
         }
         return null;
     }
 
-    private MultiValueMap<String, String> createParameters(ClientRegistration registration) throws JOSEException {
+    private MultiValueMap<String, String> createParameters(ClientRegistration registration) throws AzureActiveDirectoryAssertionException {
         MultiValueMap<String, String> parameters = new LinkedMultiValueMap<>();
         parameters.set(OAuth2ParameterNames.CLIENT_ASSERTION_TYPE, CLIENT_ASSERTION_TYPE_VALUE);
         parameters.set(OAuth2ParameterNames.CLIENT_ASSERTION, createAssertion(registration));
         return parameters;
     }
 
-    private String createAssertion(ClientRegistration registration) throws JOSEException {
+    private String createAssertion(ClientRegistration registration) throws AzureActiveDirectoryAssertionException {
         return factories.get(registration.getRegistrationId()).createJwtAssertion();
     }
 }

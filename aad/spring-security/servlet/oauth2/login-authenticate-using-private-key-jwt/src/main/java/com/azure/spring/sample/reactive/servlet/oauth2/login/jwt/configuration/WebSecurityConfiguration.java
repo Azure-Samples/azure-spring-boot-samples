@@ -1,8 +1,8 @@
 package com.azure.spring.sample.reactive.servlet.oauth2.login.jwt.configuration;
 
+import com.azure.spring.sample.reactive.servlet.oauth2.login.jwt.azure.activedirectory.AzureActiveDirectoryAssertionException;
 import com.azure.spring.sample.reactive.servlet.oauth2.login.jwt.azure.activedirectory.AzureActiveDirectoryCertificateSignedJwtAssertionFactory;
 import com.azure.spring.sample.reactive.servlet.oauth2.login.jwt.azure.activedirectory.AzureActiveDirectoryJwtClientAuthenticationParametersConverter;
-import com.nimbusds.jose.JOSEException;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -13,11 +13,6 @@ import org.springframework.security.oauth2.client.registration.ClientRegistratio
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.util.StringUtils;
 
-import java.io.IOException;
-import java.security.KeyStoreException;
-import java.security.NoSuchAlgorithmException;
-import java.security.UnrecoverableKeyException;
-import java.security.cert.CertificateException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -52,8 +47,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private DefaultAuthorizationCodeTokenResponseClient accessTokenResponseClient(
         List<String> registrationIds, ClientRegistrationRepository repository
-    ) throws UnrecoverableKeyException, CertificateException, KeyStoreException, IOException, NoSuchAlgorithmException,
-        JOSEException {
+    ) throws AzureActiveDirectoryAssertionException {
         OAuth2AuthorizationCodeGrantRequestEntityConverter converter =
             new OAuth2AuthorizationCodeGrantRequestEntityConverter();
         converter.addParametersConverter(
@@ -65,8 +59,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private Map<String, AzureActiveDirectoryCertificateSignedJwtAssertionFactory> createFactoryMap(
         List<String> registrationIds, ClientRegistrationRepository repository
-    ) throws UnrecoverableKeyException, CertificateException, KeyStoreException, IOException, NoSuchAlgorithmException,
-        JOSEException {
+    ) throws AzureActiveDirectoryAssertionException {
         Map<String, AzureActiveDirectoryCertificateSignedJwtAssertionFactory> factories = new HashMap<>();
         for (String registrationId: registrationIds) {
             AzureActiveDirectoryCertificateSignedJwtAssertionFactory factory = createFactory(registrationId, repository);
@@ -79,8 +72,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private AzureActiveDirectoryCertificateSignedJwtAssertionFactory createFactory(
         String registrationId, ClientRegistrationRepository repository
-    ) throws UnrecoverableKeyException, CertificateException, KeyStoreException, IOException, NoSuchAlgorithmException,
-        JOSEException {
+    ) throws AzureActiveDirectoryAssertionException {
         String clientCertificatePath = environment.getProperty(
             String.format("spring.security.oauth2.client.registration.%s.client-certificate-path", registrationId));
         if (!StringUtils.hasText(clientCertificatePath)) {

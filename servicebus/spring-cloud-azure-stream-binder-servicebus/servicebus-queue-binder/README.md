@@ -202,10 +202,33 @@ If you don't want to configure the connection string in your application, it's a
 
 ## Enhancement
 
+### Sync Support
+
+To enable message sending in a synchronized way with Spring Cloud Stream 3.x, spring-cloud-azure-stream-binder-servicebus supports the sync producer mode to get responses for sent messages.
+Make sure set `spring.cloud.stream.servicebus.bindings.<binding-name>.producer.sync = true` before use it.
+
 ### Configuration Options
 
-#### [Service Bus Producer Properties](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#producer-properties-2)
+[Service Bus Producer Properties](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#producer-properties-2)
 
-#### [Service Bus Consumer Properties](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#consumer-properties)
+[Service Bus Consumer Properties](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#consumer-properties)
 
-### [Set Service Bus message headers](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#scs-sb-headers)
+### Resource Provision
+
+[Auto create resource](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#resource-provision-2): queue, topic, subscription
+
+### Partition Key Support
+
+ServiceBus binder supports partitioning by allowing setting partition key and session id in the message header. [Here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#partition-key-support) shows how to set partition key for messages.
+
+### Session Support
+
+ServiceBus binder supports message sessions. [Here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#session-support) shows how to set session id of a message.
+
+### ERROR CHANNEL
+
+ServiceBus binder supports consumer error channel, producer error channel and global default error channel, click [here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#error-channels-2)  to see more information.
+
+### Set Service Bus message headers
+
+Users can get all the supported ServiceBus message headers [here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#scs-sb-headers) to configure.

@@ -21,3 +21,8 @@ output "object_id" {
 output "cosmos_database_name" {
   value = var.cosmos_database_name
 }
+
+output "resource_group_name" {
+  value       = azurerm_resource_group.main.name
+  description = "The Azure resource group name."
+}

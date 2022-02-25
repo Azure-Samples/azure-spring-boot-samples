@@ -13,7 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class AADWebApplicationAndResourceServerConfig {
+public class AadWebApplicationAndResourceServerConfig {
 
     @Order(1)
     @Configuration

@@ -3,7 +3,7 @@
 
 package com.azure.spring.sample.aad.security;
 
-import com.azure.spring.cloud.autoconfigure.aad.filter.AADAuthenticationFilter;
+import com.azure.spring.cloud.autoconfigure.aad.filter.AadAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -17,7 +17,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private AADAuthenticationFilter aadAuthFilter;
+    private AadAuthenticationFilter aadAuthFilter;
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

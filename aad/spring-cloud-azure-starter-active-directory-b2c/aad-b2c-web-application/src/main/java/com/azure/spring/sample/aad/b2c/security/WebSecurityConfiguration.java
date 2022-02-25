@@ -3,7 +3,7 @@
 
 package com.azure.spring.sample.aad.b2c.security;
 
-import com.azure.spring.cloud.autoconfigure.aadb2c.AADB2COidcLoginConfigurer;
+import com.azure.spring.cloud.autoconfigure.aadb2c.AadB2cOidcLoginConfigurer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -11,9 +11,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    private final AADB2COidcLoginConfigurer configurer;
+    private final AadB2cOidcLoginConfigurer configurer;
 
-    public WebSecurityConfiguration(AADB2COidcLoginConfigurer configurer) {
+    public WebSecurityConfiguration(AadB2cOidcLoginConfigurer configurer) {
         this.configurer = configurer;
     }
 

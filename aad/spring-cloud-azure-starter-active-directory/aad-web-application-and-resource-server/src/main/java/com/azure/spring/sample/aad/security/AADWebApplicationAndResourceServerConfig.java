@@ -3,8 +3,8 @@
 
 package com.azure.spring.sample.aad.security;
 
-import com.azure.spring.cloud.autoconfigure.aad.AADResourceServerWebSecurityConfigurerAdapter;
-import com.azure.spring.cloud.autoconfigure.aad.AADWebSecurityConfigurerAdapter;
+import com.azure.spring.cloud.autoconfigure.aad.AadResourceServerWebSecurityConfigurerAdapter;
+import com.azure.spring.cloud.autoconfigure.aad.AadWebSecurityConfigurerAdapter;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -17,7 +17,7 @@ public class AADWebApplicationAndResourceServerConfig {
 
     @Order(1)
     @Configuration
-    public static class ApiWebSecurityConfigurationAdapter extends AADResourceServerWebSecurityConfigurerAdapter {
+    public static class ApiWebSecurityConfigurationAdapter extends AadResourceServerWebSecurityConfigurerAdapter {
         protected void configure(HttpSecurity http) throws Exception {
             super.configure(http);
             http.antMatcher("/api/**")
@@ -26,7 +26,7 @@ public class AADWebApplicationAndResourceServerConfig {
     }
 
     @Configuration
-    public static class HtmlWebSecurityConfigurerAdapter extends AADWebSecurityConfigurerAdapter {
+    public static class HtmlWebSecurityConfigurerAdapter extends AadWebSecurityConfigurerAdapter {
 
         @Override
         protected void configure(HttpSecurity http) throws Exception {

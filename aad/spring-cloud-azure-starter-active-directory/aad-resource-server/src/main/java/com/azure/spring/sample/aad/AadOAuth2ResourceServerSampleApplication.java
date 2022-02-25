@@ -7,9 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AzureADOAuth2WebAppSampleApplication {
+public class AadOAuth2ResourceServerSampleApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AzureADOAuth2WebAppSampleApplication.class, args);
+        SpringApplication.run(AadOAuth2ResourceServerSampleApplication.class, args);
     }
 }

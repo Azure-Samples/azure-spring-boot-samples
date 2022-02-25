@@ -7,9 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AzureADStatelessBackendSampleApplication {
+public class AadIntegrationSpringBootAutoconfigureSampleApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AzureADStatelessBackendSampleApplication.class, args);
+        SpringApplication.run(AadIntegrationSpringBootAutoconfigureSampleApplication.class, args);
     }
 }

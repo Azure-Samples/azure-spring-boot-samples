@@ -14,7 +14,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-public class AADWebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class AadWebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private AadAppRoleStatelessAuthenticationFilter aadAuthFilter;

@@ -8,7 +8,9 @@ import com.azure.spring.messaging.AzureHeaders;
 import com.azure.spring.messaging.checkpoint.CheckpointConfig;
 import com.azure.spring.messaging.checkpoint.CheckpointMode;
 import com.azure.spring.messaging.checkpoint.Checkpointer;
-import com.azure.spring.servicebus.core.ServiceBusProcessorContainer;
+import com.azure.spring.servicebus.core.ServiceBusProcessorFactory;
+import com.azure.spring.servicebus.core.listener.ServiceBusMessageListenerContainer;
+import com.azure.spring.servicebus.core.properties.ServiceBusContainerProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -40,11 +42,19 @@ public class QueueReceiveController {
                 .subscribe();
     }
 
+    @Bean("queue-listener-container")
+    public ServiceBusMessageListenerContainer messageListenerContainer(ServiceBusProcessorFactory processorFactory) {
+        ServiceBusContainerProperties containerProperties = new ServiceBusContainerProperties();
+        containerProperties.setEntityName(QUEUE_NAME);
+        return new ServiceBusMessageListenerContainer(processorFactory, containerProperties);
+    }
+
     @Bean
     public ServiceBusInboundChannelAdapter queueMessageChannelAdapter(
-        @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel, ServiceBusProcessorContainer processorContainer) {
-        ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(processorContainer, QUEUE_NAME,
-                null, new CheckpointConfig(CheckpointMode.MANUAL));
+        @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel,
+        @Qualifier("queue-listener-container") ServiceBusMessageListenerContainer listenerContainer) {
+        CheckpointConfig checkpointConfig = new CheckpointConfig(CheckpointMode.MANUAL);
+        ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(listenerContainer, checkpointConfig);
         adapter.setOutputChannel(inputChannel);
         return adapter;
     }

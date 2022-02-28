@@ -135,11 +135,11 @@ mvn clean spring-boot:run
 1. Write and read a file.  
     1.1 Send a POST request to update file contents.
     ```shell
-    curl http://localhost:8080/blob -d "new message" -H "Content-Type: text/plain"
+    curl http://localhost:8080/blob/file1.txt -d "new message" -H "Content-Type: text/plain"
     ```
     1.2 Verify by sending a GET request.  
     ```shell
-    curl -XGET http://localhost:8080/blob
+    curl -XGET http://localhost:8080/blob/file1.txt
     ```
 
 2. [Optional] Using resourceLoader to get Azure Storage Blob resource with filename.

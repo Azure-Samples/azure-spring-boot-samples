@@ -7,8 +7,8 @@ import com.azure.spring.core.resource.AzureStorageBlobProtocolResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.WritableResource;
@@ -18,24 +18,24 @@ import org.springframework.web.bind.annotation.*;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 /**
  * @author Warren Zhu
  */
 @RestController
 @RequestMapping("blob")
-public class BlobController {
+public class BlobController implements ResourceLoaderAware {
 
     final static Logger logger = LoggerFactory.getLogger(BlobController.class);
 
     @Value("${resource.blob}")
     private Resource azureBlobResource;
 
-    @Value("${storage-container-name}")
+    @Value("${spring.cloud.azure.storage.blob.container-name}")
     private String containerName;
 
-    @Autowired
-    @Qualifier("webApplicationContext")
     private ResourceLoader resourceLoader;
 
     @Autowired
@@ -47,7 +47,6 @@ public class BlobController {
      * @param fileName the fileName(contains extension name) stored in Storage Blob Container.
      *                 eg: fileName = fileName1.txt
      * @return the content stored in the file.
-     * @throws IOException
      */
     @GetMapping("/getResourceWithResourceLoader/{fileName}")
     public String getResourceWithResourceLoader(@PathVariable String fileName) throws IOException {
@@ -64,18 +63,12 @@ public class BlobController {
      * Using AzureStorageBlobProtocolResolver to get Azure Storage Blob resources with file pattern.
      *
      * @return fileNames in the container match pattern: *.txt
-     * @throws IOException
      */
     @GetMapping("/getFileNamesWithProtocolResolver")
     public String getFileNamesWithProtocolResolver() throws IOException {
         Resource[] resources = azureStorageBlobProtocolResolver.getResources("azure-blob://" + containerName + "/*.txt");
         logger.info("{} resources founded with pattern:*.txt",resources.length);
-        StringBuffer sb = new StringBuffer();
-        for (Resource resource : resources) {
-            sb.append(resource.getFilename())
-                    .append("\n");
-        }
-        return sb.toString();
+        return Stream.of(resources).map(Resource::getFilename).collect(Collectors.joining("\n"));
     }
 
     @GetMapping
@@ -83,6 +76,11 @@ public class BlobController {
         return StreamUtils.copyToString(
             this.azureBlobResource.getInputStream(),
             Charset.defaultCharset());
+    }
+
+    @Override
+    public void setResourceLoader(ResourceLoader resourceLoader) {
+        this.resourceLoader = resourceLoader;
     }
 
     @PostMapping

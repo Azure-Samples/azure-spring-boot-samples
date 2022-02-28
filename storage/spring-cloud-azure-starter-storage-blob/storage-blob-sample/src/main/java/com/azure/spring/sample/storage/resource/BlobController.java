@@ -30,9 +30,6 @@ public class BlobController implements ResourceLoaderAware {
 
     final static Logger logger = LoggerFactory.getLogger(BlobController.class);
 
-    @Value("${resource.blob}")
-    private Resource azureBlobResource;
-
     @Value("${spring.cloud.azure.storage.blob.container-name}")
     private String containerName;
 
@@ -71,10 +68,12 @@ public class BlobController implements ResourceLoaderAware {
         return Stream.of(resources).map(Resource::getFilename).collect(Collectors.joining("\n"));
     }
 
-    @GetMapping
-    public String readBlobResource() throws IOException {
+    @GetMapping("/{fileName}")
+    public String readBlobResource(@PathVariable("fileName") String fileName) throws IOException {
+        // get a BlobResource
+        Resource storageBlobResource = resourceLoader.getResource("azure-blob://" + containerName + "/" + fileName);
         return StreamUtils.copyToString(
-            this.azureBlobResource.getInputStream(),
+            storageBlobResource.getInputStream(),
             Charset.defaultCharset());
     }
 
@@ -83,9 +82,11 @@ public class BlobController implements ResourceLoaderAware {
         this.resourceLoader = resourceLoader;
     }
 
-    @PostMapping
-    public String writeBlobResource(@RequestBody String data) throws IOException {
-        try (OutputStream os = ((WritableResource) this.azureBlobResource).getOutputStream()) {
+    @PostMapping("/{fileName}")
+    public String writeBlobResource(@PathVariable("fileName") String fileName, @RequestBody String data) throws IOException {
+        // get a BlobResource
+        Resource storageBlobResource = resourceLoader.getResource("azure-blob://" + containerName + "/" + fileName);
+        try (OutputStream os = ((WritableResource) storageBlobResource).getOutputStream()) {
             os.write(data.getBytes());
         }
         return "blob was updated";

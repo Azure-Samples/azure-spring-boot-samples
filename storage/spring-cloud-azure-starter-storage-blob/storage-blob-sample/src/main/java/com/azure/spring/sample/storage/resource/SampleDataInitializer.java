@@ -2,11 +2,8 @@ package com.azure.spring.sample.storage.resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.CommandLineRunner;
-import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.WritableResource;
@@ -15,13 +12,17 @@ import org.springframework.stereotype.Component;
 import java.io.OutputStream;
 
 @Component
-public class SampleDataInitializer implements CommandLineRunner, ResourceLoaderAware {
+public class SampleDataInitializer implements CommandLineRunner {
     final static Logger logger = LoggerFactory.getLogger(SampleDataInitializer.class);
 
-    private ResourceLoader resourceLoader;
+    private final ResourceLoader resourceLoader;
 
-    @Value("${spring.cloud.azure.storage.blob.container-name}")
-    private String containerName;
+    private final String containerName;
+    public SampleDataInitializer(@Value("${spring.cloud.azure.storage.blob.container-name}") String containerName,
+                          ResourceLoader resourceLoader) {
+        this.containerName = containerName;
+        this.resourceLoader = resourceLoader;
+    }
 
     /**
      * This is used to initialize some data in Azure Storage Blob.
@@ -38,14 +39,9 @@ public class SampleDataInitializer implements CommandLineRunner, ResourceLoaderA
             Resource storageBlobResource = resourceLoader.getResource("azure-blob://" +containerName+"/" + fileName + ".txt");
             try (OutputStream os = ((WritableResource) storageBlobResource).getOutputStream()) {
                 os.write(data.getBytes());
-                logger.info("write data to container={}, fileName={}", containerName, fileName);
+                logger.info("write data to container={}, fileName={}.txt", containerName, fileName);
             }
         }
         logger.info("StorageApplication data initialization end ...");
-    }
-
-    @Override
-    public void setResourceLoader(ResourceLoader resourceLoader) {
-        this.resourceLoader = resourceLoader;
     }
 }

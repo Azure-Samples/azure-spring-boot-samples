@@ -142,19 +142,10 @@ mvn clean spring-boot:run
     curl -XGET http://localhost:8080/blob/file1.txt
     ```
 
-2. [Optional] Using resourceLoader to get Azure Storage Blob resource with filename.
-    ```shell
-    curl -XGET http://localhost:8080/blob/getResourceWithResourceLoader/fileName1.txt
-    ```
-    
-    Verify in app's log that a similar messages was posted:
-    ```shell
-    Blob content retrieved: fileName=fileName1.txt, fileContent=data1
-    ```
 
-3. [Optional] Using AzureStorageBlobProtocolResolver to get Azure Storage Blob resources with file pattern.
+2. [Optional] Using AzureStorageBlobProtocolResolver to get Azure Storage Blob resources with file pattern.
     ```shell
-    curl -XGET http://localhost:8080/blob/getFileNamesWithProtocolResolver
+    curl -XGET http://localhost:8080/blob
     ```
     
     Verify in app's log that a similar messages was posted:

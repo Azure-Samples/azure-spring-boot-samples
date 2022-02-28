@@ -6,18 +6,22 @@ package com.azure.spring.sample.storage.resource;
 import com.azure.spring.core.resource.AzureStorageBlobProtocolResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ResourceLoaderAware;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.ResourceLoader;
 import org.springframework.core.io.WritableResource;
 import org.springframework.util.StreamUtils;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.charset.Charset;
+import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -26,34 +30,19 @@ import java.util.stream.Stream;
  */
 @RestController
 @RequestMapping("blob")
-public class BlobController implements ResourceLoaderAware {
+public class BlobController {
 
     final static Logger logger = LoggerFactory.getLogger(BlobController.class);
+    private final String containerName;
+    private final ResourceLoader resourceLoader;
+    private final AzureStorageBlobProtocolResolver azureStorageBlobProtocolResolver;
 
-    @Value("${spring.cloud.azure.storage.blob.container-name}")
-    private String containerName;
-
-    private ResourceLoader resourceLoader;
-
-    @Autowired
-    private AzureStorageBlobProtocolResolver azureStorageBlobProtocolResolver;
-
-    /**
-     * Using resourceLoader to get Azure Storage Blob resource with filename.
-     *
-     * @param fileName the fileName(contains extension name) stored in Storage Blob Container.
-     *                 eg: fileName = fileName1.txt
-     * @return the content stored in the file.
-     */
-    @GetMapping("/getResourceWithResourceLoader/{fileName}")
-    public String getResourceWithResourceLoader(@PathVariable String fileName) throws IOException {
-        // get a BlobResource
-        Resource storageBlobResource = resourceLoader.getResource("azure-blob://" + containerName + "/" + fileName);
-        String fileContent = StreamUtils.copyToString(
-                storageBlobResource.getInputStream(),
-                Charset.defaultCharset());
-        logger.info("Blob content retrieved: fileName={}, fileContent={}", fileName, fileContent);
-        return "fileContent=" + fileContent;
+    public BlobController(@Value("${spring.cloud.azure.storage.blob.container-name}") String containerName,
+                          ResourceLoader resourceLoader,
+                          AzureStorageBlobProtocolResolver patternResolver) {
+        this.containerName = containerName;
+        this.resourceLoader = resourceLoader;
+        this.azureStorageBlobProtocolResolver = patternResolver;
     }
 
     /**
@@ -61,11 +50,11 @@ public class BlobController implements ResourceLoaderAware {
      *
      * @return fileNames in the container match pattern: *.txt
      */
-    @GetMapping("/getFileNamesWithProtocolResolver")
-    public String getFileNamesWithProtocolResolver() throws IOException {
+    @GetMapping
+    public List<String> listTxtFiles() throws IOException {
         Resource[] resources = azureStorageBlobProtocolResolver.getResources("azure-blob://" + containerName + "/*.txt");
         logger.info("{} resources founded with pattern:*.txt",resources.length);
-        return Stream.of(resources).map(Resource::getFilename).collect(Collectors.joining("\n"));
+        return Stream.of(resources).map(Resource::getFilename).collect(Collectors.toList());
     }
 
     @GetMapping("/{fileName}")
@@ -75,11 +64,6 @@ public class BlobController implements ResourceLoaderAware {
         return StreamUtils.copyToString(
             storageBlobResource.getInputStream(),
             Charset.defaultCharset());
-    }
-
-    @Override
-    public void setResourceLoader(ResourceLoader resourceLoader) {
-        this.resourceLoader = resourceLoader;
     }
 
     @PostMapping("/{fileName}")

@@ -8,7 +8,9 @@ import com.azure.spring.messaging.AzureHeaders;
 import com.azure.spring.messaging.checkpoint.CheckpointConfig;
 import com.azure.spring.messaging.checkpoint.CheckpointMode;
 import com.azure.spring.messaging.checkpoint.Checkpointer;
-import com.azure.spring.servicebus.core.ServiceBusProcessorContainer;
+import com.azure.spring.servicebus.core.ServiceBusProcessorFactory;
+import com.azure.spring.servicebus.core.listener.ServiceBusMessageListenerContainer;
+import com.azure.spring.servicebus.core.properties.ServiceBusContainerProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -41,11 +43,20 @@ public class TopicReceiveController {
                 .subscribe();
     }
 
+    @Bean("topic-listener-container")
+    public ServiceBusMessageListenerContainer messageListenerContainer(ServiceBusProcessorFactory processorFactory) {
+        ServiceBusContainerProperties containerProperties = new ServiceBusContainerProperties();
+        containerProperties.setEntityName(TOPIC_NAME);
+        containerProperties.setSubscriptionName(SUBSCRIPTION_NAME);
+        return new ServiceBusMessageListenerContainer(processorFactory, containerProperties);
+    }
+
     @Bean
     public ServiceBusInboundChannelAdapter topicMessageChannelAdapter(
-        @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel, ServiceBusProcessorContainer topicOperation) {
-        ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(topicOperation, TOPIC_NAME, SUBSCRIPTION_NAME,
-            new CheckpointConfig(CheckpointMode.MANUAL));
+        @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel,
+        @Qualifier("topic-listener-container") ServiceBusMessageListenerContainer listenerContainer) {
+        CheckpointConfig checkpointConfig = new CheckpointConfig(CheckpointMode.MANUAL);
+        ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(listenerContainer, checkpointConfig);
         adapter.setOutputChannel(inputChannel);
         return adapter;
     }

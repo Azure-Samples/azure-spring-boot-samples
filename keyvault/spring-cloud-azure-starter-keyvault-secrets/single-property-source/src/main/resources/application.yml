@@ -3,5 +3,5 @@ spring:
     azure:
       keyvault:
         secret:
-          property-source-enabled: true
-          endpoint: ${ENDPOINT}
+          property-source-enabled: false
+#          endpoint: ${ENDPOINT}

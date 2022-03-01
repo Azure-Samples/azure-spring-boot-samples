@@ -6,7 +6,7 @@ This sample illustrates how to protect a Java web API by restricting access to i
 1. Obtain the access token from the HTTP request header.
 2. Use `JwtDecoder` to parse the access token into `Jwt`.
 3. Verify `aud`, `iss`, `nbf`, `exp` claims in access token.
-4. Extract information from JWT in `AADOAuth2AuthenticatedPrincipal` object after a successful verification.
+4. Extract information from JWT in `AadOAuth2AuthenticatedPrincipal` object after a successful verification.
 5. Save the `AADOAuth2AuthenticatedPrincipal` into SecurityContext.
 
 ### Protocol diagram

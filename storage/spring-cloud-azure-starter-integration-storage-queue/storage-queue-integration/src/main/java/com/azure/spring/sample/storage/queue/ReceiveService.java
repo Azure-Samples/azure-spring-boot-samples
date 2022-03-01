@@ -18,7 +18,7 @@ import org.springframework.messaging.handler.annotation.Header;
 import org.springframework.stereotype.Service;
 
 /**
- * @author Miao Cao
+ * 
  */
 @Service
 public class ReceiveService {

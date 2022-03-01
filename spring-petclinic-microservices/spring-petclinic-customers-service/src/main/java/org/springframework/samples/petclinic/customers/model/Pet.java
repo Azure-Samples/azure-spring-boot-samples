@@ -17,7 +17,6 @@ package org.springframework.samples.petclinic.customers.model;
 
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.GeneratedValue;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 import org.springframework.core.style.ToStringCreator;
 import org.springframework.data.annotation.Id;

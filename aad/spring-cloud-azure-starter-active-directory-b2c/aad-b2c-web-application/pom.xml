@@ -18,18 +18,6 @@
   <description>Azure AD B2C Spring Security 5 OAuth2 Integration Spring Boot Sample</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
 
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>com.azure.spring</groupId>
-        <artifactId>spring-cloud-azure-dependencies</artifactId>
-        <version>4.0.0-beta.3</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
-
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>

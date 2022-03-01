@@ -1,0 +1,23 @@
+{
+  "ignorePatterns": [
+    {
+      "pattern": "^http://127.0.0.1"
+    },
+     {
+      "pattern": "^https://127.0.0.1"
+    },
+    {
+      "pattern": "^http://localhost"
+    },
+    {
+      "pattern": "^https://localhost"
+    },
+    {
+      "pattern": "^http://proxyserver"
+    },
+    {
+      "pattern": "^https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca"
+    }
+  ],
+  "aliveStatusCodes": [200]
+}

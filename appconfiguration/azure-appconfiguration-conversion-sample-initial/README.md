@@ -81,9 +81,9 @@ In this section, you clone a containerized Spring Boot application and test it l
 1. Replace below properties in `application.properties` with information from your database.
 
    ```properties
-   azure.cosmos.uri=your-cosmos-uri
-   azure.cosmos.key=your-cosmos-key
-   azure.cosmos.database=your-cosmos-databasename
+   spring.cloud.azure.cosmos.endpoint=${COSMOS-URL}
+   spring.cloud.azure.cosmos.key=${COSMOS-KEY}
+   spring.cloud.azure.cosmos.database=${COSMOS-DATABASENAME}
 
    ```
 
@@ -190,15 +190,13 @@ In this section, you clone a containerized Spring Boot application and test it l
     ```
 
 1. Update the pom.xml file to now include.
-    [//]: # ({x-version-update-start;com.microsoft.azure:spring-cloud-starter-azure-appconfiguration-config;dependency})
     ```xml
-    <dependency>
-        <groupId>com.microsoft.azure</groupId>
-        <artifactId>spring-cloud-starter-azure-appconfiguration-config</artifactId>
-        <version>1.3.0</version><!-- {x-version-update-start;com.microsoft.azure:spring-cloud-starter-azure-appconfiguration-config;dependency} -->
-    </dependency>
+   <dependency>
+     <groupId>com.azure.spring</groupId>
+     <artifactId>azure-spring-cloud-appconfiguration-config</artifactId>
+     <version>2.3.0</version>
+   </dependency>
     ```
-    [//]: # ({x-version-update-end})
     
 1. Create a new file called *AzureCredentials.java* and add the code below.
 

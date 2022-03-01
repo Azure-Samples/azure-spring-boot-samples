@@ -7,9 +7,4 @@ spring:
         blob:
           account-name: ${AZURE_STORAGE_ACCOUNT}
           container-name: ${STORAGE_CONTAINER_NAME}
-# Resource location, used in this sample
-resource:
-  blob: azure-blob://${STORAGE_CONTAINER_NAME}/youfilename.txt
-
-
 

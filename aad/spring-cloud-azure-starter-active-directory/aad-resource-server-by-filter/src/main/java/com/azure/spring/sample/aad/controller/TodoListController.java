@@ -4,7 +4,7 @@
 package com.azure.spring.sample.aad.controller;
 
 import com.azure.spring.cloud.autoconfigure.aad.filter.UserPrincipal;
-import com.azure.spring.cloud.autoconfigure.aad.properties.AADAuthenticationProperties;
+import com.azure.spring.cloud.autoconfigure.aad.properties.AadAuthenticationProperties;
 import com.azure.spring.sample.aad.model.TodoItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -30,7 +30,7 @@ import java.util.stream.Collectors;
 @RestController
 public class TodoListController {
     @Autowired
-    private AADAuthenticationProperties aadAuthenticationProperties;
+    private AadAuthenticationProperties aadAuthenticationProperties;
 
     private final List<TodoItem> todoList = new ArrayList<>();
 

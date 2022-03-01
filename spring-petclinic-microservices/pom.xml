@@ -4,14 +4,15 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.5.4</version>
+    <groupId>com.azure.spring</groupId>
+    <artifactId>azure-spring-boot-samples</artifactId>
+    <version>1.0.0</version>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <groupId>org.springframework.samples</groupId>
   <artifactId>spring-petclinic-microservices</artifactId>
-  <version>2.3.6</version>
+  <version>1.0.0</version>
 
   <name>Spring PetClinic Microservices</name>
   <packaging>pom</packaging>
@@ -27,36 +28,49 @@
   </modules>
 
   <properties>
-    <java.version>1.8</java.version>
-    <spring-cloud.version>2020.0.3</spring-cloud.version>
     <docker.image.prefix>springcommunity</docker.image.prefix>
     <docker.image.exposed.port>9090</docker.image.exposed.port>
     <docker.image.dockerfile.dir>${basedir}</docker.image.dockerfile.dir>
     <docker.image.dockerize.version>v0.6.1</docker.image.dockerize.version>
     <docker.plugin.version>1.2.2</docker.plugin.version>
     <spring-boot-admin.version>2.5.5</spring-boot-admin.version>
-    <spring-cloud-azure.version>4.0.0-beta.3</spring-cloud-azure.version>
-    <azure-spring-data-cosmos.version>3.16.0</azure-spring-data-cosmos.version><!-- {x-version-update;com.azure:azure-spring-data-cosmos;dependency} -->
+    <webjars-bootstrap.version>3.3.7-1</webjars-bootstrap.version>
+    <webjars-jquery.version>3.1.1-1</webjars-jquery.version>
+    <webjars-angular.version>1.6.4</webjars-angular.version>
+    <webjars-angular-ui-router.version>1.0.3</webjars-angular-ui-router.version>
   </properties>
 
   <dependencyManagement>
     <dependencies>
       <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>${spring-cloud.version}</version>
-        <type>pom</type>
-        <scope>import</scope>
+        <groupId>de.codecentric</groupId>
+        <artifactId>spring-boot-admin-starter-server</artifactId>
+        <version>${spring-boot-admin.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.azure</groupId>
-        <artifactId>azure-spring-data-cosmos</artifactId>
-        <version>${azure-spring-data-cosmos.version}</version>
+        <groupId>de.codecentric</groupId>
+        <artifactId>spring-boot-admin-server-ui</artifactId>
+        <version>${spring-boot-admin.version}</version>
       </dependency>
       <dependency>
-        <groupId>com.azure.spring</groupId>
-        <artifactId>spring-cloud-azure-starter-keyvault-secrets</artifactId>
-        <version>${spring-cloud-azure.version}</version>
+        <groupId>org.webjars</groupId>
+        <artifactId>angularjs</artifactId>
+        <version>${webjars-angular.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>jquery</artifactId>
+        <version>${webjars-jquery.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>bootstrap</artifactId>
+        <version>${webjars-bootstrap.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>org.webjars</groupId>
+        <artifactId>angular-ui-router</artifactId>
+        <version>${webjars-angular-ui-router.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

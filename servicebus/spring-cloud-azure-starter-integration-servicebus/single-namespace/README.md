@@ -183,4 +183,4 @@ terraform -chdir=terraform destroy -auto-approve
 
 ### Set Service Bus message headers
 
-users can get all the supported ServiceBus message headers [here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#si-sb-headers) to configure.
+Users can get all the supported ServiceBus message headers [here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#si-sb-headers) to configure.

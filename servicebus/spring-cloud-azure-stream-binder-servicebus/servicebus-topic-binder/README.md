@@ -213,19 +213,19 @@ Make sure set `spring.cloud.stream.servicebus.bindings.<binding-name>.producer.s
 
 ### Resource Provision
 
-[Auto create resource](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#resource-provision-2): queue, topic, subscription
+Service bus binder supports provisioning of queue, topic and subscription, users could use [properties](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#resource-provision-2) to enable provisioning.
 
 ### Partition Key Support
 
-ServiceBus binder supports partitioning by allowing setting partition key and session id in the message header. [Here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#partition-key-support) shows how to set partition key for messages.
+Service Bus binder supports partitioning by allowing setting partition key and session id in the message header. [Here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#partition-key-support) shows how to set partition key for messages.
 
 ### Session Support
 
-ServiceBus binder supports message sessions. [Here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#session-support) shows how to set session id of a message.
+Service Bus binder supports message sessions. [Here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#session-support) shows how to set session id of a message.
 
-### ERROR CHANNEL
+### Error Channel
 
-ServiceBus binder supports consumer error channel, producer error channel and global default error channel, click [here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#error-channels-2)  to see more information.
+Service Bus binder supports consumer error channel, producer error channel and global default error channel, click [here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#error-channels-2)  to see more information.
 
 ### Set Service Bus message headers
 

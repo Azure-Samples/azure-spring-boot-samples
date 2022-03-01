@@ -190,41 +190,14 @@ terraform -chdir=terraform destroy -auto-approve
 ### [Enable sync message](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#producer-properties)
 
 To enable message sending in a synchronized way with Spring Cloud Stream 3.x, spring-cloud-azure-stream-binder-eventhubs supports the sync producer mode to get responses for sent messages.
-Below classes are sample to use the sync mode:
-```
-ImperativeEventProducerController.java
-ManualProducerAndConsumerConfiguration.java   
-ReactiveEventProducerController.java
-```
-Try the sync mode with the "manual" profile after enabling the above sync configuration.Users can send a POST request like following command:
-```
-$ ### Send messages through imperative.  
-$ curl -X POST http://localhost:8080/messages/imperative/staticalDestination?message=hello
-$ curl -X POST http://localhost:8080/messages/imperative/dynamicDestination?message=hello
 
-$ ### Send messages through reactive.
-$ curl -X POST http://localhost:8080/messages/reactive?message=hello
-```
-or when the app runs on App Service or VM
-```
-$ ### Send messages through imperative.
-$ curl -d -X POST https://[your-app-URL]/messages/imperative/staticalDestination?message=hello
-$ curl -d -X POST https://[your-app-URL]/messages/imperative/dynamicDestination?message=hello
-
-$ ### Send messages through reactive.
-$ curl -d -X POST https://[your-app-URL]/messages/reactive?message=hello
-```
-Verify in your app’s logs that a similar message was posted:
-```
-New message received: 'hello', partition key: 2002572479, sequence number: 4, offset: 768, enqueued time: 2021-06-03T01:47:36.859Z
-Message 'hello' successfully checkpointed
-```
+Make sure set `spring.cloud.stream.eventhub.bindings.<binding-name>.producer.sync=true` before use it.
 
 ### [Using Batch Consuming](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#batch-consumer-support)
 
 To work with the batch-consumer mode, the property of spring.cloud.stream.bindings.<binding-name>.consumer.batch-mode should be set as true. When enabled, an org.springframework.messaging.Message of which the payload is a list of batched events will be received and passed to the consumer function.
 
-In this [sample](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#batch-consumer-support-2), users can try the batch-consuming mode by enable the "batch" profile and fill the "application-batch.yml"
+In this sample, users can try the batch-consuming mode by enable the "batch" profile and fill the "application-batch.yml". For more details about how to work in batch-consuming mode, please refer to the [reference doc](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#batch-consumer-support-2).
 
 ### Set Event Hubs message headers
 
@@ -232,12 +205,41 @@ Users can get all the supported EventHubs message headers [here](https://microso
 
 ### Resource Provision
 
-[Auto create resource](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#resource-provision): event hub, consumer group
+Event Hubs binder supports provisioning of event hub and consumer group, users could use [properties](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#resource-provision) to enable provisioning.
 
 ### Partitioning Support
 
 A PartitionSupplier with user-provided partition information will be created to configure the partition information about the message to be sent, [Here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#partitioning-support-2) is the process of obtaining different priorities of the partition ID and key.
 
-### ERROR CHANNEL
+#### Partition key support
+The binder supports Event Hubs partitioning by allowing setting partition key and session id in the message header. This section introduces how to set partition key for messages.
 
-EventHubs binder supports consumer error channel, producer error channel and global default error channel, click [here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#error-channels)  to see more information.
+Spring Cloud Stream provides a partition key SpEL expression property spring.cloud.stream.bindings.<binding-name>.producer.partition-key-expression. For example, setting this properts as "'partitionKey-' + headers[<message-header-key>]" and add a header called <message-header-key>. Spring Cloud Stream will use the value for this header when evaluating the above expression to assign a partition key. Here is an example producer code:
+```java
+@Bean
+public Supplier<Message<String>> generate() {
+    return () -> {
+        String value = “random payload”;
+        return MessageBuilder.withPayload(value)
+            .setHeader("<message-header-key>", value.length() % 4)
+            .build();
+    };
+}
+```
+
+#### Session support
+The binder supports message sessions of Event Hubs. Session id of a message could be set via the message header.
+```java
+@Bean
+public Supplier<Message<String>> generate() {
+    return () -> {
+        String value = “random payload”;
+        return MessageBuilder.withPayload(value)
+            .setHeader(EventHubsMessageHeaders.SESSION_ID, "Customize session id")
+            .build();
+    };
+}
+```
+### Error Channel
+
+Event Hubs binder supports consumer error channel, producer error channel and global default error channel, click [here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#error-channels) to see more information.

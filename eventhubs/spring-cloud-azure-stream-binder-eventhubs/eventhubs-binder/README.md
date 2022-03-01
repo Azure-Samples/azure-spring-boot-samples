@@ -233,37 +233,8 @@ Event Hubs binder supports provisioning of event hub and consumer group, users c
 
 ### Partitioning Support
 
-A PartitionSupplier with user-provided partition information will be created to configure the partition information about the message to be sent, [Here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#partitioning-support-2) is the process of obtaining different priorities of the partition ID and key.
+A PartitionSupplier with user-provided partition information will be created to configure the partition information about the message to be sent. The binder supports Event Hubs partitioning by allowing setting partition key and id. Please refer to the [reference doc](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#partitioning-support-2) for more details.
 
-#### Partition key support
-The binder supports Event Hubs partitioning by allowing setting partition key and session id in the message header. This section introduces how to set partition key for messages.
-
-Spring Cloud Stream provides a partition key SpEL expression property spring.cloud.stream.bindings.<binding-name>.producer.partition-key-expression. For example, setting this properts as "'partitionKey-' + headers[<message-header-key>]" and add a header called <message-header-key>. Spring Cloud Stream will use the value for this header when evaluating the above expression to assign a partition key. Here is an example producer code:
-```java
-@Bean
-public Supplier<Message<String>> generate() {
-    return () -> {
-        String value = “random payload”;
-        return MessageBuilder.withPayload(value)
-            .setHeader("<message-header-key>", value.length() % 4)
-            .build();
-    };
-}
-```
-
-#### Session support
-The binder supports message sessions of Event Hubs. Session id of a message could be set via the message header.
-```java
-@Bean
-public Supplier<Message<String>> generate() {
-    return () -> {
-        String value = “random payload”;
-        return MessageBuilder.withPayload(value)
-            .setHeader(EventHubsMessageHeaders.SESSION_ID, "Customize session id")
-            .build();
-    };
-}
-```
 ### Error Channel
 
 Event Hubs binder supports consumer error channel, producer error channel and global default error channel, click [here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#error-channels) to see more information.

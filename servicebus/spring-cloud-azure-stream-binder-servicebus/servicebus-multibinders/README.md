@@ -203,7 +203,7 @@ Make sure set `spring.cloud.stream.servicebus.bindings.<binding-name>.producer.s
 
 ### Resource Provision
 
-Service bus binder supports provisioning of queue, topic and subscription, users could use [properties](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#resource-provision-2) to enable provisioning.
+Service Bus binder supports provisioning of queue, topic and subscription, users could use [properties](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#resource-provision-2) to enable provisioning.
 
 ### Partition Key Support
 

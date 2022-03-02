@@ -18,8 +18,8 @@
   <name>Azure Spring Boot Samples</name>
 
   <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
     <version.guava>25.0-jre</version.guava>
     <version.spring.cloud>2021.0.0</version.spring.cloud>
     <version.azure-spring-data-cosmos>3.17.0</version.azure-spring-data-cosmos>
@@ -27,6 +27,12 @@
     <version.spring-cloud-appconfiguration-config>2.3.0</version.spring-cloud-appconfiguration-config>
     <version.spring-cloud-feature-management>2.2.0</version.spring-cloud-feature-management>
     <version.azure-spring-boot-starter-keyvault-certificates>3.13.0</version.azure-spring-boot-starter-keyvault-certificates>
+    <version.spring-native>0.11.1</version.spring-native>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <native.maven.plugin.version>0.9.9</native.maven.plugin.version>
+    <junit.platform.native.version>0.9.9</junit.platform.native.version>
+    <imageName>${artifactId}</imageName>
+    <mainClass>Configure your application main class in a sub-pom file</mainClass>
   </properties>
 
   <modules>
@@ -44,6 +50,7 @@
     <module>appconfiguration/azure-appconfiguration-sample</module>
     <module>appconfiguration/feature-management-sample</module>
     <module>appconfiguration/feature-management-web-sample</module>
+    <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-sample</module>
     <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
     <module>cloudfoundry/azure-cloud-foundry-service-sample</module>
     <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample</module>
@@ -120,7 +127,206 @@
         <artifactId>azure-spring-boot-starter-keyvault-certificates</artifactId>
         <version>${version.azure-spring-boot-starter-keyvault-certificates}</version>
       </dependency>
+      <dependency>
+        <groupId>org.springframework.experimental</groupId>
+        <artifactId>spring-native</artifactId>
+        <version>${version.spring-native}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
+  <profiles>
+    <profile>
+      <id>native</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.springframework.experimental</groupId>
+          <artifactId>spring-native</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>com.azure.spring</groupId>
+          <artifactId>spring-cloud-azure-native-configuration</artifactId>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.graalvm.buildtools</groupId>
+            <artifactId>native-maven-plugin</artifactId>
+            <version>${native.maven.plugin.version}</version>
+            <extensions>true</extensions>
+            <executions>
+              <execution>
+                <id>build-native</id>
+                <goals>
+                  <goal>build</goal>
+                </goals>
+                <phase>package</phase>
+              </execution>
+            </executions>
+            <configuration>
+              <skip>false</skip>
+              <imageName>${imageName}</imageName>
+              <buildArgs>
+                <buildArg>--no-fallback</buildArg>
+              </buildArgs>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>shaded</id>
+      <dependencies>
+        <dependency>
+          <groupId>org.springframework.experimental</groupId>
+          <artifactId>spring-native</artifactId>
+        </dependency>
+        <dependency>
+          <groupId>com.azure.spring</groupId>
+          <artifactId>spring-cloud-azure-native-configuration</artifactId>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <!-- tag::shade-plugin[] -->
+          <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-shade-plugin</artifactId>
+            <version>3.2.4</version>
+            <executions>
+              <execution>
+                <phase>package</phase>
+                <goals>
+                  <goal>shade</goal>
+                </goals>
+                <configuration>
+                  <shadedArtifactAttached>true</shadedArtifactAttached>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <!-- end::shade-plugin[] -->
+
+          <!-- tag::native-plugin[] -->
+          <plugin>
+            <groupId>org.graalvm.buildtools</groupId>
+            <artifactId>native-maven-plugin</artifactId>
+            <version>${native.maven.plugin.version}</version>
+            <extensions>true</extensions>
+            <executions>
+              <execution>
+                <id>build-native</id>
+                <goals>
+                  <goal>build</goal>
+                </goals>
+                <phase>package</phase>
+              </execution>
+            </executions>
+            <configuration>
+              <skip>false</skip>
+              <imageName>${imageName}</imageName>
+              <buildArgs>
+                <buildArg>--no-fallback</buildArg>
+                <buildArg>-H:+ReportExceptionStackTraces</buildArg>
+              </buildArgs>
+              <classpath>
+                <param>${project.build.directory}/${project.artifactId}-${project.version}-shaded.jar</param>
+              </classpath>
+            </configuration>
+          </plugin>
+          <!-- end::native-plugin[] -->
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
+  <build>
+    <finalName>${project.artifactId}</finalName>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0-M5</version>
+      </plugin>
+      <plugin>
+        <groupId>org.springframework.experimental</groupId>
+        <artifactId>spring-aot-maven-plugin</artifactId>
+        <version>0.11.1</version>
+        <executions>
+          <execution>
+            <id>generate</id>
+            <goals>
+              <goal>generate</goal>
+            </goals>
+          </execution>
+          <execution>
+            <id>test-generate</id>
+            <goals>
+              <goal>test-generate</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <source>${maven.compiler.source}</source>
+          <target>${maven.compiler.target}</target>
+        </configuration>
+      </plugin>
+
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>3.0.0</version>
+        <executions>
+          <execution>
+            <id>java</id>
+            <goals>
+              <goal>java</goal>
+            </goals>
+            <configuration>
+              <mainClass>${mainClass}</mainClass>
+            </configuration>
+          </execution>
+          <execution>
+            <id>native</id>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <executable>${project.build.directory}/${imageName}</executable>
+              <workingDirectory>${project.build.directory}</workingDirectory>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <repositories>
+    <!-- ... -->
+    <repository>
+      <id>spring-release</id>
+      <name>Spring release</name>
+      <url>https://repo.spring.io/release</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <!-- ... -->
+    <pluginRepository>
+      <id>spring-release</id>
+      <name>Spring release</name>
+      <url>https://repo.spring.io/release</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
 </project>

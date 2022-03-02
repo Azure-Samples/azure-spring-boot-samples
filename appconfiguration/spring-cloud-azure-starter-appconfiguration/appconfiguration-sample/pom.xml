@@ -11,25 +11,30 @@
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>storage-blob-sample</artifactId>
+  <artifactId>appconfiguration-sample</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>Read and Write Blobs with the Spring Resource for Azure Storage Blob</name>
+  <name>Read and Write Data with Azure AppConfiguration Using ConfigurationClient</name>
+  <description>Sample project for Spring Cloud Azure Starter AppConfiguration</description>
 
   <properties>
-    <imageName>storage-blob-sample</imageName>
-    <mainClass>com.azure.spring.sample.storage.resource.StorageBlobApplication</mainClass>
+    <imageName>appconfiguration-sample</imageName>
+    <mainClass>com.azure.spring.sample.appconfiguration.AppConfigurationSampleApplication</mainClass>
   </properties>
 
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>spring-cloud-azure-starter-storage-blob</artifactId>
+      <artifactId>spring-cloud-azure-starter-appconfiguration</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-logging</artifactId>
     </dependency>
   </dependencies>
 </project>

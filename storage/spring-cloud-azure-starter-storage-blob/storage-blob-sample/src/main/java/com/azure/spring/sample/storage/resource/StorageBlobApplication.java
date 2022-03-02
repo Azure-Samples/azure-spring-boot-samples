@@ -21,8 +21,8 @@ import java.io.OutputStream;
  * @author Warren Zhu
  */
 @SpringBootApplication
-public class StorageApplication implements CommandLineRunner {
-    final static Logger logger = LoggerFactory.getLogger(StorageApplication.class);
+public class StorageBlobApplication implements CommandLineRunner {
+    final static Logger logger = LoggerFactory.getLogger(StorageBlobApplication.class);
 
     @Autowired
     @Qualifier("webApplicationContext")
@@ -32,7 +32,7 @@ public class StorageApplication implements CommandLineRunner {
     private String containerName;
 
     public static void main(String[] args) {
-        SpringApplication.run(StorageApplication.class, args);
+        SpringApplication.run(StorageBlobApplication.class, args);
     }
 
     /**

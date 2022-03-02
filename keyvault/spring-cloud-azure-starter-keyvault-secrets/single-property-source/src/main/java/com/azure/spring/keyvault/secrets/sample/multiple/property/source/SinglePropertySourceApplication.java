@@ -9,13 +9,13 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SampleApplication implements CommandLineRunner {
+public class SinglePropertySourceApplication implements CommandLineRunner {
 
     @Value("${sampleProperty}")
     private String sampleProperty;
 
     public static void main(String[] args) {
-        SpringApplication.run(SampleApplication.class, args);
+        SpringApplication.run(SinglePropertySourceApplication.class, args);
     }
 
     @Override

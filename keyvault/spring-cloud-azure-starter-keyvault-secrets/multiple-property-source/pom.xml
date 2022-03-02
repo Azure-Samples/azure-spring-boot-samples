@@ -17,6 +17,11 @@
 
   <name>Spring-Cloud-Azure-Starter-Keyvault-Secrets Sample: Multiple Property Source</name>
 
+  <properties>
+    <imageName>multiple-property-source</imageName>
+    <mainClass>com.azure.spring.keyvault.secrets.sample.multiple.property.source.MultiplePropertySourceApplication</mainClass>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>

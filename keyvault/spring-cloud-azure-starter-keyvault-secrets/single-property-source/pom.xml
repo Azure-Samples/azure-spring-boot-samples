@@ -19,7 +19,7 @@
 
   <properties>
     <imageName>single-property-source</imageName>
-    <mainClass>com.azure.spring.keyvault.secrets.sample.multiple.property.source.SinglePropertySourceApplication</mainClass>
+    <mainClass>com.azure.spring.keyvault.secrets.sample.single.property.source.SinglePropertySourceApplication</mainClass>
   </properties>
 
   <dependencies>

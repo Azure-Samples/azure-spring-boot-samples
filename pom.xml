@@ -18,12 +18,13 @@
   <name>Azure Spring Boot Samples</name>
 
   <properties>
-    <maven.compiler.source>11</maven.compiler.source>
-    <maven.compiler.target>11</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
     <version.guava>25.0-jre</version.guava>
     <version.spring.cloud>2021.0.0</version.spring.cloud>
     <version.azure-spring-data-cosmos>3.17.0</version.azure-spring-data-cosmos>
     <version.spring.cloud.azure>4.0.0-beta.4</version.spring.cloud.azure>
+    <version.spring-cloud-azure-native-configuration>4.0.0-beta.4</version.spring-cloud-azure-native-configuration>
     <version.spring-cloud-appconfiguration-config>2.3.0</version.spring-cloud-appconfiguration-config>
     <version.spring-cloud-feature-management>2.2.0</version.spring-cloud-feature-management>
     <version.azure-spring-boot-starter-keyvault-certificates>3.13.0</version.azure-spring-boot-starter-keyvault-certificates>
@@ -132,12 +133,21 @@
         <artifactId>spring-native</artifactId>
         <version>${version.spring-native}</version>
       </dependency>
+      <dependency>
+        <groupId>com.azure.spring</groupId>
+        <artifactId>spring-cloud-azure-native-configuration</artifactId>
+		    <version>${version.spring-cloud-azure-native-configuration}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
   <profiles>
     <profile>
       <id>native</id>
+      <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+      </properties>
       <dependencies>
         <dependency>
           <groupId>org.springframework.experimental</groupId>
@@ -177,6 +187,10 @@
     </profile>
     <profile>
       <id>shaded</id>
+      <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+      </properties>
       <dependencies>
         <dependency>
           <groupId>org.springframework.experimental</groupId>

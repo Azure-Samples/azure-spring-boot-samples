@@ -2,4 +2,4 @@ spring:
   cloud:
     azure:
       appconfiguration:
-        connection-string: ${CONFIG_STORE_CONNECTION_STRING}
+        endpoint: ${APPCONFIGURATION_ENDPOINT}

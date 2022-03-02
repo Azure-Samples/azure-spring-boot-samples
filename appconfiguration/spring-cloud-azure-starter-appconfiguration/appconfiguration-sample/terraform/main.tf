@@ -46,11 +46,10 @@ resource "azurecaf_name" "appconfig" {
 }
 
 resource "azurerm_app_configuration" "appconfig_resource" {
-  name                        = azurecaf_name.appconfiguration.result
+  name                        = azurecaf_name.appconfig.result
   location                    = azurerm_resource_group.main.location
   resource_group_name         = azurerm_resource_group.main.name
   sku = "standard"
-
   tags = {
     "terraform"                 = "true"
     "spring-cloud-azure-sample" = var.sample_tag_value
@@ -64,11 +63,10 @@ resource "azurerm_role_assignment" "appconf_dataowner" {
 }
 
 resource "azurerm_app_configuration_key" "test" {
-  configuration_store_id = azurerm_app_configuration.appconf.id
+  configuration_store_id = azurerm_app_configuration.appconfig_resource.id
   key                    = "sample-key"
   label                  = "somelabel"
   value                  = "hello from default application"
-
   depends_on = [
     azurerm_role_assignment.appconf_dataowner
   ]

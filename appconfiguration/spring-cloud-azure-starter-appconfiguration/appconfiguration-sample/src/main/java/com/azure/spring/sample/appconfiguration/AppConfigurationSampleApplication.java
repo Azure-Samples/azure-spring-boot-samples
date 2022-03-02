@@ -25,7 +25,7 @@ public class AppConfigurationSampleApplication implements CommandLineRunner {
 
     public void run(String... var1) throws Exception {
         String sampleKey = "sample-key";
-        ConfigurationSetting configurationSetting = configurationClient.getConfigurationSetting(sampleKey, null);
+        ConfigurationSetting configurationSetting = configurationClient.getConfigurationSetting(sampleKey, "somelabel");
         logger.info("Returned the from Azure App Configuration: {}, {}", sampleKey, configurationSetting.getValue());
     }
 }

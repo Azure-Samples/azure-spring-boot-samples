@@ -81,7 +81,7 @@ public class ApplicationConfiguration {
 
     private DefaultJwtBearerTokenResponseClient oAuth2AccessTokenResponseClient() {
         DefaultJwtBearerTokenResponseClient client = new DefaultJwtBearerTokenResponseClient();
-        client.setRequestEntityConverter(new AzureADJwtBearerGrantRequestEntityConverter());
+        client.setRequestEntityConverter(new AadJwtBearerGrantRequestEntityConverter());
         return client;
     }
 

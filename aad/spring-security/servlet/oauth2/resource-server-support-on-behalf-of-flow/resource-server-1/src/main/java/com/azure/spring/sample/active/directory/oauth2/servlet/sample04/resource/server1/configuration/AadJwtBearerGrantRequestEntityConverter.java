@@ -4,7 +4,7 @@ import org.springframework.security.oauth2.client.endpoint.JwtBearerGrantRequest
 import org.springframework.security.oauth2.client.endpoint.JwtBearerGrantRequestEntityConverter;
 import org.springframework.util.MultiValueMap;
 
-public class AzureADJwtBearerGrantRequestEntityConverter extends JwtBearerGrantRequestEntityConverter {
+public class AadJwtBearerGrantRequestEntityConverter extends JwtBearerGrantRequestEntityConverter {
 
     @Override
     protected MultiValueMap<String, String> createParameters(JwtBearerGrantRequest jwtBearerGrantRequest) {

@@ -49,11 +49,6 @@ resource "azurerm_storage_account" "storage_account" {
   account_replication_type = "LRS"
 }
 
-resource "azurerm_storage_queue" "queue" {
-  name                 = "example"
-  storage_account_name = azurerm_storage_account.storage_account.name
-}
-
 # assign roles
 data "azurerm_client_config" "current" {
 }

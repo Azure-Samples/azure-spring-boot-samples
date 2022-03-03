@@ -138,19 +138,13 @@ mvn clean spring-boot:run
 ```
 
 ## Verify This Sample
+View the below results in the console.
 
-1.  Send a POST request
+```text
+INFO 17464 --- [           main] c.a.s.s.s.queue.StorageQueueApplication  : Send message id: xxx
+INFO 17464 --- [           main] c.a.s.s.s.queue.StorageQueueApplication  : Received message: test
+```
 
-        curl -X POST http://localhost:8080/messages?message=hello
-
-1.  Receive the message you posted
-
-        curl -X GET http://localhost:8080/messages
-
-1.  Verify in your app’s logs that similar messages were posted:
-
-        Message arrived! Payload: hello
-        Message 'hello' successfully checkpointed
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.

@@ -3,7 +3,7 @@
 
 package com.azure.spring.sample.storage.queue.operation;
 
-import com.azure.spring.storage.queue.core.StorageQueueTemplate;
+import com.azure.spring.messaging.storage.queue.core.StorageQueueTemplate;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

@@ -3,8 +3,8 @@
 
 package com.azure.spring.sample.eventhubs;
 
-import com.azure.spring.eventhubs.core.EventHubsTemplate;
-import com.azure.spring.integration.handler.DefaultMessageHandler;
+import com.azure.spring.messaging.eventhubs.core.EventHubsTemplate;
+import com.azure.spring.integration.core.handler.DefaultMessageHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

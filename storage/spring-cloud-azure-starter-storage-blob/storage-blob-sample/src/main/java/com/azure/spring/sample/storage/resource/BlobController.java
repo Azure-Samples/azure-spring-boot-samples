@@ -3,7 +3,7 @@
 
 package com.azure.spring.sample.storage.resource;
 
-import com.azure.spring.core.resource.AzureStorageBlobProtocolResolver;
+import com.azure.spring.cloud.core.resource.AzureStorageBlobProtocolResolver;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;

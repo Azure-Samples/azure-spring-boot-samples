@@ -3,8 +3,8 @@
 
 package com.azure.spring.sample.storage.queue;
 
-import com.azure.spring.integration.handler.DefaultMessageHandler;
-import com.azure.spring.storage.queue.core.StorageQueueTemplate;
+import com.azure.spring.integration.core.handler.DefaultMessageHandler;
+import com.azure.spring.messaging.storage.queue.core.StorageQueueTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

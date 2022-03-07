@@ -5,9 +5,9 @@ package com.azure.spring.sample.servicebus;
 
 import com.azure.spring.messaging.ConsumerIdentifier;
 import com.azure.spring.messaging.PropertiesSupplier;
-import com.azure.spring.servicebus.core.properties.CommonProperties;
-import com.azure.spring.servicebus.core.properties.ProcessorProperties;
-import com.azure.spring.servicebus.core.properties.ProducerProperties;
+import com.azure.spring.messaging.servicebus.core.properties.CommonProperties;
+import com.azure.spring.messaging.servicebus.core.properties.ProcessorProperties;
+import com.azure.spring.messaging.servicebus.core.properties.ProducerProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.NestedConfigurationProperty;
 

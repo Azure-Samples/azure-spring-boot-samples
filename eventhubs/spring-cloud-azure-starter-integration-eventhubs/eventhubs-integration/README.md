@@ -136,7 +136,11 @@ source ./terraform/setup_env.sh
  . terraform\setup_env.ps1
 ```
 
+If you want to run the program in debug mode, you can save the output value. 
+
 ## Run Locally
+
+### Run the program directly
 
 In your terminal, run `mvn clean spring-boot:run`.
 
@@ -144,6 +148,10 @@ In your terminal, run `mvn clean spring-boot:run`.
 ```shell
 mvn clean spring-boot:run
 ```
+
+### Run the program in debug mode
+
+You can debug your program by adding the saved output values or finding the required parameters in the `terraform.tfstate` file in the program's terraform directory and adding them to the tool's environment variables or the program's `application.yaml` file.
 
 ## Verify This Sample
 

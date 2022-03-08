@@ -17,6 +17,11 @@
   <name>Read and Write Data with Azure Cosmos DB Using CosmosClient</name>
   <description>Sample project for Spring Cloud Azure Starter Cosmos</description>
 
+  <properties>
+    <imageName>spring-cloud-azure-cosmos-sample</imageName>
+    <mainClass>com.azure.spring.sample.cosmos.CosmosSampleApplication</mainClass>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>

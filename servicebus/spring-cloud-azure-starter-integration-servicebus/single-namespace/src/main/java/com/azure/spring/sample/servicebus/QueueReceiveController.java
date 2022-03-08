@@ -46,6 +46,7 @@ public class QueueReceiveController {
     public ServiceBusMessageListenerContainer messageListenerContainer(ServiceBusProcessorFactory processorFactory) {
         ServiceBusContainerProperties containerProperties = new ServiceBusContainerProperties();
         containerProperties.setEntityName(QUEUE_NAME);
+        containerProperties.setCheckpointConfig(new CheckpointConfig(CheckpointMode.MANUAL));
         return new ServiceBusMessageListenerContainer(processorFactory, containerProperties);
     }
 
@@ -53,8 +54,7 @@ public class QueueReceiveController {
     public ServiceBusInboundChannelAdapter queueMessageChannelAdapter(
         @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel,
         @Qualifier("queue-listener-container") ServiceBusMessageListenerContainer listenerContainer) {
-        CheckpointConfig checkpointConfig = new CheckpointConfig(CheckpointMode.MANUAL);
-        ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(listenerContainer, checkpointConfig);
+        ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(listenerContainer);
         adapter.setOutputChannel(inputChannel);
         return adapter;
     }

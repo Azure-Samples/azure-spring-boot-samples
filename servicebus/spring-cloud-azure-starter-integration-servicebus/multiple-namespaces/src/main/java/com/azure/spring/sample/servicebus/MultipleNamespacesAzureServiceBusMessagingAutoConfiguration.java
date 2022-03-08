@@ -91,6 +91,7 @@ public class MultipleNamespacesAzureServiceBusMessagingAutoConfiguration {
     public ServiceBusMessageListenerContainer messageListenerContainer(ServiceBusProcessorFactory processorFactory) {
         ServiceBusContainerProperties containerProperties = new ServiceBusContainerProperties();
         containerProperties.setEntityName(RECEIVE_QUEUE_NAME);
+        containerProperties.setCheckpointConfig(new CheckpointConfig(CheckpointMode.MANUAL));
         return new ServiceBusMessageListenerContainer(processorFactory, containerProperties);
     }
 
@@ -105,9 +106,7 @@ public class MultipleNamespacesAzureServiceBusMessagingAutoConfiguration {
     public ServiceBusInboundChannelAdapter queueMessageChannelAdapter(
         @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel,
         ServiceBusMessageListenerContainer listenerContainer) {
-        CheckpointConfig checkpointConfig = new CheckpointConfig(CheckpointMode.MANUAL);
-
-        ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(listenerContainer, checkpointConfig);
+        ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(listenerContainer);
         adapter.setOutputChannel(inputChannel);
         return adapter;
     }

@@ -103,7 +103,7 @@ spring:
         redirect-uri-template: http://localhost:8080/
         # groups that you created in your Azure AD tenant
         user-group:
-          allowed-groups: group1,group2
+          allowed-group-names: group1,group2
         # Optional, the default value is 
         # environment: global  
 ```
@@ -121,7 +121,7 @@ client-id: xxxxxx-your-client-secret-xxxxxx
 3. List all the AAD groups `ActiveDirectoryGroups` that you want to have a Spring Security role object mapping to it. The role objects can then be used to manage access to resources that is behind Spring Security. e.g.
 ```properties
 # groups that you created in your Azure AD tenant
-allowed-groups: group1,group2
+allowed-group-names: group1,group2
 ```
 
 4. (Optional) If you want to configure oauth2 redirect uri, please configure by :

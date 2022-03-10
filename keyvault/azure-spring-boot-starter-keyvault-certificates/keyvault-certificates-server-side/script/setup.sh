@@ -31,8 +31,8 @@ if [ ${SERVICE_PRINCIPAL_NAME} ];then
   sed -i 's#export SERVICE_PRINCIPAL_TETANT=#&'"$SERVICE_PRINCIPAL_TETANT"'#' script/export_environment_variables_of_created_resource.sh
 
   az keyvault set-policy --name ${KEY_VAULT_NAME} --certificate-permission get list \
-     --key-permission get list \
-     --secret-permission get list \
+     --key-permission get \
+     --secret-permission get \
      --spn ${SERVICE_PRINCIPAL_ID} \
      --resource-group ${RESOURCE_GROUP_NAME}
 fi

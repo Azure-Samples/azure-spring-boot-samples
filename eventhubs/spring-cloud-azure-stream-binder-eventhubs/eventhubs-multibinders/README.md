@@ -191,13 +191,13 @@ terraform -chdir=terraform destroy -auto-approve
 
 To enable message sending in a synchronized way with Spring Cloud Stream 3.x, spring-cloud-azure-stream-binder-eventhubs supports the sync producer mode to get responses for sent messages.
 
-Make sure set `spring.cloud.stream.eventhub.bindings.<binding-name>.producer.sync=true` before use it.
+Make sure set `spring.cloud.stream.eventhubs.bindings.<binding-name>.producer.sync=true` before use it.
 
 ### [Using Batch Consuming](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#batch-consumer-support)
 
 To work with the batch-consumer mode, the property of spring.cloud.stream.bindings.<binding-name>.consumer.batch-mode should be set as true. When enabled, an org.springframework.messaging.Message of which the payload is a list of batched events will be received and passed to the consumer function.
 
-In this sample, users can try the batch-consuming mode by enable the "batch" profile and fill the "application-batch.yml". For more details about how to work in batch-consuming mode, please refer to the [reference doc](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#batch-consumer-support-2).
+In this sample, users can try the batch-consuming mode by enabling the "batch" profile and fill the "application-batch.yml". For more details about how to work in batch-consuming mode, please refer to the [reference doc](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#batch-consumer-support-2).
 
 ### Set Event Hubs message headers
 

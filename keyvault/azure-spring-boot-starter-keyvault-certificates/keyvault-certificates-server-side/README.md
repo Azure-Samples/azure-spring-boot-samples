@@ -49,7 +49,10 @@ You can also create resources manually via Azure Portal. Please follow:
    - If you cannot use managed identity, you can register your application with AAD, see [register app with AAD][register_app_with_AAD]. The registration also creates a second application object that identifies your app.
 2. Create the key vault and certificates. Please refer to [create key vault and certificates][create_key_vault_and_certificates]
 3. Make the key vault accessible to your service principal. Please refer to [assign key vault access policy][assign_key_vault_access_policy]
-   > Attention: The service principal must be configured with get and list permissions of certificate, key, secret.
+   > Attention: The service principal must be configured with permissions:   
+   > Certificate Permissions: configure with **get and list** permissions.  
+   > Key Permissions: configure with get permission.  
+   > Secret Permissions: configure with get permission.
 5. You need manually configure the application.yml, replace the placeholders with the resources you created in the Azure Portal.
 
 If you used the script to create the resources, or you created the resources via Azure Portal and created the Service Principal in App Registration way.

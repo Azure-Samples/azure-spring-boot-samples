@@ -16,7 +16,10 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
    source script/setup.sh
    ```
 2. Option 2 - If you created the resource via the Azure Portal, you need configure the application.yml manually, please replace the placeholders with the resources you created.
-   > Attention: The service principal must be configured with get and list permissions of certificate, key, secret.
+   > Attention: The service principal must be configured with permissions:   
+   > Certificate Permissions: configure with **get and list** permissions.  
+   > Key Permissions: configure with get permission.  
+   > Secret Permissions: configure with get permission.
 
 #### Using TLS with service principal created via App registration.
 1. Start azure-spring-boot-sample-keyvault-certificates-client-side's SampleApplication by running command:

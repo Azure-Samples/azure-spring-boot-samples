@@ -28,17 +28,17 @@ output "RESOURCE_SERVER_2_CLIENT_ID" {
 }
 
 output "CLIENT_1_CLIENT_SECRET" {
-  value = azuread_application_password.client-1.value
+  value     = azuread_application_password.client-1.value
   sensitive = true
 }
 
 output "RESOURCE_SERVER_1_CLIENT_SECRET" {
-  value = azuread_application_password.resource-server-1.value
+  value     = azuread_application_password.resource-server-1.value
   sensitive = true
 }
 
 output "user_password" {
-  value = azuread_user.newuser.password
+  value     = azuread_user.newuser.password
   sensitive = true
 }
 

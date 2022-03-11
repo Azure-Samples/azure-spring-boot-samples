@@ -5,7 +5,11 @@ terraform {
       version = "~> 2.15.0"
     }
     random = {
-      source = "hashicorp/random"
+      source  = "hashicorp/random"
+      version = "3.1.0"
+    }
+    null = {
+      source  = "hashicorp/null"
       version = "3.1.0"
     }
   }
@@ -37,9 +41,9 @@ provider "azuread" {
 
 # Configure client-1
 resource "azuread_application" "client-1" {
-  display_name     = "client-1"
+  display_name = "client-1"
 
-  owners           = [data.azuread_client_config.current.object_id]
+  owners = [data.azuread_client_config.current.object_id]
   # single tenant
   sign_in_audience = "AzureADMyOrg"
 
@@ -58,7 +62,7 @@ resource "azuread_application" "client-1" {
 
   web {
     redirect_uris = ["http://localhost:8080/login/oauth2/code/",
-    "http://localhost:8080/login/oauth2/code/client-1-resource-server-1",
+      "http://localhost:8080/login/oauth2/code/client-1-resource-server-1",
     "http://localhost:8080/login/oauth2/code/client-1-resource-server-2"]
 
     implicit_grant {
@@ -71,9 +75,9 @@ resource "azuread_application" "client-1" {
 
 # Configure resource-server-2
 resource "azuread_application" "resource-server-2" {
-  display_name     = "resource-server-2"
+  display_name = "resource-server-2"
 
-  owners           = [data.azuread_client_config.current.object_id]
+  owners = [data.azuread_client_config.current.object_id]
   # single tenant
   sign_in_audience = "AzureADMyOrg"
 
@@ -84,7 +88,7 @@ resource "azuread_application" "resource-server-2" {
       admin_consent_description  = "resource-server-2.scope-1"
       admin_consent_display_name = "resource-server-2.scope-1"
       enabled                    = true
-      id                         = "${random_uuid.resource-server-2-scope-1.result}"
+      id                         = random_uuid.resource-server-2-scope-1.result
       type                       = "User"
       value                      = "resource-server-2.scope-1"
     }
@@ -93,7 +97,7 @@ resource "azuread_application" "resource-server-2" {
       admin_consent_description  = "resource-server-2.scope-2"
       admin_consent_display_name = "resource-server-2.scope-2"
       enabled                    = true
-      id                         = "${random_uuid.resource-server-2-scope-2.result}"
+      id                         = random_uuid.resource-server-2-scope-2.result
       type                       = "User"
       value                      = "resource-server-2.scope-2"
     }
@@ -112,9 +116,9 @@ resource "azuread_application" "resource-server-2" {
 
 # Configure resource-server-1
 resource "azuread_application" "resource-server-1" {
-  display_name     = "resource-server-1"
+  display_name = "resource-server-1"
 
-  owners           = [data.azuread_client_config.current.object_id]
+  owners = [data.azuread_client_config.current.object_id]
   # single tenant
   sign_in_audience = "AzureADMyOrg"
 
@@ -125,7 +129,7 @@ resource "azuread_application" "resource-server-1" {
       admin_consent_description  = "resource-server-1.scope-1"
       admin_consent_display_name = "resource-server-1.scope-1"
       enabled                    = true
-      id                         = "${random_uuid.resource-server-1-scope-1.result}"
+      id                         = random_uuid.resource-server-1-scope-1.result
       type                       = "User"
       value                      = "resource-server-1.scope-1"
     }
@@ -134,7 +138,7 @@ resource "azuread_application" "resource-server-1" {
       admin_consent_description  = "resource-server-1.scope-2"
       admin_consent_display_name = "resource-server-1.scope-2"
       enabled                    = true
-      id                         = "${random_uuid.resource-server-1-scope-2.result}"
+      id                         = random_uuid.resource-server-1-scope-2.result
       type                       = "User"
       value                      = "resource-server-1.scope-2"
     }
@@ -145,7 +149,7 @@ resource "azuread_application" "resource-server-1" {
     description          = "resource-server-1-role-2"
     display_name         = "resource-server-1-role-2"
     enabled              = true
-    id                   = "${random_uuid.resource-server-1-role-2.result}"
+    id                   = random_uuid.resource-server-1-role-2.result
     value                = "resource-server-1-role-2"
   }
 
@@ -154,7 +158,7 @@ resource "azuread_application" "resource-server-1" {
     description          = "resource-server-1-role-1"
     display_name         = "resource-server-1-role-1"
     enabled              = true
-    id                   = "${random_uuid.resource-server-1-role-1.result}"
+    id                   = random_uuid.resource-server-1-role-1.result
     value                = "resource-server-1-role-1"
   }
 
@@ -172,7 +176,7 @@ resource "azuread_application" "resource-server-1" {
 
     # need grant
     resource_access {
-      id   = "${random_uuid.resource-server-2-scope-1.result}" # resource-server-2.scope-1
+      id   = random_uuid.resource-server-2-scope-1.result # resource-server-2.scope-1
       type = "Scope"
     }
   }
@@ -207,7 +211,6 @@ resource "azuread_service_principal" "resource-server-2" {
 }
 
 
-
 resource "azuread_application_password" "client-1" {
   application_object_id = azuread_application.client-1.object_id
 }
@@ -216,9 +219,6 @@ resource "azuread_application_password" "client-1" {
 resource "azuread_application_password" "resource-server-1" {
   application_object_id = azuread_application.resource-server-1.object_id
 }
-
-
-
 
 # Retrieve domain information
 data "azuread_domains" "example" {
@@ -232,3 +232,12 @@ resource "azuread_user" "newuser" {
   password            = "Ms@123456"
 }
 
+resource "null_resource" "set_env" {
+  triggers = {
+    application_id = azuread_service_principal.resource-server-1.application_id
+  }
+
+  provisioner "local-exec" {
+    command = "/bin/bash set_identifier_uris.sh"
+  }
+}

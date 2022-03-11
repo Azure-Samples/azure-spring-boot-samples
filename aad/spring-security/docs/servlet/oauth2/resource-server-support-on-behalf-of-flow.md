@@ -40,22 +40,22 @@ Get samples applications from in GitHub: [resource-server-support-on-behalf-of-f
 # 3. Create resources in Azure
 
 ## 3.1. Create a tenant
-Read [document about creating an Azure AD tenant], create a new tenant. Get the tenant-id: **${tenant-id}**.
+Read [document about creating an Azure AD tenant], create a new tenant. Get the tenant-id: **${TENANT_ID}**.
 
 ## 3.2. Add a new user
 Read [document about adding users], add a new user: **user-1@${tenant-name}.com**. Get the user's password.
 
 ## 3.3. Register client-1
-Read [document about registering an application], register an application named **client-1**. Get the client-id: **${client-1-client-id}**.
+Read [document about registering an application], register an application named **client-1**. Get the client-id: **${CLIENT_1_CLIENT_ID}**.
 
 ## 3.4. Add a client secret for client-1
-Read [document about adding a client secret], add a client secret. Get the client-secret value: **${client-1-client-secret}**.
+Read [document about adding a client secret], add a client secret. Get the client-secret value: **${CLIENT_1_CLIENT_SECRET}**.
 
 ## 3.5. Add a redirect URI for client-1
 Read [document about adding a redirect URI], add redirect URI: **http://localhost:8080/login/oauth2/code/**.
 
 ## 3.6. Register resource-server-1
-Read [document about registering an application], register an application named **resource-server-1**. Get the client-id: **${resource-server-1-client-id}**.
+Read [document about registering an application], register an application named **resource-server-1**. Get the client-id: **${RESOURCE_SERVER_1_CLIENT_ID}**.
 
 ## 3.7. Add a client secret for resource-server-1
 Read [document about adding a client secret], add a client secret. Get the client-secret value: **${resource-server-1-client-secret}**.

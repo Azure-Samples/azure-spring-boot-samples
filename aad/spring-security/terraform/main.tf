@@ -1,0 +1,209 @@
+terraform {
+  required_providers {
+    azuread = {
+      source  = "hashicorp/azuread"
+      version = "~> 2.15.0"
+    }
+  }
+}
+
+data "azuread_client_config" "current" {}
+
+# Configure the Azure Active Directory Provider
+provider "azuread" {
+  tenant_id = var.tenant_id
+}
+
+
+# Configure client-1
+resource "azuread_application" "client-1" {
+  display_name     = "client-1"
+
+  owners           = [data.azuread_client_config.current.object_id]
+  # single tenant
+  sign_in_audience = "AzureADMyOrg"
+
+  api {
+    requested_access_token_version = 2
+  }
+
+  required_resource_access {
+    resource_app_id = "00000003-0000-0000-c000-000000000000" # Microsoft Graph
+
+    resource_access {
+      id   = "e1fe6dd8-ba31-4d61-89e7-88639da4683d" # User.Read
+      type = "Scope"
+    }
+  }
+
+  web {
+    redirect_uris = ["http://localhost:8080/login/oauth2/code/",
+    "http://localhost:8080/login/oauth2/code/client-1-resource-server-1",
+    "http://localhost:8080/login/oauth2/code/client-1-resource-server-2"]
+
+    implicit_grant {
+      access_token_issuance_enabled = true
+      id_token_issuance_enabled     = true
+    }
+  }
+}
+
+
+# Configure resource-server-2
+resource "azuread_application" "resource-server-2" {
+  display_name     = "resource-server-2"
+  # identifier_uris  = [data.azuread_application.resource-server-2.application_id]
+
+  owners           = [data.azuread_client_config.current.object_id]
+  # single tenant
+  sign_in_audience = "AzureADMyOrg"
+
+  api {
+    requested_access_token_version = 2
+
+    oauth2_permission_scope {
+      admin_consent_description  = "resource-server-2.scope-1"
+      admin_consent_display_name = "resource-server-2.scope-1"
+      enabled                    = true
+      id                         = "96183846-204b-4b43-82e1-5d2222eb4b9b"
+      type                       = "User"
+      value                      = "resource-server-2.scope-1"
+    }
+
+    oauth2_permission_scope {
+      admin_consent_description  = "resource-server-2.scope-2"
+      admin_consent_display_name = "resource-server-2.scope-2"
+      enabled                    = true
+      id                         = "be98fa3e-ab5b-4b11-83d9-04ba2b7946bc"
+      type                       = "User"
+      value                      = "resource-server-2.scope-2"
+    }
+  }
+
+  required_resource_access {
+    resource_app_id = "00000003-0000-0000-c000-000000000000" # Microsoft Graph
+
+    resource_access {
+      id   = "e1fe6dd8-ba31-4d61-89e7-88639da4683d" # User.Read
+      type = "Scope"
+    }
+  }
+}
+
+
+# Configure resource-server-1
+resource "azuread_application" "resource-server-1" {
+  display_name     = "resource-server-1"
+
+  owners           = [data.azuread_client_config.current.object_id]
+  # single tenant
+  sign_in_audience = "AzureADMyOrg"
+
+  api {
+    requested_access_token_version = 2
+
+    oauth2_permission_scope {
+      admin_consent_description  = "resource-server-1.scope-1"
+      admin_consent_display_name = "resource-server-1.scope-1"
+      enabled                    = true
+      id                         = "96183846-201b-4a43-82e1-5d2222eb4b9b"
+      type                       = "User"
+      value                      = "resource-server-1.scope-1"
+    }
+
+    oauth2_permission_scope {
+      admin_consent_description  = "resource-server-1.scope-2"
+      admin_consent_display_name = "resource-server-1.scope-2"
+      enabled                    = true
+      id                         = "be98fa3e-ab5d-4b11-83d9-04ba9b7946bc"
+      type                       = "User"
+      value                      = "resource-server-1.scope-2"
+    }
+  }
+
+  app_role {
+    allowed_member_types = ["User"]
+    description          = "resource-server-1-role-2"
+    display_name         = "resource-server-1-role-2"
+    enabled              = true
+    id                   = "1b19509b-32b1-4e9f-b73d-4992aa991967"
+    value                = "resource-server-1-role-2"
+  }
+
+  app_role {
+    allowed_member_types = ["User"]
+    description          = "resource-server-1-role-1"
+    display_name         = "resource-server-1-role-1"
+    enabled              = true
+    id                   = "497406e4-912a-4267-bf18-45a1cb148a01"
+    value                = "resource-server-1-role-1"
+  }
+
+  required_resource_access {
+    resource_app_id = "00000003-0000-0000-c000-000000000000" # Microsoft Graph
+
+    resource_access {
+      id   = "e1fe6dd8-ba31-4d61-89e7-88639da4683d" # User.Read
+      type = "Scope"
+    }
+  }
+
+  required_resource_access {
+    resource_app_id = azuread_application.resource-server-2.application_id # Resource server 2
+
+    resource_access {
+      id   = "be98fa3e-ab5b-4b11-83d9-04ba2b7946bc" # resource-server-2.scope-2
+      type = "Scope"
+    }
+  }
+
+  web {
+    redirect_uris = ["http://localhost:8080/login/oauth2/code/"]
+  }
+}
+
+
+resource "azuread_service_principal" "client-1" {
+  application_id               = azuread_application.client-1.application_id
+  app_role_assignment_required = false
+  owners                       = [data.azuread_client_config.current.object_id]
+}
+
+resource "azuread_service_principal" "resource-server-1" {
+  application_id               = azuread_application.resource-server-1.application_id
+  app_role_assignment_required = false
+  owners                       = [data.azuread_client_config.current.object_id]
+}
+
+resource "azuread_service_principal" "resource-server-2" {
+  application_id               = azuread_application.resource-server-2.application_id
+  app_role_assignment_required = false
+  owners                       = [data.azuread_client_config.current.object_id]
+}
+
+
+
+resource "azuread_application_password" "client-1" {
+  application_object_id = azuread_application.client-1.object_id
+}
+
+
+resource "azuread_application_password" "resource-server-1" {
+  application_object_id = azuread_application.resource-server-1.object_id
+}
+
+
+
+
+# Retrieve domain information
+data "azuread_domains" "example" {
+  only_initial = true
+}
+
+# Create a user
+resource "azuread_user" "newuser" {
+  user_principal_name = "security@${data.azuread_domains.example.domains.0.domain_name}"
+  display_name        = "security"
+  password            = "Ms@123456"
+}
+

@@ -4,7 +4,29 @@ terraform {
       source  = "hashicorp/azuread"
       version = "~> 2.15.0"
     }
+    random = {
+      source = "hashicorp/random"
+      version = "3.1.0"
+    }
   }
+}
+
+resource "random_uuid" "resource-server-1-scope-1" {
+}
+
+resource "random_uuid" "resource-server-1-scope-2" {
+}
+
+resource "random_uuid" "resource-server-2-scope-1" {
+}
+
+resource "random_uuid" "resource-server-2-scope-2" {
+}
+
+resource "random_uuid" "resource-server-1-role-1" {
+}
+
+resource "random_uuid" "resource-server-1-role-2" {
 }
 
 data "azuread_client_config" "current" {}
@@ -51,6 +73,7 @@ resource "azuread_application" "client-1" {
 
 # Configure resource-server-2
 resource "azuread_application" "resource-server-2" {
+  identifier_uris = ["api://resource-2"]
   display_name     = "resource-server-2"
   # identifier_uris  = [data.azuread_application.resource-server-2.application_id]
 
@@ -65,7 +88,7 @@ resource "azuread_application" "resource-server-2" {
       admin_consent_description  = "resource-server-2.scope-1"
       admin_consent_display_name = "resource-server-2.scope-1"
       enabled                    = true
-      id                         = "96183846-204b-4b43-82e1-5d2222eb4b9b"
+      id                         = "${random_uuid.resource-server-2-scope-1.result}"
       type                       = "User"
       value                      = "resource-server-2.scope-1"
     }
@@ -74,7 +97,7 @@ resource "azuread_application" "resource-server-2" {
       admin_consent_description  = "resource-server-2.scope-2"
       admin_consent_display_name = "resource-server-2.scope-2"
       enabled                    = true
-      id                         = "be98fa3e-ab5b-4b11-83d9-04ba2b7946bc"
+      id                         = "${random_uuid.resource-server-2-scope-2.result}"
       type                       = "User"
       value                      = "resource-server-2.scope-2"
     }
@@ -94,6 +117,7 @@ resource "azuread_application" "resource-server-2" {
 # Configure resource-server-1
 resource "azuread_application" "resource-server-1" {
   display_name     = "resource-server-1"
+  identifier_uris = ["api://resource-1"]
 
   owners           = [data.azuread_client_config.current.object_id]
   # single tenant
@@ -106,7 +130,7 @@ resource "azuread_application" "resource-server-1" {
       admin_consent_description  = "resource-server-1.scope-1"
       admin_consent_display_name = "resource-server-1.scope-1"
       enabled                    = true
-      id                         = "96183846-201b-4a43-82e1-5d2222eb4b9b"
+      id                         = "${random_uuid.resource-server-1-scope-1.result}"
       type                       = "User"
       value                      = "resource-server-1.scope-1"
     }
@@ -115,7 +139,7 @@ resource "azuread_application" "resource-server-1" {
       admin_consent_description  = "resource-server-1.scope-2"
       admin_consent_display_name = "resource-server-1.scope-2"
       enabled                    = true
-      id                         = "be98fa3e-ab5d-4b11-83d9-04ba9b7946bc"
+      id                         = "${random_uuid.resource-server-1-scope-2.result}"
       type                       = "User"
       value                      = "resource-server-1.scope-2"
     }
@@ -126,7 +150,7 @@ resource "azuread_application" "resource-server-1" {
     description          = "resource-server-1-role-2"
     display_name         = "resource-server-1-role-2"
     enabled              = true
-    id                   = "1b19509b-32b1-4e9f-b73d-4992aa991967"
+    id                   = "${random_uuid.resource-server-1-role-2.result}"
     value                = "resource-server-1-role-2"
   }
 
@@ -135,7 +159,7 @@ resource "azuread_application" "resource-server-1" {
     description          = "resource-server-1-role-1"
     display_name         = "resource-server-1-role-1"
     enabled              = true
-    id                   = "497406e4-912a-4267-bf18-45a1cb148a01"
+    id                   = "${random_uuid.resource-server-1-role-1.result}"
     value                = "resource-server-1-role-1"
   }
 
@@ -151,8 +175,9 @@ resource "azuread_application" "resource-server-1" {
   required_resource_access {
     resource_app_id = azuread_application.resource-server-2.application_id # Resource server 2
 
+    # need grant
     resource_access {
-      id   = "be98fa3e-ab5b-4b11-83d9-04ba2b7946bc" # resource-server-2.scope-2
+      id   = "${random_uuid.resource-server-2-scope-1.result}" # resource-server-2.scope-1
       type = "Scope"
     }
   }
@@ -162,6 +187,11 @@ resource "azuread_application" "resource-server-1" {
   }
 }
 
+resource "azuread_service_principal_delegated_permission_grant" "resource-server-1" {
+  service_principal_object_id          = azuread_service_principal.resource-server-1.object_id
+  resource_service_principal_object_id = azuread_service_principal.resource-server-2.object_id
+  claim_values                         = ["resource-server-2.scope-1"]
+}
 
 resource "azuread_service_principal" "client-1" {
   application_id               = azuread_application.client-1.application_id

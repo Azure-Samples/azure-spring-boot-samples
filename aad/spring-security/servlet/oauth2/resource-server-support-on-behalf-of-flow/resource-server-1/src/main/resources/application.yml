@@ -1,8 +1,8 @@
 # Please fill these placeholders before running this application:
 # 1. ${TENANT_ID}
 # 2. ${RESOURCE_SERVER_1_CLIENT_ID}
-# 3. ${resource-server-1-client-secret}
-# 4. ${resource-server-2-client-id}
+# 3. ${RESOURCE_SERVER_1_CLIENT_SECRET}
+# 4. ${RESOURCE_SERVER_2_CLIENT_ID}
 
 logging:
   level:
@@ -20,9 +20,9 @@ spring:
           resource-server-1-resource-server-2:
             provider: azure-active-directory
             client-id: ${RESOURCE_SERVER_1_CLIENT_ID}
-            client-secret: ${resource-server-1-client-secret}
+            client-secret: ${RESOURCE_SERVER_1_CLIENT_SECRET}
             authorization-grant-type: urn:ietf:params:oauth:grant-type:jwt-bearer
-            scope: api://${resource-server-2-client-id}/resource-server-2.scope-1
+            scope: api://${RESOURCE_SERVER_2_CLIENT_ID}/resource-server-2.scope-1
       resourceserver:
         jwt:
           jwk-set-uri: https://login.microsoftonline.com/${TENANT_ID}/discovery/v2.0/keys

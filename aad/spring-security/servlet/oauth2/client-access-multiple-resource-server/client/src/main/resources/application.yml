@@ -3,7 +3,7 @@
 # 2. ${CLIENT_1_CLIENT_ID}
 # 3. ${CLIENT_1_CLIENT_SECRET}
 # 4. ${RESOURCE_SERVER_1_CLIENT_ID}
-# 5. ${resource-server-2-client-id}
+# 5. ${RESOURCE_SERVER_2_CLIENT_ID}
 
 logging:
   level:
@@ -31,7 +31,7 @@ spring:
             client-name: client-1-resource-server-2
             client-id: ${CLIENT_1_CLIENT_ID}
             client-secret: ${CLIENT_1_CLIENT_SECRET}
-            scope: openid, profile, api://${resource-server-2-client-id}/resource-server-2.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
+            scope: openid, profile, api://${RESOURCE_SERVER_2_CLIENT_ID}/resource-server-2.scope-1 # Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-permissions-and-consent#openid-connect-scopes
             redirect-uri: http://localhost:8080/login/oauth2/code/
   profiles:
     active: develop

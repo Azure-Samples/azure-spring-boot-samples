@@ -58,7 +58,7 @@ Read [document about adding a redirect URI], add redirect URI: **http://localhos
 Read [document about registering an application], register an application named **resource-server-1**. Get the client-id: **${RESOURCE_SERVER_1_CLIENT_ID}**.
 
 ## 3.7. Add a client secret for resource-server-1
-Read [document about adding a client secret], add a client secret. Get the client-secret value: **${resource-server-1-client-secret}**.
+Read [document about adding a client secret], add a client secret. Get the client-secret value: **${RESOURCE_SERVER_1_CLIENT_SECRET}**.
 
 ## 3.8. Add a redirect URI for resource-server-1
 Read [document about adding a redirect URI], add redirect URI: **http://localhost:8080/login/oauth2/code/**.
@@ -70,7 +70,7 @@ Read [document about exposing an api], expose 2 scopes for resource-server-1: **
 Read [document about Application manifest], set `accessTokenAcceptedVersion` to `2`.
 
 ## 3.11. Register resource-server-2
-Read [document about registering an application], register an application named **resource-server-2**. Get the client-id: **${resource-server-2-client-id}**.
+Read [document about registering an application], register an application named **resource-server-2**. Get the client-id: **${RESOURCE_SERVER_2_CLIENT_ID}**.
 
 ## 3.12. Expose apis for resource-server-2
 Read [document about exposing an api], expose 2 scopes for resource-server-2: **resource-server-2.scope-1** and **resource-server-2.scope-2**, choose **Admins and users** for **Who can consent** option.

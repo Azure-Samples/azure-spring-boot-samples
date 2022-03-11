@@ -57,7 +57,7 @@ Read [document about exposing an api], expose 2 scopes for resource-server-1: **
 Read [document about Application manifest], set `accessTokenAcceptedVersion` to `2`.
 
 ## 3.9. Register resource-server-2
-Read [document about registering an application], register an application named **resource-server-2**. Get the client-id: **${resource-server-2-client-id}**.
+Read [document about registering an application], register an application named **resource-server-2**. Get the client-id: **${RESOURCE_SERVER_2_CLIENT_ID}**.
 
 ## 3.10. Expose apis for resource-server-2
 Read [document about exposing an api], expose 2 scopes for resource-server-2: **resource-server-2.scope-1** and **resource-server-2.scope-2**, choose **Admins and users** for **Who can consent** option.

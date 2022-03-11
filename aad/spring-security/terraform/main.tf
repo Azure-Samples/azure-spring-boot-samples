@@ -73,9 +73,7 @@ resource "azuread_application" "client-1" {
 
 # Configure resource-server-2
 resource "azuread_application" "resource-server-2" {
-  identifier_uris = ["api://resource-2"]
   display_name     = "resource-server-2"
-  # identifier_uris  = [data.azuread_application.resource-server-2.application_id]
 
   owners           = [data.azuread_client_config.current.object_id]
   # single tenant
@@ -117,7 +115,6 @@ resource "azuread_application" "resource-server-2" {
 # Configure resource-server-1
 resource "azuread_application" "resource-server-1" {
   display_name     = "resource-server-1"
-  identifier_uris = ["api://resource-1"]
 
   owners           = [data.azuread_client_config.current.object_id]
   # single tenant

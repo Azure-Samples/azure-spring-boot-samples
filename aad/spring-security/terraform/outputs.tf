@@ -12,7 +12,7 @@
 
 
 output "TENANT_ID" {
-  value = var.tenant_id
+  value = data.azuread_client_config.current.tenant_id
 }
 
 output "CLIENT_1_CLIENT_ID" {
@@ -37,11 +37,11 @@ output "RESOURCE_SERVER_1_CLIENT_SECRET" {
   sensitive = true
 }
 
-output "newuser_password" {
+output "user_password" {
   value = azuread_user.newuser.password
   sensitive = true
 }
 
-output "newuser_user_principal_name" {
+output "user_principal_name" {
   value = azuread_user.newuser.user_principal_name
 }

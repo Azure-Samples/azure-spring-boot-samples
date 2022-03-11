@@ -15,10 +15,3 @@ variable "sample_tag_value" {
   description = "The value of spring-cloud-azure-sample tag."
   default     = "true"
 }
-
-# 308df08a-1332-4a15-bb06-2ad7e8b71bcf
-variable "tenant_id" {
-  type        = string
-  description = "The tenant id."
-  default     = "308df08a-1332-4a15-bb06-2ad7e8b71bcf"
-}

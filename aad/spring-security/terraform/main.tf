@@ -33,9 +33,7 @@ data "azuread_client_config" "current" {}
 
 # Configure the Azure Active Directory Provider
 provider "azuread" {
-  tenant_id = var.tenant_id
 }
-
 
 # Configure client-1
 resource "azuread_application" "client-1" {

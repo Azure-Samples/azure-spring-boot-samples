@@ -6,15 +6,16 @@ import com.azure.spring.messaging.ConsumerIdentifier;
 import com.azure.spring.messaging.PropertiesSupplier;
 import com.azure.spring.messaging.checkpoint.CheckpointConfig;
 import com.azure.spring.messaging.checkpoint.CheckpointMode;
-import com.azure.spring.servicebus.core.ServiceBusProcessorContainer;
-import com.azure.spring.servicebus.core.ServiceBusTemplate;
-import com.azure.spring.servicebus.core.processor.DefaultServiceBusNamespaceProcessorFactory;
-import com.azure.spring.servicebus.core.processor.ServiceBusProcessorFactory;
-import com.azure.spring.servicebus.core.producer.DefaultServiceBusNamespaceProducerFactory;
-import com.azure.spring.servicebus.core.producer.ServiceBusProducerFactory;
-import com.azure.spring.servicebus.core.properties.ProcessorProperties;
-import com.azure.spring.servicebus.core.properties.ProducerProperties;
-import com.azure.spring.servicebus.support.converter.ServiceBusMessageConverter;
+import com.azure.spring.messaging.servicebus.core.ServiceBusProcessorFactory;
+import com.azure.spring.messaging.servicebus.core.ServiceBusProducerFactory;
+import com.azure.spring.messaging.servicebus.core.ServiceBusTemplate;
+import com.azure.spring.messaging.servicebus.core.listener.ServiceBusMessageListenerContainer;
+import com.azure.spring.messaging.servicebus.core.properties.ProcessorProperties;
+import com.azure.spring.messaging.servicebus.core.properties.ProducerProperties;
+import com.azure.spring.messaging.servicebus.core.properties.ServiceBusContainerProperties;
+import com.azure.spring.messaging.servicebus.implementation.core.DefaultServiceBusNamespaceProcessorFactory;
+import com.azure.spring.messaging.servicebus.implementation.core.DefaultServiceBusNamespaceProducerFactory;
+import com.azure.spring.messaging.servicebus.support.converter.ServiceBusMessageConverter;
 import org.springframework.beans.factory.ObjectProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -42,7 +43,7 @@ public class MultipleNamespacesAzureServiceBusMessagingAutoConfiguration {
     private CustomizedServiceBusProperties properties;
 
     /**
-     * Configure the {@link ServiceBusProcessorContainer}
+     * Configure the {@link ServiceBusProcessorFactory}
      */
     @Configuration(proxyBeanMethods = false)
     public static class ProcessorContainerConfiguration {
@@ -54,11 +55,6 @@ public class MultipleNamespacesAzureServiceBusMessagingAutoConfiguration {
             return new DefaultServiceBusNamespaceProcessorFactory(null, suppliers.getIfAvailable());
         }
 
-        @Bean
-        @ConditionalOnMissingBean
-        public ServiceBusProcessorContainer messageProcessorContainer(ServiceBusProcessorFactory processorFactory) {
-            return new ServiceBusProcessorContainer(processorFactory);
-        }
     }
 
     /**
@@ -91,18 +87,26 @@ public class MultipleNamespacesAzureServiceBusMessagingAutoConfiguration {
         }
     }
 
+    @Bean
+    public ServiceBusMessageListenerContainer messageListenerContainer(ServiceBusProcessorFactory processorFactory) {
+        ServiceBusContainerProperties containerProperties = new ServiceBusContainerProperties();
+        containerProperties.setEntityName(RECEIVE_QUEUE_NAME);
+        containerProperties.setCheckpointConfig(new CheckpointConfig(CheckpointMode.MANUAL));
+        return new ServiceBusMessageListenerContainer(processorFactory, containerProperties);
+    }
+
     /**
      * {@link ServiceBusInboundChannelAdapter} binding with {@link MessageChannel} has name {@value INPUT_CHANNEL}
      *
      * @param inputChannel the MessageChannel binding with ServiceBusInboundChannelAdapter
-     * @param processorContainer instance of ServiceBusProcessorContainer
+     * @param listenerContainer instance of ServiceBusProcessorContainer
      * @return instance of ServiceBusInboundChannelAdapter
      */
     @Bean
     public ServiceBusInboundChannelAdapter queueMessageChannelAdapter(
-            @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel, ServiceBusProcessorContainer processorContainer) {
-        ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(processorContainer, RECEIVE_QUEUE_NAME,
-                null, new CheckpointConfig(CheckpointMode.MANUAL));
+        @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel,
+        ServiceBusMessageListenerContainer listenerContainer) {
+        ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(listenerContainer);
         adapter.setOutputChannel(inputChannel);
         return adapter;
     }

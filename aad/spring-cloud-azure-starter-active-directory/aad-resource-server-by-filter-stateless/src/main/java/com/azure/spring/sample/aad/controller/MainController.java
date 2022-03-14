@@ -26,7 +26,7 @@ public class MainController {
 
     @GetMapping("/admin/demo")
     @ResponseBody
-    // For demo purposes for this endpoint we configure the required role in the AADWebSecurityConfig class.
+    // For demo purposes for this endpoint we configure the required role in the AadWebSecurityConfig class.
     // However, it is advisable to use method level security with @PreAuthorize("hasRole('xxx')")
     public String onlyForAdmins() {
         return "admin endpoint";

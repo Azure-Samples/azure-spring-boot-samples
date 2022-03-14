@@ -7,10 +7,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AzureADB2COIDCSampleApplication {
+public class AadB2cOidcSampleApplication {
 
     public static void main(String[] args) {
         //
-        SpringApplication.run(AzureADB2COIDCSampleApplication.class, args);
+        SpringApplication.run(AadB2cOidcSampleApplication.class, args);
     }
 }

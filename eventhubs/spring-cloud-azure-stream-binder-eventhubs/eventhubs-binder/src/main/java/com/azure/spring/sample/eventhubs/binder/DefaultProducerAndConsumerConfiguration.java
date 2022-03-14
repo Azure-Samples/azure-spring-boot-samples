@@ -4,7 +4,7 @@
 package com.azure.spring.sample.eventhubs.binder;
 
 
-import com.azure.spring.eventhubs.support.EventHubsHeaders;
+import com.azure.spring.messaging.eventhubs.support.EventHubsHeaders;
 import com.azure.spring.messaging.checkpoint.Checkpointer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

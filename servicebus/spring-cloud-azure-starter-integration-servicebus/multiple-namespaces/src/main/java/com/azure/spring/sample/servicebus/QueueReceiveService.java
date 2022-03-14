@@ -3,12 +3,12 @@
 
 package com.azure.spring.sample.servicebus;
 
-import com.azure.spring.integration.handler.DefaultMessageHandler;
+import com.azure.spring.integration.core.handler.DefaultMessageHandler;
 import com.azure.spring.integration.servicebus.inbound.ServiceBusInboundChannelAdapter;
 import com.azure.spring.messaging.AzureHeaders;
 import com.azure.spring.messaging.checkpoint.Checkpointer;
-import com.azure.spring.service.servicebus.properties.ServiceBusEntityType;
-import com.azure.spring.servicebus.core.ServiceBusTemplate;
+import com.azure.spring.cloud.service.servicebus.properties.ServiceBusEntityType;
+import com.azure.spring.messaging.servicebus.core.ServiceBusTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

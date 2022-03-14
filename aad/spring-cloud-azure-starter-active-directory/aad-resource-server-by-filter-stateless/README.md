@@ -2,7 +2,7 @@
 
 ## Key concepts
 
-This demo project  explains the usage of the stateless authentication filter `AADAppRoleStatelessAuthenticationFilter`.
+This demo project  explains the usage of the stateless authentication filter `AadAppRoleStatelessAuthenticationFilter`.
 This project is composed of a vue.js frontend and a simple backend with three endpoints
 * `/public` (accessible by anyone)
 * `/authorized` (role "user" required)

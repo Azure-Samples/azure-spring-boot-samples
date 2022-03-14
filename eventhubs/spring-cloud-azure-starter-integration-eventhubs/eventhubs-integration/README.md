@@ -138,11 +138,15 @@ source ./terraform/setup_env.sh
 
 If you want to run the program in debug mode, you can save the output value. 
 
-![image](resource/output.png)
+```shell
+AZURE_EVENTHUBS_NAMESPACE=...
+AZURE_STORAGE_CONTAINER_NAME=...
+AZURE_STORAGE_ACCOUNT_NAME=...
+```
 
 ## Run Locally
 
-### Run the sample directly
+### Run the sample Directly
 
 In your terminal, run `mvn clean spring-boot:run`.
 

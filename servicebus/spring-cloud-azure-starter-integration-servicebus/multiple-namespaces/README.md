@@ -124,16 +124,30 @@ source ./terraform/setup_env.sh
  . terraform\setup_env.ps1
 ```
 
+If you want to run the program in debug mode, you can save the output value.
+
+```shell
+AZURE_SERVICEBUS_NAMESPACE_01=...
+AZURE_SERVICEBUS_NAMESPACE_02=...
+```
+
 ## Run Locally
+
+### Run the sample Directly
 
 In your terminal, run `mvn clean spring-boot:run`.
 
-
 ```shell
-# in the root directory of the sample
 mvn clean spring-boot:run
 ```
 
+### Run the sample in Debug Mode
+
+You can debug your sample by adding the saved output values to the tool's environment variables or the sample's `application.yaml` file.
+
+* If your tool is `IDEA`, please refer to [Debug your first Java application](https://www.jetbrains.com/help/idea/debugging-your-first-java-application.html) and [add environment variables](https://www.jetbrains.com/help/objc/add-environment-variables-and-program-arguments.html#add-environment-variables).
+
+* If your tool is `ECLIPSE`, please refer to [Debugging the Eclipse IDE for Java Developers](https://www.eclipse.org/community/eclipse_newsletter/2017/june/article1.php) and [Eclipse Environment Variable Setup](https://examples.javacodegeeks.com/desktop-java/ide/eclipse/eclipse-environment-variable-setup-example/).
 
 ## Verify This Sample
 

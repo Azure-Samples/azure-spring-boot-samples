@@ -120,14 +120,39 @@ source ./terraform/setup_env.sh
  . terraform\setup_env.ps1
 ```
 
+If you want to run the program in debug mode, you can save the output value.
+
+```shell
+AZURE_COSMOS_URI_1=...
+AZURE_COSMOS_KEY_1=...
+AZURE_COSMOS_SECONDARY_KEY_1=...
+AZURE_COSMOS_DATABASE_1=...
+AZURE_COSMOS_URI_2=...
+AZURE_COSMOS_KEY_2=...
+AZURE_COSMOS_SECONDARY_KEY_2=...
+AZURE_COSMOS_DATABASE_2=...
+AZURE_MYSQL_USERNAME=...
+AZURE_MYSQL_PASSWORD=...
+AZURE_MYSQL_HOST=...
+```
+
 ## Run Locally
 
-In your terminal, run `mvn clean spring-boot:run`.
+### Run the sample Directly
 
+In your terminal, run `mvn clean spring-boot:run`.
 
 ```shell
 mvn clean spring-boot:run
 ```
+
+### Run the sample in Debug Mode
+
+You can debug your sample by adding the saved output values to the tool's environment variables or the sample's `application.yaml` file.
+
+* If your tool is `IDEA`, please refer to [Debug your first Java application](https://www.jetbrains.com/help/idea/debugging-your-first-java-application.html) and [add environment variables](https://www.jetbrains.com/help/objc/add-environment-variables-and-program-arguments.html#add-environment-variables).
+
+* If your tool is `ECLIPSE`, please refer to [Debugging the Eclipse IDE for Java Developers](https://www.eclipse.org/community/eclipse_newsletter/2017/june/article1.php) and [Eclipse Environment Variable Setup](https://examples.javacodegeeks.com/desktop-java/ide/eclipse/eclipse-environment-variable-setup-example/).
 
 ## Verify This Sample
 

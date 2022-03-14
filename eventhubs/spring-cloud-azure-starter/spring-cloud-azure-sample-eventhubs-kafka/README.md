@@ -129,7 +129,7 @@ source ./terraform/setup_env.sh
  . terraform\setup_env.ps1
 ```
 
-If you want to run the program in debug mode, you can save the output value.
+If you want to run the sample in debug mode, you can save the output value.
 
 ```shell
 AZURE_EVENTHUBS_CONNECTION_STRING=...

@@ -2,7 +2,6 @@
 # 1. ${TENANT_ID}
 # 2. ${CLIENT_1_CLIENT_ID}
 # 3. ${CLIENT_1_CLIENT_SECRET}
-# 4. ${RESOURCE_SERVER_1_CLIENT_ID}
 
 logging:
   level:

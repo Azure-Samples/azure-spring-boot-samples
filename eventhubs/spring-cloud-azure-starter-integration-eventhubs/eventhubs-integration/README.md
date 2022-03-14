@@ -138,9 +138,11 @@ source ./terraform/setup_env.sh
 
 If you want to run the program in debug mode, you can save the output value. 
 
+![image](resource/output.png)
+
 ## Run Locally
 
-### Run the program directly
+### Run the sample directly
 
 In your terminal, run `mvn clean spring-boot:run`.
 
@@ -149,9 +151,9 @@ In your terminal, run `mvn clean spring-boot:run`.
 mvn clean spring-boot:run
 ```
 
-### Run the program in debug mode
+### Run the sample in Debug Mode
 
-You can debug your program by adding the saved output values or finding the required parameters in the `terraform.tfstate` file in the program's terraform directory and adding them to the tool's environment variables or the program's `application.yaml` file.
+You can debug your program by adding the saved output values to the tool's environment variables or the sample's `application.yaml` file. If your tool is `IDEA`, please refer to [Debug your first Java application](https://www.jetbrains.com/help/idea/debugging-your-first-java-application.html) and [add environment variables](https://www.jetbrains.com/help/objc/add-environment-variables-and-program-arguments.html#add-environment-variables). If your tool is `ECLIPSE`, please refer to [Debugging the Eclipse IDE for Java Developers](https://www.eclipse.org/community/eclipse_newsletter/2017/june/article1.php) and [Eclipse Environment Variable Setup](https://examples.javacodegeeks.com/desktop-java/ide/eclipse/eclipse-environment-variable-setup-example/). 
 
 ## Verify This Sample
 

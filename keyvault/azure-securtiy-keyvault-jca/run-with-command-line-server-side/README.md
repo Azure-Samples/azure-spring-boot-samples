@@ -36,15 +36,15 @@ jdk 11.0.12 or above
    ```
 1. Get the azure-security-keyvault-jca.jar. You can download the latest published jar from maven
    repository [azure-security-keyvault-jca]. When this document is written, the latest jar is
-   azure-security-keyvault-jca.2.2.0.jar
-1. Make a directory, for example, sample_client. Then put the 3 files into sample_client folder
+   azure-security-keyvault-jca-2.6.0.jar
+1. Make a directory, for example, sample_server. Then put the 3 files into sample_server folder
     - java.security
-    - run-with-command-line-client-1.0.0.jar
-    - azure-security-keyvault-jca-2.1.0.jar 
+    - run-with-command-line-server-side-1.0.0.jar
+    - azure-security-keyvault-jca-2.6.0.jar 
 1. Open terminal and enter the directory sample_server, run the following command:
    ```
    java\
-   --module-path ./azure-security-keyvault-jca-2.1.0.jar \
+   --module-path ./azure-security-keyvault-jca-2.6.0.jar \
    --add-modules com.azure.security.keyvault.jca \
    -Dsecurity.overridePropertiesFile=true \
    -Djava.security.properties==./java.security \
@@ -52,13 +52,13 @@ jdk 11.0.12 or above
    -Dazure.keyvault.tenant-id=<yourTenantID> \
    -Dazure.keyvault.client-id=<youClientID> \
    -Dazure.keyvault.client-secret=<yourSecretValue> \
-   -jar run-with-command-line-server-side-1.0.0.jar \ 
+   -jar run-with-command-line-server-side-1.0.0.jar \
    --server.port=8443 \
    --server.ssl.enabled=true \
    --server.ssl.key-alias=<yourCertificatName> \
    --server.ssl.keystore-type=DKS \
    --server.ssl.keyStoreProvider=AzureKeyVault \
-   --server.ssl.key-store=classpath:keyvault.dummy 
+   --server.ssl.key-store=classpath:keyvault.dummy
    ```
 1. Check the output. The server will be started after a while without needing client side 
    authentication, you can visit https://localhost:8443 and see "Hello World!". If you want to 

@@ -140,7 +140,7 @@ mvn clean spring-boot:run
 
 1. Send a POST request to service bus topic.
     ```
-    curl  http://localhost:8080/topic?message=hello -d ""
+    curl -X POST http://localhost:8080/topic?message=hello 
     ```
 
 2. Verify in your app's logs that a similar message was posted:

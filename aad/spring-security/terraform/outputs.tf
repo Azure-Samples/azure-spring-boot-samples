@@ -1,16 +1,3 @@
-
-
-
-#CLIENT-1-CLIENT-ID
-#CLIENT-1-CLIENT-SECRET
-#RESOURCE-SERVER-1-CLIENT-ID
-#RESOURCE-SERVER-1-CLIENT-SECRET
-#RESOURCE-SERVER-2-CLIENT-ID
-#TENANT-ID
-#user.email
-#user.password
-
-
 output "TENANT_ID" {
   value = data.azuread_client_config.current.tenant_id
 }
@@ -37,11 +24,11 @@ output "RESOURCE_SERVER_1_CLIENT_SECRET" {
   sensitive = true
 }
 
-output "user_password" {
-  value     = azuread_user.newuser.password
-  sensitive = true
+output "USER_NAME" {
+  value = azuread_user.newuser.user_principal_name
 }
 
-output "user_principal_name" {
-  value = azuread_user.newuser.user_principal_name
+output "USER_PASSWORD" {
+  value     = azuread_user.newuser.password
+  sensitive = true
 }

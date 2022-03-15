@@ -7,18 +7,15 @@ terraform {
   }
 }
 
-
 data "azuread_client_config" "current" {}
-
 
 # Configure the Azure Active Directory Provider
 provider "azuread" {
-  tenant_id = "308df08a-1332-4a15-bb06-2ad7e8b71bcf"
 }
 
 # Configure an app
-resource "azuread_application" "gzh-app" {
-  display_name     = "gzh-app"
+resource "azuread_application" "aadresourceserverbyfilter" {
+  display_name = "aad-resource-server-by-filter"
 
   owners           = [data.azuread_client_config.current.object_id]
   sign_in_audience = "AzureADMultipleOrgs"
@@ -51,7 +48,7 @@ resource "azuread_application" "gzh-app" {
     }
   }
 
-  single_page_application{
+  single_page_application {
     redirect_uris = ["http://localhost:8080/"]
   }
 
@@ -63,29 +60,35 @@ resource "azuread_application" "gzh-app" {
   }
 }
 
-resource "azuread_application_password" "example" {
-  application_object_id = azuread_application.gzh-app.object_id
+resource "azuread_service_principal" "aadresourceserverbyfilter" {
+  application_id               = azuread_application.aadresourceserverbyfilter.application_id
+  app_role_assignment_required = false
+  owners                       = [data.azuread_client_config.current.object_id]
 }
 
+resource "azuread_application_password" "aadresourceserverbyfilter" {
+  application_object_id = azuread_application.aadresourceserverbyfilter.object_id
+}
 
 # Retrieve domain information
-data "azuread_domains" "example" {
+data "azuread_domains" "current" {
   only_initial = true
 }
 
-data "azuread_group" "group1" {
+# Create a user
+resource "azuread_user" "user" {
+  user_principal_name = "aadresourceserverbyfilter@${data.azuread_domains.current.domains.0.domain_name}"
+  display_name        = "aadresourceserverbyfilter"
+  password            = "Azure123456@"
+}
+
+resource "azuread_group" "group1" {
   display_name     = "group1"
+  owners           = [data.azuread_client_config.current.object_id]
   security_enabled = true
 }
 
-# Create a user
-resource "azuread_user" "example" {
-  user_principal_name = "ExampleUser@${data.azuread_domains.example.domains.0.domain_name}"
-  display_name        = "Example User"
-  password            = "Gzh123456@"
-}
-
 resource "azuread_group_member" "group1" {
-  group_object_id  = data.azuread_group.group1.id
-  member_object_id = azuread_user.example.id
+  group_object_id  = azuread_group.group1.id
+  member_object_id = azuread_user.user.id
 }

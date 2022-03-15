@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-export terraform_path="../../../terraform"
+export terraform_path="../../../../terraform"
 
 export TENANT_ID=$(terraform -chdir=$terraform_path output -raw TENANT_ID)
 export CLIENT_1_CLIENT_ID=$(terraform -chdir=$terraform_path output -raw CLIENT_1_CLIENT_ID)

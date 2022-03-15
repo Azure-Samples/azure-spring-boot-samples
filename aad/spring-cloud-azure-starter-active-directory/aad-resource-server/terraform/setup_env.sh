@@ -1,0 +1,8 @@
+export AZURE_TENANT_ID=$(terraform output -raw AZURE_TENANT_ID)
+export AZURE_CLIENT_ID=$(terraform output -raw AZURE_CLIENT_ID)
+export APP_ID_URI=api://$AZURE_CLIENT_ID
+
+echo AZURE_TENANT_ID=$AZURE_TENANT_ID
+echo AZURE_CLIENT_ID=$AZURE_CLIENT_ID
+echo APP_ID_URI=$APP_ID_URI
+

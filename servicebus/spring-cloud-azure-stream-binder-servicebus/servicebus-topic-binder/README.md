@@ -147,7 +147,7 @@ AZURE_SERVICEBUS_SUBSCRIPTION_ID=...
 
 ## Run Locally
 
-### Run the sample Directly
+### Run the sample with Maven
 
 In your terminal, run `mvn clean spring-boot:run`.
 
@@ -155,7 +155,7 @@ In your terminal, run `mvn clean spring-boot:run`.
 mvn clean spring-boot:run
 ```
 
-### Run the sample in Debug Mode
+### Run the sample in IDEs
 
 You can debug your sample by adding the saved output values to the tool's environment variables or the sample's `application.yaml` file.
 

@@ -40,8 +40,8 @@ provider "azuread" {
 }
 
 # Configure client-1
-resource "azuread_application" "client-1" {
-  display_name = "client-1"
+resource "azuread_application" "WebApp2" {
+  display_name = "WebApp2"
 
   owners = [data.azuread_client_config.current.object_id]
   # single tenant
@@ -61,9 +61,7 @@ resource "azuread_application" "client-1" {
   }
 
   web {
-    redirect_uris = ["http://localhost:8080/login/oauth2/code/",
-      "http://localhost:8080/login/oauth2/code/client-1-resource-server-1",
-    "http://localhost:8080/login/oauth2/code/client-1-resource-server-2"]
+    redirect_uris = ["http://localhost:8080/login/oauth2/code/"]
 
     implicit_grant {
       access_token_issuance_enabled = true
@@ -73,50 +71,10 @@ resource "azuread_application" "client-1" {
 }
 
 
-# Configure resource-server-2
-resource "azuread_application" "resource-server-2" {
-  display_name = "resource-server-2"
 
-  owners = [data.azuread_client_config.current.object_id]
-  # single tenant
-  sign_in_audience = "AzureADMyOrg"
-
-  api {
-    requested_access_token_version = 2
-
-    oauth2_permission_scope {
-      admin_consent_description  = "resource-server-2.scope-1"
-      admin_consent_display_name = "resource-server-2.scope-1"
-      enabled                    = true
-      id                         = random_uuid.resource-server-2-scope-1.result
-      type                       = "User"
-      value                      = "resource-server-2.scope-1"
-    }
-
-    oauth2_permission_scope {
-      admin_consent_description  = "resource-server-2.scope-2"
-      admin_consent_display_name = "resource-server-2.scope-2"
-      enabled                    = true
-      id                         = random_uuid.resource-server-2-scope-2.result
-      type                       = "User"
-      value                      = "resource-server-2.scope-2"
-    }
-  }
-
-  required_resource_access {
-    resource_app_id = "00000003-0000-0000-c000-000000000000" # Microsoft Graph
-
-    resource_access {
-      id   = "e1fe6dd8-ba31-4d61-89e7-88639da4683d" # User.Read
-      type = "Scope"
-    }
-  }
-}
-
-
-# Configure resource-server-1
-resource "azuread_application" "resource-server-1" {
-  display_name = "resource-server-1"
+# Configure WebApiC
+resource "azuread_application" "WebApiC" {
+  display_name = "WebApiC"
 
   owners = [data.azuread_client_config.current.object_id]
   # single tenant
@@ -226,7 +184,7 @@ data "azuread_domains" "example" {
 }
 
 # Create a user
-resource "azuread_user" "user" {
+resource "azuread_user" "newuser" {
   user_principal_name = "security@${data.azuread_domains.example.domains.0.domain_name}"
   display_name        = "security"
   password            = "Ms@123456"

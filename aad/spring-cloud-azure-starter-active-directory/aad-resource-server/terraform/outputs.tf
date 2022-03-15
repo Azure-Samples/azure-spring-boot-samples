@@ -2,7 +2,7 @@ output "AZURE_TENANT_ID" {
   value = data.azuread_client_config.current.tenant_id
 }
 
-output "AZURE_CLIENT_ID" {
+output "WEB_API_B_CLIENT_ID" {
   value = azuread_application.webapiB.application_id
 }
 

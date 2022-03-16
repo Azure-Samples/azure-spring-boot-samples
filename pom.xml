@@ -30,11 +30,9 @@
   </properties>
 
   <modules>
-    <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server</module>
+    <module>aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server</module>
     <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter</module>
     <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless</module>
-    <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-obo</module>
-    <module>aad/spring-cloud-azure-starter-active-directory/aad-web-application</module>
     <module>aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server</module>
     <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application</module>
     <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server</module>

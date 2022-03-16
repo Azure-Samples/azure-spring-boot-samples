@@ -195,7 +195,7 @@ ReactiveEventProducerController.java
 ```
 Try the sync mode with the "manual" profile after setting `spring.cloud.stream.eventhubs.bindings.<binding-name>.producer.sync=true`. In this sample, the binding-name should be `supply-out-0`. Users can run the following commands:
 ```
-mvn clean spring-boot:run "-Dspring-boot.run.profiles=manual"
+mvn clean spring-boot:run -Dspring-boot.run.profiles=manual
 
 $ ### Send messages through imperative.  
 curl -X POST http://localhost:8080/messages/imperative?message=hello

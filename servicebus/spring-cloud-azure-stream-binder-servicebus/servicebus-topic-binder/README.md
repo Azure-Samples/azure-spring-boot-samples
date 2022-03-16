@@ -192,7 +192,7 @@ If you don't want to configure the connection string in your application, it's a
 </dependency>
 ```
 
-2. Run locally with the command `mvn clean spring-boot:run "-Dspring-boot.run.profiles=rm"` to activate the [application-rm.yaml][application-rm.yaml] profile file.
+2. Run locally with the command `mvn clean spring-boot:run -Dspring-boot.run.profiles=rm` to activate the [application-rm.yaml][application-rm.yaml] profile file.
 
 3. [Verify This Sample](#verify-this-sample).
 

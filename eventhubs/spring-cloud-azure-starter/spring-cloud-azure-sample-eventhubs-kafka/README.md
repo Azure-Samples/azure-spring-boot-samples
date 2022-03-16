@@ -144,13 +144,13 @@ mvn clean spring-boot:run
 1. Send a POST request
 
 ```shell
-$ curl -X POST http://localhost:8080/messages?message=hello
+curl -X POST http://localhost:8080/messages?message=hello
 ```
 
 2. Verify in your app’s logs that a similar message was posted
 
 ```shell
-$ New message received: hello
+New message received: hello
 ```
    
 

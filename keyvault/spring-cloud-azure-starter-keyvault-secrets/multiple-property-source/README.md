@@ -160,9 +160,9 @@ You can debug your sample by adding the saved output values to the tool's enviro
 
 Start the application, you will see logs like this:
 ```text
-sampleProperty1: key_vault_secret_01: sampleProperty1: value
-sampleProperty2: key_vault_secret_02: sampleProperty2: value
-samplePropertyInMultipleKeyVault: key_vault_secret_01: samplePropertyInMultipleKeyVault: value
+sampleProperty1: key_vault_secret_01/sampleProperty1Value
+sampleProperty2: key_vault_secret_02/sampleProperty2Value
+samplePropertyInMultipleKeyVault: key_vault_secret_01/samplePropertyInMultipleKeyVaultValue
 ```
 
 We can see that key_vault_secret_01 have higher priority.

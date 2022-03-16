@@ -4,18 +4,16 @@ terraform {
       source  = "hashicorp/azuread"
       version = "2.19.0"
     }
-    resource "random_string" "random" {
-      length           = 5
-      special          = true
-      override_special = "/@£$"
+    random = {
+      source  = "hashicorp/random"
+      version = "3.1.0"
     }
   }
 }
 
 resource "random_string" "random" {
   length           = 5
-  special          = true
-  override_special = "/@£$"
+  special          = false
 }
 
 data "azuread_client_config" "current" {}

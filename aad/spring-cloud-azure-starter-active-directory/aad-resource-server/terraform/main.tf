@@ -20,8 +20,7 @@ resource "random_uuid" "webapiB" {
 
 resource "random_string" "random" {
   length           = 5
-  special          = true
-  override_special = "/@£$"
+  special          = false
 }
 
 data "azuread_client_config" "current" {}

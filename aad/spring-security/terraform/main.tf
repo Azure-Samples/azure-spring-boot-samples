@@ -17,8 +17,7 @@ terraform {
 
 resource "random_string" "random" {
   length           = 5
-  special          = true
-  override_special = "/@£$"
+  special          = false
 }
 
 resource "random_uuid" "resource-server-1-scope-1" {

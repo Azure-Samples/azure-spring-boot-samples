@@ -39,39 +39,39 @@ jdk 11.0.12 or above
    ```
 1. Get the azure-security-keyvault-jca.jar. You can download the latest published jar from maven
    repository [azure-security-keyvault-jca](https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca). When this document is 
-   written, the latest jar is azure-security-keyvault-jca.2.2.0.jar
+   written, the latest jar is azure-security-keyvault-jca-2.6.0.jar
 1. Make a directory, for example, sample_client. Then put the 3 files into sample_client folder
     - java.security 
-    - run-with-command-line-client-1.0.0.jar
-    - azure-security-keyvault-jca-2.1.0.jar 
+    - run-with-command-line-client-side-1.0.0.jar
+    - azure-security-keyvault-jca-2.6.0.jar 
 1. Open terminal and enter the directory sample_client, run the following command:
    ```
    java \
-   --module-path ./azure-security-keyvault-jca-2.1.0.jar \
-   --add-modules com.azure.security.keyvault.jca \ 
+   --module-path ./azure-security-keyvault-jca-2.6.0.jar \
+   --add-modules com.azure.security.keyvault.jca \
    -Dsecurity.overridePropertiesFile=true \
-   -Djava.security.properties==./java.security \ 
-   -Djavax.net.ssl.trustStoreType=AzureKeyVault \ 
+   -Djava.security.properties==./java.security \
+   -Djavax.net.ssl.trustStoreType=AzureKeyVault \
    -Dazure.keyvault.uri=<yourKeyVaultURI> \
    -Dazure.keyvault.tenant-id=<yourTenantID> \
    -Dazure.keyvault.client-id=<yourClientID> \
-   -Dazure.keyvault.client-secret=<yourSecretValue> \ 
+   -Dazure.keyvault.client-secret=<yourSecretValue> \
    -jar run-with-command-line-client-side-1.0.0.jar
    ```
    If you have run the server side with client authentication needed, please use the following 
    command instead of the above to run the client side:
    ```
    java \
-   --module-path ./azure-security-keyvault-jca-2.1.0.jar \
-   --add-modules com.azure.security.keyvault.jca \ 
+   --module-path ./azure-security-keyvault-jca-2.6.0.jar \
+   --add-modules com.azure.security.keyvault.jca \
    -Dsecurity.overridePropertiesFile=true \
-   -Djava.security.properties==./java.security \ 
-   -Djavax.net.ssl.trustStoreType=AzureKeyVault \ 
+   -Djava.security.properties==./java.security \
+   -Djavax.net.ssl.trustStoreType=AzureKeyVault \
    -Djavax.net.ssl.keyStoreType=AzureKeyVault \
    -Dazure.keyvault.uri=<yourKeyVaultURI> \
    -Dazure.keyvault.tenant-id=<yourTenantID> \
    -Dazure.keyvault.client-id=<yourClientID> \
-   -Dazure.keyvault.client-secret=<yourSecretValue> \ 
+   -Dazure.keyvault.client-secret=<yourSecretValue> \
    -jar run-with-command-line-client-side-1.0.0.jar
    ```
 1. Check the output. The client will be started and connect to the server side after a while, you 

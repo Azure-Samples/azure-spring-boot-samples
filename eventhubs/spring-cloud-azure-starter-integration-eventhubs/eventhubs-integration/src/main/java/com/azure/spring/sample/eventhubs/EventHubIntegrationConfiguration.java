@@ -3,12 +3,12 @@
 
 package com.azure.spring.sample.eventhubs;
 
-import com.azure.spring.messaging.eventhubs.core.EventHubsProcessorFactory;
-import com.azure.spring.messaging.eventhubs.core.listener.EventHubsMessageListenerContainer;
-import com.azure.spring.messaging.eventhubs.core.properties.EventHubsContainerProperties;
 import com.azure.spring.integration.eventhubs.inbound.EventHubsInboundChannelAdapter;
 import com.azure.spring.messaging.checkpoint.CheckpointConfig;
 import com.azure.spring.messaging.checkpoint.CheckpointMode;
+import com.azure.spring.messaging.eventhubs.core.EventHubsProcessorFactory;
+import com.azure.spring.messaging.eventhubs.core.listener.EventHubsMessageListenerContainer;
+import com.azure.spring.messaging.eventhubs.core.properties.EventHubsContainerProperties;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -30,6 +30,7 @@ public class EventHubIntegrationConfiguration {
         EventHubsContainerProperties containerProperties = new EventHubsContainerProperties();
         containerProperties.setEventHubName(EVENTHUB_NAME);
         containerProperties.setConsumerGroup(CONSUMER_GROUP);
+        containerProperties.setCheckpointConfig(new CheckpointConfig(CheckpointMode.MANUAL));
         return new EventHubsMessageListenerContainer(processorFactory, containerProperties);
     }
 
@@ -43,9 +44,7 @@ public class EventHubIntegrationConfiguration {
     @Bean
     public EventHubsInboundChannelAdapter messageChannelAdapter(@Qualifier(INPUT_CHANNEL) MessageChannel inputChannel,
                                                                 EventHubsMessageListenerContainer listenerContainer) {
-        CheckpointConfig config = new CheckpointConfig(CheckpointMode.MANUAL);
-
-        EventHubsInboundChannelAdapter adapter = new EventHubsInboundChannelAdapter(listenerContainer, config);
+        EventHubsInboundChannelAdapter adapter = new EventHubsInboundChannelAdapter(listenerContainer);
         adapter.setOutputChannel(inputChannel);
         return adapter;
     }

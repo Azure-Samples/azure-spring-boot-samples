@@ -38,10 +38,10 @@ public class BatchProducerAndConsumerConfiguration {
             for (int i = 0; i < message.getPayload().size(); i++) {
                 LOGGER.info("New message received: '{}', partition key: {}, sequence number: {}, offset: {}, enqueued time: {}",
                         message.getPayload().get(i),
-                        ((List<Object>) message.getHeaders().get(EventHubsHeaders.PARTITION_KEY)).get(i),
-                        ((List<Object>) message.getHeaders().get(EventHubsHeaders.SEQUENCE_NUMBER)).get(i),
-                        ((List<Object>) message.getHeaders().get(EventHubsHeaders.OFFSET)).get(i),
-                        ((List<Object>) message.getHeaders().get(EventHubsHeaders.ENQUEUED_TIME)).get(i));
+                        ((List<Object>) message.getHeaders().get(EventHubsHeaders.BATCH_CONVERTED_PARTITION_KEY)).get(i),
+                        ((List<Object>) message.getHeaders().get(EventHubsHeaders.BATCH_CONVERTED_SEQUENCE_NUMBER)).get(i),
+                        ((List<Object>) message.getHeaders().get(EventHubsHeaders.BATCH_CONVERTED_OFFSET)).get(i),
+                        ((List<Object>) message.getHeaders().get(EventHubsHeaders.BATCH_CONVERTED_ENQUEUED_TIME)).get(i));
             }
 
         };

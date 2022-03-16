@@ -157,7 +157,7 @@ You can debug your sample by adding the saved output values to the tool's enviro
 
 1. Send a POST request to service bus queue.
     ```
-    curl -d "" http://localhost:8080/queue?message=hello 
+    curl -X POST http://localhost:8080/queue?message=hello 
     ```
 
 2. Verify in your app's logs that a similar message was posted:

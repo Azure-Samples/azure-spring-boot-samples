@@ -193,23 +193,23 @@ ImperativeEventProducerController.java
 ManualProducerAndConsumerConfiguration.java   
 ReactiveEventProducerController.java
 ```
-Try the sync mode with the "manual" profile after setting `spring.cloud.stream.eventhub.bindings.<binding-name>.producer.sync=true`. Users can send a POST request like following command:
+Try the sync mode with the "manual" profile after setting `spring.cloud.stream.eventhubs.bindings.<binding-name>.producer.sync=true`. In this sample, the binding-name should be `supply-out-0`. Users can run the following commands:
 ```
+mvn clean spring-boot:run -Dspring-boot.run.profiles=manual
+
 $ ### Send messages through imperative.  
-$ curl -X POST http://localhost:8080/messages/imperative/staticalDestination?message=hello
-$ curl -X POST http://localhost:8080/messages/imperative/dynamicDestination?message=hello
+curl -X POST http://localhost:8080/messages/imperative?message=hello
 
 $ ### Send messages through reactive.
-$ curl -X POST http://localhost:8080/messages/reactive?message=hello
+curl -X POST http://localhost:8080/messages/reactive?message=hello
 ```
 or when the app runs on App Service or VM
 ```
 $ ### Send messages through imperative.
-$ curl -d -X POST https://[your-app-URL]/messages/imperative/staticalDestination?message=hello
-$ curl -d -X POST https://[your-app-URL]/messages/imperative/dynamicDestination?message=hello
+curl -d -X POST https://[your-app-URL]/messages/imperative?message=hello
 
 $ ### Send messages through reactive.
-$ curl -d -X POST https://[your-app-URL]/messages/reactive?message=hello
+curl -d -X POST https://[your-app-URL]/messages/reactive?message=hello
 ```
 Verify in your app’s logs that a similar message was posted:
 ```
@@ -221,7 +221,7 @@ Message 'hello' successfully checkpointed
 
 To work with the batch-consumer mode, the property of spring.cloud.stream.bindings.<binding-name>.consumer.batch-mode should be set as true. When enabled, an org.springframework.messaging.Message of which the payload is a list of batched events will be received and passed to the consumer function.
 
-In this sample, users can try the batch-consuming mode by enable the "batch" profile and fill the "application-batch.yml". For more details about how to work in batch-consuming mode, please refer to the [reference doc](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#batch-consumer-support-2).
+In this sample, users can try the batch-consuming mode by enabling the "batch" profile and fill the "application-batch.yml". For more details about how to work in batch-consuming mode, please refer to the [reference doc](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#batch-consumer-support-2).
 
 ### Set Event Hubs message headers
 

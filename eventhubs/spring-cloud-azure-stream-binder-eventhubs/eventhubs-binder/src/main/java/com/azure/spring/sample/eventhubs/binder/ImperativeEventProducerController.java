@@ -19,24 +19,13 @@ public class ImperativeEventProducerController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ImperativeEventProducerController.class);
 
-    //TODO Add output destination
-    private String bindingName = "<output-destination>";
-
     @Autowired
     private StreamBridge streamBridge;
 
-    @PostMapping("/messages/imperative/staticalDestination")
-    public ResponseEntity<String> sendMessageToStaticalDestination(@RequestParam String message) {
+    @PostMapping("/messages/imperative")
+    public ResponseEntity<String> sendMessage(@RequestParam String message) {
         LOGGER.info("Imperative method to send message: {} to static destination.", message);
         streamBridge.send("supply-out-0", message);
-        LOGGER.info("Sent {}.", message);
-        return ResponseEntity.ok(message);
-    }
-
-    @PostMapping("/messages/imperative/dynamicDestination")
-    public ResponseEntity<String> syncSendMessageToDynamicDestination(@RequestParam String message) {
-        LOGGER.info("Imperative method to send message: {} to dynamic destination.", message);
-        streamBridge.send(bindingName, message);
         LOGGER.info("Sent {}.", message);
         return ResponseEntity.ok(message);
     }

@@ -1,7 +1,8 @@
 # Please fill these placeholders before running this application:
 # 1. ${tenant-id}
 # 2. ${client-1-client-id}
-# 3. ${client-1-client-secret}
+# 3. ${client-1-certificate-path}
+# 4. ${client-1-certificate-password}
 
 logging:
   level:
@@ -19,7 +20,9 @@ spring:
           client-1:
             provider: azure-active-directory
             client-id: ${client-1-client-id}
-            client-secret: ${client-1-client-secret}
+            client-authentication-method: private_key_jwt
+            client-certificate-path: ${client-1-certificate-path}
+            client-certificate-password: ${client-1-certificate-password}
             scope: openid, profile
             redirect-uri: http://localhost:8080/login/oauth2/code/
   profiles:

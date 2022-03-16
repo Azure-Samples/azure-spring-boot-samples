@@ -2,9 +2,20 @@ terraform {
   required_providers {
     azuread = {
       source  = "hashicorp/azuread"
-      version = "~> 2.15.0"
+      version = "2.19.0"
+    }
+    resource "random_string" "random" {
+      length           = 5
+      special          = true
+      override_special = "/@£$"
     }
   }
+}
+
+resource "random_string" "random" {
+  length           = 5
+  special          = true
+  override_special = "/@£$"
 }
 
 data "azuread_client_config" "current" {}
@@ -29,22 +40,8 @@ resource "azuread_application" "aadresourceserverbyfilter" {
     }
 
     resource_access {
-      id   = "b4e74841-8e56-480b-be8b-910348b18b4c" # User.ReadWrite
-      type = "Scope"
-    }
-
-    resource_access {
       id   = "06da0dbc-49e2-44d2-8312-53f166ab848a" # Directory.Read.All
       type = "Scope"
-    }
-  }
-
-  required_resource_access {
-    resource_app_id = "c5393580-f805-4401-95e8-94b7a6ef2fc2" # Office 365 Management
-
-    resource_access {
-      id   = "594c1fb6-4f81-4475-ae41-0c394909246c" # ActivityFeed.Read
-      type = "Role"
     }
   }
 
@@ -70,6 +67,20 @@ resource "azuread_application_password" "aadresourceserverbyfilter" {
   application_object_id = azuread_application.aadresourceserverbyfilter.object_id
 }
 
+data "azuread_application_published_app_ids" "well_known" {}
+
+resource "azuread_service_principal" "msgraph" {
+  application_id = data.azuread_application_published_app_ids.well_known.result.MicrosoftGraph
+  use_existing   = true
+}
+
+
+resource "azuread_service_principal_delegated_permission_grant" "graph" {
+  service_principal_object_id          = azuread_service_principal.aadresourceserverbyfilter.object_id
+  resource_service_principal_object_id = azuread_service_principal.msgraph.object_id
+  claim_values                         = ["Directory.Read.All","User.Read.All"]
+}
+
 # Retrieve domain information
 data "azuread_domains" "current" {
   only_initial = true
@@ -77,8 +88,8 @@ data "azuread_domains" "current" {
 
 # Create a user
 resource "azuread_user" "user" {
-  user_principal_name = "aadresourceserverbyfilter@${data.azuread_domains.current.domains.0.domain_name}"
-  display_name        = "aadresourceserverbyfilter"
+  user_principal_name = "aadresourceserverbyfilter-${random_string.random.result}@${data.azuread_domains.current.domains.0.domain_name}"
+  display_name        = "aadresourceserverbyfilter-${random_string.random.result}"
   password            = "Azure123456@"
 }
 

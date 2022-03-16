@@ -7,10 +7,10 @@ output "WEB_API_B_CLIENT_ID" {
 }
 
 output "USER_PASSWORD" {
-  value     = azuread_user.newuser.password
+  value     = azuread_user.user.password
   sensitive = true
 }
 
 output "USER_NAME" {
-  value = azuread_user.newuser.user_principal_name
+  value = azuread_user.user.user_principal_name
 }

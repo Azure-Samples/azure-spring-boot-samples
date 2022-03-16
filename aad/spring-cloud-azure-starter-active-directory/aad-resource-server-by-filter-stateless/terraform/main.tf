@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azuread = {
       source  = "hashicorp/azuread"
-      version = "~> 2.15.0"
+      version = "2.19.0"
     }
     random = {
       source  = "hashicorp/random"
@@ -13,6 +13,12 @@ terraform {
       version = "3.1.0"
     }
   }
+}
+
+resource "random_string" "random" {
+  length           = 5
+  special          = true
+  override_special = "/@£$"
 }
 
 data "azuread_client_config" "current" {}
@@ -96,8 +102,8 @@ data "azuread_domains" "current" {
 
 # Create a user
 resource "azuread_user" "user" {
-  user_principal_name = "aadresourceserverbyfilterstateless@${data.azuread_domains.current.domains.0.domain_name}"
-  display_name        = "aadresourceserverbyfilterstateless"
+  user_principal_name = "aadresourcestateless-${random_string.random.result}@${data.azuread_domains.current.domains.0.domain_name}"
+  display_name        = "aadresourcestateless-${random_string.random.result}"
   password            = "Azure123456@"
 }
 

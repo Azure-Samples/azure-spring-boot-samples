@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azuread = {
       source  = "hashicorp/azuread"
-      version = "~> 2.15.0"
+      version = "2.19.0"
     }
     random = {
       source  = "hashicorp/random"
@@ -16,6 +16,12 @@ terraform {
 }
 
 resource "random_uuid" "webapiB" {
+}
+
+resource "random_string" "random" {
+  length           = 5
+  special          = true
+  override_special = "/@£$"
 }
 
 data "azuread_client_config" "current" {}
@@ -54,7 +60,6 @@ resource "azuread_application" "webapiB" {
       type = "Scope"
     }
   }
-
 }
 
 
@@ -74,10 +79,10 @@ data "azuread_domains" "example" {
 }
 
 # Create a user
-resource "azuread_user" "newuser" {
-  user_principal_name = "aadresourceserver@${data.azuread_domains.example.domains.0.domain_name}"
-  display_name        = "aadresourceserver"
-  password            = "Ms@123456"
+resource "azuread_user" "user" {
+  user_principal_name = "aadresourceserver-${random_string.random.result}@${data.azuread_domains.example.domains.0.domain_name}"
+  display_name        = "aadresourceserver-${random_string.random.result}"
+  password            = "Azure123456@"
 }
 
 resource "null_resource" "set_env" {

@@ -32,7 +32,7 @@ import java.util.stream.Stream;
  *
  * @see OncePerRequestFilter
  */
-public class AadHandleConditionalAccessFilter extends OncePerRequestFilter {
+public class AadConditionalAccessFilter extends OncePerRequestFilter {
 
     /**
      * Do filter.

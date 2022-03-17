@@ -27,7 +27,7 @@ public class AadWebApplicationConfig extends AadWebSecurityConfigurerAdapter {
     }
 
     @Override
-    protected Filter handleConditionalAccessFilter() {
-        return new AadHandleConditionalAccessFilter();
+    protected Filter conditionalAccessFilter() {
+        return new AadConditionalAccessFilter();
     }
 }

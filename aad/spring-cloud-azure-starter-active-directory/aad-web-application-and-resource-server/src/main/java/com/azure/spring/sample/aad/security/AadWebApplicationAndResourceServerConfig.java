@@ -45,8 +45,8 @@ public class AadWebApplicationAndResourceServerConfig {
          * @return
          */
         @Override
-        protected Filter handleConditionalAccessFilter() {
-            return new AadHandleConditionalAccessFilter();
+        protected Filter conditionalAccessFilter() {
+            return new AadConditionalAccessFilter();
         }
     }
 }

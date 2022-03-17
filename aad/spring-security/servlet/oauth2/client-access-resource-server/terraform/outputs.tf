@@ -10,10 +10,6 @@ output "RESOURCE_SERVER_1_CLIENT_ID" {
   value = azuread_application.resource-server-1.application_id
 }
 
-output "RESOURCE_SERVER_2_CLIENT_ID" {
-  value = azuread_application.resource-server-2.application_id
-}
-
 output "CLIENT_1_CLIENT_SECRET" {
   value     = azuread_application_password.client-1.value
   sensitive = true

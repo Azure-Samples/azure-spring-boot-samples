@@ -20,7 +20,7 @@ export RESOURCE_SERVER_1_CLIENT_SECRET=$(terraform -chdir=$terraform_path output
 
 
 echo "Running apps"
-mkdir -p .target
+mkdir -p target
 echo "Running client-----------"
 nohup java -jar client/target/*.jar  > target/client.log 2>&1 &
 echo "Running resource-server-1-----------"

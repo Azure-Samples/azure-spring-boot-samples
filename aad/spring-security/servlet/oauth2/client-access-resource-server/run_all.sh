@@ -18,7 +18,7 @@ export USER_NAME=$(terraform -chdir=$terraform_path  output -raw USER_NAME)
 export USER_PASSWORD=$(terraform -chdir=$terraform_path  output -raw USER_PASSWORD)
 
 echo "Running apps"
-mkdir -p .target
+mkdir -p target
 echo "Running app client---------"
 nohup java -jar client/target/*.jar  > target/client.log 2>&1 &
 echo "Running resource-server ---------"

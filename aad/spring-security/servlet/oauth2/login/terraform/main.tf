@@ -21,7 +21,7 @@ provider "azuread" {
 
 # Configure client-1
 resource "azuread_application" "client-1" {
-  display_name = "client-1"
+  display_name = "client-1-${random_string.random.result}"
 
   owners = [data.azuread_client_config.current.object_id]
   # single tenant

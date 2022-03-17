@@ -21,7 +21,7 @@ export USER_PASSWORD=$(terraform -chdir=$terraform_path  output -raw USER_PASSWO
 
 
 echo "--------Running apps--------"
-mkdir -p .target
+mkdir -p target
 nohup java -jar client/target/*.jar  > target/client.log 2>&1 &
 nohup java -jar resource-server-1/target/*.jar  > target/resource-server-1.log 2>&1 &
 nohup java -jar resource-server-2/target/*.jar  > target/resource-server-2.log 2>&1 &

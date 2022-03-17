@@ -47,7 +47,7 @@ provider "azuread" {
 
 # Configure client-1
 resource "azuread_application" "client-1" {
-  display_name = "client-1"
+  display_name = "client-1-${random_string.random.result}"
 
   owners = [data.azuread_client_config.current.object_id]
   # single tenant
@@ -81,7 +81,7 @@ resource "azuread_application" "client-1" {
 
 # Configure resource-server-2
 resource "azuread_application" "resource-server-2" {
-  display_name = "resource-server-2"
+  display_name = "resource-server-2-${random_string.random.result}"
 
   owners = [data.azuread_client_config.current.object_id]
   # single tenant
@@ -122,7 +122,7 @@ resource "azuread_application" "resource-server-2" {
 
 # Configure resource-server-1
 resource "azuread_application" "resource-server-1" {
-  display_name = "resource-server-1"
+  display_name = "resource-server-1-${random_string.random.result}"
 
   owners = [data.azuread_client_config.current.object_id]
   # single tenant

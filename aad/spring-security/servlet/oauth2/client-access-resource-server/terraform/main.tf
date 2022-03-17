@@ -27,12 +27,6 @@ resource "random_uuid" "resource-server-1-scope-1" {
 resource "random_uuid" "resource-server-1-scope-2" {
 }
 
-resource "random_uuid" "resource-server-2-scope-1" {
-}
-
-resource "random_uuid" "resource-server-2-scope-2" {
-}
-
 resource "random_uuid" "resource-server-1-role-1" {
 }
 
@@ -47,7 +41,7 @@ provider "azuread" {
 
 # Configure client-1
 resource "azuread_application" "client-1" {
-  display_name = "client-1"
+  display_name = "client-1-${random_string.random.result}"
 
   owners = [data.azuread_client_config.current.object_id]
   # single tenant
@@ -79,50 +73,10 @@ resource "azuread_application" "client-1" {
 }
 
 
-# Configure resource-server-2
-resource "azuread_application" "resource-server-2" {
-  display_name = "resource-server-2"
-
-  owners = [data.azuread_client_config.current.object_id]
-  # single tenant
-  sign_in_audience = "AzureADMyOrg"
-
-  api {
-    requested_access_token_version = 2
-
-    oauth2_permission_scope {
-      admin_consent_description  = "resource-server-2.scope-1"
-      admin_consent_display_name = "resource-server-2.scope-1"
-      enabled                    = true
-      id                         = random_uuid.resource-server-2-scope-1.result
-      type                       = "User"
-      value                      = "resource-server-2.scope-1"
-    }
-
-    oauth2_permission_scope {
-      admin_consent_description  = "resource-server-2.scope-2"
-      admin_consent_display_name = "resource-server-2.scope-2"
-      enabled                    = true
-      id                         = random_uuid.resource-server-2-scope-2.result
-      type                       = "User"
-      value                      = "resource-server-2.scope-2"
-    }
-  }
-
-  required_resource_access {
-    resource_app_id = "00000003-0000-0000-c000-000000000000" # Microsoft Graph
-
-    resource_access {
-      id   = "e1fe6dd8-ba31-4d61-89e7-88639da4683d" # User.Read
-      type = "Scope"
-    }
-  }
-}
-
 
 # Configure resource-server-1
 resource "azuread_application" "resource-server-1" {
-  display_name = "resource-server-1"
+  display_name = "resource-server-1-${random_string.random.result}"
 
   owners = [data.azuread_client_config.current.object_id]
   # single tenant
@@ -177,25 +131,9 @@ resource "azuread_application" "resource-server-1" {
     }
   }
 
-  required_resource_access {
-    resource_app_id = azuread_application.resource-server-2.application_id # Resource server 2
-
-    # need grant
-    resource_access {
-      id   = random_uuid.resource-server-2-scope-1.result # resource-server-2.scope-1
-      type = "Scope"
-    }
-  }
-
   web {
     redirect_uris = ["http://localhost:8080/login/oauth2/code/"]
   }
-}
-
-resource "azuread_service_principal_delegated_permission_grant" "resource-server-1" {
-  service_principal_object_id          = azuread_service_principal.resource-server-1.object_id
-  resource_service_principal_object_id = azuread_service_principal.resource-server-2.object_id
-  claim_values                         = ["resource-server-2.scope-1"]
 }
 
 resource "azuread_service_principal" "client-1" {
@@ -209,13 +147,6 @@ resource "azuread_service_principal" "resource-server-1" {
   app_role_assignment_required = false
   owners                       = [data.azuread_client_config.current.object_id]
 }
-
-resource "azuread_service_principal" "resource-server-2" {
-  application_id               = azuread_application.resource-server-2.application_id
-  app_role_assignment_required = false
-  owners                       = [data.azuread_client_config.current.object_id]
-}
-
 
 resource "azuread_application_password" "client-1" {
   application_object_id = azuread_application.client-1.object_id

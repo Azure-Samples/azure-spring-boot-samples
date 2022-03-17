@@ -110,7 +110,7 @@ data "azuread_domains" "example" {
 
 # Create a user
 resource "azuread_user" "user" {
-  user_principal_name = "webapp_resourceserver-${random_string.random.result}@${data.azuread_domains.example.domains.0.domain_name}"
-  display_name        = "webapp_resourceserver-${random_string.random.result}"
+  user_principal_name = "security-${random_string.random.result}@${data.azuread_domains.example.domains.0.domain_name}"
+  display_name        = "security-${random_string.random.result}"
   password            = "Azure123456@"
 }

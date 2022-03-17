@@ -1,6 +1,5 @@
 # Spring Boot application with Azure Active Directory
 
-
 ## What You Need
 
 - [An Azure subscription](https://azure.microsoft.com/free/)

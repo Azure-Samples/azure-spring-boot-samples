@@ -1,7 +1,5 @@
 # Spring Boot application with Azure Active Directory
 
-This guide demonstrates how to provision Azure Resources with terraform.
-
 ## What You Need
 
 - [An Azure subscription](https://azure.microsoft.com/free/)

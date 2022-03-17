@@ -21,7 +21,6 @@
       <groupId>com.azure.spring</groupId>
       <artifactId>spring-cloud-azure-starter-active-directory</artifactId>
     </dependency>
-
     <!-- spring boot starter dependencies. -->
     <dependency>
       <groupId>org.springframework.boot</groupId>

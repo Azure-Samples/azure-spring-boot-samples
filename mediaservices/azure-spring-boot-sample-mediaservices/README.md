@@ -19,7 +19,7 @@ This sample project demonstrates how to use Azure Media Services with Spring Boo
 
 ### Create Azure Media Services on Azure
 
-1. Go to [Azure portal](https://portal.azure.com/) and create the service by following this [link](https://docs.microsoft.com/azure/media-services/media-services-portal-create-account). 
+1. Go to [Azure portal](https://portal.azure.com/) and create the service by following this [link](https://docs.microsoft.com/azure/media-services/previous/media-services-portal-create-account). 
 2. Mark down the `TENANT`, `CLIENT ID` and `CLIENT SECRET` from this [link](https://docs.microsoft.com/azure/media-services/latest/stream-files-dotnet-quickstart#access-the-media-services-api),
  `REST API ENDPOINT` from the service.
 

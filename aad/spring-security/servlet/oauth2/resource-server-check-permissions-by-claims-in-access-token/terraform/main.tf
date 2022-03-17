@@ -169,6 +169,12 @@ resource "azuread_user" "user" {
   password            = "Azure123456@"
 }
 
+resource "azuread_service_principal_delegated_permission_grant" "resource-server-1" {
+  service_principal_object_id          = azuread_service_principal.client-1.object_id
+  resource_service_principal_object_id = azuread_service_principal.resource-server-1.object_id
+  claim_values                         = ["resource-server-1.scope-1"]
+}
+
 resource "null_resource" "set_env" {
   triggers = {
     application_id = azuread_service_principal.resource-server-1.application_id

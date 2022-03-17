@@ -97,7 +97,7 @@ mvn clean spring-boot:run
 ```
 
 ## Verify This Sample
-
+Now you should be able to open browser to access http://localhost:8080 with the saved user information. 
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.

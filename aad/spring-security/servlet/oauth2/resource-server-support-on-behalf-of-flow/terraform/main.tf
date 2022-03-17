@@ -240,7 +240,8 @@ resource "azuread_user" "user" {
 
 resource "null_resource" "set_env" {
   triggers = {
-    application_id = azuread_service_principal.resource-server-1.application_id
+    application_id_1 = azuread_service_principal.resource-server-1.application_id
+    application_id_2 = azuread_service_principal.resource-server-2.application_id
   }
 
   provisioner "local-exec" {

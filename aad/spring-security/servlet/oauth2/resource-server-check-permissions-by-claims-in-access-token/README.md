@@ -51,7 +51,7 @@ After login Azure CLI with your account, now you can use the terraform script to
 #### Run with Bash
 
 ```shell
-# Into the directory of client-access-multiple-resource-server
+# Into the directory of resource-server-check-permissions-by-claims-in-access-token
 # Initialize your Terraform configuration
 terraform -chdir=./terraform init
 

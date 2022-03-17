@@ -23,10 +23,10 @@ resource "random_string" "random" {
 
 data "azuread_client_config" "current" {}
 
-resource "random_uuid" "role-Admin" {
+resource "random_uuid" "role-admin" {
 }
 
-resource "random_uuid" "role-User" {
+resource "random_uuid" "role-user" {
 }
 
 # Configure the Azure Active Directory Provider
@@ -68,17 +68,8 @@ resource "azuread_application" "resourceserver" {
     description          = "Full admin access"
     display_name         = "Admin"
     enabled              = true
-    id                   = random_uuid.role-Admin.result
+    id                   = random_uuid.role-admin.result
     value                = "Admin"
-  }
-
-  app_role {
-    allowed_member_types = ["User"]
-    description          = "Normal user access"
-    display_name         = "Normal user access"
-    enabled              = true
-    id                   = random_uuid.role-User.result
-    value                = "NormalUserAccess"
   }
 
   web {
@@ -108,13 +99,7 @@ resource "azuread_user" "user" {
 }
 
 resource "azuread_app_role_assignment" "admin" {
-  app_role_id         = random_uuid.role-Admin.result
-  principal_object_id = azuread_user.user.object_id
-  resource_object_id  = azuread_service_principal.resourceserver.object_id
-}
-
-resource "azuread_app_role_assignment" "user" {
-  app_role_id         = random_uuid.role-User.result
+  app_role_id         = random_uuid.role-admin.result
   principal_object_id = azuread_user.user.object_id
   resource_object_id  = azuread_service_principal.resourceserver.object_id
 }

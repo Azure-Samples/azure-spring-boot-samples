@@ -9,16 +9,15 @@ com.azure.spring:spring-cloud-azure-starter-active-directory-resource-server,\
 com.azure.spring:spring-cloud-azure-starter-active-directory-resource-server-obo,\
 com.azure.spring:spring-cloud-azure-starter-active-directory-webapp
 
-export terraform_path="./terraform"
-export AZURE_TENANT_ID=$(terraform -chdir=$terraformpath output -raw AZURE_TENANT_ID)
-export AZURE_CLIENT_ID=$(terraform -chdir=$terraformpath output -raw AZURE_CLIENT_ID)
-export AZURE_CLIENT_SECRET=$(terraform -chdir=$terraformpath output -raw AZURE_CLIENT_SECRET)
-export WEB_API_A_CLIENT_ID=$(terraform -chdir=$terraformpath output -raw WEB_API_A_CLIENT_ID)
-export WEB_API_A_CLIENT_SECRET=$(terraform -chdir=$terraformpath output -raw WEB_API_A_CLIENT_SECRET)
+export AZURE_TENANT_ID=$(terraform -chdir=./terraform output -raw AZURE_TENANT_ID)
+export AZURE_CLIENT_ID=$(terraform -chdir=./terraform output -raw AZURE_CLIENT_ID)
+export AZURE_CLIENT_SECRET=$(terraform -chdir=./terraform output -raw AZURE_CLIENT_SECRET)
+export WEB_API_A_CLIENT_ID=$(terraform -chdir=./terraform output -raw WEB_API_A_CLIENT_ID)
+export WEB_API_A_CLIENT_SECRET=$(terraform -chdir=./terraform output -raw WEB_API_A_CLIENT_SECRET)
 export WEB_API_A_APP_ID_URL=api://$WEB_API_A_CLIENT_ID
-export WEB_API_B_CLIENT_ID=$(terraform -chdir=$terraformpath output -raw WEB_API_B_CLIENT_ID)
+export WEB_API_B_CLIENT_ID=$(terraform -chdir=./terraform output -raw WEB_API_B_CLIENT_ID)
 export WEB_API_B_APP_ID_URL=api://$WEB_API_B_CLIENT_ID
-export WEB_API_C_CLIENT_ID=$(terraform -chdir=$terraformpath output -raw WEB_API_C_CLIENT_ID)
+export WEB_API_C_CLIENT_ID=$(terraform -chdir=./terraform output -raw WEB_API_C_CLIENT_ID)
 export WEB_API_C_APP_ID_URL=api://$WEB_API_C_CLIENT_ID
 
 

@@ -51,7 +51,7 @@ After login Azure CLI with your account, now you can use the terraform script to
 #### Run with Bash
 
 ```shell
-# In the root directory of the sample
+# In the root directory of aad-web-application-and-resource-server
 # Initialize your Terraform configuration
 terraform -chdir=./terraform init
 

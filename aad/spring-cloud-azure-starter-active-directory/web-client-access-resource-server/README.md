@@ -51,7 +51,7 @@ After login Azure CLI with your account, now you can use the terraform script to
 #### Run with Bash
 
 ```shell
-# Into the directory of client-access-multiple-resource-server
+# Into the directory of web-client-access-resource-server
 # Initialize your Terraform configuration
 terraform -chdir=./terraform init
 
@@ -86,8 +86,6 @@ In your current terminal, run `source run_all.sh`.
 ```shell
 source run_all.sh
 ```
-
-## Verify This Sample
 
 
 ## Clean Up Resources

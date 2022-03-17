@@ -51,7 +51,7 @@ After login Azure CLI with your account, now you can use the terraform script to
 #### Run with Bash
 
 ```shell
-# In the specific sample's directory, where contains pom.xml.
+# In the root directory of aad-resource-server-by-filter
 # Initialize your Terraform configuration
 terraform -chdir=./terraform init
 

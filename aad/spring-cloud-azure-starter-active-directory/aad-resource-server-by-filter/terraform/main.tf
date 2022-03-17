@@ -73,8 +73,8 @@ resource "azuread_service_principal" "msgraph" {
   use_existing   = true
 }
 
-
 resource "azuread_service_principal_delegated_permission_grant" "graph" {
+
   service_principal_object_id          = azuread_service_principal.aadresourceserverbyfilter.object_id
   resource_service_principal_object_id = azuread_service_principal.msgraph.object_id
   claim_values                         = ["Directory.Read.All", "User.Read.All"]

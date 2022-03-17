@@ -320,9 +320,7 @@ resource "azuread_app_role_assignment" "webApiB_User" {
 }
 
 resource "null_resource" "set_env" {
-  triggers = {
-    application_id = azuread_service_principal.webApiC.application_id
-  }
+  depends_on = [azuread_service_principal.webApiC]
 
   provisioner "local-exec" {
     command = "/bin/bash set_identifier_uris.sh"

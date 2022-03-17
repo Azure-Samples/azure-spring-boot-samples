@@ -176,9 +176,7 @@ resource "azuread_service_principal_delegated_permission_grant" "resource-server
 }
 
 resource "null_resource" "set_env" {
-  triggers = {
-    application_id = azuread_service_principal.resource-server-1.application_id
-  }
+  depends_on = [azuread_service_principal.resource-server-1]
 
   provisioner "local-exec" {
     command = "/bin/bash set_identifier_uris.sh"

@@ -105,9 +105,7 @@ resource "azuread_app_role_assignment" "admin" {
 }
 
 resource "null_resource" "set_env" {
-  triggers = {
-    application_id = azuread_service_principal.resourceserver.application_id
-  }
+  depends_on = [azuread_service_principal.resourceserver]
 
   provisioner "local-exec" {
     command = "/bin/bash set_identifier_uris.sh"

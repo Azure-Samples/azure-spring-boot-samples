@@ -12,9 +12,9 @@ terraform {
 }
 
 resource "random_string" "random" {
-  length           = 5
-  min_lower        = 5
-  special          = false
+  length    = 5
+  min_lower = 5
+  special   = false
 }
 
 data "azuread_client_config" "current" {}
@@ -77,7 +77,7 @@ resource "azuread_service_principal" "msgraph" {
 resource "azuread_service_principal_delegated_permission_grant" "graph" {
   service_principal_object_id          = azuread_service_principal.aadresourceserverbyfilter.object_id
   resource_service_principal_object_id = azuread_service_principal.msgraph.object_id
-  claim_values                         = ["Directory.Read.All","User.Read.All"]
+  claim_values                         = ["Directory.Read.All", "User.Read.All"]
 }
 
 # Retrieve domain information

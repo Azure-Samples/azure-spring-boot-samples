@@ -16,9 +16,9 @@ terraform {
 }
 
 resource "random_string" "random" {
-  length           = 5
-  min_lower        = 5
-  special          = false
+  length    = 5
+  min_lower = 5
+  special   = false
 }
 
 resource "random_uuid" "resource-server-1-scope-1" {

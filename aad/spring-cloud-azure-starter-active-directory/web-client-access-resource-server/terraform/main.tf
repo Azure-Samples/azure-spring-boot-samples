@@ -8,13 +8,33 @@ terraform {
       source  = "hashicorp/random"
       version = "3.1.0"
     }
+    null = {
+      source  = "hashicorp/null"
+      version = "3.1.0"
+    }
   }
 }
 
 resource "random_string" "random" {
-  length           = 5
-  min_lower        = 5
-  special          = false
+  length    = 5
+  min_lower = 5
+  special   = false
+}
+
+# used to expose api
+resource "random_uuid" "webApiAOboGraph" {
+}
+
+resource "random_uuid" "webApiAOboExample" {
+}
+
+resource "random_uuid" "webApiB" {
+}
+
+resource "random_uuid" "webApiC" {
+}
+
+resource "random_uuid" "WebApiB_ClientCredential_ExampleScope" {
 }
 
 data "azuread_client_config" "current" {}
@@ -23,7 +43,7 @@ data "azuread_client_config" "current" {}
 provider "azuread" {
 }
 
-# Configure webapp
+# ====================Configure webapp====================
 resource "azuread_application" "webapp" {
   display_name = "webapp"
 
@@ -75,7 +95,7 @@ resource "azuread_service_principal" "webapp" {
   owners                       = [data.azuread_client_config.current.object_id]
 }
 
-resource "azuread_application_password" "webapp_resourceserver" {
+resource "azuread_application_password" "webapp" {
   application_object_id = azuread_application.webapp.object_id
 }
 
@@ -94,13 +114,190 @@ resource "azuread_service_principal" "management" {
 resource "azuread_service_principal_delegated_permission_grant" "graph" {
   service_principal_object_id          = azuread_service_principal.webapp.object_id
   resource_service_principal_object_id = azuread_service_principal.msgraph.object_id
-  claim_values                         = ["Directory.Read.All","User.Read"]
+  claim_values                         = ["Directory.Read.All", "User.Read"]
 }
 
 resource "azuread_service_principal_delegated_permission_grant" "management" {
   service_principal_object_id          = azuread_service_principal.webapp.object_id
   resource_service_principal_object_id = azuread_service_principal.management.object_id
   claim_values                         = ["user_impersonation"]
+}
+
+# ====================Configure webApiB====================
+resource "azuread_application" "webApiB" {
+  display_name = "webApiB"
+
+  owners = [data.azuread_client_config.current.object_id]
+  # single tenant
+  sign_in_audience = "AzureADMyOrg"
+
+  api {
+    requested_access_token_version = 2
+
+    oauth2_permission_scope {
+      admin_consent_description  = "WebApiB.ExampleScope"
+      admin_consent_display_name = "WebApiB.ExampleScope"
+      enabled                    = true
+      id                         = random_uuid.webApiB.result
+      type                       = "User"
+      value                      = "WebApiB.ExampleScope"
+    }
+  }
+
+  app_role {
+    allowed_member_types = ["User"]
+    description          = "WebApiB.ClientCredential.ExampleScope"
+    display_name         = "WebApiB.ClientCredential.ExampleScope"
+    enabled              = true
+    id                   = random_uuid.WebApiB_ClientCredential_ExampleScope.result
+    value                = "WebApiB.ClientCredential.ExampleScope"
+  }
+
+  required_resource_access {
+    resource_app_id = "00000003-0000-0000-c000-000000000000" # Microsoft Graph
+
+    resource_access {
+      id   = "e1fe6dd8-ba31-4d61-89e7-88639da4683d" # User.Read
+      type = "Scope"
+    }
+  }
+}
+
+resource "azuread_service_principal" "webApiB" {
+  application_id               = azuread_application.webApiB.application_id
+  app_role_assignment_required = false
+  owners                       = [data.azuread_client_config.current.object_id]
+}
+
+# ====================Configure webApiC====================
+resource "azuread_application" "webApiC" {
+  display_name = "webApiC"
+
+  owners = [data.azuread_client_config.current.object_id]
+  # single tenant
+  sign_in_audience = "AzureADMyOrg"
+
+  api {
+    requested_access_token_version = 2
+
+    oauth2_permission_scope {
+      admin_consent_description  = "WebApiC.ExampleScope"
+      admin_consent_display_name = "WebApiC.ExampleScope"
+      enabled                    = true
+      id                         = random_uuid.webApiC.result
+      type                       = "User"
+      value                      = "WebApiC.ExampleScope"
+    }
+  }
+
+  required_resource_access {
+    resource_app_id = "00000003-0000-0000-c000-000000000000" # Microsoft Graph
+
+    resource_access {
+      id   = "e1fe6dd8-ba31-4d61-89e7-88639da4683d" # User.Read
+      type = "Scope"
+    }
+  }
+}
+
+resource "azuread_service_principal" "webApiC" {
+  application_id               = azuread_application.webApiC.application_id
+  app_role_assignment_required = false
+  owners                       = [data.azuread_client_config.current.object_id]
+}
+
+# ====================Configure webApiA====================
+resource "azuread_application" "webApiA" {
+  display_name = "webApiA"
+
+  owners = [data.azuread_client_config.current.object_id]
+  # single tenant
+  sign_in_audience = "AzureADMyOrg"
+
+  api {
+    requested_access_token_version = 2
+
+    oauth2_permission_scope {
+      admin_consent_description  = "Obo.Graph.Read"
+      admin_consent_display_name = "Obo.Graph.Read"
+      enabled                    = true
+      id                         = random_uuid.webApiAOboGraph.result
+      type                       = "User"
+      value                      = "Obo.Graph.Read"
+    }
+
+    # `Obo.Graph.Read`
+    oauth2_permission_scope {
+      admin_consent_description  = "Obo.Graph.Read"
+      admin_consent_display_name = "Obo.Graph.Read"
+      enabled                    = true
+      id                         = random_uuid.webApiAOboGraph.result
+      type                       = "User"
+      value                      = "Obo.Graph.Read"
+    }
+
+    #  `Obo.WebApiA.ExampleScope`
+    oauth2_permission_scope {
+      admin_consent_description  = "Obo.WebApiA.ExampleScope"
+      admin_consent_display_name = "Obo.WebApiA.ExampleScope"
+      enabled                    = true
+      id                         = random_uuid.webApiAOboExample.result
+      type                       = "User"
+      value                      = "Obo.WebApiA.ExampleScope"
+    }
+
+  }
+
+  required_resource_access {
+    resource_app_id = "00000003-0000-0000-c000-000000000000" # Microsoft Graph
+
+    resource_access {
+      id   = "e1fe6dd8-ba31-4d61-89e7-88639da4683d" # User.Read
+      type = "Scope"
+    }
+  }
+
+  required_resource_access {
+    resource_app_id = azuread_application.webApiB.application_id # webApiB
+
+    # need grant
+    resource_access {
+      id   = random_uuid.webApiB.result # WebApiB.ExampleScope
+      type = "Scope"
+    }
+  }
+
+  required_resource_access {
+    resource_app_id = azuread_application.webApiC.application_id # webApiC
+
+    # need grant
+    resource_access {
+      id   = random_uuid.webApiC.result # WebApiC.ExampleScope
+      type = "Scope"
+    }
+  }
+}
+
+resource "azuread_service_principal" "webApiA" {
+  application_id               = azuread_application.webApiA.application_id
+  app_role_assignment_required = false
+  owners                       = [data.azuread_client_config.current.object_id]
+}
+
+resource "azuread_application_password" "webApiA" {
+  application_object_id = azuread_application.webApiA.object_id
+}
+
+resource "azuread_service_principal_delegated_permission_grant" "webApiB" {
+  service_principal_object_id          = azuread_service_principal.webApiA.object_id
+  resource_service_principal_object_id = azuread_service_principal.webApiB.object_id
+  claim_values                         = ["WebApiB.ExampleScope"]
+}
+
+resource "azuread_service_principal_delegated_permission_grant" "webApiC" {
+  service_principal_object_id          = azuread_service_principal.webApiA.object_id
+  resource_service_principal_object_id = azuread_service_principal.webApiC.object_id
+  claim_values                         = ["WebApiC.ExampleScope"]
 }
 
 # Retrieve domain information
@@ -113,4 +310,21 @@ resource "azuread_user" "user" {
   user_principal_name = "webapp-${random_string.random.result}@${data.azuread_domains.example.domains.0.domain_name}"
   display_name        = "webapp-${random_string.random.result}"
   password            = "Azure123456@"
+}
+
+# assign role to user
+resource "azuread_app_role_assignment" "webApiB_User" {
+  app_role_id         = random_uuid.WebApiB_ClientCredential_ExampleScope.result
+  principal_object_id = azuread_user.user.object_id
+  resource_object_id  = azuread_service_principal.webApiB.object_id
+}
+
+resource "null_resource" "set_env" {
+  triggers = {
+    application_id = azuread_service_principal.webApiC.application_id
+  }
+
+  provisioner "local-exec" {
+    command = "/bin/bash set_identifier_uris.sh"
+  }
 }

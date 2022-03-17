@@ -1,4 +1,4 @@
-terraformpath=`pwd`
+terraformpath=./terraform
 export AZURE_TENANT_ID=$(terraform -chdir=$terraformpath output -raw AZURE_TENANT_ID)
 
 # WEB_APP

@@ -30,3 +30,5 @@ echo "You can use the user info below to login."
 echo "--------created user--------"
 echo USER_NAME=$USER_NAME
 echo USER_PASSWORD=$USER_PASSWORD
+echo "Now you should be able to open browser to access http://localhost:8080 with user above."
+echo "If you encounter some errors, please refer to target folder for app logs ."

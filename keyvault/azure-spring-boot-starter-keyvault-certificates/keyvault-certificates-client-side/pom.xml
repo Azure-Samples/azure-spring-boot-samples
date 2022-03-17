@@ -30,7 +30,7 @@
     <dependency>
       <groupId>com.azure.spring</groupId>
       <artifactId>azure-spring-boot-starter-keyvault-certificates</artifactId>
-      <version>3.13.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-boot-starter-keyvault-certificates;dependency} -->
+      <version>3.14.0</version> <!-- {x-version-update;com.azure.spring:azure-spring-boot-starter-keyvault-certificates;dependency} -->
     </dependency>
 
     <dependency>

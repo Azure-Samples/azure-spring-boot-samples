@@ -26,7 +26,10 @@ To run this sample, you'll need:
 #### Note
 - If you are not the admin, you need consent from your admin for the the `Directory.Read.All` permission. For details see [Directory Permissions](https://docs.microsoft.com/graph/permissions-reference#directory-permissions)
 
-## Examples
+## Running Sample With Terraform
+Please refer to [README.md](terraform/README.md) if you want to start the sample with Terraform in just a few steps.
+
+## Running Sample Step by Step
 
 ### Step 1:  Clone or download this repository
 

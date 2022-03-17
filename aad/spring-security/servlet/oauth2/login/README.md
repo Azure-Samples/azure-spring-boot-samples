@@ -80,14 +80,24 @@ Running the command below to export environment values:
 source ./terraform/setup_env.sh
 ```
 
-## Run Locally
-
-In your current terminal, run `source run_all.sh`.
-
+You will see output like below, save this output of `created user` to login.
 ```shell
-source run_all.sh
+TENANT_ID=...
+CLIENT_1_CLIENT_ID=...
+CLIENT_1_CLIENT_SECRET=...
+--------created user--------
+USER_NAME=...
+USER_PASSWORD=...
+
 ```
 
+## Run Locally
+
+In your current terminal, run `mvn clean spring-boot:run`.
+
+```shell
+mvn clean spring-boot:run
+```
 ## Verify This Sample
 
 

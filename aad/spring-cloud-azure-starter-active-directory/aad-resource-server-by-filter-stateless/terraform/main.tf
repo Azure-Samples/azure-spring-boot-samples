@@ -34,7 +34,7 @@ provider "azuread" {
 }
 
 # Configure an app
-resource "azuread_application" "aadresourceserverbyfilterstateless" {
+resource "azuread_application" "resourceserver" {
   display_name = "aad-resource-server-by-filter-stateless-${random_string.random.result}"
 
   owners           = [data.azuread_client_config.current.object_id]
@@ -75,10 +75,10 @@ resource "azuread_application" "aadresourceserverbyfilterstateless" {
   app_role {
     allowed_member_types = ["User"]
     description          = "Normal user access"
-    display_name         = "User"
+    display_name         = "Normal user access"
     enabled              = true
     id                   = random_uuid.role-User.result
-    value                = "User"
+    value                = "NormalUserAccess"
   }
 
   web {
@@ -89,8 +89,8 @@ resource "azuread_application" "aadresourceserverbyfilterstateless" {
   }
 }
 
-resource "azuread_service_principal" "aadresourceserverbyfilterstateless" {
-  application_id               = azuread_application.aadresourceserverbyfilterstateless.application_id
+resource "azuread_service_principal" "resourceserver" {
+  application_id               = azuread_application.resourceserver.application_id
   app_role_assignment_required = false
   owners                       = [data.azuread_client_config.current.object_id]
 }
@@ -110,18 +110,18 @@ resource "azuread_user" "user" {
 resource "azuread_app_role_assignment" "admin" {
   app_role_id         = random_uuid.role-Admin.result
   principal_object_id = azuread_user.user.object_id
-  resource_object_id  = azuread_service_principal.aadresourceserverbyfilterstateless.object_id
+  resource_object_id  = azuread_service_principal.resourceserver.object_id
 }
 
 resource "azuread_app_role_assignment" "user" {
   app_role_id         = random_uuid.role-User.result
   principal_object_id = azuread_user.user.object_id
-  resource_object_id  = azuread_service_principal.aadresourceserverbyfilterstateless.object_id
+  resource_object_id  = azuread_service_principal.resourceserver.object_id
 }
 
 resource "null_resource" "set_env" {
   triggers = {
-    application_id = azuread_service_principal.aadresourceserverbyfilterstateless.application_id
+    application_id = azuread_service_principal.resourceserver.application_id
   }
 
   provisioner "local-exec" {

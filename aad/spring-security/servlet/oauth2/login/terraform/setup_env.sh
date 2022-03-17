@@ -7,6 +7,7 @@ export USER_PASSWORD=$(terraform -chdir=./terraform output -raw USER_PASSWORD)
 echo TENANT_ID=$TENANT_ID
 echo CLIENT_1_CLIENT_ID=$CLIENT_1_CLIENT_ID
 echo CLIENT_1_CLIENT_SECRET=$CLIENT_1_CLIENT_SECRET
+
 echo "--------created user--------"
 echo USER_NAME=$USER_NAME
 echo USER_PASSWORD=$USER_PASSWORD

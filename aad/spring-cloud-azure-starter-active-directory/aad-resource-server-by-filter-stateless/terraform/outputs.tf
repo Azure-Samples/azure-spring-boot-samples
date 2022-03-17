@@ -4,7 +4,7 @@ output "AZURE_TENANT_ID" {
 }
 
 output "AZURE_CLIENT_ID" {
-  value = azuread_application.aadresourceserverbyfilterstateless.application_id
+  value = azuread_application.resourceserver.application_id
   description = "The application id."
 }
 

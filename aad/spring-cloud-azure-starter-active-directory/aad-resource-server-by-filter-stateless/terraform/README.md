@@ -78,6 +78,14 @@ Running the command below to export environment values:
 ```shell
 source ./terraform/setup_env.sh
 ```
+You will see output like below, save this output of `created user` to login.
+```shell
+...
+--------created user--------
+USER_NAME=...
+USER_PASSWORD=...
+
+```
 
 ## Run Locally
 

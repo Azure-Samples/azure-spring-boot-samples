@@ -48,6 +48,6 @@ echo WEB_API_C_APP_ID_URL=$WEB_API_C_APP_ID_URL
 
 # user
 echo "===================================="
-echo "================User================"
+echo "--------created user--------"
 echo USER_NAME=$USER_NAME
 echo USER_PASSWORD=$USER_PASSWORD

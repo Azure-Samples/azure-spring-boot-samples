@@ -1,6 +1,5 @@
 # Spring Boot application with Azure Active Directory
 
-This guide demonstrates how to provision Azure Resources with terraform.
 
 ## What You Need
 
@@ -53,7 +52,7 @@ After login Azure CLI with your account, now you can use the terraform script to
 #### Run with Bash
 
 ```shell
-# In the specific sample's directory, where contains pom.xml.
+# Into the directory of client-access-multiple-resource-server
 # Initialize your Terraform configuration
 terraform -chdir=./terraform init
 
@@ -83,10 +82,10 @@ source ./terraform/setup_env.sh
 
 ## Run Locally
 
-In your current terminal, run `mvn clean spring-boot:run`.
+In your current terminal, run `source run_all.sh`.
 
 ```shell
-mvn clean spring-boot:run
+source run_all.sh
 ```
 
 ## Verify This Sample

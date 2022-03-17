@@ -90,7 +90,8 @@ mvn clean spring-boot:run
 ```
 
 ## Verify This Sample
-
+If running locally, browse to http://localhost:8080 and click Login or Todo List, your browser will be redirected to https://login.microsoftonline.com/ for authentication.
+Upon successful login, Todo List will give you a default item and you can perform add, update or delete operation. The backend RESTful API will accept or deny your request based on authenticated user roles.
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.

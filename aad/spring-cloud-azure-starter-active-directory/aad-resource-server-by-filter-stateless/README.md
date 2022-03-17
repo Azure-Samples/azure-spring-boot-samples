@@ -61,7 +61,11 @@ Furthermore enable the implicit flow in the manifest for the demo application
 "oauth2AllowImplicitFlow": "true",
 ```
 
-## Examples
+## Running Sample With Terraform
+Please refer to [README.md](terraform/README.md) if you want to start the sample with Terraform in just a few steps.
+
+## Running Sample Step by Step
+
 ### Configure the sample
 
 #### Configure application.properties

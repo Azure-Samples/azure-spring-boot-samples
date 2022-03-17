@@ -4,7 +4,10 @@
 
 This scenario supports `Web application` and `Resource server` in one application.
 
-## Getting started
+## Running Sample With Terraform
+Please refer to [README.md](terraform/README.md) if you want to start the sample with Terraform in just a few steps.
+
+## Running Sample Step by Step
 
 We assume that when used as a Resource server, it is called `WebApiC`; when used as a Web application, it is called `WebApp2`.
 

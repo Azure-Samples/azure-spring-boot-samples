@@ -33,7 +33,8 @@ Get samples applications from in GitHub: [spring-cloud-gateway](../../../../reac
 # 3. Create resources in Azure
 
 ## 3.1. Create a tenant
-Read [document about creating an Azure AD tenant](https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant), create a new tenant. Get the tenant-id: **${TENANT_ID}**.
+Read [document about creating an Azure AD tenant](https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant), create a new tenant. Get the tenant-id: **${TENANT_ID}**.  
+> After creating a new tenant, You can refer to [README.md](../../../../reactive/webflux/oauth2/spring-cloud-gateway/README.md) if you want to start the sample without the knowledge of step by step.
 
 ## 3.2. Add a new user
 Read [document about adding users](https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory), add a new user: **user-1@${tenant-name}.com**. Get the user's password.

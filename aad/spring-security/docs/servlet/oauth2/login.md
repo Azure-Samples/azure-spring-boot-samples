@@ -27,7 +27,8 @@ Get samples applications from in GitHub: [login].
 # 3. Create resources in Azure
 
 ## 3.1. Create a tenant
-Read [document about creating an Azure AD tenant], create a new tenant. Get the tenant-id: **${TENANT_ID}**.
+Read [document about creating an Azure AD tenant], create a new tenant. Get the tenant-id: **${TENANT_ID}**.  
+> After creating a new tenant, You can refer to [README] if you want to start the sample without the knowledge of step by step.  
 
 ## 3.2. Add a new user
 Read [document about adding users], add a new user: **user-1@${tenant-name}.com**. Get the user's password.
@@ -76,6 +77,7 @@ Read [document about adding a redirect URI], add redirect URI: **http://localhos
 [document about exposing an api]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-expose-web-apis
 [document about Application manifest]: https://docs.microsoft.com/azure/active-directory/develop/reference-app-manifest#accesstokenacceptedversion-attribute
 [login]: ../../../servlet/oauth2/login
+[README]: ../../../servlet/oauth2/login/README.md
 [Edge]: https://www.microsoft.com/edge?r=1
 [InPrivate window]: https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2
 [rfc6749]: https://datatracker.ietf.org/doc/html/rfc6749

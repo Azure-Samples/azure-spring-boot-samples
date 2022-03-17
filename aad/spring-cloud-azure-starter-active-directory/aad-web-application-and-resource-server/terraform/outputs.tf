@@ -11,6 +11,7 @@ output "AZURE_CLIENT_ID" {
 output "AZURE_CLIENT_SECRET" {
   value     = azuread_application_password.webapp_resourceserver.value
   sensitive = true
+  description = "A secret string the application uses to prove its identity."
 }
 
 output "USER_PASSWORD" {

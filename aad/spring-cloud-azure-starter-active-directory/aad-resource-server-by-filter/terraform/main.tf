@@ -25,7 +25,7 @@ provider "azuread" {
 
 # Configure an app
 resource "azuread_application" "aadresourceserverbyfilter" {
-  display_name = "aad-resource-server-by-filter"
+  display_name = "aad-resource-server-by-filter-${random_string.random.result}"
 
   owners           = [data.azuread_client_config.current.object_id]
   sign_in_audience = "AzureADMultipleOrgs"

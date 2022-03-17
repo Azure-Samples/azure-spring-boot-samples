@@ -25,7 +25,7 @@ provider "azuread" {
 
 # Configure webapp_resourceserver
 resource "azuread_application" "webapp_resourceserver" {
-  display_name = "webapp_resourceserver"
+  display_name = "webapp_resourceserver-${random_string.random.result}"
 
   owners = [data.azuread_client_config.current.object_id]
   # single tenant

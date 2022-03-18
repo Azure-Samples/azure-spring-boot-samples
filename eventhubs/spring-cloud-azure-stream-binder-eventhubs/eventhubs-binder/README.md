@@ -140,14 +140,33 @@ source ./terraform/setup_env.sh
  . terraform\setup_env.ps1
 ```
 
+If you want to run the sample in debug mode, you can save the output value.
+
+```shell
+AZURE_EVENTHUBS_NAMESPACE=...
+AZURE_STORAGE_CONTAINER_NAME=...
+AZURE_STORAGE_ACCOUNT_NAME=...
+AZURE_EVENTHUB_NAME=...
+AZURE_EVENTHUB_CONSUMER_GROUP=...
+```
+
 ## Run Locally
 
-In your terminal, run `mvn clean spring-boot:run`.
+### Run the sample with Maven
 
+In your terminal, run `mvn clean spring-boot:run`.
 
 ```shell
 mvn clean spring-boot:run
 ```
+
+### Run the sample in IDEs
+
+You can debug your sample by adding the saved output values to the tool's environment variables or the sample's `application.yaml` file.
+
+* If your tool is `IDEA`, please refer to [Debug your first Java application](https://www.jetbrains.com/help/idea/debugging-your-first-java-application.html) and [add environment variables](https://www.jetbrains.com/help/objc/add-environment-variables-and-program-arguments.html#add-environment-variables).
+
+* If your tool is `ECLIPSE`, please refer to [Debugging the Eclipse IDE for Java Developers](https://www.eclipse.org/community/eclipse_newsletter/2017/june/article1.php) and [Eclipse Environment Variable Setup](https://examples.javacodegeeks.com/desktop-java/ide/eclipse/eclipse-environment-variable-setup-example/).
 
 ## Verify This Sample
 
@@ -193,23 +212,23 @@ ImperativeEventProducerController.java
 ManualProducerAndConsumerConfiguration.java   
 ReactiveEventProducerController.java
 ```
-Try the sync mode with the "manual" profile after setting `spring.cloud.stream.eventhub.bindings.<binding-name>.producer.sync=true`. Users can send a POST request like following command:
+Try the sync mode with the "manual" profile after setting `spring.cloud.stream.eventhubs.bindings.<binding-name>.producer.sync=true`. In this sample, the binding-name should be `supply-out-0`. Users can run the following commands:
 ```
+mvn clean spring-boot:run -Dspring-boot.run.profiles=manual
+
 $ ### Send messages through imperative.  
-$ curl -X POST http://localhost:8080/messages/imperative/staticalDestination?message=hello
-$ curl -X POST http://localhost:8080/messages/imperative/dynamicDestination?message=hello
+curl -X POST http://localhost:8080/messages/imperative?message=hello
 
 $ ### Send messages through reactive.
-$ curl -X POST http://localhost:8080/messages/reactive?message=hello
+curl -X POST http://localhost:8080/messages/reactive?message=hello
 ```
 or when the app runs on App Service or VM
 ```
 $ ### Send messages through imperative.
-$ curl -d -X POST https://[your-app-URL]/messages/imperative/staticalDestination?message=hello
-$ curl -d -X POST https://[your-app-URL]/messages/imperative/dynamicDestination?message=hello
+curl -d -X POST https://[your-app-URL]/messages/imperative?message=hello
 
 $ ### Send messages through reactive.
-$ curl -d -X POST https://[your-app-URL]/messages/reactive?message=hello
+curl -d -X POST https://[your-app-URL]/messages/reactive?message=hello
 ```
 Verify in your app’s logs that a similar message was posted:
 ```
@@ -221,7 +240,7 @@ Message 'hello' successfully checkpointed
 
 To work with the batch-consumer mode, the property of spring.cloud.stream.bindings.<binding-name>.consumer.batch-mode should be set as true. When enabled, an org.springframework.messaging.Message of which the payload is a list of batched events will be received and passed to the consumer function.
 
-In this sample, users can try the batch-consuming mode by enable the "batch" profile and fill the "application-batch.yml". For more details about how to work in batch-consuming mode, please refer to the [reference doc](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#batch-consumer-support-2).
+In this sample, users can try the batch-consuming mode by enabling the "batch" profile and fill the "application-batch.yml". For more details about how to work in batch-consuming mode, please refer to the [reference doc](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#batch-consumer-support-2).
 
 ### Set Event Hubs message headers
 

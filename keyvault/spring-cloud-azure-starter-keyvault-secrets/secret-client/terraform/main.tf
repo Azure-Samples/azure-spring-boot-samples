@@ -2,11 +2,11 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = ">= 2.75"
+      version = "2.99"
     }
     azurecaf = {
       source  = "aztfmod/azurecaf"
-      version = "1.2.10"
+      version = "1.2.16"
     }
   }
 }
@@ -77,6 +77,6 @@ resource "azurerm_key_vault" "kv_account" {
 
 resource "azurerm_key_vault_secret" "kv" {
   name         = "sampleProperty"
-  value        = "kv: sampleProperty: value"
+  value        = "samplePropertyValueInKeyVaultSecret"
   key_vault_id = azurerm_key_vault.kv_account.id
 }

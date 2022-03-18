@@ -11,24 +11,16 @@
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>spring-cloud-azure-starter-keyvault-secrets-sample-single-property-source</artifactId>
+  <artifactId>spring-cloud-azure-starter-keyvault-secrets-sample-property-source</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>Spring-Cloud-Azure-Starter-Keyvault-Secrets Sample: Single Property Source</name>
+  <name>Spring-Cloud-Azure-Starter-KeyVault-Secrets Sample: Property Source</name>
 
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>
       <artifactId>spring-cloud-azure-starter-keyvault-secrets</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-actuator</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
   </dependencies>
 

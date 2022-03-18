@@ -129,14 +129,33 @@ source ./terraform/setup_env.sh
  . terraform\setup_env.ps1
 ```
 
+If you want to run the sample in debug mode, you can save the output value.
+
+```shell
+AZURE_EVENTHUBS_CONNECTION_STRING=...
+EVENTHUBS_KAFKA=...
+AZURE_EVENTHUBS_SUBSCRIPTION_ID=...
+AZURE_EVENTHUBS_RESOURCE_GROUP=...
+AZURE_EVENTHUBS_NAMESPACE=...
+```
+
 ## Run Locally
 
-In your terminal, run `mvn clean spring-boot:run`.
+### Run the sample with Maven
 
+In your terminal, run `mvn clean spring-boot:run`.
 
 ```shell
 mvn clean spring-boot:run
 ```
+
+### Run the sample in IDEs
+
+You can debug your sample by adding the saved output values to the tool's environment variables or the sample's `application.yaml` file.
+
+* If your tool is `IDEA`, please refer to [Debug your first Java application](https://www.jetbrains.com/help/idea/debugging-your-first-java-application.html) and [add environment variables](https://www.jetbrains.com/help/objc/add-environment-variables-and-program-arguments.html#add-environment-variables).
+
+* If your tool is `ECLIPSE`, please refer to [Debugging the Eclipse IDE for Java Developers](https://www.eclipse.org/community/eclipse_newsletter/2017/june/article1.php) and [Eclipse Environment Variable Setup](https://examples.javacodegeeks.com/desktop-java/ide/eclipse/eclipse-environment-variable-setup-example/).
 
 ## Verify This Sample
 
@@ -144,13 +163,13 @@ mvn clean spring-boot:run
 1. Send a POST request
 
 ```shell
-$ curl -X POST http://localhost:8080/messages?message=hello
+curl -X POST http://localhost:8080/messages?message=hello
 ```
 
 2. Verify in your app’s logs that a similar message was posted
 
 ```shell
-$ New message received: hello
+New message received: hello
 ```
    
 

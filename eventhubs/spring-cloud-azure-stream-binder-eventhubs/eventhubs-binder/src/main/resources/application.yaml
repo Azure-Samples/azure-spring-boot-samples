@@ -15,7 +15,7 @@ spring:
           destination: ${AZURE_EVENTHUB_NAME}
           group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
         supply-out-0:
-          destination: ${AZURE_EVENTHUB_NAME}
+          destination: ${AZURE_EVENTHUB_NAME} # same as the above destination
       eventhubs:
         bindings:
           consume-in-0:

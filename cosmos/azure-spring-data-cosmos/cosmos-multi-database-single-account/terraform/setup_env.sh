@@ -4,5 +4,7 @@ export AZURE_COSMOS_SECONDARY_KEY=$(terraform -chdir=./terraform output -raw azu
 export AZURE_COSMOS_DATABASE=$(terraform -chdir=./terraform output -raw cosmos_database_name)
 
 echo AZURE_COSMOS_URI=$AZURE_COSMOS_URI
+echo AZURE_COSMOS_KEY=$AZURE_COSMOS_KEY
+echo AZURE_COSMOS_SECONDARY_KEY=$AZURE_COSMOS_SECONDARY_KEY
 echo AZURE_COSMOS_DATABASE=$AZURE_COSMOS_DATABASE
 

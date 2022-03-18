@@ -35,7 +35,7 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
-    <!-- This is for using WebClient. -->
+    <!-- This application is still a Web MVC application. Including the spring-boot-starter-webflux only to use the WebClient. -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-webflux</artifactId>

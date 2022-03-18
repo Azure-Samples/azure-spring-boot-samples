@@ -25,9 +25,15 @@ data "azuread_client_config" "current" {}
 provider "azuread" {
 }
 
+resource "random_string" "random" {
+  length = 5
+  min_lower = 5
+  special = false
+}
+
 # Configure an app
 resource "azuread_application" "servicebusqueuebinder" {
-  display_name = "servicebus-queue-binder-arm"
+  display_name = "servicebus-queue-binder-arm-${random_string.random.result}"
   owners           = [data.azuread_client_config.current.object_id]
 }
 
@@ -97,7 +103,7 @@ resource "azurerm_servicebus_queue" "queue" {
   default_message_ttl   = "P14D"
 }
 
-resource "azurerm_role_assignment" "role_servicebus_data_contributor" {
+resource "azurerm_role_assignment" "role_servicebus_contributor" {
   scope                = azurerm_servicebus_namespace.servicebus_namespace.id
   role_definition_name = "Contributor"
   principal_id         = azuread_service_principal.servicebusqueuebinder.object_id

@@ -1,6 +1,6 @@
 # Feature Management Web Sample shared library for Java
 
-This sample describes how to use [spring-cloud-feature-management](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/appconfiguration/spring-cloud-azure-feature-management/README.md) to manage features and how to get configurations from Azure Configuration Service to Spring Environment.
+This sample describes how to use [spring-cloud-azure-feature-management](https://github.com/Azure/azure-sdk-for-java/blob/spring-cloud-azure-feature-management_1.3.0/sdk/appconfiguration/spring-cloud-azure-feature-management/README.md) to manage features and how to get configurations from Azure Configuration Service to Spring Environment.
 
 ## Key concepts
 ## Getting started

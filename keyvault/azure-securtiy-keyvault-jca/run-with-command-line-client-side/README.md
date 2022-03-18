@@ -49,15 +49,15 @@ jdk 11.0.12 or above
    ```
 1. Get the azure-security-keyvault-jca.jar. You can download the latest published jar from maven
    repository [azure-security-keyvault-jca][azure-security-keyvault-jca]. When this document is 
-   written, the latest jar is azure-security-keyvault-jca.2.1.0.jar
+   written, the latest jar is azure-security-keyvault-jca.2.6.0.jar
 1. Make a directory, for example, sample_client. Then put the 3 files into sample_client folder
     - java.security 
     - run-with-command-line-client-side-1.0.0.jar
-    - azure-security-keyvault-jca-2.1.0.jar 
+    - azure-security-keyvault-jca-2.6.0.jar 
 1. Open terminal and enter the directory sample_client, run the following command:
    ```
    java \
-   --module-path ./azure-security-keyvault-jca-2.1.0.jar \
+   --module-path ./azure-security-keyvault-jca-2.6.0.jar \
    --add-modules com.azure.security.keyvault.jca \
    -Dsecurity.overridePropertiesFile=true \
    -Djava.security.properties==./java.security \
@@ -72,7 +72,7 @@ jdk 11.0.12 or above
    command instead of the above to run the client side:
    ```
    java \
-   --module-path ./azure-security-keyvault-jca-2.1.0.jar \
+   --module-path ./azure-security-keyvault-jca-2.6.0.jar \
    --add-modules com.azure.security.keyvault.jca \
    -Dsecurity.overridePropertiesFile=true \
    -Djava.security.properties==./java.security \

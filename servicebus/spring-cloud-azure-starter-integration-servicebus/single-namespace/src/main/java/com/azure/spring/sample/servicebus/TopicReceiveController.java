@@ -5,8 +5,6 @@ package com.azure.spring.sample.servicebus;
 
 import com.azure.spring.integration.servicebus.inbound.ServiceBusInboundChannelAdapter;
 import com.azure.spring.messaging.AzureHeaders;
-import com.azure.spring.messaging.checkpoint.CheckpointConfig;
-import com.azure.spring.messaging.checkpoint.CheckpointMode;
 import com.azure.spring.messaging.checkpoint.Checkpointer;
 import com.azure.spring.messaging.servicebus.core.ServiceBusProcessorFactory;
 import com.azure.spring.messaging.servicebus.core.listener.ServiceBusMessageListenerContainer;
@@ -48,7 +46,7 @@ public class TopicReceiveController {
         ServiceBusContainerProperties containerProperties = new ServiceBusContainerProperties();
         containerProperties.setEntityName(TOPIC_NAME);
         containerProperties.setSubscriptionName(SUBSCRIPTION_NAME);
-        containerProperties.setCheckpointConfig(new CheckpointConfig(CheckpointMode.MANUAL));
+        containerProperties.setAutoComplete(false);
         return new ServiceBusMessageListenerContainer(processorFactory, containerProperties);
     }
 

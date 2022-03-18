@@ -34,8 +34,8 @@ resource "azuread_application" "aadresourceserverbyfilter" {
     resource_app_id = "00000003-0000-0000-c000-000000000000" # Microsoft Graph
 
     resource_access {
-      id   = "df021288-bdef-4463-88db-98f22de89214" # User.Read.All
-      type = "Role"
+      id   = "e1fe6dd8-ba31-4d61-89e7-88639da4683d" # User.Read
+      type = "Scope"
     }
 
     resource_access {
@@ -77,7 +77,7 @@ resource "azuread_service_principal_delegated_permission_grant" "graph" {
 
   service_principal_object_id          = azuread_service_principal.aadresourceserverbyfilter.object_id
   resource_service_principal_object_id = azuread_service_principal.msgraph.object_id
-  claim_values                         = ["Directory.Read.All", "User.Read.All"]
+  claim_values                         = ["Directory.Read.All", "User.Read"]
 }
 
 # Retrieve domain information

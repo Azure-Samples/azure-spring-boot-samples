@@ -26,6 +26,11 @@ public class AadWebApplicationConfig extends AadWebSecurityConfigurerAdapter {
         // @formatter:on
     }
 
+    /**
+     * This method is only used for AAD conditional access support and can be removed if this feature is not used.
+     * {@inheritDoc}
+     * @return the conditional access filter
+     */
     @Override
     protected Filter conditionalAccessFilter() {
         return new AadConditionalAccessFilter();

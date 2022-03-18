@@ -72,6 +72,15 @@ resource "azuread_application" "resourceserver" {
     value                = "Admin"
   }
 
+  app_role {
+    allowed_member_types = ["User"]
+    description          = "User rule"
+    display_name         = "UserRule"
+    enabled              = true
+    id                   = random_uuid.role-user.result
+    value                = "UserRule"
+  }
+
   web {
     implicit_grant {
       access_token_issuance_enabled = true
@@ -100,6 +109,12 @@ resource "azuread_user" "user" {
 
 resource "azuread_app_role_assignment" "admin" {
   app_role_id         = random_uuid.role-admin.result
+  principal_object_id = azuread_user.user.object_id
+  resource_object_id  = azuread_service_principal.resourceserver.object_id
+}
+
+resource "azuread_app_role_assignment" "user_role" {
+  app_role_id         = random_uuid.role-user.result
   principal_object_id = azuread_user.user.object_id
   resource_object_id  = azuread_service_principal.resourceserver.object_id
 }

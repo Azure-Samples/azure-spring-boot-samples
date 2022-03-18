@@ -1,4 +1,3 @@
-:azure-spring-boot-starter-storage: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-boot-starter-storage
 :azure-storage: https://docs.microsoft.com/azure/storage/
 :application-properties: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/storage/azure-spring-boot-starter-storage/storage-resource/src/main/resources/application.properties
 :ready-to-run-checklist: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/ENVIRONMENT_CHECKLIST.md#ready-to-run-checklist
@@ -11,7 +10,7 @@
 
 == Key concepts
 This code sample demonstrates how to read and write files with the Spring Resource abstraction for Azure Storage using the
-link:{azure-spring-boot-starter-storage}[Spring Cloud Azure Storage Starter]. Running this sample will be charged by Azure.
+Spring Cloud Azure Storage Starter. Running this sample will be charged by Azure.
 You can check the usage and bill at {microsoft-account}[this link].
 
 == Getting started
@@ -66,19 +65,24 @@ resource:
 1. Start the `StorageApplication` Spring Boot app.
 +
 ```
-$ mvn spring-boot:run
+mvn spring-boot:run
 ```
 
 2. Send a POST request to update file contents:
 +
 ```
-$ curl -d 'new message' -H 'Content-Type: text/plain' localhost:8080/file
+curl -d 'new message' -H 'Content-Type: text/plain' http://localhost:8080/file
 ```
 +
 Verify by sending a GET request
 +
 ```
-$ curl -XGET http://localhost:8080/file
+curl -XGET http://localhost:8080/file
+```
+Verify in app's log the messages was posted:
++
+```
+new message
 ```
 
 3. Delete the resources on http://ms.portal.azure.com/[Azure Portal] to avoid unexpected charges.

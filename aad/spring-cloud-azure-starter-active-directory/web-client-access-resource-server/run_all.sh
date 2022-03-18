@@ -36,8 +36,9 @@ echo "All apps started, please check target folder for logs."
 echo "You can use the user info below to login."
 echo "--------created user--------"
 # user
-export USER_NAME=$(terraform -chdir=$terraform_path  output -raw USER_NAME)
-export USER_PASSWORD=$(terraform -chdir=$terraform_path  output -raw USER_PASSWORD)
+export USER_NAME=$(terraform -chdir=./terraform  output -raw USER_NAME)
+export USER_PASSWORD=$(terraform -chdir=./terraform  output -raw USER_PASSWORD)
+
 echo USER_NAME=$USER_NAME
 echo USER_PASSWORD=$USER_PASSWORD
 echo "Now you should be able to open browser to access http://localhost:8080 with user above."

@@ -38,13 +38,13 @@ spring:
         bindings:
           consume1-in-0:
             consumer:
-              checkpoint-mode: MANUAL
+              auto-complete: false
           supply1-out-0:
             producer:
               entity-type: topic
           consume2-in-0:
             consumer:
-              checkpoint-mode: MANUAL
+              auto-complete: false
           supply2-out-0:
             producer:
               entity-type: queue

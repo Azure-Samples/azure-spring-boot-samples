@@ -56,9 +56,8 @@
 | Key Vault        | [azure-spring-boot-starter-keyvault-certificates:3.13.0]            | [keyvault-certificates-server-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side)   |
 | Key Vault        |                                                                     | [run-with-command-line-server-side](keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side)   |
 | Key Vault        |                                                                     | [run-with-command-line-client-side](keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side)   |
-| Key Vault        | [spring-cloud-azure-starter-keyvault-secrets:4.0.0-beta.4]          | [multiple-property-source](keyvault/spring-cloud-azure-starter-keyvault-secrets/multiple-property-source)                          |
+| Key Vault        | [spring-cloud-azure-starter-keyvault-secrets:4.0.0-beta.4]          | [property-source](keyvault/spring-cloud-azure-starter-keyvault-secrets/property-source)                          |
 | Key Vault        | [spring-cloud-azure-starter-keyvault-secrets:4.0.0-beta.4]          | [secret-client](keyvault/spring-cloud-azure-starter-keyvault-secrets/secret-client)                          |
-| Key Vault        | [spring-cloud-azure-starter-keyvault-secrets:4.0.0-beta.4]          | [single-property-source](keyvault/spring-cloud-azure-starter-keyvault-secrets/single-property-source)                          |
 | Service Bus      | [spring-cloud-azure-starter-servicebus-jms:4.0.0-beta.4]            | [servicebus-jms-queue](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue)                                  |
 | Service Bus      | [spring-cloud-azure-starter-servicebus-jms:4.0.0-beta.4]            | [servicebus-jms-topic](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-topic)                                  |
 | Service Bus      | [spring-cloud-azure-starter-integration-servicebus:4.0.0-beta.4]    | [single-namespace](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace)                                 |

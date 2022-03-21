@@ -156,7 +156,7 @@ resource "azurerm_role_assignment" "azure_keyvault_assignment_sp_contributor" {
 resource "azurerm_key_vault_access_policy" "access_policy" {
   key_vault_id = azurerm_key_vault.kv_account.id
   tenant_id    = data.azurerm_client_config.current.tenant_id
-  object_id    = azuread_application.azure_key_vault_service_principal.application_id
+  object_id    = azuread_service_principal.azure_key_vault_service_principal.application_id
 
   key_permissions = [
     "Get",
@@ -171,22 +171,6 @@ resource "azurerm_key_vault_access_policy" "access_policy" {
   certificate_permissions = [
     "Get",
     "List"
-  ]
-}
-
-resource "azurerm_key_vault_key" "generated" {
-  name         = "generated-certificate"
-  key_vault_id = azurerm_key_vault.example.id
-  key_type     = "RSA"
-  key_size     = 2048
-
-  key_opts = [
-    "decrypt",
-    "encrypt",
-    "sign",
-    "unwrapKey",
-    "verify",
-    "wrapKey",
   ]
 }
 

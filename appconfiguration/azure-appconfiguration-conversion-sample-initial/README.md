@@ -164,20 +164,20 @@ In this section, you clone a containerized Spring Boot application and test it l
 1. Upload your Cosmos DB key to Key Vault.
 
     ```azurecli
-        az keyvault secret set --vault-name myVaultName --name "COSMOSDB-KEY" --value your-cosmosdb-key
+    az keyvault secret set --vault-name myVaultName --name "COSMOSDB-KEY" --value your-cosmosdb-key
     ```
 
 1. Upload your Configurations Cosmos DB name and URI to App Configuration
 
     ```azurecli
-        az appconfig kv set --name myConfigStoreName --key "/application/azure.cosmos.database" --value your-cosmos-db-databasename --yes
-        az appconfig kv set --name myConfigStoreName --key "/application/azure.cosmos.uri" --value your-cosmosdb-uri  --yes
+    az appconfig kv set --name myConfigStoreName --key "/application/azure.cosmos.database" --value your-cosmos-db-databasename --yes
+    az appconfig kv set --name myConfigStoreName --key "/application/azure.cosmos.uri" --value your-cosmosdb-uri  --yes
     ```
 
 1. Add a Key Vault Reference to App Configuration, make sure to update the uri with your config store name.
 
     ```azurecli
-        az appconfig kv set-keyvault --name myConfigStoreName --key "/application/azure.cosmos.key" --secret-identifier https://myVaultName.vault.azure.net/secrets/COSMOSDB-KEY --yes
+    az appconfig kv set-keyvault --name myConfigStoreName --key "/application/azure.cosmos.key" --secret-identifier https://myVaultName.vault.azure.net/secrets/COSMOSDB-KEY --yes
     ```
 
 1. Delete `application.propertes` from `src/main/resources`.
@@ -185,8 +185,7 @@ In this section, you clone a containerized Spring Boot application and test it l
 1. Create a new file called `bootstrap.properties` in `src/main/resources`, and add the following.
 
     ```properties
-        spring.cloud.azure.appconfiguration.stores[0].endpoint=https://{my-configstore-name}.azconfig.io
-
+    spring.cloud.azure.appconfiguration.stores[0].endpoint=https://{my-configstore-name}.azconfig.io
     ```
 
 1. Update the pom.xml file to now include.

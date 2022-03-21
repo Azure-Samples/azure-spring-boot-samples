@@ -1,6 +1,6 @@
 # Please fill these placeholders before running this application:
-# 1. ${tenant-id}
-# 2. ${resource-server-1-client-id}
+# 1. ${TENANT_ID}
+# 2. ${RESOURCE_SERVER_1_CLIENT_ID}
 
 logging:
   level:
@@ -12,6 +12,6 @@ spring:
     oauth2:
       resourceserver:
         jwt:
-          jwk-set-uri: https://login.microsoftonline.com/${tenant-id}/discovery/v2.0/keys
-          issuer-uri: https://login.microsoftonline.com/${tenant-id}/v2.0
-          audience: ${resource-server-1-client-id}
+          jwk-set-uri: https://login.microsoftonline.com/${TENANT_ID}/discovery/v2.0/keys
+          issuer-uri: https://login.microsoftonline.com/${TENANT_ID}/v2.0
+          audience: ${RESOURCE_SERVER_1_CLIENT_ID}

@@ -4,8 +4,6 @@ import com.azure.spring.cloud.autoconfigure.servicebus.AzureServiceBusAutoConfig
 import com.azure.spring.integration.servicebus.inbound.ServiceBusInboundChannelAdapter;
 import com.azure.spring.messaging.ConsumerIdentifier;
 import com.azure.spring.messaging.PropertiesSupplier;
-import com.azure.spring.messaging.checkpoint.CheckpointConfig;
-import com.azure.spring.messaging.checkpoint.CheckpointMode;
 import com.azure.spring.messaging.servicebus.core.ServiceBusProcessorFactory;
 import com.azure.spring.messaging.servicebus.core.ServiceBusProducerFactory;
 import com.azure.spring.messaging.servicebus.core.ServiceBusTemplate;
@@ -91,7 +89,7 @@ public class MultipleNamespacesAzureServiceBusMessagingAutoConfiguration {
     public ServiceBusMessageListenerContainer messageListenerContainer(ServiceBusProcessorFactory processorFactory) {
         ServiceBusContainerProperties containerProperties = new ServiceBusContainerProperties();
         containerProperties.setEntityName(RECEIVE_QUEUE_NAME);
-        containerProperties.setCheckpointConfig(new CheckpointConfig(CheckpointMode.MANUAL));
+        containerProperties.setAutoComplete(false);
         return new ServiceBusMessageListenerContainer(processorFactory, containerProperties);
     }
 

@@ -19,7 +19,7 @@ public class MainController {
 
     @GetMapping("/authorized")
     @ResponseBody
-    @PreAuthorize("hasRole('ROLE_User')")
+    @PreAuthorize("hasRole('ROLE_UserRule')")
     public String onlyAuthorizedUsers() {
         return "authorized endpoint response";
     }

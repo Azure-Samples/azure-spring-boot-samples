@@ -20,4 +20,4 @@ spring:
         user-group:
           allowed-group-names: group1,group2
         redirect-uri-template: http://localhost:8080/
-
+        jwt-connect-timeout: 5000

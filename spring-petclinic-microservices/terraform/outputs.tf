@@ -34,17 +34,39 @@ output "azurerm_key_vault_account" {
   description = "The key vault account created."
 }
 
-output "location" {
+output "cosmos_db_location" {
   value = azurerm_cosmosdb_account.application.location
   description = "The Azure region name."
 }
 
-output "redis-name" {
+output "redis_name" {
   value = azurecaf_name.redis.result
   description = "The redis name created."
 }
-
-output "service-principal-name" {
-  value = azurecaf_name.service-principal.result
+output "redis_hostname" {
+  value       = azurerm_redis_cache.redis.hostname
+  description = "The host name of the Redis instance."
+}
+output "redis_password" {
+  value       = azurerm_redis_cache.redis.primary_access_key
+  description = "The primary access key of the Redis instance."
+  sensitive = true
+}
+output "service_principal_name" {
+  value = azuread_application.azure_key_vault_service_principal.display_name
   description = "The service principal name created."
+}
+output "azure_key_vault_service_principal_client_id" {
+  value = azuread_application.azure_key_vault_service_principal.value
+  sensitive = true
+  description = "The client id of the key vault service principal."
+}
+output "azure_key_vault_service_principal_client_secret" {
+  value = azuread_application_password.azure_key_vault_service_principal.value
+  sensitive = true
+  description = "The client secret of the key vault service principal."
+}
+output "azure_key_vault_tenant_id" {
+  value = azurerm_key_vault.kv_account.tenant_id
+  description = "The tenant id of the key vault."
 }

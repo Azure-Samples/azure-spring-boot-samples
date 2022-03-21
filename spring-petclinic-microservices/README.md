@@ -144,7 +144,7 @@ You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser t
 Running the command below to export environment values:
 
 ```shell
- source ./terraform/setup_env.sh
+source ./terraform/setup_env.sh
 ```
 
 #### Run with Powershell
@@ -152,7 +152,7 @@ Running the command below to export environment values:
 Running the command below to export environment values:
 
 ```shell
- . terraform\setup_env.ps1
+. terraform\setup_env.ps1
 ```
 
 make sure keyvault.env file is created at the root of the repo.

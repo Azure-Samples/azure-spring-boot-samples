@@ -16,14 +16,14 @@
     
 
 ## Current Branch Supported versions
-- [spring-boot-dependencies:2.5.5](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-dependencies/2.5.5/spring-boot-dependencies-2.5.5.pom).
-- [spring-cloud-dependencies:2021.0.0](https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud-dependencies/2021.0.0/spring-cloud-dependencies-2021.0.0.pom).
+- [spring-boot-dependencies:2.6.3](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-dependencies/2.6.3/spring-boot-dependencies-2.6.3.pom).
+- [spring-cloud-dependencies:2021.0.0](https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud-dependencies/2021.0.1/spring-cloud-dependencies-2021.0.1.pom).
 
 ## All active branches
 
 | Spring Boot Version | Spring Cloud version | Spring Cloud Azure Version | 
 | ---                 | ---                  | ---                       | 
-| 2.5.5               | 2021.0.0             | [4.0](https://github.com/Azure/azure-sdk-for-java/tree/feature/azure-spring-cloud-4.0/sdk/spring)                     | 
+| 2.6.3               | 2021.0.1             | [4.0](https://github.com/Azure/azure-sdk-for-java/tree/feature/azure-spring-cloud-4.0/sdk/spring)                     | 
 
 ## All samples in this repo
 
@@ -44,16 +44,16 @@
 | App Configuration| [azure-spring-cloud-appconfiguration-config:2.3.0]                  | [azure-appconfiguration-conversion-sample-complete](appconfiguration/azure-appconfiguration-conversion-sample-complete)           |
 | Cache            | N/A                                                                 | [azure-spring-cloud-sample-cache](cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache)                                                         |
 | Cloud Foundry    | N/A                                                                 | [azure-cloud-foundry-service-sample](cloudfoundry/azure-cloud-foundry-service-sample)                                                         |
-| Cosmos DB        | [azure-spring-data-cosmos:3.17.0]                                   | [cosmos-multi-database-multi-account](cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account)                |
-| Cosmos DB        | [azure-spring-data-cosmos:3.17.0]                                   | [cosmos-multi-database-single-account](cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account)              |
+| Cosmos DB        | [azure-spring-data-cosmos:3.18.0]                                   | [cosmos-multi-database-multi-account](cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account)                |
+| Cosmos DB        | [azure-spring-data-cosmos:3.18.0]                                   | [cosmos-multi-database-single-account](cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account)              |
 | Cosmos DB        | [spring-cloud-azure-starter-data-cosmos:4.0.0-beta.4]               | [spring-cloud-azure-data-cosmos-sample](cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample)                                                                         |
 | Cosmos DB        | [spring-cloud-azure-starter-cosmos:4.0.0-beta.4]                    | [spring-cloud-azure-cosmos-sample](cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample)                                                                         |
 | Event Hubs       | N/A                                                                 | [spring-cloud-azure-sample-eventhubs-kafka](eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka)                                          |
 | Event Hubs       | [spring-cloud-azure-starter-integration-eventhubs:4.0.0-beta.4]     | [eventhubs-integration](eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration)                                    |
 | Event Hubs       | [spring-cloud-azure-stream-binder-eventhubs:4.0.0-beta.4]           | [eventhubs-binder](eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder)                                         |
 | Event Hubs       | [spring-cloud-azure-stream-binder-eventhubs:4.0.0-beta.4]           | [eventhubs-multibinders](eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders)                             |
-| Key Vault        | [azure-spring-boot-starter-keyvault-certificates:3.13.0]            | [keyvault-certificates-client-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side)   |
-| Key Vault        | [azure-spring-boot-starter-keyvault-certificates:3.13.0]            | [keyvault-certificates-server-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side)   |
+| Key Vault        | [azure-spring-boot-starter-keyvault-certificates:3.14.0]            | [keyvault-certificates-client-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side)   |
+| Key Vault        | [azure-spring-boot-starter-keyvault-certificates:3.14.0]            | [keyvault-certificates-server-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side)   |
 | Key Vault        |                                                                     | [run-with-command-line-server-side](keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side)   |
 | Key Vault        |                                                                     | [run-with-command-line-client-side](keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side)   |
 | Key Vault        | [spring-cloud-azure-starter-keyvault-secrets:4.0.0-beta.4]          | [property-source](keyvault/spring-cloud-azure-starter-keyvault-secrets/property-source)                          |
@@ -107,5 +107,5 @@ Please refer to [README.md](servicebus/spring-cloud-azure-starter-integration-se
 [spring-cloud-azure-starter-data-cosmos:4.0.0-beta.4]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-data-cosmos/4.0.0-beta.4/jar
 [azure-spring-cloud-feature-management:2.2.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-feature-management/2.2.0/jar
 [azure-spring-cloud-appconfiguration-config:2.3.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-appconfiguration-config/2.3.0/jar
-[azure-spring-boot-starter-keyvault-certificates:3.13.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-certificates/3.13.0/jar
-[azure-spring-data-cosmos:3.17.0]: https://search.maven.org/artifact/com.azure/azure-spring-data-cosmos/3.17.0/jar
+[azure-spring-boot-starter-keyvault-certificates:3.14.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-certificates/3.14.0/jar
+[azure-spring-data-cosmos:3.18.0]: https://search.maven.org/artifact/com.azure/azure-spring-data-cosmos/3.17.0/jar

@@ -1,0 +1,33 @@
+spring:
+  cloud:
+    azure:
+      credential:
+        client-id: ${AZURE_SERVICE_PRINCIPAL_CLIENT_ID}
+        client-secret: ${AZURE_SERVICE_PRINCIPAL_CLIENT_SECRET}
+      profile:
+        tenant-id: ${AZURE_SERVICE_PRINCIPAL_TENANT_ID}
+        subscription-id: ${AZURE_SERVICEBUS_SUBSCRIPTION_ID}
+      servicebus:
+        namespace: ${AZURE_SERVICEBUS_NAMESPACE}
+        resource:
+          resource-group: ${AZURE_SERVICEBUS_RESOURCE_GROUP}
+    stream:
+      function:
+        definition: consume;supply
+      bindings:
+        consume-in-0:
+          destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
+        supply-out-0:
+          destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
+      servicebus:
+        bindings:
+          consume-in-0:
+            consumer:
+              auto-complete: false
+              entity-type: queue
+          supply-out-0:
+            producer:
+              entity-type: queue
+      poller:
+        fixed-delay: 1000
+        initial-delay: 0

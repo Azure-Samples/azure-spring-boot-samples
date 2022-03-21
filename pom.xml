@@ -30,11 +30,9 @@
   </properties>
 
   <modules>
-    <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server</module>
+    <module>aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server</module>
     <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter</module>
     <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless</module>
-    <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-obo</module>
-    <module>aad/spring-cloud-azure-starter-active-directory/aad-web-application</module>
     <module>aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server</module>
     <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application</module>
     <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server</module>
@@ -58,14 +56,14 @@
     <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side</module>
     <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side</module>
     <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side</module>
+    <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/property-source</module>
     <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/secret-client</module>
-    <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/single-property-source</module>
-    <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/multiple-property-source</module>
     <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue</module>
     <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-topic</module>
     <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder</module>
     <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-multibinders</module>
     <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder</module>
+    <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder-arm</module>
     <module>servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces</module>
     <module>servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace</module>
     <module>storage/spring-cloud-azure-starter-storage-blob/storage-blob-sample</module>

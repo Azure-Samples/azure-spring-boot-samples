@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.azure.spring</groupId>
+    <artifactId>azure-spring-boot-samples</artifactId>
+    <version>1.0.0</version>
+    <relativePath>../../../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>azure-active-directory-sample-on-behalf-of</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+
+  <name>Azure Active Directory Sample: On-Behalf-Of</name>
+
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
+
+  <modules>
+    <module>aad-resource-server</module>
+    <module>aad-resource-server-obo</module>
+    <module>aad-web-application</module>
+  </modules>
+
+</project>

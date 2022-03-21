@@ -1,0 +1,34 @@
+server:
+  port: 8081
+
+spring:
+  cloud:
+    azure:
+# Properties like spring.cloud.azure.credential.client-id are global properties.
+# Properties like spring.cloud.azure.active-directory.credential.client-id are AAD properties.
+# If AAD properties is not configured, global properties will be used.
+#      credential:
+#        client-id:
+#        client-secret:
+#      profile:
+#        tenant-id:
+      active-directory:
+        enabled: true
+        credential:
+          client-id: ${WEB_API_A_CLIENT_ID}
+          client-secret: ${WEB_API_A_CLIENT_SECRET}
+        profile:
+          tenant-id: ${AZURE_TENANT_ID}
+        app-id-uri: ${WEB_API_A_APP_ID_URL}
+        authorization-clients:
+          graph:
+            scopes:
+              - https://graph.microsoft.com/User.Read
+          webapiB:         # When authorization-grant-type is null, on behalf of flow is used by default
+            authorization-grant-type: on_behalf_of
+            scopes:
+              - ${WEB_API_B_APP_ID_URL}/WebApiB.ExampleScope
+          webapiC:
+            authorization-grant-type: client_credentials
+            scopes:
+              - ${WEB_API_C_APP_ID_URL}/.default

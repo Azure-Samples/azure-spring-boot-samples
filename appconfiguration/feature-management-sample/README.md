@@ -12,7 +12,7 @@ Start the application and check the resulting console output to check the return
 
 1. Load features from application.yml
 ```
-$ mvn spring-boot:run
+mvn spring-boot:run
 ```
 
 1. Check the returned value. The feature `Beta` has one filter `Random` which defines the Beta feature will be activated randomly with some chance value. You should see the following information displayed: **RUNNING : application** or **RUNNING : beta**.
@@ -65,7 +65,7 @@ az appconfig credential list --resource-group <your-resource-group> --name <name
 
 1. Load features from application.yml
 ```
-$ mvn spring-boot:run
+mvn spring-boot:run
 ```
 
 1. Check the returned value. The feature `Beta` has one filter `Random` which defines the Beta feature will be activated randomly with some chance value. You should see the following information displayed: **RUNNING : application** or **RUNNING : beta**.

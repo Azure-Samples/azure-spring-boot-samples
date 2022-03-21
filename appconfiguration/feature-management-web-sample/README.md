@@ -12,7 +12,7 @@ Start the application and check the resulting console output to check the return
 
 1. Load features from application.yml
 ```
-$ mvn spring-boot:run
+mvn spring-boot:run
 ```
 
 2. Check the returned value. The feature `Beta` has one filter `Random` which defines
@@ -34,22 +34,22 @@ Start the application and access http://localhost:8080 to check the returned val
 
 1. Load properties similar with from application.properties, i.e., keys starting with /application/
 ```
-$ mvn spring-boot:run
+mvn spring-boot:run
 ```
 
 2. Load properties similar with from application_dev.properties, i.e., keys starting with /application_dev
 ```
-$ mvn -Dspring.profiles.active=dev spring-boot:run
+mvn -Dspring.profiles.active=dev spring-boot:run
 ```
 
 3. Load properties similar with from foo.properties, i.e., keys starting with /foo/
 ```
-$ mvn -Dspring.application.name=foo spring-boot:run
+mvn -Dspring.application.name=foo spring-boot:run
 ```
 
 4. Load properties similar with from foo_dev.properties, i.e., keys starting with /foo_dev/
 ```
-$ mvn -Dspring.application.name=foo -Dspring.profiles.active=dev spring-boot:run
+mvn -Dspring.application.name=foo -Dspring.profiles.active=dev spring-boot:run
 ```
 
 ### More details

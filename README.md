@@ -65,6 +65,7 @@
 | Service Bus      | [spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.4]          | [servicebus-queue-binder](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder)                   |
 | Service Bus      | [spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.4]          | [servicebus-queue-multibinders](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-multibinders)       |
 | Service Bus      | [spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.4]          | [servicebus-topic-binder](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder)                   |
+| Service Bus      | [spring-cloud-azure-stream-binder-servicebus:4.0.0-beta.4]          | [servicebus-queue-binder-arm](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder-arm)                   |
 | Storage          | [spring-cloud-azure-starter-storage-blob:4.0.0-beta.4]              | [storage-blob-sample](storage/spring-cloud-azure-starter-storage-blob/storage-blob-sample)     
 | Storage          | [spring-cloud-azure-starter-storage-file-share:4.0.0-beta.4]        | [storage-file-sample](storage/spring-cloud-azure-starter-storage-file-share/storage-file-sample)     |
 | Storage          | [spring-cloud-azure-starter-integration-storage-queue:4.0.0-beta.4] | [storage-queue-integration](storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration)                          |

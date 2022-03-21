@@ -3,8 +3,7 @@
 
 package com.azure.spring.sample.aad.security;
 
-import com.azure.spring.cloud.autoconfigure.aad.implementation.constants.Constants;
-import com.azure.spring.cloud.autoconfigure.aad.implementation.oauth2.AadClientRegistrationRepository;
+import com.azure.spring.cloud.autoconfigure.aad.AadClientRegistrationRepository;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.oauth2.client.ClientAuthorizationRequiredException;
 import org.springframework.util.StringUtils;
@@ -35,6 +34,16 @@ import java.util.stream.Stream;
 public class AadConditionalAccessFilter extends OncePerRequestFilter {
 
     /**
+     * Bearer prefix
+     */
+    private static final String BEARER_PREFIX = "Bearer "; // Whitespace at the end is necessary.
+
+    /**
+     * Conditional access policy claims
+     */
+    private static final String CONDITIONAL_ACCESS_POLICY_CLAIMS = "CONDITIONAL_ACCESS_POLICY_CLAIMS";
+
+    /**
      * Do filter.
      *
      * @param request the HttpServletRequest
@@ -61,9 +70,9 @@ public class AadConditionalAccessFilter extends OncePerRequestFilter {
                         .map(list -> list.get(0))
                         .map(this::parseAuthParameters)
                         .orElse(null);
-            if (authParameters != null && authParameters.containsKey(Constants.CONDITIONAL_ACCESS_POLICY_CLAIMS)) {
-                request.getSession().setAttribute(Constants.CONDITIONAL_ACCESS_POLICY_CLAIMS,
-                    authParameters.get(Constants.CONDITIONAL_ACCESS_POLICY_CLAIMS));
+            if (authParameters != null && authParameters.containsKey(CONDITIONAL_ACCESS_POLICY_CLAIMS)) {
+                request.getSession().setAttribute(CONDITIONAL_ACCESS_POLICY_CLAIMS,
+                    authParameters.get(CONDITIONAL_ACCESS_POLICY_CLAIMS));
                 // OAuth2AuthorizationRequestRedirectFilter will catch this exception to re-authorize.
                 throw new ClientAuthorizationRequiredException(AadClientRegistrationRepository.AZURE_CLIENT_REGISTRATION_ID);
             }
@@ -80,8 +89,8 @@ public class AadConditionalAccessFilter extends OncePerRequestFilter {
     private Map<String, String> parseAuthParameters(String wwwAuthenticateHeader) {
         return Stream.of(wwwAuthenticateHeader)
                      .filter(StringUtils::hasText)
-                     .filter(header -> header.startsWith(Constants.BEARER_PREFIX))
-                     .map(str -> str.substring(Constants.BEARER_PREFIX.length() + 1, str.length() - 1))
+                     .filter(header -> header.startsWith(BEARER_PREFIX))
+                     .map(str -> str.substring(BEARER_PREFIX.length() + 1, str.length() - 1))
                      .map(str -> str.split(", "))
                      .flatMap(Stream::of)
                      .map(parameter -> parameter.split("="))

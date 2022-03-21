@@ -22,7 +22,6 @@
       <groupId>com.azure.spring</groupId>
       <artifactId>spring-cloud-azure-starter-active-directory</artifactId>
     </dependency>
-
     <!-- spring boot starter dependencies. -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -35,6 +34,11 @@
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <!-- This application is still a Web MVC application. Including the spring-boot-starter-webflux only to use the WebClient. -->
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-webflux</artifactId>
     </dependency>
   </dependencies>
 

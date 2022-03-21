@@ -11,6 +11,8 @@ import org.springframework.security.config.annotation.method.configuration.Enabl
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
+import javax.servlet.Filter;
+
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class AadWebApplicationAndResourceServerConfig {
@@ -36,6 +38,16 @@ public class AadWebApplicationAndResourceServerConfig {
                     .antMatchers("/login").permitAll()
                     .anyRequest().authenticated();
             // @formatter:on
+        }
+
+        /**
+         * This method is only used for AAD conditional access support and can be removed if this feature is not used.
+         * {@inheritDoc}
+         * @return the conditional access filter
+         */
+        @Override
+        protected Filter conditionalAccessFilter() {
+            return new AadConditionalAccessFilter();
         }
     }
 }

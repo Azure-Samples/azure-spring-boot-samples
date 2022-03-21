@@ -34,14 +34,14 @@ You will:
 ### Clone the sample app repository 
 
 ```bash
-    git clone https://github.com/Azure-Samples/azure-spring-boot-samples
+git clone https://github.com/Azure-Samples/azure-spring-boot-samples
 ```
 
 ### Change directory and build the project
 
 ```bash
-    cd azure-spring-boot-samples/spring-petclinic-microservices
-    mvn clean package -DskipTests
+cd azure-spring-boot-samples/spring-petclinic-microservices
+mvn clean package -DskipTests
 ```
 
 This will take a few minutes.

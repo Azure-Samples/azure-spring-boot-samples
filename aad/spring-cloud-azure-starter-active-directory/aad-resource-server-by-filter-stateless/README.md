@@ -5,7 +5,7 @@
 This demo project  explains the usage of the stateless authentication filter `AadAppRoleStatelessAuthenticationFilter`.
 This project is composed of a vue.js frontend and a simple backend with three endpoints
 * `/public` (accessible by anyone)
-* `/authorized` (role "user" required)
+* `/authorized` (role "UserRule" required)
 * `/admin/demo` (role "admin" required).
 
 ## Getting started
@@ -42,11 +42,11 @@ For the test SPA provided with this example you should create the following role
       "allowedMemberTypes": [
         "User"
       ],
-      "displayName": "User",
+      "displayName": "UserRule",
       "id": "f8ed78b5-fabc-488e-968b-baa48a570001",
       "isEnabled": true,
       "description": "Normal user access",
-      "value": "User"
+      "value": "UserRule"
     }
   ],
 ```
@@ -61,7 +61,11 @@ Furthermore enable the implicit flow in the manifest for the demo application
 "oauth2AllowImplicitFlow": "true",
 ```
 
-## Examples
+## Running Sample With Terraform
+Please refer to [README.md](terraform/README.md) if you want to start the sample with Terraform in just a few steps.
+
+## Running Sample Step by Step
+
 ### Configure the sample
 
 #### Configure application.properties

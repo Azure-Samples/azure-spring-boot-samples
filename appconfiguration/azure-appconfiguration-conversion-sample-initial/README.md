@@ -30,7 +30,7 @@ This sample shows how to convert a Spring Cloud Application with Cosmos DB to be
 1. Then use the [az cosmosdb keys list](https://docs.microsoft.com/cli/azure/cosmosdb/keys?view=azure-cli-latest#az-cosmosdb-keys-list).
 
     ```azurecli
-        az cosmosdb keys list --name my-cosmos-db -g MyResourceGroup
+    az cosmosdb keys list --name my-cosmos-db -g MyResourceGroup
     ```
 
     Record the primaryMasterKey.

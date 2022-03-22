@@ -1,15 +1,8 @@
-servicebus.producers[0]:
-  entity-name: queue1
-  entity-type: queue
-  namespace: ${AZURE_SERVICEBUS_NAMESPACE_01}
-servicebus.producers[1]:
-  entity-name: queue2
-  entity-type: queue
-  namespace: ${AZURE_SERVICEBUS_NAMESPACE_02}
-servicebus.processors[0]:
-  entity-name: queue1
-  entity-type: queue
-  namespace: ${AZURE_SERVICEBUS_NAMESPACE_01}
+my.servicebus.namespaces:
+  - namespace: ${AZURE_SERVICEBUS_NAMESPACE_01}
+    entity-type: queue
+  - namespace: ${AZURE_SERVICEBUS_NAMESPACE_02}
+    entity-type: queue
 
 #reduce some noise
 logging.level:

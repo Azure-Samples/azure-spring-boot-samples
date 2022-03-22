@@ -16,6 +16,7 @@ import org.springframework.integration.dsl.Pollers;
 import org.springframework.messaging.MessageHandler;
 import org.springframework.util.concurrent.ListenableFutureCallback;
 
+import java.time.Duration;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Configuration
@@ -54,7 +55,7 @@ public class IntegrationFlowConfiguration {
 
             @Override
             public void onFailure(Throwable ex) {
-                LOGGER.info("There was an error sending the message.");
+                LOGGER.error("There was an error sending the message.", ex);
             }
         });
 
@@ -69,27 +70,35 @@ public class IntegrationFlowConfiguration {
     @Bean
     public IntegrationFlow sendFlow() {
         return IntegrationFlows.fromSupplier(integerSource()::getAndIncrement,
-                c -> c.poller(Pollers.fixedRate(100)))
-                .<Integer, Boolean>route(p -> p % 2 == 0,
-                        m -> m.subFlowMapping(true, f -> f.handle(new DefaultMessageHandler(QUEUE_NAME_1, firstServiceBusTemplate)))
-                                .subFlowMapping(false, f -> f.handle(new DefaultMessageHandler(QUEUE_NAME_2, secondServiceBusTemplate))))
+                c -> c.poller(Pollers.fixedRate(Duration.ofSeconds(10))))
+                .<Integer, Boolean>route(p -> p % 2 == 0, m
+                    -> m.subFlowMapping(true, f -> f.handle(new DefaultMessageHandler(QUEUE_NAME_1, firstServiceBusTemplate)))
+                        .subFlowMapping(false, f -> f.handle(new DefaultMessageHandler(QUEUE_NAME_2, secondServiceBusTemplate))))
                 .get();
     }
 
     @Bean
-    public IntegrationFlow transformFlow(MessageHandler messageHandler) {
-        return IntegrationFlows.from(new ServiceBusInboundChannelAdapter(firstMessageListenerContainer))
-                .handle(m -> LOGGER.info("Receive messages from the first queue: {}",  m.getPayload()))
-                .transform(i -> i + "transformed")
-                .handle(messageHandler)
-                .get();
+    public IntegrationFlow transformFlow() {
+        ServiceBusInboundChannelAdapter messageProducer = new ServiceBusInboundChannelAdapter(firstMessageListenerContainer);
+        messageProducer.setPayloadType(String.class);
+
+        return IntegrationFlows.from(messageProducer)
+                               .transform(m -> {
+                                   LOGGER.info("Receive messages from the first queue: {}",  m);
+                                   return "transformed from queue1 " + m;
+                               })
+                               .handle(messageSender())
+                               .get();
     }
 
     @Bean
     public IntegrationFlow secondListenerFlow() {
-        return IntegrationFlows.from(new ServiceBusInboundChannelAdapter(secondMessageListenerContainer))
-                .handle(m -> LOGGER.info("Receive messages from the second queue: {}", m.getPayload()))
-                .get();
+        ServiceBusInboundChannelAdapter messageProducer = new ServiceBusInboundChannelAdapter(secondMessageListenerContainer);
+        messageProducer.setPayloadType(String.class);
+
+        return IntegrationFlows.from(messageProducer)
+                               .handle(m -> LOGGER.info("Receive messages from the second queue: {}", m.getPayload()))
+                               .get();
     }
 
 }

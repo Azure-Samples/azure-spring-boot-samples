@@ -119,3 +119,9 @@ resource "azurerm_role_assignment" "role_servicebus_02_data_sender" {
   role_definition_name = "Azure Service Bus Data Sender"
   principal_id         = data.azurerm_client_config.client_config.object_id
 }
+
+resource "azurerm_role_assignment" "role_servicebus_02_data_receiver" {
+  scope                = azurerm_servicebus_queue.application_queue_02.id
+  role_definition_name = "Azure Service Bus Data Receiver"
+  principal_id         = data.azurerm_client_config.client_config.object_id
+}

@@ -10,6 +10,9 @@
       "pattern": "^http://localhost"
     },
     {
+      "pattern": "^https://www.terraform.io"
+    },
+    {
       "pattern": "^https://localhost"
     },
     {

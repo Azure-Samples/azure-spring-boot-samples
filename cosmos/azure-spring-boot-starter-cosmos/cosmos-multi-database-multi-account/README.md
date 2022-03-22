@@ -83,7 +83,7 @@ mvn spring-boot:run
 ```
 
 Verify Result:
-The corresponding data is added to the mysql database and cosmos database
+The corresponding data is added to the mysql database and cosmos database  
     ![Result in MYSQL](resource/result-in-mysql.png)
     ![Result in Primary Cosmos Database](resource/result-in-primary-cosmos-database.png)
     ![Result in Secondary Cosmos Database](resource/result-in-secondary-cosmos-database.png)

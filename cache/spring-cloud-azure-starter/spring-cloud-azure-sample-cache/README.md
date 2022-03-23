@@ -154,13 +154,13 @@ You can debug your sample by adding the saved output values to the tool's enviro
 1. Send a GET request to check, where `name` could be any string:
 
 ```shell
-$ curl -XGET http://localhost:8080/{name}
+curl -XGET http://localhost:8080/{name}
 ```
 
 2. Confirm from Azure Redis Cache console in Azure Portal:
 
 ```shell
-$ keys *
+keys *
 ```
 
 ## Clean Up Resources

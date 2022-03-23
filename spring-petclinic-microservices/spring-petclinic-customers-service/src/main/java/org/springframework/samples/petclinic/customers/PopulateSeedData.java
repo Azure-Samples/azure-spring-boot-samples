@@ -1,7 +1,6 @@
 package org.springframework.samples.petclinic.customers;
 
-import com.azure.cosmos.implementation.guava25.collect.Lists;
-import lombok.SneakyThrows;
+import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,14 +9,12 @@ import org.springframework.samples.petclinic.customers.model.OwnerRepository;
 import org.springframework.samples.petclinic.customers.model.Pet;
 import org.springframework.samples.petclinic.customers.model.PetRepository;
 import org.springframework.stereotype.Component;
-import reactor.core.publisher.Flux;
 
 import javax.annotation.PostConstruct;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Set;
 
 @Component
 public class PopulateSeedData {

@@ -15,13 +15,8 @@
  */
 package org.springframework.samples.petclinic.visits.web;
 
-import com.azure.cosmos.implementation.guava25.collect.Lists;
+import com.google.common.collect.Lists;
 import io.micrometer.core.annotation.Timed;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import javax.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.Value;
 import lombok.extern.slf4j.Slf4j;
@@ -35,6 +30,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.validation.Valid;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 
 /**
  * @author Juergen Hoeller

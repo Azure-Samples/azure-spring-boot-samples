@@ -47,8 +47,8 @@ public class SendController {
    */
   @Bean
   @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
-  public MessageHandler messageSender(EventHubsTemplate queueOperation) {
-        DefaultMessageHandler handler = new DefaultMessageHandler(EVENTHUB_NAME, queueOperation);
+  public MessageHandler messageSender(EventHubsTemplate eventHubsTemplate) {
+        DefaultMessageHandler handler = new DefaultMessageHandler(EVENTHUB_NAME, eventHubsTemplate);
         handler.setSendCallback(new ListenableFutureCallback<Void>() {
             @Override
             public void onSuccess(Void result) {

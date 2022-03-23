@@ -16,6 +16,9 @@
       "pattern": "^http://proxyserver"
     },
     {
+      "pattern": "^https://www.terraform.io"
+    },
+    {
       "pattern": "^https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca"
     }
   ],

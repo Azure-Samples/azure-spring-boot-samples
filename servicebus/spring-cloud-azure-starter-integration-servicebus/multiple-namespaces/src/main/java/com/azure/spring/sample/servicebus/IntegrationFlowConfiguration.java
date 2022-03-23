@@ -1,6 +1,5 @@
 package com.azure.spring.sample.servicebus;
 
-import com.azure.spring.cloud.service.servicebus.properties.ServiceBusEntityType;
 import com.azure.spring.integration.core.handler.DefaultMessageHandler;
 import com.azure.spring.integration.servicebus.inbound.ServiceBusInboundChannelAdapter;
 import com.azure.spring.messaging.servicebus.core.ServiceBusTemplate;
@@ -8,13 +7,13 @@ import com.azure.spring.messaging.servicebus.core.listener.ServiceBusMessageList
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.dsl.IntegrationFlow;
 import org.springframework.integration.dsl.IntegrationFlows;
 import org.springframework.integration.dsl.Pollers;
 import org.springframework.messaging.MessageHandler;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 
 import java.time.Duration;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -22,8 +21,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Configuration
 public class IntegrationFlowConfiguration {
 
-    static final String QUEUE_NAME_1 = "queue1";
-    static final String QUEUE_NAME_2 = "queue2";
+    @Value("${my.servicebus.namespaces[0].entity-name:}")
+    private String firstQueueName;
+
+    @Value("${my.servicebus.namespaces[1].entity-name:}")
+    private String secondQueueName;
+
     private static final Logger LOGGER = LoggerFactory.getLogger(IntegrationFlowConfiguration.class);
 
 
@@ -44,22 +47,29 @@ public class IntegrationFlowConfiguration {
 
 
     @Bean
-    public MessageHandler messageSender() {
-        secondServiceBusTemplate.setDefaultEntityType(ServiceBusEntityType.QUEUE);
-        DefaultMessageHandler handler = new DefaultMessageHandler(QUEUE_NAME_2, secondServiceBusTemplate);
-        handler.setSendCallback(new ListenableFutureCallback<Void>() {
-            @Override
-            public void onSuccess(Void result) {
-                LOGGER.info("Message was sent successfully for {}.", QUEUE_NAME_2);
-            }
-
-            @Override
-            public void onFailure(Throwable ex) {
-                LOGGER.error("There was an error sending the message.", ex);
-            }
-        });
-
+    public MessageHandler firstMessageHandler() {
+        DefaultMessageHandler handler = new DefaultMessageHandler(firstQueueName, firstServiceBusTemplate);
         return handler;
+    }
+
+    @Bean
+    public ServiceBusInboundChannelAdapter firstServiceBusInboundChannelAdapter() {
+        ServiceBusInboundChannelAdapter channelAdapter = new ServiceBusInboundChannelAdapter(firstMessageListenerContainer);
+        channelAdapter.setPayloadType(String.class);
+        return channelAdapter;
+    }
+
+    @Bean
+    public MessageHandler secondMessageHandler() {
+        DefaultMessageHandler handler = new DefaultMessageHandler(secondQueueName, secondServiceBusTemplate);
+        return handler;
+    }
+
+    @Bean
+    public ServiceBusInboundChannelAdapter secondServiceBusInboundChannelAdapter() {
+        ServiceBusInboundChannelAdapter channelAdapter = new ServiceBusInboundChannelAdapter(secondMessageListenerContainer);
+        channelAdapter.setPayloadType(String.class);
+        return channelAdapter;
     }
 
     @Bean
@@ -72,33 +82,27 @@ public class IntegrationFlowConfiguration {
         return IntegrationFlows.fromSupplier(integerSource()::getAndIncrement,
                 c -> c.poller(Pollers.fixedRate(Duration.ofSeconds(10))))
                 .<Integer, Boolean>route(p -> p % 2 == 0, m
-                    -> m.subFlowMapping(true, f -> f.handle(new DefaultMessageHandler(QUEUE_NAME_1, firstServiceBusTemplate)))
-                        .subFlowMapping(false, f -> f.handle(new DefaultMessageHandler(QUEUE_NAME_2, secondServiceBusTemplate))))
+                        -> m.subFlowMapping(true, f -> f.handle(firstMessageHandler()))
+                        .subFlowMapping(false, f -> f.handle(secondMessageHandler())))
                 .get();
     }
 
     @Bean
     public IntegrationFlow transformFlow() {
-        ServiceBusInboundChannelAdapter messageProducer = new ServiceBusInboundChannelAdapter(firstMessageListenerContainer);
-        messageProducer.setPayloadType(String.class);
-
-        return IntegrationFlows.from(messageProducer)
-                               .transform(m -> {
-                                   LOGGER.info("Receive messages from the first queue: {}",  m);
-                                   return "transformed from queue1 " + m;
-                               })
-                               .handle(messageSender())
-                               .get();
+        return IntegrationFlows.from(firstServiceBusInboundChannelAdapter())
+                .transform(m -> {
+                    LOGGER.info("Receive messages from the first queue: {}", m);
+                    return "transformed from queue1 " + m;
+                })
+                .handle(secondMessageHandler())
+                .get();
     }
 
     @Bean
     public IntegrationFlow secondListenerFlow() {
-        ServiceBusInboundChannelAdapter messageProducer = new ServiceBusInboundChannelAdapter(secondMessageListenerContainer);
-        messageProducer.setPayloadType(String.class);
-
-        return IntegrationFlows.from(messageProducer)
-                               .handle(m -> LOGGER.info("Receive messages from the second queue: {}", m.getPayload()))
-                               .get();
+        return IntegrationFlows.from(secondServiceBusInboundChannelAdapter())
+                .handle(m -> LOGGER.info("Receive messages from the second queue: {}", m.getPayload()))
+                .get();
     }
 
 }

@@ -12,9 +12,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-import static com.azure.spring.sample.servicebus.IntegrationFlowConfiguration.QUEUE_NAME_1;
-import static com.azure.spring.sample.servicebus.IntegrationFlowConfiguration.QUEUE_NAME_2;
-
 @Configuration
 @EnableConfigurationProperties(CustomizedServiceBusProperties.class)
 public class MultipleAzureServiceBusNamespacesConfiguration {
@@ -37,7 +34,7 @@ public class MultipleAzureServiceBusNamespacesConfiguration {
     public ServiceBusMessageListenerContainer firstMessageListenerContainer() {
         ServiceBusProcessorFactory processorFactory = new DefaultServiceBusNamespaceProcessorFactory(firstNamespaceProperties);
         ServiceBusContainerProperties containerProperties = new ServiceBusContainerProperties();
-        containerProperties.setEntityName(QUEUE_NAME_1);
+        containerProperties.setEntityName(firstNamespaceProperties.getEntityName());
         containerProperties.setPrefetchCount(10);
         return new ServiceBusMessageListenerContainer(processorFactory, containerProperties);
     }
@@ -52,7 +49,7 @@ public class MultipleAzureServiceBusNamespacesConfiguration {
     public ServiceBusMessageListenerContainer secondMessageListenerContainer() {
         ServiceBusProcessorFactory processorFactory = new DefaultServiceBusNamespaceProcessorFactory(secondNamespaceProperties);
         ServiceBusContainerProperties containerProperties = new ServiceBusContainerProperties();
-        containerProperties.setEntityName(QUEUE_NAME_2);
+        containerProperties.setEntityName(secondNamespaceProperties.getEntityName());
         containerProperties.setPrefetchCount(10);
         return new ServiceBusMessageListenerContainer(processorFactory, containerProperties);
     }

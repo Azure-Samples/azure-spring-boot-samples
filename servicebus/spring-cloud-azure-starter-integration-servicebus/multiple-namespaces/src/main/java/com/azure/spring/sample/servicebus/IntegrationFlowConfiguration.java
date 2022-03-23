@@ -48,8 +48,7 @@ public class IntegrationFlowConfiguration {
 
     @Bean
     public MessageHandler firstMessageHandler() {
-        DefaultMessageHandler handler = new DefaultMessageHandler(firstQueueName, firstServiceBusTemplate);
-        return handler;
+        return new DefaultMessageHandler(firstQueueName, firstServiceBusTemplate);
     }
 
     @Bean
@@ -61,8 +60,7 @@ public class IntegrationFlowConfiguration {
 
     @Bean
     public MessageHandler secondMessageHandler() {
-        DefaultMessageHandler handler = new DefaultMessageHandler(secondQueueName, secondServiceBusTemplate);
-        return handler;
+        return new DefaultMessageHandler(secondQueueName, secondServiceBusTemplate);
     }
 
     @Bean
@@ -92,7 +90,7 @@ public class IntegrationFlowConfiguration {
         return IntegrationFlows.from(firstServiceBusInboundChannelAdapter())
                 .transform(m -> {
                     LOGGER.info("Receive messages from the first queue: {}", m);
-                    return "transformed from queue1 " + m;
+                    return "transformed from queue1, " + m;
                 })
                 .handle(secondMessageHandler())
                 .get();

@@ -53,5 +53,4 @@ public class MultipleAzureServiceBusNamespacesConfiguration {
         containerProperties.setPrefetchCount(10);
         return new ServiceBusMessageListenerContainer(processorFactory, containerProperties);
     }
-
 }

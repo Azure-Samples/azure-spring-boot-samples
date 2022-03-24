@@ -33,6 +33,6 @@ public class ReceiveService {
         checkpointer.success()
                 .doOnSuccess(s -> LOGGER.info("Message '{}' successfully checkpointed", message))
                 .doOnError(e -> LOGGER.error("Error found", e))
-                .subscribe();
+                .block();
     }
 }

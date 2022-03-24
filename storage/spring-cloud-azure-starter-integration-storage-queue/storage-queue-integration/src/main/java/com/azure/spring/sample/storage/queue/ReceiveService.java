@@ -46,7 +46,7 @@ public class ReceiveService {
         checkpointer.success()
             .doOnError(Throwable::printStackTrace)
             .doOnSuccess(t -> LOGGER.info("Message '{}' successfully checkpointed", message))
-            .subscribe();
+            .block();
 
     }
 }

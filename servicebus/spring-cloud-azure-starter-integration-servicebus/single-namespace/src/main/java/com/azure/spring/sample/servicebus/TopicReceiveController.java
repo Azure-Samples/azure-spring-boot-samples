@@ -38,7 +38,7 @@ public class TopicReceiveController {
         checkpointer.success()
                 .doOnSuccess(s -> LOGGER.info("Message '{}' successfully checkpointed", message))
                 .doOnError(e -> LOGGER.error("Error found", e))
-                .subscribe();
+                .block();
     }
 
     @Bean("topic-listener-container")

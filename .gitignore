@@ -228,6 +228,7 @@ ClientBin/
 *.dbproj.schemaview
 *.jfm
 *.pfx
+!/aad/spring-security/servlet/oauth2/login-authenticate-using-private-key-jwt/src/test/resources/encrypted-private-key-and-certificate.pfx
 *.publishsettings
 orleans.codegen.cs
 

@@ -52,7 +52,7 @@ public class WebController {
         checkpointer.success()
                     .doOnSuccess(Void -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
                     .doOnError(e -> LOGGER.error("Fail to checkpoint the message", e))
-                    .subscribe();
+                    .block();
 
         return (String) message.getPayload();
     }

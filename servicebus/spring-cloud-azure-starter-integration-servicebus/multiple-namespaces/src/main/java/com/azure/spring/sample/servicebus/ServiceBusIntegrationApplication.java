@@ -11,9 +11,7 @@ import org.springframework.integration.config.EnableIntegration;
 @EnableIntegration
 public class ServiceBusIntegrationApplication {
 
-
     public static void main(String[] args) {
         SpringApplication.run(ServiceBusIntegrationApplication.class, args);
     }
-
 }

@@ -11,7 +11,9 @@ spring:
       keyvault:
         secret:
           property-source-enabled: true
-          endpoint: ${AZURE_KEYVAULT_URI}
+          property-sources:
+            - name: ${AZURE_KEYVAULT_ACCOUNT_NAME}
+              endpoint: ${AZURE_KEYVAULT_URI}
       cosmos:
         database: end2endsample
         endpoint: ${cosmosdburi}

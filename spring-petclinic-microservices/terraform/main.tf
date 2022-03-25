@@ -65,10 +65,6 @@ resource "azurerm_cosmosdb_account" "application" {
 data "azurerm_client_config" "current" {
 }
 
-data "azuread_client_config" "current" {
-}
-
-
 // ===========azurerm_redis_name===========
 resource "azurecaf_name" "redis" {
   name          = var.application_name
@@ -98,7 +94,7 @@ resource "random_string" "service_principal_name" {
 }
 resource "azuread_application" "azure_key_vault_service_principal" {
   display_name = "pet_clinic_${random_string.service_principal_name.result}"
-  owners       = [data.azuread_client_config.current.object_id]
+  owners       = [data.azurerm_client_config.current.object_id]
 }
 resource "azuread_application_password" "azure_key_vault_service_principal" {
   application_object_id = azuread_application.azure_key_vault_service_principal.object_id
@@ -106,9 +102,8 @@ resource "azuread_application_password" "azure_key_vault_service_principal" {
 resource "azuread_service_principal" "azure_key_vault_service_principal" {
   application_id               = azuread_application.azure_key_vault_service_principal.application_id
   app_role_assignment_required = false
-  owners                       = [data.azuread_client_config.current.object_id]
+  owners                       = [data.azurerm_client_config.current.object_id]
 }
-
 
 // ===========azurerm_key_vault===========
 resource "azurecaf_name" "kv" {
@@ -131,11 +126,27 @@ resource "azurerm_key_vault" "kv_account" {
 
   access_policy {
     tenant_id = data.azurerm_client_config.current.tenant_id
+    object_id = data.azurerm_client_config.current.object_id
+
+    secret_permissions = [
+      "Get",
+      "List",
+      "Set",
+      "Purge",
+      "Delete"
+    ]
+  }
+
+  access_policy {
+    tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = azuread_service_principal.azure_key_vault_service_principal.object_id
 
     secret_permissions = [
       "Get",
-      "List"
+      "List",
+      "Set",
+      "Purge",
+      "Delete"
     ]
   }
 
@@ -143,12 +154,6 @@ resource "azurerm_key_vault" "kv_account" {
     "terraform"                 = "true"
     "spring-cloud-azure-sample" = var.sample_tag_value
   }
-}
-
-resource "azurerm_role_assignment" "azure_keyvault_assignment_sp_contributor" {
-  scope                = azurerm_key_vault.kv_account.id
-  role_definition_name = "Contributor"
-  principal_id         = azuread_service_principal.azure_key_vault_service_principal.object_id
 }
 
 resource "azurerm_key_vault_secret" "key_vault_secret_cosmosdb_uri" {

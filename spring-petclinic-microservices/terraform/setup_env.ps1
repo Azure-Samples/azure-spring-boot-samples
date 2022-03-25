@@ -6,7 +6,7 @@ $env:REDIS_NAME=$(terraform -chdir=terraform output -raw redis_name)
 $env:REDIS_HOSTNAME=$(terraform -chdir=terraform output -raw redis_hostname)
 $env:REDIS_PASSWORD=$(terraform -chdir=terraform output -raw redis_password)
 $env:AZURE_KEYVAULT_URI=$(terraform -chdir=terraform output -raw keyvault_url)
-$env:KEYVAULT_NAME=$(terraform -chdir=terraform output -raw azurerm_key_vault_account)
+$env:AZURE_KEYVAULT_ACCOUNT_NAME=$(terraform -chdir=terraform output -raw azurerm_key_vault_account)
 $env:APP_NAME_FOR_KEYVAULT=$(terraform -chdir=terraform output -raw service_principal_name)
 $env:AZURE_KEYVAULT_CLIENTID=$(terraform -chdir=terraform output -raw azure_key_vault_service_principal_client_id)
 $env:AZURE_KEYVAULT_TENANTID=$(terraform -chdir=terraform output -raw azure_key_vault_tenant_id)
@@ -18,7 +18,7 @@ echo LOCATION=$env:LOCATION
 echo REDIS_NAME=$env:REDIS_NAME
 echo REDIS_HOSTNAME=$env:REDIS_HOSTNAME
 echo AZURE_KEYVAULT_URI=$env:AZURE_KEYVAULT_URI
-echo KEYVAULT_NAME=$env:KEYVAULT_NAME
+echo AZURE_KEYVAULT_ACCOUNT_NAME=$env:AZURE_KEYVAULT_ACCOUNT_NAME
 echo APP_NAME_FOR_KEYVAULT=$env:APP_NAME_FOR_KEYVAULT
 echo AZURE_KEYVAULT_CLIENTID=$env:AZURE_KEYVAULT_CLIENTID
 echo AZURE_KEYVAULT_TENANTID=$env:AZURE_KEYVAULT_TENANTID
@@ -29,6 +29,6 @@ AZURE_KEYVAULT_URI=$env:AZURE_KEYVAULT_URI
 AZURE_KEYVAULT_CLIENTID=$env:AZURE_KEYVAULT_CLIENTID
 AZURE_KEYVAULT_TENANTID=$env:AZURE_KEYVAULT_TENANTID
 AZURE_KEYVAULT_CLIENTKEY=$env:AZURE_KEYVAULT_CLIENTKEY
-AZURE_KEYVAULT_ACCOUNT_NAME=$env:KEYVAULT_ACCOUNT_NAME
+AZURE_KEYVAULT_ACCOUNT_NAME=$env:AZURE_KEYVAULT_ACCOUNT_NAME
 "@ > keyvault.env
 echo "environment configuration complete"

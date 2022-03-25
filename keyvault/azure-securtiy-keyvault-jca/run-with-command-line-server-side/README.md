@@ -15,7 +15,7 @@ jdk 11.0.12 or above
 1. Get a copy of the JCA configuration file.
    - Linux: <java-home>/lib/security/java.security
    - MacOS Big Sur: <java-home>/conf/security/java.security
-   - Windows: <java-home>\lib\security\java.security 
+   - Windows: <java-home>\conf\security\java.security 
 1. Edit your copy of the JCA configuration file. Replace the provider section with: 
    ```
    security.provider.1=SUN

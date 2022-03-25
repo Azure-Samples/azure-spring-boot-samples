@@ -57,7 +57,7 @@ output "service_principal_name" {
   description = "The service principal name created."
 }
 output "azure_key_vault_service_principal_client_id" {
-  value = azuread_service_principal.azure_key_vault_service_principal.object_id
+  value = azuread_application.azure_key_vault_service_principal.application_id
   sensitive = true
   description = "The client id of the key vault service principal."
 }

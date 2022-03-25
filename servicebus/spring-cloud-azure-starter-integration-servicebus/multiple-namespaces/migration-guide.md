@@ -38,22 +38,91 @@ Legacy properties  | Modern properties | Comment
 servicebus.producers[0].entity-name | my.servicebus.namespaces[0].entity-name | The name of queue1 in namespace1.
 servicebus.producers[0].entity-type | my.servicebus.namespaces[0].entity-type | The entity type of queue1, should be set as `queue`.
 servicebus.producers[0].namespace | my.servicebus.namespaces[0].namespace | The name of namespace1.
+servicebus.producers[0].connection-string | my.servicebus.namespaces[0].connection-string | The connection string of namespace1.
 servicebus.producers[0].credential.client-id | my.servicebus.namespaces[0].credential.client-id | The client id of the security principal to connect to queue1.
 servicebus.producers[0].credential.client-secret | my.servicebus.namespaces[0].credential.client-secret | The client secret of the security principal to connect to queue1.
-servicebus.producers[0].profile.tenant-id | my.servicebus.namespaces[0].profile.tenant-id |  The tenant id of the security principal to connect to queue1.
+servicebus.producers[0].profile.tenant-id | my.servicebus.namespaces[0].profile.tenant-id | The tenant id of the security principal to connect to queue1.
+servicebus.producers[0].profile.managed-identity-client-id | my.servicebus.namespaces[0].credential.client-id | The client id of the managed identity to connect to queue1, only needed when using a user-assigned managed identity.
+N/A | my.servicebus.namespaces[0].credential.managed-identity-enabled | Whether to enable using the managed identity for authentication.
 servicebus.producers[1].entity-name | my.servicebus.namespaces[1].entity-name | The name of queue2 in namespace2.
 servicebus.producers[1].entity-type | my.servicebus.namespaces[1].entity-type | The entity type of queue2, should be set as `queue`.
 servicebus.producers[1].namespace | my.servicebus.namespaces[1].namespace | The name of namespace2.
+servicebus.producers[1].connection-string | my.servicebus.namespaces[1].connection-string | The connection string of namespace2.
 servicebus.producers[1].credential.client-id | my.servicebus.namespaces[1].credential.client-id | The client id of the security principal to connect to queue2.
 servicebus.producers[1].credential.client-secret | my.servicebus.namespaces[1].credential.client-secret | The client secret of the security principal to connect to queue2.
-servicebus.producers[1].profile.tenant-id | my.servicebus.namespaces[1].profile.tenant-id |  The tenant id of the security principal to connect to queue2.
+servicebus.producers[1].profile.tenant-id | my.servicebus.namespaces[1].profile.tenant-id | The tenant id of the security principal to connect to queue2.
+servicebus.producers[1].profile.managed-identity-client-id | my.servicebus.namespaces[1].credential.client-id | The client id of the managed identity to connect to queue2, only needed when using a user-assigned managed identity.
+N/A | my.servicebus.namespaces[1].credential.managed-identity-enabled | Whether to enable using the managed identity for authentication.
 servicebus.processors[0].entity-name  | my.servicebus.namespaces[0].entity-name | The name of queue1 in namespace1. Can be neglected since configured in the above properties.
 servicebus.processors[0].entity-type | my.servicebus.namespaces[0].entity-type | The entity type of queue1, should be set as `queue`. Can be neglected since configured in the above properties.
 servicebus.processors[0].namespace | my.servicebus.namespaces[0].namespace | The name of namespace1. Can be neglected since configured in the above properties.
+servicebus.processors[0].connection-string | my.servicebus.namespaces[0].connection-string | The connection string of namespace1. Can be neglected since configured in the above properties.
 servicebus.processors[0].credential.client-id | my.servicebus.namespaces[0].credential.client-id | The client id of the security principal to connect to queue1. Can be neglected since configured in the above properties.
 servicebus.processors[0].credential.client-secret | my.servicebus.namespaces[0].credential.client-secret | The client secret of the security principal to connect to queue1. Can be neglected since configured in the above properties.
-servicebus.processors[0].profile.tenant-id | my.servicebus.namespaces[0].profile.tenant-id |  The tenant id of the security principal to connect to queue1. Can be neglected since configured in the above properties.
+servicebus.processors[0].profile.tenant-id | my.servicebus.namespaces[0].profile.tenant-id | The tenant id of the security principal to connect to queue1. Can be neglected since configured in the above properties.
+servicebus.processors[0].profile.managed-identity-client-id | my.servicebus.namespaces[0].credential.client-id | The client id of the managed identity to connect to queue1, only needed when using a user-assigned managed identity. Can be neglected since configured in the above properties
+N/A | my.servicebus.namespaces[0].credential.managed-identity-enabled | Whether to enable using the managed identity for authentication. Can be neglected since configured in the above properties
 
+### Configuration migration based on the usage of connection strings
+
+When using connection string to connect to Azure Service Bus, the configuration should be changed to 
+
+```yaml
+my.servicebus.namespaces[0]:
+  connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_01}
+  entity-type: queue
+  entity-name: ${AZURE_SERVICEBUS_NAMESPACE_01_QUEUE_NAME}
+my.servicebus.namespaces[1]:
+  connection-string: ${AZURE_SERVICEBUS_CONNECTION_STRING_02}
+  entity-type: queue
+  entity-name: ${AZURE_SERVICEBUS_NAMESPACE_02_QUEUE_NAME}
+```
+
+### Configuration migration based on the usage of service principals
+
+When using service principals to connect to Azure Service Bus, the configuration should be changed to 
+
+```yaml
+my.servicebus.namespaces[0]:
+  namespace: ${AZURE_SERVICEBUS_NAMESPACE_01}
+  credential:
+    client-id: ${AZURE_CLIENT_ID_01}
+    client-secret: ${AZURE_CLIENT_SECRET_01}
+  profile:
+    tenant-id: ${AZURE_TENANT_ID_01}
+  entity-type: queue
+  entity-name: ${AZURE_SERVICEBUS_NAMESPACE_01_QUEUE_NAME}
+my.servicebus.namespaces[1]:
+  namespace: ${AZURE_SERVICEBUS_NAMESPACE_02}
+  credential:
+    client-id: ${AZURE_CLIENT_ID_02}
+    client-secret: ${AZURE_CLIENT_SECRET_02}
+  profile:
+    tenant-id: ${AZURE_TENANT_ID_02}
+  entity-type: queue
+  entity-name: ${AZURE_SERVICEBUS_NAMESPACE_02_QUEUE_NAME}
+```
+
+### Configuration migration based on the usage of managed identities
+
+When using managed identities to connect to Azure Service Bus, the configuration should be changed to 
+
+```yaml
+my.servicebus.namespaces[0]:
+  namespace: ${AZURE_SERVICEBUS_NAMESPACE_01}
+  credential:
+    client-id: ${AZURE_CLIENT_ID_01}
+    managed-identity-enabled: true
+  entity-type: queue
+  entity-name: ${AZURE_SERVICEBUS_NAMESPACE_01_QUEUE_NAME}
+my.servicebus.namespaces[1]:
+  namespace: ${AZURE_SERVICEBUS_NAMESPACE_02}
+  credential:
+    client-id: ${AZURE_CLIENT_ID_02}
+    managed-identity-enabled: true
+  entity-type: queue
+  entity-name: ${AZURE_SERVICEBUS_NAMESPACE_02_QUEUE_NAME}
+```
 ## Code changes
 
 This section introduces how to migrate the code of legacy samples.

@@ -1,11 +1,12 @@
-# Using Spring Integration for Azure Service Bus With Multiple Destinations 
+# Using Spring Integration to Interact with Multiple Azure Service Bus Namespaces 
 
-This code sample demonstrates how to use Spring Integration for Azure Service Bus with multiple destinations. 
+This code sample demonstrates how to use Spring Integration to interact with multiple Azure Service Bus namespaces. 
 
 ## What You Will Build
 
-
-You will build an application that using Spring Integration for Azure Service Bus to send and receive messages from one queue in one Service Bus namespace and then forward them to another queue in another Service Bus namespace.
+You will build an application that using Spring Integration for Azure Service Bus to send and receive messages with two Service Bus namespaces.
+This sample will send messages to two queues in two different Azure Service Bus namespaces and then receive the messages.
+In addition, this sample will forward all messages received from the first queue to the second queue.
 
 ## What You Need
 
@@ -154,12 +155,11 @@ You can debug your sample by adding the saved output values to the tool's enviro
 
 Verify in your app’s logs that similar messages were posted:
 ```shell
-Message was sent successfully for queue1.
+Receive messages from the first queue: 1
+Receive messages from the second queue: 2
 ...
-New message received: 'hello'
-Message 'hello' successfully checkpointed
+Receive messages from the second queue: transformed from queue1, 1
 ...
-Message was sent successfully for queue2.
 ```
 
 

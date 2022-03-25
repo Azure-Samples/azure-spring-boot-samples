@@ -187,13 +187,13 @@ To destroy the resources you created.
 ### Run with Bash
 
 ```shell
-az group delete --name $(terraform -chdir=./terraform output -raw resource_group_name)
+az group delete --name $(terraform -chdir=./terraform output -raw resource_group_name) --yes
 ```
 
 ### Run with Powershell
 
 ```shell
-az group delete --name $(terraform -chdir=terraform output -raw resource_group_name)
+az group delete --name $(terraform -chdir=terraform output -raw resource_group_name) --yes
 ```
 
 ## Understanding the Spring Petclinic application

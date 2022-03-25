@@ -1,9 +1,6 @@
 package org.springframework.samples.petclinic.vets;
 
-import com.azure.cosmos.implementation.guava25.collect.Lists;
-import java.text.ParseException;
-import java.util.HashSet;
-import javax.annotation.PostConstruct;
+import com.google.common.collect.Lists;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +8,10 @@ import org.springframework.samples.petclinic.vets.model.Specialty;
 import org.springframework.samples.petclinic.vets.model.Vet;
 import org.springframework.samples.petclinic.vets.model.VetRepository;
 import org.springframework.stereotype.Component;
+
+import javax.annotation.PostConstruct;
+import java.text.ParseException;
+import java.util.HashSet;
 
 @Component
 public class PopulateSeedData {

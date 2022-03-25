@@ -9,7 +9,7 @@ builds an application that interacts with two queues in two different Azure Serv
 The legacy sample sends messages to queue1 and listens to queue1 to receive the messages back. In addition, it forwards the messages received from queue1 to queue2.
 
 The modern sample with `com.azure.spring:spring-cloud-azure-starter-integration-servicebus:4.0.0` still interacts with two queues in two different Azure Service Bus namespaces, calling them as queue1 in namespace1 and queue2 in namespace2.
-However, it changes the functionalities of the messaging application. It now creates a data source to send messages to queue1 and queue2 separately, and listens to both queue1 and queue2 to receive messages from them.
+However, it changes the functionalities of the messaging application. It now creates a source to send messages to queue1 and queue2 separately, and listens to both queue1 and queue2 to receive messages from them.
 Meanwhile, messages received from queue1 will be forwarded to queue2, which means will be received from queue2 again.
 
 ## Role assignment changes
@@ -26,7 +26,7 @@ In the modern sample, the required roles are
 1. [Azure Service Bus Data Sender](https://docs.microsoft.com/azure/role-based-access-control/built-in-roles#azure-service-bus-data-sender) of queue2
 
 ## Configuration changes
-The modern sample refactors and simplifies the customized configuration, which changes the property prefix to `my.servicebus.namespace.` from `servicebus.producers[x]` or `servicebus.processors[x]`.
+The modern sample refactors and simplifies the customized configuration, which changes the property prefix to `my.servicebus.namespaces[x].` from `servicebus.producers[x].` or `servicebus.processors[x].`.
 In the modern sample, there is no need to distinguish the properties to be set is for a producer or processor when using the same destination.
 This is due to only namespace related properties can be configured now. The processor related properties are moved from the application properties to `ServiceBusContainerProperties.java`,
 which will be introduced in the [code changes](#code-changes) section.

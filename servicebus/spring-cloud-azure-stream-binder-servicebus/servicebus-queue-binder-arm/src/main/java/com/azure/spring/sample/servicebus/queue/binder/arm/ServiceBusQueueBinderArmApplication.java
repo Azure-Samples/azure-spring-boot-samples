@@ -32,7 +32,7 @@ public class ServiceBusQueueBinderArmApplication {
             checkpointer.success()
                         .doOnSuccess(s -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
                         .doOnError(e -> LOGGER.error("Error found", e))
-                        .subscribe();
+                        .block();
         };
     }
 }

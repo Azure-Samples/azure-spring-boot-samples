@@ -102,5 +102,4 @@ public class IntegrationFlowConfiguration {
                 .handle(m -> LOGGER.info("Receive messages from the second queue: {}", m.getPayload()))
                 .get();
     }
-
 }

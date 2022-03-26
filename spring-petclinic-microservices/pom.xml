@@ -30,7 +30,7 @@
     <assertj.version>3.11.1</assertj.version>
 
     <spring-boot.version>2.3.4.RELEASE</spring-boot.version>
-    <spring-cloud.version>Hoxton.SR8</spring-cloud.version>
+    <spring-cloud.version>2021.0.1</spring-cloud.version>
 
     <maven-surefire-plugin.version>2.22.0</maven-surefire-plugin.version>
 

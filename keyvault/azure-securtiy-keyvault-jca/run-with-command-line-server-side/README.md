@@ -81,6 +81,6 @@ jdk 11.0.12 or above
 
 <!-- LINKS -->
 [azure-security-keyvault-jca]: https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca
-[create_key_vault_and_certificates]: https://docs.microsoft.com/en-us/azure/key-vault/certificates/quick-create-portal
+[create_key_vault_and_certificates]: https://docs.microsoft.com/azure/key-vault/certificates/quick-create-portal
 [register_app_with_AAD]: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app
 [client sample]: ../run-with-command-line-client-side/README.md

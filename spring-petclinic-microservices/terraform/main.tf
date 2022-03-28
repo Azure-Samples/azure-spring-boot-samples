@@ -62,7 +62,47 @@ resource "azurerm_cosmosdb_account" "application" {
   }
 }
 
-data "azurerm_client_config" "current" {
+data "azuread_client_config" "current" {
+}
+
+// ===========azurerm_redis_name===========
+resource "azurecaf_name" "redis" {
+  name          = var.application_name
+  resource_type = "azurerm_redis_cache"
+  random_length = 5
+  clean_input   = true
+}
+resource "azurerm_redis_cache" "redis" {
+  name                = azurecaf_name.redis.result
+  location            = var.location
+  resource_group_name = azurerm_resource_group.main.name
+  capacity            = 0
+  family              = "C"
+  sku_name            = "Basic"
+  enable_non_ssl_port = false
+  minimum_tls_version = "1.2"
+
+  redis_configuration {
+  }
+}
+
+// ===========service_principal_name===========
+resource "random_string" "service_principal_name" {
+  length = 5
+  min_lower = 5
+  special = false
+}
+resource "azuread_application" "azure_key_vault_service_principal" {
+  display_name = "pet_clinic_${random_string.service_principal_name.result}"
+  owners       = [data.azuread_client_config.current.object_id]
+}
+resource "azuread_application_password" "azure_key_vault_service_principal" {
+  application_object_id = azuread_application.azure_key_vault_service_principal.object_id
+}
+resource "azuread_service_principal" "azure_key_vault_service_principal" {
+  application_id               = azuread_application.azure_key_vault_service_principal.application_id
+  app_role_assignment_required = false
+  owners                       = [data.azuread_client_config.current.object_id]
 }
 
 // ===========azurerm_key_vault===========
@@ -78,15 +118,28 @@ resource "azurerm_key_vault" "kv_account" {
   location                    = azurerm_resource_group.main.location
   resource_group_name         = azurerm_resource_group.main.name
   enabled_for_disk_encryption = true
-  tenant_id                   = data.azurerm_client_config.current.tenant_id
+  tenant_id                   = data.azuread_client_config.current.tenant_id
   soft_delete_retention_days  = 7
   purge_protection_enabled    = false
 
   sku_name = "standard"
 
   access_policy {
-    tenant_id = data.azurerm_client_config.current.tenant_id
-    object_id = data.azurerm_client_config.current.object_id
+    tenant_id = data.azuread_client_config.current.tenant_id
+    object_id = data.azuread_client_config.current.object_id
+
+    secret_permissions = [
+      "Get",
+      "List",
+      "Set",
+      "Purge",
+      "Delete"
+    ]
+  }
+
+  access_policy {
+    tenant_id = data.azuread_client_config.current.tenant_id
+    object_id = azuread_service_principal.azure_key_vault_service_principal.object_id
 
     secret_permissions = [
       "Get",
@@ -103,18 +156,23 @@ resource "azurerm_key_vault" "kv_account" {
   }
 }
 
-// ===========azurerm_redis_name===========
-resource "azurecaf_name" "redis" {
-  name          = var.application_name
-  resource_type = "azurerm_redis_cache"
-  random_length = 5
-  clean_input   = true
+resource "azurerm_key_vault_secret" "key_vault_secret_cosmosdb_uri" {
+  name         = "cosmosdburi"
+  value        = azurerm_cosmosdb_account.application.endpoint
+  key_vault_id = azurerm_key_vault.kv_account.id
 }
-
-// ===========service_principal_name===========
-resource "azurecaf_name" "service-principal" {
-  name          = var.application_name
-  resource_type = "azurerm_app_configuration"
-  random_length = 5
-  clean_input   = true
+resource "azurerm_key_vault_secret" "key_vault_secret_primary_key" {
+  name         = "cosmosdbkey"
+  value        = azurerm_cosmosdb_account.application.primary_key
+  key_vault_id = azurerm_key_vault.kv_account.id
+}
+resource "azurerm_key_vault_secret" "key_vault_secret_redis_uri" {
+  name         = "redisuri"
+  value        = azurerm_redis_cache.redis.hostname
+  key_vault_id = azurerm_key_vault.kv_account.id
+}
+resource "azurerm_key_vault_secret" "key_vault_secret_redis_password" {
+  name         = "redispassword"
+  value        = azurerm_redis_cache.redis.primary_access_key
+  key_vault_id = azurerm_key_vault.kv_account.id
 }

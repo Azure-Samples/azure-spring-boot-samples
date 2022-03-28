@@ -97,44 +97,27 @@ spring:
   cloud:
     azure:
       active-directory:
-        enabled: true
-        credential:
-          client-id: ${AZURE_CLIENT_ID}
-          client-secret: ${AZURE_CLIENT_SECRET}
-        profile:
-          tenant-id: ${AZURE_TENANT_ID}
-        redirect-uri-template: http://localhost:8080/
-        # groups that you created in your Azure AD tenant
-        user-group:
-          allowed-group-names: group1,group2
-        # Optional, the default value is 
-        # environment: global  
+      enabled: true
+      credential:
+        client-id: ${AZURE_CLIENT_ID}
+        client-secret: ${AZURE_CLIENT_SECRET}
+      profile:
+        tenant-id: ${AZURE_TENANT_ID}
+      user-group:
+        allowed-group-names: group1,group2
+      redirect-uri-template: http://localhost:8080/
+      jwt-connect-timeout: 5000
 ```
 
-
-
-1. If your azure account follows format xxx@xxx.partner.onmschina.cn, configure property `environment: cn` to use [Azure China][azure-china], the default value is `global`.
-
-2. Put Application ID and client-secret in `client-id` and `client-secret` respectively e.g.
+1. Put Application ID and client-secret in `client-id` and `client-secret` respectively e.g.
 ```properties
 tenant-id: xxxxxx-your-client-id-xxxxxx
 client-id: xxxxxx-your-client-secret-xxxxxx
 ```
 
-3. List all the AAD groups `ActiveDirectoryGroups` that you want to have a Spring Security role object mapping to it. The role objects can then be used to manage access to resources that is behind Spring Security. e.g.
-```properties
-# groups that you created in your Azure AD tenant
-allowed-group-names: group1,group2
-```
-
-4. (Optional) If you want to configure oauth2 redirect uri, please configure by :
-```properties
-redirectUriTemplate: xxxxxx-your-redirect-uri-xxxxxx
-```
-
 ---
- ### Step 4: Change Role_group1 to your group
-1. You can use `@PreAuthorize` annotation or `UserPrincipal` to manage access to web API based on user's group membership. You will need to change `ROLE_group1` to groups you want to allow to access the API in `TodoListController.java` or you will get "Access is denied".
+ ### Step 4: Create Role_group1 to your group
+1. In the left-hand navigation pane, select **Groups**, and then select **New group** to create a new group named `ROLE_group1`, choose your tenant as **Owners** and Spring Boot Sample as **Members**.
    
 ---
 
@@ -142,7 +125,7 @@ redirectUriTemplate: xxxxxx-your-redirect-uri-xxxxxx
 
 * Run with Maven 
  ```
- cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter
+ cd azure-spring-boot-samples/aad/spring-cloud-azure-starter-active-directory\aad-resource-server-by-filter
  mvn spring-boot:run
  ```
 

@@ -35,7 +35,7 @@ public class ServiceBusQueueMultiBindersApplication {
             checkpointer.success()
                     .doOnSuccess(s -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
                     .doOnError(e -> LOGGER.error("Error found", e))
-                    .subscribe();
+                    .block();
         };
     }
 
@@ -47,7 +47,7 @@ public class ServiceBusQueueMultiBindersApplication {
             checkpointer.success()
                     .doOnSuccess(s -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
                     .doOnError(e -> LOGGER.error("Error found", e))
-                    .subscribe();
+                    .block();
         };
 
     }

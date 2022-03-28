@@ -120,7 +120,7 @@ source ./terraform/setup_env.sh
 #### Run with Powershell
 
 ```shell
- . terraform\setup_env.ps1
+. terraform\setup_env.ps1
 ```
 
 If you want to run the sample in debug mode, you can save the output value.

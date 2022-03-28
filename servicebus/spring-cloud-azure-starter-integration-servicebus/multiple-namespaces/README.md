@@ -106,6 +106,8 @@ Outputs:
 
 AZURE_SERVICEBUS_NAMESPACE_01 = "${YOUR_SERVICEBUS_NAMESPACE_01}"
 AZURE_SERVICEBUS_NAMESPACE_02 = "${YOUR_SERVICEBUS_NAMESPACE_02}"
+AZURE_SERVICEBUS_NAMESPACE_01_QUEUE_NAME = "${YOUR_AZURE_SERVICEBUS_NAMESPACE_01_QUEUE_NAME}"
+AZURE_SERVICEBUS_NAMESPACE_02_QUEUE_NAME = "${YOUR_AZURE_SERVICEBUS_NAMESPACE_02_QUEUE_NAME}"
 ```
 
 You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
@@ -122,7 +124,7 @@ source ./terraform/setup_env.sh
 #### Run with Powershell
 
 ```shell
- . terraform\setup_env.ps1
+. terraform\setup_env.ps1
 ```
 
 If you want to run the sample in debug mode, you can save the output value.
@@ -130,6 +132,8 @@ If you want to run the sample in debug mode, you can save the output value.
 ```shell
 AZURE_SERVICEBUS_NAMESPACE_01=...
 AZURE_SERVICEBUS_NAMESPACE_02=...
+AZURE_SERVICEBUS_NAMESPACE_01_QUEUE_NAME=...
+AZURE_SERVICEBUS_NAMESPACE_02_QUEUE_NAME=...
 ```
 
 ## Run Locally

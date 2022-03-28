@@ -1,46 +1,34 @@
-$result=Test-Path -path "jq";
-if($result -eq $False){
-echo 'jq is not installed.'
-}
-$AZURE_KEYVAULT_URI=$(terraform -chdir=terraform output -raw keyvault_url)
-$RESOURCE_GROUP=$(terraform -chdir=terraform output -raw resource_group_name)
-$KEYVAULT_NAME=$(terraform -chdir=terraform output -raw azurerm_key_vault_account)
-$COSMOSDB_URI=$(terraform -chdir=terraform output -raw azure_cosmos_endpoint)
-$COSMOS_PRIMARY_KEY=$(terraform -chdir=terraform output -raw azure_cosmos_key)
-$LOCATION=$(terraform -chdir=terraform output -raw location)
-$REDIS_NAME=$(terraform -chdir=terraform output -raw redis-name)
-$APP_NAME_FOR_KEYVAULT=$(terraform -chdir=terraform output -raw service-principal-name)
+$env:RESOURCE_GROUP=$(terraform -chdir=terraform output -raw resource_group_name)
+$env:COSMOSDB_URI=$(terraform -chdir=terraform output -raw azure_cosmos_endpoint)
+$env:COSMOS_PRIMARY_KEY=$(terraform -chdir=terraform output -raw azure_cosmos_key)
+$env:LOCATION=$(terraform -chdir=terraform output -raw cosmos_db_location)
+$env:REDIS_NAME=$(terraform -chdir=terraform output -raw redis_name)
+$env:REDIS_HOSTNAME=$(terraform -chdir=terraform output -raw redis_hostname)
+$env:REDIS_PASSWORD=$(terraform -chdir=terraform output -raw redis_password)
+$env:AZURE_KEYVAULT_URI=$(terraform -chdir=terraform output -raw keyvault_url)
+$env:AZURE_KEYVAULT_ACCOUNT_NAME=$(terraform -chdir=terraform output -raw azurerm_key_vault_account)
+$env:APP_NAME_FOR_KEYVAULT=$(terraform -chdir=terraform output -raw service_principal_name)
+$env:AZURE_KEYVAULT_CLIENTID=$(terraform -chdir=terraform output -raw azure_key_vault_service_principal_client_id)
+$env:AZURE_KEYVAULT_TENANTID=$(terraform -chdir=terraform output -raw azure_key_vault_tenant_id)
+$env:AZURE_KEYVAULT_CLIENTKEY=$(terraform -chdir=terraform output -raw azure_key_vault_service_principal_client_secret)
 
-# ==== Create Redis Cache Account ====
-echo "Creating Redis Cache Account, it may take a few minutes"
-az redis create --name $REDIS_NAME  --resource-group $RESOURCE_GROUP --sku Basic --vm-size c0 --location $LOCATION
-$REDIS_HOSTNAME=az redis show --name $REDIS_NAME --resource-group $RESOURCE_GROUP | jq -r .hostName
-$REDIS_PASSWORD=az redis list-keys --name $REDIS_NAME --resource-group $RESOURCE_GROUP | jq -r .primaryKey
-
-# ==== Create service principal ====
-echo "Creating service principal, it may take a few minutes"
-$SERVICE_PRINCIPAL=az ad sp create-for-rbac --name $APP_NAME_FOR_KEYVAULT --role Contributor
-
-$AZURE_KEYVAULT_CLIENTID=$SERVICE_PRINCIPAL | jq -r .appId
-$AZURE_KEYVAULT_TENANTID=$SERVICE_PRINCIPAL | jq -r .tenant
-$AZURE_KEYVAULT_CLIENTKEY=$SERVICE_PRINCIPAL | jq -r .password
-
-# set keyvault policy
-az keyvault set-policy -n $KEYVAULT_NAME --key-permissions get list --certificate-permissions get list --secret-permissions get list --resource-group $RESOURCE_GROUP --spn $AZURE_KEYVAULT_CLIENTID
-
-# ==== add keys to keyvault ====
-echo "add keys to keyvault"
-az keyvault secret set --vault-name $KEYVAULT_NAME --name cosmosdburi --value $COSMOSDB_URI
-az keyvault secret set --vault-name $KEYVAULT_NAME --name cosmosdbkey --value $COSMOS_PRIMARY_KEY
-az keyvault secret set --vault-name $KEYVAULT_NAME --name redisuri --value $REDIS_HOSTNAME
-az keyvault secret set --vault-name $KEYVAULT_NAME --name redispassword --value $REDIS_PASSWORD
+echo RESOURCE_GROUP=$env:RESOURCE_GROUP
+echo COSMOSDB_URI=$env:COSMOSDB_URI
+echo LOCATION=$env:LOCATION
+echo REDIS_NAME=$env:REDIS_NAME
+echo REDIS_HOSTNAME=$env:REDIS_HOSTNAME
+echo AZURE_KEYVAULT_URI=$env:AZURE_KEYVAULT_URI
+echo AZURE_KEYVAULT_ACCOUNT_NAME=$env:AZURE_KEYVAULT_ACCOUNT_NAME
+echo APP_NAME_FOR_KEYVAULT=$env:APP_NAME_FOR_KEYVAULT
+echo AZURE_KEYVAULT_CLIENTID=$env:AZURE_KEYVAULT_CLIENTID
+echo AZURE_KEYVAULT_TENANTID=$env:AZURE_KEYVAULT_TENANTID
 
 # ==== Create Kevvault environment file for Docker containers ====
 echo @"
-AZURE_KEYVAULT_URI=$AZURE_KEYVAULT_URI
-AZURE_KEYVAULT_CLIENTID=$AZURE_KEYVAULT_CLIENTID
-AZURE_KEYVAULT_TENANTID=$AZURE_KEYVAULT_TENANTID
-AZURE_KEYVAULT_CLIENTKEY=$AZURE_KEYVAULT_CLIENTKEY
-AZURE_KEYVAULT_ACCOUNT_NAME=$KEYVAULT_NAME
+AZURE_KEYVAULT_URI=$env:AZURE_KEYVAULT_URI
+AZURE_KEYVAULT_CLIENTID=$env:AZURE_KEYVAULT_CLIENTID
+AZURE_KEYVAULT_TENANTID=$env:AZURE_KEYVAULT_TENANTID
+AZURE_KEYVAULT_CLIENTKEY=$env:AZURE_KEYVAULT_CLIENTKEY
+AZURE_KEYVAULT_ACCOUNT_NAME=$env:AZURE_KEYVAULT_ACCOUNT_NAME
 "@ > keyvault.env
 echo "environment configuration complete"

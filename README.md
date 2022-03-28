@@ -17,7 +17,7 @@
 
 ## Current Branch Supported versions
 - [spring-boot-dependencies:2.6.3](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-dependencies/2.6.3/spring-boot-dependencies-2.6.3.pom).
-- [spring-cloud-dependencies:2021.0.0](https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud-dependencies/2021.0.1/spring-cloud-dependencies-2021.0.1.pom).
+- [spring-cloud-dependencies:2021.0.1](https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud-dependencies/2021.0.1/spring-cloud-dependencies-2021.0.1.pom).
 
 ## All active branches
 
@@ -43,8 +43,8 @@
 | App Configuration| [azure-spring-cloud-appconfiguration-config:2.3.0]                  | [azure-appconfiguration-conversion-sample-complete](appconfiguration/azure-appconfiguration-conversion-sample-complete)            |
 | Cache            | N/A                                                                 | [azure-spring-cloud-sample-cache](cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache)                                |
 | Cloud Foundry    | N/A                                                                 | [azure-cloud-foundry-service-sample](cloudfoundry/azure-cloud-foundry-service-sample)                                              |
-| Cosmos DB        | [azure-spring-data-cosmos:3.18.0]                                   | [cosmos-multi-database-multi-account](cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account)                         |
-| Cosmos DB        | [azure-spring-data-cosmos:3.18.0]                                   | [cosmos-multi-database-single-account](cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account)                       |
+| Cosmos DB        | [azure-spring-data-cosmos:3.19.0]                                   | [cosmos-multi-database-multi-account](cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account)                         |
+| Cosmos DB        | [azure-spring-data-cosmos:3.19.0]                                   | [cosmos-multi-database-single-account](cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account)                       |
 | Cosmos DB        | [spring-cloud-azure-starter-data-cosmos:4.0.0-beta.4]               | [spring-cloud-azure-data-cosmos-sample](cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample)       |
 | Cosmos DB        | [spring-cloud-azure-starter-cosmos:4.0.0-beta.4]                    | [spring-cloud-azure-cosmos-sample](cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample)                      |
 | Event Hubs       | N/A                                                                 | [spring-cloud-azure-sample-eventhubs-kafka](eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka)        |
@@ -108,4 +108,4 @@ Please refer to [README.md](servicebus/spring-cloud-azure-starter-integration-se
 [azure-spring-cloud-feature-management:2.2.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-feature-management/2.2.0/jar
 [azure-spring-cloud-appconfiguration-config:2.3.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-appconfiguration-config/2.3.0/jar
 [azure-spring-boot-starter-keyvault-certificates:3.14.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-certificates/3.14.0/jar
-[azure-spring-data-cosmos:3.18.0]: https://search.maven.org/artifact/com.azure/azure-spring-data-cosmos/3.17.0/jar
+[azure-spring-data-cosmos:3.19.0]: https://search.maven.org/artifact/com.azure/azure-spring-data-cosmos/3.19.0/jar

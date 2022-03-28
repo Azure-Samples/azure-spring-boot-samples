@@ -40,8 +40,9 @@ jdk 11.0.12 or above
 1. Make a directory, for example, sample_server. Then put the 3 files into sample_server folder
     - java.security
     - run-with-command-line-server-side-1.0.0.jar
-    - azure-security-keyvault-jca-2.6.0.jar 
-1. Open terminal and enter the directory sample_server, run the following command:
+    - azure-security-keyvault-jca-2.6.0.jar
+1. Create the key vault and certificates, please refer to [create key vault and certificates][create_key_vault_and_certificates]. Create service principal and add a secret, please refer to [register app with AAD][register_app_with_AAD].
+1. Replace properties `<yourAzureKeyVaultUri>`, `<yourTenantID>`, `<youClientID>`, `<yourSecretValue>`, `<yourCertificateName>` with your created resources in the following command, then open terminal and enter the directory sample_server, run the changed command:
    ```
    java\
    --module-path ./azure-security-keyvault-jca-2.6.0.jar \
@@ -80,4 +81,6 @@ jdk 11.0.12 or above
 
 <!-- LINKS -->
 [azure-security-keyvault-jca]: https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca
+[create_key_vault_and_certificates]: https://docs.microsoft.com/en-us/azure/key-vault/certificates/quick-create-portal
+[register_app_with_AAD]: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app
 [client sample]: ../run-with-command-line-client-side/README.md

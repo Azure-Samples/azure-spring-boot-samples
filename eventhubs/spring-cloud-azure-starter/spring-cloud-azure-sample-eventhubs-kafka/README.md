@@ -220,4 +220,4 @@ If you don't want to configure the connection string in your application, it's a
   When this error is found, add this configuration item `spring.cloud.stream.kafka.binder.replicationFactor`, with the value set to at least 1. For more information, see [Spring Cloud Stream Kafka Binder Reference Guide](https://docs.spring.io/spring-cloud-stream-binder-kafka/docs/current/reference/html/spring-cloud-stream-binder-kafka.html).
 
 
-[application-rm.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-cloud-azure_4.0.0-beta.4/eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka/src/main/resources/application-rm.yaml
+[application-rm.yaml]: ./src/main/resources/application-rm.yaml

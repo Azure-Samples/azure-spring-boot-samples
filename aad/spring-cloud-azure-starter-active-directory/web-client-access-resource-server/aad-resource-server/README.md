@@ -61,7 +61,7 @@ spring:
 ### Run with Maven
 ```shell
 # Under sdk/spring project root directory
-cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory/aad-resource-server
+cd azure-spring-boot-samples/aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server/aad-resource-server
 mvn spring-boot:run
 ```
 
@@ -82,7 +82,7 @@ Authorization: Bearer eyJ0eXAiO ... 0X2tnSQLEANnSPHY0gKcgw
 ```
 
 ### Check the authentication and authorization
-1. Access `http://localhost:<your-Configured-server-port>/file` link: success.
+1. Access `http://localhost:<your-Configured-server-port>/webapiB` link: success.
 2. Access `http://localhost:<your-Configured-server-port>/user` link: fail with error message.
 
 ## Troubleshooting

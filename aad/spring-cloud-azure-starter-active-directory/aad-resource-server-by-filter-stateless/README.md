@@ -16,7 +16,7 @@ to get it working with your Azure AD tenant on both sides.
 
 ### Register your application with your Azure Active Directory Tenant
 
-Follow the guide [here](https://docs.microsoft.com/azure/active-directory/develop/v1-protocols-openid-connect-code#register-your-application-with-your-ad-tenant).
+Follow the guide [here](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app).
 
 ### Configure appRoles
 
@@ -32,27 +32,30 @@ For the test SPA provided with this example you should create the following role
       "allowedMemberTypes": [
         "User"
       ],
+      "description": "Full admin access",
       "displayName": "Admin",
       "id": "2fa848d0-8054-4e11-8c73-7af5f1171001",
       "isEnabled": true,
-      "description": "Full admin access",
+      "lang": null,
+      "origin": "Application",
       "value": "Admin"
     },
     {
       "allowedMemberTypes": [
         "User"
       ],
+      "description": "Normal user access",
       "displayName": "UserRule",
       "id": "f8ed78b5-fabc-488e-968b-baa48a570001",
       "isEnabled": true,
-      "description": "Normal user access",
+      "lang": null,
+      "origin": "Application",
       "value": "UserRule"
     }
   ],
 ```
 
-After you've created the roles go to your Enterprise Application in Azure Portal, select "Users and groups" and 
-assign the new roles to your Users (assignment of roles to groups is not available in the free tier of AAD).
+After you've created the roles, go to **Azure Active Directory** and select **Users** to add two new users named "Admin" and "UserRule". Then back to select **Enterprise applications** in the left-hand navigation pane, click on your created application and select **Users and groups**, finally assign the new roles to your new Users (assignment of roles to groups is not available in the free tier of AAD).
 
 Furthermore enable the implicit flow in the manifest for the demo application 
 (or if you have SPAs calling you):
@@ -95,7 +98,7 @@ data: {
 
 ### Run with Maven
 ```shell
-cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory/aad-resource-server-by-filter-stateless
+cd azure-spring-boot-samples/aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless
 mvn spring-boot:run
 ```
 

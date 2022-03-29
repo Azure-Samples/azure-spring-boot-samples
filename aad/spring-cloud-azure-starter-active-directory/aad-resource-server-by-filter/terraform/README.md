@@ -60,6 +60,18 @@ terraform -chdir=./terraform apply -auto-approve
 
 ```
 
+#### Run with Powershell
+
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=terraform init
+
+# Apply your Terraform Configuration
+terraform -chdir=terraform apply -auto-approve
+
+```
+
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell
@@ -77,6 +89,12 @@ Running the command below to export environment values:
 
 ```shell
 source ./terraform/setup_env.sh
+```
+
+#### Run with Powershell
+
+```shell
+. terraform\setup_env.ps1
 ```
 
 You will see output like below, save this output of `created user` to login.
@@ -110,4 +128,10 @@ To destroy the resources you created.
 
 ```shell
 terraform -chdir=./terraform destroy -auto-approve
+```
+
+#### Run with Powershell
+
+```shell
+terraform -chdir=terraform destroy -auto-approve
 ```

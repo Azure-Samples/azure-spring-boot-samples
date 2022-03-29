@@ -117,7 +117,7 @@ client-id: xxxxxx-your-client-secret-xxxxxx
 
 ---
  ### Step 4: Create Role_group1 to your group
-1. In the left-hand navigation pane, select **Groups**, and then select **New group** to create a new group named `ROLE_group1`, choose your tenant as **Owners** and Spring Boot Sample as **Members**.
+1. In the left-hand navigation pane, select **Groups**, and then select **New group** to create a new group named `group1`, choose your tenant as **Owners** and Spring Boot Sample as **Members**.
    
 ---
 
@@ -125,7 +125,7 @@ client-id: xxxxxx-your-client-secret-xxxxxx
 
 * Run with Maven 
  ```
- cd azure-spring-boot-samples/aad/spring-cloud-azure-starter-active-directory\aad-resource-server-by-filter
+ cd azure-spring-boot-samples/aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter
  mvn spring-boot:run
  ```
 

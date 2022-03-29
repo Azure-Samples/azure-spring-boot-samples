@@ -1,0 +1,49 @@
+server:
+  port: 8084
+
+spring:
+  cloud:
+    azure:
+# Properties like spring.cloud.azure.credential.client-id are global properties.
+# Properties like spring.cloud.azure.active-directory.credential.client-id are AAD properties.
+# If AAD properties is not configured, global properties will be used.
+#      credential:
+#        client-id:
+#        client-secret:
+#      profile:
+#        tenant-id:
+      active-directory:
+        enabled: true
+        credential:
+          client-id: ${AZURE_CLIENT_ID}
+          client-secret: ${AZURE_CLIENT_SECRET}
+        profile:
+          tenant-id: ${AZURE_TENANT_ID}
+        user-group:
+          allowed-group-names: <group1>,<group2>
+          allowed-group-ids: <group1-id>,<group2-id>
+        post-logout-redirect-uri: http://localhost:8080
+        application-type: web_application_and_resource_server # This is required.
+        app-id-uri: api://${WEB_API_C_APP_ID_URL}
+        authorization-clients:
+          arm:
+            authorizationGrantType: authorization_code # This is required.
+            on-demand: true
+            scopes: https://management.core.windows.net/user_impersonation
+          graph:
+            authorizationGrantType: authorization_code # This is required.
+            scopes:
+              - https://graph.microsoft.com/User.Read
+              - https://graph.microsoft.com/Directory.Read.All
+    #      webapiA:  # Web Application uses webapiA client to access restricted resources.
+    #        authorizationGrantType: authorization_code
+    #        scopes:
+    #          - api://${WEB_API_A_APP_ID_URL}/Obo.WebApiA.ExampleScope
+    #      webapiBWithObo: # Resource server uses webapiBObo client to access restricted resources.
+    #        authorization-grant-type: on_behalf_of
+    #        scopes:
+    #          - api://${WEB_API_B_APP_ID_URL}/WebApiB.ExampleScope
+    #      webapiBWithClientCredentials:  # Both Web Application or Resource Server can use webapiBWithClientCredentials client to access restricted resources.
+    #        authorization-grant-type: client_credentials
+    #        scopes:
+    #          - api://${WEB_API_B_APP_ID_URL}/.default

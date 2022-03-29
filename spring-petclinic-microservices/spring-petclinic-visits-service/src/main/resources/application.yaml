@@ -1,0 +1,21 @@
+spring:
+  cloud:
+    bootstrap:
+      enabled: true
+    azure:
+      credential:
+        client-id: ${AZURE_KEYVAULT_CLIENTID}
+        client-secret: ${AZURE_KEYVAULT_CLIENTKEY}
+      profile:
+        tenant-id: ${AZURE_KEYVAULT_TENANTID}
+      keyvault:
+        secret:
+          property-source-enabled: true
+          property-sources:
+            - name: ${AZURE_KEYVAULT_ACCOUNT_NAME}
+              endpoint: ${AZURE_KEYVAULT_URI}
+      cosmos:
+        database: end2endsample
+        endpoint: ${cosmosdburi}
+        key: ${cosmosdbkey}
+        populate-query-metrics: true

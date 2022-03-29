@@ -1,0 +1,35 @@
+spring:
+  cloud:
+    azure:
+      eventhubs:
+        namespace: ${AZURE_EVENTHUBS_NAMESPACE}
+        processor:
+          checkpoint-store:
+            container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+            account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
+    stream:
+      function:
+        definition: consume;supply
+      bindings:
+        consume-in-0:
+          destination: ${AZURE_EVENTHUB_NAME}
+          group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
+          consumer:
+            batch-mode: true
+        supply-out-0:
+          destination: ${AZURE_EVENTHUB_NAME} # same as the above destination
+      eventhubs:
+        bindings:
+          consume-in-0:
+            consumer:
+              batch:
+                max-size: 10 # The default value is 10
+                max-wait-time: 1m # Optional, the default value is null
+              checkpoint:
+                mode: BATCH
+      default:
+        producer:
+          errorChannelEnabled: true
+      poller:
+        initial-delay: 0
+        fixed-delay: 1000

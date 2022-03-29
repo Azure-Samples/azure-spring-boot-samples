@@ -1,15 +1,4 @@
----
-page_type: sample
-languages:
-- java
-products:
-- Azure Spring Integration Starters 
-description: "Deploy Spring microservices using Spring Integration starters for Azure"
-  urlFragment: "spring-petclinic-microservices"
-
----
-
-# Deploy Spring Microservices using Azure Spring starters for Cosmos DB, Redis, KeyVault
+# Deploy Spring Microservices using Azure Spring starters for Cosmos DB, Redis, Key Vault
 
 Azure Spring Cloud enables you to easily run a Spring Boot based microservices application on Azure.
 
@@ -23,85 +12,150 @@ You will:
 
 - Build existing Spring microservices applications
 - Provision azure resources required for the application
-- Run the application locally with CosmosDB backend, Azure Redis Cache and using KeyVault for
+- Run the application locally with Cosmos DB backend, Azure Redis Cache and using Key Vault for
   storing secrets
 - Open the application
 
 ## What you will need
 
-In order to deploy a Java app to cloud, you need an Azure subscription. If you do not already have
-an Azure subscription, you can activate your
-[MSDN subscriber benefits](https://azure.microsoft.com/pricing/member-offers/msdn-benefits-details/)
-or sign up for a
-[free Azure account](https://azure.microsoft.com/free/).
-
-In addition, you will need the following:
-
-| [Azure CLI version 2.0.67 or higher](https://docs.microsoft.com/cli/azure/install-azure-cli?view=azure-cli-latest)
-| [Java 8](https://www.azul.com/downloads/azure-only/zulu/?version=java-8-lts&architecture=x86-64-bit&package=jdk)
-| [Maven](https://maven.apache.org/download.cgi)
-| [MySQL CLI](https://dev.mysql.com/downloads/shell/)
-| [Git](https://git-scm.com/)
-| [Jq](https://stedolan.github.io/jq/)
-|
-
+- [An Azure subscription](https://azure.microsoft.com/free/)
+- [Terraform](https://www.terraform.io/)
+- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
+- [MySQL CLI](https://dev.mysql.com/downloads/shell/)
+- [Git](https://git-scm.com/)
+- [Jq](https://stedolan.github.io/jq/)
+- [Docker](https://www.docker.com/)
+- [Maven](https://maven.apache.org/download.cgi)
+- You can also import the code straight into your IDE:
+    - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
+    
 ## Clone and build the repo
 
-### Create a new folder and clone the sample app repository to your Azure Cloud account
+### Clone the sample app repository 
 
 ```bash
-    mkdir source-code
-    git clone https://github.com/Azure-Samples/azure-spring-boot-samples
+git clone https://github.com/Azure-Samples/azure-spring-boot-samples
 ```
 
 ### Change directory and build the project
 
 ```bash
-    cd azure-spring-boot-samples/spring-petclinic-microservices
-    mvn clean package -DskipTests
+cd azure-spring-boot-samples/spring-petclinic-microservices
+mvn clean package -DskipTests
 ```
 
 This will take a few minutes.
 
-## Provision Azure resources using Azure CLI
+## Provision Azure Resources Required to Run This Sample
 
-### Login to Azure
+### Authenticate Using the Azure CLI
+Terraform must authenticate to Azure to create infrastructure.
 
-Login to the Azure CLI and choose your active subscription. Be sure to choose the active
-subscription that is whitelisted for Azure Spring Cloud
+In your terminal, use the Azure CLI tool to setup your account permissions locally.
 
-```bash
-    az login
-    az account list -o table
-    az account set --subscription ${SUBSCRIPTION}
+```shell
+az login
 ```
 
-### Prepare your environment for deployments
+Your browser window will open and you will be prompted to enter your Azure login credentials. After successful authentication, your terminal will display your subscription information. You do not need to save this output as it is saved in your system for Terraform to use.
 
-Create a bash script with environment variables by making a copy of the supplied template:
+```shell
+You have logged in. Now let us find all the subscriptions to which you have access...
 
-```bash
-    cp .scripts/setup-env-variables-azure-template.sh .scripts/setup-env-variables-azure.sh
+[
+  {
+    "cloudName": "AzureCloud",
+    "homeTenantId": "home-Tenant-Id",
+    "id": "subscription-id",
+    "isDefault": true,
+    "managedByTenants": [],
+    "name": "Subscription-Name",
+    "state": "Enabled",
+    "tenantId": "0envbwi39-TenantId",
+    "user": {
+      "name": "your-username@domain.com",
+      "type": "user"
+    }
+  }
+]
 ```
 
-Open `.scripts/setup-env-variables-azure.sh` and enter the following information:
-
-```bash
-
-export SUBSCRIPTION=subscription-id # customize this
-export RESOURCE_GROUP=resource-group-name # customize this
-export LOCATION=SouthCentralUS  #customize this
-export COSMOSDB_NAME=mycosmosdbaccname  # customize this
-export REDIS_NAME=myredisname #customize this
-export KEYVAULT_NAME=myend2endkv #customize this
-export APP_NAME_FOR_KEYVAULT=myappforkeyvault #customize this
-    
+If you have more than one subscription, specify the subscription-id you want to use with command below:
+```shell
+az account set --subscription <your-subscription-id>
 ```
 
-Then, set the environment:
+### Provision the Resources
 
-```bash
-    source .scripts/setup-env-variables-azure.sh
+After login Azure CLI with your account, now you can use the terraform script to create Azure Resources.
+
+#### Run with Bash
+
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=./terraform init
+
+# Apply your Terraform Configuration
+terraform -chdir=./terraform apply -auto-approve
+
+```
+
+#### Run with Powershell
+
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=terraform init
+
+# Apply your Terraform Configuration
+terraform -chdir=terraform apply -auto-approve
+
+```
+
+It may take a few minutes to run the script. After successful running, you will see prompt information like below:
+
+```shell
+azurerm_resource_group.main: Creating...
+azurerm_key_vault.kv_account: Creating...
+azurerm_redis_cache.redis: Creating...
+azurerm_cosmosdb_account.application: Creating...
+azurerm_redis_cache.redis: Still creating... 
+azurerm_key_vault.kv_account: Still creating... 
+azurerm_cosmosdb_account.application: Still creating... 
+...
+azurerm_cosmosdb_account.application: Still creating...
+azurerm_redis_cache.redis: Still creating...
+azurerm_key_vault.kv_account: Still creating...
+azurerm_key_vault.kv_account: Still creating...
+azurerm_redis_cache.redis: Still creating... 
+...
+
+Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
+
+Outputs:
+...
+
+```
+
+You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
+
+### Export Output to Your Local Environment
+
+#### Run with Bash
+
+Running the command below to export environment values:
+
+```shell
+source ./terraform/setup_env.sh
+```
+
+#### Run with Powershell
+
+Running the command below to export environment values:
+
+```shell
+. terraform\setup_env.ps1
 ```
 
 make sure keyvault.env file is created at the root of the repo.
@@ -109,13 +163,41 @@ make sure keyvault.env file is created at the root of the repo.
 ## Starting services locally with docker-compose
 
 In order to start entire infrastructure using Docker, you have to build images by
-executing `./mvnw clean install -P buildDocker -DskipTests`
-from a project root. Once images are ready, you can start them with a single command
-`docker-compose up`. Containers startup order is coordinated
-with [`dockerize` script](https://github.com/jwilder/dockerize). After starting services it takes a
-while for API Gateway to be in sync with service registry, so don't be scared of initial Spring
-Cloud Gateway timeouts. You can track services availability using Eureka dashboard available by
-default at http://localhost:8761.
+executing command below from a project root:
+
+```shell
+mvn clean install -P buildDocker -DskipTests
+```
+
+
+Once images are ready, you can start them with a single command.
+
+
+```shell
+docker-compose up
+```
+
+Containers startup order is coordinated with [`dockerize` script](https://github.com/jwilder/dockerize). After starting services it takes a while for API Gateway to be in sync with service registry, so don't be scared of initial Spring
+Cloud Gateway timeouts.   
+You can track services availability using Eureka dashboard available by default at `http://localhost:8761`.
+
+## Clean Up Resources
+After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
+
+The terraform destroy command terminates resources managed by your Terraform project.   
+To destroy the resources you created.
+
+### Run with Bash
+
+```shell
+az group delete --name $(terraform -chdir=./terraform output -raw resource_group_name) --yes
+```
+
+### Run with Powershell
+
+```shell
+az group delete --name $(terraform -chdir=terraform output -raw resource_group_name) --yes
+```
 
 ## Understanding the Spring Petclinic application
 
@@ -128,7 +210,7 @@ You can then access petclinic here: http://localhost:8080/
 
 ![Spring Petclinic Microservices screenshot](docs/application-screenshot.png)
 
-**Architecture diagram of the Spring Petclinic Microservices with CosmosDB**
+**Architecture diagram of the Spring Petclinic Microservices with Cosmos DB**
 
 ![Spring Petclinic Microservices architecture](docs/microservices-architecture-diagram-cosmosdb.jpg)
 
@@ -156,7 +238,6 @@ more about Spring on Azure, go to:
 
 This Spring microservices sample is forked from
 [spring-petclinic/spring-petclinic-microservices](https://github.com/spring-petclinic/spring-petclinic-microservices)
-- see [Petclinic README](./README-petclinic.md).
 
 ## Contributing
 

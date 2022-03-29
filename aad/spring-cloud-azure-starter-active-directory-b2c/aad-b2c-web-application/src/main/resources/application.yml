@@ -1,0 +1,25 @@
+spring:
+  cloud:
+    azure:
+# Properties like spring.cloud.azure.credential.client-id are global properties.
+# Properties like spring.cloud.azure.active-directory.credential.client-id are AAD properties.
+# If AAD properties is not configured, global properties will be used.
+#      credential:
+#        client-id:
+#        client-secret:
+#      profile:
+#        tenant-id:
+      active-directory:
+        b2c:
+          enabled: true
+          base-uri: ${AUTHORIZATION_SERVER_BASE_URI}
+          credential:
+            client-id: ${AZURE_CLIENT_ID}
+            client-secret: ${AZURE_CLIENT_SECRET}
+          login-flow: ${LOGIN_USER_FLOW_KEY}               # default to sign-up-or-sign-in, will look up the user-flows map with provided key.
+          logout-success-url: ${LOGOUT_SUCCESS_URL}
+          user-flows:
+            password-reset: ${PROFILE_EDIT_FLOW_NAME}
+            profile-edit: ${PASSWORD_RESET_USER_FLOW_NAME}
+            sign-up-or-sign-in: ${SIGN_UP_OR_SIGN_IN_FLOW_NAME}
+          user-name-attribute-name: ${USER_NAME_CLAIM}

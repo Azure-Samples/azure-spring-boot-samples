@@ -1,0 +1,29 @@
+# Please fill these placeholders before running this application:
+# 1. ${tenant-id}
+# 2. ${client-1-client-id}
+# 3. ${client-1-certificate-path}
+# 4. ${client-1-certificate-password}
+
+logging:
+  level:
+    root: DEBUG
+server:
+  port: 8080
+spring:
+  security:
+    oauth2:
+      client:
+        provider: # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#oauth2login-common-oauth2-provider
+          azure-active-directory:
+            issuer-uri: https://login.microsoftonline.com/${tenant-id}/v2.0 # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#webflux-oauth2-login-openid-provider-configuration
+        registration:
+          client-1:
+            provider: azure-active-directory
+            client-id: ${client-1-client-id}
+            client-authentication-method: private_key_jwt
+            client-certificate-path: ${client-1-certificate-path}
+            client-certificate-password: ${client-1-certificate-password}
+            scope: openid, profile
+            redirect-uri: http://localhost:8080/login/oauth2/code/
+  profiles:
+    active: develop

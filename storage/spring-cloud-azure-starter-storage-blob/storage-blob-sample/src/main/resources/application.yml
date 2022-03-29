@@ -1,0 +1,10 @@
+# Storage account name length should be between 3 and 24 and use numbers and lower-case letters only
+# Configuration
+spring:
+  cloud:
+    azure:
+      storage:
+        blob:
+          account-name: ${AZURE_STORAGE_ACCOUNT}
+          container-name: ${STORAGE_CONTAINER_NAME}
+

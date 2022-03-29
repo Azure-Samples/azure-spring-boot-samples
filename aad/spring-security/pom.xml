@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.azure.spring</groupId>
+    <artifactId>azure-spring-boot-samples</artifactId>
+    <version>1.0.0</version>
+    <relativePath>../../pom.xml</relativePath>
+  </parent>
+
+  <artifactId>spring-boot-application-with-azure-active-directory</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+
+  <name>Spring Boot Application with Azure Active Directory</name>
+
+  <properties>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
+  </properties>
+
+  <modules>
+    <module>reactive/webflux/oauth2/spring-cloud-gateway/client</module>
+    <module>reactive/webflux/oauth2/spring-cloud-gateway/gateway</module>
+    <module>reactive/webflux/oauth2/spring-cloud-gateway/resource-server-1</module>
+    <module>reactive/webflux/oauth2/spring-cloud-gateway/resource-server-2</module>
+    <module>servlet/oauth2/login</module>
+    <module>servlet/oauth2/login-authenticate-using-private-key-jwt</module>
+    <module>servlet/oauth2/client-access-resource-server/client</module>
+    <module>servlet/oauth2/client-access-resource-server/resource-server</module>
+    <module>servlet/oauth2/resource-server-check-permissions-by-claims-in-access-token/client</module>
+    <module>servlet/oauth2/resource-server-check-permissions-by-claims-in-access-token/resource-server</module>
+    <module>servlet/oauth2/client-access-multiple-resource-server/client</module>
+    <module>servlet/oauth2/client-access-multiple-resource-server/resource-server-1</module>
+    <module>servlet/oauth2/client-access-multiple-resource-server/resource-server-2</module>
+    <module>servlet/oauth2/resource-server-support-on-behalf-of-flow/client</module>
+    <module>servlet/oauth2/resource-server-support-on-behalf-of-flow/resource-server-1</module>
+    <module>servlet/oauth2/resource-server-support-on-behalf-of-flow/resource-server-2</module>
+  </modules>
+
+</project>

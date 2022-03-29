@@ -1,13 +1,3 @@
----
-page_type: sample
-languages:
-- java
-products:
-- azure-app-configuration
-description: "Sample project for Azure Spring Cloud Config Conversion client library"
-urlFragment: "azure-appconfiguration-conversion-sample-initial"
----
-
 # Spring Cloud Azure Config Conversion Sample client library for Java
 
 This sample shows how to convert a Spring Cloud Application with Cosmos DB to be using App Configuration + Key Vault
@@ -40,7 +30,7 @@ This sample shows how to convert a Spring Cloud Application with Cosmos DB to be
 1. Then use the [az cosmosdb keys list](https://docs.microsoft.com/cli/azure/cosmosdb/keys?view=azure-cli-latest#az-cosmosdb-keys-list).
 
     ```azurecli
-        az cosmosdb keys list --name my-cosmos-db -g MyResourceGroup
+    az cosmosdb keys list --name my-cosmos-db -g MyResourceGroup
     ```
 
     Record the primaryMasterKey.
@@ -91,9 +81,9 @@ In this section, you clone a containerized Spring Boot application and test it l
 1. Replace below properties in `application.properties` with information from your database.
 
    ```properties
-   azure.cosmos.uri=your-cosmos-uri
-   azure.cosmos.key=your-cosmos-key
-   azure.cosmos.database=your-cosmos-databasename
+   spring.cloud.azure.cosmos.endpoint=${COSMOS-URL}
+   spring.cloud.azure.cosmos.key=${COSMOS-KEY}
+   spring.cloud.azure.cosmos.database=${COSMOS-DATABASENAME}
 
    ```
 
@@ -174,20 +164,20 @@ In this section, you clone a containerized Spring Boot application and test it l
 1. Upload your Cosmos DB key to Key Vault.
 
     ```azurecli
-        az keyvault secret set --vault-name myVaultName --name "COSMOSDB-KEY" --value your-cosmosdb-key
+    az keyvault secret set --vault-name myVaultName --name "COSMOSDB-KEY" --value your-cosmosdb-key
     ```
 
 1. Upload your Configurations Cosmos DB name and URI to App Configuration
 
     ```azurecli
-        az appconfig kv set --name myConfigStoreName --key "/application/azure.cosmos.database" --value your-cosmos-db-databasename --yes
-        az appconfig kv set --name myConfigStoreName --key "/application/azure.cosmos.uri" --value your-cosmosdb-uri  --yes
+    az appconfig kv set --name myConfigStoreName --key "/application/azure.cosmos.database" --value your-cosmos-db-databasename --yes
+    az appconfig kv set --name myConfigStoreName --key "/application/azure.cosmos.uri" --value your-cosmosdb-uri  --yes
     ```
 
 1. Add a Key Vault Reference to App Configuration, make sure to update the uri with your config store name.
 
     ```azurecli
-        az appconfig kv set-keyvault --name myConfigStoreName --key "/application/azure.cosmos.key" --secret-identifier https://myVaultName.vault.azure.net/secrets/COSMOSDB-KEY --yes
+    az appconfig kv set-keyvault --name myConfigStoreName --key "/application/azure.cosmos.key" --secret-identifier https://myVaultName.vault.azure.net/secrets/COSMOSDB-KEY --yes
     ```
 
 1. Delete `application.propertes` from `src/main/resources`.
@@ -195,20 +185,17 @@ In this section, you clone a containerized Spring Boot application and test it l
 1. Create a new file called `bootstrap.properties` in `src/main/resources`, and add the following.
 
     ```properties
-        spring.cloud.azure.appconfiguration.stores[0].endpoint=https://{my-configstore-name}.azconfig.io
-
+    spring.cloud.azure.appconfiguration.stores[0].endpoint=https://{my-configstore-name}.azconfig.io
     ```
 
 1. Update the pom.xml file to now include.
-    [//]: # ({x-version-update-start;com.microsoft.azure:spring-cloud-starter-azure-appconfiguration-config;dependency})
     ```xml
-    <dependency>
-        <groupId>com.microsoft.azure</groupId>
-        <artifactId>spring-cloud-starter-azure-appconfiguration-config</artifactId>
-        <version>1.3.0</version><!-- {x-version-update-start;com.microsoft.azure:spring-cloud-starter-azure-appconfiguration-config;dependency} -->
-    </dependency>
+   <dependency>
+     <groupId>com.azure.spring</groupId>
+     <artifactId>azure-spring-cloud-appconfiguration-config</artifactId>
+     <version>2.3.0</version>
+   </dependency>
     ```
-    [//]: # ({x-version-update-end})
     
 1. Create a new file called *AzureCredentials.java* and add the code below.
 

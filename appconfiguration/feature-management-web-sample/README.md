@@ -1,23 +1,23 @@
 # Feature Management Web Sample shared library for Java
 
-This sample describes how to use [spring-cloud-azure-feature-management](https://github.com/Azure/azure-sdk-for-java/blob/spring-cloud-azure-feature-management_1.3.0/sdk/appconfiguration/spring-cloud-azure-feature-management/README.md) to manage features and how to get configurations from Azure Configuration Service to Spring Environment.
+This sample describes how to use [spring-cloud-feature-management](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/appconfiguration/spring-cloud-azure-feature-management/README.md) to manage features and how to get configurations from App Configuration Service to Spring Environment.
 
 ## Key concepts
 ## Getting started
 
 
 
-### How to run without Azure Configuration Service
+### How to run without App Configuration Service
 Start the application and check the resulting console output to check the returned value.
 
 1. Load features from application.yml
 ```
-$ mvn spring-boot:run
+mvn spring-boot:run
 ```
 
 2. Check the returned value. The feature `Beta` has one filter `Random` which defines
 
-### How to run with Azure Configuration Service
+### How to run with App Configuration Service
 
 #### Prepare data
 
@@ -34,22 +34,22 @@ Start the application and access http://localhost:8080 to check the returned val
 
 1. Load properties similar with from application.properties, i.e., keys starting with /application/
 ```
-$ mvn spring-boot:run
+mvn spring-boot:run
 ```
 
 2. Load properties similar with from application_dev.properties, i.e., keys starting with /application_dev
 ```
-$ mvn -Dspring.profiles.active=dev spring-boot:run
+mvn -Dspring.profiles.active=dev spring-boot:run
 ```
 
 3. Load properties similar with from foo.properties, i.e., keys starting with /foo/
 ```
-$ mvn -Dspring.application.name=foo spring-boot:run
+mvn -Dspring.application.name=foo spring-boot:run
 ```
 
 4. Load properties similar with from foo_dev.properties, i.e., keys starting with /foo_dev/
 ```
-$ mvn -Dspring.application.name=foo -Dspring.profiles.active=dev spring-boot:run
+mvn -Dspring.application.name=foo -Dspring.profiles.active=dev spring-boot:run
 ```
 
 ### More details

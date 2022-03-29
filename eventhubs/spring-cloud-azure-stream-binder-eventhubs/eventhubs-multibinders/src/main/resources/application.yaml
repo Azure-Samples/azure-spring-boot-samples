@@ -1,0 +1,58 @@
+spring:
+  cloud:
+    stream:
+      function:
+        definition: consume1;supply1;consume2;supply2
+      bindings:
+        consume1-in-0:
+          destination: ${AZURE_EVENTHUB_NAME_01}
+          group: ${AZURE_EVENTHUB_CONSUMER_GROUP_01}
+        supply1-out-0:
+          destination: ${AZURE_EVENTHUB_NAME_01}
+        consume2-in-0:
+          binder: eventhub-2
+          destination: ${AZURE_EVENTHUB_NAME_02}
+          group: ${AZURE_EVENTHUB_CONSUMER_GROUP_02}
+        supply2-out-0:
+          binder: eventhub-2
+          destination: ${AZURE_EVENTHUB_NAME_02}
+      binders:
+        eventhub-1:
+          type: eventhubs
+          default-candidate: true
+          environment:
+            spring:
+              cloud:
+                azure:
+                  eventhubs:
+                    namespace: ${EVENTHUB_NAMESPACE_01}
+                    processor:
+                      checkpoint-store:
+                        container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                        account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
+        eventhub-2:
+          type: eventhubs
+          default-candidate: false
+          environment:
+            spring:
+              cloud:
+                azure:
+                  eventhubs:
+                    namespace: ${EVENTHUB_NAMESPACE_02}
+                    processor:
+                      checkpoint-store:
+                        container-name: ${AZURE_STORAGE_CONTAINER_NAME}
+                        account-name: ${AZURE_STORAGE_ACCOUNT_NAME}
+      eventhubs:
+        bindings:
+          consume1-in-0:
+            consumer:
+              checkpoint:
+                mode: MANUAL
+          consume2-in-0:
+            consumer:
+              checkpoint:
+                mode: MANUAL
+      poller:
+        initial-delay: 0
+        fixed-delay: 1000

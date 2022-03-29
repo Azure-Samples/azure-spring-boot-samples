@@ -1,0 +1,29 @@
+spring:
+  cloud:
+    azure:
+      profile:
+        subscription-id: ${AZURE_SERVICEBUS_SUBSCRIPTION_ID}
+      servicebus:
+        namespace: ${AZURE_SERVICEBUS_NAMESPACE}
+        resource:
+          resource-group: ${AZURE_SERVICEBUS_RESOURCE_GROUP}
+    stream:
+      function:
+        definition: consume;supply
+      bindings:
+        consume-in-0:
+          destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
+          group: ${AZURE_SERVICEBUS_TOPIC_SUBSCRIPTION_NAME}
+        supply-out-0:
+          destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
+      servicebus:
+        bindings:
+          consume-in-0:
+            consumer:
+              auto-complete: false
+          supply-out-0:
+            producer:
+              entity-type: topic
+      poller:
+        fixed-delay: 1000
+        initial-delay: 0

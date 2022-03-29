@@ -1,13 +1,3 @@
----
-page_type: sample
-languages:
-- java
-products:
-- azure-key-vault
-description: "Azure Spring Boot Sample project for Key Vault Certificates client library server side"
-urlFragment: "azure-spring-boot-sample-keyvault-certificates-server-side"
----
-
 # Azure Spring Boot Key Vault Certificates client library for Java
 
 ## Key concepts
@@ -62,7 +52,7 @@ You can also create resources manually via Azure Portal. Please follow:
    > Attention: The service principal must be configured with permissions:   
    > Certificate Permissions: configure with **get and list** permissions.  
    > Key Permissions: configure with **get** permission.  
-   > Secret Permissions: configure with **get** permission.  
+   > Secret Permissions: configure with **get** permission.
 5. You need manually configure the application.yml, replace the placeholders with the resources you created in the Azure Portal.
 
 If you used the script to create the resources, or you created the resources via Azure Portal and created the Service Principal in App Registration way.

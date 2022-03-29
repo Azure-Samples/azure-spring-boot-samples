@@ -1,13 +1,3 @@
----
-page_type: sample
-languages:
-- java
-products:
-- azure-key-vault
-description: "Sample using azure-security-keyvault-jca.jar via Command Line in client side"
-urlFragment: "azure-spring-boot-sample-run-with-command-line-client-side"
----
-
 # Use azure-security-keyvault-jca.jar via Command Line in client side
 
 ## Key concepts
@@ -22,13 +12,13 @@ line in client side.
 jdk 11.0.12 or above
 
 ### Run Spring Boot web server with azure-security-keyvault-jca.jar via command line.
-1. Start the server side sample. Please refer to [server side tutorial].
+1. Start the server side sample. Please refer to [server side tutorial](../run-with-command-line-server-side/README.md).
 1. Open terminal and enter the folder where the pom.xml is and run `mvn package`. In the target 
    folder there is a run-with-command-line-client-1.0.0.jar generated.
 1. Get a copy of the JCA configuration file.
     - Linux: <java-home>/lib/security/java.security
     - MacOS Big Sur: <java-home>/conf/security/java.security
-    - Windows: <java-home>\lib\security\java.security
+    - Windows: <java-home>\conf\security\java.security
 1. Edit your copy of the JCA configuration file. Add a new item: KeyVaultJcaProvider
    ```
    security.provider.1=SUN
@@ -48,13 +38,14 @@ jdk 11.0.12 or above
    security.provider.14=com.azure.security.keyvault.jca.KeyVaultJcaProvider
    ```
 1. Get the azure-security-keyvault-jca.jar. You can download the latest published jar from maven
-   repository [azure-security-keyvault-jca][azure-security-keyvault-jca]. When this document is 
-   written, the latest jar is azure-security-keyvault-jca.2.6.0.jar
+   repository [azure-security-keyvault-jca](https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca). When this document is 
+   written, the latest jar is azure-security-keyvault-jca-2.6.0.jar
 1. Make a directory, for example, sample_client. Then put the 3 files into sample_client folder
     - java.security 
     - run-with-command-line-client-side-1.0.0.jar
     - azure-security-keyvault-jca-2.6.0.jar 
-1. Open terminal and enter the directory sample_client, run the following command:
+1. Create the key vault and certificates, please refer to [create key vault and certificates](https://docs.microsoft.com/en-us/azure/key-vault/certificates/quick-create-portal). Create service principal and add a secret, please refer to [register app with AAD](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app).
+1. Replace properties `<yourAzureKeyVaultUri>`, `<yourTenantID>`, `<youClientID>`, `<yourSecretValue>` with your created resources in the following command, open terminal and enter the directory sample_client, run the changed command:
    ```
    java \
    --module-path ./azure-security-keyvault-jca-2.6.0.jar \
@@ -98,7 +89,3 @@ jdk 11.0.12 or above
      configure it under the class path, then all the certificates in this folder will be loaded by 
      key vault keystore.
 
-<!-- LINKS -->
-
-[server side tutorial]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side/README.md
-[azure-security-keyvault-jca]: https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca

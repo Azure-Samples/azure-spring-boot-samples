@@ -2,6 +2,9 @@
 // Licensed under the MIT License.
 package com.example;
 
+import com.azure.spring.cloud.feature.manager.FeatureGate;
+import com.azure.spring.cloud.feature.manager.FeatureManager;
+import com.azure.spring.cloud.feature.manager.FeatureManagerSnapshot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +13,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.microsoft.azure.spring.cloud.feature.manager.FeatureGate;
-import com.microsoft.azure.spring.cloud.feature.manager.FeatureManager;
-import com.microsoft.azure.spring.cloud.feature.manager.FeatureManagerSnapshot;
 
 @Controller
 @ConfigurationProperties("controller")

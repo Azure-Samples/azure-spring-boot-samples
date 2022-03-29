@@ -39,7 +39,8 @@ import org.springframework.data.annotation.Id;
 @Data
 public class Visit {
 
-  @Id @GeneratedValue
+  @Id
+  @GeneratedValue
   private String id;
 
   private String petId;

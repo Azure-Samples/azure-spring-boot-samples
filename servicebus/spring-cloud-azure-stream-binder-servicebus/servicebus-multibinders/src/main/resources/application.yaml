@@ -1,0 +1,53 @@
+spring:
+  cloud:
+    stream:
+      function:
+        definition: consume1;supply1;consume2;supply2
+      bindings:
+        consume1-in-0:
+          destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
+          group: ${AZURE_SERVICEBUS_TOPIC_SUBSCRIPTION_NAME}
+        supply1-out-0:
+          destination: ${AZURE_SERVICEBUS_TOPIC_NAME}
+        consume2-in-0:
+          binder: servicebus-2
+          destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
+        supply2-out-0:
+          binder: servicebus-2
+          destination: ${AZURE_SERVICEBUS_QUEUE_NAME}
+      binders:
+        servicebus-1:
+          type: servicebus
+          default-candidate: true
+          environment:
+            spring:
+              cloud:
+                azure:
+                  servicebus:
+                    namespace: ${AZURE_SERVICEBUS_NAMESPACE_01}
+        servicebus-2:
+          type: servicebus
+          default-candidate: false
+          environment:
+            spring:
+              cloud:
+                azure:
+                  servicebus:
+                    namespace: ${AZURE_SERVICEBUS_NAMESPACE_02}
+      servicebus:
+        bindings:
+          consume1-in-0:
+            consumer:
+              auto-complete: false
+          supply1-out-0:
+            producer:
+              entity-type: topic
+          consume2-in-0:
+            consumer:
+              auto-complete: false
+          supply2-out-0:
+            producer:
+              entity-type: queue
+      poller:
+        initial-delay: 0
+        fixed-delay: 1000

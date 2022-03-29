@@ -1,0 +1,30 @@
+# Please fill these placeholders before running this application:
+# 1. ${TENANT_ID}
+# 2. ${RESOURCE_SERVER_1_CLIENT_ID}
+# 3. ${RESOURCE_SERVER_1_CLIENT_SECRET}
+# 4. ${RESOURCE_SERVER_2_CLIENT_ID}
+
+logging:
+  level:
+    root: DEBUG
+server:
+  port: 8081
+spring:
+  security:
+    oauth2:
+      client:
+        provider:
+          azure-active-directory:
+            issuer-uri: https://login.microsoftonline.com/${TENANT_ID}/v2.0 # Refs: https://docs.spring.io/spring-security/site/docs/current/reference/html5/#webflux-oauth2-login-openid-provider-configuration
+        registration:
+          resource-server-1-resource-server-2:
+            provider: azure-active-directory
+            client-id: ${RESOURCE_SERVER_1_CLIENT_ID}
+            client-secret: ${RESOURCE_SERVER_1_CLIENT_SECRET}
+            authorization-grant-type: urn:ietf:params:oauth:grant-type:jwt-bearer
+            scope: api://${RESOURCE_SERVER_2_CLIENT_ID}/resource-server-2.scope-1
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://login.microsoftonline.com/${TENANT_ID}/discovery/v2.0/keys
+          issuer-uri: https://login.microsoftonline.com/${TENANT_ID}/v2.0
+          audience: ${RESOURCE_SERVER_1_CLIENT_ID}

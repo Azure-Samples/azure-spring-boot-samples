@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    azure:
+      eventhubs:
+        connection-string: ${AZURE_EVENTHUBS_CONNECTION_STRING}
+    stream:
+      function:
+        definition: consume;supply
+      bindings:
+        consume-in-0:
+          destination: ${EVENTHUBS_KAFKA}
+          group: $Default
+        supply-out-0:
+          destination: ${EVENTHUBS_KAFKA}

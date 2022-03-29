@@ -2,19 +2,20 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
     <parent>
         <artifactId>azure-spring-boot-samples</artifactId>
         <groupId>com.azure.spring</groupId>
         <version>1.0.0</version>
         <relativePath>../../../pom.xml</relativePath>
     </parent>
-    <modelVersion>4.0.0</modelVersion>
 
-    <groupId>com.azure.spring</groupId>
     <artifactId>run-with-command-line-client-side</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
-    <name>run-with-command-line-client-side</name>
+
+    <name>Azure-Security-Keyvault-JCA Sample: Run with Command Line: Client Side</name>
     <description>Sample project for running an http client with Azure key vault via command line</description>
 
     <properties>

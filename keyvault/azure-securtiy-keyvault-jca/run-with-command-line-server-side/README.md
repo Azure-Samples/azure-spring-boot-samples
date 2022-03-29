@@ -1,13 +1,3 @@
----
-page_type: sample
-languages:
-- java
-products:
-- azure-key-vault
-description: "Sample of useing azure-security-keyvault-jca.jar via command line in server side"
-urlFragment: "azure-spring-boot-sample-run-with-command-line-server-side"
----
-
 # Use azure-security-keyvault-jca.jar via Command Line in server side
 
 ## Key concepts
@@ -25,7 +15,7 @@ jdk 11.0.12 or above
 1. Get a copy of the JCA configuration file.
    - Linux: <java-home>/lib/security/java.security
    - MacOS Big Sur: <java-home>/conf/security/java.security
-   - Windows: <java-home>\lib\security\java.security 
+   - Windows: <java-home>\conf\security\java.security 
 1. Edit your copy of the JCA configuration file. Replace the provider section with: 
    ```
    security.provider.1=SUN
@@ -46,12 +36,13 @@ jdk 11.0.12 or above
    ```
 1. Get the azure-security-keyvault-jca.jar. You can download the latest published jar from maven
    repository [azure-security-keyvault-jca]. When this document is written, the latest jar is
-   azure-security-keyvault-jca.2.6.0.jar
+   azure-security-keyvault-jca-2.6.0.jar
 1. Make a directory, for example, sample_server. Then put the 3 files into sample_server folder
     - java.security
     - run-with-command-line-server-side-1.0.0.jar
-    - azure-security-keyvault-jca-2.6.0.jar 
-1. Open terminal and enter the directory sample_server, run the following command:
+    - azure-security-keyvault-jca-2.6.0.jar
+1. Create the key vault and certificates, please refer to [create key vault and certificates][create_key_vault_and_certificates]. Create service principal and add a secret, please refer to [register app with AAD][register_app_with_AAD].
+1. Replace properties `<yourAzureKeyVaultUri>`, `<yourTenantID>`, `<youClientID>`, `<yourSecretValue>`, `<yourCertificateName>` with your created resources in the following command, then open terminal and enter the directory sample_server, run the changed command:
    ```
    java\
    --module-path ./azure-security-keyvault-jca-2.6.0.jar \
@@ -90,4 +81,6 @@ jdk 11.0.12 or above
 
 <!-- LINKS -->
 [azure-security-keyvault-jca]: https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca
-[client sample]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side/README.md
+[create_key_vault_and_certificates]: https://docs.microsoft.com/azure/key-vault/certificates/quick-create-portal
+[register_app_with_AAD]: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app
+[client sample]: ../run-with-command-line-client-side/README.md

@@ -97,16 +97,16 @@ spring:
   cloud:
     azure:
       active-directory:
-      enabled: true
-      credential:
-        client-id: ${AZURE_CLIENT_ID}
-        client-secret: ${AZURE_CLIENT_SECRET}
-      profile:
-        tenant-id: ${AZURE_TENANT_ID}
-      user-group:
-        allowed-group-names: group1,group2
-      redirect-uri-template: http://localhost:8080/
-      jwt-connect-timeout: 5000
+        enabled: true
+        credential:
+          client-id: ${AZURE_CLIENT_ID}
+          client-secret: ${AZURE_CLIENT_SECRET}
+        profile:
+          tenant-id: ${AZURE_TENANT_ID}
+        user-group:
+          allowed-group-names: group1,group2
+        redirect-uri-template: http://localhost:8080/
+        jwt-connect-timeout: 5000
 ```
 
 1. Put Application ID and client-secret in `client-id` and `client-secret` respectively e.g.

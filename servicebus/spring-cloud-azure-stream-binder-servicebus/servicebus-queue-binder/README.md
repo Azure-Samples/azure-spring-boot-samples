@@ -216,7 +216,6 @@ If you don't want to configure the connection string in your application, it's a
 
 3. [Verify This Sample](#verify-this-sample).
 
-[application-rm.yaml]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/spring-cloud-azure_4.0.0-beta.4/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder/src/main/resources/application-rm.yaml
 
 ## Enhancement
 
@@ -250,3 +249,5 @@ Service Bus binder supports consumer error channel, producer error channel and g
 ### Set Service Bus message headers
 
 Users can get all the supported ServiceBus message headers [here](https://aka.ms/spring/docs/4.0.0#scs-sb-headers) to configure.
+
+[application-rm.yaml]: ./src/main/resources/application-rm.yaml

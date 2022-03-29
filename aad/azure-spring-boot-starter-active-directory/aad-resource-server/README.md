@@ -13,7 +13,7 @@ urlFragment: azure-spring-boot-sample-active-directory-resource-server
 This sample illustrates how to protect a Java web API by restricting access to its resources to authorized accounts(client application) only.
 
 1. Obtain the access token from the HTTP request header.
-2. Use [JwtDecoder](https://jwt.ms/) to parse the access token into `Jwt`.
+2. Use `JwtDecoder` to parse the access token into `Jwt`.
 3. Verify `aud`, `iss`, `nbf`, `exp` claims in access token.
 4. Extract information from JWT in `AADOAuth2AuthenticatedPrincipal` object after a successful verification.
 5. Save the `AADOAuth2AuthenticatedPrincipal` into SecurityContext.

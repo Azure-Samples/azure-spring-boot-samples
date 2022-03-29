@@ -8,10 +8,6 @@ terraform {
       source  = "hashicorp/random"
       version = "3.1.0"
     }
-    null = {
-      source  = "hashicorp/null"
-      version = "3.1.0"
-    }
   }
 }
 
@@ -119,10 +115,3 @@ resource "azuread_app_role_assignment" "user_role" {
   resource_object_id  = azuread_service_principal.resourceserver.object_id
 }
 
-resource "null_resource" "set_env" {
-  depends_on = [azuread_service_principal.resourceserver]
-
-  provisioner "local-exec" {
-    command = "/bin/bash set_identifier_uris.sh"
-  }
-}

@@ -1,7 +1,7 @@
 # Sample for Azure AD B2C Resource server Spring Boot client library for Java
 
 ## Key concepts
-This sample illustrates how to use `azure-spring-boot-starter-active-directory-b2c` package to work in a resource server and valiate tokens. 
+This sample illustrates how to use `spring-cloud-azure-starter-active-directory-b2c` package to work in a resource server and valiate tokens. 
 
 1. Constructs trusted iss by configuring tenant id.
 2. Obtain the access token from the HTTP request header.
@@ -96,7 +96,7 @@ spring:
 
 ### Run with Maven
 ```
-cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory-b2c/aad-b2c-resource-server
+cd azure-spring-boot-samples/aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server
 mvn spring-boot:run
 ```
 

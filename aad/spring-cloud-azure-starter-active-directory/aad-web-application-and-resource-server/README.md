@@ -24,7 +24,7 @@ See [Configure your middle-tier Web API] or [Configure Web API] for more informa
 
 ### Run with Maven
 ```shell
-cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory/aad-resource-server
+cd azure-spring-boot-samples/aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server
 mvn spring-boot:run
 ```
 

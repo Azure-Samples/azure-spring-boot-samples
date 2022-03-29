@@ -1,7 +1,7 @@
 # OAuth 2.0 Sample for Azure AD Spring Boot Starter client library for Java
 
 ## Key concepts
-This sample illustrates how to use `azure-spring-boot-starter-active-directory` package to work with OAuth 2.0 and OpenID Connect protocols on Azure. This sample will use Microsoft Graph API to retrieve user information.
+This sample illustrates how to use `spring-cloud-azure-starter-active-directory` package to work with OAuth 2.0 and OpenID Connect protocols on Azure. This sample will use Microsoft Graph API to retrieve user information.
 
 ## Getting started
 
@@ -106,7 +106,7 @@ spring:
 
 ### Run with Maven
 ```shell
-cd azure-spring-boot-samples/aad/azure-spring-boot-starter-active-directory/aad-web-application
+cd azure-spring-boot-samples/aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server/aad-web-application
 mvn spring-boot:run
 
 # Or use the below command to the AAD conditional access filter.

@@ -209,30 +209,30 @@ terraform -chdir=terraform destroy -auto-approve
 
 ## Enhancement
 
-### [Enable sync message](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#producer-properties)
+### [Enable sync message](https://aka.ms/spring/docs/4.0.0#producer-properties)
 
 To enable message sending in a synchronized way with Spring Cloud Stream 3.x, spring-cloud-azure-stream-binder-eventhubs supports the sync producer mode to get responses for sent messages.
 
 Make sure set `spring.cloud.stream.eventhubs.bindings.<binding-name>.producer.sync=true` before use it.
 
-### [Using Batch Consuming](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#batch-consumer-support)
+### [Using Batch Consuming](https://aka.ms/spring/docs/4.0.0#batch-consumer-support)
 
 To work with the batch-consumer mode, the property of spring.cloud.stream.bindings.<binding-name>.consumer.batch-mode should be set as true. When enabled, an org.springframework.messaging.Message of which the payload is a list of batched events will be received and passed to the consumer function.
 
-In this sample, users can try the batch-consuming mode by enabling the "batch" profile and fill the "application-batch.yml". For more details about how to work in batch-consuming mode, please refer to the [reference doc](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#batch-consumer-support-2).
+In this sample, users can try the batch-consuming mode by enabling the "batch" profile and fill the "application-batch.yml". For more details about how to work in batch-consuming mode, please refer to the [reference doc](https://aka.ms/spring/docs/4.0.0#batch-consumer-support-2).
 
 ### Set Event Hubs message headers
 
-Users can get all the supported EventHubs message headers [here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#scs-eh-headers) to configure.
+Users can get all the supported EventHubs message headers [here](https://aka.ms/spring/docs/4.0.0#scs-eh-headers) to configure.
 
 ### Resource Provision
 
-Event Hubs binder supports provisioning of event hub and consumer group, users could use [properties](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#resource-provision) to enable provisioning.
+Event Hubs binder supports provisioning of event hub and consumer group, users could use [properties](https://aka.ms/spring/docs/4.0.0#resource-provision) to enable provisioning.
 
 ### Partitioning Support
 
-A PartitionSupplier with user-provided partition information will be created to configure the partition information about the message to be sent. The binder supports Event Hubs partitioning by allowing setting partition key and id. Please refer to the [reference doc](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#partitioning-support-2) for more details.
+A PartitionSupplier with user-provided partition information will be created to configure the partition information about the message to be sent. The binder supports Event Hubs partitioning by allowing setting partition key and id. Please refer to the [reference doc](https://aka.ms/spring/docs/4.0.0#partitioning-support-2) for more details.
 
 ### Error Channel
 
-Event Hubs binder supports consumer error channel, producer error channel and global default error channel, click [here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#error-channels) to see more information.
+Event Hubs binder supports consumer error channel, producer error channel and global default error channel, click [here](https://aka.ms/spring/docs/4.0.0#error-channels) to see more information.

@@ -116,8 +116,8 @@ client-id: xxxxxx-your-client-secret-xxxxxx
 ```
 
 ---
- ### Step 4: Create Role_group1 to your group
-1. In the left-hand navigation pane, select **Groups**, and then select **New group** to create a new group named `group1`, choose your tenant as **Owners** and Spring Boot Sample as **Members**.
+ ### Step 4: Change Role_group1 to your group
+1. You can use `@PreAuthorize` annotation or `UserPrincipal` to manage access to web API based on user's group membership. You will need to change `ROLE_group1` to groups you want to allow to access the API in `TodoListController.java` or you will get "Access is denied".
    
 ---
 

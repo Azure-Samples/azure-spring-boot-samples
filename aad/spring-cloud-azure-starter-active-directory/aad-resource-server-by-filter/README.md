@@ -43,7 +43,7 @@ or download and extract the repository .zip file, and navigate to `azure-spring-
 ---
 ### Step 2:  Register the sample with your Azure Active Directory tenant
 
-To register it follow the steps below or follow the guide [here](https://docs.microsoft.com/powerapps/developer/data-platform/walkthrough-register-app-azure-active-directory#:~:text=In%20the%20Azure%20portal%2C%20select,be%20displayed%20to%20the%20users.).
+To register it follow the steps below or follow the guide [here](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app).
 
 #### Choose the Azure AD tenant where you want to create your applications
 

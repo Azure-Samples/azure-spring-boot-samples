@@ -26,10 +26,10 @@ jobs:
       - name: Clone repo
         uses: actions/checkout@v3
 
-      - name: Run tfsec
-        uses: tfsec/tfsec-sarif-action@9a83b5c3524f825c020e356335855741fd02745f
+      - name: tfsec
+        uses: aquasecurity/tfsec-sarif-action@v0.1.0
         with:
-          sarif_file: tfsec.sarif         
+          sarif_file: tfsec.sarif          
 
       - name: Upload SARIF file
         uses: github/codeql-action/upload-sarif@v1

@@ -1,44 +1,33 @@
 ## How to develop codes to this repo.
 
 
-### 01. Develop sample with the latest released libraries
-
-In this scenario,  the samples' dependency has been released to maven central.
-
 1. Make your changes in a new git fork.
-1. Checkout a new  feature/bugfix branch from `main`.
-2. Develop in feature/bugfix branch.
-3. Make pull request to merge the branch into main.(able to merge)
+2. Checkout a new  feature/bugfix branch from `main`.
+    > The `main` branch is a develop branch, the samples may depend on beta version libraries, which are not released to maven central.
 
-
-### 02. Develop sample with released versions of libraries(not the latest version)
-
-For some reason, we may need to provide sample with not the latest library but specific version of libraries.
-
-In this scenario:
-1. Make your changes in a new git fork.
-1. Checkout a new feature/bugfix branch.
-2. Specify the version of libraries.
 3. Develop in feature/bugfix branch.
-3. Make pull request to merge the branch into new **feature** branch.
+4. Build the unreleased dependency libraries in your local machine.
+   ```bash
+      git init azure-sdk-for-java
+      cd azure-sdk-for-java
+      git remote add origin https://github.com/Azure/azure-sdk-for-java.git
+      git config core.sparsecheckout true
+      echo "sdk/spring" >> .git/info/sparse-checkout
+      echo "eng" >> .git/info/sparse-checkout
+      echo "sdk/keyvault" >> .git/info/sparse-checkout
+      echo "sdk/boms" >> .git/info/sparse-checkout
+      git pull --depth=1 origin feature/azure-spring-cloud-4.0
+      mvn clean install -Dmaven.javadoc.skip=true -DskipTests \
+          -Dcheckstyle.skip=true \
+          -ntp \
+          -Dspotbugs.skip=true \
+          -Drevapi.skip=true -Djacoco.skip=true \
+          -Dparallel-test-playback \
+          -Pdev \
+          -f sdk/spring/pom.xml
+   ```
+5. Make pull request to merge the branch into `main`.
 
-### 03. Develop sample with unreleased libraries
+      > There are github actions to check some status here
 
-In this scenario, the samples may depend on beta version library, which is not released to maven central.
-
-1. Make your changes in a new git fork.
-1. Checkout a new  feature/bugfix branch from `main`.
-
-2. Develop in feature/bugfix branch.
-
-3. Before the dependent library is released to maven central.
-
-    - Test sample in local machine.
-
-4. After the dependent library is released to maven central.
-
-    - Make pull request to merge the branch into `main`.
-
-      > There are github actions to check some status here,
-      >
-      > if the dependent library is not released to maven central, the pull request will be blocked to merge.
+    

@@ -28,6 +28,6 @@
    ```
 5. Make pull request to merge the branch into `main`.
 
-      > There are github actions to check some status here
+      > There are github actions to check some status here.
 
     

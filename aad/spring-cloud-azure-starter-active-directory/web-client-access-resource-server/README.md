@@ -18,7 +18,7 @@ Terraform must authenticate to Azure to create infrastructure.
 In your terminal, use the Azure CLI tool to setup your account permissions locally.
 
 ```shell
-az login --tenant  [your-tenant] --allow-no-subscriptions
+az login --tenant  5ff589ec-141f-4124-886b-e72cab8b0ad6 --allow-no-subscriptions
 ```
 
 Your browser window will open and you will be prompted to enter your Azure login credentials. After successful authentication, your terminal will display your subscription information. You do not need to save this output as it is saved in your system for Terraform to use.
@@ -60,6 +60,18 @@ terraform -chdir=./terraform apply -auto-approve
 
 ```
 
+#### Run with Powershell
+
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=terraform init
+
+# Apply your Terraform Configuration
+terraform -chdir=terraform apply -auto-approve
+
+```
+
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell
@@ -79,14 +91,27 @@ Running the command below to export environment values:
 source ./terraform/setup_env.sh
 ```
 
+#### Run with Powershell
+
+```shell
+. terraform\setup_env.ps1
+```
+
 ## Run Locally
 
-In your current terminal, run `source run_all.sh`.
+In your current terminal:
+
+#### Run with Bash
 
 ```shell
 source run_all.sh
 ```
 
+#### Run with Powershell
+
+```shell
+.\run_all.ps1
+```
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
@@ -98,4 +123,10 @@ To destroy the resources you created.
 
 ```shell
 terraform -chdir=./terraform destroy -auto-approve
+```
+
+#### Run with Powershell
+
+```shell
+terraform -chdir=terraform destroy -auto-approve
 ```

@@ -8,10 +8,6 @@ terraform {
       source  = "hashicorp/random"
       version = "3.1.0"
     }
-    null = {
-      source  = "hashicorp/null"
-      version = "3.1.0"
-    }
   }
 }
 
@@ -327,11 +323,3 @@ resource "azuread_user" "user" {
   password            = "Azure123456@"
 }
 
-
-resource "null_resource" "set_env" {
-  depends_on = [azuread_service_principal.webApiC]
-
-  provisioner "local-exec" {
-    command = "/bin/bash set_identifier_uris.sh"
-  }
-}

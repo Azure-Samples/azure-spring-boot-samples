@@ -1,4 +1,20 @@
+# set identifier_uris
+# webApiA  WEB_API_A_CLIENT_ID
 terraformpath=./terraform
+export WEB_API_A_CLIENT_ID=$(terraform -chdir=$terraformpath output -raw WEB_API_A_CLIENT_ID)
+echo "----------update identifier-uris for WEB_API_A----------"
+az ad app update --id $WEB_API_A_CLIENT_ID --identifier-uris api://$WEB_API_A_CLIENT_ID
+
+# webApiB  WEB_API_B_CLIENT_ID
+export WEB_API_B_CLIENT_ID=$(terraform -chdir=$terraformpath output -raw WEB_API_B_CLIENT_ID)
+echo "----------update identifier-uris for WEB_API_B----------"
+az ad app update --id $WEB_API_B_CLIENT_ID --identifier-uris api://$WEB_API_B_CLIENT_ID
+
+# webApiC  WEB_API_C_CLIENT_ID
+export WEB_API_C_CLIENT_ID=$(terraform -chdir=$terraformpath output -raw WEB_API_C_CLIENT_ID)
+echo "----------update identifier-uris for WEB_API_C----------"
+az ad app update --id $WEB_API_C_CLIENT_ID --identifier-uris api://$WEB_API_C_CLIENT_ID
+
 export AZURE_TENANT_ID=$(terraform -chdir=$terraformpath output -raw AZURE_TENANT_ID)
 
 # WEB_APP
@@ -6,16 +22,13 @@ export AZURE_CLIENT_ID=$(terraform -chdir=$terraformpath output -raw AZURE_CLIEN
 export AZURE_CLIENT_SECRET=$(terraform -chdir=$terraformpath output -raw AZURE_CLIENT_SECRET)
 
 # WEB_API_A
-export WEB_API_A_CLIENT_ID=$(terraform -chdir=$terraformpath output -raw WEB_API_A_CLIENT_ID)
 export WEB_API_A_CLIENT_SECRET=$(terraform -chdir=$terraformpath output -raw WEB_API_A_CLIENT_SECRET)
 export WEB_API_A_APP_ID_URL=api://$WEB_API_A_CLIENT_ID
 
 # WEB_API_B
-export WEB_API_B_CLIENT_ID=$(terraform -chdir=$terraformpath output -raw WEB_API_B_CLIENT_ID)
 export WEB_API_B_APP_ID_URL=api://$WEB_API_B_CLIENT_ID
 
 # WEB_API_C
-export WEB_API_C_CLIENT_ID=$(terraform -chdir=$terraformpath output -raw WEB_API_C_CLIENT_ID)
 export WEB_API_C_APP_ID_URL=api://$WEB_API_C_CLIENT_ID
 
 # user

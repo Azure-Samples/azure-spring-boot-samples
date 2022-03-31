@@ -8,6 +8,10 @@ terraform {
       source  = "aztfmod/azurecaf"
       version = "1.2.16"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.1.0"
+    }
   }
 }
 
@@ -61,6 +65,41 @@ resource "azurerm_cosmosdb_account" "application" {
   }
 }
 
+# Used to get object_id
+data "azurerm_client_config" "current" {
+}
+
+resource "random_string" "random" {
+  length = 5
+  min_lower = 5
+  special = false
+}
+
+resource "azurerm_cosmosdb_sql_role_definition" "role" {
+  name                = "cosmosdb-sql-role-definition-${random_string.random.result}"
+  resource_group_name = azurerm_resource_group.main.name
+  account_name        = azurerm_cosmosdb_account.application.name
+  type                = "CustomRole"
+  assignable_scopes   = ["/subscriptions/${data.azurerm_client_config.current.subscription_id}/resourceGroups/${azurerm_resource_group.main.name}/providers/Microsoft.DocumentDB/databaseAccounts/${azurerm_cosmosdb_account.application.name}"]
+
+  permissions {
+    data_actions = ["Microsoft.DocumentDB/databaseAccounts/readMetadata",
+      "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/items/read",
+      "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/executeQuery",
+      "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/readChangeFeed",
+      "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/*",
+      "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/items/*"]
+  }
+}
+
+resource "azurerm_cosmosdb_sql_role_assignment" "assignment" {
+  resource_group_name = azurerm_resource_group.main.name
+  account_name        = azurerm_cosmosdb_account.application.name
+  role_definition_id  = azurerm_cosmosdb_sql_role_definition.role.id
+  principal_id        = data.azurerm_client_config.current.object_id
+  scope               = "/subscriptions/${data.azurerm_client_config.current.subscription_id}/resourceGroups/${azurerm_resource_group.main.name}/providers/Microsoft.DocumentDB/databaseAccounts/${azurerm_cosmosdb_account.application.name}"
+}
+
 resource "azurerm_cosmosdb_sql_database" "db" {
   name                = var.cosmos_database_name
   resource_group_name = azurerm_resource_group.main.name
@@ -77,8 +116,3 @@ resource "azurerm_cosmosdb_sql_container" "application" {
   partition_key_version = 1
   throughput            = 400
 }
-
-# Used to get object_id
-data "azurerm_client_config" "current" {
-}
-

@@ -32,7 +32,7 @@
 
       > There are github actions to check some status here.
 
-### 02. Contribute to other branch except 
+### 02. Contribute to other branch except main branch
 
 1. Make your changes in a new git fork.
 2. Checkout a new  feature/bugfix branch from current branch.

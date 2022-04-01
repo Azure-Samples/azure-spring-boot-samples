@@ -56,6 +56,12 @@ resource "azurerm_key_vault" "kv_account_01" {
 
   sku_name = "standard"
 
+  # Specify Network ACLs
+  network_acls {
+    default_action             = "Allow"
+    bypass                     = "AzureServices"
+  }
+
   access_policy {
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = data.azurerm_client_config.current.object_id
@@ -106,6 +112,11 @@ resource "azurerm_key_vault" "kv_account_02" {
   purge_protection_enabled    = false
 
   sku_name = "standard"
+
+  network_acls {
+    default_action             = "Allow"
+    bypass                     = "AzureServices"
+  }
 
   access_policy {
     tenant_id = data.azurerm_client_config.current.tenant_id

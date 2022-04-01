@@ -124,6 +124,12 @@ resource "azurerm_key_vault" "kv_account" {
 
   sku_name = "standard"
 
+  # Specify Network ACLs
+  network_acls {
+    default_action             = "Allow"
+    bypass                     = "AzureServices"
+  }
+
   access_policy {
     tenant_id = data.azuread_client_config.current.tenant_id
     object_id = data.azuread_client_config.current.object_id

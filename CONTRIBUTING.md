@@ -1,4 +1,4 @@
-## How to develop codes to this repo.
+## How to Develop Codes to This Repo
 
 
 ### 01. Contribute to Main Branch

@@ -11,7 +11,15 @@
     >  **servicebus**: The Azure service that the sample integrated with.
     >
     > **spring-cloud-azure-starter-integration-servicebus**: The dependency that the sample depends on.
-    
+
+## Branch policy
+We use `main` branch as the develop branch while setting the default branch as the latest released branch.
+
+| Branch Name               | Default Branch | Branch type    |
+|---------------------------|----------------|----------------|
+| main                      | false          | develop branch |
+| spring-cloud-azure_v4.0.0 | true           | release branch |
+
 
 ## Current Branch Supported versions
 - [spring-boot-dependencies:2.6.3](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-dependencies/2.6.3/spring-boot-dependencies-2.6.3.pom).

@@ -45,6 +45,13 @@ resource "azurecaf_name" "azurecaf_name_kv_01" {
   clean_input   = true
 }
 
+data "http" "my_public_ip" {
+  url = "https://api.ipify.org?format=json"
+  request_headers = {
+    Accept = "application/json"
+  }
+}
+
 resource "azurerm_key_vault" "kv_account_01" {
   name                        = azurecaf_name.azurecaf_name_kv_01.result
   location                    = azurerm_resource_group.main.location
@@ -58,8 +65,9 @@ resource "azurerm_key_vault" "kv_account_01" {
 
   # Specify Network ACLs
   network_acls {
-    default_action             = "Allow"
+    default_action             = "Deny"
     bypass                     = "AzureServices"
+    ip_rules                   = [jsondecode(data.http.my_public_ip.body).ip, jsondecode(data.http.my_public_ip.body).ip]
   }
 
   access_policy {
@@ -113,9 +121,11 @@ resource "azurerm_key_vault" "kv_account_02" {
 
   sku_name = "standard"
 
+  # Specify Network ACLs
   network_acls {
-    default_action             = "Allow"
+    default_action             = "Deny"
     bypass                     = "AzureServices"
+    ip_rules                   = [jsondecode(data.http.my_public_ip.body).ip, jsondecode(data.http.my_public_ip.body).ip]
   }
 
   access_policy {

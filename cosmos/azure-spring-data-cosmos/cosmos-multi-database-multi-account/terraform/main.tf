@@ -157,20 +157,16 @@ resource "azurerm_mysql_database" "database" {
 }
 
 data "http" "my_public_ip" {
-  url = "https://ifconfig.co/json"
+  url = "https://api.ipify.org?format=json"
   request_headers = {
     Accept = "application/json"
   }
-}
-
-locals {
-  ifconfig_co_json = jsondecode(data.http.my_public_ip.body)
 }
 
 resource "azurerm_mysql_firewall_rule" "client_ip" {
   name                = "allowip"
   resource_group_name = azurerm_resource_group.main.name
   server_name         = azurerm_mysql_server.mysql.name
-  start_ip_address    = local.ifconfig_co_json.ip
-  end_ip_address      = local.ifconfig_co_json.ip
+  start_ip_address    = jsondecode(data.http.my_public_ip.body).ip
+  end_ip_address      = jsondecode(data.http.my_public_ip.body).ip
 }

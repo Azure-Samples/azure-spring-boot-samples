@@ -8,10 +8,6 @@ terraform {
       source  = "aztfmod/azurecaf"
       version = "1.2.16"
     }
-    random = {
-      source  = "hashicorp/random"
-      version = "3.1.0"
-    }
   }
 }
 
@@ -69,17 +65,11 @@ resource "azurerm_cosmosdb_account" "application" {
 data "azurerm_client_config" "current" {
 }
 
-resource "random_string" "random" {
-  length = 5
-  min_lower = 5
-  special = false
-}
-
 resource "azurerm_cosmosdb_sql_role_definition" "role" {
-  name                = "cosmosdb-sql-role-definition-${random_string.random.result}"
+  name                = "cosmosdb-sql-role-definition"
   resource_group_name = azurerm_resource_group.main.name
   account_name        = azurerm_cosmosdb_account.application.name
-  type                = "CustomRole"
+  type                = "BuiltInRole"
   assignable_scopes   = ["/subscriptions/${data.azurerm_client_config.current.subscription_id}/resourceGroups/${azurerm_resource_group.main.name}/providers/Microsoft.DocumentDB/databaseAccounts/${azurerm_cosmosdb_account.application.name}"]
 
   permissions {

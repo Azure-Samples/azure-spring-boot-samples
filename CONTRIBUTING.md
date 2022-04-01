@@ -1,7 +1,7 @@
-## How to develop codes to this repo.
+## How to Develop Codes to This Repo
 
 
-### 01. Contribute to main branch 
+### 01. Contribute to Main Branch 
 
 1. Make your changes in a new git fork.
 2. Checkout a new  feature/bugfix branch from `main`.
@@ -32,7 +32,7 @@
 
       > There are github actions to check some status here.
 
-### 02. Contribute to other branch except main branch
+### 02. Contribute to Other Branch Except Main Branch
 
 1. Make your changes in a new git fork.
 2. Checkout a new  feature/bugfix branch from current branch.

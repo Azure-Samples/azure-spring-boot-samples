@@ -12,7 +12,7 @@
     >
     > **spring-cloud-azure-starter-integration-servicebus**: The dependency that the sample depends on.
 
-## Branch policy
+## Branch Policy
 We use `main` branch as the develop branch while setting the default branch as the latest released branch.
 
 | Branch Name               | Default Branch | Branch type    |
@@ -21,17 +21,17 @@ We use `main` branch as the develop branch while setting the default branch as t
 | spring-cloud-azure_v4.0.0 | true           | release branch |
 
 
-## Current Branch Supported versions
+## Current Branch Supported Versions
 - [spring-boot-dependencies:2.6.3](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-dependencies/2.6.3/spring-boot-dependencies-2.6.3.pom).
 - [spring-cloud-dependencies:2021.0.1](https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud-dependencies/2021.0.1/spring-cloud-dependencies-2021.0.1.pom).
 
-## All active branches
+## All Active Branches
 
 | Spring Boot Version  | Spring Cloud version  | Spring Cloud Azure Version                                                                 |
 |----------------------|-----------------------|--------------------------------------------------------------------------------------------|
 | 2.6.3                | 2021.0.1              | [4.0.0](https://github.com/Azure/azure-sdk-for-java/releases/tag/spring-cloud-azure_4.0.0) | 
 
-## All samples in this repo
+## All Samples in This Repo
 
 | Azure Service    | Spring Cloud Azure Starter Dependency                               | Sample Project                                                                                                                     |
 |------------------|---------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|

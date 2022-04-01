@@ -1,11 +1,11 @@
 ## How to develop codes to this repo.
 
 
-### 01. Contribute to main branch 
+### 01. Contribute to Main Branch
 
 1. Make your changes in a new git fork.
 2. Checkout a new  feature/bugfix branch from `main`.
-    > The `main` branch is a develop branch, the samples may depend on beta version libraries, which are not released to maven central.
+   > The `main` branch is a develop branch, the samples may depend on beta version libraries, which are not released to maven central.
 
 3. Develop in feature/bugfix branch.
 4. Build the unreleased dependency libraries in your local machine.
@@ -30,15 +30,13 @@
    ```
 5. Make pull request to merge the branch into `main`.
 
-      > There are github actions to check some status here.
+   > There are github actions to check some status here.
 
-### 02. Contribute to other branch except 
+### 02. Contribute to Other Branch Except Main Branch
 
 1. Make your changes in a new git fork.
 2. Checkout a new  feature/bugfix branch from current branch.
 3. Develop in feature/bugfix branch.
 5. Make pull request to merge the branch into current branch.
 
-      > There are github actions to check some status here.
-
-    
+   > There are github actions to check some status here.

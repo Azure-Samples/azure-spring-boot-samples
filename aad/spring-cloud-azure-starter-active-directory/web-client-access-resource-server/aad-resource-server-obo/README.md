@@ -30,9 +30,7 @@ We will prepare two applications to demonstrate the dependent calls of resources
 ![API Permissions](docs/image-resource-server-obo-add-scope.png)
 2. Select **API permissions** > **Add a permission** > **My APIs**, select ***Web API B*** application name. ![Select MyAPIs](docs/image-select-myapis.png)
 3. **Delegated permissions** is selected by default, Select **WebApiB.ExampleScope** permission, select **Add permission** to complete the process.![Add Permissions](docs/image-add-permissions.png)
-4. Same as the second step above, select ***Web API C*** Application Name.
-5. Manually select **Application Permissions**, Select **WebApiC.ExampleScope** permission, select **Add permission** to complete the process.![Select MyAPIs](docs/image-select-application-permission.png)
-6. Grant admin consent for ***Web API B*** permissions and  ***Web API C*** permissions.![API Permissions](docs/image-add-grant-admin-consent.png)
+4. Grant admin consent for ***Web API B*** permissions and **Microsoft Graph** permissions.![API Permissions](docs/image-add-grant-admin-consent.png)
 
 See [OAuth 2.0 On-Behalf-Of flow] for more information about OBO.
 
@@ -58,10 +56,6 @@ spring:
             authorization-grant-type: on_behalf_of
             scopes:
               - ${WEB_API_B_APP_ID_URL}/WebApiB.ExampleScope
-          webapiC:
-            authorization-grant-type: client_credentials
-            scopes:
-              - ${WEB_API_C_APP_ID_URL}/.default
 ```
 
 ### Run with Maven
@@ -74,6 +68,7 @@ mvn spring-boot:run
 First, you need to obtain an access token to access Web API A.
 - Web API A will call Graph resource. 
 ```shell script
+# use Header scope '<app-id-uri>/Obo.Graph.Read' to get access-token 
 # Replace to valid access token.
 curl localhost:8081/call-graph -H "Authorization: Bearer <replace-the-access-token>"
 ```
@@ -85,38 +80,29 @@ Graph response success.
 - Web API A will call Graph resource through `OAuth2AuthorizedClientRepository`. 
 
 ```shell script
+# same access-token with above
 # Replace to valid access token.
 curl localhost:8081/call-graph-with-repository -H "Authorization: Bearer <replace-the-access-token>"
 ```
 
 Verify response:
 ```text
-Graph response success.
+Graph response failed.
 ```
 
 - Web API A will call Custom(Web API B) resources. 
 
 ```shell script
+# use Header scope '<app-id-uri>/Obo.WebApiA.ExampleScope' to get access-token 
 # Replace to valid access token.
 curl localhost:8081/webapiA/webapiB -H "Authorization: Bearer <replace-the-access-token>"
 ```
 
 Verify response:
 ```text
-Custom response success.
+webapiB response success.
 ```
 
-- Web API A will call Custom(Web API C) resources through Client Credential Flow.
-
-```shell script
-# Replace to valid access token.
-curl localhost:8081/webapiA/webapiC -H "Authorization: Bearer <replace-the-access-token>"
-```
-
-Verify response:
-```text
-client Credential response success.
-```
 
 ## Troubleshooting
 

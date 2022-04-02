@@ -28,7 +28,3 @@ spring:
             authorization-grant-type: on_behalf_of
             scopes:
               - ${WEB_API_B_APP_ID_URL}/WebApiB.ExampleScope
-          webapiC:
-            authorization-grant-type: client_credentials
-            scopes:
-              - ${WEB_API_C_APP_ID_URL}/.default

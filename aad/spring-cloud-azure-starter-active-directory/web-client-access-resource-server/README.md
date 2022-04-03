@@ -18,7 +18,7 @@ Terraform must authenticate to Azure to create infrastructure.
 In your terminal, use the Azure CLI tool to setup your account permissions locally.
 
 ```shell
-az login --tenant  5ff589ec-141f-4124-886b-e72cab8b0ad6 --allow-no-subscriptions
+az login --tenant  [your-tenant] --allow-no-subscriptions
 ```
 
 Your browser window will open and you will be prompted to enter your Azure login credentials. After successful authentication, your terminal will display your subscription information. You do not need to save this output as it is saved in your system for Terraform to use.
@@ -112,6 +112,8 @@ source run_all.sh
 ```shell
 .\run_all.ps1
 ```
+
+## [Check the authentication and authorization](./aad-web-application#Check-the-authentication-and-authorization)
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.

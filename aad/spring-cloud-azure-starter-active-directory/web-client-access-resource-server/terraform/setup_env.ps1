@@ -1,19 +1,3 @@
-# set identifier_uris
-# webApiA  WEB_API_A_CLIENT_ID
-$env:WEB_API_A_CLIENT_ID=$(terraform -chdir=terraform output -raw WEB_API_A_CLIENT_ID)
-echo "----------update identifier-uris for WEB_API_A----------"
-az ad app update --id $env:WEB_API_A_CLIENT_ID --identifier-uris api://$env:WEB_API_A_CLIENT_ID
-
-# webApiB  WEB_API_B_CLIENT_ID
-$env:WEB_API_B_CLIENT_ID=$(terraform -chdir=terraform output -raw WEB_API_B_CLIENT_ID)
-echo "----------update identifier-uris for WEB_API_B----------"
-az ad app update --id $env:WEB_API_B_CLIENT_ID --identifier-uris api://$env:WEB_API_B_CLIENT_ID
-
-# webApiC  WEB_API_C_CLIENT_ID
-$env:WEB_API_C_CLIENT_ID=$(terraform -chdir=terraform output -raw WEB_API_C_CLIENT_ID)
-echo "----------update identifier-uris for WEB_API_C----------"
-az ad app update --id $env:WEB_API_C_CLIENT_ID --identifier-uris api://$env:WEB_API_C_CLIENT_ID
-
 $env:AZURE_TENANT_ID=$(terraform -chdir=terraform output -raw AZURE_TENANT_ID)
 
 # WEB_APP
@@ -21,14 +5,13 @@ $env:AZURE_CLIENT_ID=$(terraform -chdir=terraform output -raw AZURE_CLIENT_ID)
 $env:AZURE_CLIENT_SECRET=$(terraform -chdir=terraform output -raw AZURE_CLIENT_SECRET)
 
 # WEB_API_A
+$env:WEB_API_A_CLIENT_ID=$(terraform -chdir=terraform output -raw WEB_API_A_CLIENT_ID)
 $env:WEB_API_A_CLIENT_SECRET=$(terraform -chdir=terraform output -raw WEB_API_A_CLIENT_SECRET)
 $env:WEB_API_A_APP_ID_URL="api://"+($env:WEB_API_A_CLIENT_ID)
 
 # WEB_API_B
+$env:WEB_API_B_CLIENT_ID=$(terraform -chdir=terraform output -raw WEB_API_B_CLIENT_ID)
 $env:WEB_API_B_APP_ID_URL="api://"+($env:WEB_API_B_CLIENT_ID)
-
-# WEB_API_C
-$env:WEB_API_C_APP_ID_URL="api://"+($env:WEB_API_C_CLIENT_ID)
 
 # user
 $env:USER_PASSWORD=$(terraform -chdir=terraform output -raw USER_PASSWORD)
@@ -52,11 +35,6 @@ echo WEB_API_A_APP_ID_URL=$env:WEB_API_A_APP_ID_URL
 echo "================WEB_API_B================"
 echo WEB_API_B_CLIENT_ID=$env:WEB_API_B_CLIENT_ID
 echo WEB_API_B_APP_ID_URL=$env:WEB_API_B_APP_ID_URL
-
-# WEB_API_C
-echo "================WEB_API_C================"
-echo WEB_API_C_CLIENT_ID=$env:WEB_API_C_CLIENT_ID
-echo WEB_API_C_APP_ID_URL=$env:WEB_API_C_APP_ID_URL
 
 # user
 echo "===================================="

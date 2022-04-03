@@ -27,9 +27,6 @@ resource "random_uuid" "webApiAOboExample" {
 resource "random_uuid" "webApiB" {
 }
 
-resource "random_uuid" "webApiC" {
-}
-
 resource "random_uuid" "WebApiB_ClientCredential_ExampleScope" {
 }
 
@@ -39,11 +36,28 @@ data "azuread_client_config" "current" {}
 provider "azuread" {
 }
 
+# Create a user
+resource "azuread_user" "user" {
+  user_principal_name = "security-${random_string.random.result}@${data.azuread_domains.example.domains.0.domain_name}"
+  display_name        = "security-${random_string.random.result}"
+  password            = "Azure123456@"
+}
+
+# Create a group
+resource "azuread_group" "group" {
+  display_name = "group1"
+  security_enabled = true
+  members = [azuread_user.user.object_id]
+}
 
 # ====================Configure webApiB====================
+data "azuread_application" "webApiB" {
+  display_name = "webApiB-${random_string.random.result}"
+}
+
 resource "azuread_application" "webApiB" {
   display_name = "webApiB-${random_string.random.result}"
-
+  identifier_uris = ["api://${data.azuread_application.webApiB.application_id}"]
   owners = [data.azuread_client_config.current.object_id]
   # single tenant
   sign_in_audience = "AzureADMyOrg"
@@ -138,6 +152,8 @@ resource "azuread_application" "webapp" {
       id_token_issuance_enabled     = true
     }
   }
+
+  group_membership_claims = []
 }
 
 resource "azuread_service_principal" "webapp" {
@@ -180,47 +196,14 @@ resource "azuread_service_principal_delegated_permission_grant" "webapp" {
   claim_values                         = ["WebApiB_ClientCredential_ExampleScope"]
 }
 
-# ====================Configure webApiC====================
-resource "azuread_application" "webApiC" {
-  display_name = "webApiC-${random_string.random.result}"
-
-  owners = [data.azuread_client_config.current.object_id]
-  # single tenant
-  sign_in_audience = "AzureADMyOrg"
-
-  api {
-    requested_access_token_version = 2
-
-    oauth2_permission_scope {
-      admin_consent_description  = "WebApiC.ExampleScope"
-      admin_consent_display_name = "WebApiC.ExampleScope"
-      enabled                    = true
-      id                         = random_uuid.webApiC.result
-      type                       = "User"
-      value                      = "WebApiC.ExampleScope"
-    }
-  }
-
-  required_resource_access {
-    resource_app_id = "00000003-0000-0000-c000-000000000000" # Microsoft Graph
-
-    resource_access {
-      id   = "e1fe6dd8-ba31-4d61-89e7-88639da4683d" # User.Read
-      type = "Scope"
-    }
-  }
-}
-
-resource "azuread_service_principal" "webApiC" {
-  application_id               = azuread_application.webApiC.application_id
-  app_role_assignment_required = false
-  owners                       = [data.azuread_client_config.current.object_id]
-}
-
 # ====================Configure webApiA====================
+data "azuread_application" "webApiA" {
+  display_name = "webApiA-${random_string.random.result}"
+}
+
 resource "azuread_application" "webApiA" {
   display_name = "webApiA-${random_string.random.result}"
-
+  identifier_uris = ["api://${data.azuread_application.webApiA.application_id}"]
   owners = [data.azuread_client_config.current.object_id]
   # single tenant
   sign_in_audience = "AzureADMyOrg"
@@ -278,15 +261,6 @@ resource "azuread_application" "webApiA" {
     }
   }
 
-  required_resource_access {
-    resource_app_id = azuread_application.webApiC.application_id # webApiC
-
-    # need grant
-    resource_access {
-      id   = random_uuid.webApiC.result # WebApiC.ExampleScope
-      type = "Scope"
-    }
-  }
 }
 
 resource "azuread_service_principal" "webApiA" {
@@ -305,21 +279,10 @@ resource "azuread_service_principal_delegated_permission_grant" "webApiB" {
   claim_values                         = ["WebApiB.ExampleScope"]
 }
 
-resource "azuread_service_principal_delegated_permission_grant" "webApiC" {
-  service_principal_object_id          = azuread_service_principal.webApiA.object_id
-  resource_service_principal_object_id = azuread_service_principal.webApiC.object_id
-  claim_values                         = ["WebApiC.ExampleScope"]
-}
-
 # Retrieve domain information
 data "azuread_domains" "example" {
   only_initial = true
 }
 
-# Create a user
-resource "azuread_user" "user" {
-  user_principal_name = "security-${random_string.random.result}@${data.azuread_domains.example.domains.0.domain_name}"
-  display_name        = "security-${random_string.random.result}"
-  password            = "Azure123456@"
-}
+
 

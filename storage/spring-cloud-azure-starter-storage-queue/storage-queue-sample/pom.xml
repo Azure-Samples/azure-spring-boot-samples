@@ -11,15 +11,14 @@
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>spring-cloud-azure-starter-integration-sample-eventhubs</artifactId>
+  <artifactId>azure-spring-cloud-sample-storage-queue</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
-
-  <name>Communicate to Event Hubs via Spring Integration</name>
+  <name>Usage of Storage Queue</name>
 
   <properties>
-    <imageName>eventhubs-integration</imageName>
-    <mainClass>com.azure.spring.sample.eventhubs.EventHubIntegrationApplication</mainClass>
+    <imageName>storage-queue-sample</imageName>
+    <mainClass>com.azure.spring.sample.storage.queue.StorageQueueApplication</mainClass>
   </properties>
 
   <dependencies>
@@ -29,16 +28,20 @@
     </dependency>
     <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>spring-cloud-azure-starter-integration-eventhubs</artifactId>
+      <artifactId>spring-cloud-azure-starter-storage-queue</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-logging</artifactId>
     </dependency>
-    <dependency>
-      <groupId>org.hibernate.validator</groupId>
-      <artifactId>hibernate-validator</artifactId>
-    </dependency>
-
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+      </plugin>
+    </plugins>
+  </build>
 </project>

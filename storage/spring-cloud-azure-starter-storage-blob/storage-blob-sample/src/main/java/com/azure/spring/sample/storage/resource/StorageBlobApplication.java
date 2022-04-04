@@ -10,8 +10,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author Warren Zhu
  */
 @SpringBootApplication
-public class StorageApplication {
+public class StorageBlobApplication {
     public static void main(String[] args) {
-        SpringApplication.run(StorageApplication.class, args);
+        SpringApplication.run(StorageBlobApplication.class, args);
     }
 }

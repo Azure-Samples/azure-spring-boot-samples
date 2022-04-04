@@ -17,6 +17,11 @@
 
   <name>Spring-Cloud-Azure-Starter-KeyVault-Secrets Sample: Property Source</name>
 
+  <properties>
+    <imageName>single-property-source</imageName>
+    <mainClass>com.azure.spring.keyvault.secrets.sample.single.property.source.SinglePropertySourceApplication</mainClass>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>

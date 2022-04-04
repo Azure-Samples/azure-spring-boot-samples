@@ -17,6 +17,11 @@
 
   <name>Using Storage Queue with Spring Integration</name>
 
+  <properties>
+    <imageName>storage-queue-integration</imageName>
+    <mainClass>com.azure.spring.sample.storage.queue.StorageQueueIntegrationApplication</mainClass>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -38,7 +43,5 @@
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
     </dependency>
-
   </dependencies>
-
 </project>

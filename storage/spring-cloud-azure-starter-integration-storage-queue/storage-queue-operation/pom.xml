@@ -16,6 +16,11 @@
   <packaging>jar</packaging>
   <name>Usage of Storage Queue Operation</name>
 
+  <properties>
+    <imageName>storage-queue-operation</imageName>
+    <mainClass>com.azure.spring.sample.storage.queue.operation.StorageQueueOperationApplication</mainClass>
+  </properties>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -33,17 +38,14 @@
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
     </dependency>
-
   </dependencies>
 
   <build>
     <plugins>
-
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
       </plugin>
-
     </plugins>
   </build>
 </project>

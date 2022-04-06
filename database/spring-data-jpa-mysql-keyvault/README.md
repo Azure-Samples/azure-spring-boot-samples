@@ -84,35 +84,6 @@ terraform -chdir=terraform apply -auto-approve
 
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
-```shell
-...
-azurecaf_name.azurecaf_name_kv_02: Creating...
-azurecaf_name.azurecaf_name_kv_01: Creating...
-azurecaf_name.resource_group: Creating...
-azurecaf_name.azurecaf_name_kv_01: Creation complete after 0s ...
-azurecaf_name.resource_group: Creation complete after 0s ...
-azurecaf_name.azurecaf_name_kv_02: Creation complete after 0s ...
-azurerm_resource_group.main: Creating...
-azurerm_resource_group.main: Creation complete after 3s ...
-azurerm_key_vault.kv_account_02: Creating...
-azurerm_key_vault.kv_account_01: Creating...
-azurerm_key_vault.kv_account_02: Still creating... 
-...
-azurerm_key_vault_secret.kv_01: Creation complete ...
-azurerm_key_vault_secret.kv_both_01: Creation complete ...
-azurerm_key_vault.kv_account_02: Creation complete after ...
-azurerm_key_vault_secret.kv_02_both: Creating...
-azurerm_key_vault_secret.kv_02: Creating...
-azurerm_key_vault_secret.kv_02_both: Creation complete ...
-azurerm_key_vault_secret.kv_02: Creation complete ...
-
-Apply complete! Resources: 10 added, 0 changed, 0 destroyed.
-
-Outputs:
-
-...
-
-```
 
 You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
 
@@ -134,7 +105,7 @@ source ./terraform/setup_env.sh
 If you want to run the sample in debug mode, you can save the output value.
 
 ```shell
-ENDPOINT_1=...
+KEYVAULTURI=...
 ```
 
 ## Run Locally
@@ -157,14 +128,31 @@ You can debug your sample by adding the saved output values to the tool's enviro
 
 ## Verify This Sample
 
-Start the application, you will see logs like this:
-```text
-sampleProperty1: key_vault_secret_01/sampleProperty1Value
-sampleProperty2: key_vault_secret_02/sampleProperty2Value
-samplePropertyInMultipleKeyVault: key_vault_secret_01/samplePropertyInMultipleKeyVaultValue
-```
+To test the application, you can use cURL.
 
-We can see that key_vault_secret_01 have higher priority.
+First, create a new "todo" item in the database using the following command:
+
+```shell
+curl --header "Content-Type: application/json" \
+    --request POST \
+    --data '{"description":"configuration","details":"congratulations, you have set up JPA correctly!","done": "true"}' \
+    http://127.0.0.1:8080
+```
+This command should return the created item as follows:
+
+```text
+{"id":1,"description":"configuration","details":"congratulations, you have set up JPA correctly!","done":true}
+```
+Next, retrieve the data by using a new cURL request as follows:
+
+```shell
+curl http://127.0.0.1:8080
+```
+This command will return the list of "todo" items, including the item you've created, as follows:
+
+```text
+[{"id":1,"description":"configuration","details":"congratulations, you have set up JPA correctly!","done":true}]
+```
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.

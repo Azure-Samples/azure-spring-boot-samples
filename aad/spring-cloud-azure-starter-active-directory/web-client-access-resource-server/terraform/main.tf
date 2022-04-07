@@ -51,13 +51,9 @@ resource "azuread_group" "group" {
 }
 
 # ====================Configure webApiB====================
-data "azuread_application" "webApiB" {
-  display_name = "webApiB-${random_string.random.result}"
-}
-
 resource "azuread_application" "webApiB" {
   display_name = "webApiB-${random_string.random.result}"
-  identifier_uris = ["api://${data.azuread_application.webApiB.application_id}"]
+
   owners = [data.azuread_client_config.current.object_id]
   # single tenant
   sign_in_audience = "AzureADMyOrg"
@@ -197,13 +193,9 @@ resource "azuread_service_principal_delegated_permission_grant" "webapp" {
 }
 
 # ====================Configure webApiA====================
-data "azuread_application" "webApiA" {
-  display_name = "webApiA-${random_string.random.result}"
-}
-
 resource "azuread_application" "webApiA" {
   display_name = "webApiA-${random_string.random.result}"
-  identifier_uris = ["api://${data.azuread_application.webApiA.application_id}"]
+
   owners = [data.azuread_client_config.current.object_id]
   # single tenant
   sign_in_audience = "AzureADMyOrg"

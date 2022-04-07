@@ -22,4 +22,4 @@ spring:
             password-reset: ${PROFILE_EDIT_FLOW_NAME}
             profile-edit: ${PASSWORD_RESET_USER_FLOW_NAME}
             sign-up-or-sign-in: ${SIGN_UP_OR_SIGN_IN_FLOW_NAME}
-          user-name-attribute-name: ${USER_NAME_CLAIM}
+#          user-name-attribute-name: ${USER_NAME_CLAIM}

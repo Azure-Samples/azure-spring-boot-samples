@@ -1,7 +1,7 @@
 # Sample for Azure AD B2C Resource server Spring Boot client library for Java
 
 ## Key concepts
-This sample illustrates how to use `spring-cloud-azure-starter-active-directory-b2c` package to work in a resource server and valiate tokens. 
+This sample illustrates how to use `spring-cloud-azure-starter-active-directory-b2c` package to work in a resource server and validate tokens. 
 
 1. Constructs trusted iss by configuring tenant id.
 2. Obtain the access token from the HTTP request header.
@@ -30,11 +30,11 @@ This sample illustrates how to use `spring-cloud-azure-starter-active-directory-
     "allowedMemberTypes": [
       "Application"
     ],
-    "description": "Task.wirte",
-    "displayName": "Task.wirte",
+    "description": "Task.write",
+    "displayName": "Task.write",
     "id": "1ab4eeda-d07e-4bce-8f77-b0a84c97c34f",
     "isEnabled": true,
-    "value": "Test.wirte"
+    "value": "Test.write"
   }
 ```
 
@@ -101,19 +101,22 @@ mvn spring-boot:run
 ```
 
 ### Access the Web API
-We could use Postman to simulate a Web APP to send a request to a Web API.
 
 ```http request
-GET /write HTTP/1.1
-Authorization: Bearer eyJ0eXAiO ... 0X2tnSQLEANnSPHY0gKcgw
-```
-```http request
-GET /read HTTP/1.1
-Authorization: Bearer eyJ0eXAiO ... 0X2tnSQLEANnSPHY0gKcgw
-```
-```http request
-GET /log HTTP/1.1
-Authorization: Bearer eyJ0eXAiO ... 0X2tnSQLEANnSPHY0gKcgw
+# get access_token
+curl -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=client_credentials&client_id=<aad-b2c-web-app-client-id>&scope=<app-id-uri>/.default&client_secret=<aad-b2c-web-app-client-secret>' 'https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token'
+
+# GET /write HTTP/1.1
+curl localhost:8080/write -H "Authorization: Bearer <access_token>"
+Write success 
+
+# GET /read HTTP/1.1
+curl localhost:8080/read -H "Authorization: Bearer <access_token>"
+Read success
+
+# GET /log HTTP/1.1
+curl localhost:8080/log -H "Authorization: Bearer <access_token> -I"
+# fail with error message:403
 ```
 
 ## Troubleshooting

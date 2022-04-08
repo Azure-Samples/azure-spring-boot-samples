@@ -90,7 +90,7 @@ curl localhost:8082/webapiB -H "Authorization: Bearer <replace-the-access-token>
 Response from webApiB.
 
 # use Header scope 'User.Read' to get access-token 
-curl localhost:8082/user -H "Authorization: Bearer <replace-the-access-token>"
+curl localhost:8082/user -H "Authorization: Bearer <replace-the-access-token>" -I
 # fail with error message:401
 ```
 

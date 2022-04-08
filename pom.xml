@@ -7,7 +7,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.6.3</version>
+    <version>2.6.6</version>
   </parent>
 
   <groupId>com.azure.spring</groupId>
@@ -20,12 +20,12 @@
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
-    <version.guava>25.0-jre</version.guava>
+    <version.guava>31.1-jre</version.guava>
     <version.spring.cloud>2021.0.1</version.spring.cloud>
-    <version.spring.cloud.azure>4.0.0</version.spring.cloud.azure>
-    <version.spring-cloud-appconfiguration-config>2.3.0</version.spring-cloud-appconfiguration-config>
-    <version.spring-cloud-appconfiguration-starter>2.3.0</version.spring-cloud-appconfiguration-starter>
-    <version.spring-cloud-feature-management>2.2.0</version.spring-cloud-feature-management>
+    <version.spring.cloud.azure>4.1.0-beta.1</version.spring.cloud.azure>
+    <version.spring-cloud-appconfiguration-config>2.5.0</version.spring-cloud-appconfiguration-config>
+    <version.spring-cloud-appconfiguration-starter>2.5.0</version.spring-cloud-appconfiguration-starter>
+    <version.spring-cloud-feature-management>2.4.0</version.spring-cloud-feature-management>
     <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>
   </properties>
 

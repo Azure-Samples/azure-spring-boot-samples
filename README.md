@@ -4,26 +4,34 @@
 - This is a sample project for demonstration purposes.   
 - The project demonstrates how to use [Spring Cloud Azure](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html) to develop applications.    
 - The sample project contains 42 samples, and it still grows.    
-- These samples are grouped by Azure services and [Spring Cloud Azure libraries](https://github.com/Azure/azure-sdk-for-java/tree/feature/azure-spring-cloud-4.0/sdk/spring).    
+- These samples are grouped by Azure services and [Spring Cloud Azure libraries](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring).    
 
     > For example: [Use Spring Integration with single Azure Service Bus namespace](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace), it located in the path `/servicebus/spring-cloud-azure-starter-integration-servicebus`.
     >
     >  **servicebus**: The Azure service that the sample integrated with.
     >
     > **spring-cloud-azure-starter-integration-servicebus**: The dependency that the sample depends on.
-    
 
-## Current Branch Supported versions
+## Branch Policy
+We use `main` branch as the develop branch while setting the default branch as the latest released branch.
+
+| Branch Name               | Default Branch | Branch type    |
+|---------------------------|----------------|----------------|
+| main                      | false          | develop branch |
+| spring-cloud-azure_v4.0.0 | true           | release branch |
+
+
+## Current Branch Supported Versions
 - [spring-boot-dependencies:2.6.3](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-dependencies/2.6.3/spring-boot-dependencies-2.6.3.pom).
 - [spring-cloud-dependencies:2021.0.1](https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud-dependencies/2021.0.1/spring-cloud-dependencies-2021.0.1.pom).
 
-## All active branches
+## All Active Branches
 
 | Spring Boot Version  | Spring Cloud version  | Spring Cloud Azure Version                                                                 |
 |----------------------|-----------------------|--------------------------------------------------------------------------------------------|
 | 2.6.3                | 2021.0.1              | [4.0.0](https://github.com/Azure/azure-sdk-for-java/releases/tag/spring-cloud-azure_4.0.0) | 
 
-## All samples in this repo
+## All Samples in This Repo
 
 | Azure Service    | Spring Cloud Azure Starter Dependency                               | Sample Project                                                                                                                     |
 |------------------|---------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|

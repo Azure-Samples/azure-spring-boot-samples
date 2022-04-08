@@ -80,7 +80,7 @@ Graph response success.
 - Web API A will call Graph resource through `OAuth2AuthorizedClientRepository`. 
 
 ```shell script
-# same access-token with above
+# same access-token as above
 # Replace to valid access token.
 curl localhost:8081/call-graph-with-repository -H "Authorization: Bearer <replace-the-access-token>"
 ```

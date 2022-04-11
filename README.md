@@ -95,8 +95,9 @@ mvn clean spring-boot:run
 It supports both Bash environment and [PowerShell](https://docs.microsoft.com/en-us/powershell/) environment.   
 Please refer to [README.md](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace/README.md) under each sample for detailed information.
 
+### Run Samples Based On Spring Native
+The parent project POM file has been configured with support for `Spring Native` to build a Spring Boot native application by default, which can be built based on [Buildpacks](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-buildpacks) and [Native Build Tools](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-build-tools), please follow the readme doc in each sample to build a specific native application.
 
-###
 [spring-cloud-azure-starter-keyvault-secrets:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-keyvault-secrets/4.0.0/jar
 [spring-cloud-azure-stream-binder-eventhubs:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-stream-binder-eventhubs/4.0.0/jar
 [spring-cloud-azure-starter-integration-eventhubs:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-integration-eventhubs/4.0.0/jar

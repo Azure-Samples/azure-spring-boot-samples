@@ -183,7 +183,7 @@ docker run --rm -p 8080:8080 rest-service-complete:0.0.1-SNAPSHOT
 
 - System Requirements
 
-GraalVM `native-image` compiler should be installed, see [System Requirements](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-image-system-requirements) for more details.
+GraalVM `native-image` compiler should be installed, see [System Requirements](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-image-system-requirements) for more details. If using the Windows platform, you need to install `Visual Studio Build Tools`.
 
 - Build the native application
 

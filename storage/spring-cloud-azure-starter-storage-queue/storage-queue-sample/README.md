@@ -225,7 +225,7 @@ To destroy the resources you created.
 terraform -chdir=./terraform destroy -auto-approve
 ```
 
-#### Run with Powershell
+#### Run with Powershell, Command Prompt or Native Tools Command Prompt
 
 ```shell
 terraform -chdir=terraform destroy -auto-approve

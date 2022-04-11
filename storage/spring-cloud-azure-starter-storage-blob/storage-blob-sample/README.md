@@ -74,7 +74,7 @@ terraform -chdir=./terraform apply -auto-approve
 
 ```
 
-#### Run with Powershell
+#### Run with Powershell, Command Prompt or Native Tools Command Prompt
 
 ```shell
 # In the root directory of the sample
@@ -120,7 +120,13 @@ source ./terraform/setup_env.sh
 #### Run with Powershell
 
 ```shell
-. terraform\setup_env.ps1
+terraform\setup_env.ps1
+```
+
+#### Run with Command Prompt or Native Tools Command Prompt
+
+```shell
+terraform\setup_env.bat
 ```
 
 If you want to run the sample in debug mode, you can save the output value.
@@ -150,24 +156,7 @@ You can debug your sample by adding the saved output values to the tool's enviro
 
 ### Run the sample based on Spring Native
 
-There are two main ways to build native applications. Before you start, you need to pay attention to authentication about Azure, the default Azure credential is not fully supported, other methods are recommended for authentication. Replace the *application.yml* with the following:
-```yaml
-spring:
-  cloud:
-    azure:
-      storage:
-        blob:
-          endpoint: <Replace your Storage Blob service endpoint>
-          account-name: <Replace your Storage Account name>
-          container-name: test
-          account-key: <Replace your Access Keys with the Storage Account name>
-# Uncomment the compatibility verifier when building with the `shaded` profile.
-#      compatibility-verifier:
-#        enabled: false
-```
-
-**NOTE**:
-You can create or destroy resources based on Terraform, and then manually obtain the corresponding credential information in Azure Portal.
+There are two main ways to build a Spring Boot native application.
 
 #### Run with Buildpacks
 

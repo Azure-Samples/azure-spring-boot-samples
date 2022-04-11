@@ -128,7 +128,7 @@ source ./terraform/setup_env.sh
 #### Run with Powershell
 
 ```shell
- . terraform\setup_env.ps1
+terraform\setup_env.ps1
 ```
 
 ## Run Locally

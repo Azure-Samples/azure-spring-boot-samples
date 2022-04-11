@@ -11,7 +11,7 @@
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>azure-spring-cloud-sample-storage-queue</artifactId>
+  <artifactId>storage-queue-sample</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
   <name>Usage of Storage Queue</name>

@@ -176,7 +176,7 @@ mvn spring-boot:build-image
 
 Run `docker run --rm -p 8080:8080 rest-service-complete:0.0.1-SNAPSHOT`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application) for more details.
 ```shell
-docker run --rm -p 8080:8080 rest-service-complete:0.0.1-SNAPSHOT
+docker run --rm -p 8080:8080 storage-blob-sample:1.0.0
 ```
 
 #### Run with Native Build Tools
@@ -204,6 +204,58 @@ mvn -Pshaded -DskipTests package
 Run `target/storage-blob-sample`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application_2) for more details.
 ```shell
 target/storage-blob-sample
+```
+
+### Run the sample based on Spring Native
+
+There are two main ways to build a Spring Boot native application.
+
+#### Run with Buildpacks
+
+- System Requirements
+
+Docker should be installed, see [System Requirements](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-buildpacks-system-requirements) for more details.
+
+- Build the native application
+
+Run `mvn spring-boot:build-image`, see [Build the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_build_the_native_application) for more details.
+
+```shell
+mvn spring-boot:build-image
+```
+
+- Run the native application
+
+Run `docker run --rm -p 8080:8080 rest-service-complete:0.0.1-SNAPSHOT`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application) for more details.
+```shell
+docker run --rm -p 8080:8080 rest-service-complete:0.0.1-SNAPSHOT
+```
+
+#### Run with Native Build Tools
+
+- System Requirements
+
+GraalVM `native-image` compiler should be installed, see [System Requirements](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-image-system-requirements) for more details. If using the Windows platform, you need to install `Visual Studio Build Tools`.
+
+- Build the native application
+
+Run `mvn -Pnative -DskipTests package`, see [Build the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_build_the_native_application_2) for more details.
+
+```shell
+mvn -Pnative -DskipTests package
+```
+
+When you encounter the `The command line is too long` exception when executing the native-image command, please use **shaded** profile instead of **native** to build, and you must turn off the Spring Cloud Azure compatibility verification function (`spring.cloud.azure.compatibility-verifier.enabled=false`).
+
+```shell
+mvn -Pshaded -DskipTests package
+```
+
+- Run the native application
+
+Run `target/storage-blob-sample`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application_2) for more details.
+```shell
+target\storage-blob-sample
 ```
 
 ## Verify This Sample

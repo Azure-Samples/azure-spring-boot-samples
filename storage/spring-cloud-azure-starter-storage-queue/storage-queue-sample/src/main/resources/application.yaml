@@ -5,6 +5,7 @@ spring:
         queue:
           account-name: ${STORAGE_QUEUE_ACCOUNT_NAME}
           queue-name: test
+
 # Uncomment the compatibility verifier when building native image with the `shaded` profile.
-      compatibility-verifier:
-        enabled: false
+#      compatibility-verifier:
+#        enabled: false

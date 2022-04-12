@@ -62,6 +62,7 @@
     <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>
     <module>eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration</module>
     <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
+    <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>
     <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder</module>
     <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders</module>
     <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side</module>

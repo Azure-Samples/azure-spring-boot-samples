@@ -1,9 +1,13 @@
-# Using Spring Integration for Azure Storage Queue
+# Using Spring Cloud Stream Binder for Azure Event Hubs
 
-This code sample demonstrates how to use Spring Integration for Azure Storage Queue.
+This code sample demonstrates how to use the `Spring Cloud Stream Binder` for `Azure Event Hubs`.The
+sample app has two operating modes.
+One way is to expose a Restful API to receive string message, another way is to automatically provide string messages.
+These messages are published to one `Event Hub` instance and then consumed by one consumer
+endpoint from the same application.
 
 ## What You Will Build
-You will build an application using Spring Integration to send and receive messages for Azure Storage Queue.
+You will build an application using `Spring Cloud Stream Binder` to send and receive messages for `Azure Event Hubs`.
 
 ## What You Need
 
@@ -89,23 +93,34 @@ terraform -chdir=terraform apply -auto-approve
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell
-azurecaf_name.azurecaf_name_storage_account: Creating...
-azurecaf_name.resource_group: Creating...
-azurecaf_name.azurecaf_name_storage_account: Creation complete after 0s 
-azurecaf_name.resource_group: Creation complete after 0s 
-azurerm_resource_group.main: Creating...
-azurerm_resource_group.main: Creation complete after 1s ...
-azurerm_storage_account.storage_account: Creating...
-azurerm_storage_account.storage_account: Still creating... [10s elapsed]
-...
-azurerm_role_assignment.role_storage_queue_data_contributor: Still creating... 
-...
-azurerm_role_assignment.role_storage_queue_data_contributor: Creation complete ...
 
-Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
+
+azurerm_resource_group.main: Creating...
+azurerm_resource_group.main: Creation complete after 3s [id=/subscriptions/799c12ba-353c-44a1-883d-84808ebb2216/resourceGroups/rg-eventhubs-binder-nxatj]
+azurerm_eventhub_namespace.eventhubs_namespace: Creating...
+azurerm_storage_account.storage_account: Creating...
+...
+azurerm_storage_account.storage_account: Creation complete ...
+azurerm_storage_container.storage_container: Creating...
+azurerm_role_assignment.role_storage_account_contributor: Creating...
+azurerm_storage_container.storage_container: Creation complete ...
+azurerm_role_assignment.role_storage_blob_data_owner: Creating...
+...
+azurerm_role_assignment.role_storage_blob_data_owner: Creation complete ...
+azurerm_role_assignment.role_storage_account_contributor: Creation complete ...
+...
+azurerm_eventhub_namespace.eventhubs_namespace: Creation complete ...
+azurerm_eventhub.eventhubs: Creating...
+azurerm_eventhub.eventhubs: Creation complete ...
+...
+azurerm_role_assignment.role_eventhubs_data_owner: Creation complete ...
+
+Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
 
 Outputs:
 ...
+
+
 ```
 
 You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
@@ -122,7 +137,7 @@ source ./terraform/setup_env.sh
 #### Run with Powershell
 
 ```shell
-terraform\setup_env.ps1
+ . terraform\setup_env.ps1
 ```
 
 #### Run with Command Prompt or Native Tools Command Prompt
@@ -134,7 +149,11 @@ terraform\setup_env.bat
 If you want to run the sample in debug mode, you can save the output value.
 
 ```shell
-ACCOUNT_NAME=...
+AZURE_EVENTHUBS_NAMESPACE=...
+AZURE_STORAGE_CONTAINER_NAME=...
+AZURE_STORAGE_ACCOUNT_NAME=...
+AZURE_EVENTHUB_NAME=...
+AZURE_EVENTHUB_CONSUMER_GROUP=...
 ```
 
 ## Run Locally
@@ -175,9 +194,9 @@ mvn spring-boot:build-image
 
 - Run the native application
 
-Run `docker run --rm -p 8080:8080 storage-queue-integration:1.0.0`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application) for more details.
+Run `docker run --rm -p 8080:8080 eventhubs-client:1.0.0`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application) for more details.
 ```shell
-docker run --rm -p 8080:8080 storage-queue-integration:1.0.0
+docker run --rm -p 8080:8080 eventhubs-client:1.0.0
 ```
 
 #### Run with Native Build Tools
@@ -202,21 +221,26 @@ mvn -Pshaded -DskipTests package
 
 - Run the native application
 
-Run `target\storage-queue-integration`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application_2) for more details.
+Run `target\eventhubs-client`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application_2) for more details.
 ```shell
-target\storage-queue-integration
+target\eventhubs-client
 ```
 
 ## Verify This Sample
 
-1. Send a POST request
+1.  Verify in your app’s logs that similar messages were posted:
 
-        curl -X POST http://localhost:8080/messages?message=hello
+```shell
+New message received: 'Hello world, 17' ...
+Message 'Hello world, 17' successfully checkpointed
+...
+New message received: 'Hello world, 18' ...
+Message 'Hello world, 18' successfully checkpointed
+...
+New message received: 'Hello world, 27' ...
+Message 'Hello world, 27' successfully checkpointed
 
-2. Verify in your app’s logs that similar messages were posted:
-
-        New message received: 'hello'
-        Message 'hello' successfully checkpointed
+```
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
@@ -235,3 +259,59 @@ terraform -chdir=./terraform destroy -auto-approve
 ```shell
 terraform -chdir=terraform destroy -auto-approve
 ```
+## Enhancement
+
+### [Enable sync message](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#producer-properties)
+
+To enable message sending in a synchronized way with Spring Cloud Stream 3.x, spring-cloud-azure-stream-binder-eventhubs supports the sync producer mode to get responses for sent messages. 
+Below classes are sample to use the sync mode:
+```
+ImperativeEventProducerController.java
+ManualProducerAndConsumerConfiguration.java   
+ReactiveEventProducerController.java
+```
+Try the sync mode with the "manual" profile after setting `spring.cloud.stream.eventhub.bindings.<binding-name>.producer.sync=true`. Users can send a POST request like following command:
+```
+$ ### Send messages through imperative.  
+$ curl -X POST http://localhost:8080/messages/imperative/staticalDestination?message=hello
+$ curl -X POST http://localhost:8080/messages/imperative/dynamicDestination?message=hello
+
+$ ### Send messages through reactive.
+$ curl -X POST http://localhost:8080/messages/reactive?message=hello
+```
+or when the app runs on App Service or VM
+```
+$ ### Send messages through imperative.
+$ curl -d -X POST https://[your-app-URL]/messages/imperative/staticalDestination?message=hello
+$ curl -d -X POST https://[your-app-URL]/messages/imperative/dynamicDestination?message=hello
+
+$ ### Send messages through reactive.
+$ curl -d -X POST https://[your-app-URL]/messages/reactive?message=hello
+```
+Verify in your app’s logs that a similar message was posted:
+```
+New message received: 'hello', partition key: 2002572479, sequence number: 4, offset: 768, enqueued time: 2021-06-03T01:47:36.859Z
+Message 'hello' successfully checkpointed
+```
+
+### [Using Batch Consuming](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#batch-consumer-support)
+
+To work with the batch-consumer mode, the property of spring.cloud.stream.bindings.<binding-name>.consumer.batch-mode should be set as true. When enabled, an org.springframework.messaging.Message of which the payload is a list of batched events will be received and passed to the consumer function.
+
+In this sample, users can try the batch-consuming mode by enable the "batch" profile and fill the "application-batch.yml". For more details about how to work in batch-consuming mode, please refer to the [reference doc](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#batch-consumer-support-2).
+
+### Set Event Hubs message headers
+
+Users can get all the supported EventHubs message headers [here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#scs-eh-headers) to configure.
+
+### Resource Provision
+
+Event Hubs binder supports provisioning of event hub and consumer group, users could use [properties](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#resource-provision) to enable provisioning.
+
+### Partitioning Support
+
+A PartitionSupplier with user-provided partition information will be created to configure the partition information about the message to be sent. The binder supports Event Hubs partitioning by allowing setting partition key and id. Please refer to the [reference doc](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#partitioning-support-2) for more details.
+
+### Error Channel
+
+Event Hubs binder supports consumer error channel, producer error channel and global default error channel, click [here](https://microsoft.github.io/spring-cloud-azure/4.0.0-beta.4/4.0.0-beta.4/reference/html/index.html#error-channels) to see more information.

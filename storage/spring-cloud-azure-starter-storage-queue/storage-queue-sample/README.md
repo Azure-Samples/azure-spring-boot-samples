@@ -145,12 +145,21 @@ STORAGE_QUEUE_ACCOUNT_NAME=...
 
 ## Run Locally
 
-In your terminal, run `mvn clean spring-boot:run`.
+### Run the sample with Maven
 
+In your terminal, run `mvn clean spring-boot:run`.
 
 ```shell
 mvn clean spring-boot:run
 ```
+
+### Run the sample in IDEs
+
+You can debug your sample by adding the saved output values to the tool's environment variables or the sample's `application.yaml` file.
+
+* If your tool is `IDEA`, please refer to [Debug your first Java application](https://www.jetbrains.com/help/idea/debugging-your-first-java-application.html) and [add environment variables](https://www.jetbrains.com/help/objc/add-environment-variables-and-program-arguments.html#add-environment-variables).
+
+* If your tool is `ECLIPSE`, please refer to [Debugging the Eclipse IDE for Java Developers](https://www.eclipse.org/community/eclipse_newsletter/2017/june/article1.php) and [Eclipse Environment Variable Setup](https://examples.javacodegeeks.com/desktop-java/ide/eclipse/eclipse-environment-variable-setup-example/).
 
 ### Run the sample based on Spring Native
 
@@ -172,7 +181,7 @@ mvn spring-boot:build-image
 
 - Run the native application
 
-Run `docker run --rm -p 8080:8080 rest-service-complete:0.0.1-SNAPSHOT`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application) for more details.
+Run `docker run --rm -p 8080:8080 storage-queue-sample:1.0.0`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application) for more details.
 ```shell
 docker run --rm -p 8080:8080 storage-queue-sample:1.0.0
 ```
@@ -199,7 +208,7 @@ mvn -Pshaded -DskipTests package
 
 - Run the native application
 
-Run `target/storage-blob-sample`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application_2) for more details.
+Run `target\storage-queue-sample`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application_2) for more details.
 ```shell
 target\storage-queue-sample
 ```

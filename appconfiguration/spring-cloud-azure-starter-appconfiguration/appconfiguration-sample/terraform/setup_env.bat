@@ -1,0 +1,2 @@
+for /f %%i in ('terraform -chdir^=./terraform output -raw APPCONFIGURATION_ENDPOINT') do set APPCONFIGURATION_ENDPOINT=%%i
+echo APPCONFIGURATION_ENDPOINT=%APPCONFIGURATION_ENDPOINT%

@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -11,15 +12,15 @@
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>eventhubs-integration</artifactId>
+  <artifactId>eventhubs-client</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>Communicate to Event Hubs via Spring Integration</name>
+  <name>Communicate to a Single Event Hubs Namespace via Aazure SDK for EventHubs</name>
 
   <properties>
-    <imageName>eventhubs-integration</imageName>
-    <mainClass>com.azure.spring.sample.eventhubs.EventHubIntegrationApplication</mainClass>
+    <imageName>eventhubs-client</imageName>
+    <mainClass>com.azure.spring.sample.eventhubs.client.EventHubClientApplication</mainClass>
   </properties>
 
   <dependencies>
@@ -29,16 +30,19 @@
     </dependency>
     <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>spring-cloud-azure-starter-integration-eventhubs</artifactId>
+      <artifactId>spring-cloud-azure-starter-eventhubs</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-logging</artifactId>
     </dependency>
     <dependency>
+      <groupId>com.azure.spring</groupId>
+      <artifactId>spring-cloud-azure-starter-actuator</artifactId>
+    </dependency>
+    <dependency>
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
     </dependency>
-
   </dependencies>
 </project>

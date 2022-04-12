@@ -11,15 +11,15 @@
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>spring-cloud-azure-starter-keyvault-secrets-sample-property-source</artifactId>
+  <artifactId>property-source</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <name>Spring-Cloud-Azure-Starter-KeyVault-Secrets Sample: Property Source</name>
 
   <properties>
-    <imageName>single-property-source</imageName>
-    <mainClass>com.azure.spring.keyvault.secrets.sample.single.property.source.SinglePropertySourceApplication</mainClass>
+    <imageName>property-source</imageName>
+    <mainClass>com.azure.spring.keyvault.secrets.sample.single.property.source.PropertySourceApplication</mainClass>
   </properties>
 
   <dependencies>

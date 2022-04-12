@@ -12,7 +12,7 @@
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>spring-cloud-azure-sample-stream-eventhubs-binder</artifactId>
+  <artifactId>eventhubs-binder</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

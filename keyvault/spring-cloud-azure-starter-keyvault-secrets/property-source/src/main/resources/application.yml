@@ -9,5 +9,10 @@ spring:
               endpoint: ${ENDPOINT_1}
             - name: key-vault-property-souece-2
               endpoint: ${ENDPOINT_2}
+
+# Uncomment the compatibility verifier when building native image with the `shaded` profile.
+#      compatibility-verifier:
+#        enabled: false
+
   profiles:
     active: develop

@@ -3,13 +3,13 @@ spring:
     azure:
       eventhubs:
         namespace: ${AZURE_EVENTHUBS_NAMESPACE}
+        event-hub-name: ${AZURE_EVENTHUB_NAME}
         processor:
           checkpoint-store:
             container-name: ${AZURE_STORAGE_CONTAINER_NAME}
             account-name:  ${AZURE_STORAGE_ACCOUNT_NAME}
-            event-hub-name: ${AZURE_EVENTHUB_NAME}
-            consumer:
-              consumer-group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
+        consumer:
+          consumer-group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
 
 # Uncomment the compatibility verifier when building native image with the `shaded` profile.
 #      compatibility-verifier:

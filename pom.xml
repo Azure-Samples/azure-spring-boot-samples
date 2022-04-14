@@ -196,7 +196,7 @@
               <skip>false</skip>
               <imageName>${imageName}</imageName>
               <buildArgs>
-                <buildArg>--no-fallback</buildArg>
+                <buildArg>-H:+ReportExceptionStackTraces</buildArg>
               </buildArgs>
             </configuration>
           </plugin>
@@ -306,7 +306,6 @@
               <skip>false</skip>
               <imageName>${imageName}</imageName>
               <buildArgs>
-                <buildArg>--no-fallback</buildArg>
                 <buildArg>-H:+ReportExceptionStackTraces</buildArg>
               </buildArgs>
               <classpath>

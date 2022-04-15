@@ -170,10 +170,10 @@ Docker should be installed, see [System Requirements](https://docs.spring.io/spr
 
 - Build the native application
 
-Run `mvn spring-boot:build-image`, see [Build the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_build_the_native_application) for more details.
+Run `mvn -Pbuildpack package spring-boot:build-image`, see [Build the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_build_the_native_application) for more details.
 
 ```shell
-mvn spring-boot:build-image
+mvn -Pbuildpack package spring-boot:build-image
 ```
 
 - Run the native application

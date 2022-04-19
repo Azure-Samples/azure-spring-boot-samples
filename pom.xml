@@ -28,10 +28,9 @@
     <version.spring-cloud-feature-management>2.4.0</version.spring-cloud-feature-management>
     <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>
     <version.spring-cloud-azure-native-configuration>4.1.0-beta.1</version.spring-cloud-azure-native-configuration>
-    <spring.aot.maven.plugin.version>0.11.3</spring.aot.maven.plugin.version>
     <maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
     <exec.maven.plugin.version>3.0.0</exec.maven.plugin.version>
-    <version.spring-native>0.11.3</version.spring-native>
+    <version.spring-native>0.11.4</version.spring-native>
     <native.maven.plugin.version>0.9.11</native.maven.plugin.version>
     <maven.shade.plugin.version>3.2.4</maven.shade.plugin.version>
     <repackage.classifier>exec</repackage.classifier>
@@ -175,7 +174,7 @@
           <plugin>
             <groupId>org.springframework.experimental</groupId>
             <artifactId>spring-aot-maven-plugin</artifactId>
-            <version>${spring.aot.maven.plugin.version}</version>
+            <version>${version.spring-native}</version>
             <executions>
               <execution>
                 <id>generate</id>
@@ -234,7 +233,7 @@
           <plugin>
             <groupId>org.springframework.experimental</groupId>
             <artifactId>spring-aot-maven-plugin</artifactId>
-            <version>${spring.aot.maven.plugin.version}</version>
+            <version>${version.spring-native}</version>
             <executions>
               <execution>
                 <id>generate</id>
@@ -310,7 +309,7 @@
           <plugin>
             <groupId>org.springframework.experimental</groupId>
             <artifactId>spring-aot-maven-plugin</artifactId>
-            <version>${spring.aot.maven.plugin.version}</version>
+            <version>${version.spring-native}</version>
             <executions>
               <execution>
                 <id>generate</id>

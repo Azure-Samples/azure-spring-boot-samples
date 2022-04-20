@@ -437,7 +437,7 @@
       </build>
     </profile>
     <profile>
-      <id>shaded</id>
+      <id>shade</id>
       <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>

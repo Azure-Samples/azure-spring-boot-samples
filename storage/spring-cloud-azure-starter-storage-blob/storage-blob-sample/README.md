@@ -193,10 +193,10 @@ Run `mvn -Pnative -DskipTests package`, see [Build the native application](https
 mvn -Pnative -DskipTests package
 ```
 
-When you encounter the `The command line is too long` exception when executing the native-image command, please use **shaded** profile instead of **native** to build, and you must turn off the Spring Cloud Azure compatibility verification function (`spring.cloud.azure.compatibility-verifier.enabled=false`).
+When you encounter the `The command line is too long` exception when executing the native-image command, please use **shade** profile instead of **native** to build, and you must turn off the Spring Cloud Azure compatibility verification function (`spring.cloud.azure.compatibility-verifier.enabled=false`).
 
 ```shell
-mvn -Pshaded -DskipTests package
+mvn -Pshade -DskipTests package
 ```
 
 - Run the native application

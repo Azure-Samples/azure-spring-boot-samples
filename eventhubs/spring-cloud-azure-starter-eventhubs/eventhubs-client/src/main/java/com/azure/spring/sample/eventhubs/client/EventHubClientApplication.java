@@ -21,7 +21,7 @@ import java.util.Iterator;
 import java.util.concurrent.TimeUnit;
 
 /**
- * @author Warren Zhu
+ * Sample for EventHubConsumerClient and EventHubProducerClient usage.
  */
 @SpringBootApplication
 public class EventHubClientApplication implements CommandLineRunner {

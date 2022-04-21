@@ -19,7 +19,6 @@
 
   <properties>
     <imageName>storage-file-sample</imageName>
-    <mainClass>com.azure.spring.sample.storage.resource.StorageFileShareApplication</mainClass>
   </properties>
   
   <dependencies>

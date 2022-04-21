@@ -19,7 +19,6 @@
 
   <properties>
     <imageName>storage-blob-sample</imageName>
-    <mainClass>com.azure.spring.sample.storage.resource.StorageBlobApplication</mainClass>
   </properties>
   
   <dependencies>

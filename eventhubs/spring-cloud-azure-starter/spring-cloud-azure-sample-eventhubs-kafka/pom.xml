@@ -19,7 +19,6 @@
 
   <properties>
     <imageName>spring-cloud-azure-sample-eventhubs-kafka</imageName>
-    <mainClass>com.azure.spring.sample.eventhubs.kafka.EventHubKafkaBinderApplication</mainClass>
   </properties>
 
   <dependencies>

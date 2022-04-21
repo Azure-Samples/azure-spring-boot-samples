@@ -19,7 +19,6 @@
 
   <properties>
     <imageName>secret-client</imageName>
-    <mainClass>com.azure.spring.keyvault.secrets.sample.secret.client.SecretClientApplication</mainClass>
   </properties>
 
   <dependencies>

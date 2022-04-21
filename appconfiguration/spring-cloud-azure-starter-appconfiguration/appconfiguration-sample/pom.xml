@@ -20,7 +20,6 @@
 
   <properties>
     <imageName>appconfiguration-sample</imageName>
-    <mainClass>com.azure.spring.sample.appconfiguration.AppConfigurationSampleApplication</mainClass>
   </properties>
 
   <dependencies>

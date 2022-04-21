@@ -20,7 +20,6 @@
 
   <properties>
     <imageName>eventhubs-multibinders</imageName>
-    <mainClass>com.azure.spring.sample.eventhubs.multibinders.EventHubMultiBindersApplication</mainClass>
   </properties>
 
   <dependencies>

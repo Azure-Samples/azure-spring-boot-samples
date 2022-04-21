@@ -19,7 +19,6 @@
 
   <properties>
     <imageName>spring-cloud-azure-cosmos-sample</imageName>
-    <mainClass>com.azure.spring.sample.cosmos.CosmosSampleApplication</mainClass>
   </properties>
 
   <dependencies>

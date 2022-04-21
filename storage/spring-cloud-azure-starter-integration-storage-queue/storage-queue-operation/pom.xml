@@ -18,7 +18,6 @@
 
   <properties>
     <imageName>storage-queue-operation</imageName>
-    <mainClass>com.azure.spring.sample.storage.queue.operation.StorageQueueOperationApplication</mainClass>
   </properties>
 
   <dependencies>

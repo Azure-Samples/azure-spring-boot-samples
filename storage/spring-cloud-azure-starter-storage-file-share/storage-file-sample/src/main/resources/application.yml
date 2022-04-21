@@ -8,14 +8,9 @@ spring:
           account-name: [storage-account-name]
           account-key: [storage-account-access-key]
           endpoint:  [Fill storage File service endpoint URL copied from portal]
-
-# Uncomment the compatibility verifier when building native image with the `shaded` profile.
-#      compatibility-verifier:
-#        enabled: false
-
 # Resource location, used in this sample
 resource:
-  file: [azure-file://[your-fileshareName]/[your-fileName]]
+  file: azure-file://test/test
 
 
 

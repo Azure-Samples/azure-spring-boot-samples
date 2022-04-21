@@ -19,7 +19,6 @@
 
   <properties>
     <imageName>property-source</imageName>
-    <mainClass>com.azure.spring.keyvault.secrets.sample.single.property.source.PropertySourceApplication</mainClass>
   </properties>
 
   <dependencies>

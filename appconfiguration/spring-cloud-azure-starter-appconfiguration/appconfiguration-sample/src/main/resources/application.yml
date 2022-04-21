@@ -4,6 +4,3 @@ spring:
       appconfiguration:
         endpoint: ${APPCONFIGURATION_ENDPOINT}
 
-# Uncomment the compatibility verifier when building native image with the `shaded` profile.
-#      compatibility-verifier:
-#        enabled: false

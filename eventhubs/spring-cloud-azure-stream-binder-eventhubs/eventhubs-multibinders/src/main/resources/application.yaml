@@ -1,10 +1,5 @@
 spring:
   cloud:
-
-# Uncomment the compatibility verifier when building native image with the `shaded` profile.
-#      compatibility-verifier:
-#        enabled: false
-
     stream:
       function:
         definition: consume1;supply1;consume2;supply2

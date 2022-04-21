@@ -10,7 +10,3 @@ spring:
             account-name:  ${AZURE_STORAGE_ACCOUNT_NAME}
         consumer:
           consumer-group: ${AZURE_EVENTHUB_CONSUMER_GROUP}
-
-# Uncomment the compatibility verifier when building native image with the `shaded` profile.
-#      compatibility-verifier:
-#        enabled: false

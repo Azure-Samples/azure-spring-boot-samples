@@ -20,7 +20,6 @@
 
   <properties>
     <imageName>eventhubs-binder</imageName>
-    <mainClass>com.azure.spring.sample.eventhubs.binder.EventHubBinderApplication</mainClass>
   </properties>
 
   <dependencies>

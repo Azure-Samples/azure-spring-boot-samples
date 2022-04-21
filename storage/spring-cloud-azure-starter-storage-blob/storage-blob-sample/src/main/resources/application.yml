@@ -7,8 +7,3 @@ spring:
         blob:
           account-name: ${AZURE_STORAGE_ACCOUNT}
           container-name: ${STORAGE_CONTAINER_NAME}
-
-# Uncomment the compatibility verifier when building native image with the `shaded` profile.
-#      compatibility-verifier:
-#        enabled: false
-

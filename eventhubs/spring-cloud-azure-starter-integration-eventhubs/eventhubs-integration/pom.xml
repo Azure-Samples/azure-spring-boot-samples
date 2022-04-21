@@ -19,7 +19,6 @@
 
   <properties>
     <imageName>eventhubs-integration</imageName>
-    <mainClass>com.azure.spring.sample.eventhubs.EventHubIntegrationApplication</mainClass>
   </properties>
 
   <dependencies>

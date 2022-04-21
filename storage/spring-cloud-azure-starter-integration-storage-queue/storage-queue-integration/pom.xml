@@ -19,7 +19,6 @@
 
   <properties>
     <imageName>storage-queue-integration</imageName>
-    <mainClass>com.azure.spring.sample.storage.queue.StorageQueueIntegrationApplication</mainClass>
   </properties>
 
   <dependencies>

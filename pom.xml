@@ -27,7 +27,7 @@
     <version.spring-cloud-appconfiguration-starter>2.5.0</version.spring-cloud-appconfiguration-starter>
     <version.spring-cloud-feature-management>2.4.0</version.spring-cloud-feature-management>
     <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>
-    <version.spring-cloud-azure-native-configuration>4.1.0-beta.1</version.spring-cloud-azure-native-configuration>
+    <version.spring-cloud-azure-native-configuration>4.0.0-beta.1</version.spring-cloud-azure-native-configuration>
     <maven.surefire.plugin.version>3.0.0-M5</maven.surefire.plugin.version>
     <exec.maven.plugin.version>3.0.0</exec.maven.plugin.version>
     <version.spring-native>0.11.4</version.spring-native>
@@ -35,7 +35,6 @@
     <maven.shade.plugin.version>3.2.4</maven.shade.plugin.version>
     <repackage.classifier>exec</repackage.classifier>
     <imageName>${artifactId}</imageName>
-    <mainClass>Configure your application main class in a sub-pom file, when you want to build a native image.</mainClass>
   </properties>
   <modules>
     <module>aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server</module>
@@ -149,6 +148,15 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <classifier>${repackage.classifier}</classifier>
+          <image>
+            <builder>paketobuildpacks/builder:tiny</builder>
+            <env>
+              <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+            </env>
+          </image>
+        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -354,19 +362,6 @@
               </execution>
             </executions>
           </plugin>
-          <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <configuration>
-              <classifier>${repackage.classifier}</classifier>
-              <image>
-                <builder>paketobuildpacks/builder:tiny</builder>
-                <env>
-                  <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
-                </env>
-              </image>
-            </configuration>
-          </plugin>
         </plugins>
       </build>
     </profile>
@@ -435,145 +430,10 @@
               </execution>
             </executions>
             <configuration>
-              <skip>false</skip>
               <imageName>${imageName}</imageName>
               <buildArgs>
                 <buildArg>-H:+ReportExceptionStackTraces</buildArg>
               </buildArgs>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>shade</id>
-      <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-      </properties>
-
-      <dependencies>
-        <dependency>
-          <groupId>org.springframework.experimental</groupId>
-          <artifactId>spring-native</artifactId>
-        </dependency>
-        <dependency>
-          <groupId>com.azure.spring</groupId>
-          <artifactId>spring-cloud-azure-native-configuration</artifactId>
-        </dependency>
-        <dependency>
-          <groupId>org.junit.platform</groupId>
-          <artifactId>junit-platform-launcher</artifactId>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-      <build>
-        <finalName>${project.artifactId}</finalName>
-        <plugins>
-          <plugin>
-            <groupId>org.springframework.experimental</groupId>
-            <artifactId>spring-aot-maven-plugin</artifactId>
-            <version>${version.spring-native}</version>
-            <executions>
-              <execution>
-                <id>generate</id>
-                <goals>
-                  <goal>generate</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>test-generate</id>
-                <goals>
-                  <goal>test-generate</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-surefire-plugin</artifactId>
-            <version>${maven.surefire.plugin.version}</version>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-compiler-plugin</artifactId>
-            <configuration>
-              <source>${maven.compiler.source}</source>
-              <target>${maven.compiler.target}</target>
-            </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>${exec.maven.plugin.version}</version>
-            <executions>
-              <execution>
-                <id>java</id>
-                <goals>
-                  <goal>java</goal>
-                </goals>
-                <configuration>
-                  <mainClass>${mainClass}</mainClass>
-                </configuration>
-              </execution>
-              <execution>
-                <id>native</id>
-                <goals>
-                  <goal>exec</goal>
-                </goals>
-                <configuration>
-                  <executable>${project.build.directory}/${imageName}</executable>
-                  <workingDirectory>${project.build.directory}</workingDirectory>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-shade-plugin</artifactId>
-            <version>${maven.shade.plugin.version}</version>
-            <executions>
-              <execution>
-                <phase>package</phase>
-                <goals>
-                  <goal>shade</goal>
-                </goals>
-                <configuration>
-                  <shadedArtifactAttached>true</shadedArtifactAttached>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.graalvm.buildtools</groupId>
-            <artifactId>native-maven-plugin</artifactId>
-            <version>${native.maven.plugin.version}</version>
-            <extensions>true</extensions>
-            <executions>
-              <execution>
-                <id>test-native</id>
-                <phase>test</phase>
-                <goals>
-                  <goal>test</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>build-native</id>
-                <phase>package</phase>
-                <goals>
-                  <goal>build</goal>
-                </goals>
-              </execution>
-            </executions>
-            <configuration>
-              <skip>false</skip>
-              <imageName>${imageName}</imageName>
-              <buildArgs>
-                <buildArg>-H:+ReportExceptionStackTraces</buildArg>
-              </buildArgs>
-              <classpath>
-                <param>${project.build.directory}/${project.artifactId}-${project.version}-shaded.jar</param>
-              </classpath>
             </configuration>
           </plugin>
         </plugins>

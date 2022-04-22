@@ -68,7 +68,7 @@ mvn spring-boot:run
 First, you need to obtain an access token to access Web API A.
 - Web API A will call Graph resource. 
 ```shell script
-# use Header scope '<app-id-uri>/Obo.Graph.Read' to get access-token 
+# Use Header scope '<app-id-uri>/Obo.Graph.Read' to get access-token 
 # Replace to valid access token.
 curl localhost:8081/call-graph -H "Authorization: Bearer <replace-the-access-token>"
 ```
@@ -80,7 +80,7 @@ Graph response success.
 - Web API A will call Graph resource through `OAuth2AuthorizedClientRepository`. 
 
 ```shell script
-# same access-token as above
+# Same access-token as above
 # Replace to valid access token.
 curl localhost:8081/call-graph-with-repository -H "Authorization: Bearer <replace-the-access-token>"
 ```
@@ -93,7 +93,7 @@ Graph response failed.
 - Web API A will call Custom(Web API B) resources. 
 
 ```shell script
-# use Header scope '<app-id-uri>/Obo.WebApiA.ExampleScope' to get access-token 
+# Use Header scope '<app-id-uri>/Obo.WebApiA.ExampleScope' to get access-token 
 # Replace to valid access token.
 curl localhost:8081/webapiA/webapiB -H "Authorization: Bearer <replace-the-access-token>"
 ```

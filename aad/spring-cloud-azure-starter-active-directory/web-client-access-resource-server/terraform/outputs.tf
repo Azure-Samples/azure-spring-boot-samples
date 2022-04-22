@@ -33,12 +33,6 @@ output "WEB_API_B_CLIENT_ID" {
   description = "The application id of WebApiB."
 }
 
-# ------WebApiC------
-output "WEB_API_C_CLIENT_ID" {
-  value = azuread_application.webApiC.application_id
-  description = "The application id of WebApiC."
-}
-
 # ------User------
 output "USER_NAME" {
   value       = azuread_user.user.user_principal_name

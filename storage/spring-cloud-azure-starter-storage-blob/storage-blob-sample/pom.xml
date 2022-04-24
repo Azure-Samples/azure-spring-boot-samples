@@ -17,10 +17,6 @@
 
   <name>Read and Write Blobs with the Spring Resource for Azure Storage Blob</name>
 
-  <properties>
-    <imageName>storage-blob-sample</imageName>
-  </properties>
-  
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>

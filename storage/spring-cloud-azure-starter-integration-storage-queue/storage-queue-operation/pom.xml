@@ -16,10 +16,6 @@
   <packaging>jar</packaging>
   <name>Usage of Storage Queue Operation</name>
 
-  <properties>
-    <imageName>storage-queue-operation</imageName>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>

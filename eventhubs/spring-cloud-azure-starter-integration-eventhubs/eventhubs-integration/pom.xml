@@ -17,10 +17,6 @@
 
   <name>Communicate to Event Hubs via Spring Integration</name>
 
-  <properties>
-    <imageName>eventhubs-integration</imageName>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>

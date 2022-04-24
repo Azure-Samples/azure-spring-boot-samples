@@ -17,10 +17,6 @@
 
   <name>Read and Write Files with the Spring Resource for Azure Storage File</name>
 
-  <properties>
-    <imageName>storage-file-sample</imageName>
-  </properties>
-  
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>

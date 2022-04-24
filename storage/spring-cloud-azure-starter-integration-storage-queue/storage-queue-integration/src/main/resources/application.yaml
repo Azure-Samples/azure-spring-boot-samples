@@ -4,3 +4,4 @@ spring:
       storage:
         queue:
           account-name: ${ACCOUNT_NAME}
+

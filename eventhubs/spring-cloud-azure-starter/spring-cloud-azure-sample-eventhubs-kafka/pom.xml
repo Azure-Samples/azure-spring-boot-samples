@@ -17,10 +17,6 @@
 
   <name>Communicate to Event Hubs via Spring Cloud Stream Kafka Binder</name>
 
-  <properties>
-    <imageName>spring-cloud-azure-sample-eventhubs-kafka</imageName>
-  </properties>
-
   <dependencies>
     <!-- Add the spring-cloud-azure-resourcemanager dependency when want to use the Azure Resource Manager to retrieve connection string   -->
     <!--

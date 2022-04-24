@@ -10,7 +10,7 @@ spring:
           endpoint:  [Fill storage File service endpoint URL copied from portal]
 # Resource location, used in this sample
 resource:
-  file: azure-file://test/test
+  file: [azure-file://[your-fileshareName]/[your-fileName]]
 
 
 

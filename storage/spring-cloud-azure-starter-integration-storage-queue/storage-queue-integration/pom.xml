@@ -17,10 +17,6 @@
 
   <name>Using Storage Queue with Spring Integration</name>
 
-  <properties>
-    <imageName>storage-queue-integration</imageName>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>

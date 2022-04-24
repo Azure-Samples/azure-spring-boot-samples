@@ -70,7 +70,7 @@ terraform -chdir=./terraform apply -auto-approve
 
 ```
 
-#### Run with Powershell, Command Prompt or Native Tools Command Prompt
+#### Run with Powershell
 
 ```shell
 # In the root directory of the sample
@@ -131,12 +131,6 @@ source ./terraform/setup_env.sh
 terraform\setup_env.ps1
 ```
 
-#### Run with Command Prompt or Native Tools Command Prompt
-
-```shell
-terraform\setup_env.bat
-```
-
 If you want to run the sample in debug mode, you can save the output value.
 
 ```shell
@@ -162,52 +156,6 @@ You can debug your sample by adding the saved output values to the tool's enviro
 
 * If your tool is `ECLIPSE`, please refer to [Debugging the Eclipse IDE for Java Developers](https://www.eclipse.org/community/eclipse_newsletter/2017/june/article1.php) and [Eclipse Environment Variable Setup](https://examples.javacodegeeks.com/desktop-java/ide/eclipse/eclipse-environment-variable-setup-example/).
 
-### Run the sample based on Spring Native
-
-There are two main ways to build a Spring Boot native application.
-
-#### Run with Buildpacks
-
-- System Requirements
-
-Docker should be installed, see [System Requirements](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-buildpacks-system-requirements) for more details.
-
-- Build the native application
-
-Run `mvn -Pbuildpack package spring-boot:build-image`, see [Build the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_build_the_native_application) for more details.
-
-```shell
-mvn -Pbuildpack package spring-boot:build-image
-```
-
-- Run the native application
-
-Run `docker run --rm -p 8080:8080 property-source:1.0.0`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application) for more details.
-```shell
-docker run --rm -p 8080:8080 property-source:1.0.0
-```
-
-#### Run with Native Build Tools
-
-- System Requirements
-
-GraalVM `native-image` compiler should be installed, see [System Requirements](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-image-system-requirements) for more details. If using the Windows platform, you need to install `Visual Studio Build Tools`.
-
-- Build the native application
-
-Run `mvn -Pnative -DskipTests package`, see [Build the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_build_the_native_application_2) for more details.
-
-```shell
-mvn -Pnative -DskipTests package
-```
-
-- Run the native application
-
-Run `target\property-source`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application_2) for more details.
-```shell
-target\property-source
-```
-
 ## Verify This Sample
 
 Start the application, you will see logs like this:
@@ -231,7 +179,7 @@ To destroy the resources you created.
 terraform -chdir=./terraform destroy -auto-approve
 ```
 
-#### Run with Powershell, Command Prompt or Native Tools Command Prompt
+#### Run with Powershell
 
 ```shell
 terraform -chdir=terraform destroy -auto-approve

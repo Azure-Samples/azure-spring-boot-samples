@@ -22,6 +22,7 @@ This sample will create Azure resources using Terraform. If you choose to run it
 > please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
 
 ### Authenticate Using the Azure CLI
+
 Terraform must authenticate to Azure to create infrastructure.
 
 In your terminal, use the Azure CLI tool to setup your account permissions locally.
@@ -74,7 +75,7 @@ terraform -chdir=./terraform apply -auto-approve
 
 ```
 
-#### Run with Powershell
+#### Run with Native Tools Command Prompt
 
 ```shell
 # In the root directory of the sample
@@ -109,6 +110,9 @@ Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
 You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
 
 ### Export Output to Your Local Environment
+
+NOTE: If you are building a lightweight container containing a native executable, you can skip this section step.
+
 Running the command below to export environment values:
 
 #### Run with Bash
@@ -117,17 +121,16 @@ Running the command below to export environment values:
 source ./terraform/setup_env.sh
 ```
 
-#### Run with Powershell
+#### Run with Native Tools Command Prompt
 
 ```shell
-terraform\setup_env.ps1
+terraform\setup_env.bat
 ```
 
 If you want to run the sample in debug mode, you can save the output value.
 
 ```shell
 AZURE_STORAGE_ACCOUNT=...
-STORAGE_CONTAINER_NAME=...
 ```
 
 ## Run Locally
@@ -148,26 +151,88 @@ You can debug your sample by adding the saved output values to the tool's enviro
 
 * If your tool is `ECLIPSE`, please refer to [Debugging the Eclipse IDE for Java Developers](https://www.eclipse.org/community/eclipse_newsletter/2017/june/article1.php) and [Eclipse Environment Variable Setup](https://examples.javacodegeeks.com/desktop-java/ide/eclipse/eclipse-environment-variable-setup-example/).
 
+### Run the sample based on Spring Native
+
+There are two main ways to build a Spring Boot native application.
+
+#### Run with Buildpacks
+
+- System Requirements
+
+Docker should be installed, see [System Requirements](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-buildpacks-system-requirements) for more details.
+
+- Build the native application
+
+NOTE: If you want to build a lightweight container containing a native executable, Please avoid using [DefaultAzureCredential](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html#defaultazurecredential) for authentication first.
+
+Add the `spring.cloud.azure.storage.blob.account-key` configuration, and replace the relevant values in *application.yml* according to the saved output variable value. You can find these values in the temp file *terraform/terraform.tfstate*, or you can visit the Azure portal to get them.
+
+Run `mvn -Pbuildpack package spring-boot:build-image`, see [Build the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_build_the_native_application) for more details.
+
+```shell
+mvn -Pbuildpack package spring-boot:build-image
+```
+
+- Run the native application
+
+Run `docker run --rm -p 8080:8080 storage-blob:1.0.0`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application) for more details.
+```shell
+docker run --rm -p 8080:8080 storage-blob:1.0.0
+```
+
+#### Run with Native Build Tools
+
+- System Requirements
+
+GraalVM `native-image` compiler should be installed, see [System Requirements](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-image-system-requirements) for more details. If using the Windows platform, you need to install `Visual Studio Build Tools`.
+
+- Build the native application
+
+Run `mvn -Pnative -DskipTests package` command using `x64 Native Tools Command Prompt`, see [Build the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_build_the_native_application_2) for more details.
+
+```shell
+mvn -Pnative -DskipTests package
+```
+
+- Run the native application
+
+Run `target\storage-blob`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application_2) for more details.
+```shell
+target\storage-blob
+```
+
 ## Verify This Sample
-1. Write and read a file.  
-    1.1 Send a POST request to update file contents.
+
+1. Check out the following console log:
+
+   ```text
+   [           main] c.a.s.n.s.s.blob.SampleDataInitializer   : StorageApplication data initialization begin ...
+   [           main] c.a.s.n.s.s.blob.SampleDataInitializer   : write data to container=blobcontainer, filePath=azure-blob://blobcontainer/fileName-*.txt
+   [           main] c.a.s.n.s.s.blob.SampleDataInitializer   : Downloaded data from the azure storage blob resource: data-*
+   [           main] c.a.s.n.s.s.blob.SampleDataInitializer   : Uses can get the data content through this address 'curl -XGET http://localhost:8080/blob/fileName-*.txt'.
+   [           main] c.a.s.n.s.s.blob.SampleDataInitializer   : StorageApplication data initialization end ...
+   ```
+   
+2. [Optional] Write and read a file.  
+    2.1 Send a POST request to update file contents.
+
     ```shell
     curl http://localhost:8080/blob/file1.txt -d "new message" -H "Content-Type: text/plain"
     ```
-    1.2 Verify by sending a GET request.  
+   
+    2.2 Verify by sending a GET request.  
     ```shell
     curl -XGET http://localhost:8080/blob/file1.txt
     ```
 
-
-2. [Optional] Using AzureStorageBlobProtocolResolver to get Azure Storage Blob resources with file pattern.
+3. [Optional] Using AzureStorageBlobProtocolResolver to get Azure Storage Blob resources with file pattern.
     ```shell
     curl -XGET http://localhost:8080/blob
     ```
     
     Verify in app's log that a similar messages was posted:
     ```shell
-    10 resources founded with pattern:*.txt
+    1 resources founded with pattern:*.txt
     ```
 
 
@@ -183,7 +248,7 @@ To destroy the resources you created.
 terraform -chdir=./terraform destroy -auto-approve
 ```
 
-#### Run with Powershell
+#### Run with Native Tools Command Prompt
 
 ```shell
 terraform -chdir=terraform destroy -auto-approve

@@ -16,11 +16,7 @@
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>Communicate to a Single Event Hubs Namespace via Aazure SDK for EventHubs</name>
-
-  <properties>
-    <imageName>eventhubs-client</imageName>
-  </properties>
+  <name>Communicate to a Single Event Hubs Namespace via Azure SDK for EventHubs</name>
 
   <dependencies>
     <dependency>

@@ -18,10 +18,6 @@
 
   <name>Communicate to a Single Event Hubs Namespace via Spring Cloud Stream</name>
 
-  <properties>
-    <imageName>eventhubs-binder</imageName>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>

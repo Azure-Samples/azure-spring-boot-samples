@@ -17,10 +17,6 @@
 
   <name>Spring-Cloud-Azure-Starter-KeyVault-Secrets Sample: Secret Client</name>
 
-  <properties>
-    <imageName>secret-client</imageName>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>

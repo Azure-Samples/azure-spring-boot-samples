@@ -18,10 +18,6 @@
   <name>Read and Write Data with Azure AppConfiguration Using ConfigurationClient</name>
   <description>Sample project for Spring Cloud Azure Starter AppConfiguration</description>
 
-  <properties>
-    <imageName>appconfiguration-sample</imageName>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>

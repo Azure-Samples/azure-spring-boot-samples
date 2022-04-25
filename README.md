@@ -47,6 +47,7 @@ We use `main` branch as the develop branch while setting the default branch as t
 | App Configuration| [azure-spring-cloud-feature-management:2.2.0]                       | [feature-management-sample](appconfiguration/feature-management-sample)                                                            |
 | App Configuration| [azure-spring-cloud-feature-management:2.2.0]                       | [feature-management-web-sample](appconfiguration/feature-management-web-sample)                                                    |
 | App Configuration| [azure-spring-cloud-appconfiguration-config:2.3.0]                  | [azure-appconfiguration-conversion-sample-complete](appconfiguration/azure-appconfiguration-conversion-sample-complete)            |
+| App Configuration| [spring-cloud-azure-starter-appconfiguration:4.0.0]                 | [appconfiguration-sample](appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-sample)                    |
 | Cache            | N/A                                                                 | [azure-spring-cloud-sample-cache](cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache)                                |
 | Cloud Foundry    | N/A                                                                 | [azure-cloud-foundry-service-sample](cloudfoundry/azure-cloud-foundry-service-sample)                                              |
 | Cosmos DB        | [azure-spring-data-cosmos:3.19.0]                                   | [cosmos-multi-database-multi-account](cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account)                         |
@@ -57,6 +58,7 @@ We use `main` branch as the develop branch while setting the default branch as t
 | Event Hubs       | [spring-cloud-azure-starter-integration-eventhubs:4.0.0]     | [eventhubs-integration](eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration)                          |
 | Event Hubs       | [spring-cloud-azure-stream-binder-eventhubs:4.0.0]           | [eventhubs-binder](eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder)                                          |
 | Event Hubs       | [spring-cloud-azure-stream-binder-eventhubs:4.0.0]           | [eventhubs-multibinders](eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders)                              |
+| Event Hubs       | [spring-cloud-azure-starter-eventhubs:4.0.0]                 | [eventhubs-client](eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client)                                                |
 | Key Vault        | [azure-spring-boot-starter-keyvault-certificates:3.14.0]            | [keyvault-certificates-client-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side)    |
 | Key Vault        | [azure-spring-boot-starter-keyvault-certificates:3.14.0]            | [keyvault-certificates-server-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side)    |
 | Key Vault        |                                                                     | [run-with-command-line-server-side](keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side)                        |
@@ -73,6 +75,7 @@ We use `main` branch as the develop branch while setting the default branch as t
 | Service Bus      | [spring-cloud-azure-stream-binder-servicebus:4.0.0]          | [servicebus-queue-binder-arm](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder-arm)                  |
 | Storage          | [spring-cloud-azure-starter-storage-blob:4.0.0]              | [storage-blob-sample](storage/spring-cloud-azure-starter-storage-blob/storage-blob-sample)                                         
 | Storage          | [spring-cloud-azure-starter-storage-file-share:4.0.0]        | [storage-file-sample](storage/spring-cloud-azure-starter-storage-file-share/storage-file-sample)                                   |
+| Storage          | [spring-cloud-azure-starter-storage-queue:4.0.0]             | [storage-queue-sample](storage/spring-cloud-azure-starter-storage-queue/storage-queue-sample)                                      |
 | Storage          | [spring-cloud-azure-starter-integration-storage-queue:4.0.0] | [storage-queue-integration](storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration)                |
 | Storage          | [spring-cloud-azure-starter-integration-storage-queue:4.0.0] | [storage-queue-operation](storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation)                    |
 
@@ -100,6 +103,7 @@ The parent project POM file has been configured with the `Spring Native` support
 
 [spring-cloud-azure-starter-keyvault-secrets:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-keyvault-secrets/4.0.0/jar
 [spring-cloud-azure-stream-binder-eventhubs:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-stream-binder-eventhubs/4.0.0/jar
+[spring-cloud-azure-starter-eventhubs:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-eventhubs/4.0.0/jar
 [spring-cloud-azure-starter-integration-eventhubs:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-integration-eventhubs/4.0.0/jar
 [spring-cloud-azure-stream-binder-servicebus:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-stream-binder-servicebus/4.0.0/jar
 [spring-cloud-azure-starter-active-directory:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-active-directory/4.0.0/jar
@@ -110,9 +114,11 @@ The parent project POM file has been configured with the `Spring Native` support
 [spring-cloud-azure-starter-integration-servicebus:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-integration-servicebus/4.0.0/jar
 [spring-cloud-azure-starter-integration-storage-queue:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-integration-storage-queue/4.0.0/jar
 [spring-cloud-azure-starter-storage-file-share:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-storage-file-share/4.0.0/jar
+[spring-cloud-azure-starter-storage-queue:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-storage-queue/4.0.0/jar
 [spring-cloud-azure-starter-storage-blob:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-storage-blob/4.0.0/jar
 [spring-cloud-azure-starter-data-cosmos:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-data-cosmos/4.0.0/jar
 [azure-spring-cloud-feature-management:2.2.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-feature-management/2.2.0/jar
 [azure-spring-cloud-appconfiguration-config:2.3.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-cloud-appconfiguration-config/2.3.0/jar
+[spring-cloud-azure-starter-appconfiguration:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-appconfiguration/4.0.0/jar
 [azure-spring-boot-starter-keyvault-certificates:3.14.0]: https://search.maven.org/artifact/com.azure.spring/azure-spring-boot-starter-keyvault-certificates/3.14.0/jar
 [azure-spring-data-cosmos:3.19.0]: https://search.maven.org/artifact/com.azure/azure-spring-data-cosmos/3.19.0/jar

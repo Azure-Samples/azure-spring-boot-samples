@@ -7,7 +7,8 @@ These messages are published to one `Event Hubs` instance and then consumed by o
 endpoint from the same application.
 
 ## What You Will Build
-You will build an application using `Spring Cloud Stream Binder` to send and receive messages for `Azure Event Hubs`.
+
+You will build an application that use `spring-cloud-azure-starter-eventhubs` to retrieve configurations from [Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/).
 
 ## What You Need
 
@@ -137,7 +138,7 @@ source ./terraform/setup_env.sh
 #### Run with Powershell
 
 ```shell
- . terraform\setup_env.ps1
+terraform\setup_env.ps1
 ```
 
 If you want to run the sample in debug mode, you can save the output value.

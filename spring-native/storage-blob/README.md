@@ -3,6 +3,7 @@
 This code sample demonstrates how to read and write files with the [Spring Resource](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#resources) abstraction for Azure Storage using the Spring Cloud Azure storage starter.
 
 ## What You Will Build
+
 You will build an application that use Spring Resource abstraction to read and write data with [Azure Storage Blob](https://azure.microsoft.com/services/storage/blobs/).
 
 ## What You Need
@@ -10,7 +11,9 @@ You will build an application that use Spring Resource abstraction to read and w
 - [An Azure subscription](https://azure.microsoft.com/free/)
 - [Terraform](https://www.terraform.io/)
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
-- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
+- [GraalVM 22.0.0 - Java 11](https://www.graalvm.org/downloads/)
+- [Docker](https://docs.docker.com/installation/#installation) for [Buildpacks](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-buildpacks-system-requirements) usage
+- [Native Image](https://www.graalvm.org/22.0/reference-manual/native-image/) for [Native Build Tools](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-image-system-requirements) usage
 - Maven
 - You can also import the code straight into your IDE:
     - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
@@ -135,22 +138,6 @@ AZURE_STORAGE_ACCOUNT=...
 
 ## Run Locally
 
-### Run the sample with Maven
-
-In your terminal, run `mvn clean spring-boot:run`.
-
-```shell
-mvn clean spring-boot:run
-```
-
-### Run the sample in IDEs
-
-You can debug your sample by adding the saved output values to the tool's environment variables or the sample's `application.yaml` file.
-
-* If your tool is `IDEA`, please refer to [Debug your first Java application](https://www.jetbrains.com/help/idea/debugging-your-first-java-application.html) and [add environment variables](https://www.jetbrains.com/help/objc/add-environment-variables-and-program-arguments.html#add-environment-variables).
-
-* If your tool is `ECLIPSE`, please refer to [Debugging the Eclipse IDE for Java Developers](https://www.eclipse.org/community/eclipse_newsletter/2017/june/article1.php) and [Eclipse Environment Variable Setup](https://examples.javacodegeeks.com/desktop-java/ide/eclipse/eclipse-environment-variable-setup-example/).
-
 ### Run the sample based on Spring Native
 
 There are two main ways to build a Spring Boot native application.
@@ -206,11 +193,11 @@ target\storage-blob
 1. Check out the following console log:
 
    ```text
-   [           main] c.a.s.n.s.s.blob.SampleDataInitializer   : StorageApplication data initialization begin ...
-   [           main] c.a.s.n.s.s.blob.SampleDataInitializer   : write data to container=blobcontainer, filePath=azure-blob://blobcontainer/fileName-*.txt
-   [           main] c.a.s.n.s.s.blob.SampleDataInitializer   : Downloaded data from the azure storage blob resource: data-*
-   [           main] c.a.s.n.s.s.blob.SampleDataInitializer   : Uses can get the data content through this address 'curl -XGET http://localhost:8080/blob/fileName-*.txt'.
-   [           main] c.a.s.n.s.s.blob.SampleDataInitializer   : StorageApplication data initialization end ...
+   StorageApplication data initialization begin ...
+   write data to container=blobcontainer, filePath=azure-blob://blobcontainer/fileName-*.txt
+   Downloaded data from the azure storage blob resource: data-*
+   Uses can get the data content through this address 'curl -XGET http://localhost:8080/blob/fileName-*.txt'.
+   StorageApplication data initialization end ...
    ```
    
 2. [Optional] Write and read a file.  

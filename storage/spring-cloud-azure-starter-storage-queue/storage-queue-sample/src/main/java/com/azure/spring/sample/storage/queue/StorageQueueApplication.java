@@ -14,7 +14,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author Moary Chen
+ * Send and receive message using Storage Queue SDK client.
  */
 @SpringBootApplication
 public class StorageQueueApplication implements CommandLineRunner {

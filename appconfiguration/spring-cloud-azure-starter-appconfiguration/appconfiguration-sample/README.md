@@ -3,7 +3,8 @@
 This sample illustrates the simplest usage of `spring-cloud-azure-starter-appconfiguration`.
 
 ## What You Will Build
-You will build an application that use Spring Resource abstraction to read and write data with [Azure Storage Blob](https://azure.microsoft.com/services/storage/blobs/).
+
+You will build an application that use `spring-cloud-azure-starter-appconfiguration` to retrieve configurations from [Azure App Configuration](https://azure.microsoft.com/services/app-configuration/).
 
 ## What You Need
 
@@ -145,7 +146,7 @@ You can debug your sample by adding the saved output values to the tool's enviro
 View the below results in the console.
 
 ```text
-INFO 15116 --- [           main] .s.s.a.AppConfigurationSampleApplication : Returned the from Azure App Configuration: sample-key, hello from default application
+Returned the from Azure App Configuration: sample-key, hello from default application
 ```
 
 

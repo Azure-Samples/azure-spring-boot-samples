@@ -68,7 +68,7 @@ curl -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=passwor
 ```
 2. Access endpoint by access-token:
 ```shell script
-curl localhost:8081/call-graph -H "Authorization: Bearer <replace-the-access-token>"
+curl localhost:8081/call-graph -H "Authorization: Bearer <access-token>"
 ```
 3. Verify response:
 ```text
@@ -83,7 +83,7 @@ curl -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=passwor
 ```
 2. Access endpoint by access-token:
 ```shell script
-curl localhost:8081/call-graph-with-authorized-client-manager -H "Authorization: Bearer <replace-the-access-token>"
+curl localhost:8081/call-graph-with-authorized-client-manager -H "Authorization: Bearer <access-token>"
 ```
 3. Verify response:
 ```text
@@ -98,7 +98,7 @@ curl -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=passwor
 ```
 2. Access endpoint by access-token:
 ```shell script
-curl localhost:8081/webapiA/webapiB -H "Authorization: Bearer <replace-the-access-token>"
+curl localhost:8081/webapiA/webapiB -H "Authorization: Bearer <access-token>"
 ```
 3. Verify response:
 ```text

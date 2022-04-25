@@ -78,7 +78,7 @@ curl -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=passwor
 ```
 2. Access endpoint by access-token:
 ```shell script
-curl localhost:8082/webapiB -H "Authorization: Bearer <replace-the-access-token>"
+curl localhost:8082/webapiB -H "Authorization: Bearer <access-token>"
 ```
 3. Verify response:
 ```text
@@ -93,7 +93,7 @@ curl -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=passwor
 ```
 2. Access endpoint by access-token:
 ```shell script
-curl localhost:8082/user -H "Authorization: Bearer <replace-the-access-token>" -I
+curl localhost:8082/user -H "Authorization: Bearer <access-token>" -I
 ```
 3. Verify response:
 ```text

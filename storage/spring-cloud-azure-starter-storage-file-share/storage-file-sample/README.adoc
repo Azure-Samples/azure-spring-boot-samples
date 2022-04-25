@@ -62,7 +62,7 @@ resource:
 ....
 
 === How to run
-1. Start the `StorageBlobApplication` Spring Boot app.
+1. Start the `StorageFileShareApplication` Spring Boot app.
 +
 ```
 mvn spring-boot:run

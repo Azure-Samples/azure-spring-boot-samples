@@ -1,10 +1,6 @@
 # Using Spring Cloud Stream Binder for Azure Event Hubs
 
-This code sample demonstrates how to use the `Spring Cloud Stream Binder` for `Azure Event Hubs`.The
-sample app has two operating modes.
-One way is to expose a Restful API to receive string message, another way is to automatically provide string messages.
-These messages are published to one `Event Hubs` instance and then consumed by one consumer
-endpoint from the same application.
+This code sample demonstrates how to use the client of `Azure SDK Event Hubs` to interact with `Azure Event Hubs`.
 
 ## What You Will Build
 

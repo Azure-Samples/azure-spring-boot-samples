@@ -17,15 +17,15 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * Send and receive message using Storage Queue SDK client.
  */
 @SpringBootApplication
-public class StorageQueueApplication implements CommandLineRunner {
+public class StorageQueueClientApplication implements CommandLineRunner {
 
-    final static Logger logger = LoggerFactory.getLogger(StorageQueueApplication.class);
+    final static Logger logger = LoggerFactory.getLogger(StorageQueueClientApplication.class);
 
     @Autowired
     private QueueClient queueClient;
 
     public static void main(String[] args) {
-        SpringApplication.run(StorageQueueApplication.class, args);
+        SpringApplication.run(StorageQueueClientApplication.class, args);
     }
 
     @Override

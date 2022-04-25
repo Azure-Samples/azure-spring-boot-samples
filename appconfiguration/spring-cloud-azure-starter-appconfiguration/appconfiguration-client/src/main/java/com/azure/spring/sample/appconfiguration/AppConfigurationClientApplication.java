@@ -12,15 +12,15 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class AppConfigurationSampleApplication implements CommandLineRunner {
+public class AppConfigurationClientApplication implements CommandLineRunner {
 
-    private static final Logger logger = LoggerFactory.getLogger(AppConfigurationSampleApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(AppConfigurationClientApplication.class);
 
     @Autowired
     private ConfigurationClient configurationClient;
 
     public static void main(String[] args) {
-        SpringApplication.run(AppConfigurationSampleApplication.class, args);
+        SpringApplication.run(AppConfigurationClientApplication.class, args);
     }
 
     public void run(String... var1) throws Exception {

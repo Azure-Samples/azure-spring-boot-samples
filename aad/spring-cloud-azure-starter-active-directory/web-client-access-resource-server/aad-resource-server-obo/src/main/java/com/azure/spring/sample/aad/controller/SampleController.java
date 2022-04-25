@@ -30,9 +30,6 @@ public class SampleController {
     private static final String GRAPH_ME_ENDPOINT = "https://graph.microsoft.com/v1.0/me";
 
     private static final String CUSTOM_LOCAL_FILE_ENDPOINT = "http://localhost:8082/webapiB";
-
-    private static final String CUSTOM_LOCAL_READ_ENDPOINT = "http://localhost:8083/webapiC";
-
     @Autowired
     private WebClient webClient;
 
@@ -124,24 +121,4 @@ public class SampleController {
         }
     }
 
-    /**
-     * Access to protected data through client credential flow. The access token is obtained by webclient, or
-     * <p>@RegisteredOAuth2AuthorizedClient("webapiC")</p>. In the end, these two approaches will be executed to
-     * DefaultOAuth2AuthorizedClientManager#authorize method, get the access token.
-     *
-     * @return Respond to protected data.
-     */
-    @PreAuthorize("hasAuthority('SCOPE_Obo.WebApiA.ExampleScope')")
-    @GetMapping("webapiA/webapiC")
-    public String callClientCredential() {
-        String body = webClient
-            .get()
-            .uri(CUSTOM_LOCAL_READ_ENDPOINT)
-            .attributes(clientRegistrationId("webapiC"))
-            .retrieve()
-            .bodyToMono(String.class)
-            .block();
-        LOGGER.info("Response from Client Credential: {}", body);
-        return "client Credential response " + (null != body ? "success." : "failed.");
-    }
 }

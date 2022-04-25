@@ -20,7 +20,7 @@ spring:
         profile:
           tenant-id: ${AZURE_TENANT_ID}
         user-group:
-          allowed-group-names: <group1>,<group2>
+          allowed-group-names: group1,group2
           allowed-group-ids: <group1-id>,<group2-id>    # When 'all' is used, all group id can be obtained.
         post-logout-redirect-uri: http://localhost:8080
         authorization-clients:

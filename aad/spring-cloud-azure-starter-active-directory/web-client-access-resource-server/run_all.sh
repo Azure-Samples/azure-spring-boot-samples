@@ -17,9 +17,6 @@ export WEB_API_A_CLIENT_SECRET=$(terraform -chdir=./terraform output -raw WEB_AP
 export WEB_API_A_APP_ID_URL=api://$WEB_API_A_CLIENT_ID
 export WEB_API_B_CLIENT_ID=$(terraform -chdir=./terraform output -raw WEB_API_B_CLIENT_ID)
 export WEB_API_B_APP_ID_URL=api://$WEB_API_B_CLIENT_ID
-export WEB_API_C_CLIENT_ID=$(terraform -chdir=./terraform output -raw WEB_API_C_CLIENT_ID)
-export WEB_API_C_APP_ID_URL=api://$WEB_API_C_CLIENT_ID
-
 
 echo "Running apps"
 mkdir -p target

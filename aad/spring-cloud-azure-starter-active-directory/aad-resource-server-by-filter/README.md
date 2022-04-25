@@ -84,7 +84,9 @@ As a first step you'll need to:
    Click the **Grant/revoke admin consent for {tenant}** button, and then select **Yes** when you are asked if you want to grant consent for the
    requested permissions for all account in the tenant. ![grant admin consent](docs/grant-admin-consent.png "grant admin consent")
    You need to be an Azure AD tenant admin to do this.
-   
+
+1. Then back to **Azure Active Directory**, In the left-hand navigation pane, select **Groups**, and then select `group1` which you created, choose your tenant as **Owners** and Spring Boot Sample as **Members**.
+
 ---
 ### Step 3:  Configure the sample to use your Azure AD tenant
 

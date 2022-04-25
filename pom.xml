@@ -27,8 +27,6 @@
     <version.spring-cloud-appconfiguration-starter>2.5.0</version.spring-cloud-appconfiguration-starter>
     <version.spring-cloud-feature-management>2.4.0</version.spring-cloud-feature-management>
     <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>
-    <version.spring-cloud-azure-native-configuration>4.0.0-beta.1</version.spring-cloud-azure-native-configuration>
-    <version.spring-native>0.11.4</version.spring-native>
     <repackage.classifier>exec</repackage.classifier>
   </properties>
   <modules>
@@ -45,7 +43,7 @@
     <module>appconfiguration/azure-appconfiguration-refresh-sample</module>
     <module>appconfiguration/feature-management-sample</module>
     <module>appconfiguration/feature-management-web-sample</module>
-    <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-sample</module>
+    <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
     <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
     <module>cloudfoundry/azure-cloud-foundry-service-sample</module>
     <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample</module>
@@ -63,7 +61,6 @@
     <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side</module>
     <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/property-source</module>
     <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/secret-client</module>
-    <module>spring-native/storage-blob</module>
     <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue</module>
     <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-topic</module>
     <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder</module>
@@ -76,7 +73,8 @@
     <module>storage/spring-cloud-azure-starter-storage-file-share/storage-file-sample</module>
     <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation</module>
     <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration</module>
-    <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-sample</module>
+    <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-client</module>
+    <module>spring-native/storage-blob-native</module>
     <module>spring-petclinic-microservices</module>
   </modules>
 
@@ -129,12 +127,12 @@
       <dependency>
         <groupId>org.springframework.experimental</groupId>
         <artifactId>spring-native</artifactId>
-        <version>${version.spring-native}</version>
+        <version>${spring-native.version}</version>
       </dependency>
       <dependency>
         <groupId>com.azure.spring</groupId>
         <artifactId>spring-cloud-azure-native-configuration</artifactId>
-        <version>${version.spring-cloud-azure-native-configuration}</version>
+        <version>${spring-cloud-azure-native-configuration.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -319,16 +317,20 @@
       <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <spring-native.version>0.11.4</spring-native.version>
+        <spring-cloud-azure-native-configuration.version>4.0.0-beta.1</spring-cloud-azure-native-configuration.version>
       </properties>
 
       <dependencies>
         <dependency>
           <groupId>org.springframework.experimental</groupId>
           <artifactId>spring-native</artifactId>
+          <version>${spring-native.version}</version>
         </dependency>
         <dependency>
           <groupId>com.azure.spring</groupId>
           <artifactId>spring-cloud-azure-native-configuration</artifactId>
+          <version>${spring-cloud-azure-native-configuration.version}</version>
         </dependency>
         <dependency>
           <groupId>org.junit.platform</groupId>
@@ -342,7 +344,7 @@
           <plugin>
             <groupId>org.springframework.experimental</groupId>
             <artifactId>spring-aot-maven-plugin</artifactId>
-            <version>${version.spring-native}</version>
+            <version>${spring-native.version}</version>
             <executions>
               <execution>
                 <id>generate</id>
@@ -368,16 +370,20 @@
         <maven.compiler.target>11</maven.compiler.target>
         <imageName>${artifactId}</imageName>
         <native.maven.plugin.version>0.9.11</native.maven.plugin.version>
+        <spring-native.version>0.11.4</spring-native.version>
+        <spring-cloud-azure-native-configuration.version>4.0.0-beta.1</spring-cloud-azure-native-configuration.version>
       </properties>
 
       <dependencies>
         <dependency>
           <groupId>org.springframework.experimental</groupId>
           <artifactId>spring-native</artifactId>
+          <version>${spring-native.version}</version>
         </dependency>
         <dependency>
           <groupId>com.azure.spring</groupId>
           <artifactId>spring-cloud-azure-native-configuration</artifactId>
+          <version>${spring-cloud-azure-native-configuration.version}</version>
         </dependency>
         <dependency>
           <groupId>org.junit.platform</groupId>
@@ -390,7 +396,7 @@
           <plugin>
             <groupId>org.springframework.experimental</groupId>
             <artifactId>spring-aot-maven-plugin</artifactId>
-            <version>${version.spring-native}</version>
+            <version>${spring-native.version}</version>
             <executions>
               <execution>
                 <id>generate</id>

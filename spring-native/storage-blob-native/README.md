@@ -162,9 +162,9 @@ mvn -Pbuildpack package spring-boot:build-image
 
 - Run the native application
 
-Run `docker run --rm -p 8080:8080 storage-blob:1.0.0`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application) for more details.
+Run `docker run --rm -p 8080:8080 storage-blob-native:1.0.0`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application) for more details.
 ```shell
-docker run --rm -p 8080:8080 storage-blob:1.0.0
+docker run --rm -p 8080:8080 storage-blob-native:1.0.0
 ```
 
 #### Run with Native Build Tools
@@ -183,9 +183,9 @@ mvn -Pnative -DskipTests package
 
 - Run the native application
 
-Run `target\storage-blob`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application_2) for more details.
+Run `target\storage-blob-native`, see [Run the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_run_the_native_application_2) for more details.
 ```shell
-target\storage-blob
+target\storage-blob-native
 ```
 
 ## Verify This Sample

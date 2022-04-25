@@ -8,18 +8,28 @@
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-boot-samples</artifactId>
     <version>1.0.0</version>
-    <relativePath>../../../pom.xml</relativePath>
+    <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>storage-queue-sample</artifactId>
+  <artifactId>storage-blob-native</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
-  <name>Send and receive message with Storage Queue</name>
 
+  <name>Read and Write Blobs with the Spring Resource for Azure Storage Blob</name>
+  <description>The Spring Native support has been enabled for this module by default.</description>
+
+  <properties>
+    <imageName>storage-blob</imageName>
+  </properties>
+  
   <dependencies>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>spring-cloud-azure-starter-storage-queue</artifactId>
+      <artifactId>spring-cloud-azure-starter-storage-blob</artifactId>
     </dependency>
   </dependencies>
 </project>

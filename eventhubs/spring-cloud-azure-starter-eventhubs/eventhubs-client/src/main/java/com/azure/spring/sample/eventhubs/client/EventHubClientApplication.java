@@ -45,7 +45,7 @@ public class EventHubClientApplication implements CommandLineRunner {
         LOGGER.info("Sent message to Event Hub");
         producerClient.close();
 
-        TimeUnit.SECONDS.sleep(2);
+        TimeUnit.SECONDS.sleep(3);
         String PARTITION_ID = "0";
         IterableStream<PartitionEvent> partitionEvents = consumerClient.receiveFromPartition(PARTITION_ID, 1,
             EventPosition.earliest());

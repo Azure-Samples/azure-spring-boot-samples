@@ -11,7 +11,7 @@
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>appconfiguration-sample</artifactId>
+  <artifactId>appconfiguration-client</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

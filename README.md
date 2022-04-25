@@ -47,7 +47,7 @@ We use `main` branch as the develop branch while setting the default branch as t
 | App Configuration| [azure-spring-cloud-feature-management:2.2.0]                       | [feature-management-sample](appconfiguration/feature-management-sample)                                                            |
 | App Configuration| [azure-spring-cloud-feature-management:2.2.0]                       | [feature-management-web-sample](appconfiguration/feature-management-web-sample)                                                    |
 | App Configuration| [azure-spring-cloud-appconfiguration-config:2.3.0]                  | [azure-appconfiguration-conversion-sample-complete](appconfiguration/azure-appconfiguration-conversion-sample-complete)            |
-| App Configuration| [spring-cloud-azure-starter-appconfiguration:4.0.0]                 | [appconfiguration-sample](appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-sample)                    |
+| App Configuration| [spring-cloud-azure-starter-appconfiguration:4.0.0]                 | [appconfiguration-client](appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client)                    |
 | Cache            | N/A                                                                 | [azure-spring-cloud-sample-cache](cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache)                                |
 | Cloud Foundry    | N/A                                                                 | [azure-cloud-foundry-service-sample](cloudfoundry/azure-cloud-foundry-service-sample)                                              |
 | Cosmos DB        | [azure-spring-data-cosmos:3.19.0]                                   | [cosmos-multi-database-multi-account](cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account)                         |
@@ -75,9 +75,10 @@ We use `main` branch as the develop branch while setting the default branch as t
 | Service Bus      | [spring-cloud-azure-stream-binder-servicebus:4.0.0]          | [servicebus-queue-binder-arm](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder-arm)                  |
 | Storage          | [spring-cloud-azure-starter-storage-blob:4.0.0]              | [storage-blob-sample](storage/spring-cloud-azure-starter-storage-blob/storage-blob-sample)                                         
 | Storage          | [spring-cloud-azure-starter-storage-file-share:4.0.0]        | [storage-file-sample](storage/spring-cloud-azure-starter-storage-file-share/storage-file-sample)                                   |
-| Storage          | [spring-cloud-azure-starter-storage-queue:4.0.0]             | [storage-queue-sample](storage/spring-cloud-azure-starter-storage-queue/storage-queue-sample)                                      |
+| Storage          | [spring-cloud-azure-starter-storage-queue:4.0.0]             | [storage-queue-client](storage/spring-cloud-azure-starter-storage-queue/storage-queue-client)                                      |
 | Storage          | [spring-cloud-azure-starter-integration-storage-queue:4.0.0] | [storage-queue-integration](storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration)                |
 | Storage          | [spring-cloud-azure-starter-integration-storage-queue:4.0.0] | [storage-queue-operation](storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation)                    |
+| Spring Native    | spring-cloud-azure-native-configuration:4.0.0-beta.1         | [storage-blob-native](spring-native/storage-blob-native)                                      |
 
 ## Running Samples With Terraform
 With [terraform](https://www.terraform.io/) scripts and [DefaultAzureCredential](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html#defaultazurecredential), most samples in the project can be run with the same 4 steps below:
@@ -99,7 +100,7 @@ It supports both Bash environment and [PowerShell](https://docs.microsoft.com/en
 Please refer to [README.md](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace/README.md) under each sample for detailed information.
 
 ### Run Samples Based On Spring Native
-The parent project POM file has been configured with the `Spring Native` support to build a Spring Boot native application by default, which can be built based on [Buildpacks](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-buildpacks) and [Native Build Tools](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-build-tools), please follow the readme doc in each sample to build a specific native application.
+The parent project POM file has been configured with the `Spring Native` support to generate a Spring Boot native executable by the `buildpack` or `native` profile, which can be built based on [Buildpacks](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-buildpacks) and [Native Build Tools](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-build-tools), please follow the [storage-blob-native](spring-native/storage-blob-native) to generate a native executable.
 
 [spring-cloud-azure-starter-keyvault-secrets:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-keyvault-secrets/4.0.0/jar
 [spring-cloud-azure-stream-binder-eventhubs:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-stream-binder-eventhubs/4.0.0/jar

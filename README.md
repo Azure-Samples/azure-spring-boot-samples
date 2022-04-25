@@ -100,7 +100,7 @@ It supports both Bash environment and [PowerShell](https://docs.microsoft.com/en
 Please refer to [README.md](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace/README.md) under each sample for detailed information.
 
 ### Run Samples Based On Spring Native
-The parent project POM file has been configured with the `Spring Native` support to generate a Spring Boot native executable by the `buildpack` or `native` profile, which can be built based on [Buildpacks](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-buildpacks) and [Native Build Tools](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-build-tools), please follow the [storage-blob-native](spring-native/storage-blob-native) to generate a native executable.
+Two Maven profiles have been defined in this project to support compiling Spring applications to native executables: `buildpack` and `native`. The `buildpack` profile will use [Buildpacks](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-buildpacks) and the `native` profile will use [Native Build Tools](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-build-tools). Please follow the [storage-blob-native sample](spring-native/storage-blob-native) for more details.
 
 [spring-cloud-azure-starter-keyvault-secrets:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-starter-keyvault-secrets/4.0.0/jar
 [spring-cloud-azure-stream-binder-eventhubs:4.0.0]: https://search.maven.org/artifact/com.azure.spring/spring-cloud-azure-stream-binder-eventhubs/4.0.0/jar

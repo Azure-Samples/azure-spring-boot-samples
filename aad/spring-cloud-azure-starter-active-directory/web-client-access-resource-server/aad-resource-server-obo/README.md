@@ -4,7 +4,7 @@
 [Resource server access other resources usage] is an extension scenario of the *aad-resource-server* sample. Similarly, this sample illustrates how to protect a Java web API by restricting access to its resources to authorized accounts, and the restricted resource will access other restricted resource, such as Graph API and Custom API.
 
 ### Protocol diagram
-Assume that the user has been authenticated on an application using the OAuth 2.0 authorization code grant flow or another login flow. At this point, the application has an access token for API A (token A) with the user's claims and consent to access the middle-tier web API (API A). Now, API A needs to make an authenticated request to the downstream web API B(API B) and web API C(API C).
+Assume that the user has been authenticated on an application using the OAuth 2.0 authorization code grant flow or another login flow. At this point, the application has an access token for API A (token A) with the user's claims and consent to access the middle-tier web API (API A). Now, API A needs to make an authenticated request to the downstream web API B(API B).
 The following steps constitute the OBO process and the client credential process, as shown in the following figure.
 
 ![OBO flow and client credential flow](docs/image-aad-obo-flow-and-client-credential-flow.png)
@@ -13,11 +13,6 @@ The following steps constitute the OBO process and the client credential process
 4. The Microsoft identity platform token issuance endpoint validates API A's credentials along with token A and issues the access token for API B (token B) to API A.
 4. Token B is set by API A in the authorization header of the request to API B.
 5. Data from the secured resource is returned by API B to API A, and from there to the client.
-6. The client application makes a request to API A with token A (with an aud claim of API A).
-7. API A authenticates to the Microsoft identity platform token issuance endpoint and requests a token to access API C.
-8. The Microsoft identity platform token issuance endpoint validates API A's credentials and issues the access token for API C (token C) to API A.
-9. Token C is set by API A in the authorization header of the request to API C.
-10. Data from the secured resource is returned by API C to API A, and from there to the client.
 
 ## Getting started
 We will prepare two applications to demonstrate the dependent calls of resources.
@@ -65,40 +60,47 @@ mvn spring-boot:run
 ```
 
 ### Access the Web API A
-First, you need to obtain an access token to access Web API A.
 - Web API A will call Graph resource. 
+
+1. Get access-token:
 ```shell script
-# use Header scope '<app-id-uri>/Obo.Graph.Read' to get access-token 
-# Replace to valid access token.
-curl localhost:8081/call-graph -H "Authorization: Bearer <replace-the-access-token>"
+curl -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=password&client_id=<web-apiA-client-id>&scope=<app-id-uri>/Obo.Graph.Read&client_secret=<web-apiA-client-secret>&username=<username>&password=<password>' 'https://login.microsoftonline.com/organizations/oauth2/v2.0/token'
 ```
-Verify response:
+2. Access endpoint by access-token:
+```shell script
+curl localhost:8081/call-graph -H "Authorization: Bearer <access-token>"
+```
+3. Verify response:
 ```text
 Graph response success.
 ```
 
-- Web API A will call Graph resource through `OAuth2AuthorizedClientRepository`. 
+- Web API A will call Graph resource through `OAuth2AuthorizedClientManager`. 
 
+1. Get access-token:
 ```shell script
-# same access-token as above
-# Replace to valid access token.
-curl localhost:8081/call-graph-with-repository -H "Authorization: Bearer <replace-the-access-token>"
+curl -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=password&client_id=<web-apiA-client-id>&scope=<app-id-uri>/Obo.Graph.Read&client_secret=<web-apiA-client-secret>&username=<username>&password=<password>' 'https://login.microsoftonline.com/organizations/oauth2/v2.0/token'
 ```
-
-Verify response:
+2. Access endpoint by access-token:
+```shell script
+curl localhost:8081/call-graph-with-authorized-client-manager -H "Authorization: Bearer <access-token>"
+```
+3. Verify response:
 ```text
-Graph response failed.
+Graph response success.
 ```
 
 - Web API A will call Custom(Web API B) resources. 
 
+1. Get access-token:
 ```shell script
-# use Header scope '<app-id-uri>/Obo.WebApiA.ExampleScope' to get access-token 
-# Replace to valid access token.
-curl localhost:8081/webapiA/webapiB -H "Authorization: Bearer <replace-the-access-token>"
+curl -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=password&client_id=<web-apiA-client-id>&scope=<app-id-uri>/Obo.WebApiA.ExampleScope&client_secret=<web-apiA-client-secret>&username=<username>&password=<password>' 'https://login.microsoftonline.com/organizations/oauth2/v2.0/token'
 ```
-
-Verify response:
+2. Access endpoint by access-token:
+```shell script
+curl localhost:8081/webapiA/webapiB -H "Authorization: Bearer <access-token>"
+```
+3. Verify response:
 ```text
 webapiB response success.
 ```

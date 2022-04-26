@@ -5,13 +5,13 @@ package com.azure.spring.sample.aad.controller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.oauth2.client.OAuth2AuthorizeRequest;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient;
+import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.annotation.RegisteredOAuth2AuthorizedClient;
-import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestAttributes;
@@ -19,41 +19,53 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 import org.springframework.web.reactive.function.client.WebClient;
 
-import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.clientRegistrationId;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import static org.springframework.security.oauth2.client.web.reactive.function.client.ServletOAuth2AuthorizedClientExchangeFilterFunction.oauth2AuthorizedClient;
 
 @RestController
 public class SampleController {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SampleController.class);
-
     private static final String GRAPH_ME_ENDPOINT = "https://graph.microsoft.com/v1.0/me";
-
     private static final String CUSTOM_LOCAL_FILE_ENDPOINT = "http://localhost:8082/webapiB";
-    @Autowired
-    private WebClient webClient;
+    private final WebClient webClient;
+    private final OAuth2AuthorizedClientManager auth2AuthorizedClientManager;
 
-    @Autowired
-    private OAuth2AuthorizedClientRepository oAuth2AuthorizedClientRepository;
+    public SampleController(WebClient webClient, OAuth2AuthorizedClientManager auth2AuthorizedClientManager) {
+        this.webClient = webClient;
+        this.auth2AuthorizedClientManager = auth2AuthorizedClientManager;
+    }
 
     /**
-     * Call the graph resource, return user information
+     * Call the graph resource with OAuth2AuthorizedClientManager.
      *
      * @return Response with graph data
      */
     @PreAuthorize("hasAuthority('SCOPE_Obo.Graph.Read')")
-    @GetMapping("call-graph-with-repository")
-    public String callGraphWithRepository() {
-        Authentication principal = SecurityContextHolder.getContext().getAuthentication();
+    @GetMapping("call-graph-with-authorized-client-manager")
+    public String callGraphWithAuthorizedClientManager() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         RequestAttributes requestAttributes = RequestContextHolder.currentRequestAttributes();
         ServletRequestAttributes sra = (ServletRequestAttributes) requestAttributes;
-        OAuth2AuthorizedClient graph = oAuth2AuthorizedClientRepository
-            .loadAuthorizedClient("graph", principal, sra.getRequest());
+        HttpServletRequest servletRequest = sra.getRequest();
+        HttpServletResponse servletResponse = sra.getResponse();
+
+        OAuth2AuthorizeRequest authorizeRequest =
+            OAuth2AuthorizeRequest.withClientRegistrationId("graph")
+                                  .principal(authentication)
+                                  .attributes(attrs -> {
+                                      attrs.put(HttpServletRequest.class.getName(), servletRequest);
+                                      attrs.put(HttpServletResponse.class.getName(), servletResponse);
+                                  })
+                                  .build();
+        OAuth2AuthorizedClient graph = this.auth2AuthorizedClientManager.authorize(authorizeRequest);
         return callMicrosoftGraphMeEndpoint(graph);
     }
 
     /**
-     * Call the graph resource with annotation, return user information
+     * Call the graph resource with @RegisteredOAuth2AuthorizedClient.
      *
      * @param graph authorized client for Graph
      * @return Response with graph data

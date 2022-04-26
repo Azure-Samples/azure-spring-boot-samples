@@ -9,7 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class SampleApplication implements CommandLineRunner {
+public class PropertySourceApplication implements CommandLineRunner {
 
     @Value("${sampleProperty1}")
     private String sampleProperty1;
@@ -19,7 +19,7 @@ public class SampleApplication implements CommandLineRunner {
     private String samplePropertyInMultipleKeyVault;
 
     public static void main(String[] args) {
-        SpringApplication.run(SampleApplication.class, args);
+        SpringApplication.run(PropertySourceApplication.class, args);
     }
 
     public void run(String[] args) {

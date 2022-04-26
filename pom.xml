@@ -27,6 +27,7 @@
     <version.spring-cloud-appconfiguration-starter>2.5.0</version.spring-cloud-appconfiguration-starter>
     <version.spring-cloud-feature-management>2.4.0</version.spring-cloud-feature-management>
     <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>
+    <repackage.classifier>exec</repackage.classifier>
   </properties>
   <modules>
     <module>aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server</module>
@@ -42,6 +43,7 @@
     <module>appconfiguration/azure-appconfiguration-refresh-sample</module>
     <module>appconfiguration/feature-management-sample</module>
     <module>appconfiguration/feature-management-web-sample</module>
+    <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
     <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
     <module>cloudfoundry/azure-cloud-foundry-service-sample</module>
     <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample</module>
@@ -50,6 +52,7 @@
     <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>
     <module>eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration</module>
     <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
+    <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>
     <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder</module>
     <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders</module>
     <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side</module>
@@ -70,6 +73,8 @@
     <module>storage/spring-cloud-azure-starter-storage-file-share/storage-file-sample</module>
     <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation</module>
     <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration</module>
+    <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-client</module>
+    <module>spring-native/storage-blob-native</module>
     <module>spring-petclinic-microservices</module>
   </modules>
 
@@ -119,8 +124,36 @@
         <artifactId>azure-spring-boot-starter-keyvault-certificates</artifactId>
         <version>${version.azure-spring-boot-starter-keyvault-certificates}</version>
       </dependency>
+      <dependency>
+        <groupId>org.springframework.experimental</groupId>
+        <artifactId>spring-native</artifactId>
+        <version>${spring-native.version}</version>
+      </dependency>
+      <dependency>
+        <groupId>com.azure.spring</groupId>
+        <artifactId>spring-cloud-azure-native-configuration</artifactId>
+        <version>${spring-cloud-azure-native-configuration.version}</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <configuration>
+          <classifier>${repackage.classifier}</classifier>
+          <image>
+            <builder>paketobuildpacks/builder:tiny</builder>
+            <env>
+              <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+            </env>
+          </image>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 
   <profiles>
     <profile>
@@ -279,5 +312,158 @@
         </dependencies>
       </dependencyManagement>
     </profile>
+    <profile>
+      <id>buildpack</id>
+      <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <spring-native.version>0.11.4</spring-native.version>
+        <spring-cloud-azure-native-configuration.version>4.0.0-beta.1</spring-cloud-azure-native-configuration.version>
+      </properties>
+
+      <dependencies>
+        <dependency>
+          <groupId>org.springframework.experimental</groupId>
+          <artifactId>spring-native</artifactId>
+          <version>${spring-native.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>com.azure.spring</groupId>
+          <artifactId>spring-cloud-azure-native-configuration</artifactId>
+          <version>${spring-cloud-azure-native-configuration.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>org.junit.platform</groupId>
+          <artifactId>junit-platform-launcher</artifactId>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+      <build>
+        <finalName>${project.artifactId}</finalName>
+        <plugins>
+          <plugin>
+            <groupId>org.springframework.experimental</groupId>
+            <artifactId>spring-aot-maven-plugin</artifactId>
+            <version>${spring-native.version}</version>
+            <executions>
+              <execution>
+                <id>generate</id>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>test-generate</id>
+                <goals>
+                  <goal>test-generate</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <id>native</id>
+      <properties>
+        <maven.compiler.source>11</maven.compiler.source>
+        <maven.compiler.target>11</maven.compiler.target>
+        <imageName>${artifactId}</imageName>
+        <native.maven.plugin.version>0.9.11</native.maven.plugin.version>
+        <spring-native.version>0.11.4</spring-native.version>
+        <spring-cloud-azure-native-configuration.version>4.0.0-beta.1</spring-cloud-azure-native-configuration.version>
+      </properties>
+
+      <dependencies>
+        <dependency>
+          <groupId>org.springframework.experimental</groupId>
+          <artifactId>spring-native</artifactId>
+          <version>${spring-native.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>com.azure.spring</groupId>
+          <artifactId>spring-cloud-azure-native-configuration</artifactId>
+          <version>${spring-cloud-azure-native-configuration.version}</version>
+        </dependency>
+        <dependency>
+          <groupId>org.junit.platform</groupId>
+          <artifactId>junit-platform-launcher</artifactId>
+          <scope>test</scope>
+        </dependency>
+      </dependencies>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.springframework.experimental</groupId>
+            <artifactId>spring-aot-maven-plugin</artifactId>
+            <version>${spring-native.version}</version>
+            <executions>
+              <execution>
+                <id>generate</id>
+                <goals>
+                  <goal>generate</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>test-generate</id>
+                <goals>
+                  <goal>test-generate</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.graalvm.buildtools</groupId>
+            <artifactId>native-maven-plugin</artifactId>
+            <version>${native.maven.plugin.version}</version>
+            <extensions>true</extensions>
+            <executions>
+              <execution>
+                <id>test-native</id>
+                <phase>test</phase>
+                <goals>
+                  <goal>test</goal>
+                </goals>
+              </execution>
+              <execution>
+                <id>build-native</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>build</goal>
+                </goals>
+              </execution>
+            </executions>
+            <configuration>
+              <imageName>${imageName}</imageName>
+              <buildArgs>
+                <buildArg>-H:+ReportExceptionStackTraces</buildArg>
+              </buildArgs>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
   </profiles>
+
+  <repositories>
+    <repository>
+      <id>spring-release</id>
+      <name>Spring release</name>
+      <url>https://repo.spring.io/release</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>spring-release</id>
+      <name>Spring release</name>
+      <url>https://repo.spring.io/release</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+  </pluginRepositories>
 </project>

@@ -94,7 +94,7 @@ source ./terraform/setup_env.sh
 #### Run with Powershell
 
 ```shell
-. terraform\setup_env.ps1
+terraform\setup_env.ps1
 ```
 
 You will see output like below, save this output to use later.

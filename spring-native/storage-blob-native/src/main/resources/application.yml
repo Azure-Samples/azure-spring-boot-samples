@@ -1,0 +1,9 @@
+spring:
+  cloud:
+    azure:
+      storage:
+        blob:
+          account-name: ${AZURE_STORAGE_ACCOUNT}
+          container-name: blobcontainer
+# Uncomment the account-key when building native image with the Buildpacks.
+#          account-key: <replace-with-your-storage-account-key>

@@ -1,10 +1,10 @@
-# Using Spring Cloud Stream Binder for Azure Event Hubs
+# Using Azure Event Hubs with Spring Cloud Azure Starter Event Hubs
 
-This code sample demonstrates how to use the client of `Azure SDK Event Hubs` to interact with `Azure Event Hubs`.
+This code sample demonstrates how to use the client of `Azure Event Hubs SDK` to interact with `Azure Event Hubs`.
 
 ## What You Will Build
 
-You will build an application that use `spring-cloud-azure-starter-eventhubs` to retrieve configurations from [Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/).
+You will build an application that uses `spring-cloud-azure-starter-eventhubs` to send and receive messages with [Azure Event Hubs](https://azure.microsoft.com/services/event-hubs/).
 
 ## What You Need
 

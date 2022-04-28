@@ -1,6 +1,6 @@
-# Using Spring Cloud Azure Storage Blob Starter
+# Using Spring Cloud Azure Storage Blob Starter and Spring Native to build the native executable 
 
-This code sample demonstrates how to read and write files with the [Spring Resource](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#resources) abstraction for Azure Storage using the Spring Cloud Azure storage starter.
+This code sample demonstrates how to read and write files with the [Spring Resource](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#resources) abstraction for Azure Storage using the Spring Cloud Azure storage starter, and build the native executable with Spring Native.
 
 ## What You Will Build
 
@@ -194,7 +194,7 @@ target\storage-blob-native
 
    ```text
    StorageApplication data initialization begin ...
-   write data to container=blobcontainer, filePath=azure-blob://blobcontainer/fileName-*.txt
+   Write data to container=blobcontainer, filePath=azure-blob://blobcontainer/fileName-*.txt
    Downloaded data from the azure storage blob resource: data-*
    Uses can get the data content through this address 'curl -XGET http://localhost:8080/blob/fileName-*.txt'.
    StorageApplication data initialization end ...

@@ -101,22 +101,49 @@ mvn spring-boot:run
 ```
 
 ### Access the Web API
+- Write response.
 
-```http request
-# get access_token
+1. Get access-token:
+```shell script
 curl -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=client_credentials&client_id=<aad-b2c-web-app-client-id>&scope=<app-id-uri>/.default&client_secret=<aad-b2c-web-app-client-secret>' 'https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token'
-
-# GET /write HTTP/1.1
+```
+2. Access endpoint by access-token:
+```shell script
 curl localhost:8080/write -H "Authorization: Bearer <access_token>"
-Write success 
+```
+3. Verify response:
+```text
+Write success.
+```
 
-# GET /read HTTP/1.1
+- Read response.
+
+1. Get access-token:
+```shell script
+curl -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=client_credentials&client_id=<aad-b2c-web-app-client-id>&scope=<app-id-uri>/.default&client_secret=<aad-b2c-web-app-client-secret>' 'https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token'
+```
+2. Access endpoint by access-token:
+```shell script
 curl localhost:8080/read -H "Authorization: Bearer <access_token>"
-Read success
+```
+3. Verify response:
+```text
+Read success.
+```
 
-# GET /log HTTP/1.1
+- Log response.
+
+1. Get access-token:
+```shell script
+curl -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=client_credentials&client_id=<aad-b2c-web-app-client-id>&scope=<app-id-uri>/.default&client_secret=<aad-b2c-web-app-client-secret>' 'https://login.microsoftonline.com/<tenant-id>/oauth2/v2.0/token'
+```
+2. Access endpoint by access-token:
+```shell script
 curl localhost:8080/log -H "Authorization: Bearer <access_token> -I"
-# fail with error message:403
+```
+3. Verify response:
+```text
+error:403.
 ```
 
 ## Troubleshooting
@@ -132,4 +159,3 @@ You can set `isEnabled` to `false` in the manifest's JSON configuration.Then del
 ## Next steps
 ## Contributing
 <!-- LINKS -->
-

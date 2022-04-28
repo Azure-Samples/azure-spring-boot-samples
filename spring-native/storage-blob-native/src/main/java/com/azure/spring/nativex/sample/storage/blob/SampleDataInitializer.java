@@ -40,7 +40,7 @@ public class SampleDataInitializer implements CommandLineRunner {
         try (OutputStream os = ((WritableResource) storageBlobResource).getOutputStream()) {
             String data = "data-" + millis;
             os.write(data.getBytes());
-            logger.info("write data to container={}, filePath={}", containerName, filePath);
+            logger.info("Write data to container={}, filePath={}", containerName, filePath);
         }
         String downloadedData = StreamUtils.copyToString(resourceLoader.getResource(filePath).getInputStream(),
             Charset.defaultCharset());

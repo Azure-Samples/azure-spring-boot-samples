@@ -247,13 +247,13 @@ Go to the project root directory, open the `Command Prompt` tools and execute th
 mvn -DskipTests spring-boot:build-image
 ```
 
-It takes a long time, please wait patiently to build the container.
+It will take a long time, please wait patiently to build the container.
 
 ![Build image using Command Prompt.][BP01]
 
 After a long wait, it finally echoes that the build is successful.
 
-![Running creator for Docker container.][BP02]
+![Build container complete.][BP02]
 
 ### Run the container containing the native executable
 
@@ -272,25 +272,24 @@ Check out the output console log, it will be the same with the previous local ru
 This section uses the [GraalVM native build tools](https://github.com/graalvm/native-build-tools) to build a native executable.
 
 A number of [prerequisites](https://www.graalvm.org/reference-manual/native-image/#prerequisites) are required before installing the GraalVM native-image compiler. 
-The prerequisites for Using Native Image on Windows is to install [Visual Studio](https://visualstudio.microsoft.com/vs/) and Microsoft Visual C++ (MSVC). The native-image builder will only work when it is executed from the `x64 Native Tools Command Prompt`.
+The prerequisites for using native image on Windows is to install [Visual Studio](https://visualstudio.microsoft.com/vs/) and Microsoft Visual C++ (MSVC). The native-image builder will only work when it is executed from the `x64 Native Tools Command Prompt`.
 
 ### Build the native application
 
 This step will create a native executable file.
-Execute the following command in the project root directory:
-Go to the project root directory, open `x64 Native Tools Command Prompt` tools and execute the following Maven command
+Go to the project root directory, open `x64 Native Tools Command Prompt` tools and execute the following Maven command:
 
 ```shell
 mvn -Pnative -DskipTests package
 ```
 
-It takes a long time, please wait patiently.
+It will take a long time, please wait patiently.
 
 ![Build image using x64 Native Tools Command Prompt.][NT01]
 
 After a long wait, it finally echoes that the build is successful.
 
-![Building for Native Image.][NT02]
+![Build native executable complete.][NT02]
 
 ### Run the native executable
 
@@ -302,7 +301,7 @@ target\storage-blob-native
 
 Check out the output console log, it will be the same with the previous local running log.
 
-![Run Docker container.][NT03]
+![Run native executable.][NT03]
 
 ## Clean up resources
 

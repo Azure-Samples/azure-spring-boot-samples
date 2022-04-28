@@ -1,4 +1,4 @@
-# Using Spring Cloud Azure Storage Blob Starter and Spring Native to build the native executable 
+# Using Spring Native with Spring Cloud Azure Storage Blob Starter
 
 This code sample demonstrates how to read and write files with the [Spring Resource](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#resources) abstraction for Azure Storage using the Spring Cloud Azure storage starter, and build the native executable with Spring Native.
 

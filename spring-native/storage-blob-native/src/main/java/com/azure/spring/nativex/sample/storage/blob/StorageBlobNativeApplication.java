@@ -6,9 +6,6 @@ package com.azure.spring.nativex.sample.storage.blob;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- *
- */
 @SpringBootApplication
 public class StorageBlobNativeApplication {
     public static void main(String[] args) {

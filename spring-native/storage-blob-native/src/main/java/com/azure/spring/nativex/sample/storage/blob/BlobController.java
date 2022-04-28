@@ -25,9 +25,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**
- *
- */
 @RestController
 @RequestMapping("blob")
 public class BlobController {
@@ -47,7 +44,6 @@ public class BlobController {
 
     /**
      * Using AzureStorageBlobProtocolResolver to get Azure Storage Blob resources with file pattern.
-     *
      * @return fileNames in the container match pattern: *.txt
      */
     @GetMapping
@@ -59,7 +55,6 @@ public class BlobController {
 
     @GetMapping("/{fileName}")
     public String readBlobResource(@PathVariable("fileName") String fileName) throws IOException {
-        // get a BlobResource
         Resource storageBlobResource = resourceLoader.getResource("azure-blob://" + containerName + "/" + fileName);
         return StreamUtils.copyToString(
             storageBlobResource.getInputStream(),
@@ -68,7 +63,6 @@ public class BlobController {
 
     @PostMapping("/{fileName}")
     public String writeBlobResource(@PathVariable("fileName") String fileName, @RequestBody String data) throws IOException {
-        // get a BlobResource
         Resource storageBlobResource = resourceLoader.getResource("azure-blob://" + containerName + "/" + fileName);
         try (OutputStream os = ((WritableResource) storageBlobResource).getOutputStream()) {
             os.write(data.getBytes());

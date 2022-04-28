@@ -17,10 +17,6 @@
 
   <name>Read and Write Blobs with the Spring Resource for Azure Storage Blob</name>
   <description>The Spring Native support has been enabled for this module by default.</description>
-
-  <properties>
-    <imageName>storage-blob</imageName>
-  </properties>
   
   <dependencies>
     <dependency>

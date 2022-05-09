@@ -28,7 +28,7 @@ If applicable, add screenshots to help explain your problem.
 **Setup (please complete the following information):**
  - OS: [e.g. iOS]
  - IDE: [e.g. IntelliJ]
- - Library/Libraries: [e.g. com.azure:azure-core:1.16.0 (groupId:artifactId:version)]
+ - Library/Libraries: [e.g. com.azure.spring:spring-cloud-azure-starter-keyvault-secrets:4.0.0 (groupId:artifactId:version)]
  - Java version: [e.g. 8] 
  - App Server/Environment: [e.g. Tomcat, WildFly, Azure Function, Apache Spark, Databricks, IDE plugin or anything special]
  - Frameworks: [e.g. Spring Boot, Micronaut, Quarkus, etc] 

@@ -83,7 +83,7 @@ Read [document about adding a certificate](https://docs.microsoft.com/en-us/azur
 
 # 4. Run sample applications
  1. Open sample application: [login-authenticate-using-private-key-jwt](../../../servlet/oauth2/login-authenticate-using-private-key-jwt), fill the placeholders in **application.yml**, then run the application.
- 2. . Open browser(for example: [Edge](https://www.microsoft.com/edge?r=1)), close all [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2), and open a new InPrivate window.
+ 2. Open browser(for example: [Edge](https://www.microsoft.com/edge?r=1)), close all [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2), and open a new InPrivate window.
  3. Access **http://localhost:8080**, it will redirect to Microsoft login page. Input username and password (update password if it requests you to), it will return permission request page. click **Accept**, then it will return **Hello, this is client-1.**. This means we log in successfully.
  4. Access **http://localhost:8080/**, it will return **Hello, this is client-1.**, which means login successfully.
 

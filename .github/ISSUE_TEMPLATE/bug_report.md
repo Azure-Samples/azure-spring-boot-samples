@@ -32,6 +32,7 @@ If applicable, add screenshots to help explain your problem.
  - Java version: [e.g. 8] 
  - App Server/Environment: [e.g. Tomcat, WildFly, Azure Function, Apache Spark, Databricks, IDE plugin or anything special]
  - Frameworks: [e.g. Spring Boot, Micronaut, Quarkus, etc] 
+ - Git Branch/Tag: [e.g. main, spring-cloud-azure_v4.0.0, etc]
 
 If you suspect a dependency version mismatch (e.g. you see `NoClassDefFoundError`, `NoSuchMethodError` or similar), please check out [Troubleshoot dependency version conflict article](https://aka.ms/azsdk/java/dependency/troubleshoot) first. If it doesn't provide solution for the problem, please provide:
 - verbose dependency tree (`mvn dependency:tree -Dverbose`)

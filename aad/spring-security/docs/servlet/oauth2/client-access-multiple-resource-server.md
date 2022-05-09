@@ -102,6 +102,6 @@ Read [document about Application manifest], set `accessTokenAcceptedVersion` to 
 [client]: ../../../servlet/oauth2/client-access-multiple-resource-server/client
 [resource-server-1]: ../../../servlet/oauth2/client-access-multiple-resource-server/resource-server-1
 [resource-server-2]: ../../../servlet/oauth2/client-access-multiple-resource-server/resource-server-2
-[Edge]: https://www.microsoft.com/edge?r=1
+[Edge]: https://www.microsoft.com/edge
 [InPrivate window]: https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2
 

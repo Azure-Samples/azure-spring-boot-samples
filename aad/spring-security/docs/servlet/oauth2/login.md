@@ -78,7 +78,7 @@ Read [document about adding a redirect URI], add redirect URI: **http://localhos
 [document about Application manifest]: https://docs.microsoft.com/azure/active-directory/develop/reference-app-manifest#accesstokenacceptedversion-attribute
 [login]: ../../../servlet/oauth2/login
 [README]: ../../../servlet/oauth2/login/README.md
-[Edge]: https://www.microsoft.com/edge?r=1
+[Edge]: https://www.microsoft.com/edge
 [InPrivate window]: https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2
 [rfc6749]: https://datatracker.ietf.org/doc/html/rfc6749
 [document about OAuth 2.0 and OpenID Connect protocols on the Microsoft identity platform]: https://docs.microsoft.com/azure/active-directory/develop/active-directory-v2-protocols

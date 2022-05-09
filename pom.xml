@@ -21,11 +21,11 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <version.guava>31.1-jre</version.guava>
-    <version.spring.cloud>2021.0.1</version.spring.cloud>
+    <version.spring.cloud>2021.0.2</version.spring.cloud>
     <version.spring.cloud.azure>4.1.0-beta.1</version.spring.cloud.azure>
-    <version.spring-cloud-appconfiguration-config>2.5.0</version.spring-cloud-appconfiguration-config>
-    <version.spring-cloud-appconfiguration-starter>2.5.0</version.spring-cloud-appconfiguration-starter>
-    <version.spring-cloud-feature-management>2.4.0</version.spring-cloud-feature-management>
+    <version.spring-cloud-appconfiguration-config>2.6.0</version.spring-cloud-appconfiguration-config>
+    <version.spring-cloud-appconfiguration-starter>2.6.0</version.spring-cloud-appconfiguration-starter>
+    <version.spring-cloud-feature-management>2.5.0</version.spring-cloud-feature-management>
     <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>
     <repackage.classifier>exec</repackage.classifier>
   </properties>
@@ -198,7 +198,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-cosmos</artifactId>
-            <version>4.29.0</version>
+            <version>4.29.1</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>

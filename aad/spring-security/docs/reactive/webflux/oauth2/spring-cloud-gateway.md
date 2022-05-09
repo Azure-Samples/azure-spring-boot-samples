@@ -71,7 +71,7 @@ Read [document about Application manifest](https://docs.microsoft.com/azure/acti
 2. Open sample application: [gateway](../../../../reactive/webflux/oauth2/spring-cloud-gateway/gateway), fill the placeholders in **application.yml**, then run the application.
 3. Open sample application: [resource-server-1](../../../../reactive/webflux/oauth2/spring-cloud-gateway/resource-server-1), fill the placeholders in **application.yml**, then run the application.
 4. Open sample application: [resource-server-2](../../../../reactive/webflux/oauth2/spring-cloud-gateway/resource-server-2), fill the placeholders in **application.yml**, then run the application.
-5. Open browser(for example: [Edge](https://www.microsoft.com/edge?r=1)), close all [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2), and open a new InPrivate window.
+5. Open browser(for example: [Edge](https://www.microsoft.com/edge)), close all [InPrivate window](https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2), and open a new InPrivate window.
 6. Access **http://localhost:8080/**, it will return **Hello, this is client-1.**.
 7. Access **http://localhost:8080/resource-server-1**, it will redirect to Microsoft consent page.
 9. Input username and password (update password if it requests you to), it will return permission request page: let user permit **client-1** to access **resource-server-1**.

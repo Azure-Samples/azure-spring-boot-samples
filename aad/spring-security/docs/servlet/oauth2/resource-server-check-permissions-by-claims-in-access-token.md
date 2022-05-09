@@ -104,5 +104,5 @@ Read [document about assigning users and groups to roles], assign **user-1** to 
 [document about assigning users and groups to roles]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#assign-users-and-groups-to-roles
 [client]: ../../../servlet/oauth2/resource-server-check-permissions-by-claims-in-access-token/client
 [resource-server]: ../../../servlet/oauth2/resource-server-check-permissions-by-claims-in-access-token/resource-server
-[Edge]: https://www.microsoft.com/edge?r=1
+[Edge]: https://www.microsoft.com/edge
 [InPrivate window]: https://support.microsoft.com/microsoft-edge/browse-inprivate-in-microsoft-edge-cd2c9a48-0bc4-b98e-5e46-ac40c84e27e2

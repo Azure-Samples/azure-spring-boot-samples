@@ -46,7 +46,7 @@ Read [document about adding a redirect URI], add redirect URI: **http://localhos
 
 # 4. Run sample applications
  1. Open sample application: [login], fill the placeholders in **application.yml**, then run the application.
- 2. . Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window].
+ 2. Open browser(for example: [Edge]), close all [InPrivate window], and open a new [InPrivate window].
  3. Access **http://localhost:8080**, it will redirect to Microsoft login page. Input username and password (update password if it requests you to), it will return permission request page. click **Accept**, then it will return **Hello, this is client-1.**. This means we log in successfully.
  4. Access **http://localhost:8080/**, it will return **Hello, this is client-1.**, which means login successfully.
 

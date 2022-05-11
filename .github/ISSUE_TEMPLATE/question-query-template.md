@@ -14,9 +14,9 @@ assignees: ''
 <!-- A clear explanation of why is this not a bug or a feature request? -->
 
 **Setup (please complete the following information if applicable):**
-- Github link with tag or branch: <!-- [e.g. https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-cloud-azure_v4.0.0/cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account] -->
 - OS: <!-- [e.g. iOS] -->
 - IDE: <!-- [e.g. IntelliJ] -->
+- Sample Path: <!-- [e.g. https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-cloud-azure_v4.0.0/cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account] -->
 - Library/Libraries: <!-- [e.g. com.azure.spring:spring-cloud-azure-starter-keyvault-secrets:4.0.0 (groupId:artifactId:version)] -->
 
 

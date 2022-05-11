@@ -26,9 +26,9 @@ assignees: ''
 <!-- If applicable, add screenshots to help explain your problem. -->
 
 **Setup (please complete the following information):**
-- Github link with tag or branch: <!-- [e.g. https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-cloud-azure_v4.0.0/cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account] -->
 - OS: <!-- [e.g. iOS] -->
 - IDE: <!-- [e.g. IntelliJ] -->
+- Sample Path: <!-- [e.g. https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-cloud-azure_v4.0.0/cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account] -->
 - Library/Libraries: <!-- [e.g. com.azure.spring:spring-cloud-azure-starter-keyvault-secrets:4.0.0 (groupId:artifactId:version)] -->
 - Java version: <!-- [e.g. 8]  -->
 - App Server/Environment: <!-- [e.g. Tomcat, WildFly, Azure Function, Apache Spark, Databricks, IDE plugin or anything special] -->

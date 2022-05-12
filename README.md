@@ -24,12 +24,6 @@ We use `main` branch as the develop branch while setting the default branch as t
 - [spring-boot-dependencies:2.6.7](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-dependencies/2.6.7/spring-boot-dependencies-2.6.7.pom).
 - [spring-cloud-dependencies:2021.0.2](https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud-dependencies/2021.0.2/spring-cloud-dependencies-2021.0.2.pom).
 
-## All Active Branches
-
-| Spring Boot Version | Spring Cloud version | Spring Cloud Azure Version                                                                 |
-|---------------------|----------------------|--------------------------------------------------------------------------------------------|
-| 2.6.7               | 2021.0.2             | [4.1.0](https://github.com/Azure/azure-sdk-for-java/releases/tag/spring-cloud-azure_4.1.0) | 
-
 ## All Samples in This Repo
 
 | Azure Service    | Spring Cloud Azure Starter Dependency                        | Sample Project                                                                                                                     |

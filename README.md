@@ -18,7 +18,6 @@ We use `main` branch as the develop branch while setting the default branch as t
 | Branch Name               | Default Branch | Branch type    |
 |---------------------------|----------------|----------------|
 | main                      | false          | develop branch |
-| spring-cloud-azure_v4.0.0 | true           | release branch |
 | spring-cloud-azure_v4.1.0 | true           | release branch |
 
 ## Current Branch Supported Versions
@@ -29,7 +28,6 @@ We use `main` branch as the develop branch while setting the default branch as t
 
 | Spring Boot Version | Spring Cloud version | Spring Cloud Azure Version                                                                 |
 |---------------------|----------------------|--------------------------------------------------------------------------------------------|
-| 2.6.3               | 2021.0.1             | [4.0.0](https://github.com/Azure/azure-sdk-for-java/releases/tag/spring-cloud-azure_4.0.0) | 
 | 2.6.7               | 2021.0.2             | [4.1.0](https://github.com/Azure/azure-sdk-for-java/releases/tag/spring-cloud-azure_4.1.0) | 
 
 ## All Samples in This Repo

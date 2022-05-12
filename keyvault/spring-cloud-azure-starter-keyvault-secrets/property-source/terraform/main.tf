@@ -92,7 +92,7 @@ resource "azurerm_key_vault_secret" "key_vault_secret_common_01" {
 resource "azurecaf_name" "azurecaf_name_kv_02" {
   name          = var.application_name
   resource_type = "azurerm_key_vault"
-  random_length = 5
+  random_length = 4
   clean_input   = true
 }
 

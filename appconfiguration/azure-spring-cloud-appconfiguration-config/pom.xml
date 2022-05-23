@@ -11,7 +11,7 @@
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>azure-appconfiguration-sample</artifactId>
+  <artifactId>azure-spring-cloud-appconfiguration-config-sample</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

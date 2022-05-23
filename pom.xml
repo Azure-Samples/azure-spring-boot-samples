@@ -39,10 +39,10 @@
     <module>aad/spring-security</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-complete</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-initial</module>
-    <module>appconfiguration/azure-appconfiguration-sample</module>
-    <module>appconfiguration/azure-appconfiguration-refresh-sample</module>
-    <module>appconfiguration/feature-management-sample</module>
-    <module>appconfiguration/feature-management-web-sample</module>
+    <module>appconfiguration/azure-spring-cloud-appconfiguration-config</module>
+    <module>appconfiguration/azure-spring-cloud-feature-management-web</module>
+    <module>appconfiguration/azure-spring-cloud-feature-management</module>
+    <module>appconfiguration/azure-spring-cloud-starter-appconfiguration-config</module>
     <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
     <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
     <module>cloudfoundry/azure-cloud-foundry-service-sample</module>

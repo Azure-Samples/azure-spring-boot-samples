@@ -11,11 +11,11 @@
     <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>feature-management-sample</artifactId>
+  <artifactId>azure-spring-cloud-feature-management-web-sample</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>Manage Features and Get Configurations From App Configuration</name>
+  <name>Manage Features and Get Configurations From App Configuration For Web Service</name>
 
   <dependencies>
     <dependency>
@@ -23,8 +23,16 @@
       <artifactId>spring-boot-starter</artifactId>
     </dependency>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
+    </dependency>
+    <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>azure-spring-cloud-feature-management</artifactId>
+      <artifactId>azure-spring-cloud-feature-management-web</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>

@@ -42,7 +42,7 @@ It will have you confirm the feature flag before loading it.
 ```xml
 <dependency>
     <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-cloud-appconfiguration-config-web</artifactId>
+    <artifactId>azure-spring-cloud-appconfiguration-config</artifactId>
     <version>2.3.0</version>
 </dependency>
 ```

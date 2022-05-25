@@ -39,7 +39,7 @@
     <module>aad/spring-security</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-complete</module>
     <module>appconfiguration/azure-appconfiguration-conversion-sample-initial</module>
-    <module>appconfiguration/azure-spring-cloud-appconfiguration-config</module>
+    <module>appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-sample</module>
     <module>appconfiguration/azure-spring-cloud-feature-management-web</module>
     <module>appconfiguration/azure-spring-cloud-feature-management</module>
     <module>appconfiguration/azure-spring-cloud-starter-appconfiguration-config</module>

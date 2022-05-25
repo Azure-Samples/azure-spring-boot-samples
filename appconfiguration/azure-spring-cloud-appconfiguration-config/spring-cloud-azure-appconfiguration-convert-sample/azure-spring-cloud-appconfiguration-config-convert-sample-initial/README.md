@@ -84,7 +84,6 @@ In this section, you clone a containerized Spring Boot application and test it l
    spring.cloud.azure.cosmos.endpoint=${COSMOS-URL}
    spring.cloud.azure.cosmos.key=${COSMOS-KEY}
    spring.cloud.azure.cosmos.database=${COSMOS-DATABASENAME}
-
    ```
 
 #### Run the sample

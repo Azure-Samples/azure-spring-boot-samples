@@ -9,10 +9,10 @@
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-boot-samples</artifactId>
     <version>1.0.0</version>
-    <relativePath>../../pom.xml</relativePath>
+    <relativePath>../../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>azure-appconfiguration-convert-sample-initial</artifactId>
+  <artifactId>azure-spring-cloud-appconfiguration-config-convert-sample-initial</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

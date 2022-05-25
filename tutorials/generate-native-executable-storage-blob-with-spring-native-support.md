@@ -208,7 +208,7 @@ The following prerequisites are required in order to complete the steps in this 
            String downloadedData = StreamUtils.copyToString(resourceLoader.getResource(filePath).getInputStream(),
                Charset.defaultCharset());
            logger.info("Downloaded data from the azure storage blob resource: {}", downloadedData);
-           logger.info("Uses can get the data content through this address 'curl -XGET http://localhost:8080/blob/{}'.",
+           logger.info("Get the data content through this address 'curl -XGET http://localhost:8080/blob/{}'.",
                fileName);
            logger.info("StorageApplication data initialization end ...");
        }
@@ -227,7 +227,7 @@ The following prerequisites are required in order to complete the steps in this 
    StorageApplication data initialization begin ...
    Write data to container=blobcontainer, filePath=azure-blob://blobcontainer/fileName-*.txt
    Downloaded data from the azure storage blob resource: data-*
-   Uses can get the data content through this address 'curl -XGET http://localhost:8080/blob/fileName-*.txt'.
+   Get the data content through this address 'curl -XGET http://localhost:8080/blob/fileName-*.txt'.
    StorageApplication data initialization end ...
    ```
    

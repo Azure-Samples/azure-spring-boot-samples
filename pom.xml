@@ -27,7 +27,6 @@
     <version.spring-cloud-appconfiguration-starter>2.7.0</version.spring-cloud-appconfiguration-starter>
     <version.spring-cloud-feature-management>2.6.0</version.spring-cloud-feature-management>
     <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>
-    <repackage.classifier>exec</repackage.classifier>
   </properties>
   <modules>
     <module>aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server</module>
@@ -124,16 +123,6 @@
         <artifactId>azure-spring-boot-starter-keyvault-certificates</artifactId>
         <version>${version.azure-spring-boot-starter-keyvault-certificates}</version>
       </dependency>
-      <dependency>
-        <groupId>org.springframework.experimental</groupId>
-        <artifactId>spring-native</artifactId>
-        <version>${spring-native.version}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.azure.spring</groupId>
-        <artifactId>spring-cloud-azure-native-configuration</artifactId>
-        <version>${spring-cloud-azure-native-configuration.version}</version>
-      </dependency>
     </dependencies>
   </dependencyManagement>
 
@@ -142,15 +131,6 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
-        <configuration>
-          <classifier>${repackage.classifier}</classifier>
-          <image>
-            <builder>paketobuildpacks/builder:tiny</builder>
-            <env>
-              <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
-            </env>
-          </image>
-        </configuration>
       </plugin>
     </plugins>
   </build>
@@ -263,7 +243,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-storage-queue</artifactId>
-            <version>12.12.2</version>
+            <version>12.13.0</version>
           </dependency>
           <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -317,6 +297,7 @@
       <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <repackage.classifier>exec</repackage.classifier>
         <spring-native.version>0.11.5</spring-native.version>
         <spring-cloud-azure-native-configuration.version>4.0.0-beta.1</spring-cloud-azure-native-configuration.version>
       </properties>
@@ -341,6 +322,19 @@
       <build>
         <finalName>${project.artifactId}</finalName>
         <plugins>
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+              <classifier>${repackage.classifier}</classifier>
+              <image>
+                <builder>paketobuildpacks/builder:tiny</builder>
+                <env>
+                  <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
+                </env>
+              </image>
+            </configuration>
+          </plugin>
           <plugin>
             <groupId>org.springframework.experimental</groupId>
             <artifactId>spring-aot-maven-plugin</artifactId>
@@ -368,6 +362,7 @@
       <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
+        <repackage.classifier>exec</repackage.classifier>
         <imageName>${artifactId}</imageName>
         <native.maven.plugin.version>0.9.11</native.maven.plugin.version>
         <spring-native.version>0.11.4</spring-native.version>
@@ -393,6 +388,13 @@
       </dependencies>
       <build>
         <plugins>
+          <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+            <configuration>
+              <classifier>${repackage.classifier}</classifier>
+            </configuration>
+          </plugin>
           <plugin>
             <groupId>org.springframework.experimental</groupId>
             <artifactId>spring-aot-maven-plugin</artifactId>

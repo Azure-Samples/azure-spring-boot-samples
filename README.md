@@ -26,7 +26,6 @@ We use `main` branch as the develop branch while setting the default branch as t
 
 ## All Samples in This Repo
 
-=======
 | Azure Service     | Spring Cloud Azure Starter Dependency                        | Sample Project                                                                                                                     |
 |-------------------|--------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------|
 | AAD               | [spring-cloud-azure-starter-active-directory-b2c:4.2.0]      | [aad-b2c-resource-server](aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server)                             |

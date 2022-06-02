@@ -36,12 +36,12 @@
     <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application</module>
     <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server</module>
     <module>aad/spring-security</module>
-    <module>appconfiguration/azure-appconfiguration-conversion-sample-complete</module>
-    <module>appconfiguration/azure-appconfiguration-conversion-sample-initial</module>
-    <module>appconfiguration/azure-appconfiguration-sample</module>
-    <module>appconfiguration/azure-appconfiguration-refresh-sample</module>
-    <module>appconfiguration/feature-management-sample</module>
-    <module>appconfiguration/feature-management-web-sample</module>
+    <module>appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-convert-sample/azure-spring-cloud-appconfiguration-config-convert-sample-complete</module>
+    <module>appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-convert-sample/azure-spring-cloud-appconfiguration-config-convert-sample-initial</module>
+    <module>appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-sample</module>
+    <module>appconfiguration/azure-spring-cloud-feature-management-web/azure-spring-cloud-feature-management-web-sample</module>
+    <module>appconfiguration/azure-spring-cloud-feature-management/azure-spring-cloud-feature-management-sample</module>
+    <module>appconfiguration/azure-spring-cloud-starter-appconfiguration-config/azure-spring-cloud-starter-appconfiguration-config-sample</module>
     <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
     <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
     <module>cloudfoundry/azure-cloud-foundry-service-sample</module>

@@ -8,10 +8,10 @@
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-boot-samples</artifactId>
     <version>1.0.0</version>
-    <relativePath>../../pom.xml</relativePath>
+    <relativePath>../../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>spring-cloud-azure-appconfiguration-convert-sample-complete</artifactId>
+  <artifactId>azure-spring-cloud-appconfiguration-config-convert-sample-complete</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

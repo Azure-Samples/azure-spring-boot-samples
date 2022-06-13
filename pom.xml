@@ -198,7 +198,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-messaging-eventhubs-checkpointstore-blob</artifactId>
-            <version>1.12.2</version>
+            <version>1.13.0</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>
@@ -208,7 +208,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-security-keyvault-certificates</artifactId>
-            <version>4.3.2</version>
+            <version>4.3.3</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>
@@ -218,7 +218,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-security-keyvault-secrets</artifactId>
-            <version>4.4.2</version>
+            <version>4.4.3</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>

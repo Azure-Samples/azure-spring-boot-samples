@@ -218,12 +218,12 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-security-keyvault-secrets</artifactId>
-            <version>4.4.2</version>
+            <version>4.4.3</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-storage-blob</artifactId>
-            <version>12.17.0</version>
+            <version>12.17.1</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>
@@ -233,7 +233,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-storage-file-share</artifactId>
-            <version>12.13.0</version>
+            <version>12.13.1</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>

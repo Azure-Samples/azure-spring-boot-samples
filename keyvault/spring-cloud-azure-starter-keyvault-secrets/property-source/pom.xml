@@ -11,7 +11,7 @@
     <relativePath>../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>spring-cloud-azure-starter-keyvault-secrets-sample-property-source</artifactId>
+  <artifactId>property-source</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

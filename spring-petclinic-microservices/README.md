@@ -155,7 +155,7 @@ source ./terraform/setup_env.sh
 Running the command below to export environment values:
 
 ```shell
-. terraform\setup_env.ps1
+terraform\setup_env.ps1
 ```
 
 make sure keyvault.env file is created at the root of the repo.

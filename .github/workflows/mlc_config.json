@@ -20,6 +20,9 @@
     },
     {
       "pattern": "^https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca"
+    },
+    {
+      "pattern": "^https://www.microsoft.com/edge"
     }
   ],
   "aliveStatusCodes": [200]

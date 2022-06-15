@@ -3,6 +3,7 @@
 This code sample demonstrates how to use [Storage Queue Operation][storage-queue-operation].
 
 ## What You Will Build
+
 You will build an application using [Storage Queue Operation][storage-queue-operation] to send and receive messages.
 
 ## What You Need
@@ -125,7 +126,7 @@ source ./terraform/setup_env.sh
 #### Run with Powershell
 
 ```shell
-. terraform\setup_env.ps1
+terraform\setup_env.ps1
 ```
 
 If you want to run the sample in debug mode, you can save the output value.

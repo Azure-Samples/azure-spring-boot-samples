@@ -39,16 +39,17 @@ jdk 11.0.12 or above
    ```
 1. Get the azure-security-keyvault-jca.jar. You can download the latest published jar from maven
    repository [azure-security-keyvault-jca](https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca). When this document is 
-   written, the latest jar is azure-security-keyvault-jca-2.6.0.jar
+   written, the latest jar is azure-security-keyvault-jca-2.7.0.jar
 1. Make a directory, for example, sample_client. Then put the 3 files into sample_client folder
     - java.security 
     - run-with-command-line-client-side-1.0.0.jar
-    - azure-security-keyvault-jca-2.6.0.jar 
+    - azure-security-keyvault-jca-2.7.0.jar 
 1. Create the key vault and certificates, please refer to [create key vault and certificates](https://docs.microsoft.com/en-us/azure/key-vault/certificates/quick-create-portal). Create service principal and add a secret, please refer to [register app with AAD](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app).
+1. Create a new **Access policy** for the service principal created in the previous step, including the *Get* and *List* permissions of the **Secret permissions**, and the *Get* and *List* permissions of the **Certificate permissions**.
 1. Replace properties `<yourAzureKeyVaultUri>`, `<yourTenantID>`, `<youClientID>`, `<yourSecretValue>` with your created resources in the following command, open terminal and enter the directory sample_client, run the changed command:
    ```
    java \
-   --module-path ./azure-security-keyvault-jca-2.6.0.jar \
+   --module-path ./azure-security-keyvault-jca-2.7.0.jar \
    --add-modules com.azure.security.keyvault.jca \
    -Dsecurity.overridePropertiesFile=true \
    -Djava.security.properties==./java.security \
@@ -63,7 +64,7 @@ jdk 11.0.12 or above
    command instead of the above to run the client side:
    ```
    java \
-   --module-path ./azure-security-keyvault-jca-2.6.0.jar \
+   --module-path ./azure-security-keyvault-jca-2.7.0.jar \
    --add-modules com.azure.security.keyvault.jca \
    -Dsecurity.overridePropertiesFile=true \
    -Djava.security.properties==./java.security \

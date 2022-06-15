@@ -1,0 +1,8 @@
+spring:
+  cloud:
+    azure:
+      eventhubs:
+        namespace: ${AZURE_EVENTHUBS_NAMESPACE}
+        event-hub-name: ${AZURE_EVENTHUB_NAME}
+        consumer:
+          consumer-group: $Default

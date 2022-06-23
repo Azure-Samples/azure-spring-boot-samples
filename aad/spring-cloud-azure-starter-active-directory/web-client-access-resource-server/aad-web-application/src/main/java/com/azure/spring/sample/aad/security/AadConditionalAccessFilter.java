@@ -4,8 +4,11 @@
 package com.azure.spring.sample.aad.security;
 
 import com.azure.spring.cloud.autoconfigure.aad.AadClientRegistrationRepository;
+import com.azure.spring.cloud.autoconfigure.aad.implementation.constants.Constants;
+import com.azure.spring.cloud.autoconfigure.aad.implementation.webapi.AadOboOAuth2AuthorizedClientProvider;
 import org.springframework.http.HttpHeaders;
 import org.springframework.security.oauth2.client.ClientAuthorizationRequiredException;
+import org.springframework.security.oauth2.client.JwtBearerOAuth2AuthorizedClientProvider;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 import org.springframework.web.reactive.function.client.WebClientResponseException;
@@ -28,6 +31,10 @@ import java.util.stream.Stream;
  * token in On-Behalf-Of flow.), it can send a 403 with information in the WWW-Authenticate header to web client ,web
  * client will throw {@link WebClientResponseException}, web-application can handle this exception to challenge the
  * user.
+ *
+ * <p>
+ * <b>NOTE:</b> This feature in grant type {@link Constants#ON_BEHALF_OF} is provided by {@link AadOboOAuth2AuthorizedClientProvider},
+ * which has been deprecated and replaced with {@link JwtBearerOAuth2AuthorizedClientProvider}, which no longer provides conditional access.
  *
  * @see OncePerRequestFilter
  */

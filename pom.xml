@@ -22,7 +22,7 @@
     <maven.compiler.target>1.8</maven.compiler.target>
     <version.guava>31.1-jre</version.guava>
     <version.spring.cloud>2021.0.3</version.spring.cloud>
-    <version.spring.cloud.azure>4.2.0</version.spring.cloud.azure>
+    <version.spring.cloud.azure>4.3.0</version.spring.cloud.azure>
     <version.spring-cloud-appconfiguration-config>2.8.0</version.spring-cloud-appconfiguration-config>
     <version.spring-cloud-appconfiguration-starter>2.8.0</version.spring-cloud-appconfiguration-starter>
     <version.spring-cloud-feature-management>2.7.0</version.spring-cloud-feature-management>
@@ -153,7 +153,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-core-http-netty</artifactId>
-            <version>1.12.2</version>
+            <version>1.12.3</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>
@@ -163,7 +163,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-core-management</artifactId>
-            <version>1.6.2</version>
+            <version>1.7.0</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>
@@ -173,7 +173,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-core-serializer-json-jackson</artifactId>
-            <version>1.2.18</version>
+            <version>1.2.19</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>

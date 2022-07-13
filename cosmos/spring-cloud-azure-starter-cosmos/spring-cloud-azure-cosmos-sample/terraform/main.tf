@@ -65,27 +65,12 @@ resource "azurerm_cosmosdb_account" "application" {
 data "azurerm_client_config" "current" {
 }
 
-resource "azurerm_cosmosdb_sql_role_definition" "role" {
-  name                = "cosmosdb-sql-role-definition"
-  resource_group_name = azurerm_resource_group.main.name
-  account_name        = azurerm_cosmosdb_account.application.name
-  type                = "BuiltInRole"
-  assignable_scopes   = ["/subscriptions/${data.azurerm_client_config.current.subscription_id}/resourceGroups/${azurerm_resource_group.main.name}/providers/Microsoft.DocumentDB/databaseAccounts/${azurerm_cosmosdb_account.application.name}"]
-
-  permissions {
-    data_actions = ["Microsoft.DocumentDB/databaseAccounts/readMetadata",
-      "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/items/read",
-      "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/executeQuery",
-      "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/readChangeFeed",
-      "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/*",
-      "Microsoft.DocumentDB/databaseAccounts/sqlDatabases/containers/items/*"]
-  }
-}
-
+# https://docs.microsoft.com/azure/cosmos-db/how-to-setup-rbac#built-in-role-definitions
+# https://github.com/hashicorp/terraform-provider-azurerm/issues/13907#issuecomment-1070916339
 resource "azurerm_cosmosdb_sql_role_assignment" "assignment" {
   resource_group_name = azurerm_resource_group.main.name
   account_name        = azurerm_cosmosdb_account.application.name
-  role_definition_id  = azurerm_cosmosdb_sql_role_definition.role.id
+  role_definition_id  = "/subscriptions/${data.azurerm_client_config.current.subscription_id}/resourceGroups/${azurerm_resource_group.main.name}/providers/Microsoft.DocumentDB/databaseAccounts/${azurerm_cosmosdb_account.application.name}/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002"
   principal_id        = data.azurerm_client_config.current.object_id
   scope               = "/subscriptions/${data.azurerm_client_config.current.subscription_id}/resourceGroups/${azurerm_resource_group.main.name}/providers/Microsoft.DocumentDB/databaseAccounts/${azurerm_cosmosdb_account.application.name}"
 }

@@ -6,9 +6,6 @@ package com.azure.spring.sample.storage.resource;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-/**
- * @author Warren Zhu
- */
 @SpringBootApplication
 public class StorageFileShareApplication {
 

@@ -30,7 +30,7 @@ import static com.azure.spring.sample.storage.resource.SampleDataInitializer.FIL
 @RestController
 @RequestMapping("file")
 public class FileController {
-    private final static Logger logger = LoggerFactory.getLogger(FileController.class);
+    private static final Logger logger = LoggerFactory.getLogger(FileController.class);
 
     private final String shareName;
     private final ResourceLoader resourceLoader;

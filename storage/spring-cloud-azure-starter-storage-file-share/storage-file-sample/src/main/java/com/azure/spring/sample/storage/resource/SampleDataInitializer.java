@@ -17,7 +17,7 @@ import java.io.OutputStream;
 @Component
 public class SampleDataInitializer implements CommandLineRunner {
     static final String FILE_RESOURCE_PATTERN = "azure-file://%s/%s";
-    private final static Logger logger = LoggerFactory.getLogger(SampleDataInitializer.class);
+    private static final Logger logger = LoggerFactory.getLogger(SampleDataInitializer.class);
     private final ResourceLoader resourceLoader;
     private final String shareName;
 

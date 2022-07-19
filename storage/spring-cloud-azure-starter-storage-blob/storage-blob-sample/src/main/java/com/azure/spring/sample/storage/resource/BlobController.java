@@ -31,7 +31,7 @@ import static com.azure.spring.sample.storage.resource.SampleDataInitializer.BLO
 @RequestMapping("blob")
 public class BlobController {
 
-    private final static Logger logger = LoggerFactory.getLogger(BlobController.class);
+    private static final Logger logger = LoggerFactory.getLogger(BlobController.class);
     private final String containerName;
     private final ResourceLoader resourceLoader;
     private final AzureStorageBlobProtocolResolver azureStorageBlobProtocolResolver;

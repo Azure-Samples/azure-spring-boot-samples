@@ -1,0 +1,34 @@
+feature-management:
+  dynamic-features:
+    ShoppingCart:
+      assigner: Microsoft.Targeting
+      variants:
+      - 
+        default: true
+        name: Big
+        configuration-reference: ShoppingCart.Big
+        assignmentParameters:
+          Audience:
+            users:
+            - 
+              Alec
+            groups: []
+      - 
+        name: Small
+        configurationReference: ShoppingCart.Small
+        assignment-parameters:
+          Audience:
+            users: []
+            groups:
+            - 
+              name: Ring1
+              rolloutPercentage: 50
+            defaultRolloutPercentage: 30
+config:
+  ShoppingCart:
+    Big:
+      size: 400
+      color: green
+    Small:
+      size: 150
+      color: gray

@@ -298,7 +298,7 @@
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
         <repackage.classifier>exec</repackage.classifier>
-        <spring-native.version>0.12.0</spring-native.version>
+        <spring-native.version>0.12.1</spring-native.version>
         <spring-cloud-azure-native-configuration.version>4.0.0-beta.1</spring-cloud-azure-native-configuration.version>
       </properties>
 

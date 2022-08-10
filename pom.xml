@@ -153,7 +153,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-core-http-netty</artifactId>
-            <version>1.12.3</version>
+            <version>1.12.4</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>
@@ -173,7 +173,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-core-serializer-json-jackson</artifactId>
-            <version>1.2.19</version>
+            <version>1.2.20</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>

@@ -168,12 +168,12 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-core-serializer-json-gson</artifactId>
-            <version>1.1.18</version>
+            <version>1.1.19</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-core-serializer-json-jackson</artifactId>
-            <version>1.2.19</version>
+            <version>1.2.20</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>
@@ -188,7 +188,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-identity</artifactId>
-            <version>1.5.3</version>
+            <version>1.5.4</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>

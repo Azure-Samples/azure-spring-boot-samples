@@ -4,12 +4,12 @@
 package com.azure.spring.sample.aad.security;
 
 import com.azure.spring.cloud.autoconfigure.aad.AadWebSecurityConfigurerAdapter;
+import jakarta.servlet.Filter;
 import org.springframework.context.annotation.Profile;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 
-import javax.servlet.Filter;
 
 @Profile("conditional-access")
 @EnableWebSecurity

@@ -7,7 +7,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.7.2</version>
+    <version>3.0.0-M4</version>
   </parent>
 
   <groupId>com.azure.spring</groupId>
@@ -18,15 +18,15 @@
   <name>Azure Spring Boot Samples</name>
 
   <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <java.version>17</java.version>
     <version.guava>31.1-jre</version.guava>
-    <version.spring.cloud>2021.0.3</version.spring.cloud>
-    <version.spring.cloud.azure>4.3.0</version.spring.cloud.azure>
-    <version.spring-cloud-appconfiguration-config>2.8.0</version.spring-cloud-appconfiguration-config>
+    <version.spring.cloud>2022.0.0-M4</version.spring.cloud>
+    <version.spring.cloud.azure>6.0.0-beta.1</version.spring.cloud.azure>
+    <!--<version.spring-cloud-appconfiguration-config>2.8.0</version.spring-cloud-appconfiguration-config>
     <version.spring-cloud-appconfiguration-starter>2.8.0</version.spring-cloud-appconfiguration-starter>
     <version.spring-cloud-feature-management>2.7.0</version.spring-cloud-feature-management>
-    <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>
+    <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>-->
+    <version.thymeleaf-extras-springsecurity5>3.1.0.M1</version.thymeleaf-extras-springsecurity5>
   </properties>
   <modules>
     <module>aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server</module>
@@ -36,19 +36,19 @@
     <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application</module>
     <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server</module>
     <module>aad/spring-security</module>
-    <module>appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-convert-sample/azure-spring-cloud-appconfiguration-config-convert-sample-complete</module>
+    <!--<module>appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-convert-sample/azure-spring-cloud-appconfiguration-config-convert-sample-complete</module>
     <module>appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-convert-sample/azure-spring-cloud-appconfiguration-config-convert-sample-initial</module>
     <module>appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-sample</module>
     <module>appconfiguration/azure-spring-cloud-feature-management-web/azure-spring-cloud-feature-management-web-sample</module>
     <module>appconfiguration/azure-spring-cloud-feature-management/azure-spring-cloud-feature-management-sample</module>
-    <module>appconfiguration/azure-spring-cloud-starter-appconfiguration-config/azure-spring-cloud-starter-appconfiguration-config-sample</module>
+    <module>appconfiguration/azure-spring-cloud-starter-appconfiguration-config/azure-spring-cloud-starter-appconfiguration-config-sample</module>-->
     <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
     <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
-    <module>cloudfoundry/azure-cloud-foundry-service-sample</module>
-    <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample</module>
+    <!--<module>cloudfoundry/azure-cloud-foundry-service-sample</module>
+    <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample</module>-->
     <module>cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample</module>
-    <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account</module>
-    <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>
+    <!--<module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account</module>
+    <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>-->
     <module>eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration</module>
     <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
     <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>
@@ -56,8 +56,8 @@
     <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders</module>
     <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side</module>
     <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side</module>
-    <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side</module>
-    <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side</module>
+    <!--<module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side</module>
+    <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side</module>-->
     <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/property-source</module>
     <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/secret-client</module>
     <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue</module>
@@ -73,8 +73,8 @@
     <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation</module>
     <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration</module>
     <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-client</module>
-    <module>spring-native/storage-blob-native</module>
-    <module>spring-petclinic-microservices</module>
+    <!--<module>spring-native/storage-blob-native</module>
+    <module>spring-petclinic-microservices</module>-->
   </modules>
 
   <dependencyManagement>
@@ -93,7 +93,7 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <dependency>
+      <!--<dependency>
         <groupId>com.azure.spring</groupId>
         <artifactId>azure-spring-cloud-appconfiguration-config</artifactId>
         <version>${version.spring-cloud-appconfiguration-config}</version>
@@ -112,16 +112,21 @@
         <groupId>com.azure.spring</groupId>
         <artifactId>azure-spring-cloud-feature-management-web</artifactId>
         <version>${version.spring-cloud-feature-management}</version>
-      </dependency>
+      </dependency>-->
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
         <version>${version.guava}</version>
       </dependency>
-      <dependency>
+      <!--<dependency>
         <groupId>com.azure.spring</groupId>
         <artifactId>azure-spring-boot-starter-keyvault-certificates</artifactId>
         <version>${version.azure-spring-boot-starter-keyvault-certificates}</version>
+      </dependency>-->
+      <dependency>
+        <groupId>org.thymeleaf.extras</groupId>
+        <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+        <version>${version.thymeleaf-extras-springsecurity5}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>
@@ -292,7 +297,7 @@
         </dependencies>
       </dependencyManagement>
     </profile>
-    <profile>
+    <!--<profile>
       <id>buildpack</id>
       <properties>
         <maven.compiler.source>11</maven.compiler.source>
@@ -444,7 +449,7 @@
           </plugin>
         </plugins>
       </build>
-    </profile>
+    </profile>-->
   </profiles>
 
   <repositories>
@@ -456,6 +461,14 @@
         <enabled>false</enabled>
       </snapshots>
     </repository>
+    <repository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
   </repositories>
 
   <pluginRepositories>
@@ -463,6 +476,14 @@
       <id>spring-release</id>
       <name>Spring release</name>
       <url>https://repo.spring.io/release</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </pluginRepository>
+    <pluginRepository>
+      <id>spring-milestones</id>
+      <name>Spring Milestones</name>
+      <url>https://repo.spring.io/milestone</url>
       <snapshots>
         <enabled>false</enabled>
       </snapshots>

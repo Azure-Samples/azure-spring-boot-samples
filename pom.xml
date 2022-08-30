@@ -55,9 +55,9 @@
     <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder</module>
     <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders</module>
     <!--<module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side</module>
-    <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side</module>-->
+    <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side</module>
     <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side</module>
-    <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side</module>
+    <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side</module>-->
     <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/property-source</module>
     <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/secret-client</module>
     <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue</module>

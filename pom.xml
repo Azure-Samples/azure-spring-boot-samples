@@ -19,14 +19,14 @@
 
   <properties>
     <java.version>17</java.version>
-    <version.guava>31.1-jre</version.guava>
     <version.spring.cloud>2022.0.0-M4</version.spring.cloud>
     <version.spring.cloud.azure>6.0.0-beta.1</version.spring.cloud.azure>
-    <!--<version.spring-cloud-appconfiguration-config>2.8.0</version.spring-cloud-appconfiguration-config>
+    <version.thymeleaf-extras-springsecurity5>3.1.0.M1</version.thymeleaf-extras-springsecurity5>
+    <!--<version.guava>31.1-jre</version.guava>
+    <version.spring-cloud-appconfiguration-config>2.8.0</version.spring-cloud-appconfiguration-config>
     <version.spring-cloud-appconfiguration-starter>2.8.0</version.spring-cloud-appconfiguration-starter>
     <version.spring-cloud-feature-management>2.7.0</version.spring-cloud-feature-management>
     <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>-->
-    <version.thymeleaf-extras-springsecurity5>3.1.0.M1</version.thymeleaf-extras-springsecurity5>
   </properties>
   <modules>
     <module>aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server</module>
@@ -54,10 +54,10 @@
     <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>
     <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder</module>
     <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders</module>
-    <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side</module>
-    <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side</module>
-    <!--<module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side</module>
-    <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side</module>-->
+    <!--<module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side</module>
+    <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side</module>-->
+    <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side</module>
+    <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side</module>
     <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/property-source</module>
     <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/secret-client</module>
     <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue</module>
@@ -112,13 +112,13 @@
         <groupId>com.azure.spring</groupId>
         <artifactId>azure-spring-cloud-feature-management-web</artifactId>
         <version>${version.spring-cloud-feature-management}</version>
-      </dependency>-->
+      </dependency>
       <dependency>
         <groupId>com.google.guava</groupId>
         <artifactId>guava</artifactId>
         <version>${version.guava}</version>
       </dependency>
-      <!--<dependency>
+      <dependency>
         <groupId>com.azure.spring</groupId>
         <artifactId>azure-spring-boot-starter-keyvault-certificates</artifactId>
         <version>${version.azure-spring-boot-starter-keyvault-certificates}</version>

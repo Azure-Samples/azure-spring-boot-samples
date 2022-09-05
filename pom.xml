@@ -148,17 +148,17 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-core-amqp</artifactId>
-            <version>2.7.0</version>
+            <version>2.7.1</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-core-http-netty</artifactId>
-            <version>1.12.4</version>
+            <version>1.12.5</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-core-http-okhttp</artifactId>
-            <version>1.11.1</version>
+            <version>1.11.2</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>
@@ -173,7 +173,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-core-serializer-json-jackson</artifactId>
-            <version>1.2.20</version>
+            <version>1.2.21</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>

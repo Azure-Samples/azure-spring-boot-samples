@@ -193,7 +193,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-messaging-eventhubs</artifactId>
-            <version>5.13.0</version>
+            <version>5.13.1</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>
@@ -218,7 +218,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-security-keyvault-secrets</artifactId>
-            <version>4.4.6</version>
+            <version>4.5.0</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>

@@ -15,6 +15,7 @@ jobs:
           cd azure-sdk-for-java
           git remote add origin https://github.com/Azure/azure-sdk-for-java.git
           git config core.sparsecheckout true
+          echo "sdk/parents/azure-client-sdk-parent" >> .git/info/sparse-checkout
           echo "sdk/spring" >> .git/info/sparse-checkout
           echo "sdk/spring-experimental" >> .git/info/sparse-checkout
           echo "eng" >> .git/info/sparse-checkout

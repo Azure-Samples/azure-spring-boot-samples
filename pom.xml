@@ -22,11 +22,6 @@
     <version.spring.cloud>2022.0.0-M4</version.spring.cloud>
     <version.spring.cloud.azure>6.0.0-beta.1</version.spring.cloud.azure>
     <version.thymeleaf-extras-springsecurity5>3.1.0.M1</version.thymeleaf-extras-springsecurity5>
-    <!--<version.guava>31.1-jre</version.guava>
-    <version.spring-cloud-appconfiguration-config>2.8.0</version.spring-cloud-appconfiguration-config>
-    <version.spring-cloud-appconfiguration-starter>2.8.0</version.spring-cloud-appconfiguration-starter>
-    <version.spring-cloud-feature-management>2.7.0</version.spring-cloud-feature-management>
-    <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>-->
   </properties>
   <modules>
     <module>aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server</module>
@@ -36,28 +31,14 @@
     <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application</module>
     <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server</module>
     <module>aad/spring-security</module>
-    <!--<module>appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-convert-sample/azure-spring-cloud-appconfiguration-config-convert-sample-complete</module>
-    <module>appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-convert-sample/azure-spring-cloud-appconfiguration-config-convert-sample-initial</module>
-    <module>appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-sample</module>
-    <module>appconfiguration/azure-spring-cloud-feature-management-web/azure-spring-cloud-feature-management-web-sample</module>
-    <module>appconfiguration/azure-spring-cloud-feature-management/azure-spring-cloud-feature-management-sample</module>
-    <module>appconfiguration/azure-spring-cloud-starter-appconfiguration-config/azure-spring-cloud-starter-appconfiguration-config-sample</module>-->
     <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
     <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
-    <!--<module>cloudfoundry/azure-cloud-foundry-service-sample</module>
-    <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample</module>-->
     <module>cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample</module>
-    <!--<module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account</module>
-    <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>-->
     <module>eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration</module>
     <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
     <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>
     <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder</module>
     <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders</module>
-    <!--<module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side</module>
-    <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side</module>
-    <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side</module>
-    <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side</module>-->
     <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/property-source</module>
     <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/secret-client</module>
     <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue</module>
@@ -73,8 +54,6 @@
     <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation</module>
     <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration</module>
     <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-client</module>
-    <!--<module>spring-native/storage-blob-native</module>
-    <module>spring-petclinic-microservices</module>-->
   </modules>
 
   <dependencyManagement>
@@ -93,36 +72,6 @@
         <type>pom</type>
         <scope>import</scope>
       </dependency>
-      <!--<dependency>
-        <groupId>com.azure.spring</groupId>
-        <artifactId>azure-spring-cloud-appconfiguration-config</artifactId>
-        <version>${version.spring-cloud-appconfiguration-config}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.azure.spring</groupId>
-        <artifactId>azure-spring-cloud-starter-appconfiguration-config</artifactId>
-        <version>${version.spring-cloud-appconfiguration-starter}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.azure.spring</groupId>
-        <artifactId>azure-spring-cloud-feature-management</artifactId>
-        <version>${version.spring-cloud-feature-management}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.azure.spring</groupId>
-        <artifactId>azure-spring-cloud-feature-management-web</artifactId>
-        <version>${version.spring-cloud-feature-management}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.google.guava</groupId>
-        <artifactId>guava</artifactId>
-        <version>${version.guava}</version>
-      </dependency>
-      <dependency>
-        <groupId>com.azure.spring</groupId>
-        <artifactId>azure-spring-boot-starter-keyvault-certificates</artifactId>
-        <version>${version.azure-spring-boot-starter-keyvault-certificates}</version>
-      </dependency>-->
       <dependency>
         <groupId>org.thymeleaf.extras</groupId>
         <artifactId>thymeleaf-extras-springsecurity5</artifactId>
@@ -297,159 +246,6 @@
         </dependencies>
       </dependencyManagement>
     </profile>
-    <!--<profile>
-      <id>buildpack</id>
-      <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <repackage.classifier>exec</repackage.classifier>
-        <spring-native.version>0.12.0</spring-native.version>
-        <spring-cloud-azure-native-configuration.version>4.0.0-beta.1</spring-cloud-azure-native-configuration.version>
-      </properties>
-
-      <dependencies>
-        <dependency>
-          <groupId>org.springframework.experimental</groupId>
-          <artifactId>spring-native</artifactId>
-          <version>${spring-native.version}</version>
-        </dependency>
-        <dependency>
-          <groupId>com.azure.spring</groupId>
-          <artifactId>spring-cloud-azure-native-configuration</artifactId>
-          <version>${spring-cloud-azure-native-configuration.version}</version>
-        </dependency>
-        <dependency>
-          <groupId>org.junit.platform</groupId>
-          <artifactId>junit-platform-launcher</artifactId>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-      <build>
-        <finalName>${project.artifactId}</finalName>
-        <plugins>
-          <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <configuration>
-              <classifier>${repackage.classifier}</classifier>
-              <image>
-                <builder>paketobuildpacks/builder:tiny</builder>
-                <env>
-                  <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
-                </env>
-              </image>
-            </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.springframework.experimental</groupId>
-            <artifactId>spring-aot-maven-plugin</artifactId>
-            <version>${spring-native.version}</version>
-            <executions>
-              <execution>
-                <id>generate</id>
-                <goals>
-                  <goal>generate</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>test-generate</id>
-                <goals>
-                  <goal>test-generate</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
-      <id>native</id>
-      <properties>
-        <maven.compiler.source>11</maven.compiler.source>
-        <maven.compiler.target>11</maven.compiler.target>
-        <repackage.classifier>exec</repackage.classifier>
-        <imageName>${artifactId}</imageName>
-        <native.maven.plugin.version>0.9.11</native.maven.plugin.version>
-        <spring-native.version>0.11.4</spring-native.version>
-        <spring-cloud-azure-native-configuration.version>4.0.0-beta.1</spring-cloud-azure-native-configuration.version>
-      </properties>
-
-      <dependencies>
-        <dependency>
-          <groupId>org.springframework.experimental</groupId>
-          <artifactId>spring-native</artifactId>
-          <version>${spring-native.version}</version>
-        </dependency>
-        <dependency>
-          <groupId>com.azure.spring</groupId>
-          <artifactId>spring-cloud-azure-native-configuration</artifactId>
-          <version>${spring-cloud-azure-native-configuration.version}</version>
-        </dependency>
-        <dependency>
-          <groupId>org.junit.platform</groupId>
-          <artifactId>junit-platform-launcher</artifactId>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <configuration>
-              <classifier>${repackage.classifier}</classifier>
-            </configuration>
-          </plugin>
-          <plugin>
-            <groupId>org.springframework.experimental</groupId>
-            <artifactId>spring-aot-maven-plugin</artifactId>
-            <version>${spring-native.version}</version>
-            <executions>
-              <execution>
-                <id>generate</id>
-                <goals>
-                  <goal>generate</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>test-generate</id>
-                <goals>
-                  <goal>test-generate</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.graalvm.buildtools</groupId>
-            <artifactId>native-maven-plugin</artifactId>
-            <version>${native.maven.plugin.version}</version>
-            <extensions>true</extensions>
-            <executions>
-              <execution>
-                <id>test-native</id>
-                <phase>test</phase>
-                <goals>
-                  <goal>test</goal>
-                </goals>
-              </execution>
-              <execution>
-                <id>build-native</id>
-                <phase>package</phase>
-                <goals>
-                  <goal>build</goal>
-                </goals>
-              </execution>
-            </executions>
-            <configuration>
-              <imageName>${imageName}</imageName>
-              <buildArgs>
-                <buildArg>-H:+ReportExceptionStackTraces</buildArg>
-              </buildArgs>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>-->
   </profiles>
 
   <repositories>

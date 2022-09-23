@@ -364,7 +364,7 @@
         <maven.compiler.target>11</maven.compiler.target>
         <repackage.classifier>exec</repackage.classifier>
         <imageName>${artifactId}</imageName>
-        <native.maven.plugin.version>0.9.11</native.maven.plugin.version>
+        <native.maven.plugin.version>0.9.14</native.maven.plugin.version>
         <spring-native.version>0.11.4</spring-native.version>
         <spring-cloud-azure-native-configuration.version>4.0.0-beta.1</spring-cloud-azure-native-configuration.version>
       </properties>

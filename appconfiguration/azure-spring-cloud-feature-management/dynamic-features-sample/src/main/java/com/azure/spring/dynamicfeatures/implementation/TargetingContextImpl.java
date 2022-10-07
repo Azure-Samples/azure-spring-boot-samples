@@ -17,22 +17,22 @@ import reactor.core.publisher.Mono;
 @Component
 @RequestScope
 public class TargetingContextImpl implements ITargetingContextAccessor {
-    
+
     @Autowired
     private HttpServletRequest request;
 
     @Override
     public Mono<TargetingContext> getContextAsync() {
         TargetingContext context = new TargetingContext();
-        
+
         context.setUserId(request.getParameter("user"));
-        
+
         List<String> groups = new ArrayList<>();
-        
+
         groups.add(request.getParameter("group"));
-        
+
         context.setGroups(groups);
-        
+
         return Mono.just(context);
     }
 

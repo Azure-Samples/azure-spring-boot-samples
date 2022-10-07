@@ -8,8 +8,8 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 @EnableConfigurationProperties
 public class DynamicFeaturesApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(DynamicFeaturesApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(DynamicFeaturesApplication.class, args);
+    }
 
 }

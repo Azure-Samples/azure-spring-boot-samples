@@ -34,7 +34,9 @@ jobs:
       run: mvn -v
     - name: Build Spring Cloud Azure libraries with Maven
       run: |
-          cd azure-sdk-for-java
+          pwd
+          ls
+          pwd
           mvn clean install -Dmaven.javadoc.skip=true -DskipTests \
             -Dcheckstyle.skip=true \
             -ntp \

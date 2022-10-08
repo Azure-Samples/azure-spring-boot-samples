@@ -1,6 +1,0 @@
-feature-management:
-  beta:
-    enabled-for:
-      - name: Random
-        parameters:
-          chance: "80"

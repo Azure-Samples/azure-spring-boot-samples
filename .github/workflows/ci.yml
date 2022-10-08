@@ -11,10 +11,7 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - run: | 
-          pwd
-          ls
-          pwd
+    - run: |
           git init azure-sdk-for-java
           cd azure-sdk-for-java
           git remote add origin https://github.com/Azure/azure-sdk-for-java.git
@@ -25,12 +22,6 @@ jobs:
           echo "eng" >> .git/info/sparse-checkout
           echo "sdk/boms" >> .git/info/sparse-checkout
           git pull --depth=1 origin feature/spring-boot-3
-          pwd
-          ls
-          pwd
-          pwd
-          ls ../
-          pwd
     - name: Set up JDK 17
       uses: actions/setup-java@v2
       with:
@@ -41,9 +32,6 @@ jobs:
       run: mvn -v
     - name: Build Spring Cloud Azure libraries with Maven
       run: |
-          pwd
-          ls
-          pwd
           cd azure-sdk-for-java
           mvn clean install -Dmaven.javadoc.skip=true -DskipTests \
             -Dcheckstyle.skip=true \

@@ -32,6 +32,7 @@ jobs:
       run: mvn -v
     - name: Build Spring Cloud Azure libraries with Maven
       run: |
+          cd azure-sdk-for-java
           mvn clean install -Dmaven.javadoc.skip=true -DskipTests \
             -Dcheckstyle.skip=true \
             -ntp \
@@ -42,6 +43,7 @@ jobs:
             -f sdk/spring/pom.xml
     - name: Build Spring Cloud Azure Experimental libraries with Maven
       run: |
+          cd azure-sdk-for-java
           mvn clean install -Dmaven.javadoc.skip=true -DskipTests \
                       -Dcheckstyle.skip=true \
                       -ntp \
@@ -52,6 +54,7 @@ jobs:
                       -f sdk/spring-experimental/pom.xml
     - name: Build Spring Cloud Azure BOM with Maven
       run: |
+          cd azure-sdk-for-java
           mvn clean install -Dmaven.javadoc.skip=true -DskipTests \
                       -Dcheckstyle.skip=true \
                       -ntp \

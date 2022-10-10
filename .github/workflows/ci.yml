@@ -10,15 +10,16 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - run: |
+    - name: Checkout azure-spring-boot-samples from feature/spring-boot-3 branch
+      uses: actions/checkout@v2
+    - name: Checkout azure-sdk-for-java from feature/spring-boot-3 branch
+      run: |
           git init azure-sdk-for-java
           cd azure-sdk-for-java
           git remote add origin https://github.com/Azure/azure-sdk-for-java.git
           git config core.sparsecheckout true
           echo "sdk/parents/azure-client-sdk-parent" >> .git/info/sparse-checkout
           echo "sdk/spring" >> .git/info/sparse-checkout
-          echo "sdk/spring-experimental" >> .git/info/sparse-checkout
           echo "eng" >> .git/info/sparse-checkout
           echo "sdk/boms" >> .git/info/sparse-checkout
           git pull --depth=1 origin feature/spring-boot-3
@@ -41,28 +42,6 @@ jobs:
             -Dparallel-test-playback \
             -Pdev \
             -f sdk/spring/pom.xml
-    - name: Build Spring Cloud Azure Experimental libraries with Maven
-      run: |
-          cd azure-sdk-for-java
-          mvn clean install -Dmaven.javadoc.skip=true -DskipTests \
-                      -Dcheckstyle.skip=true \
-                      -ntp \
-                      -Dspotbugs.skip=true \
-                      -Drevapi.skip=true -Djacoco.skip=true \
-                      -Dparallel-test-playback \
-                      -Pdev \
-                      -f sdk/spring-experimental/pom.xml
-    - name: Build Spring Cloud Azure BOM with Maven
-      run: |
-          cd azure-sdk-for-java
-          mvn clean install -Dmaven.javadoc.skip=true -DskipTests \
-                      -Dcheckstyle.skip=true \
-                      -ntp \
-                      -Dspotbugs.skip=true \
-                      -Drevapi.skip=true -Djacoco.skip=true \
-                      -Dparallel-test-playback \
-                      -Pdev \
-                      -f sdk/boms/pom.xml
     - name: Verify samples with Maven
       run: mvn -f pom.xml --batch-mode --update-snapshots verify
 

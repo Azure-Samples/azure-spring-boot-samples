@@ -14,7 +14,7 @@ jobs:
       name: Checkout Azure/azure-sdk-for-java
       with:
         patterns: |
-          sdk/spring sdk/jdbc sdk/spring-experimental eng sdk/boms
+          sdk/spring sdk/jdbc sdk/spring-experimental eng sdk/boms sdk/parents
         repository: Azure/azure-sdk-for-java
         ref: main
         path: azure-sdk-for-java

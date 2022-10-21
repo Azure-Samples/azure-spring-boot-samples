@@ -9,8 +9,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.integration.annotation.ServiceActivator;
-import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageHandlingException;
+import org.springframework.messaging.support.ErrorMessage;
 
 import java.util.function.Consumer;
 
@@ -28,12 +28,11 @@ public class EventHubBinderApplication {
 
     @Bean
     public Consumer<MessageHandlingException> consumerError() {
-        return message -> LOGGER.error("Handling consumer ERROR: " + message);
+        return exception -> LOGGER.error("Handling consumer ERROR", exception);
     }
 
-    // Replace destination with spring.cloud.stream.bindings.supply-out-0.destination
-    @ServiceActivator(inputChannel = "{destination}.errors")
-    public void producerError(Message<?> message) {
-        LOGGER.error("Handling Producer ERROR: " + message);
+    @ServiceActivator(inputChannel = "errorChannel")
+    public void producerError(ErrorMessage errorMessage) {
+        LOGGER.error("Handling Producer ERROR", errorMessage);
     }
 }

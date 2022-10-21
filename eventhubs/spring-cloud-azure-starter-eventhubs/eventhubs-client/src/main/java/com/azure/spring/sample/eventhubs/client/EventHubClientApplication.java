@@ -16,8 +16,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -41,11 +41,11 @@ public class EventHubClientApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         LOGGER.info("Event Hub producer client created");
-        producerClient.send(Arrays.asList(new EventData("Test event - graalvm")));
+        producerClient.send(List.of(new EventData("Test event - graalvm")));
         LOGGER.info("Sent message to Event Hub");
         producerClient.close();
 
-        TimeUnit.SECONDS.sleep(3);
+        TimeUnit.SECONDS.sleep(5);
         String PARTITION_ID = "0";
         IterableStream<PartitionEvent> partitionEvents = consumerClient.receiveFromPartition(PARTITION_ID, 1,
             EventPosition.earliest());

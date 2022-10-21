@@ -38,6 +38,7 @@ resource "azurecaf_name" "servicebus_01" {
   name          = var.application_name
   resource_type = "azurerm_servicebus_namespace"
   random_length = 5
+  random_seed = 1
   clean_input   = true
 }
 
@@ -71,6 +72,7 @@ resource "azurecaf_name" "servicebus_02" {
   name          = var.application_name
   resource_type = "azurerm_servicebus_namespace"
   random_length = 5
+  random_seed = 2
   clean_input   = true
 }
 

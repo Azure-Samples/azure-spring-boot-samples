@@ -7,8 +7,12 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.messaging.Message;
+import org.springframework.messaging.MessageHandlingException;
+
+import java.util.function.Consumer;
 
 /**
  * @author Warren Zhu
@@ -22,11 +26,9 @@ public class EventHubBinderApplication {
         SpringApplication.run(EventHubBinderApplication.class, args);
     }
 
-    // Replace destination with spring.cloud.stream.bindings.consume-in-0.destination
-    // Replace group with spring.cloud.stream.bindings.consume-in-0.group
-    @ServiceActivator(inputChannel = "{destination}.{group}.errors")
-    public void consumerError(Message<?> message) {
-        LOGGER.error("Handling consumer ERROR: " + message);
+    @Bean
+    public Consumer<MessageHandlingException> consumerError() {
+        return message -> LOGGER.error("Handling consumer ERROR: " + message);
     }
 
     // Replace destination with spring.cloud.stream.bindings.supply-out-0.destination

@@ -178,7 +178,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-cosmos</artifactId>
-            <version>4.37.0</version>
+            <version>4.38.1</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>

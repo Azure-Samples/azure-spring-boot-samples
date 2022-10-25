@@ -14,6 +14,7 @@ import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
+import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -42,13 +43,18 @@ public class TopicSendController {
     public MessageHandler topicMessageSender(ServiceBusTemplate serviceBusTemplate) {
         serviceBusTemplate.setDefaultEntityType(ServiceBusEntityType.TOPIC);
         DefaultMessageHandler handler = new DefaultMessageHandler(TOPIC_NAME, serviceBusTemplate);
-        handler.setSendCallback((t, ex) -> {
-            if (ex == null) {
+        handler.setSendCallback(new ListenableFutureCallback<Void>() {
+            @Override
+            public void onSuccess(Void result) {
                 LOGGER.info("Message was sent successfully.");
-            } else {
-                LOGGER.error("There was an error sending the message.", ex);
+            }
+
+            @Override
+            public void onFailure(Throwable ex) {
+                LOGGER.info("There was an error sending the message.");
             }
         });
+
         return handler;
     }
 

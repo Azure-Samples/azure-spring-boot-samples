@@ -193,7 +193,7 @@
           <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-messaging-eventhubs</artifactId>
-            <version>5.13.1</version>
+            <version>5.14.0</version>
           </dependency>
           <dependency>
             <groupId>com.azure</groupId>

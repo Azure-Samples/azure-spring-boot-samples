@@ -1,0 +1,64 @@
+# WebapiA is an optional client, we can access obo resource servers.
+# We can also access a custom server according to the webapiA client.
+
+spring:
+  cloud:
+    azure:
+      profile:
+        tenant-id: 72f988bf-86f1-41af-91ab-2d7cd011db47
+      credential:
+        client-id: 89b9631b-aadb-44fe-a0c5-571058cb798d
+        client-certificate-path: D:\j\keyvault\ad-starter-client-auth\encrypted-private-key-and-certificate.pfx
+        client-certificate-password: myPassword1
+# Properties like spring.cloud.azure.credential.client-id are global properties.
+# Properties like spring.cloud.azure.active-directory.credential.client-id are AAD properties.
+# If AAD properties is not configured, global properties will be used.
+#      credential:
+#        client-id:
+#        client-secret:
+#      profile:
+#        tenant-id:
+      eventhubs:
+        namespace: moary-eh
+        event-hub-name: moary
+        consumer:
+          consumer-group: $Default
+      active-directory:
+        enabled: true
+#        credential:
+#          client-id: 4e66ac53-4933-4faa-a3fb-dd29110c801e
+#          client-secret: GULAASWnV9VA.jb0D~DH6-Mf1~f91--6dw
+#          client-certificate-path: D:\j\keyvault\ad-starter-client-auth\encrypted-private-key-and-certificate.pfx
+#          client-certificate-password: myPassword1
+#
+#        profile:
+#          tenant-id: 1d1a06a9-b20a-4513-8a64-dab08d32c8b6
+        user-group:
+          allowed-group-names: group1, group2
+        #          allowed-group-ids: <group1-id>,<group2-id>    # When 'all' is used, all group id can be obtained.
+        post-logout-redirect-uri: http://localhost:8080
+        authorization-clients:
+          azure:
+            client-authentication-method: client_secret_jwt
+#            authorization-grant-type: authorization_code
+#          arm:
+#            on-demand: true
+#            scopes: https://management.core.windows.net/user_impersonation
+#            client-authentication-method: private_key_jwt
+##            no need below items for 'arm' client because we accquire the access token through refresh token, it has been authenticated.
+##            client-certificate-path: xxx
+##            client-certificate-password: xxx
+#          graph:
+#            client-authentication-method: client_secret_jwt
+#            scopes:
+#              - https://graph.microsoft.com/User.Read
+#              - https://graph.microsoft.com/Directory.Read.All
+#          webapiA:  # This is used to demonstrate on-behalf-of function. Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow
+#            scopes:
+#              - api://web-api-a/Obo.WebApiA.ExampleScope
+#          webapiB:  # This is used to demonstrate client_credentials type. Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow
+#            scopes:
+#              - api://web-api-b/.default
+#            authorization-grant-type: client_credentials
+
+debug: on

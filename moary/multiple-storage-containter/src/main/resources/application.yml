@@ -1,0 +1,9 @@
+# Storage account name length should be between 3 and 24 and use numbers and lower-case letters only
+# Configuration
+spring:
+  profiles:
+#    active: current
+    active: extend
+debug: on
+
+#  mvn spring-boot:run -Dspring-boot.run.profiles=current

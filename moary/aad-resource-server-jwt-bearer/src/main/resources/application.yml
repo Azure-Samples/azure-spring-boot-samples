@@ -1,0 +1,36 @@
+server:
+  port: 8086
+
+spring:
+  cloud:
+    azure:
+# Properties like spring.cloud.azure.credential.client-id are global properties.
+# Properties like spring.cloud.azure.active-directory.credential.client-id are AAD properties.
+# If AAD properties is not configured, global properties will be used.
+#      credential:
+#        client-id:
+#        client-secret:
+#      profile:
+#        tenant-id:
+      active-directory:
+        enabled: true
+        credential:
+          client-id: 7fb247fa-76b8-4317-88da-0c96f8318d89
+          client-secret: i4j8Q~nwB~UaKgUUqSPT~jWRJGhfUXIhBfBLEb1h
+#          client-certificate-path: D:\j\keyvault\ad-starter-client-auth\encrypted-private-key-and-certificate.pfx
+#          client-certificate-password: myPassword1
+        profile:
+          tenant-id: 1d1a06a9-b20a-4513-8a64-dab08d32c8b6
+        app-id-uri: api://web-api-jwt-bearer
+        authorization-clients:
+          graph:
+            scopes:
+              - https://graph.microsoft.com/User.Read
+          webapiB:         # When authorization-grant-type is null, on behalf of flow is used by default
+#            authorization-grant-type:
+            authorization-grant-type: urn:ietf:params:oauth:grant-type:jwt-bearer
+#            client-authentication-method: private_key_jwt
+            scopes:
+              - api://web-api-b/WebApiB.ExampleScope
+
+debug: on

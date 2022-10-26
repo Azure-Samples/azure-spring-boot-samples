@@ -1,0 +1,40 @@
+# WebapiA is an optional client, we can access obo resource servers.
+# We can also access a custom server according to the webapiA client.
+
+spring:
+  cloud:
+    azure:
+# Properties like spring.cloud.azure.credential.client-id are global properties.
+# Properties like spring.cloud.azure.active-directory.credential.client-id are AAD properties.
+# If AAD properties is not configured, global properties will be used.
+#      credential:
+#        client-id:
+#        client-secret:
+#      profile:
+#        tenant-id:
+      active-directory:
+        enabled: true
+        credential:
+          client-id: a00a9804-b2fd-47d7-aeb6-bd06243b3035
+          client-secret: RLc8Q~n4XUl73skaaJP~EV6XIRaciyTvTM54Xa2k
+        profile:
+          tenant-id: 0a2ede99-b592-4e1c-a0ee-283b3a172a61
+        user-group:
+          allowed-group-names: group1,group2
+          allowed-group-ids: all    # When 'all' is used, all group id can be obtained.
+        post-logout-redirect-uri: http://localhost:8080
+        authorization-clients:
+          arm:
+            on-demand: true
+            scopes: https://management.core.windows.net/user_impersonation
+          graph:
+            scopes:
+              - https://graph.microsoft.com/User.Read
+              - https://graph.microsoft.com/Directory.Read.All
+          webapiA:  # This is used to demonstrate on-behalf-of function. Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow
+            scopes:
+              - api://webapia/Obo.WebApiA.ExampleScope
+          webapiB:  # This is used to demonstrate client_credentials type. Refs: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-client-creds-grant-flow
+            scopes:
+              - api://webapib/.default
+            authorization-grant-type: client_credentials

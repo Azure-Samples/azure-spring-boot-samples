@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    azure:
+      storage:
+        blob:
+          account-name: firstaccount
+          container-name: first-container
+          account-key: ddXFrZwup0CLOzxqWS4gLhAGJgwtLypBsRWuMVoIFvkvb94jahdeXP/BhQlWvZGkAGIuDT94O3VX+AStF/PByA==
+
+extend:
+  second-container: second-container

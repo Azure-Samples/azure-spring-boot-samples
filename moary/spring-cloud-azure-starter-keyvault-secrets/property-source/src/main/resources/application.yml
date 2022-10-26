@@ -1,0 +1,13 @@
+spring:
+  cloud:
+    azure:
+      keyvault:
+        secret:
+          property-source-enabled: true
+          property-sources:
+            - name: key-vault-property-source-1
+              endpoint: ${ENDPOINT_1}
+            - name: key-vault-property-source-2
+              endpoint: ${ENDPOINT_2}
+  profiles:
+    active: develop

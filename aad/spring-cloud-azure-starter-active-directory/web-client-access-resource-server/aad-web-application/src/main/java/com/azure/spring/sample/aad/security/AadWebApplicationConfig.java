@@ -25,6 +25,7 @@ public class AadWebApplicationConfig {
         // @formatter:off
         http
             .apply(aadWebApplication())
+                .conditionalAccessFilter(new AadConditionalAccessFilter())
                 .and()
             .authorizeRequests()
                 .antMatchers("/login").permitAll()

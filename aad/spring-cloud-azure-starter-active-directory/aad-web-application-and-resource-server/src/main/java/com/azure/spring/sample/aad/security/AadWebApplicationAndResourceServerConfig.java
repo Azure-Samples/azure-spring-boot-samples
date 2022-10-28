@@ -3,40 +3,52 @@
 
 package com.azure.spring.sample.aad.security;
 
-import com.azure.spring.cloud.autoconfigure.aad.AadResourceServerWebSecurityConfigurerAdapter;
-import com.azure.spring.cloud.autoconfigure.aad.AadWebSecurityConfigurerAdapter;
 import jakarta.servlet.Filter;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
 
+import static com.azure.spring.cloud.autoconfigure.aad.AadResourceServerHttpSecurityConfigurer.aadResourceServer;
+import static com.azure.spring.cloud.autoconfigure.aad.AadWebApplicationHttpSecurityConfigurer.aadWebApplication;
+
+@Configuration(proxyBeanMethods = false)
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class AadWebApplicationAndResourceServerConfig {
 
     @Order(1)
     @Configuration
-    public static class ApiWebSecurityConfigurationAdapter extends AadResourceServerWebSecurityConfigurerAdapter {
-        protected void configure(HttpSecurity http) throws Exception {
-            super.configure(http);
-            http.antMatcher("/api/**")
+    public static class ApiHttpSecurityConfigurationAdapter {
+        @Bean
+        public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
+            http
+                .apply(aadResourceServer())
+                    .and()
+                .antMatcher("/api/**")
                 .authorizeRequests().anyRequest().authenticated();
+            return http.build();
         }
     }
 
     @Configuration
-    public static class HtmlWebSecurityConfigurerAdapter extends AadWebSecurityConfigurerAdapter {
+    public static class HtmlHttpSecurityConfigurerAdapter {
 
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            super.configure(http);
+        @Bean
+        public SecurityFilterChain htmlFilterChain(HttpSecurity http) throws Exception {
             // @formatter:off
-            http.authorizeRequests()
+            http
+                .apply(aadWebApplication())
+                    .conditionalAccessFilter(conditionalAccessFilter())
+                    .and()
+                .authorizeRequests()
                     .antMatchers("/login").permitAll()
                     .anyRequest().authenticated();
             // @formatter:on
+            return http.build();
         }
 
         /**
@@ -44,8 +56,7 @@ public class AadWebApplicationAndResourceServerConfig {
          * {@inheritDoc}
          * @return the conditional access filter
          */
-        @Override
-        protected Filter conditionalAccessFilter() {
+        private Filter conditionalAccessFilter() {
             return new AadConditionalAccessFilter();
         }
     }

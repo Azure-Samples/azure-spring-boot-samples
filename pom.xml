@@ -7,7 +7,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.0.0-M4</version>
+    <version>3.0.0-M5</version>
   </parent>
 
   <groupId>com.azure.spring</groupId>
@@ -19,9 +19,9 @@
 
   <properties>
     <java.version>17</java.version>
-    <version.spring.cloud>2022.0.0-M4</version.spring.cloud>
-    <version.spring.cloud.azure>6.0.0-beta.2</version.spring.cloud.azure>
-    <version.thymeleaf-extras-springsecurity5>3.1.0.M1</version.thymeleaf-extras-springsecurity5>
+    <version.spring.cloud>2022.0.0-M5</version.spring.cloud>
+    <version.spring.cloud.azure>6.0.0-beta.3</version.spring.cloud.azure>
+    <version.thymeleaf-extras-springsecurity6>3.1.0.M1</version.thymeleaf-extras-springsecurity6>
   </properties>
   <modules>
     <module>aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server</module>
@@ -74,8 +74,8 @@
       </dependency>
       <dependency>
         <groupId>org.thymeleaf.extras</groupId>
-        <artifactId>thymeleaf-extras-springsecurity5</artifactId>
-        <version>${version.thymeleaf-extras-springsecurity5}</version>
+        <artifactId>thymeleaf-extras-springsecurity6</artifactId>
+        <version>${version.thymeleaf-extras-springsecurity6}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

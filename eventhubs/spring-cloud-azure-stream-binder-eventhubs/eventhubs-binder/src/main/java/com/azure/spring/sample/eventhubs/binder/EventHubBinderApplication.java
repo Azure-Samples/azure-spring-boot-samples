@@ -9,7 +9,6 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.integration.annotation.ServiceActivator;
-import org.springframework.messaging.MessageHandlingException;
 import org.springframework.messaging.support.ErrorMessage;
 
 import java.util.function.Consumer;
@@ -27,7 +26,7 @@ public class EventHubBinderApplication {
     }
 
     @Bean
-    public Consumer<MessageHandlingException> consumerError() {
+    public Consumer<ErrorMessage> consumerError() {
         return exception -> LOGGER.error("Handling consumer ERROR", exception);
     }
 

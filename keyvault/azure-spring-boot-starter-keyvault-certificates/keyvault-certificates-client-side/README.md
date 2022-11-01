@@ -1,4 +1,4 @@
-# Azure Spring Boot Key Vault Certificates client library for Java
+# Azure Spring Boot Key Vault Certificates
 
 ## Key concepts
 This sample illustrates how to use [Azure Spring Boot Starter Key Vault Certificates ][azure_spring_boot_starter_key_vault_certificates].

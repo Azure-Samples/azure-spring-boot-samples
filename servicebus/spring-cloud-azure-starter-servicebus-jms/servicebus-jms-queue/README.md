@@ -1,4 +1,4 @@
-# Sample for Spring JMS with Azure Service Bus Queue Spring Cloud client library for Java 
+# Sample for Spring JMS with Azure Service Bus Queue Spring Cloud
 
 This sample project demonstrates how to use Spring JMS for Azure Service Bus Queue via Spring Boot Starter `spring-cloud-azure-starter-servicebus-jms`.
 

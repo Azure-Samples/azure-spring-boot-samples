@@ -1,4 +1,4 @@
-# Azure OAuth 2.0 Sample for Azure AD Spring Boot Starter Resource Server client library for Java
+# Azure OAuth 2.0 Sample for Azure AD Spring Boot Starter Resource Server
 
 ## Key concepts
 This sample illustrates how to protect a Java web API by restricting access to its resources to authorized accounts only.

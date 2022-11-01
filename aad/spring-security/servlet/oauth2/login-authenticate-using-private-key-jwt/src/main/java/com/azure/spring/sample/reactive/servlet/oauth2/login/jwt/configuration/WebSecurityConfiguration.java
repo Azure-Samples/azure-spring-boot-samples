@@ -43,7 +43,7 @@ public class WebSecurityConfiguration {
                     .accessTokenResponseClient(accessTokenResponseClient(Collections.singletonList("client-1"), repository))
                     .and()
                 .and()
-            .authorizeRequests()
+            .authorizeHttpRequests()
                 .anyRequest().authenticated();
         // @formatter:off
         return http.build();

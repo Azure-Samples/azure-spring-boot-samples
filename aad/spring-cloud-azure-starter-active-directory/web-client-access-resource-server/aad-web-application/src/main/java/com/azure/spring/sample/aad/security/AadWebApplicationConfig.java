@@ -6,7 +6,7 @@ package com.azure.spring.sample.aad.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -17,7 +17,7 @@ import static com.azure.spring.cloud.autoconfigure.aad.AadWebApplicationHttpSecu
 @Profile("conditional-access")
 @Configuration(proxyBeanMethods = false)
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableMethodSecurity
 public class AadWebApplicationConfig {
 
     @Bean
@@ -27,8 +27,8 @@ public class AadWebApplicationConfig {
             .apply(aadWebApplication())
                 .conditionalAccessFilter(new AadConditionalAccessFilter())
                 .and()
-            .authorizeRequests()
-                .antMatchers("/login").permitAll()
+            .authorizeHttpRequests()
+                .requestMatchers("/login").permitAll()
                 .anyRequest().authenticated();
         // @formatter:on
         return http.build();

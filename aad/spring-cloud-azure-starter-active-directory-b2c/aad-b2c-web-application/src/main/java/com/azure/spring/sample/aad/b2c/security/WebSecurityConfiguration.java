@@ -23,7 +23,7 @@ public class WebSecurityConfiguration {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // @formatter:off
-        http.authorizeRequests()
+        http.authorizeHttpRequests()
                 .anyRequest().authenticated()
                 .and()
             .apply(configurer);

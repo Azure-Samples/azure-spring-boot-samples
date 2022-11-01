@@ -12,3 +12,9 @@ spring:
           group: $Default
         supply-out-0:
           destination: ${EVENTHUB_KAFKA}
+      binders:
+        kafka:
+          environment:
+            spring:
+              main:
+                sources: com.azure.spring.cloud.autoconfigure.eventhubs.kafka.AzureEventHubsKafkaAutoConfiguration

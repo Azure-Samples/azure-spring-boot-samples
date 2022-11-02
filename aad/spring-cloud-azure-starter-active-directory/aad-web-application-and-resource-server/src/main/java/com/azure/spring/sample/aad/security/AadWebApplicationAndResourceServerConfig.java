@@ -7,7 +7,7 @@ import jakarta.servlet.Filter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.web.SecurityFilterChain;
@@ -17,25 +17,26 @@ import static com.azure.spring.cloud.autoconfigure.aad.AadWebApplicationHttpSecu
 
 @Configuration(proxyBeanMethods = false)
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableMethodSecurity
 public class AadWebApplicationAndResourceServerConfig {
 
     @Order(1)
     @Configuration
-    public static class ApiHttpSecurityConfigurationAdapter {
+    public static class ApiHttpSecurityConfiguration {
         @Bean
         public SecurityFilterChain apiFilterChain(HttpSecurity http) throws Exception {
             http
                 .apply(aadResourceServer())
                     .and()
-                .antMatcher("/api/**")
-                .authorizeRequests().anyRequest().authenticated();
+                .securityMatcher("/api/**")
+                .authorizeHttpRequests()
+                    .anyRequest().authenticated();
             return http.build();
         }
     }
 
     @Configuration
-    public static class HtmlHttpSecurityConfigurerAdapter {
+    public static class HtmlHttpSecurityConfiguration {
 
         @Bean
         public SecurityFilterChain htmlFilterChain(HttpSecurity http) throws Exception {
@@ -44,8 +45,8 @@ public class AadWebApplicationAndResourceServerConfig {
                 .apply(aadWebApplication())
                     .conditionalAccessFilter(conditionalAccessFilter())
                     .and()
-                .authorizeRequests()
-                    .antMatchers("/login").permitAll()
+                .authorizeHttpRequests()
+                    .requestMatchers("/login").permitAll()
                     .anyRequest().authenticated();
             // @formatter:on
             return http.build();

@@ -7,7 +7,7 @@ import com.azure.spring.cloud.autoconfigure.aad.filter.AadAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
@@ -15,8 +15,7 @@ import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration(proxyBeanMethods = false)
-@EnableGlobalMethodSecurity(securedEnabled = true,
-        prePostEnabled = true)
+@EnableMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig {
 
     @Autowired
@@ -25,9 +24,9 @@ public class WebSecurityConfig {
     @Bean
     SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         // @formatter:off
-        http.authorizeRequests()
-                .antMatchers("/home").permitAll()
-                .antMatchers("/api/**").authenticated()
+        http.authorizeHttpRequests()
+                .requestMatchers("/home").permitAll()
+                .requestMatchers("/api/**").authenticated()
                 .anyRequest().permitAll()
                 .and()
             .csrf()

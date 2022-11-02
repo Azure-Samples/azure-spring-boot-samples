@@ -9,7 +9,7 @@ output "AZURE_EVENTHUBS_CONNECTION_STRING" {
   sensitive   = true
 }
 
-output "EVENTHUBS_KAFKA" {
+output "EVENTHUB_KAFKA" {
   value       = azurerm_eventhub.eventhubs.name
   description = "The name of created event hubs."
 }

@@ -11,8 +11,9 @@ jobs:
 
     steps:
     - name: Checkout azure-spring-boot-samples from feature/spring-boot-3 branch
+      uses: actions/checkout@v2
+    - name: Sparse checkout azure-sdk-for-java from feature/spring-boot-3 branch
       uses: snow-actions/sparse-checkout@v1.1.0
-    - name: Checkout azure-sdk-for-java from feature/spring-boot-3 branch
       with:
         patterns: |
           sdk/spring sdk/jdbc sdk/spring-experimental eng sdk/boms sdk/parents

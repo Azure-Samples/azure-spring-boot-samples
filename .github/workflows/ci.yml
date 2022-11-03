@@ -20,6 +20,7 @@ jobs:
           git config core.sparsecheckout true
           echo "sdk/parents/azure-client-sdk-parent" >> .git/info/sparse-checkout
           echo "sdk/spring" >> .git/info/sparse-checkout
+          echo "sdk/jdbc" >> .git/info/sparse-checkout
           echo "eng" >> .git/info/sparse-checkout
           echo "sdk/boms" >> .git/info/sparse-checkout
           git pull --depth=1 origin feature/spring-boot-3

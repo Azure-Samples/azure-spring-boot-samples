@@ -1,4 +1,4 @@
-# OAuth 2.0 Sample for Azure AD Spring Boot Starter client library for Java
+# OAuth 2.0 Sample for Azure AD Spring Boot Starter
 
 ## Key concepts
 This sample illustrates how to use `spring-cloud-azure-starter-active-directory` package to work with OAuth 2.0 and OpenID Connect protocols on Azure. This sample will use Microsoft Graph API to retrieve user information.

@@ -1,4 +1,4 @@
-# Sample for Azure AD B2C Resource server Spring Boot client library for Java
+# Sample for Azure AD B2C Resource server Spring Boot
 
 ## Key concepts
 This sample illustrates how to use `spring-cloud-azure-starter-active-directory-b2c` package to work in a resource server and validate tokens. 

@@ -46,6 +46,14 @@ jobs:
         repository: Azure/azure-sdk-for-java
         ref: feature/spring-boot-3
         path: azure-sdk-for-java
+    - name: Set up JDK 17
+      uses: actions/setup-java@v2
+      with:
+        java-version: '17'
+        distribution: 'adopt'
+        cache: maven
+    - name: Display maven environment
+      run: mvn -v
     - name: Build latest azure-sdk-for-java repository
       run: |
         cd azure-sdk-for-java

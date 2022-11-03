@@ -12,18 +12,14 @@ jobs:
     steps:
     - name: Checkout azure-spring-boot-samples from feature/spring-boot-3 branch
       uses: actions/checkout@v2
-    - name: Checkout azure-sdk-for-java from feature/spring-boot-3 branch
-      run: |
-          git init azure-sdk-for-java
-          cd azure-sdk-for-java
-          git remote add origin https://github.com/Azure/azure-sdk-for-java.git
-          git config core.sparsecheckout true
-          echo "sdk/parents/azure-client-sdk-parent" >> .git/info/sparse-checkout
-          echo "sdk/spring" >> .git/info/sparse-checkout
-          echo "sdk/jdbc" >> .git/info/sparse-checkout
-          echo "eng" >> .git/info/sparse-checkout
-          echo "sdk/boms" >> .git/info/sparse-checkout
-          git pull --depth=1 origin feature/spring-boot-3
+    - name: Sparse checkout azure-sdk-for-java from feature/spring-boot-3 branch
+      uses: snow-actions/sparse-checkout@v1.1.0
+      with:
+        patterns: |
+          sdk/spring sdk/jdbc sdk/spring-experimental eng sdk/boms sdk/parents
+        repository: Azure/azure-sdk-for-java
+        ref: feature/spring-boot-3
+        path: azure-sdk-for-java
     - name: Set up JDK 17
       uses: actions/setup-java@v2
       with:

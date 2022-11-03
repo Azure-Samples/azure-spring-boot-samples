@@ -2,5 +2,5 @@
 # https://github.blog/2017-07-06-introducing-code-owners/
 # https://docs.github.com/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
 
-*                                               @backwind1233 @chenrujun @hui1110 @jialigit @moarychan @netyyyy @saragluna @stliu @yiliuTo
-/appconfiguration/                              @mrm9084 @backwind1233 @chenrujun @hui1110 @jialigit @moarychan @netyyyy @saragluna @stliu @yiliuTo
+*                                               @Azure-Samples/spring-cloud-azure-maintain
+/appconfiguration/                              @mrm9084 @Azure-Samples/spring-cloud-azure-maintain

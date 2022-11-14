@@ -1,10 +1,9 @@
-# Spring Cloud Azure Storage Queue Operation Code Sample  
+# Using Spring Cloud Azure Storage File Share Starter
 
-This code sample demonstrates how to use [Storage Queue Template][storage-queue-template].
+This code sample demonstrates how to read and write files with the [Spring Resource](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#resources) abstraction for Azure Storage using the Spring Cloud Azure storage starter.
 
 ## What You Will Build
-
-You will build an application using [Storage Queue Template][storage-queue-template] to send and receive messages.
+You will build an application that use Spring Resource abstraction to read and write data with [Azure Storage File Share](https://azure.microsoft.com/services/storage/files/).
 
 ## What You Need
 
@@ -19,8 +18,7 @@ You will build an application using [Storage Queue Template][storage-queue-templ
 ## Provision Azure Resources Required to Run This Sample
 This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
 > [!IMPORTANT]  
-> If you choose to use a security principal to authenticate and authorize with Azure Active Directory for accessing an Azure resource
-> please refer to [Authorize access with Azure AD](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html#authorize-access-with-azure-active-directory) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
+> Storage File Share clients don't support authenticating using Azure AD service principals or managed identities.
 
 ### Authenticate Using the Azure CLI
 Terraform must authenticate to Azure to create infrastructure.
@@ -54,7 +52,7 @@ You have logged in. Now let us find all the subscriptions to which you have acce
 ]
 ```
 
-If you have more than one subscription, specify the subscription-id you want to use with command below: 
+If you have more than one subscription, specify the subscription-id you want to use with command below:
 ```shell
 az account set --subscription <your-subscription-id>
 ```
@@ -91,24 +89,16 @@ It may take a few minutes to run the script. After successful running, you will 
 
 ```shell
 
-azurecaf_name.azurecaf_name_storage_account: Creating...
-azurecaf_name.resource_group: Creating...
-azurecaf_name.azurecaf_name_storage_account: Creation complete after 0s ...
-azurecaf_name.resource_group: Creation complete after 0s ...
 azurerm_resource_group.main: Creating...
-azurerm_resource_group.main: Creation complete after 3s 
-azurerm_storage_account.storage_account: Creating...
-...
-azurerm_storage_queue.queue: Creation complete after 1s 
-azurerm_role_assignment.role_storage_queue_data_contributor: Still creating... 
-...
-azurerm_role_assignment.role_storage_queue_data_contributor: Creation complete after 30s ...
-
-Apply complete! Resources: 6 added, 0 changed, 0 destroyed.
-
-Outputs:
+azurerm_resource_group.main: Creation complete after 5s ...
+azurerm_storage_account.application: Creating...
+azurerm_storage_account.application: Still creating... [10s elapsed]
+azurerm_storage_account.application: Creation complete after 36s ...
+azurerm_storage_share.application: Creating...
+azurerm_storage_share.application: Creation complete after 3s ...
 
 ...
+Apply complete! Resources: 5 added, 0 changed, 0 destroyed.
 
 ```
 
@@ -132,7 +122,9 @@ terraform\setup_env.ps1
 If you want to run the sample in debug mode, you can save the output value.
 
 ```shell
-ACCOUNT_NAME=...
+AZURE_STORAGE_ACCOUNT=...
+STORAGE_SHARE_NAME=...
+STORAGE_ACCOUNT_KEY=...
 ```
 
 ## Run Locally
@@ -154,19 +146,27 @@ You can debug your sample by adding the saved output values to the tool's enviro
 * If your tool is `ECLIPSE`, please refer to [Debugging the Eclipse IDE for Java Developers](https://www.eclipse.org/community/eclipse_newsletter/2017/june/article1.php) and [Eclipse Environment Variable Setup](https://examples.javacodegeeks.com/desktop-java/ide/eclipse/eclipse-environment-variable-setup-example/).
 
 ## Verify This Sample
+1. Write and read a file.  
+    1.1 Send a POST request to update file contents.
+    ```shell
+    curl http://localhost:8080/file/file1.txt -d "new message" -H "Content-Type: text/plain"
+    ```
+    1.2 Verify by sending a GET request.  
+    ```shell
+    curl -XGET http://localhost:8080/file/file1.txt
+    ```
 
-1.  Send a POST request
 
-        curl -X POST http://localhost:8080/messages?message=hello
+2. [Optional] Using AzureStorageFileProtocolResolver to get Azure Storage File resources with file pattern.
+    ```shell
+    curl -XGET http://localhost:8080/file
+    ```
+    
+    Verify in app's log that a similar messages was posted:
+    ```shell
+    10 resources founded with pattern:*.txt
+    ```
 
-1.  Receive the message you posted
-
-        curl -X GET http://localhost:8080/messages
-
-1.  Verify in your app’s logs that similar messages were posted:
-
-        Message arrived! Payload: hello
-        Message 'hello' successfully checkpointed
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
@@ -185,6 +185,3 @@ terraform -chdir=./terraform destroy -auto-approve
 ```shell
 terraform -chdir=terraform destroy -auto-approve
 ```
-
-<!-- LINKS -->
-[storage-queue-template]: https://github.com/Azure/azure-sdk-for-java/blob/spring-integration-azure-storage-queue_4.3.0/sdk/spring/spring-messaging-azure-storage-queue/src/main/java/com/azure/spring/messaging/storage/queue/core/StorageQueueTemplate.java

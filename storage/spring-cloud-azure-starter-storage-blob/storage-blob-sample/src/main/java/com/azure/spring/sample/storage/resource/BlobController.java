@@ -25,14 +25,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-/**
- * @author Warren Zhu
- */
+import static com.azure.spring.sample.storage.resource.SampleDataInitializer.BLOB_RESOURCE_PATTERN;
+
 @RestController
 @RequestMapping("blob")
 public class BlobController {
 
-    final static Logger logger = LoggerFactory.getLogger(BlobController.class);
+    private static final Logger logger = LoggerFactory.getLogger(BlobController.class);
     private final String containerName;
     private final ResourceLoader resourceLoader;
     private final AzureStorageBlobProtocolResolver azureStorageBlobProtocolResolver;
@@ -52,25 +51,21 @@ public class BlobController {
      */
     @GetMapping
     public List<String> listTxtFiles() throws IOException {
-        Resource[] resources = azureStorageBlobProtocolResolver.getResources("azure-blob://" + containerName + "/*.txt");
+        Resource[] resources = azureStorageBlobProtocolResolver.getResources(String.format(BLOB_RESOURCE_PATTERN, this.containerName, "*.txt"));
         logger.info("{} resources founded with pattern:*.txt",resources.length);
         return Stream.of(resources).map(Resource::getFilename).collect(Collectors.toList());
     }
 
     @GetMapping("/{fileName}")
-    public String readBlobResource(@PathVariable("fileName") String fileName) throws IOException {
-        // get a BlobResource
-        Resource storageBlobResource = resourceLoader.getResource("azure-blob://" + containerName + "/" + fileName);
-        return StreamUtils.copyToString(
-            storageBlobResource.getInputStream(),
-            Charset.defaultCharset());
+    public String readResource(@PathVariable("fileName") String fileName) throws IOException {
+        Resource resource = resourceLoader.getResource(String.format(BLOB_RESOURCE_PATTERN, this.containerName, fileName));
+        return StreamUtils.copyToString(resource.getInputStream(), Charset.defaultCharset());
     }
 
     @PostMapping("/{fileName}")
-    public String writeBlobResource(@PathVariable("fileName") String fileName, @RequestBody String data) throws IOException {
-        // get a BlobResource
-        Resource storageBlobResource = resourceLoader.getResource("azure-blob://" + containerName + "/" + fileName);
-        try (OutputStream os = ((WritableResource) storageBlobResource).getOutputStream()) {
+    public String writeResource(@PathVariable("fileName") String fileName, @RequestBody String data) throws IOException {
+        Resource resource = resourceLoader.getResource(String.format(BLOB_RESOURCE_PATTERN, this.containerName, fileName));
+        try (OutputStream os = ((WritableResource) resource).getOutputStream()) {
             os.write(data.getBytes());
         }
         return "blob was updated";

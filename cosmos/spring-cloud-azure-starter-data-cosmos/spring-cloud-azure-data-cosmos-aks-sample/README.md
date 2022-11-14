@@ -34,7 +34,7 @@ In this tutorial, you will setup and build a Spring Boot application to perform 
 
 ## Create an Azure Cosmos DB SQL API database account
 
-Use this command to create an [Azure Cosmos DB SQL API database account](manage-with-cli#create-an-azure-cosmos-db-account) using the Azure CLI.
+Use this command to create an [Azure Cosmos DB SQL API database account](manage-with-clihttps://learn.microsoft.com/azure/cosmos-db/nosql/manage-with-cli#create-an-azure-cosmos-db-account) using the Azure CLI.
 
 ```azurecli
 az cosmosdb create --name <enter account name> --resource-group <enter resource group name>

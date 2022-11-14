@@ -31,7 +31,7 @@ SLF4J is only needed if you plan to use logging, please also download an SLF4J b
 
 1. Search for your app in Azure Portal --> Azure Active Directory --> App Registrations. You should see information like the below:
 
-    ![app](/media/aad-app.png?raw=true "aad app")
+    ![app](./media/aad-app.png?raw=true "aad app")
 
 1. Review `resources/application.properties` in the repo you have cloned. 
     - Replace `<Cosmos URI>` with the URI of your Cosmos DB account

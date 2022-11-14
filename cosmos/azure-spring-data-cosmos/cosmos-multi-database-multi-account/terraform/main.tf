@@ -2,17 +2,24 @@ terraform {
   required_providers {
     azurerm  = {
       source  = "hashicorp/azurerm"
-      version = "2.99"
+      version = "3.9.0"
     }
     azurecaf = {
       source  = "aztfmod/azurecaf"
       version = "1.2.16"
+    }
+    publicip = {
+      source = "nxt-engineering/publicip"
+      version = "0.0.7"
     }
   }
 }
 
 provider "azurerm" {
   features {}
+}
+
+provider "publicip" {
 }
 
 resource "azurecaf_name" "resource_group" {
@@ -145,7 +152,8 @@ resource "azurerm_mysql_server" "mysql" {
   geo_redundant_backup_enabled      = true
   infrastructure_encryption_enabled = true
   public_network_access_enabled     = true
-  ssl_enforcement_enabled           = false
+  ssl_enforcement_enabled           = true
+  ssl_minimal_tls_version_enforced  = "TLS1_2"
 }
 
 resource "azurerm_mysql_database" "database" {
@@ -156,21 +164,15 @@ resource "azurerm_mysql_database" "database" {
   collation           = "utf8_unicode_ci"
 }
 
-data "http" "my_public_ip" {
-  url = "https://ifconfig.co/json"
-  request_headers = {
-    Accept = "application/json"
-  }
-}
 
-locals {
-  ifconfig_co_json = jsondecode(data.http.my_public_ip.body)
+data "publicip_address" "default_v4" {
+  source_ip = "0.0.0.0"
 }
 
 resource "azurerm_mysql_firewall_rule" "client_ip" {
   name                = "allowip"
   resource_group_name = azurerm_resource_group.main.name
   server_name         = azurerm_mysql_server.mysql.name
-  start_ip_address    = local.ifconfig_co_json.ip
-  end_ip_address      = local.ifconfig_co_json.ip
+  start_ip_address    = data.publicip_address.default_v4.ip
+  end_ip_address      = data.publicip_address.default_v4.ip
 }

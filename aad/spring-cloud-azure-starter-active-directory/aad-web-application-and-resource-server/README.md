@@ -1,4 +1,4 @@
-# OAuth 2.0 Sample for Azure AD Spring Boot Starter client library for Java
+# OAuth 2.0 Sample for Azure AD Spring Boot Starter
 
 ## Key concepts
 

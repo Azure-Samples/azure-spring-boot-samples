@@ -1,4 +1,4 @@
-# Azure Spring Boot Key Vault Certificates client library for Java
+# Azure Spring Boot Key Vault Certificates
 
 ## Key concepts
 This sample illustrates how to use [Azure Spring Boot Starter Key Vault Certificates ][azure_spring_boot_starter_key_vault_certificates].
@@ -145,6 +145,6 @@ azure:
 ```
 <!-- LINKS -->
 
-[azure_spring_boot_starter_key_vault_certificates]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md
-[steps_to_store_certificate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md#creating-an-azure-key-vault
+[azure_spring_boot_starter_key_vault_certificates]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.14.0/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md
+[steps_to_store_certificate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.14.0/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md#create-an-azure-key-vault
 [azure-spring-boot-sample-keyvault-certificates-server-side]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side

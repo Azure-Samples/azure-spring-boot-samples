@@ -1,4 +1,4 @@
-# Spring Cloud Azure Config Conversion Sample client library for Java
+# Spring Cloud Azure Config Conversion Sample
 
 This sample shows how to convert a Spring Cloud Application with Cosmos DB to be using App Configuration + Key Vault
 
@@ -192,7 +192,7 @@ In this section, you clone a containerized Spring Boot application and test it l
    <dependency>
      <groupId>com.azure.spring</groupId>
      <artifactId>azure-spring-cloud-appconfiguration-config</artifactId>
-     <version>2.3.0</version>
+     <version>2.8.0</version>
    </dependency>
     ```
     

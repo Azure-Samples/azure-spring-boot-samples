@@ -175,6 +175,3 @@ terraform -chdir=./terraform destroy -auto-approve
 ```shell
 terraform -chdir=terraform destroy -auto-approve
 ```
-
-<!-- LINKS -->
-[storage-queue-operation]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-integration-storage-queue/src/main/java/com/azure/spring/integration/storage/queue/StorageQueueOperation.java

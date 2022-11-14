@@ -1,4 +1,4 @@
-# Azure OAuth 2.0 Sample for Azure AD Spring Boot Starter Resource Server Obo client library for Java
+# Azure OAuth 2.0 Sample for Azure AD Spring Boot Starter Resource Server Obo
 
 ## Key concepts
 [Resource server access other resources usage] is an extension scenario of the *aad-resource-server* sample. Similarly, this sample illustrates how to protect a Java web API by restricting access to its resources to authorized accounts, and the restricted resource will access other restricted resource, such as Graph API and Custom API.
@@ -114,6 +114,6 @@ webapiB response success.
 <!-- LINKS -->
 [Azure portal]: https://portal.azure.com/
 
-[Resource server access other resources usage]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.6.0/sdk/spring/azure-spring-boot-starter-active-directory#resource-server-access-other-resources-usage
+[Resource server access other resources usage]: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-cloud-azure_v4.3.0/aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server/aad-resource-server-obo
 [aad-resource-server]: ../aad-resource-server
 [OAuth 2.0 On-Behalf-Of flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-on-behalf-of-flow

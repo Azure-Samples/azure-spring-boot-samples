@@ -27,40 +27,36 @@ resource "azurerm_resource_group" "main" {
   location = var.location
 
   tags = {
+    "spring-cloud-azure-sample" = var.sample_tag_value
     "terraform"                 = "true"
     "application-name"          = var.application_name
-    "spring-cloud-azure-sample" = var.sample_tag_value
   }
 }
 
-resource "azurecaf_name" "azurecaf_name_servicebus" {
+# =================== storage ================
+resource "azurecaf_name" "storage_account" {
   name          = var.application_name
-  resource_type = "azurerm_servicebus_namespace"
+  resource_type = "azurerm_storage_account"
   random_length = 5
   clean_input   = true
 }
 
-resource "azurerm_servicebus_namespace" "servicebus_namespace" {
-  name                = azurecaf_name.azurecaf_name_servicebus.result
-  location            = var.location
-  resource_group_name = azurerm_resource_group.main.name
-
-  sku            = var.pricing_tier
-  zone_redundant = false
+resource "azurerm_storage_account" "application" {
+  name                     = azurecaf_name.storage_account.result
+  resource_group_name      = azurerm_resource_group.main.name
+  location                 = var.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
 
   tags = {
     "spring-cloud-azure-sample" = var.sample_tag_value
+    "terraform"                 = "true"
+    "application-name"          = var.application_name
   }
 }
 
-resource "azurerm_servicebus_topic" "application" {
-  name                = "tpc001"
-  namespace_id        = azurerm_servicebus_namespace.servicebus_namespace.id
-}
-
-resource "azurerm_servicebus_subscription" "application" {
-  name                = "sub001"
-  topic_id            = azurerm_servicebus_topic.application.id
-
-  max_delivery_count  = 1
+resource "azurerm_storage_share" "application" {
+  name                 = var.share_name
+  storage_account_name = azurerm_storage_account.application.name
+  quota                = 50
 }

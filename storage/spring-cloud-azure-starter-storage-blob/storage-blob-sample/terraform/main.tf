@@ -2,7 +2,7 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "2.99"
+      version = "3.9.0"
     }
     azurecaf = {
       source  = "aztfmod/azurecaf"
@@ -47,7 +47,6 @@ resource "azurerm_storage_account" "application" {
   location                 = var.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
-  allow_blob_public_access = true
 
   tags = {
     "spring-cloud-azure-sample" = var.sample_tag_value

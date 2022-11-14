@@ -1,0 +1,44 @@
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.js"></script>
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+
+     <link th:href="@{/css/login.css}" rel="stylesheet" type="text/css"/>
+    <script th:src="@{/js/login.js}"></script>
+
+</head>
+<div class="container">
+    <div class="login login-1">
+        <header class="login--header login-1--header text-center">
+            <span class="icon icon-medium fa fa-lock"></span>
+            <h3>login</h3>
+            <span class="arrow-down login--header__arrow"></span>
+        </header>
+            <form class="login--form" name="login" id="loginForm" method="post" th:action="@{/ebooks/login}">
+                <div class="row" th:if="${loginFailed!=null}">
+                    <h4 class="text-center" th:text="${loginFailed}"></h4>
+                </div>
+            <div class="login--form__input-area input-group">
+                <span class="input-group-addon"><span class="fa fa-envelope"></span></span>
+                <input type="text" class="form-control" name="username" required/>
+            </div>
+            <div class="login--form__input-area input-group">
+                <span class="input-group-addon"><span class="fa fa-lock"></span></span>
+                <input type="password" class="form-control" name="password" required/>
+            </div>
+            <button type="submit" class="login--form__button btn btn-default" value="submit">sign in</button>
+        </form>
+        <footer class="login--footer text-center">
+            <p class="login--footer__text">dont have an account? <strong><a th:href="@{/ebooks/createAccount}">sign up</a></strong></p>
+        </footer>
+    </div>
+
+</div>
+</body>
+
+</html>

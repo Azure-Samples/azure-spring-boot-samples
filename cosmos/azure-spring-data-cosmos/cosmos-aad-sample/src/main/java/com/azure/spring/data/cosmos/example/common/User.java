@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.azure.spring.data.cosmos.example.quickstart.common;
+package com.azure.spring.data.cosmos.example.common;
 
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
@@ -9,7 +9,6 @@ import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
 public class User {
     private String id;
     private String firstName;
-
 
     @PartitionKey
     private String lastName;
@@ -25,7 +24,7 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("com.azure.spring.data.cosmos.User: %s %s, %s", firstName, lastName, id);
+        return String.format("com.azure.spring.data.cosmos.common.User: %s %s, %s", firstName, lastName, id);
     }
 
     public String getId() {

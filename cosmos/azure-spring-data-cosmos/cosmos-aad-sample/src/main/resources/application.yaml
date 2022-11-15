@@ -1,0 +1,14 @@
+spring:
+  profiles:
+    active: dev
+cosmos:
+  uri: <COSMOS_URI>
+  tenantId: <TENANT_ID>
+  clientId: <CLIENT_ID>
+  clientSecret: <CLIENT_SECRET>
+  defaultScope: https://<COSMOS_ACCOUNT>.documents.azure.com/.default
+  queryMetricsEnabled: true
+
+
+
+

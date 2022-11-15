@@ -1,22 +1,22 @@
-# Azure Cosmos DB Spring Data RBAC with AAD Sample
+# Azure Cosmos DB Spring Data RBAC with Azure AD Sample
 
-Azure Cosmos DB Spring Data RBAC with AAD Sample code.
+[Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/introduction) [Spring Data](https://spring.io/projects/spring-data) [RBAC](https://en.wikipedia.org/wiki/Role-based_access_control) with [Azure AD](https://learn.microsoft.com/azure/active-directory/fundamentals/active-directory-whatis) Sample project.
 
 ## Features
 
-This repo provides basic Spring Data sample code for Java SQL API to connect to [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/introduction) using built-in role-based access control (RBAC), and authenticating using Azure Active Directory (AAD). See instructions below on setting up the RBAC/AAD requirements to access your Cosmos DB account and run the app successfully.
+This repo provides basic Spring Data sample code for Java SQL API to connect to Azure Cosmos DB using built-in role-based access control (RBAC), and authenticating using Azure AD. See instructions below on setting up the RBAC/Azure AD requirements to access your Cosmos DB account and run the app successfully.
 
 ## Getting Started
 
 ### Prerequisites
 
-- `Java Development Kit 8` or `JDK 11` if you run the `azure-spring-data-cosmos-java-11-getting-started`. 
+- `Java Development Kit 8` or higher. 
 - An active Azure account. If you don't have one, you can sign up for a [free account](https://azure.microsoft.com/free/). Alternatively, you can use the [Azure Cosmos DB Emulator](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator) for development and testing. As emulator https certificate is self signed, you need to import its certificate to java trusted cert store, [explained here](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator-export-ssl-certificates)
+- Maven.
 - (Optional) SLF4J is a logging facade.
-- (Optional) [SLF4J binding](http://www.slf4j.org/manual.html) is used to associate a specific logging framework with SLF4J.
-- (Optional) Maven.
+- (Optional) [SLF4J binding](http://www.slf4j.org/manual.html) is used to associate a specific logging framework. with SLF4J. SLF4J is only needed if you plan to use logging, please also download an SLF4J binding which will link the SLF4J API with the logging implementation of your choice. See the [SLF4J user manual](http://www.slf4j.org/manual.html) for more information.
 
-SLF4J is only needed if you plan to use logging, please also download an SLF4J binding which will link the SLF4J API with the logging implementation of your choice. See the [SLF4J user manual](http://www.slf4j.org/manual.html) for more information.
+
 
 ### Clone this repo
 
@@ -33,12 +33,12 @@ SLF4J is only needed if you plan to use logging, please also download an SLF4J b
 
     ![app](./media/aad-app.png?raw=true "aad app")
 
-1. Review `resources/application.properties` in the repo you have cloned. 
-    - Replace `<Cosmos URI>` with the URI of your Cosmos DB account
-    - Replace `<tenantId>` with `Directory (tenant) ID` from the portal. 
-    - Replace `<clientId>` with `Application (client) ID` from the portal
-    - Replace `<clientSecret>` with the application secret value you created earlier
-    - For the value of `cosmos.defaultScope` replace the `<cosmos account>` part with the name of your Cosmos DB account (note this is used to test connection to AAD)
+1. Review `resources/application.yaml` in the repo you have cloned. 
+    - Replace `<COSMOS_URI>` with the URI of your Cosmos DB account
+    - Replace `<TENANT_ID>` with `Directory (tenant) ID` from the portal. 
+    - Replace `<CLIENT_ID>` with `Application (client) ID` from the portal
+    - Replace `<CLIENT_SECRET>` with the application secret value you created earlier
+    - For the value of `cosmos.defaultScope` replace the `<COSMOS_ACCOUNT>` part with the name of your Cosmos DB account (note this is used to test connection to AAD)
     
 ### Configure RBAC for your Cosmos DB account
 
@@ -68,7 +68,7 @@ Next we need to create a role that can access your Cosmos DB account appropriate
     accountName='<myCosmosAccount>'
     az cosmosdb sql role definition create --account-name $accountName --resource-group $resourceGroupName --body @role-definition-rw.json
     ```
-1. Now list the role definition you created to fetch it's ID: 
+1. Now list the role definition you created to fetch its ID: 
 
     ```azurecli-interactive
     az cosmosdb sql role definition list --account-name $accountName --resource-group $resourceGroupName
@@ -125,8 +125,8 @@ Next we need to create a role that can access your Cosmos DB account appropriate
     ```java
     checkAADSetup(servicePrincipal);
     ```
-    This will check access to your Cosmos DB account via AAD. If this check fails, there is an issue with AAD setup and/or connectivity to AAD. If setup is correct and there are no errors, in a production application you can remove this code.
+    This will check access to your Cosmos DB account via AAD. If this check fails, there is an issue with AAD setup and/or connectivity to AAD. If setup is correct and there are no errors, you can change spring.profiles.active to be `prod` in `application.yaml` so that prod version `SampleAppConfigurationProd.java` is used, which does not contain this check.
 
 ## Resources
 
-Please refer to azure spring data cosmos for sql api [source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cosmos/azure-spring-data-cosmos) for more information.
+Please refer to [azure spring data cosmos for sql api](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cosmos/azure-spring-data-cosmos) for more information.

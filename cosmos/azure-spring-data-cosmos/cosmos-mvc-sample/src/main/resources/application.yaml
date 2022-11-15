@@ -1,0 +1,12 @@
+spring.main.allow-circular-references: true
+server:
+  port: 81
+azure:
+  cosmos:
+    bookstore:
+      uri: 
+      key: 
+      secondaryKey:
+      storeDatabase: store
+      securityDatabase: security
+      populateQueryMetrics: if-populate-query-metrics

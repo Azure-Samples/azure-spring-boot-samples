@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.lang.Nullable;
 
@@ -29,7 +30,7 @@ import org.springframework.lang.Nullable;
 @EnableConfigurationProperties(CosmosProperties.class)
 @EnableCosmosRepositories
 @EnableReactiveCosmosRepositories
-@PropertySource("classpath:application.yaml")
+@Profile("dev")
 public class SampleAppConfiguration extends AbstractCosmosConfiguration {
     private static final Logger logger = LoggerFactory.getLogger(SampleAppConfiguration.class);
     private CosmosProperties properties;
@@ -49,7 +50,8 @@ public class SampleAppConfiguration extends AbstractCosmosConfiguration {
                 .build();
 
         //if this check fails, review error in logs and AAD setup as well as connectivity to AAD.
-        //If setup is correct and there are no errors, in a production application you can remove this code
+        //If setup is correct and there are no errors, you can change spring.profiles.active=prod 
+        //in application.yaml so that prod version is used which does not contain this check.
         checkAADSetup(servicePrincipal);
 
         return new CosmosClientBuilder()
@@ -67,7 +69,6 @@ public class SampleAppConfiguration extends AbstractCosmosConfiguration {
                 .enableQueryMetrics(properties.isQueryMetricsEnabled())
                 .build();
     }
-
     private void checkAADSetup(TokenCredential servicePrincipal) {
         TokenRequestContext context = new TokenRequestContext();
         context.addScopes(properties.getDefaultScope());

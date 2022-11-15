@@ -20,7 +20,7 @@ Sample e-commerce application built with Spring Boot (MVC on servlet stack) and 
 ### Pre-requisites
 
 - `Java Development Kit 8`. 
-- An active Azure account. If you don't have one, you can sign up for a [free account](https://azure.microsoft.com/free/). Alternatively, you can use the [Azure Cosmos DB Emulator](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator) for development and testing. As emulator https certificate is self signed, you need to import its certificate to java trusted cert store, [explained here](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator-export-ssl-certificates).
+- An active Azure account. If you don't have one, you can sign up for a [free account](https://azure.microsoft.com/free/). Alternatively, you can use the [Azure Cosmos DB Emulator](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator) for development and testing. As emulator https certificate is self-signed, you need to import its certificate to java trusted cert store, [explained here](https://docs.microsoft.com/en-us/azure/cosmos-db/local-emulator-export-ssl-certificates).
 - Maven.
 - (Optional) SLF4J is a logging facade.
 - (Optional) [SLF4J binding](http://www.slf4j.org/manual.html) is used to associate a specific logging framework with SLF4J.
@@ -30,7 +30,7 @@ Sample e-commerce application built with Spring Boot (MVC on servlet stack) and 
 
 1. git clone https://github.com/Azure-Samples/azure-spring-boot-samples.git
 1. cd cosmos/azure-spring-data-cosmos/cosmos-mvc-sample
-1. Add the `azure.cosmos.bookstore.uri` and `azure.cosmos.bookstore.key` in application.properties.
+1. Add the `azure.cosmos.bookstore.uri` and `azure.cosmos.bookstore.key` in application.yaml.
 1. mvn spring-boot:run
 1. On startup the application creates 2 databases and 4 collections between them.
 1. Access the WebApp at http://localhost:81/ebooks/index

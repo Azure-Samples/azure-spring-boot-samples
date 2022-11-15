@@ -26,7 +26,8 @@ mvn clean install
 
 1. git clone https://github.com/Azure-Samples/azure-spring-boot-samples.git
 2. cd cosmos/azure-spring-data-cosmos/cosmos-quickstart-samples
-3. mvn spring-boot:run
+3. Add environment variables `ACCOUNT_HOST` and `ACCOUNT_KEY` with Cosmos DB uri and primary key respectively (see `resources/application.yaml`).
+4. mvn spring-boot:run
 
 ## Resources
 

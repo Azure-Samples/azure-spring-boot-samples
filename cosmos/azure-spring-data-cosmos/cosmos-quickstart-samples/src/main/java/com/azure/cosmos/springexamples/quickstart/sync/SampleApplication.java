@@ -19,7 +19,7 @@ import java.util.List;
 @SpringBootApplication
 public class SampleApplication implements CommandLineRunner {
 
-    private final Logger logger = LoggerFactory.getLogger(SampleApplication.class);
+    private static final Logger logger = LoggerFactory.getLogger(SampleApplication.class);
 
     @Autowired
     private UserRepository userRepository;

@@ -105,14 +105,16 @@ az acr create --resource-group cosmosdb-springboot-aks-rg --location eastus \
 
 
 
-1. Before you run the application, update the `src/main/resources/application.properties` file with the details of your Azure Cosmos DB account.
+1. Before you run the application, update the `src/main/resources/application.yaml` file with the details of your Azure Cosmos DB account. Replace `<ACCOUNT_NAME>` with Cosmos DB account name, `<PRIMARY_KEY>` with Cosmos DB primary key, and `<DATABASE_NAME>` with a database name.
 
-   ```properties
-   azure.cosmos.uri=https://<enter cosmos db account name>.azure.com:443/
-   azure.cosmos.key=<enter cosmos db primary key>
-   azure.cosmos.database=<enter cosmos db database name>
-   azure.cosmos.queryMetricsEnabled=true
-   azure.cosmos.responseDiagnosticsEnabled=true
+   ```yaml
+    azure:
+      cosmos:
+        uri: https://<ACCOUNT_NAME>.azure.com:443/
+        key: <PRIMARY_KEY>
+        database: <DATABASE_NAME>
+        queryMetricsEnabled: true
+        responseDiagnosticsEnabled: true
    ```
 
    > [!NOTE]

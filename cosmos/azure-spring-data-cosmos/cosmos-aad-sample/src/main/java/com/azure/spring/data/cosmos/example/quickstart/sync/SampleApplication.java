@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.azure.cosmos.springexamples.quickstart.sync;
-import com.azure.cosmos.springexamples.common.User;
+package com.azure.spring.data.cosmos.example.quickstart.sync;
+import com.azure.spring.data.cosmos.example.quickstart.common.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;

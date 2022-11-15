@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.azure.cosmos.springexamples.quickstart.sync;
+package com.azure.spring.data.cosmos.example.quickstart.sync;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 

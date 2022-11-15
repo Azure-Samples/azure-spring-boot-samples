@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.azure.cosmos.springexamples.quickstart.sync;
+package com.azure.spring.data.cosmos.example.quickstart.sync;
 
 import com.azure.core.credential.AccessToken;
 import com.azure.core.credential.TokenCredential;
@@ -15,8 +15,6 @@ import com.azure.spring.data.cosmos.core.ResponseDiagnosticsProcessor;
 import com.azure.spring.data.cosmos.repository.config.EnableCosmosRepositories;
 import com.azure.spring.data.cosmos.repository.config.EnableReactiveCosmosRepositories;
 
-import reactor.core.publisher.Mono;
-
 import java.util.Arrays;
 
 import org.slf4j.Logger;
@@ -24,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.lang.Nullable;
 
@@ -31,7 +30,6 @@ import org.springframework.lang.Nullable;
 @EnableConfigurationProperties(CosmosProperties.class)
 @EnableCosmosRepositories
 @EnableReactiveCosmosRepositories
-@PropertySource("classpath:application.properties")
 public class SampleAppConfiguration extends AbstractCosmosConfiguration {
     private static final Logger logger = LoggerFactory.getLogger(SampleAppConfiguration.class);
     private CosmosProperties properties;
@@ -51,7 +49,8 @@ public class SampleAppConfiguration extends AbstractCosmosConfiguration {
                 .build();
 
         //if this check fails, review error in logs and AAD setup as well as connectivity to AAD.
-        //If setup is correct and there are no errors, in a production application you can remove this code
+        //If setup is correct and there are no errors, you can change spring.profiles.active=prod 
+        //in application.yaml so this check is avoided in production.
         checkAADSetup(servicePrincipal);
 
         return new CosmosClientBuilder()
@@ -70,6 +69,7 @@ public class SampleAppConfiguration extends AbstractCosmosConfiguration {
                 .build();
     }
 
+    @Profile("dev")
     private void checkAADSetup(TokenCredential servicePrincipal) {
         TokenRequestContext context = new TokenRequestContext();
         context.addScopes(properties.getDefaultScope());

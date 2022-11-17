@@ -1,6 +1,6 @@
 # Tutorial - Spring Boot application with Azure Cosmos DB SQL API and Azure Kubernetes Service
 
-In this tutorial, you will setup and build a Spring Boot application to perform operations on data in an Azure Cosmos DB SQL API account. You will then package the image using Docker, push it to Azure Container Registry. Finally, you will deploy to Azure Kubernetes Service and access the REST APIs exposed by the application.
+In this tutorial, you will setup and build a Spring Boot application to perform operations on data in an [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/introduction) SQL API account. You will then package the image using [Docker](https://docs.docker.com/), push it to [Azure Container Registry](https://azure.microsoft.com/products/container-registry/). Finally, you will deploy to [Azure Kubernetes Service](https://azure.microsoft.com/products/kubernetes-service/) and access the REST APIs exposed by the application.
 
 ## Pre-requisites
 
@@ -93,17 +93,13 @@ az acr create --resource-group cosmosdb-springboot-aks-rg --location eastus \
 1. Use Maven to build the application.
 
    ```bash
-   ./mvnw install
+   mvn clean install
    ```
 
 ## Run the application locally
 
 > [!NOTE]
 > If you intend to run the application on AKS, skip this section and move to [Push Docker image to Azure Container Registry](#push-docker-image-to-azure-container-registry)
-
-
-
-
 
 1. Before you run the application, update the `src/main/resources/application.yaml` file with the details of your Azure Cosmos DB account. Replace `<ACCOUNT_NAME>` with Cosmos DB account name, `<PRIMARY_KEY>` with Cosmos DB primary key, and `<DATABASE_NAME>` with a database name.
 
@@ -176,12 +172,10 @@ az acr create --resource-group cosmosdb-springboot-aks-rg --location eastus \
     > [!NOTE]
     > The database and a container (`users`) will get created automatically once you start the application.
 
-
 2. Deploy to Kubernetes and wait for the `Pod` to transition to `Running` state:
 
     ```bash
     kubectl apply -f deploy/app.yaml
-
     kubectl get pods -l=app=spring-cosmos-app -w
     ```
 

@@ -1,13 +1,11 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.azure.spring.data.cosmos.samples.quickstart.sync;
+package com.azure.spring.data.cosmos.samples.quickstart;
 
 import com.azure.cosmos.models.PartitionKey;
 import com.azure.spring.data.cosmos.samples.common.User;
-import com.azure.spring.data.cosmos.samples.quickstart.reactive.ReactiveUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -20,12 +18,13 @@ import java.util.Iterator;
 public class SampleApplication implements CommandLineRunner {
 
     private static final Logger logger = LoggerFactory.getLogger(SampleApplication.class);
-
-    @Autowired
     private UserRepository userRepository;
-
-    @Autowired
     private ReactiveUserRepository reactiveUserRepository;
+
+    public SampleApplication(UserRepository userRepository, ReactiveUserRepository reactiveUserRepository){
+        this.userRepository = userRepository;
+        this.reactiveUserRepository = reactiveUserRepository;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(SampleApplication.class, args);
@@ -39,27 +38,21 @@ public class SampleApplication implements CommandLineRunner {
         logger.info("Using sync repository");
 
         // <Delete>
-
         userRepository.deleteAll();
-
         // </Delete>
 
         // <Create>
-
         logger.info("Saving user : {}", testUser1);
         userRepository.save(testUser1);
-
         // </Create>
 
         logger.info("Saving user : {}", testUser2);
         userRepository.save(testUser2);
 
-        // <Read>        
-        
+        // <Read>
         // This is a point read. See https://aka.ms/PointReadsInSpring for more information on the difference between point reads and queries.
         final User resultPointRead = userRepository.findById(testUser1.getId(), new PartitionKey(testUser1.getLastName())).get();
         logger.info("Found user (point read) : {}", resultPointRead);
-        
         // </Read>        
         
         // <Query>
@@ -81,7 +74,7 @@ public class SampleApplication implements CommandLineRunner {
         ArrayList<String> lastNames = new ArrayList<String>();
         lastNames.add("testLastName1");
         lastNames.add("testLastName2");
-        Iterator<User> usersIterator2 = userRepository.getUsersByLastNameList(lastNames).iterator();
+        Iterator<User> usersIterator2 = userRepository.getUsersByLastNames(lastNames).iterator();
         while (usersIterator2.hasNext()) {
             logger.info("user is : {}", usersIterator2.next());
         }
@@ -99,7 +92,6 @@ public class SampleApplication implements CommandLineRunner {
             logger.info("user is : {}", u);
             return u;
         }).subscribe();
-
         // </Query>
     }
 }

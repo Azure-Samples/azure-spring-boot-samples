@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.azure.spring.data.cosmos.samples.quickstart.sync;
+package com.azure.spring.data.cosmos.samples.quickstart;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
@@ -12,6 +12,8 @@ public class CosmosProperties {
     private String key;
 
     private String secondaryKey;
+
+    private String databaseName;
 
     private boolean queryMetricsEnabled;
 
@@ -37,6 +39,14 @@ public class CosmosProperties {
 
     public void setSecondaryKey(String secondaryKey) {
         this.secondaryKey = secondaryKey;
+    }
+
+    public void setDatabaseName(String databaseName) {
+        this.databaseName = databaseName;
+    }
+
+    public String getDatabaseName() {
+        return databaseName;
     }
 
     public boolean isQueryMetricsEnabled() {

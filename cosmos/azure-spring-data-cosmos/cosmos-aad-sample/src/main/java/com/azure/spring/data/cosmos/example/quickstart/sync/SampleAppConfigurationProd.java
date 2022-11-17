@@ -73,7 +73,7 @@ public class SampleAppConfigurationProd extends AbstractCosmosConfiguration {
 
     @Override
     protected String getDatabaseName() {
-        return "testdb";
+        return properties.getDatabaseName();
     }
 
     private static class ResponseDiagnosticsProcessorImplementation implements ResponseDiagnosticsProcessor {

@@ -4,7 +4,7 @@ package com.azure.spring.data.cosmos.example.quickstart.sync;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "cosmos")
+@ConfigurationProperties(prefix = "spring.data.cosmos")
 public class CosmosProperties {
 
     private String uri;
@@ -12,6 +12,7 @@ public class CosmosProperties {
     private String tenantId;
     private String clientId;
     private String clientSecret;
+    private String databaseName;
     private boolean queryMetricsEnabled;
 
     public String getUri() {
@@ -52,6 +53,14 @@ public class CosmosProperties {
 
     public void setClientSecret(String clientSecret) {
         this.clientSecret = clientSecret;
+    }
+
+    public void setDatabaseName(String databaseName) {
+        this.databaseName = databaseName;
+    }
+
+    public String getDatabaseName() {
+        return databaseName;
     }
 
     public boolean isQueryMetricsEnabled() {

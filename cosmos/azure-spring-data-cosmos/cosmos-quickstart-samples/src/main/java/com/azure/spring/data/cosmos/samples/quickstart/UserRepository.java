@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.azure.spring.data.cosmos.samples.quickstart.sync;
+package com.azure.spring.data.cosmos.samples.quickstart;
 
 import com.azure.spring.data.cosmos.samples.common.User;
 import com.azure.spring.data.cosmos.repository.CosmosRepository;
@@ -23,7 +23,7 @@ public interface UserRepository extends CosmosRepository<User, String> {
 
     // Get all records where last name is in a given array (equivalent to using IN)
     @Query(value = "select * from c where ARRAY_CONTAINS(@lastNames, c.lastName)")
-    List<User> getUsersByLastNameList(@Param("lastNames") List<String> lastNames);
+    List<User> getUsersByLastNames(@Param("lastNames") List<String> lastNames);
 
     // Query for equality using ==
     @Query(value = "SELECT * FROM c WHERE c.id = @documentId")

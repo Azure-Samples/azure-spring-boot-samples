@@ -1,4 +1,4 @@
-package com.azure.cosmosdb.demo;
+package spring.cloud.azure.starter.data.cosmos.sample.aks;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

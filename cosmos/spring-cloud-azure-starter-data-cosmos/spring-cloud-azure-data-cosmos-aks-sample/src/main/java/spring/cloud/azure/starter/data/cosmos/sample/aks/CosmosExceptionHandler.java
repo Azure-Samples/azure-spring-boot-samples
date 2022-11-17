@@ -1,4 +1,4 @@
-package com.azure.cosmosdb.demo;
+package spring.cloud.azure.starter.data.cosmos.sample.aks;
 
 import com.azure.cosmos.CosmosException;
 import org.springframework.core.Ordered;

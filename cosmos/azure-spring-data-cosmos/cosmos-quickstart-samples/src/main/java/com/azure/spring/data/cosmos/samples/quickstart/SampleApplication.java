@@ -1,9 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.azure.cosmos.springexamples.quickstart.sync;
+package com.azure.spring.data.cosmos.samples.quickstart.sync;
 
 import com.azure.cosmos.models.PartitionKey;
-import com.azure.cosmos.springexamples.common.User;
+import com.azure.spring.data.cosmos.samples.common.User;
+import com.azure.spring.data.cosmos.samples.quickstart.reactive.ReactiveUserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +15,6 @@ import reactor.core.publisher.Flux;
 
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
 
 @SpringBootApplication
 public class SampleApplication implements CommandLineRunner {

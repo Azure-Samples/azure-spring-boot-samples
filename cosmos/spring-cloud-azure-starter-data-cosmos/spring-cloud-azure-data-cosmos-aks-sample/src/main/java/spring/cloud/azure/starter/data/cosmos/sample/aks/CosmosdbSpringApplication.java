@@ -1,4 +1,4 @@
-package com.azure.cosmosdb.demo;
+package spring.cloud.azure.starter.data.cosmos.sample.aks;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

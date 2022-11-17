@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.azure.cosmos.springexamples.quickstart.sync;
+package com.azure.spring.data.cosmos.samples.quickstart.sync;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "cosmos")
+@ConfigurationProperties(prefix = "spring.data.cosmos")
 public class CosmosProperties {
 
     private String uri;

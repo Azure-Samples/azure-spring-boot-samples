@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.spring.cosmos.ebookstore.cosmos;
+package com.azure.spring.data.cosmos.sample.ebookstore.cosmos;
 
-import com.spring.cosmos.ebookstore.model.book.Book;
-import com.spring.cosmos.ebookstore.model.book.BookRepository;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.book.Book;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.book.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -13,12 +13,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Component
-public class LoadBooks {
+public class BookRepositoryLoader {
 
     private BookRepository bookRepository;
 
-    @Autowired
-    public LoadBooks(BookRepository bookRepository) {
+    public BookRepositoryLoader(BookRepository bookRepository) {
         this.bookRepository = bookRepository;
     }
 

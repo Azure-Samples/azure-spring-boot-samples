@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.spring.cosmos.ebookstore.model.user;
+package com.azure.spring.data.cosmos.sample.ebookstore.model.user;
 
 public class CreditCard {
     private String number;

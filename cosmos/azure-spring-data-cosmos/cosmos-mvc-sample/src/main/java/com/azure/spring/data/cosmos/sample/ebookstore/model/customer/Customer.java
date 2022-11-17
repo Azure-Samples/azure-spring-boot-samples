@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.spring.cosmos.ebookstore.model.user;
+package com.azure.spring.data.cosmos.sample.ebookstore.model.user;
 
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.CosmosIndexingPolicy;
@@ -28,11 +28,11 @@ public class Customer {
         this.name = name;
     }
 
-    public java.lang.String getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(java.lang.String id) {
+    public void setId(String id) {
         this.id = id;
     }
 

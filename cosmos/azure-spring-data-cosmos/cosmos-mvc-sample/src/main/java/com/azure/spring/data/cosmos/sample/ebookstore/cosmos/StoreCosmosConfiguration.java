@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.spring.cosmos.ebookstore.cosmos;
+package com.azure.spring.data.cosmos.sample.ebookstore.cosmos;
 
 import com.azure.cosmos.CosmosAsyncClient;
 import com.azure.cosmos.CosmosClientBuilder;
@@ -27,12 +27,12 @@ import org.springframework.lang.Nullable;
 @EnableCosmosAuditing
 public class StoreCosmosConfiguration extends AbstractCosmosConfiguration {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private static final Logger logger = LoggerFactory.getLogger(StoreCosmosConfiguration.class);
 
     @Autowired(required = false)
     private IsNewAwareAuditingHandler cosmosAuditingHandler;
     @Autowired
-    @Qualifier("bookStoreConnectionConfiguration")
+    @Qualifier("bookStoreConnectionProperties")
     CosmosProperties bookStoreConnectionProperties;
 
     @Override
@@ -43,7 +43,7 @@ public class StoreCosmosConfiguration extends AbstractCosmosConfiguration {
 
     //1. Read Configuration
     @ConfigurationProperties(prefix = "azure.cosmos.bookstore")
-    @Bean("bookStoreConnectionConfiguration")
+    @Bean("bookStoreConnectionProperties")
     public CosmosProperties bookStoreDataSourceConfiguration() {
         return new CosmosProperties();
     }
@@ -72,16 +72,16 @@ public class StoreCosmosConfiguration extends AbstractCosmosConfiguration {
     }
 
     //5. Create cosmos template for Store Database
-    @EnableCosmosRepositories(basePackages = {"com.spring.cosmos.ebookstore.model.book","com.spring.cosmos.ebookstore.model.cart", "com.spring.cosmos.ebookstore.model.order"})
+    @EnableCosmosRepositories(basePackages = {"com.azure.spring.data.cosmos.sample.ebookstore.model.book","com.azure.spring.data.cosmos.sample.ebookstore.model.cart", "com.azure.spring.data.cosmos.sample.ebookstore.model.order"})
     public class StoreDataBaseConfiguration {
     }
 
-    //5. Create cosmos template for Security Database
-    @EnableCosmosRepositories(basePackages = {"com.spring.cosmos.ebookstore.model.user"}, cosmosTemplateRef = "securityDatabaseCosmosTemplate")
+    //6. Create cosmos template for Security Database
+    @EnableCosmosRepositories(basePackages = {"com.azure.spring.data.cosmos.sample.ebookstore.model.customer"}, cosmosTemplateRef = "securityDatabaseCosmosTemplate")
     public class SecurityDataBaseConfiguration {
         @Bean
-        public CosmosTemplate securityDatabaseCosmosTemplate(@Qualifier("bookStoreConnectionConfiguration") CosmosProperties bookStoreConnectionConfiguration, @Qualifier("bookStoreCosmosAsyncClient") CosmosAsyncClient client, @Qualifier("bookStoreCosmosConfig") CosmosConfig cosmosConfig, MappingCosmosConverter mappingCosmosConverter) {
-            return new CosmosTemplate(client, bookStoreConnectionConfiguration.getSecurityDatabase(), cosmosConfig, mappingCosmosConverter, cosmosAuditingHandler);
+        public CosmosTemplate securityDatabaseCosmosTemplate(@Qualifier("bookStoreConnectionProperties") CosmosProperties bookStoreConnectionProperties, @Qualifier("bookStoreCosmosAsyncClient") CosmosAsyncClient client, @Qualifier("bookStoreCosmosConfig") CosmosConfig cosmosConfig, MappingCosmosConverter mappingCosmosConverter) {
+            return new CosmosTemplate(client, bookStoreConnectionProperties.getSecurityDatabase(), cosmosConfig, mappingCosmosConverter, cosmosAuditingHandler);
         }
     }
 

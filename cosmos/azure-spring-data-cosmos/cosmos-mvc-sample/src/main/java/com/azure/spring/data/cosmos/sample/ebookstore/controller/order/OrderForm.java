@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.spring.cosmos.ebookstore.controller.order;
+package com.azure.spring.data.cosmos.sample.ebookstore.controller.order;
 
-import com.spring.cosmos.ebookstore.model.order.LineItem;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.order.LineItem;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

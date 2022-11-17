@@ -22,7 +22,7 @@ public class BookRepositoryLoader {
     }
 
     @PostConstruct
-    public void loadBooks() {
+    public void loadBooksToBookRepository() {
         List<Book> books = new ArrayList<Book>();
         books.add(new Book("1", "Databases", "99847", "Seven Databases in Seven Weeks", "Luc Perkins", "A Guide to Modern Databases and the NoSQL Movement", new BigDecimal(47.00), new BigDecimal(43.00), "/images/SevenDatabasesInSevenWeeks.jpg"));
         books.add(new Book("2", "Programming Languages", "88297", "The Rust Programming Language", "Steve Klabnik", "The official book on the Rust programming language", new BigDecimal(55.00), new BigDecimal(49.00), "/images/RustProgrammingLanguage.jpg"));

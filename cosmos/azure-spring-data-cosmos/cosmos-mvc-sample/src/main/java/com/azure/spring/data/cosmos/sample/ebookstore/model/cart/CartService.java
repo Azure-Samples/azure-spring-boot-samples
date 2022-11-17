@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.spring.cosmos.ebookstore.model.cart;
+package com.azure.spring.data.cosmos.sample.ebookstore.model.cart;
 
 public interface CartService {
     public void removeItemFromCart(String cartId, String itemId);

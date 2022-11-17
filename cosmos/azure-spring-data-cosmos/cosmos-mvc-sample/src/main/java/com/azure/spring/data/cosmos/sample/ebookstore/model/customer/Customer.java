@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.azure.spring.data.cosmos.sample.ebookstore.model.user;
+package com.azure.spring.data.cosmos.sample.ebookstore.model.customer;
 
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.CosmosIndexingPolicy;
@@ -18,16 +18,11 @@ public class Customer {
     private Address address;
     private Contact contact;
     private CreditCard creditCard;
-
-    public Customer() {
-    }
-
     public Customer(String id, String password, Name name) {
         this.id = id;
         this.password = password;
         this.name = name;
     }
-
     public String getId() {
         return id;
     }
@@ -35,7 +30,6 @@ public class Customer {
     public void setId(String id) {
         this.id = id;
     }
-
     public String getPassword() {
         return password;
     }
@@ -67,14 +61,10 @@ public class Customer {
     public void setContact(Contact contact) {
         this.contact = contact;
     }
-
     public CreditCard getCreditCard() {
         return creditCard;
     }
-
     public void setCreditCard(CreditCard creditCard) {
         this.creditCard = creditCard;
     }
-
-
 }

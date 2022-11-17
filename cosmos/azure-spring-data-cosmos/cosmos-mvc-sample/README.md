@@ -1,12 +1,12 @@
 # Spring MVC with Azure Cosmos DB - sample
-Sample e-commerce application built with Spring Boot (MVC on servlet stack) and "Spring Data Cosmos" client library for Azure Cosmos DB SQL API.
+Sample e-commerce application built with Spring Boot (MVC on servlet stack) and [Spring Data Cosmos Client Library](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cosmos/azure-spring-data-cosmos) for [Azure Cosmos DB SQL API](https://learn.microsoft.com/azure/cosmos-db/introduction).
 
 ![Image](BookStore.png)
 
 ## Features
 
 - @Query annotation for finder method
-- Collection configuration with annotations(Indexing, RUs).
+- Collection configuration with annotations(Indexing, [RUs](https://learn.microsoft.com/azure/cosmos-db/request-units)).
 - Multiple database and collections accessed from single application.
 - Auto generating UUID based IDs.
 - Spring Data Repository pattern.
@@ -24,15 +24,20 @@ Sample e-commerce application built with Spring Boot (MVC on servlet stack) and 
 - Maven.
 - (Optional) SLF4J is a logging facade.
 - (Optional) [SLF4J binding](http://www.slf4j.org/manual.html) is used to associate a specific logging framework with SLF4J.
-- Clone the repo.
 
 ### Installation
 
-1. git clone https://github.com/Azure-Samples/azure-spring-boot-samples.git
-1. cd cosmos/azure-spring-data-cosmos/cosmos-mvc-sample
+1. Clone this repo and change working directory:
+    ```bash
+    git clone https://github.com/Azure-Samples/azure-spring-boot-samples.git
+    cd cosmos/azure-spring-data-cosmos/cosmos-mvc-sample
+    ```
 1. Add the `azure.cosmos.bookstore.uri` and `azure.cosmos.bookstore.key` in application.yaml.
-1. mvn spring-boot:run
-1. On startup the application creates 2 databases and 4 collections between them.
+1. Compile and run:
+    ```bash
+    mvn spring-boot:run
+    ```
+1. On startup the application creates 2 databases, with 3 collections in the "store" database, and one collection in the "security" database.
 1. Access the WebApp at http://localhost:81/ebooks/index
 1. You will have to create user account to access the application functionality. The registration process asks for email ID, which will be used as the login ID. Any email address is fine as long as it has a valid format.
 1. If you prefer docker:

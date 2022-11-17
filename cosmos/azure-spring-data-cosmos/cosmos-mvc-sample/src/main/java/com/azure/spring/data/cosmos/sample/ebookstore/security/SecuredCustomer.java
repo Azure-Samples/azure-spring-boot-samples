@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.spring.cosmos.ebookstore.security;
+package com.azure.spring.data.cosmos.sample.ebookstore.security;
 
-import com.spring.cosmos.ebookstore.model.user.Address;
-import com.spring.cosmos.ebookstore.model.user.CreditCard;
-import com.spring.cosmos.ebookstore.model.user.Customer;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.customer.Address;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.customer.CreditCard;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.customer.Customer;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

@@ -1,8 +1,8 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.azure.spring.data.cosmos.sample.ebookstore.model.user;
+package com.azure.spring.data.cosmos.sample.ebookstore.model.customer;
 
-import org.apache.commons.lang3.StringUtils;
+import org.springframework.util.StringUtils;
 
 public class Address {
     private String street;
@@ -10,7 +10,6 @@ public class Address {
     private String state;
     private String zip;
     private String Country;
-
     public Address(String street, String city, String state, String zip, String country) {
         this.street = street;
         this.city = StringUtils.capitalize(city);
@@ -18,29 +17,19 @@ public class Address {
         this.zip = zip;
         Country = StringUtils.capitalize(country);
     }
-
     public String getStreet() {
         return street;
     }
-
-
     public String getCity() {
         return city;
     }
-
-
     public String getState() {
         return state;
     }
-
-
     public String getZip() {
         return zip;
     }
-
-
     public String getCountry() {
         return Country;
     }
-
 }

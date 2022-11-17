@@ -1,21 +1,24 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.spring.cosmos.ebookstore.controller.order;
+package com.azure.spring.data.cosmos.sample.ebookstore.controller.order;
 
 import com.azure.cosmos.models.PartitionKey;
-import com.spring.cosmos.ebookstore.model.cart.CartService;
-import com.spring.cosmos.ebookstore.model.cart.Cart;
-import com.spring.cosmos.ebookstore.model.order.OrderRepository;
-import com.spring.cosmos.ebookstore.model.user.Address;
-import com.spring.cosmos.ebookstore.model.user.CreditCard;
-import com.spring.cosmos.ebookstore.model.user.Customer;
-import com.spring.cosmos.ebookstore.model.user.CustomerRepository;
-import com.spring.cosmos.ebookstore.security.SecuredCustomer;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.cart.Cart;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.cart.CartService;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.order.OrderRepository;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.customer.Address;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.customer.CreditCard;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.customer.Customer;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.customer.CustomerRepository;
+import com.azure.spring.data.cosmos.sample.ebookstore.security.SecuredCustomer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpSession;
 
@@ -26,7 +29,6 @@ public class OrderController {
     private final CustomerRepository customerRepository;
     private final OrderHelper orderHelper;
 
-    @Autowired
     public OrderController(OrderRepository orderRepository, CartService cartService,CustomerRepository customerRepository, OrderHelper orderHelper) {
         this.orderRepository = orderRepository;
         this.cartService = cartService;
@@ -36,8 +38,7 @@ public class OrderController {
 
     @PostMapping(value = "/ebooks/order/create")
     public String createOrder(OrderForm orderForm, Model model, HttpSession session, @AuthenticationPrincipal SecuredCustomer securedUser) {
-
-        orderRepository.save(orderHelper.getOrderFromOrderForm(orderForm));
+        orderRepository.save(orderHelper.createOrder(orderForm));
         if (orderForm.getStreetAddress() != null) {
             Customer user = getCustomerUsingOrderFormDetails(orderForm);
             customerRepository.save(user);
@@ -47,13 +48,12 @@ public class OrderController {
         cartService.deleteCart(session.getId(), session.getId());
         model.addAttribute("customer", securedUser);
         return "orderconfirmation";
-
     }
 
     @PostMapping(value = "/ebooks/order/checkout")
     public String checkOut(@ModelAttribute Cart cart, Model model, HttpSession session, @AuthenticationPrincipal SecuredCustomer securedUser) {
         model.addAttribute("customer", securedUser);
-        model.addAttribute("order", orderHelper.getOrder(cart, securedUser.getUsername()));
+        model.addAttribute("order", orderHelper.createOrder(cart, securedUser.getUsername()));
         model.addAttribute("cartItemCount", cartService.getNumberOfItemsInTheCart(session.getId()));
         return "checkout";
     }

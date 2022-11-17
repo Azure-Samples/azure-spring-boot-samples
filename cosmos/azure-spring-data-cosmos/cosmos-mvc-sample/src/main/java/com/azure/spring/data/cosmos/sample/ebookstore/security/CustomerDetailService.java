@@ -1,10 +1,10 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.spring.cosmos.ebookstore.security;
+package com.azure.spring.data.cosmos.sample.ebookstore.security;
 
 import com.azure.cosmos.models.PartitionKey;
-import com.spring.cosmos.ebookstore.model.user.Customer;
-import com.spring.cosmos.ebookstore.model.user.CustomerRepository;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.customer.Customer;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.customer.CustomerRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +16,9 @@ import org.springframework.stereotype.Service;
 @Service
 public class CustomerDetailService implements UserDetailsService {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
+    private final static Logger logger = LoggerFactory.getLogger(CustomerDetailService.class);
     private CustomerRepository customerRepository;
 
-    @Autowired
     public CustomerDetailService(CustomerRepository userRepository) {
         this.customerRepository = userRepository;
     }

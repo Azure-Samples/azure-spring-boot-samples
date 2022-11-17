@@ -1,12 +1,12 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.spring.cosmos.ebookstore.model.order;
+package com.azure.spring.data.cosmos.sample.ebookstore.model.order;
 
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.CosmosIndexingPolicy;
 import com.azure.spring.data.cosmos.core.mapping.GeneratedValue;
 import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
-import org.springframework.data.annotation.*;
+import org.springframework.data.annotation.Id;
 
 import java.math.BigDecimal;
 import java.util.List;

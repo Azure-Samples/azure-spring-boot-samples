@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.spring.cosmos.ebookstore.controller.customer;
+package com.azure.spring.data.cosmos.sample.ebookstore.controller.customer;
 
 public class CustomerForm {
 

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.spring.cosmos.ebookstore.model.cart;
+package com.azure.spring.data.cosmos.sample.ebookstore.model.cart;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -8,13 +8,13 @@ import java.math.BigDecimal;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CartItem {
-    String id;
-    String title;
+    private String id;
+    private String title;
     int quantity;
-    BigDecimal price;
-    String image;
-    String description;
-    String author;
+    private BigDecimal price;
+    private String image;
+    private String description;
+    private String author;
 
     public String getId() {
         return id;

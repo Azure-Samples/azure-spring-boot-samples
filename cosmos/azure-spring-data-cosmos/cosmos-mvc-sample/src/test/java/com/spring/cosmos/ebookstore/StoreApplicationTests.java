@@ -1,4 +1,4 @@
-package com.azure.spring.data.cosmos.sample.ebookstore;
+package com.spring.cosmos.ebookstore;
 
 import org.junit.jupiter.api.Test;
 

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.spring.cosmos.ebookstore.model.cart;
+package com.azure.spring.data.cosmos.sample.ebookstore.model.cart;
 
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.CosmosIndexingPolicy;
@@ -19,12 +19,9 @@ public class Cart {
     private String id;
     private BigDecimal subTotal;
     private List<CartItem> items;
-
-
     public Cart() {
         this.items = new ArrayList<>();
     }
-
     public Cart(String id) {
         this.id = id;
     }
@@ -44,13 +41,10 @@ public class Cart {
     public void setItems(List<CartItem> items) {
         this.items = items;
     }
-
     public BigDecimal getSubTotal() {
         return subTotal;
     }
-
     public void setSubTotal(BigDecimal subTotal) {
         this.subTotal = subTotal;
     }
-
 }

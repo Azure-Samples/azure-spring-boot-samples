@@ -1,9 +1,9 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.spring.cosmos.ebookstore.controller.order;
-import com.spring.cosmos.ebookstore.model.cart.Cart;
-import com.spring.cosmos.ebookstore.model.order.LineItem;
-import com.spring.cosmos.ebookstore.model.order.Order;
+package com.azure.spring.data.cosmos.sample.ebookstore.controller.order;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.cart.Cart;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.order.LineItem;
+import com.azure.spring.data.cosmos.sample.ebookstore.model.order.Order;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.List;
 @Service
 public class OrderHelper {
 
-    Order getOrder(Cart cart, String customerId) {
+    Order createOrder(Cart cart, String customerId) {
         Order order = new Order();
         order.setCustomerId(customerId);
         order.setStatus("SHIPPED");
@@ -35,7 +35,7 @@ public class OrderHelper {
         return order;
     }
 
-    Order getOrderFromOrderForm(OrderForm orderForm) {
+    Order createOrder(OrderForm orderForm) {
         Order order = new Order();
         order.setCustomerId(orderForm.getCustomerId());
         order.setStatus("RECEIVED");

@@ -1,6 +1,6 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
-package com.spring.cosmos.ebookstore.cosmos;
+package com.azure.spring.data.cosmos.sample.ebookstore.cosmos;
 
 public class CosmosProperties {
     private String uri;

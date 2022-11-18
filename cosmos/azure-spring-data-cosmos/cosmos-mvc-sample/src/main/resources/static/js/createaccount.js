@@ -1,6 +1,6 @@
 $(function() {
 
-  $("form[name='createaccount']").validate({
+  $("form[name='create-account']").validate({
     // validation rules
     rules: {
       firstName: "required",

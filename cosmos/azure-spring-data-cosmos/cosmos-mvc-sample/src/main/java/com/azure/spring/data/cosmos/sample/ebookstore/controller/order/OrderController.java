@@ -10,8 +10,7 @@ import com.azure.spring.data.cosmos.sample.ebookstore.model.customer.Address;
 import com.azure.spring.data.cosmos.sample.ebookstore.model.customer.CreditCard;
 import com.azure.spring.data.cosmos.sample.ebookstore.model.customer.Customer;
 import com.azure.spring.data.cosmos.sample.ebookstore.model.customer.CustomerRepository;
-import com.azure.spring.data.cosmos.sample.ebookstore.security.SecuredCustomer;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.azure.spring.data.cosmos.sample.ebookstore.security.EBookStoreUserDetails;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,7 +36,7 @@ public class OrderController {
     }
 
     @PostMapping(value = "/ebooks/order/create")
-    public String createOrder(OrderForm orderForm, Model model, HttpSession session, @AuthenticationPrincipal SecuredCustomer securedUser) {
+    public String createOrder(OrderForm orderForm, Model model, HttpSession session, @AuthenticationPrincipal EBookStoreUserDetails securedUser) {
         orderRepository.save(orderHelper.createOrder(orderForm));
         if (orderForm.getStreetAddress() != null) {
             Customer user = getCustomerUsingOrderFormDetails(orderForm);
@@ -51,7 +50,7 @@ public class OrderController {
     }
 
     @PostMapping(value = "/ebooks/order/checkout")
-    public String checkOut(@ModelAttribute Cart cart, Model model, HttpSession session, @AuthenticationPrincipal SecuredCustomer securedUser) {
+    public String checkOut(@ModelAttribute Cart cart, Model model, HttpSession session, @AuthenticationPrincipal EBookStoreUserDetails securedUser) {
         model.addAttribute("customer", securedUser);
         model.addAttribute("order", orderHelper.createOrder(cart, securedUser.getUsername()));
         model.addAttribute("cartItemCount", cartService.getNumberOfItemsInTheCart(session.getId()));
@@ -60,9 +59,9 @@ public class OrderController {
 
 
     @GetMapping(value = "/ebooks/order/customer/{customerId}")
-    public String getCustomerOrders(@PathVariable String customerId, Model model, HttpSession session, @AuthenticationPrincipal SecuredCustomer securedUser) {
+    public String getCustomerOrders(@PathVariable String customerId, Model model, HttpSession session, @AuthenticationPrincipal EBookStoreUserDetails securedUser) {
         model.addAttribute("customer", securedUser);
-        model.addAttribute("orders", orderRepository.getOrdersByCustomerId(customerId));
+        model.addAttribute("orders", orderRepository.getOrdersByCustomerIdOrderByTimestamp(customerId));
         model.addAttribute("cartItemCount", cartService.getNumberOfItemsInTheCart(session.getId()));
         return "orders";
     }

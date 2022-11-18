@@ -5,10 +5,9 @@ package com.azure.spring.data.cosmos.sample.ebookstore.controller.cart;
 import com.azure.spring.data.cosmos.sample.ebookstore.model.cart.Cart;
 import com.azure.spring.data.cosmos.sample.ebookstore.model.cart.CartItem;
 import com.azure.spring.data.cosmos.sample.ebookstore.model.cart.CartService;
-import com.azure.spring.data.cosmos.sample.ebookstore.security.SecuredCustomer;
+import com.azure.spring.data.cosmos.sample.ebookstore.security.EBookStoreUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,7 +37,7 @@ public class CartController {
     }
 
     @GetMapping(value = "/ebooks/cart")
-    public String getCart(Model model, HttpSession session, @AuthenticationPrincipal SecuredCustomer securedUser) {
+    public String getCart(Model model, HttpSession session, @AuthenticationPrincipal EBookStoreUserDetails securedUser) {
         Cart cart = cartService.getCart(session.getId());
         model.addAttribute("customer", securedUser);
         model.addAttribute("cart", cart);

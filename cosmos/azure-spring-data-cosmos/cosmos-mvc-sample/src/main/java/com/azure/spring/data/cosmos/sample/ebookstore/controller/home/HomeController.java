@@ -5,10 +5,9 @@ package com.azure.spring.data.cosmos.sample.ebookstore.controller.home;
 import com.azure.spring.data.cosmos.sample.ebookstore.model.book.BookRepositoryAsync;
 import com.azure.spring.data.cosmos.sample.ebookstore.model.book.Response;
 import com.azure.spring.data.cosmos.sample.ebookstore.model.cart.CartService;
-import com.azure.spring.data.cosmos.sample.ebookstore.security.SecuredCustomer;
+import com.azure.spring.data.cosmos.sample.ebookstore.security.EBookStoreUserDetails;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,14 +33,8 @@ public class HomeController {
 
 
     @RequestMapping(value = "/ebooks/index", method = { RequestMethod.GET, RequestMethod.POST })
-    public String home(Model model, HttpSession session, @AuthenticationPrincipal SecuredCustomer securedUser, @RequestParam(required=false, name="category_name") String category) {
-
-        if (category != null && (!category.equals("All types"))) {
-            model.addAttribute("response", bookRepository.getBooks(REQUEST_PREFERRED_PAGE_SIZE, REQUEST_PAGES_TO_RETURN, category));
-        }
-        else{
-            model.addAttribute("response", bookRepository.getBooks(REQUEST_PREFERRED_PAGE_SIZE, REQUEST_PAGES_TO_RETURN));
-        }
+    public String home(Model model, HttpSession session, @AuthenticationPrincipal EBookStoreUserDetails securedUser, @RequestParam(required=false, name="category_name") String category) {
+        model.addAttribute("response", bookRepository.getBooks(REQUEST_PREFERRED_PAGE_SIZE, REQUEST_PAGES_TO_RETURN, category));
         model.addAttribute("cartItemCount", cartService.getNumberOfItemsInTheCart(session.getId()));
         model.addAttribute("customer", securedUser);
         model.addAttribute("category", category);
@@ -57,7 +50,7 @@ public class HomeController {
     }
 
     @GetMapping(value = "/ebooks/login")
-    public static final String login(Model model,@AuthenticationPrincipal SecuredCustomer securedUser, @RequestParam(required=false, name="category_name") String category) {
+    public static final String login(Model model, @AuthenticationPrincipal EBookStoreUserDetails securedUser, @RequestParam(required=false, name="category_name") String category) {
         if(securedUser == null) {
             return "login";
         }
@@ -75,6 +68,6 @@ public class HomeController {
 
     @GetMapping(value = "/ebooks/createAccount")
     public static final String createAccount(Model model) {
-        return "createaccount";
+        return "create-account";
     }
 }

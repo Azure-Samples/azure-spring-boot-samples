@@ -61,16 +61,16 @@ Next we need to create a role that can access your Cosmos DB account appropriate
     }
     ```
  
-1. Upload the JSON file to Azure CLI, then run the below to create the role, replacing `<myResourceGroup>` and `<myCosmosAccount>` with the resource group name and Cosmos DB account name respectively:
+1. Upload the JSON file to [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli), then run the below to create the role, replacing `<myResourceGroup>` and `<myCosmosAccount>` with the resource group name and Cosmos DB account name respectively:
 
-    ```azurecli-interactive
+    ```shell
     resourceGroupName='<myResourceGroup>'
     accountName='<myCosmosAccount>'
     az cosmosdb sql role definition create --account-name $accountName --resource-group $resourceGroupName --body @role-definition-rw.json
     ```
 1. Now list the role definition you created to fetch its ID: 
 
-    ```azurecli-interactive
+    ```shell
     az cosmosdb sql role definition list --account-name $accountName --resource-group $resourceGroupName
     ```
 
@@ -106,7 +106,7 @@ Next we need to create a role that can access your Cosmos DB account appropriate
 
 1. Now create a role assignment. Replace the `<aadPrincipalId>` with `Object ID` you recorded above (note this is **NOT** the same as Object ID visible from the app registrations view you saw earlier). Also replace `<myResourceGroup>` and `<myCosmosAccount>` accordingly in the below. Replace `roleDefinitionId>` with the value fetched from running the above command. Then run in Azure CLI:
 
-    ```azurecli-interactive
+    ```shell
     resourceGroupName='<myResourceGroup>'
     accountName='<myCosmosAccount>'
     readOnlyRoleDefinitionId = '<roleDefinitionId>' # as fetched above

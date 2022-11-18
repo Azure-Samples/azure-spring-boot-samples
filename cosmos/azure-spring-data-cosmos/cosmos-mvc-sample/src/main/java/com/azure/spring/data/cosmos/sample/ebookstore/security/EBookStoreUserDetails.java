@@ -10,10 +10,10 @@ import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
 
-public class SecuredCustomer implements UserDetails {
+public class EBookStoreUserDetails implements UserDetails {
     private Customer customer;
 
-    public SecuredCustomer(Customer customer) {
+    public EBookStoreUserDetails(Customer customer) {
         this.customer = customer;
     }
 

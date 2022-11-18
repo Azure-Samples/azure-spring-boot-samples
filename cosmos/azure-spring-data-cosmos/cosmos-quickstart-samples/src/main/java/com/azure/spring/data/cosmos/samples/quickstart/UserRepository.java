@@ -78,18 +78,11 @@ public interface UserRepository extends CosmosRepository<User, String> {
     List<User> getUsersWithSingleJoin();
 
     // Query with two joins
-    @Query(value = "SELECT f.id as family, c.FirstName AS child, p.GivenName AS pet \" +\n" +
-            "                                           \"FROM Families f \" +\n" +
-            "                                           \"JOIN c IN f.Children \" +\n" +
-            "                                           \"join p IN c.Pets\"")
+    @Query(value = "SELECT f.id as family, c.FirstName AS child, p.GivenName AS pet FROM Families f JOIN c IN f.Children join p IN c.Pets")
     List<User> getUsersWithTwoJoins();
 
     // Query with two joins and a filter
-    @Query(value = "SELECT f.id as family, c.FirstName AS child, p.GivenName AS pet \" +\n" +
-            "                                           \"FROM Families f \" +\n" +
-            "                                           \"JOIN c IN f.Children \" +\n" +
-            "                                           \"join p IN c.Pets \" +\n" +
-            "                                           \"WHERE p.GivenName = 'Fluffy'")
+    @Query(value = "SELECT f.id as family, c.FirstName AS child, p.GivenName AS pet FROM Families f JOIN c IN f.Children join p IN c.Pets WHERE p.GivenName = 'Fluffy'")
     List<User> getUsersByWithTwoJoinsAndFilter();
 
     // Query with String STARTSWITH operator

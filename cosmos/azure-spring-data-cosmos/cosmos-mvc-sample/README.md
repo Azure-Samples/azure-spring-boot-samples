@@ -40,8 +40,3 @@ Sample e-commerce application built with Spring Boot (MVC on servlet stack) and 
 1. On startup the application creates 2 databases, with 3 collections in the "store" database, and one collection in the "security" database.
 1. Access the WebApp at http://localhost:81/ebooks/index
 1. You will have to create user account to access the application functionality. The registration process asks for email ID, which will be used as the login ID. Any email address is fine as long as it has a valid format.
-1. If you prefer docker:
-    - mvn package
-    - docker build -t <YOUR REPO>/ebookstorespringbootmvc .
-    - docker run -p 80:80 -e azure.cosmos.bookstore.uri=<COSMOS_ENDPOINT> -e azure.cosmos.bookstore.key=<COSMOS_KEY> -t <YOUR REPO>/ebookstorespringbootmvc
-    - Access the WebApp at http://localhost:81/ebooks/index

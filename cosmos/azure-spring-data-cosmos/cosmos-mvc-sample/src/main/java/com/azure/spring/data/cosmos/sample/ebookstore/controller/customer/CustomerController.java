@@ -32,7 +32,7 @@ public class CustomerController {
         Customer user = new Customer(userForm.getEmail(), password, new Name(userForm.getFirstName(), userForm.getLastName()));
         if (userRepository.findById(userForm.getEmail(), new PartitionKey(userForm.getEmail())).isPresent()) {
             model.addAttribute("accountCreationFailed", userForm.getEmail() + "is already associated with an account. Try another email ID");
-            return "createaccount";
+            return "create-account";
         }
         userRepository.save(user);
         return "login";

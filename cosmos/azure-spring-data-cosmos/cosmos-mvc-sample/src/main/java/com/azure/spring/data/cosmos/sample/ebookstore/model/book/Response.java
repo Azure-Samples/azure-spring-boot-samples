@@ -20,11 +20,4 @@ public final class Response {
     public List<Book> getBooks() {
         return books;
     }
-
-    @Override
-    public String toString() {
-        return "Response{" +
-                "continuationToken='" + continuationToken + '\'' +
-                '}';
-    }
 }

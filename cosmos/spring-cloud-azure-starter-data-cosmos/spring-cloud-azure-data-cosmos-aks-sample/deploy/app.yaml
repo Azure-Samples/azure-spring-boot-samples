@@ -52,10 +52,10 @@ metadata:
 type: Opaque
 stringData:
   application.properties: |
-    azure.cosmos.uri=https://<enter cosmos db account name>.documents.azure.com:443/
-    azure.cosmos.key=<enter primary access key>
-    azure.cosmos.database=<enter database name>
-    azure.cosmos.populateQueryMetrics=false
+    spring.data.cosmos.uri=https://<enter cosmos db account name>.documents.azure.com:443/
+    spring.data.cosmos.key=<enter primary access key>
+    spring.data.cosmos.database=<enter database name>
+    spring.data.cosmos.populateQueryMetrics=false
 ---
 apiVersion: v1
 kind: Service

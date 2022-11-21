@@ -1,7 +1,8 @@
-azure:
-  cosmos:
-    uri: https://<ACCOUNT_NAME>.azure.com:443/
-    key: <PRIMARY_KEY>
-    database: <DATABASE_NAME>
-    queryMetricsEnabled: true
-    responseDiagnosticsEnabled: true
+spring:
+  data:
+    cosmos:
+      uri: https://<ACCOUNT_NAME>.azure.com:443/
+      key: <PRIMARY_KEY>
+      database: <DATABASE_NAME>
+      queryMetricsEnabled: true
+      responseDiagnosticsEnabled: true

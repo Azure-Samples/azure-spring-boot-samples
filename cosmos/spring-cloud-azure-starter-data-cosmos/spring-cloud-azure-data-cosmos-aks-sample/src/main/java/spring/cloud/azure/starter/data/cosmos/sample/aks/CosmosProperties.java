@@ -4,7 +4,7 @@ package spring.cloud.azure.starter.data.cosmos.sample.aks;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-@ConfigurationProperties(prefix = "azure.cosmos")
+@ConfigurationProperties(prefix = "spring.data.cosmos")
 public class CosmosProperties {
 
     private String uri;

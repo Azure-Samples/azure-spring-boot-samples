@@ -17,10 +17,10 @@ import com.azure.cosmos.models.PartitionKey;
 @RequestMapping(path = "/users")
 public class UserController {
 
-    @Autowired
     private UserRepository users;
 
-    public UserController() throws Exception {
+    public UserController(UserRepository users) throws Exception {
+        this.users = users;
     }
 
     // Upsert - create if not exists, update if exists

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <parent>
     <groupId>com.azure.spring</groupId>
-	  <artifactId>azure-spring-boot-samples</artifactId>
-	  <version>1.0.0</version>
-	  <relativePath>../../../pom.xml</relativePath>
+    <artifactId>azure-spring-boot-samples</artifactId>
+    <version>1.0.0</version>
+    <relativePath>../../../pom.xml</relativePath>
   </parent>
   <groupId>com.azure.cosmosdb</groupId>
   <artifactId>users-api</artifactId>
@@ -14,11 +13,11 @@
   <name>users-api</name>
   <description>Expose user data as REST API</description>
   <properties>
-	  <java.version>11</java.version>
-   	<spring-cloud-azure.version>4.3.0</spring-cloud-azure.version>
+    <java.version>11</java.version>
+    <spring-cloud-azure.version>4.3.0</spring-cloud-azure.version>
   </properties>
   <dependencies>
-   	<dependency>
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-actuator</artifactId>
     </dependency>

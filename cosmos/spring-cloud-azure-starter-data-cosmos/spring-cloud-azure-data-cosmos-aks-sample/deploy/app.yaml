@@ -1,0 +1,69 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: spring-cosmos-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: spring-cosmos-app
+  template:
+    metadata:
+      labels:
+        app: spring-cosmos-app
+    spec:
+      volumes:
+        - name: app-config-volume
+          secret:
+            secretName: app-config
+      containers:
+        - name: spring-cosmos-app
+          image: cosmosdbspringbootregistry.azurecr.io/spring-cosmos-app:v1
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 8080
+              name: app
+          volumeMounts:
+            - name: app-config-volume
+              mountPath: /config
+          livenessProbe:
+            httpGet:
+              path: /actuator/health/liveness
+              port: 8080
+            initialDelaySeconds: 45
+          readinessProbe:
+            httpGet:
+              path: /actuator/health/readiness
+              port: 8080
+            initialDelaySeconds: 45
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "250m"
+            limits:
+              memory: "512Mi"
+              cpu: "500m"
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: app-config
+type: Opaque
+stringData:
+  application.properties: |
+    spring.data.cosmos.uri=https://<enter cosmos db account name>.documents.azure.com:443/
+    spring.data.cosmos.key=<enter primary access key>
+    spring.data.cosmos.database=<enter database name>
+    spring.data.cosmos.populateQueryMetrics=false
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: spring-cosmos-app-internal
+spec:
+  type: ClusterIP
+  ports:
+    - port: 8080
+  selector:
+    app: spring-cosmos-app

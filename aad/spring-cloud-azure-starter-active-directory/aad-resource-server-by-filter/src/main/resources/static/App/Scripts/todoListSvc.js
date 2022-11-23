@@ -9,10 +9,10 @@ angular.module('todoApp')
                 return $http.get('/api/todolist/' + id);
             },
             postItem: function (item) {
-                return $http.post('/api/todolist/', item);
+                return $http.post('/api/todolist', item);
             },
             putItem: function (item) {
-                return $http.put('/api/todolist/', item);
+                return $http.put('/api/todolist', item);
             },
             deleteItem: function (id) {
                 return $http({

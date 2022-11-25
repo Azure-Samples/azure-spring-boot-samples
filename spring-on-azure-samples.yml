@@ -27,7 +27,7 @@
 #      2.4.1. Option A: Set max length to 150, 150 is required by sample browser.
 #      2.4.2. Set max length to 25. Because the sample browser search result card only display 4 line of description.
 #   2.5. Let each sample owner to do these things:
-#      2.5.1. Review the name the description of each sample.
+#      2.5.1. Review the name the description of each sample (using current PR).
 #      2.5.2. Create PR to update sample's README.md.
 #        2.5.2.1. Adding front-matter
 #        2.5.2.2. (Optional) Update the First H1 and the text after H1, make them align to front-matter.
@@ -182,11 +182,11 @@ aad:
           description: This sample demonstrates how to send and receive message by Azure Storage Queue and StorageQueueTemplate in Spring Boot application.
     - spring-cloud-azure-starter-storage-blob:
       - storage-blob-sample:
-        - name: Reading and writing files in Azure Storage Blob and Spring Resource abstraction in Spring Boot application
+        - name: Reading and writing files stored in Azure Storage Blob by Spring Resource abstraction in Spring Boot application
           description: This sample demonstrates how to read and write files in Azure Storage Blob and Spring Resource abstraction in Spring Boot application.
     - spring-cloud-azure-starter-storage-file-share:
       - storage-file-sample:
-        - name: Reading and writing files in Azure Files and Spring Resource abstraction in Spring Boot application
+        - name: Reading and writing files stored in Azure Files by Spring Resource abstraction in Spring Boot application
           description: This sample demonstrates how to read and write files in Azure Files and Spring Resource abstraction in Spring Boot application.
     - spring-cloud-azure-starter-storage-queue:
       - storage-queue-client:

@@ -1,0 +1,200 @@
+# This file is used to discuss onboard samples to sample browser.
+# 1. Related links.
+#   1.1. Link to sample browser: https://learn.microsoft.com/en-us/samples/browse/
+#   1.2. Link to related document: https://review.learn.microsoft.com/en-us/help/contribute/samples/?branch=main
+# 2. Discuss rules about boarding samples.
+#   2.1. To display name and description in sample browser, which method to use?
+#     2.1.1. Related links
+#       2.1.1.1. Supported metadata fields for readme.md: https://review.learn.microsoft.com/en-us/help/contribute/samples/process/onboarding?branch=main#supported-metadata-fields-for-readmemd
+#     2.1.2. Option A: Use front-matter
+#       2.1.2.1. Pros: The search result card is less possible to have problem. Example problems:
+#         2.1.2.1.1. Lacking first H1
+#         2.1.2.1.2. First line is too long or not give enough or accurate information of this sample.
+#     2.1.3. Option B: Use the first H1 line (#) as name. Use he first 150 characters following the first H1 (#) line as description.
+#       2.1.3.1. Pros: After the sample owner known the rule about name and title. The search result can be updated automatically after he updated the first H1 and first 150 characters following first H1
+#     2.1.4. My choice: I prefer Option A. And let sample owner maintain the front-matter.
+#   2.2. Does sample name and description must contain "Spring", "Spring Boot", related Azure Services like Azure AD, Azure Spring Apps.
+#     2.2.1. Option A: Always contains these words.
+#       2.2.1.1. Pros: Customer can get required sample by searching related key word. And the search result can give required information.
+#       2.2.1.2. Cons: Always contains these words sometimes will make the name too long, will make it hard to read.
+#     2.2.2. Option B: Not contains these words.
+#       2.2.2.1. Pros: Make the name shorter, easier to understand. Focus on scenario.
+#       2.2.2.2. Cons: Customer can't get related sample by searching related keywords. It's possible to have duplicated sample name.
+#     2.2.3. Option C: First time, always contain these words. After onboarded to sample browser, (let the sample owner) check the search result card. Adjust the length if necessary.
+#     2.2.4. My choice: I prefer Option C. Let the sample owner take care about the sample hosted in sample browser.
+#   2.3. Does sample description should contain a fixed format. For example: "This sample demonstrates how to ..."
+#   2.4. Question: The max length of description.
+#      2.4.1. Option A: Set max length to 150, 150 is required by sample browser.
+#      2.4.2. Set max length to 25. Because the sample browser search result card only display 4 line of description.
+#   2.5. Let each sample owner to do these things:
+#      2.5.1. Review the name the description of each sample.
+#      2.5.2. Create PR to update sample's README.md.
+#        2.5.2.1. Adding front-matter
+#        2.5.2.2. (Optional) Update the First H1 and the text after H1, make them align to front-matter.
+#      2.5.3. Check the sample in sample browser.
+#        2.5.3.1. Whether the sample existed in the sample result.
+#        2.5.3.2. Whether the sample's name and title displayed in the search result card.
+#        2.5.3.3. Whether the README display as expected after clicking the search result card.
+#   3. Go through current yml file and decide:
+#     3.1. Whether a sample should be onboarded to sample browser.
+#     3.2. If the sample is a candidate to be onboarded, check whether the "name" and "description" satisfy the requirement.
+#
+
+
+aad:
+  - spring-cloud-azure-starter-active-directory:
+    - aad-resource-server-by-filter: Not a candidate because it's using deprecated feature.
+    - aad-resource-server-by-filter-stateless: Not a candidate because it's using deprecated feature.
+    - aad-web-application-and-resource-server:
+      - name: Developing Spring Boot web application supports login by Azure AD account and expose REST API.
+        description: This sample demonstrates how to develop a Spring Boot web application supports login by Azure AD account and expose REST API at the same time.
+    - web-client-access-resource-server:
+      - name: Developing Spring Boot web application supports login by Azure AD account and access resource server.
+        description: This sample demonstrates how to develop a Spring Boot web application supports login by Azure AD account and access REST API protected by Azure AD.
+  - spring-cloud-azure-starter-active-directory-b2c:
+    - aad-b2c-resource-server:
+      - name: Developing REST API application developed by Spring Boot and protected by Azure AD B2C.
+        description: This sample demonstrates how to develop REST API application developed by Spring Boot and protected by Azure AD B2C.
+    - aad-b2c-web-application:
+      - name: Developing Spring Boot web application supports login by Azure AD B2C account.
+        description: This sample demonstrates how to develop a Spring Boot web application supports login by Azure AD B2C account.
+  - spring-security: # Need to discuss whether on board sample to sample browser.
+  - appconfiguration:
+    - azure-spring-cloud-appconfiguration-config:
+      - azure-spring-cloud-appconfiguration-config-convert-sample:
+        - name: Converting a Spring Boot Application with Cosmos DB to be using App Configuration and Key Vault.
+          description: This sample demonstrates how to convert a Spring Boot Application with Cosmos DB to be using App Configuration and Key Vault
+      - azure-spring-cloud-appconfiguration-config-sample:
+        - name: Loading configuration properties from App Configuration in Spring Boot application.
+          description: This sample demonstrates how to load configuration properties from App Configuration to Spring Environment in Spring Boot application.
+    - azure-spring-cloud-feature-management:
+      - azure-spring-cloud-feature-management-sample:
+        - name: Managing features and get configurations from App Configuration in Spring Boot application.
+          description: This sample demonstrates how to manage features and how to get configurations from App Configuration to Spring Environment in Spring Boot application.
+    - azure-spring-cloud-feature-management-web:
+      - azure-spring-cloud-feature-management-web-sample:
+        - name: Managing features and get configurations from App Configuration in Spring Boot web application.
+          description: This sample demonstrates how to manage features and how to get configurations from App Configuration to Spring Environment in Spring Boot web application.
+    - azure-spring-cloud-starter-appconfiguration-config:
+      - azure-spring-cloud-starter-appconfiguration-config-sample:
+        - name: Refreshing configuration properties from App Configuration in Spring Boot application.
+          description: This sample demonstrates how to refresh configuration properties from App Configuration in Spring Boot application.
+    - spring-cloud-azure-starter-appconfiguration:
+      - appconfiguration-client:
+        - name: Loading configuration properties from App Configuration by autoconfigured SDK client in Spring Boot application.
+          description: This sample demonstrates how to load configuration properties from App Configuration by autoconfigured SDK client in Spring Boot application.
+  - cache:
+    - spring-cloud-azure-starter:
+      - spring-cloud-azure-sample-cache:
+        - name: Caching data to Azure Cache for Redis in Spring Boot application.
+          description: This sample demonstrates how to cache data to Azure Cache for Redis in Spring Boot application.
+  - cloudfoundry:
+    - azure-cloud-foundry-service-sample: ## Need to run it before onboard to sample browser
+      - name: Consuming Azure services in Spring Boot applications running in Cloud Foundry
+        description: This sample demonstrates how to consume Azure services exposed through the Microsoft Azure Service Broker for Spring Boot applications running in Cloud Foundry
+  - cosmos:
+    - azure-spring-data-cosmos:
+      - cosmos-multi-database-multi-account:
+        - name: Using Azure Cosmos DB by Spring Data in Spring Boot application - Multi database and multi account.
+          description: This sample demonstrates how to use Azure Cosmos DB by Spring Data in Spring Boot application - Multi database and multi account.
+      - cosmos-multi-database-single-account:
+        - name: Using Azure Cosmos DB by Spring Data in Spring Boot application - Multi database and single account.
+          description: This sample demonstrates how to use Azure Cosmos DB by Spring Data in Spring Boot application - Multi database and single account.
+    - spring-cloud-azure-starter-cosmos:
+      - spring-cloud-azure-cosmos-sample:
+        - name: Accessing Azure Cosmos DB with autoconfigured CosmosClient in Spring Boot application.
+          description: This sample demonstrates how to access Azure Cosmos DB with autoconfigured CosmosClient in Spring Boot application.
+    - spring-cloud-azure-starter-data-cosmos:
+      - spring-cloud-azure-data-cosmos-sample:
+        - name: Using Azure Cosmos DB by Spring Data in Spring Boot application.
+          description: This sample demonstrates how to use Azure Cosmos DB by Spring Data in Spring Boot application.
+  - eventhubs:
+    - spring-cloud-azure-starter:
+      - spring-cloud-azure-sample-eventhubs-kafka:
+        - name: Sending and receiving message by Azure Event Hubs and Spring Cloud Stream Binder Kafka in Spring Boot application.
+        - description: This sample demonstrates how to send and receive message by Azure Event Hubs and Spring Cloud Stream Binder Kafka in Spring Boot application.
+    - spring-cloud-azure-starter-eventhubs:
+      - eventhub-client:
+        - name: Sending and receiving message by Azure Event Hubs and autoconfigured SDK client in Spring Boot application.
+          description: This sample demonstrates how to send and receive message by Azure Event Hubs and autoconfigured SDK client in Spring Boot application.
+    - spring-cloud-azure-starter-integration-eventhubs:
+      - eventhub-integration:
+        - name: Sending and receiving message by Azure Event Hubs and Spring Integration in Spring Boot application.
+          description: This sample demonstrates how to send and receive message by Azure Event Hubs and Spring Integration in Spring Boot application.
+    - spring-cloud-azure-stream-binder-eventhubs:
+      - eventhubs-binder:
+        - name: Sending and receiving message by Azure Event Hubs and Spring Cloud Stream Binder EventHubs in Spring Boot application.
+        - description: This sample demonstrates how to send and receive message by Azure Event Hubs and Spring Cloud Stream Binder EventHubs in Spring Boot application.
+      - eventhubs-multibinders:
+        - name: Sending and receiving message by Azure Event Hubs and Spring Cloud Stream Binder EventHubs (multi binder) in Spring Boot application.
+        - description: This sample demonstrates how to send and receive message by Azure Event Hubs and Spring Cloud Stream Binder EventHubs (multi binder) in Spring Boot application.
+  - keyvault:
+    - azure-security-keyvault-jca:
+      - name: Enabling HTTPS connection by certificate stored in Azure Key Vault in java application.
+        description: This sample demonstrates how to enable HTTPS connection by certificate stored in Azure Key Vault in java application.
+    - azure-spring-boot-starter-keyvault-certificates:
+      - name: Enabling https connection by certificate stored in Azure Key Vault in Spring Boot application.
+        description: This sample demonstrates how to enable HTTPS connection by certificate stored in Azure Key Vault in Spring Boot application.
+    - azure-spring-boot-starter-keyvault-secrets:
+      - property-source:
+        - name: Loading secrets from Azure Key Vault to PropertySource in Spring Boot application.
+          description: This sample demonstrates how to load secrets from Azure Key Vault to PropertySource in Spring Boot application.
+      - secret-client:
+        - name: Managing secrets stored in Azure Key Vault by autoconfigured SDK client in Spring Boot application.
+          description: This sample demonstrates how to manage secrets stored in Azure Key Vault by autoconfigured SDK client in Spring Boot application.
+  - servicebus:
+    - spring-cloud-azure-starter-integration-servicebus:
+      - multiple-namespace:
+        - name: Sending and receiving message by Azure Service Bus (multiple namespaces) and Spring Integration in Spring Boot application.
+          description: This sample demonstrates how to send and receive message by Azure Service Bus (multiple namespaces) and Spring Integration in Spring Boot application.
+      - single-namespace:
+        - name: Sending and receiving message by Azure Service Bus (single namespaces) and Spring Integration in Spring Boot application.
+          description: This sample demonstrates how to send and receive message by Azure Service Bus (single namespaces) and Spring Integration in Spring Boot application.
+    - spring-cloud-azure-starter-servicebus-jms:
+      - servicebus-jms-queue:
+        - name: Sending and receiving message by Azure Service Bus (queue) and JMS in Spring Boot application.
+          description: This sample demonstrates how to send and receive message by Azure Service Bus (queue) and JMS in Spring Boot application.
+      - servicebus-jms-topic:
+        - name: Sending and receiving message by Azure Service Bus (topic) and JMS in Spring Boot application.
+          description: This sample demonstrates how to send and receive message by Azure Service Bus (topic) and JMS in Spring Boot application.
+    - spring-cloud-azure-stream-binder-servicebus:
+      - servicebus-multibinders:
+        - name: Sending and receiving message by Azure Service Bus and Spring Cloud Stream Binder (multi binder) in Spring Boot application.
+          description: This sample demonstrates how to send and receive message by Azure Service Bus and Spring Cloud Stream Binder (multi binder) in Spring Boot application.
+      - servicebus-queue-binder:
+        - name: Sending and receiving message by Azure Service Bus (queue) and Spring Cloud Stream Binder in Spring Boot application.
+          description: This sample demonstrates how to send and receive message by Azure Service Bus (queue) and Spring Cloud Stream Binder in Spring Boot application.
+      - servicebus-queue-binder-arm:
+        - name: Sending and receiving message by Azure Service Bus (queue) (retrieving connection string via ARM) and Spring Cloud Stream Binder in Spring Boot application.
+          description: This sample demonstrates how to send and receive message by Azure Service Bus (queue) (retrieving connection string via ARM) and Spring Cloud Stream Binder in Spring Boot application.
+      - servicebus-topic-binder:
+        - name: Sending and receiving message by Azure Service Bus (topic) and Spring Cloud Stream Binder in Spring Boot application.
+          description: This sample demonstrates how to send and receive message by Azure Service Bus (topic) and Spring Cloud Stream Binder in Spring Boot application.
+  - spring-native: # Need to discuss whether on board sample to sample browser.
+  - spring-petclinic-microservice: # As discussed, this sample will not on board to sample browser.
+  - storage:
+    - spring-cloud-azure-starter-integration-storage-queue:
+      - storage-queue-integration:
+        - name: Sending and receiving message by Azure Storage Queue and Spring Integration in Spring Boot application.
+          description: This sample demonstrates how to send and receive message by Azure Storage Queue and Spring Integration in Spring Boot application.
+      - storage-queue-operation:
+        - name: Sending and receiving message by Azure Storage Queue and StorageQueueTemplate in Spring Boot application.
+          description: This sample demonstrates how to send and receive message by Azure Storage Queue and StorageQueueTemplate in Spring Boot application.
+    - spring-cloud-azure-starter-storage-blob:
+      - storage-blob-sample:
+        - name: Reading and writing files in Azure Storage Blob and Spring Resource abstraction in Spring Boot application
+          description: This sample demonstrates how to read and write files in Azure Storage Blob and Spring Resource abstraction in Spring Boot application.
+    - spring-cloud-azure-starter-storage-file-share:
+      - storage-file-sample:
+        - name: Reading and writing files in Azure Files and Spring Resource abstraction in Spring Boot application
+          description: This sample demonstrates how to read and write files in Azure Files and Spring Resource abstraction in Spring Boot application.
+    - spring-cloud-azure-starter-storage-queue:
+      - storage-queue-client:
+        - name: Sending and receiving message by Azure Storage Queue and SDK client in Spring Boot application.
+          description: This sample demonstrates how to send and receive message by Azure Storage Queue and SDK client in Spring Boot application.
+
+
+
+
+
+

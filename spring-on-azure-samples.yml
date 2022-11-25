@@ -43,8 +43,8 @@
 
 aad:
   - spring-cloud-azure-starter-active-directory:
-    - aad-resource-server-by-filter: Not a candidate because it's using deprecated feature.
-    - aad-resource-server-by-filter-stateless: Not a candidate because it's using deprecated feature.
+    - aad-resource-server-by-filter: # Not a candidate because it's using deprecated feature.
+    - aad-resource-server-by-filter-stateless: # Not a candidate because it's using deprecated feature.
     - aad-web-application-and-resource-server:
       - name: Developing Spring Boot web application supports login by Azure AD account and expose REST API.
         description: This sample demonstrates how to develop a Spring Boot web application supports login by Azure AD account and expose REST API at the same time.

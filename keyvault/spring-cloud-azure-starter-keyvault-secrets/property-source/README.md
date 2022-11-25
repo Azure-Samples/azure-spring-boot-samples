@@ -3,15 +3,14 @@ page_type: sample
 languages:
 - java
 products:
-- azure-spring-cloud
+- azure-key-vault
 name: Loading secrets from Azure Key Vault to PropertySource
-urlFragment: "loading-secrets-from-azure-key-vault-to-property-source"
-description: "Loading secrets from Azure Key Vault to PropertySource"
+description: This sample demonstrates how to load secrets from Azure Key Vault to PropertySource
 ---
 
 # Loading secrets from Azure Key Vault to PropertySource
 
-This sample illustrates the usage of `spring-cloud-azure-starter-keyvault-secrets`. To learn all features, please refer to [reference doc](https://microsoft.github.io/spring-cloud-azure/4.2.0/reference/html/index.html).
+This sample demonstrates how to load secrets from Azure Key Vault to PropertySource. [Link to reference doc](https://microsoft.github.io/spring-cloud-azure/4.2.0/reference/html/index.html).
 
 ## What You Will Build
 

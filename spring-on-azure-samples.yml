@@ -35,7 +35,23 @@
 #        2.5.3.1. Whether the sample existed in the sample result.
 #        2.5.3.2. Whether the sample's name and title displayed in the search result card.
 #        2.5.3.3. Whether the README display as expected after clicking the search result card.
-#   3. Go through current yml file and decide:
+#   2.6. Whether using urlFragment field.
+#     2.6.1. Option A: Use this field. This will ensure that the page link is immutable, regardless of sample README.md changes
+#     2.6.2. Option B: Not use this field. Customer can get required sample by search keywords even if link return 404.
+#     2.6.3. I prefer option B.
+#   2.7. Update branch strategy. Because sample browser only scan "main" branch.
+#     2.7.1. "main" branch hold samples with the latest GA version of Spring Cloud Azure.
+#     2.7.2. Create a new branch named "develop". Use this branch to hold the developing version.
+#     2.7.3. When released a new version of Spring Cloud Azure:
+#       2.7.3.1. Update the version of Spring Cloud Azure.
+#       2.7.3.2. Merge "develop" branch into "main" branch.
+#       2.7.3.3. Delete "develop" branch, and create a new "develop" branch from "main" branch.
+#                It's better to have this step because we use "squash" when merge "develop" to main.
+#                After merged, "develop" branch and "main" branch have different commit history.
+#                Different commit history means higher possibility of conflicts.
+#       2.7.3.3. In "develop" branch, update the Spring Cloud Azure version to the latest developing version.
+#   2.8. Whether using "azureDeploy" field. As discussed, we won't use it for now.
+# 3. Go through current yml file and decide:
 #     3.1. Whether a sample should be onboarded to sample browser.
 #     3.2. If the sample is a candidate to be onboarded, check whether the "name" and "description" satisfy the requirement.
 #

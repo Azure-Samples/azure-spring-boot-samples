@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-active-directory
+name: Developing a REST API that can check permission by claims in token
+description: This sample demonstrates how to develop a REST API that can check permission by claims in token.
+---
+
 # Spring Boot application with Azure Active Directory
 
 ## What You Need

@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-app-configuration
+name: Loading configuration properties from App Configuration by autoconfigured SDK client in Spring Boot application
+description: This sample demonstrates how to load configuration properties from App Configuration by autoconfigured SDK client in Spring Boot application.
+---
+
 # Using Spring Cloud Azure App Configuration Starter
 
 This sample illustrates the simplest usage of `spring-cloud-azure-starter-appconfiguration`.

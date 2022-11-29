@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-active-directory
+name: Developing a web application supports login by Azure AD account
+description: This sample demonstrates how to develop a web application supports login by Azure AD account.
+---
+
 # Spring Boot application with Azure Active Directory
 
 ## What You Need

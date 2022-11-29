@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-service-bus
+name: Sending and receiving message by Azure Service Bus and Spring Cloud Stream Binder (multi binder) in Spring Boot application
+description: This sample demonstrates how to send and receive message by Azure Service Bus and Spring Cloud Stream Binder (multi binder) in Spring Boot application.
+---
+
 # Spring Cloud Azure Stream Binder for Multiple Service Bus Namespaces Code Sample shared library for Java 
 
 This code sample demonstrates how to use the Spring Cloud Stream Binder for

@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-key-vault
+name: Managing secrets stored in Azure Key Vault by autoconfigured SDK client in Spring Boot application
+description: This sample demonstrates how to manage secrets stored in Azure Key Vault by autoconfigured SDK client in Spring Boot application.
+---
+
 # Using Key Vault Secrets With Spring Cloud Azure Key Vault Secrets Starter
 
 This sample illustrates the simplest usage of `spring-cloud-azure-starter-keyvault-secrets`. 

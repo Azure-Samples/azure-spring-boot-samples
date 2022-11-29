@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-event-hubs
+name: Sending and receiving message by Azure Event Hubs and Spring Cloud Stream Binder Kafka in Spring Boot application
+description: This sample demonstrates how to send and receive message by Azure Event Hubs and Spring Cloud Stream Binder Kafka in Spring Boot application.
+---
+
 # Spring Cloud Azure Sample Stream Event Hubs Kafka 
 
 This sample demonstrates how to use the Spring Cloud Azure Starter and Spring Cloud Starter Stream Kafka for Azure Event Hubs ([Basic pricing tier is not supported](https://azure.microsoft.com/pricing/details/event-hubs/#explore-pricing-options)). The sample app exposes a RESTful API to receive

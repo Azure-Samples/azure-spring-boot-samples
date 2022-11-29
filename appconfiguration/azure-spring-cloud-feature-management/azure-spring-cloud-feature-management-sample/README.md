@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-app-configuration
+name: Managing features and get configurations from App Configuration in Spring Boot application
+description: This sample demonstrates how to manage features and how to get configurations from App Configuration to Spring Environment in Spring Boot application.
+---
+
 # Feature Management Sample shared library for Java
 
 This sample describes how to use [azure-spring-cloud-feature-management](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-feature-management_2.7.0/sdk/appconfiguration/azure-spring-cloud-feature-management/README.md) to manage features and how to get configurations from App Configuration Service to Spring Environment.

@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-active-directory
+name: Developing a web application that can access resource-server
+description: This sample demonstrates how to develop a web application that can access resource-server.
+---
+
 # Spring Boot application with Azure Active Directory
 
 ## What You Need

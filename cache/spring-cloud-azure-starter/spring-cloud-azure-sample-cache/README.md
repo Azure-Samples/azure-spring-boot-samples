@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-cache-redis
+name: Caching data to Azure Cache for Redis in Spring Boot application
+description: This sample demonstrates how to cache data to Azure Cache for Redis in Spring Boot application.
+---
+
 # Spring Cloud Azure Sample redis cache
 
 Redis support is based on spring-boot-starter-data-redis, which obtains and

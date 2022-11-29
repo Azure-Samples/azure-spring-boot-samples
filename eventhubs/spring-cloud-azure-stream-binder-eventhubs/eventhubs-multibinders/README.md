@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-event-hubs
+name: Sending and receiving message by Azure Event Hubs and Spring Cloud Stream Binder EventHubs (multi binder) in Spring Boot application
+description: This sample demonstrates how to send and receive message by Azure Event Hubs and Spring Cloud Stream Binder EventHubs (multi binder) in Spring Boot application.
+---
+
 # Using Spring Cloud Stream Binder for Multiple Event Hubs Namespaces
 
 This sample demonstrates how to use the `Spring Cloud Stream Binder`

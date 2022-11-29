@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-files
+name: Reading and writing files stored in Azure Files by Spring Resource abstraction in Spring Boot application
+description: This sample demonstrates how to read and write files in Azure Files and Spring Resource abstraction in Spring Boot application.
+---
+
 # Using Spring Cloud Azure Storage File Share Starter
 
 This code sample demonstrates how to read and write files with the [Spring Resource](https://docs.spring.io/spring-framework/docs/current/reference/html/core.html#resources) abstraction for Azure Storage using the Spring Cloud Azure storage starter.

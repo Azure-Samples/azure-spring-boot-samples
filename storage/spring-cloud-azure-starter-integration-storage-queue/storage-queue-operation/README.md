@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-queue-storage
+name: Sending and receiving message by Azure Storage Queue and StorageQueueTemplate in Spring Boot application
+description: This sample demonstrates how to send and receive message by Azure Storage Queue and StorageQueueTemplate in Spring Boot application.
+---
+
 # Spring Cloud Azure Storage Queue Operation Code Sample  
 
 This code sample demonstrates how to use [Storage Queue Template][storage-queue-template].

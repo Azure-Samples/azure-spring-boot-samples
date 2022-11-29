@@ -75,6 +75,32 @@ aad:
       - name: Developing Spring Boot web application supports login by Azure AD B2C account.
         description: This sample demonstrates how to develop a Spring Boot web application supports login by Azure AD B2C account.
   - spring-security: # Need to discuss whether on board sample to sample browser.
+    - reactive:
+      - webflux:
+        - oauth2:
+          - spring-cloud-gateway:
+            - name: Protecting REST API behind gateway by validating token issued by Azure AD in gateway.
+              description: This sample demonstrates how to protect REST API behind gateway by validating token issued by Azure AD in gateway.
+    - servlet:
+      - oauth2:
+        - client-access-multiple-resource-server:
+          - name: Developing a web application that can access multiple resource-servers.
+            description: This sample demonstrates how to develop a web application that can access multiple resource-servers.
+        - client-access-resource-server:
+          - name: Developing a web application that can access resource-server.
+            description: This sample demonstrates how to develop a web application that can access resource-servers.
+        - login:
+          - name: Developing a web application supports login by Azure AD account.
+            description: This sample demonstrates how to develop a web application supports login by Azure AD account.
+        - login-authenticate-using-private-key-jwt:
+          - name: Developing a web application supports login by Azure AD account via certificate.
+            description: This sample demonstrates how to develop a web application supports login by Azure AD account via certificate.
+        - resource-server-check-permissions-by-claims-in-access-token:
+          - name: Developing a REST API that can check permission by claims in token.
+            description: This sample demonstrates how to develop a REST API that can check permission by claims in token.
+        - resource-server-support-on-behalf-of-flow:
+          - name: Developing a REST API that can require a new token to access another REST API protected by Azure AD.
+            description: This sample demonstrates how to develop a REST API that can require a new token to access another REST API protected by Azure AD.
 appconfiguration:
   - azure-spring-cloud-appconfiguration-config:
     - azure-spring-cloud-appconfiguration-config-convert-sample:

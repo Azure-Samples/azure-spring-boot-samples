@@ -172,11 +172,11 @@ eventhubs:
       - description: This sample demonstrates how to send and receive message by Azure Event Hubs and Spring Cloud Stream Binder EventHubs (multi binder) in Spring Boot application.
 keyvault:
   - azure-security-keyvault-jca:
-    - name: Enabling HTTPS connection by certificate stored in Azure Key Vault in Java application.
-      description: This sample demonstrates how to enable HTTPS connection by certificate stored in Azure Key Vault in Java application.
+    - name: Enabling https connection by certificate stored in Azure Key Vault in Java application.
+      description: This sample demonstrates how to enable https connection by certificate stored in Azure Key Vault in Java application.
   - azure-spring-boot-starter-keyvault-certificates:
     - name: Enabling https connection by certificate stored in Azure Key Vault in Spring Boot application.
-      description: This sample demonstrates how to enable HTTPS connection by certificate stored in Azure Key Vault in Spring Boot application.
+      description: This sample demonstrates how to enable https connection by certificate stored in Azure Key Vault in Spring Boot application.
   - azure-spring-boot-starter-keyvault-secrets:
     - property-source:
       - name: Loading secrets from Azure Key Vault to PropertySource in Spring Boot application.

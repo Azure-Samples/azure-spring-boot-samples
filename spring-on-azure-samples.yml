@@ -105,7 +105,7 @@ appconfiguration:
   - azure-spring-cloud-appconfiguration-config:
     - azure-spring-cloud-appconfiguration-config-convert-sample:
       - name: Converting a Spring Boot application with Cosmos DB to be using App Configuration and Key Vault.
-        description: This sample demonstrates how to convert a Spring Boot application with Cosmos DB to be using App Configuration and Key Vault
+        description: This sample demonstrates how to convert a Spring Boot application with Cosmos DB to be using App Configuration and Key Vault.
     - azure-spring-cloud-appconfiguration-config-sample:
       - name: Loading configuration properties from App Configuration in Spring Boot application.
         description: This sample demonstrates how to load configuration properties from App Configuration to Spring Environment in Spring Boot application.
@@ -172,8 +172,8 @@ eventhubs:
       - description: This sample demonstrates how to send and receive message by Azure Event Hubs and Spring Cloud Stream Binder EventHubs (multi binder) in Spring Boot application.
 keyvault:
   - azure-security-keyvault-jca:
-    - name: Enabling HTTPS connection by certificate stored in Azure Key Vault in Javaapplication.
-      description: This sample demonstrates how to enable HTTPS connection by certificate stored in Azure Key Vault in Javaapplication.
+    - name: Enabling HTTPS connection by certificate stored in Azure Key Vault in Java application.
+      description: This sample demonstrates how to enable HTTPS connection by certificate stored in Azure Key Vault in Java application.
   - azure-spring-boot-starter-keyvault-certificates:
     - name: Enabling https connection by certificate stored in Azure Key Vault in Spring Boot application.
       description: This sample demonstrates how to enable HTTPS connection by certificate stored in Azure Key Vault in Spring Boot application.

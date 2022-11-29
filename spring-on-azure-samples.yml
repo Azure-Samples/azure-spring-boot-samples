@@ -88,7 +88,7 @@ aad:
             description: This sample demonstrates how to develop a web application that can access multiple resource-servers.
         - client-access-resource-server:
           - name: Developing a web application that can access resource-server.
-            description: This sample demonstrates how to develop a web application that can access resource-servers.
+            description: This sample demonstrates how to develop a web application that can access resource-server.
         - login:
           - name: Developing a web application supports login by Azure AD account.
             description: This sample demonstrates how to develop a web application supports login by Azure AD account.

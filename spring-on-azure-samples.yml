@@ -78,8 +78,8 @@ aad:
 appconfiguration:
   - azure-spring-cloud-appconfiguration-config:
     - azure-spring-cloud-appconfiguration-config-convert-sample:
-      - name: Converting a Spring Boot Application with Cosmos DB to be using App Configuration and Key Vault.
-        description: This sample demonstrates how to convert a Spring Boot Application with Cosmos DB to be using App Configuration and Key Vault
+      - name: Converting a Spring Boot application with Cosmos DB to be using App Configuration and Key Vault.
+        description: This sample demonstrates how to convert a Spring Boot application with Cosmos DB to be using App Configuration and Key Vault
     - azure-spring-cloud-appconfiguration-config-sample:
       - name: Loading configuration properties from App Configuration in Spring Boot application.
         description: This sample demonstrates how to load configuration properties from App Configuration to Spring Environment in Spring Boot application.

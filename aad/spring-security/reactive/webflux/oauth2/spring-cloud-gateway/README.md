@@ -4,8 +4,8 @@ languages:
 - java
 products:
 - azure-active-directory
-name: Protecting REST API behind gateway by validating token issued by Azure AD in gateway
-description: This sample demonstrates how to protect REST API behind gateway by validating token issued by Azure AD in gateway.
+name: Protecting REST API behind gateway by validating token issued by Azure Active Directory in gateway
+description: This sample demonstrates how to protect REST API behind gateway by validating token issued by Azure Active Directory in gateway.
 ---
 
 # Spring Boot application with Azure Active Directory

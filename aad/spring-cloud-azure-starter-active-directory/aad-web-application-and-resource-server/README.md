@@ -4,7 +4,7 @@ languages:
 - java
 products:
 - azure-active-directory
-name: Developing Spring Boot web application supports login by Azure AD account and expose REST API
+name: Developing Spring Boot web application supports login by Azure Active Directory account and expose REST API
 description: This sample demonstrates how to develop a Spring Boot web application supports login by Azure AD account and expose REST API at the same time.
 ---
 

@@ -4,8 +4,8 @@ languages:
 - java
 products:
 - azure-active-directory
-name: Developing a web application that can access resource-server
-description: This sample demonstrates how to develop a web application that can access resource-server.
+name: Developing a Spring Boot web application that can access resource-server protected by Azure Active Directory
+description: This sample demonstrates how to develop a Spring Boot web application that can access resource-server protected by Azure Active Directory.
 ---
 
 # Spring Boot application with Azure Active Directory

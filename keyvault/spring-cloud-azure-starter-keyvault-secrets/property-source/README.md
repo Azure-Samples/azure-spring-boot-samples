@@ -4,8 +4,8 @@ languages:
 - java
 products:
 - azure-key-vault
-name: Loading secrets from Azure Key Vault to PropertySource
-description: This sample demonstrates how to load secrets from Azure Key Vault to PropertySource
+name: Loading secrets from Azure Key Vault to PropertySource in Spring Boot application
+description: This sample demonstrates how to load secrets from Azure Key Vault to PropertySource in Spring Boot application.
 ---
 
 # Loading secrets from Azure Key Vault to PropertySource

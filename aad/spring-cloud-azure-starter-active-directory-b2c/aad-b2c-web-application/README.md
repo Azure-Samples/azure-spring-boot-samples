@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-active-directory-b2c
+name: Developing Spring Boot web application supports login by Azure Active Directory B2C account
+description: This sample demonstrates how to develop a Spring Boot web application supports login by Azure Active Directory B2C account.
+---
+
 # Sample for Azure AD B2C Spring Boot
 
 ## Key concepts

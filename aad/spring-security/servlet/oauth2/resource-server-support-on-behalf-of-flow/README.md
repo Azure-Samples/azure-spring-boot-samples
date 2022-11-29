@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-active-directory
+name: Developing a REST API that can require a new token to access another REST API protected by Azure Active Directory.
+description: This sample demonstrates how to develop a REST API that can require a new token to access another REST API protected by Azure Active Directory.
+---
+
 # Spring Boot application with Azure Active Directory
 
 ## What You Need

@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-cosmos-db
+name: Using Azure Cosmos DB by Spring Data in Spring Boot application
+description: This sample demonstrates how to use Azure Cosmos DB by Spring Data in Spring Boot application.
+---
+
 # Using Spring Cloud Azure Starter Data Cosmos
 This guide demonstrates how to use Azure Cosmos DB via Spring Boot Starter `spring-cloud-azure-starter-data-cosmos` to store data in and retrieve data from your Azure Cosmos DB.
 

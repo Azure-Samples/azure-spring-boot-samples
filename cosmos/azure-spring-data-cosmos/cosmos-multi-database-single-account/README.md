@@ -1,3 +1,13 @@
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-cosmos-db
+name: Using Azure Cosmos DB by Spring Data in Spring Boot application - Multi database and single account
+description: This sample demonstrates how to use Azure Cosmos DB by Spring Data in Spring Boot application - Multi database and single account.
+---
+
 # Azure Spring Boot Sample Cosmos Multi Database Single Account for Java
 This guide demonstrates how to use Azure Cosmos DB via `azure-spring-data-cosmos` to store data in and retrieve data from your Azure Cosmos DB.
 

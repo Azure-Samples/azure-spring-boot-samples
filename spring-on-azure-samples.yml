@@ -74,7 +74,7 @@ aad:
     - aad-b2c-web-application:
       - name: Developing Spring Boot web application supports login by Azure AD B2C account.
         description: This sample demonstrates how to develop a Spring Boot web application supports login by Azure AD B2C account.
-  - spring-security: # Need to discuss whether on board sample to sample browser.
+  - spring-security:
     - reactive:
       - webflux:
         - oauth2:

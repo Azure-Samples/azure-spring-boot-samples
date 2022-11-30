@@ -8,7 +8,7 @@ name: Developing a REST API that can require a new token to access another REST 
 description: This sample demonstrates how to develop a REST API that can require a new token to access another REST API protected by Azure Active Directory.
 ---
 
-# Developing a Rest API That Can Require a New Token to Access Another Rest API Protected by Azure Active Directory
+# Developing a REST API That Can Require a New Token to Access Another REST API Protected by Azure Active Directory
 
 ## What You Need
 

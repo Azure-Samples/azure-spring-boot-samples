@@ -1,0 +1,177 @@
+
+/*****************globals*************/
+body {
+  font-family: 'open sans';
+  overflow-x: hidden;
+  background-color: #FFFFFF;
+  color: #555; }
+
+img {
+  max-width: 100%; }
+
+.login {
+  max-width: 400px;
+  width: auto;
+  margin: 50px auto;
+  background-color: #eee;
+  font-size: 1.3rem;
+  box-shadow: 0 0 30px rgba(0, 0, 0, 0.3); }
+  .login-1--header {
+    background-color: #FFBE33; }
+  .login-1 .arrow-down {
+    border-top: 20px solid #ffc414; }
+  .login-1 .input-group-addon {
+    background-color: #ffc414; }
+  .login-1 .btn-default {
+    background-color: #ffc414; }
+  .login-1 .login--footer__text:first-of-type {
+    border-top: 1px dotted #444; }
+  .login-2--header {
+    background-color: #6d008f; }
+  .login-2 .arrow-down {
+    border-top: 20px solid #6d008f; }
+  .login-2 .btn-default {
+    background-color: #6d008f; }
+  .login-2 .input-group-addon {
+    background-color: #6d008f; }
+  .login-3--header {
+    background-color: #b33000; }
+  .login-3 .arrow-down {
+    border-top: 20px solid #b33000; }
+  .login-3 .btn-default {
+    background-color: #b33000; }
+  .login-3 .input-group-addon {
+    background-color: #b33000; }
+  .login--header {
+    padding: .7em 0;
+    color: #fff;
+    position: relative; }
+    .login--header h3 {
+      text-transform: UPPERCASE; }
+  .login--form {
+    padding: 40px 20px; }
+    .login--form__input-area {
+      width: 100%; }
+  .login--footer {
+    padding: 0 20px 20px 20px; }
+    .login--footer__text:first-of-type {
+      padding-top: 10px; }
+  .login .btn {
+    border: none;
+    border-radius: 0;
+    display: block;
+    width: 100%;
+    text-transform: UPPERCASE;
+    color: #fff; }
+
+/***********utility************/
+.arrow-down {
+  z-index: 999;
+  border: 20px solid transparent;
+  position: absolute;
+  margin: 0 auto;
+  top: 100%;
+  display: block;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+      -ms-transform: translateX(-50%);
+          transform: translateX(-50%); }
+
+.form-control {
+  height: auto;
+  padding: .7em;
+  background-color: #ccc; }
+
+input.form-control, span.input-group-addon {
+  border-radius: 0;
+  border: none; }
+
+span.input-group-addon {
+  color: #fff;
+  font-size: 1.2em;
+  width: 14%; }
+
+span.icon {
+  display: inline-block !important; }
+  span.icon-small {
+    font-size: 1.8em;
+    line-height: 1.9em;
+    width: 2em;
+    text-align: center; }
+  span.icon-medium {
+    font-size: 2.5em;
+    line-height: 1.9em;
+    width: 2em;
+    text-align: center; }
+
+.login--header .icon {
+  border: 2px solid #fff;
+  border-radius: 50%; }
+
+.login--form__input-area,
+.login--footer__text,
+.login--footer__social-buttons {
+  margin-bottom: 20px; }
+
+.btn-default {
+  padding: 1em; }
+
+span.icon {
+  color: #fff; }
+  .icon-fb {
+    background-color: #0069e0; }
+  .icon-tw {
+    background-color: #8accff; }
+  .icon-gp {
+    background-color: #c22a00; }
+
+a {
+  color: inherit; }
+  a:hover, a:focus {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted #444; }
+
+.checkbox-label {
+  position: relative;
+  padding-left: 30px;
+  vertical-align: middle; }
+
+input[type="checkbox"] {
+  visibility: hidden; }
+
+.checkgraph {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background-color: #ccc;
+  left: 0; }
+
+.checkgraph:before {
+  max-width: 0px;
+  display: block;
+  overflow: hidden;
+  line-height: 30px;
+  text-align: center;
+  font-size: 1.7em; }
+
+input:checked ~ .checkgraph:before {
+  max-width: 30px;
+  -webkit-animation-name: check;
+          animation-name: check;
+  -webkit-animation-duration: .3s;
+          animation-duration: .3s; }
+
+@-webkit-keyframes check {
+  0% {
+    max-width: 0; }
+  100% {
+    max-width: 30px; } }
+
+@keyframes check {
+  0% {
+    max-width: 0; }
+  100% {
+    max-width: 30px; } }
+
+/*# sourceMappingURL=style.css.map */

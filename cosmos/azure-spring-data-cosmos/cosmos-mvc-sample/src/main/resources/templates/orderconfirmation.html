@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5"
+      xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <!-- Bootstrap4 files-->
+    <script th:src="@{/js/bootstrap.bundle.min.js}" type="text/javascript"></script>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.css}" type="text/css"/>
+
+    <!-- Font awesome 5 -->
+    <link rel="stylesheet" th:href="@{/fonts/fontawesome/css/fontawesome-all.min.css}" type="text/css">
+
+    <!-- custom style -->
+    <link rel="stylesheet" th:href="@{/css/ui.css}" type="text/css"/>
+    <link media="only screen and (max-width: 1200px)" rel="stylesheet" th:href="@{/css/responsive.css}"/>
+</head>
+
+<body>
+<header class="section-header">
+    <section>
+        <div class="container-fluid bg-dark padding-top-sm">
+            <div class="row-sm">
+                <div class="col-lg-4-24 col-sm-3 ">
+                    <a th:href="@{/ebooks/index}" class="text-white font-weight-bold"><i class="fa fa-home fa-2x text-warning"></i> Book Store</a>
+                </div>
+                <div class="col-lg-11-24 col-sm-8">
+                    <form action="#" class="py-1">
+                        <div class="input-group w-100">
+                            <select class="custom-select" name="category_name">
+                                <option value="">All types</option>
+                                <option value="">Special</option>
+                                <option value="">Top rated</option>
+                                <option value="">Latest</option>
+                            </select>
+                            <input type="text" class="form-control" style="width:50%;" placeholder="tobe implemented">
+                            <div class="input-group-append">
+                                <button class="btn btn-warning" type="submit">
+                                    <i class="fa fa-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form> <!-- search-wrap .end// -->
+                </div> <!-- col.// -->
+
+                <div class="col-lg-9-24 col-sm-12">
+                    <div class="widgets-wrap float-right row no-gutters py-1">
+                        <div class="col-auto">
+                            <div class="widget-header dropdown">
+                                <div class="icontext">
+                                    <p class="text-white" th:inline="text">Hello, [[${customer.firstName}]]<br>
+                                        <a href="#" class="text-white font-weight-bold">Account & Profile</a>
+                                    </p>
+                                </div>
+                            </div>  <!-- widget-header .// -->
+                        </div> <!-- col.// -->
+                        <div class="col-auto">
+                            <div class="widget-header dropdown">
+                                <div class="icontext">
+                                    <p class="text-white ">Returns</span><br>
+                                        <a th:href="@{/ebooks/order/customer/{customerId}(customerId=${customer.customerId})}" class="text-white font-weight-bold">& Orders</a>
+                                    </p>
+
+                                </div>
+                            </div>  <!-- widget-header .// -->
+                        </div> <!-- col.// -->
+
+                        <div class="col-auto">
+                            <a href="#" class="widget-header">
+                                <div class="icontext">
+                                    <div class="icon-wrap">
+                                        <a th:href="@{/ebooks/cart}"> <span class="text-warning icon-sm fa fa-shopping-cart"
+                                                                            th:text="${cartItemCount}"></span></a>
+                                    </div>
+                                </div>
+                            </a>
+                        </div> <!-- col.// -->
+                    </div> <!-- widgets-wrap.// row.// -->
+                </div> <!-- col.// -->
+            </div> <!-- row.// -->
+        </div> <!-- container.// -->
+    </section> <!-- header-main .// -->
+</header>
+
+<section class="padding-y-lg">
+<div class="container">
+    <div class="card border col-md-8  bg-light border-warning">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="icontext">
+                        <p th:inline="text">Hey [[${customer.firstName}]],</p><br>
+                    </div>
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-md-6">
+                    <p class="text-warning font-weight-bold"><i class="fa fa-check-square text-warning " aria-hidden="true"></i> your order is confirmed</p>
+                </div>
+            </div>
+            <div class="row" >
+                <div class="col-md-6">
+                    <p>Thank you, your order has been placed.</p>
+                    <p>Please check your email for order confirmation and detailed delivery instructions.</p>
+                    <p>Order Number: 113-8611082-6857833</p>
+
+                    <a th:href="@{/ebooks/order/customer/{customerId}(customerId=${customer.customerId})}">Review or edit your order<i class="fa fa-chevron-right fa-xs" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</section>
+
+</body>
+</html>

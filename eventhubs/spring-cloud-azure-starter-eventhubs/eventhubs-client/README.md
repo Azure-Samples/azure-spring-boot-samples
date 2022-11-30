@@ -4,11 +4,11 @@ languages:
 - java
 products:
 - azure-event-hubs
-name: Sending and Receiving Message by Azure Event Hubs and Autoconfigured Sdk Client in Spring Boot Application
+name: Sending and Receiving Message by Azure Event Hubs and Autoconfigured SDK Client in Spring Boot Application
 description: This sample demonstrates how to send and receive message by Azure Event Hubs and autoconfigured SDK client in Spring Boot application.
 ---
 
-# Sending and Receiving Message by Azure Event Hubs and Autoconfigured Sdk Client in Spring Boot Application
+# Sending and Receiving Message by Azure Event Hubs and Autoconfigured SDK Client in Spring Boot Application
 
 This code sample demonstrates how to use the client of `Azure Event Hubs SDK` to interact with `Azure Event Hubs`.
 

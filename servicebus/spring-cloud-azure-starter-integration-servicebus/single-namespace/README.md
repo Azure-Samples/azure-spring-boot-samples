@@ -4,11 +4,11 @@ languages:
 - java
 products:
 - azure-service-bus
-name: Sending and receiving message by Azure Service Bus (single namespaces) and Spring Integration in Spring Boot application
+name: Sending and Receiving Message by Azure Service Bus (Single Namespaces) And Spring Integration in Spring Boot Application
 description: This sample demonstrates how to send and receive message by Azure Service Bus (single namespaces) and Spring Integration in Spring Boot application.
 ---
 
-# Using Service Bus Queue and Topic With Spring Integration 
+# Sending and Receiving Message by Azure Service Bus (Single Namespaces) And Spring Integration in Spring Boot Application
 
 This guide walks you through the process of accessing Servicebus Queues and Topics with Spring Integration.
 

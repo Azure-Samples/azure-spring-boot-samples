@@ -4,11 +4,11 @@ languages:
 - java
 products:
 - azure-active-directory-b2c
-name: Developing REST API application developed by Spring Boot and protected by Azure Active Directory B2C
+name: Developing Rest API Application Developed by Spring Boot and Protected by Azure Active Directory B2C
 description: This sample demonstrates how to develop REST API application developed by Spring Boot and protected by Azure Active Directory B2C.
 ---
 
-# Sample for Azure AD B2C Resource server Spring Boot
+# Developing Rest API Application Developed by Spring Boot and Protected by Azure Active Directory B2C
 
 ## Key concepts
 This sample illustrates how to use `spring-cloud-azure-starter-active-directory-b2c` package to work in a resource server and validate tokens. 

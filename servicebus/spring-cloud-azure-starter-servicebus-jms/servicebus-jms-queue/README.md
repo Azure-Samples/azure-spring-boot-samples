@@ -4,11 +4,11 @@ languages:
 - java
 products:
 - azure-service-bus
-name: Sending and receiving message by Azure Service Bus (queue) and JMS in Spring Boot application
+name: Sending and Receiving Message by Azure Service Bus (Queue) And Jms in Spring Boot Application
 description: This sample demonstrates how to send and receive message by Azure Service Bus (queue) and JMS in Spring Boot application.
 ---
 
-# Sample for Spring JMS with Azure Service Bus Queue Spring Cloud
+# Sending and Receiving Message by Azure Service Bus (Queue) And Jms in Spring Boot Application
 
 This sample project demonstrates how to use Spring JMS for Azure Service Bus Queue via Spring Boot Starter `spring-cloud-azure-starter-servicebus-jms`.
 

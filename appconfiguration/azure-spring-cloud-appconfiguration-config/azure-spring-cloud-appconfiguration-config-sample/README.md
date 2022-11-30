@@ -4,11 +4,11 @@ languages:
 - java
 products:
 - azure-app-configuration
-name: Loading configuration properties from App Configuration in Spring Boot application
+name: Loading Configuration Properties From App Configuration in Spring Boot Application
 description: This sample demonstrates how to load configuration properties from App Configuration to Spring Environment in Spring Boot application.
 ---
 
-# Spring Cloud Azure Config Sample
+# Loading Configuration Properties From App Configuration in Spring Boot Application
 
 This sample describes how to use [azure-spring-cloud-starter-appconfiguration-config](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.8.0/sdk/appconfiguration/azure-spring-cloud-starter-appconfiguration-config) to load configuration properties from App Configuration Service to Spring Environment.
 

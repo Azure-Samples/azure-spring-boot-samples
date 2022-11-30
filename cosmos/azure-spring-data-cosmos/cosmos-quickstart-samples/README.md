@@ -1,4 +1,14 @@
-# Azure Cosmos DB Spring Data Sample
+---
+page_type: sample
+languages:
+- java
+products:
+- azure-cosmos-db
+name: Using Azure Cosmos DB By Spring Data in Spring Boot Application
+description: This sample demonstrates how to use Azure Cosmos DB in Spring Boot application.
+---
+
+# Using Azure Cosmos DB By Spring Data in Spring Boot Application
 
 Azure [Spring Data](https://spring.io/projects/spring-data) [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/introduction) Quickstart sample project.
 

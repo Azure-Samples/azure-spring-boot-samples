@@ -4,11 +4,11 @@ languages:
 - java
 products:
 - azure-service-bus
-name: Sending and receiving message by Azure Service Bus (queue) and Spring Cloud Stream Binder in Spring Boot application
+name: Sending and Receiving Message by Azure Service Bus (Queue) And Spring Cloud Stream Binder in Spring Boot Application
 description: This sample demonstrates how to send and receive message by Azure Service Bus (queue) and Spring Cloud Stream Binder in Spring Boot application.
 ---
 
-# Spring Cloud Azure Stream Binder for Service Bus queue Sample shared library for Java 
+# Sending and Receiving Message by Azure Service Bus (Queue) And Spring Cloud Stream Binder in Spring Boot Application
 
 
 This code sample demonstrates how to use the Spring Cloud Stream binder for

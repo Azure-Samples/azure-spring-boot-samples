@@ -4,7 +4,7 @@ languages:
 - java
 products:
 - azure-app-configuration
-name: Managing features and get configurations from App Configuration in Spring Boot web application
+name: Managing Features and Get Configurations From App Configuration in Spring Boot Web Application
 description: This sample demonstrates how to manage features and how to get configurations from App Configuration to Spring Environment in Spring Boot web application.
 ---
 

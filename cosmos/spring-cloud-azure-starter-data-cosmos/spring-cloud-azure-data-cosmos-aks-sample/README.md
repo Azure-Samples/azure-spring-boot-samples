@@ -4,11 +4,11 @@ languages:
 - java
 products:
 - azure-cosmos-db
-name: Using Azure Cosmos Db in Spring Boot Application And Deploy To AKS
+name: Using Azure Cosmos Db in Spring Boot Application And Deploy To Azure Kubernetes Service
 description: This sample demonstrates how to use Azure Cosmos DB in Spring Boot application and deploy to AKS.
 ---
 
-# Using Azure Cosmos Db in Spring Boot Application And Deploy To AKS
+# Using Azure Cosmos Db in Spring Boot Application And Deploy To Azure Kubernetes Service
 
 In this tutorial, you will setup and build a Spring Boot application to perform operations on data in an [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/introduction) SQL API account. You will then package the image using [Docker](https://docs.docker.com/), push it to [Azure Container Registry](https://azure.microsoft.com/products/container-registry/). Finally, you will deploy to [Azure Kubernetes Service](https://azure.microsoft.com/products/kubernetes-service/) and access the REST APIs exposed by the application.
 

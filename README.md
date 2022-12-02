@@ -21,8 +21,8 @@ We use `main` branch as the develop branch while setting the default branch as t
 | spring-cloud-azure_v4.5.0-beta.1 | true           | release branch |
 
 ## Current Branch Supported Versions
-- [spring-boot-dependencies:2.7.4](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-dependencies/2.7.4/spring-boot-dependencies-2.7.4.pom).
-- [spring-cloud-dependencies:2021.0.4](https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud-dependencies/2021.0.4/spring-cloud-dependencies-2021.0.4.pom).
+- [spring-boot-dependencies:2.7.6](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-dependencies/2.7.6/spring-boot-dependencies-2.7.6.pom).
+- [spring-cloud-dependencies:2021.0.5](https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud-dependencies/2021.0.5/spring-cloud-dependencies-2021.0.5.pom).
 
 ## All Samples in This Repo
 

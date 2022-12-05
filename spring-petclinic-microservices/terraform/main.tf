@@ -27,7 +27,9 @@ resource "azurerm_resource_group" "main" {
   location = var.location
 
   tags = {
-    "spring-cloud-azure-sample" = var.sample_tag_value
+    terraform                 = "true"
+    application-name          = var.application_name
+    spring-cloud-azure-sample = var.sample_tag_value
   }
 }
 
@@ -58,7 +60,9 @@ resource "azurerm_cosmosdb_account" "application" {
   }
 
   tags = {
-    "spring-cloud-azure-sample" = var.sample_tag_value
+    terraform                 = "true"
+    application-name          = var.application_name
+    spring-cloud-azure-sample = var.sample_tag_value
   }
 }
 
@@ -151,8 +155,9 @@ resource "azurerm_key_vault" "kv_account" {
   }
 
   tags = {
-    "terraform"                 = "true"
-    "spring-cloud-azure-sample" = var.sample_tag_value
+    terraform                 = "true"
+    application-name          = var.application_name
+    spring-cloud-azure-sample = var.sample_tag_value
   }
 }
 

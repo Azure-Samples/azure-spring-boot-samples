@@ -4,11 +4,11 @@ languages:
 - java
 products:
 - azure-app-configuration
-name: Refreshing configuration properties from App Configuration in Spring Boot application
+name: Refreshing Configuration Properties From App Configuration in Spring Boot Application
 description: This sample demonstrates how to refresh configuration properties from App Configuration in Spring Boot application.
 ---
 
-# Azure App Configuration Refresh Sample
+# Refreshing Configuration Properties From App Configuration in Spring Boot Application
 
 ## Prerequisite
 

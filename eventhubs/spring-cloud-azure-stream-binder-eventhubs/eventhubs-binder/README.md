@@ -4,11 +4,11 @@ languages:
 - java
 products:
 - azure-event-hubs
-name: Sending and receiving message by Azure Event Hubs and Spring Cloud Stream Binder EventHubs in Spring Boot application
+name: Sending and Receiving Message by Azure Event Hubs and Spring Cloud Stream Binder Eventhubs in Spring Boot Application
 description: This sample demonstrates how to send and receive message by Azure Event Hubs and Spring Cloud Stream Binder EventHubs in Spring Boot application.
 ---
 
-# Using Spring Cloud Stream Binder for Azure Event Hubs
+# Sending and Receiving Message by Azure Event Hubs and Spring Cloud Stream Binder Eventhubs in Spring Boot Application
 
 This code sample demonstrates how to use the `Spring Cloud Stream Binder` for `Azure Event Hubs`.The
 sample app has two operating modes.

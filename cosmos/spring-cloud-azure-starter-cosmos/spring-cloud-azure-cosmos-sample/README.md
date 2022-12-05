@@ -4,11 +4,11 @@ languages:
 - java
 products:
 - azure-cosmos-db
-name: Accessing Azure Cosmos DB with autoconfigured CosmosClient in Spring Boot application
+name: Accessing Azure Cosmos DB With Autoconfigured Cosmosclient in Spring Boot Application
 description: This sample demonstrates how to access Azure Cosmos DB with autoconfigured CosmosClient in Spring Boot application.
 ---
 
-# Using Cosmos DB With CosmosClient
+# Accessing Azure Cosmos DB With Autoconfigured Cosmosclient in Spring Boot Application
 
 This guide walks you through the process of accessing Azure Cosmos DB with CosmosClient.
 

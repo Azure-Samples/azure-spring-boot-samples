@@ -49,9 +49,9 @@ resource "azurerm_storage_account" "storage_account" {
   account_replication_type = "LRS"
 
   tags = {
-    "spring-cloud-azure-sample" = var.sample_tag_value
-    "terraform"                 = "true"
-    "application-name"          = var.application_name
+    terraform                 = "true"
+    application-name          = var.application_name
+    spring-cloud-azure-sample = var.sample_tag_value
   }
 }
 

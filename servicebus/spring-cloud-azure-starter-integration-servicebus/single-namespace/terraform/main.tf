@@ -49,6 +49,8 @@ resource "azurerm_servicebus_namespace" "servicebus_namespace" {
   zone_redundant = false
 
   tags = {
+    "terraform"                 = "true"
+    "application-name"          = var.application_name
     "spring-cloud-azure-sample" = var.sample_tag_value
   }
 }

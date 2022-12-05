@@ -51,7 +51,9 @@ resource "azurerm_eventhub_namespace" "eventhubs_namespace" {
   capacity            = 1
 
   tags = {
-    terraform_azure_sample = var.sample_tag_value
+    terraform                 = "true"
+    application-name          = var.application_name
+    spring-cloud-azure-sample = var.sample_tag_value
   }
 }
 

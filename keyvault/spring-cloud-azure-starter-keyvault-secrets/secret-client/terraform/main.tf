@@ -71,6 +71,7 @@ resource "azurerm_key_vault" "kv_account" {
 
   tags = {
     "terraform"                 = "true"
+    "application-name"          = var.application_name
     "spring-cloud-azure-sample" = var.sample_tag_value
   }
 }

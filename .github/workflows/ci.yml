@@ -16,7 +16,7 @@ jobs:
       uses: snow-actions/sparse-checkout@v1.1.0
       with:
         patterns: |
-          sdk/spring sdk/jdbc sdk/spring-experimental eng sdk/boms sdk/parents
+          sdk/spring eng sdk/boms sdk/parents
         repository: Azure/azure-sdk-for-java
         ref: feature/spring-boot-3
         path: azure-sdk-for-java

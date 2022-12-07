@@ -36,9 +36,9 @@ Please refer to [README.md](terraform/README.md) if you want to start the sample
 From your command line:
 
 ```command line
-git clone https://github.com/Azure/azure-sdk-for-java.git
+git clone git@github.com:Azure-Samples/azure-spring-boot-samples.git
 ```
-or download and extract the repository .zip file, and navigate to `spring-cloud-azure-sample-active-directory-resource-server-by-filter` from the list of samples.
+or download and extract the repository .zip file, and navigate to `aad-resource-server-by-filter` from the list of samples.
 
 ---
 ### Step 2:  Register the sample with your Azure Active Directory tenant

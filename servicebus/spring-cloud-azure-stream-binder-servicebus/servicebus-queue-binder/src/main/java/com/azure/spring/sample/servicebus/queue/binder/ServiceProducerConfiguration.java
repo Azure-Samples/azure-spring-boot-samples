@@ -22,7 +22,7 @@ public class ServiceProducerConfiguration {
     private int i = 0;
 
     @Bean
-    public Supplier<Message<String>> supply() {
+    Supplier<Message<String>> supply() {
         return () -> {
             LOGGER.info("Sending message, sequence " + i);
             return MessageBuilder.withPayload("Hello world, " + i++).build();

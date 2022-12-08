@@ -40,14 +40,14 @@ public class SendController {
         return message;
     }
 
-  /**
-   * This message sender binds with {@link MessagingGateway} via {@link MessageChannel} has name
-   * {@value OUTPUT_CHANNEL}
-   *
-   */
-  @Bean
-  @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
-  public MessageHandler messageSender(EventHubsTemplate eventHubsTemplate) {
+    /**
+     * This message sender binds with {@link MessagingGateway} via {@link MessageChannel} has name
+     * {@value OUTPUT_CHANNEL}
+     *
+     */
+    @Bean
+    @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
+    MessageHandler messageSender(EventHubsTemplate eventHubsTemplate) {
         DefaultMessageHandler handler = new DefaultMessageHandler(EVENTHUB_NAME, eventHubsTemplate);
         handler.setSendCallback(new ListenableFutureCallback<Void>() {
             @Override

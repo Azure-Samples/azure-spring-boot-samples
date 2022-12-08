@@ -26,26 +26,26 @@ public class EventHubMultiBindersApplication {
     }
 
     @Bean
-    public Consumer<Message<String>> consume1() {
+    Consumer<Message<String>> consume1() {
         return message -> {
             Checkpointer checkpointer = (Checkpointer) message.getHeaders().get(CHECKPOINTER);
             LOGGER.info("New message1 received: '{}'", message);
             checkpointer.success()
-                    .doOnSuccess(success -> LOGGER.info("Message1 '{}' successfully checkpointed", message))
-                    .doOnError(error -> LOGGER.error("Exception found", error))
-                    .block();
+                              .doOnSuccess(success -> LOGGER.info("Message1 '{}' successfully checkpointed", message))
+                              .doOnError(error -> LOGGER.error("Exception found", error))
+                              .block();
         };
     }
 
     @Bean
-    public Consumer<Message<String>> consume2() {
+    Consumer<Message<String>> consume2() {
         return message -> {
             Checkpointer checkpointer = (Checkpointer) message.getHeaders().get(CHECKPOINTER);
             LOGGER.info("New message2 received: '{}'", message);
             checkpointer.success()
-                    .doOnSuccess(success -> LOGGER.info("Message2 '{}' successfully checkpointed", message))
-                    .doOnError(error -> LOGGER.error("Exception found", error))
-                    .block();
+                              .doOnSuccess(success -> LOGGER.info("Message2 '{}' successfully checkpointed", message))
+                              .doOnError(error -> LOGGER.error("Exception found", error))
+                              .block();
         };
     }
 

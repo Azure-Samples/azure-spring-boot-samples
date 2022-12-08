@@ -40,7 +40,7 @@ public class QueueSendController {
 
     @Bean
     @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
-    public MessageHandler queueMessageSender(ServiceBusTemplate serviceBusTemplate) {
+    MessageHandler queueMessageSender(ServiceBusTemplate serviceBusTemplate) {
         serviceBusTemplate.setDefaultEntityType(ServiceBusEntityType.QUEUE);
         DefaultMessageHandler handler = new DefaultMessageHandler(QUEUE_NAME, serviceBusTemplate);
         handler.setSendCallback(new ListenableFutureCallback<Void>() {

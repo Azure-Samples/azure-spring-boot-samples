@@ -25,7 +25,7 @@ public class BatchProducerAndConsumerConfiguration {
     private int i = 0;
 
     @Bean
-    public Supplier<Message<String>> supply() {
+    Supplier<Message<String>> supply() {
         return () -> {
             LOGGER.info("Sending message, sequence " + i++);
             return MessageBuilder.withPayload("\"Hello world " + i++ + "\"").build();
@@ -33,15 +33,15 @@ public class BatchProducerAndConsumerConfiguration {
     }
 
     @Bean
-    public Consumer<Message<List<String>>> consume() {
+    Consumer<Message<List<String>>> consume() {
         return message -> {
             for (int i = 0; i < message.getPayload().size(); i++) {
                 LOGGER.info("New message received: '{}', partition key: {}, sequence number: {}, offset: {}, enqueued time: {}",
-                        message.getPayload().get(i),
-                        ((List<Object>) message.getHeaders().get(EventHubsHeaders.BATCH_CONVERTED_PARTITION_KEY)).get(i),
-                        ((List<Object>) message.getHeaders().get(EventHubsHeaders.BATCH_CONVERTED_SEQUENCE_NUMBER)).get(i),
-                        ((List<Object>) message.getHeaders().get(EventHubsHeaders.BATCH_CONVERTED_OFFSET)).get(i),
-                        ((List<Object>) message.getHeaders().get(EventHubsHeaders.BATCH_CONVERTED_ENQUEUED_TIME)).get(i));
+                                 message.getPayload().get(i),
+                                 ((List<Object>) message.getHeaders().get(EventHubsHeaders.BATCH_CONVERTED_PARTITION_KEY)).get(i),
+                                 ((List<Object>) message.getHeaders().get(EventHubsHeaders.BATCH_CONVERTED_SEQUENCE_NUMBER)).get(i),
+                                 ((List<Object>) message.getHeaders().get(EventHubsHeaders.BATCH_CONVERTED_OFFSET)).get(i),
+                                 ((List<Object>) message.getHeaders().get(EventHubsHeaders.BATCH_CONVERTED_ENQUEUED_TIME)).get(i));
             }
 
         };

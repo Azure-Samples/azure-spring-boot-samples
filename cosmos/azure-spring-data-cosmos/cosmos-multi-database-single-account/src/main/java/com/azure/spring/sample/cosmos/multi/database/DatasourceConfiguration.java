@@ -19,12 +19,12 @@ public class DatasourceConfiguration {
     private static final String DATABASE2 = "database2";
 
     @Bean
-    public CosmosProperties cosmosProperties() {
+    CosmosProperties cosmosProperties() {
         return new CosmosProperties();
     }
 
     @Bean
-    public CosmosClientBuilder primaryClientBuilder(CosmosProperties cosmosProperties) {
+    CosmosClientBuilder primaryClientBuilder(CosmosProperties cosmosProperties) {
         return new CosmosClientBuilder()
             .key(cosmosProperties.getKey())
             .endpoint(cosmosProperties.getUri());
@@ -35,9 +35,9 @@ public class DatasourceConfiguration {
     public class Database1Configuration extends AbstractCosmosConfiguration {
 
         @Bean
-        public ReactiveCosmosTemplate database1Template(CosmosAsyncClient cosmosAsyncClient,
-                                                              CosmosConfig cosmosConfig,
-                                                              MappingCosmosConverter mappingCosmosConverter) {
+        ReactiveCosmosTemplate database1Template(CosmosAsyncClient cosmosAsyncClient,
+            CosmosConfig cosmosConfig,
+            MappingCosmosConverter mappingCosmosConverter) {
             return new ReactiveCosmosTemplate(cosmosAsyncClient, DATABASE1, cosmosConfig, mappingCosmosConverter);
         }
 
@@ -52,9 +52,9 @@ public class DatasourceConfiguration {
     public class Database2Configuration {
 
         @Bean
-        public ReactiveCosmosTemplate database2Template(CosmosAsyncClient cosmosAsyncClient,
-                                                              CosmosConfig cosmosConfig,
-                                                              MappingCosmosConverter mappingCosmosConverter) {
+        ReactiveCosmosTemplate database2Template(CosmosAsyncClient cosmosAsyncClient,
+            CosmosConfig cosmosConfig,
+            MappingCosmosConverter mappingCosmosConverter) {
             return new ReactiveCosmosTemplate(cosmosAsyncClient, DATABASE2, cosmosConfig, mappingCosmosConverter);
         }
 

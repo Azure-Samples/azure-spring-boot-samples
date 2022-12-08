@@ -30,7 +30,7 @@ public class ReceiveService {
 
     @Bean
     @InboundChannelAdapter(channel = INPUT_CHANNEL, poller = @Poller(fixedDelay = "1000"))
-    public StorageQueueMessageSource storageQueueMessageSource(StorageQueueTemplate storageQueueTemplate) {
+    StorageQueueMessageSource storageQueueMessageSource(StorageQueueTemplate storageQueueTemplate) {
 
         return new StorageQueueMessageSource(STORAGE_QUEUE_NAME, storageQueueTemplate);
     }

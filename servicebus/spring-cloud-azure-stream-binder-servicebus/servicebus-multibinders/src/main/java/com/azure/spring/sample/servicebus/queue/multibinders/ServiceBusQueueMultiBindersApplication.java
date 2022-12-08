@@ -28,26 +28,26 @@ public class ServiceBusQueueMultiBindersApplication {
     }
 
     @Bean
-    public Consumer<Message<String>> consume1() {
+    Consumer<Message<String>> consume1() {
         return message -> {
             Checkpointer checkpointer = (Checkpointer) message.getHeaders().get(CHECKPOINTER);
             LOGGER.info("New message1 received: '{}'", message);
             checkpointer.success()
-                    .doOnSuccess(s -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
-                    .doOnError(e -> LOGGER.error("Error found", e))
-                    .block();
+                              .doOnSuccess(s -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
+                              .doOnError(e -> LOGGER.error("Error found", e))
+                              .block();
         };
     }
 
     @Bean
-    public Consumer<Message<String>> consume2() {
+    Consumer<Message<String>> consume2() {
         return message -> {
             Checkpointer checkpointer = (Checkpointer) message.getHeaders().get(CHECKPOINTER);
             LOGGER.info("New message2 received: '{}'", message);
             checkpointer.success()
-                    .doOnSuccess(s -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
-                    .doOnError(e -> LOGGER.error("Error found", e))
-                    .block();
+                              .doOnSuccess(s -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
+                              .doOnError(e -> LOGGER.error("Error found", e))
+                              .block();
         };
 
     }

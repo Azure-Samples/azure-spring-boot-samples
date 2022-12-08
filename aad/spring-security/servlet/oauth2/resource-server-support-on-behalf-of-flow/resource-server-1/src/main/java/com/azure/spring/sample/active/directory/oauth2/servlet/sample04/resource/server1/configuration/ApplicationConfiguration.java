@@ -49,13 +49,13 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public OAuth2AuthorizedClientManager authorizedClientManager(
+    OAuth2AuthorizedClientManager authorizedClientManager(
         ClientRegistrationRepository clientRegistrationRepository,
         OAuth2AuthorizedClientRepository authorizedClientRepository) {
         OAuth2AuthorizedClientProvider authorizedClientProvider =
             OAuth2AuthorizedClientProviderBuilder.builder()
-                                                 .provider(jwtBearerOAuth2AuthorizedClientProvider())
-                                                 .build();
+                .provider(jwtBearerOAuth2AuthorizedClientProvider())
+                .build();
         DefaultOAuth2AuthorizedClientManager authorizedClientManager =
             new DefaultOAuth2AuthorizedClientManager(clientRegistrationRepository, authorizedClientRepository);
         authorizedClientManager.setAuthorizedClientProvider(authorizedClientProvider);
@@ -63,14 +63,14 @@ public class ApplicationConfiguration {
     }
 
     @Bean
-    public WebClient webClient(ClientRegistrationRepository clientRegistrationRepository,
-                                      OAuth2AuthorizedClientRepository authorizedClientRepository) {
+    WebClient webClient(ClientRegistrationRepository clientRegistrationRepository,
+        OAuth2AuthorizedClientRepository authorizedClientRepository) {
         ServletOAuth2AuthorizedClientExchangeFilterFunction function =
             new ServletOAuth2AuthorizedClientExchangeFilterFunction(clientRegistrationRepository,
                 authorizedClientRepository);
         return WebClient.builder()
-                        .apply(function.oauth2Configuration())
-                        .build();
+            .apply(function.oauth2Configuration())
+            .build();
     }
 
     private JwtBearerOAuth2AuthorizedClientProvider jwtBearerOAuth2AuthorizedClientProvider() {

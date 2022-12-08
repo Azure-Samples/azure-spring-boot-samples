@@ -25,7 +25,7 @@ public class ServiceBusQueueBinderArmApplication {
     }
 
     @Bean
-    public Consumer<Message<String>> consume() {
+    Consumer<Message<String>> consume() {
         return message -> {
             Checkpointer checkpointer = (Checkpointer) message.getHeaders().get(CHECKPOINTER);
             LOGGER.info("New message received: '{}'", message.getPayload());

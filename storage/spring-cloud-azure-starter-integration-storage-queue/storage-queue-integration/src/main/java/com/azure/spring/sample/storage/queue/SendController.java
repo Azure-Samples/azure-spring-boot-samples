@@ -43,7 +43,7 @@ public class SendController {
 
     @Bean
     @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
-    public MessageHandler messageSender(StorageQueueTemplate storageQueueTemplate) {
+    MessageHandler messageSender(StorageQueueTemplate storageQueueTemplate) {
         DefaultMessageHandler handler = new DefaultMessageHandler(STORAGE_QUEUE_NAME, storageQueueTemplate);
         handler.setSendCallback(new ListenableFutureCallback<Void>() {
             @Override

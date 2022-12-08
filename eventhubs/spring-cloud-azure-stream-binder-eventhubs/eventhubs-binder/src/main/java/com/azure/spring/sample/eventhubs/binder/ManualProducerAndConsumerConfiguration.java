@@ -27,33 +27,33 @@ public class ManualProducerAndConsumerConfiguration {
     private static final Logger LOGGER = LoggerFactory.getLogger(EventHubBinderApplication.class);
 
     @Bean
-    public Sinks.Many<Message<String>> many() {
+    Sinks.Many<Message<String>> many() {
         return Sinks.many().unicast().onBackpressureBuffer();
     }
 
     @Bean
-    public Supplier<Flux<Message<String>>> supply(Sinks.Many<Message<String>> many) {
+    Supplier<Flux<Message<String>>> supply(Sinks.Many<Message<String>> many) {
         return () -> many.asFlux()
                          .doOnNext(m -> LOGGER.info("Manually sending message {}", m))
                          .doOnError(t -> LOGGER.error("Error encountered", t));
     }
 
     @Bean
-    public Consumer<Message<String>> consume() {
+    Consumer<Message<String>> consume() {
         return message -> {
             Checkpointer checkpointer = (Checkpointer) message.getHeaders().get(AzureHeaders.CHECKPOINTER);
             LOGGER.info("New message received: '{}', partition key: {}, sequence number: {}, offset: {}, enqueued time: {}",
-                message.getPayload(),
-                message.getHeaders().get(EventHubsHeaders.PARTITION_KEY),
-                message.getHeaders().get(EventHubsHeaders.SEQUENCE_NUMBER),
-                message.getHeaders().get(EventHubsHeaders.OFFSET),
-                message.getHeaders().get(EventHubsHeaders.ENQUEUED_TIME)
+                             message.getPayload(),
+                             message.getHeaders().get(EventHubsHeaders.PARTITION_KEY),
+                             message.getHeaders().get(EventHubsHeaders.SEQUENCE_NUMBER),
+                             message.getHeaders().get(EventHubsHeaders.OFFSET),
+                             message.getHeaders().get(EventHubsHeaders.ENQUEUED_TIME)
             );
 
             checkpointer.success()
-                        .doOnSuccess(success -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
-                        .doOnError(error -> LOGGER.error("Exception found", error))
-                        .block();
+                             .doOnSuccess(success -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
+                             .doOnError(error -> LOGGER.error("Exception found", error))
+                             .block();
         };
     }
 }

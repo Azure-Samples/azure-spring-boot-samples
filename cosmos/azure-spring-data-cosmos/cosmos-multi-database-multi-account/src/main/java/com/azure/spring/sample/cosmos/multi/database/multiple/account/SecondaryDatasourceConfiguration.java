@@ -28,29 +28,29 @@ public class SecondaryDatasourceConfiguration {
 
     @Bean
     @ConfigurationProperties(prefix = "azure.cosmos.secondary")
-    public CosmosProperties secondary() {
+    CosmosProperties secondary() {
         return new CosmosProperties();
     }
 
     @Bean("secondaryCosmosClient")
-    public CosmosAsyncClient getCosmosAsyncClient(@Qualifier("secondary") CosmosProperties secondaryProperties) {
+    CosmosAsyncClient getCosmosAsyncClient(@Qualifier("secondary") CosmosProperties secondaryProperties) {
         return CosmosFactory.createCosmosAsyncClient(new CosmosClientBuilder()
-            .key(secondaryProperties.getKey())
-            .endpoint(secondaryProperties.getUri()));
+        .key(secondaryProperties.getKey())
+        .endpoint(secondaryProperties.getUri()));
     }
 
     @Bean("secondaryCosmosConfig")
-    public CosmosConfig getCosmosConfig() {
+    CosmosConfig getCosmosConfig() {
         return CosmosConfig.builder()
-            .enableQueryMetrics(true)
-            .responseDiagnosticsProcessor(new ResponseDiagnosticsProcessorImplementation())
-            .build();
+        .enableQueryMetrics(true)
+        .responseDiagnosticsProcessor(new ResponseDiagnosticsProcessorImplementation())
+        .build();
     }
 
     @Bean
-    public CosmosTemplate secondaryDatabaseTemplate(@Qualifier("secondaryCosmosClient") CosmosAsyncClient client,
-                                                    @Qualifier("secondaryCosmosConfig") CosmosConfig cosmosConfig,
-                                                    MappingCosmosConverter mappingCosmosConverter) {
+    CosmosTemplate secondaryDatabaseTemplate(@Qualifier("secondaryCosmosClient") CosmosAsyncClient client,
+    @Qualifier("secondaryCosmosConfig") CosmosConfig cosmosConfig,
+    MappingCosmosConverter mappingCosmosConverter) {
         return new CosmosTemplate(client, SECONDARY_DATABASE, cosmosConfig, mappingCosmosConverter);
     }
 

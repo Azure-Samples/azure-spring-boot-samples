@@ -42,7 +42,7 @@ public class TopicReceiveController {
     }
 
     @Bean("topic-listener-container")
-    public ServiceBusMessageListenerContainer messageListenerContainer(ServiceBusProcessorFactory processorFactory) {
+    ServiceBusMessageListenerContainer messageListenerContainer(ServiceBusProcessorFactory processorFactory) {
         ServiceBusContainerProperties containerProperties = new ServiceBusContainerProperties();
         containerProperties.setEntityName(TOPIC_NAME);
         containerProperties.setSubscriptionName(SUBSCRIPTION_NAME);
@@ -51,16 +51,16 @@ public class TopicReceiveController {
     }
 
     @Bean
-    public ServiceBusInboundChannelAdapter topicMessageChannelAdapter(
-        @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel,
-        @Qualifier("topic-listener-container") ServiceBusMessageListenerContainer listenerContainer) {
+    ServiceBusInboundChannelAdapter topicMessageChannelAdapter(
+    @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel,
+    @Qualifier("topic-listener-container") ServiceBusMessageListenerContainer listenerContainer) {
         ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(listenerContainer);
         adapter.setOutputChannel(inputChannel);
         return adapter;
     }
 
     @Bean(name = INPUT_CHANNEL)
-    public MessageChannel input() {
+    MessageChannel input() {
         return new DirectChannel();
     }
 

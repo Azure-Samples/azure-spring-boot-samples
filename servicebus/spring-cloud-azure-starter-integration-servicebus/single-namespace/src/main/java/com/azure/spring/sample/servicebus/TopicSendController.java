@@ -40,7 +40,7 @@ public class TopicSendController {
 
     @Bean
     @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
-    public MessageHandler topicMessageSender(ServiceBusTemplate serviceBusTemplate) {
+    MessageHandler topicMessageSender(ServiceBusTemplate serviceBusTemplate) {
         serviceBusTemplate.setDefaultEntityType(ServiceBusEntityType.TOPIC);
         DefaultMessageHandler handler = new DefaultMessageHandler(TOPIC_NAME, serviceBusTemplate);
         handler.setSendCallback(new ListenableFutureCallback<Void>() {

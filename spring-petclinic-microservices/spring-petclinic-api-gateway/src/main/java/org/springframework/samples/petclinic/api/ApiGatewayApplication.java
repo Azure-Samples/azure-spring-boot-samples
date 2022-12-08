@@ -54,7 +54,7 @@ public class ApiGatewayApplication {
 
   @Bean
   @LoadBalanced
-  public WebClient.Builder loadBalancedWebClientBuilder() {
+  WebClient.Builder loadBalancedWebClientBuilder() {
     return WebClient.builder();
   }
 
@@ -79,7 +79,7 @@ public class ApiGatewayApplication {
 
   /** Default Resilience4j circuit breaker configuration */
   @Bean
-  public Customizer<ReactiveResilience4JCircuitBreakerFactory> defaultCustomizer() {
+  Customizer<ReactiveResilience4JCircuitBreakerFactory> defaultCustomizer() {
     return factory ->
         factory.configureDefault(
             id ->

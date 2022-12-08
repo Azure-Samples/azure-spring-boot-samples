@@ -41,7 +41,7 @@ public class QueueReceiveController {
     }
 
     @Bean("queue-listener-container")
-    public ServiceBusMessageListenerContainer messageListenerContainer(ServiceBusProcessorFactory processorFactory) {
+    ServiceBusMessageListenerContainer messageListenerContainer(ServiceBusProcessorFactory processorFactory) {
         ServiceBusContainerProperties containerProperties = new ServiceBusContainerProperties();
         containerProperties.setEntityName(QUEUE_NAME);
         containerProperties.setAutoComplete(false);
@@ -49,16 +49,16 @@ public class QueueReceiveController {
     }
 
     @Bean
-    public ServiceBusInboundChannelAdapter queueMessageChannelAdapter(
-        @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel,
-        @Qualifier("queue-listener-container") ServiceBusMessageListenerContainer listenerContainer) {
+    ServiceBusInboundChannelAdapter queueMessageChannelAdapter(
+    @Qualifier(INPUT_CHANNEL) MessageChannel inputChannel,
+    @Qualifier("queue-listener-container") ServiceBusMessageListenerContainer listenerContainer) {
         ServiceBusInboundChannelAdapter adapter = new ServiceBusInboundChannelAdapter(listenerContainer);
         adapter.setOutputChannel(inputChannel);
         return adapter;
     }
 
     @Bean(name = INPUT_CHANNEL)
-    public MessageChannel input() {
+    MessageChannel input() {
         return new DirectChannel();
     }
 }

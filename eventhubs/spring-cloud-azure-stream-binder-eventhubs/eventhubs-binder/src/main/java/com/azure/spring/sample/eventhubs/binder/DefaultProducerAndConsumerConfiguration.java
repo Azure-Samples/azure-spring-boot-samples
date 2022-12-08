@@ -29,26 +29,26 @@ public class DefaultProducerAndConsumerConfiguration {
     private int i = 0;
 
     @Bean
-    public Consumer<Message<String>> consume() {
+    Consumer<Message<String>> consume() {
         return message -> {
             Checkpointer checkpointer = (Checkpointer) message.getHeaders().get(CHECKPOINTER);
             LOGGER.info("New message received: '{}', partition key: {}, sequence number: {}, offset: {}, enqueued time: {}",
-                    message.getPayload(),
-                    message.getHeaders().get(EventHubsHeaders.PARTITION_KEY),
-                    message.getHeaders().get(EventHubsHeaders.SEQUENCE_NUMBER),
-                    message.getHeaders().get(EventHubsHeaders.OFFSET),
-                    message.getHeaders().get(EventHubsHeaders.ENQUEUED_TIME)
+                             message.getPayload(),
+                             message.getHeaders().get(EventHubsHeaders.PARTITION_KEY),
+                             message.getHeaders().get(EventHubsHeaders.SEQUENCE_NUMBER),
+                             message.getHeaders().get(EventHubsHeaders.OFFSET),
+                             message.getHeaders().get(EventHubsHeaders.ENQUEUED_TIME)
             );
 
             checkpointer.success()
-                    .doOnSuccess(success -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
-                    .doOnError(error -> LOGGER.error("Exception found", error))
-                    .block();
+                             .doOnSuccess(success -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
+                             .doOnError(error -> LOGGER.error("Exception found", error))
+                             .block();
         };
     }
 
     @Bean
-    public Supplier<Message<String>> supply() {
+    Supplier<Message<String>> supply() {
         return () -> {
             LOGGER.info("Sending message, sequence " + i);
             return MessageBuilder.withPayload("Hello world, " + i++).build();

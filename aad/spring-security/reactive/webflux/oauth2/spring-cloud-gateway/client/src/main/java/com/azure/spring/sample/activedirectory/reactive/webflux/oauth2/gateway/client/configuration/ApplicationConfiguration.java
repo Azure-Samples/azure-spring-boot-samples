@@ -11,13 +11,13 @@ import org.springframework.web.reactive.function.client.WebClient;
 public class ApplicationConfiguration {
 
     @Bean
-    public WebClient webClient(ReactiveClientRegistrationRepository clientRegistrationRepository,
-                                      ServerOAuth2AuthorizedClientRepository authorizedClientRepository) {
+    WebClient webClient(ReactiveClientRegistrationRepository clientRegistrationRepository,
+        ServerOAuth2AuthorizedClientRepository authorizedClientRepository) {
         ServerOAuth2AuthorizedClientExchangeFilterFunction function =
             new ServerOAuth2AuthorizedClientExchangeFilterFunction(clientRegistrationRepository,
                 authorizedClientRepository);
         return WebClient.builder()
-                        .filter(function)
-                        .build();
+            .filter(function)
+            .build();
     }
 }

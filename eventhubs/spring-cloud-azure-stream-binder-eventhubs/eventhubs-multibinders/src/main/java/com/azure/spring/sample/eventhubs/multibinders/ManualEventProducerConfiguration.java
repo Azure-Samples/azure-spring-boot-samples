@@ -21,24 +21,24 @@ public class ManualEventProducerConfiguration {
     private static final Logger LOGGER = LoggerFactory.getLogger(EventHubMultiBindersApplication.class);
 
     @Bean
-    public Sinks.Many<Message<String>> many1() {
+    Sinks.Many<Message<String>> many1() {
         return Sinks.many().unicast().onBackpressureBuffer();
     }
 
     @Bean
-    public Sinks.Many<Message<String>> many2() {
+    Sinks.Many<Message<String>> many2() {
         return Sinks.many().unicast().onBackpressureBuffer();
     }
 
     @Bean
-    public Supplier<Flux<Message<String>>> supply1(Sinks.Many<Message<String>> many1) {
+    Supplier<Flux<Message<String>>> supply1(Sinks.Many<Message<String>> many1) {
         return () -> many1.asFlux()
                           .doOnNext(m -> LOGGER.info("Manually sending message1 {}", m))
                           .doOnError(t -> LOGGER.error("Error encountered", t));
     }
 
     @Bean
-    public Supplier<Flux<Message<String>>> supply2(Sinks.Many<Message<String>> many2) {
+    Supplier<Flux<Message<String>>> supply2(Sinks.Many<Message<String>> many2) {
         return () -> many2.asFlux()
                           .doOnNext(m -> LOGGER.info("Manually sending message2 {}", m))
                           .doOnError(t -> LOGGER.error("Error encountered", t));

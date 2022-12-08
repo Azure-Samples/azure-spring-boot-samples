@@ -27,14 +27,14 @@ public class ServiceBusTopicBinderApplication {
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceBusTopicBinderApplication.class);
 
     @Bean
-    public Consumer<Message<String>> consume() {
+    Consumer<Message<String>> consume() {
         return message -> {
             Checkpointer checkpointer = (Checkpointer) message.getHeaders().get(CHECKPOINTER);
             LOGGER.info("New message received: '{}'", message.getPayload());
             checkpointer.success()
-                    .doOnSuccess(s -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
-                    .doOnError(e -> LOGGER.error("Error found", e))
-                    .block();
+                             .doOnSuccess(s -> LOGGER.info("Message '{}' successfully checkpointed", message.getPayload()))
+                             .doOnError(e -> LOGGER.error("Error found", e))
+                             .block();
         };
     }
 }

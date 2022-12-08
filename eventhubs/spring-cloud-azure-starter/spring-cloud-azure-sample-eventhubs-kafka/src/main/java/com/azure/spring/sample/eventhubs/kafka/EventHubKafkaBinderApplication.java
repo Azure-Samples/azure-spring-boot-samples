@@ -28,19 +28,19 @@ public class EventHubKafkaBinderApplication {
     }
 
     @Bean
-    public Sinks.Many<Message<String>> many() {
+    Sinks.Many<Message<String>> many() {
         return Sinks.many().unicast().onBackpressureBuffer();
     }
 
     @Bean
-    public Supplier<Flux<Message<String>>> supply(Sinks.Many<Message<String>> many) {
+    Supplier<Flux<Message<String>>> supply(Sinks.Many<Message<String>> many) {
         return () -> many.asFlux()
                          .doOnNext(m -> LOGGER.info("Manually sending message {}", m))
                          .doOnError(t -> LOGGER.error("Error encountered", t));
     }
 
     @Bean
-    public Consumer<Message<String>> consume() {
+    Consumer<Message<String>> consume() {
         return message -> LOGGER.info("New message received: '{}'", message.getPayload());
     }
 }

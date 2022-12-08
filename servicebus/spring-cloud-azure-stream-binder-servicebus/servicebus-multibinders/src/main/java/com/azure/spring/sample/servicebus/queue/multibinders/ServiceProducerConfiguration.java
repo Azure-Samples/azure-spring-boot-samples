@@ -23,7 +23,7 @@ public class ServiceProducerConfiguration {
     private int j = 0;
 
     @Bean
-    public Supplier<Message<String>> supply1() {
+    Supplier<Message<String>> supply1() {
         return () -> {
             LOGGER.info("Sending message1, sequence1 " + i);
             return MessageBuilder.withPayload("Hello world1, " + i++).build();
@@ -31,7 +31,7 @@ public class ServiceProducerConfiguration {
     }
 
     @Bean
-    public Supplier<Message<String>> supply2() {
+    Supplier<Message<String>> supply2() {
         return () -> {
             LOGGER.info("Sending message2, sequence2 " + j);
             return MessageBuilder.withPayload("Hello world2, " + j++).build();

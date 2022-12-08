@@ -23,21 +23,21 @@ public class PrimaryDatasourceConfiguration extends AbstractCosmosConfiguration{
 
     @Bean
     @ConfigurationProperties(prefix = "azure.cosmos.primary")
-    public CosmosProperties primary() {
+    CosmosProperties primary() {
         return new CosmosProperties();
     }
 
     @Bean
-    public CosmosClientBuilder primaryClientBuilder(@Qualifier("primary") CosmosProperties primaryProperties) {
+    CosmosClientBuilder primaryClientBuilder(@Qualifier("primary") CosmosProperties primaryProperties) {
         return new CosmosClientBuilder()
-            .key(primaryProperties.getKey())
-            .endpoint(primaryProperties.getUri());
+        .key(primaryProperties.getKey())
+        .endpoint(primaryProperties.getUri());
     }
 
     @Bean
-    public ReactiveCosmosTemplate primaryDatabaseTemplate(CosmosAsyncClient cosmosAsyncClient,
-                                                          CosmosConfig cosmosConfig,
-                                                          MappingCosmosConverter mappingCosmosConverter) {
+    ReactiveCosmosTemplate primaryDatabaseTemplate(CosmosAsyncClient cosmosAsyncClient,
+    CosmosConfig cosmosConfig,
+    MappingCosmosConverter mappingCosmosConverter) {
         return new ReactiveCosmosTemplate(cosmosAsyncClient, PRIMARY_DATABASE, cosmosConfig, mappingCosmosConverter);
     }
 

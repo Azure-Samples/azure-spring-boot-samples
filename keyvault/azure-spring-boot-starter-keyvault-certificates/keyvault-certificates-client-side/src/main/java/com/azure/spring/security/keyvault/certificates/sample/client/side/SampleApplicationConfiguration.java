@@ -23,7 +23,7 @@ import java.util.Map;
 public class SampleApplicationConfiguration {
 
     @Bean
-    public RestTemplate restTemplateWithTLS() throws Exception {
+    RestTemplate restTemplateWithTLS() throws Exception {
         KeyStore azureKeyVaultKeyStore = KeyStore.getInstance("AzureKeyVault");
         KeyVaultLoadStoreParameter parameter = new KeyVaultLoadStoreParameter(
             System.getProperty("azure.keyvault.uri"),
@@ -32,20 +32,20 @@ public class SampleApplicationConfiguration {
             System.getProperty("azure.keyvault.client-secret"));
         azureKeyVaultKeyStore.load(parameter);
         SSLContext sslContext = SSLContexts.custom()
-                                           .loadTrustMaterial(azureKeyVaultKeyStore, null)
-                                           .build();
+            .loadTrustMaterial(azureKeyVaultKeyStore, null)
+            .build();
         SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslContext,
-                                                                                  (hostname, session) -> true);
+            (hostname, session) -> true);
         CloseableHttpClient httpClient = HttpClients.custom()
-                                                    .setSSLSocketFactory(socketFactory)
-                                                    .build();
+            .setSSLSocketFactory(socketFactory)
+            .build();
         HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
 
         return new RestTemplate(requestFactory);
     }
 
     @Bean
-    public RestTemplate restTemplateWithMTLS() throws Exception {
+    RestTemplate restTemplateWithMTLS() throws Exception {
         KeyStore azureKeyVaultKeyStore = KeyStore.getInstance("AzureKeyVault");
         KeyVaultLoadStoreParameter parameter = new KeyVaultLoadStoreParameter(
             System.getProperty("azure.keyvault.uri"),
@@ -54,14 +54,14 @@ public class SampleApplicationConfiguration {
             System.getProperty("azure.keyvault.client-secret"));
         azureKeyVaultKeyStore.load(parameter);
         SSLContext sslContext = SSLContexts.custom()
-                                           .loadTrustMaterial(azureKeyVaultKeyStore, null)
-                                           .loadKeyMaterial(azureKeyVaultKeyStore, "".toCharArray(), new ClientPrivateKeyStrategy())
-                                           .build();
+            .loadTrustMaterial(azureKeyVaultKeyStore, null)
+            .loadKeyMaterial(azureKeyVaultKeyStore, "".toCharArray(), new ClientPrivateKeyStrategy())
+            .build();
         SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslContext,
             (hostname, session) -> true);
         CloseableHttpClient httpClient = HttpClients.custom()
-                                                    .setSSLSocketFactory(socketFactory)
-                                                    .build();
+            .setSSLSocketFactory(socketFactory)
+            .build();
         HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory(httpClient);
 
         return new RestTemplate(requestFactory);

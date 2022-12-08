@@ -47,46 +47,46 @@ public class IntegrationFlowConfiguration {
 
 
     @Bean
-    public MessageHandler firstMessageHandler() {
+    MessageHandler firstMessageHandler() {
         return new DefaultMessageHandler(firstQueueName, firstServiceBusTemplate);
     }
 
     @Bean
-    public ServiceBusInboundChannelAdapter firstServiceBusInboundChannelAdapter() {
+    ServiceBusInboundChannelAdapter firstServiceBusInboundChannelAdapter() {
         ServiceBusInboundChannelAdapter channelAdapter = new ServiceBusInboundChannelAdapter(firstMessageListenerContainer);
         channelAdapter.setPayloadType(String.class);
         return channelAdapter;
     }
 
     @Bean
-    public MessageHandler secondMessageHandler() {
+    MessageHandler secondMessageHandler() {
         return new DefaultMessageHandler(secondQueueName, secondServiceBusTemplate);
     }
 
     @Bean
-    public ServiceBusInboundChannelAdapter secondServiceBusInboundChannelAdapter() {
+    ServiceBusInboundChannelAdapter secondServiceBusInboundChannelAdapter() {
         ServiceBusInboundChannelAdapter channelAdapter = new ServiceBusInboundChannelAdapter(secondMessageListenerContainer);
         channelAdapter.setPayloadType(String.class);
         return channelAdapter;
     }
 
     @Bean
-    public AtomicInteger integerSource() {
+    AtomicInteger integerSource() {
         return new AtomicInteger();
     }
 
     @Bean
-    public IntegrationFlow sendFlow() {
+    IntegrationFlow sendFlow() {
         return IntegrationFlows.fromSupplier(integerSource()::getAndIncrement,
                 c -> c.poller(Pollers.fixedRate(Duration.ofSeconds(10))))
                 .<Integer, Boolean>route(p -> p % 2 == 0, m
                         -> m.subFlowMapping(true, f -> f.handle(firstMessageHandler()))
-                        .subFlowMapping(false, f -> f.handle(secondMessageHandler())))
+                                .subFlowMapping(false, f -> f.handle(secondMessageHandler())))
                 .get();
     }
 
     @Bean
-    public IntegrationFlow transformFlow() {
+    IntegrationFlow transformFlow() {
         return IntegrationFlows.from(firstServiceBusInboundChannelAdapter())
                 .transform(m -> {
                     LOGGER.info("Receive messages from the first queue: {}", m);
@@ -97,7 +97,7 @@ public class IntegrationFlowConfiguration {
     }
 
     @Bean
-    public IntegrationFlow secondListenerFlow() {
+    IntegrationFlow secondListenerFlow() {
         return IntegrationFlows.from(secondServiceBusInboundChannelAdapter())
                 .handle(m -> LOGGER.info("Receive messages from the second queue: {}", m.getPayload()))
                 .get();

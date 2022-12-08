@@ -25,13 +25,13 @@ public class MultipleAzureServiceBusNamespacesConfiguration {
     }
 
     @Bean
-    public ServiceBusTemplate firstServiceBusTemplate() {
+    ServiceBusTemplate firstServiceBusTemplate() {
         ServiceBusProducerFactory producerFactory = new DefaultServiceBusNamespaceProducerFactory(firstNamespaceProperties);
         return new ServiceBusTemplate(producerFactory);
     }
 
     @Bean
-    public ServiceBusMessageListenerContainer firstMessageListenerContainer() {
+    ServiceBusMessageListenerContainer firstMessageListenerContainer() {
         ServiceBusProcessorFactory processorFactory = new DefaultServiceBusNamespaceProcessorFactory(firstNamespaceProperties);
         ServiceBusContainerProperties containerProperties = new ServiceBusContainerProperties();
         containerProperties.setEntityName(firstNamespaceProperties.getEntityName());
@@ -40,13 +40,13 @@ public class MultipleAzureServiceBusNamespacesConfiguration {
     }
 
     @Bean
-    public ServiceBusTemplate secondServiceBusTemplate() {
+    ServiceBusTemplate secondServiceBusTemplate() {
         ServiceBusProducerFactory producerFactory = new DefaultServiceBusNamespaceProducerFactory(secondNamespaceProperties);
         return new ServiceBusTemplate(producerFactory);
     }
 
     @Bean
-    public ServiceBusMessageListenerContainer secondMessageListenerContainer() {
+    ServiceBusMessageListenerContainer secondMessageListenerContainer() {
         ServiceBusProcessorFactory processorFactory = new DefaultServiceBusNamespaceProcessorFactory(secondNamespaceProperties);
         ServiceBusContainerProperties containerProperties = new ServiceBusContainerProperties();
         containerProperties.setEntityName(secondNamespaceProperties.getEntityName());

@@ -26,7 +26,7 @@ public class EventHubIntegrationConfiguration {
 
 
     @Bean
-    public EventHubsMessageListenerContainer messageListenerContainer(EventHubsProcessorFactory processorFactory) {
+    EventHubsMessageListenerContainer messageListenerContainer(EventHubsProcessorFactory processorFactory) {
         EventHubsContainerProperties containerProperties = new EventHubsContainerProperties();
         containerProperties.setEventHubName(EVENTHUB_NAME);
         containerProperties.setConsumerGroup(CONSUMER_GROUP);
@@ -42,8 +42,8 @@ public class EventHubIntegrationConfiguration {
      * @return instance of EventHubsInboundChannelAdapter
      */
     @Bean
-    public EventHubsInboundChannelAdapter messageChannelAdapter(@Qualifier(INPUT_CHANNEL) MessageChannel inputChannel,
-                                                                EventHubsMessageListenerContainer listenerContainer) {
+    EventHubsInboundChannelAdapter messageChannelAdapter(@Qualifier(INPUT_CHANNEL) MessageChannel inputChannel,
+  EventHubsMessageListenerContainer listenerContainer) {
         EventHubsInboundChannelAdapter adapter = new EventHubsInboundChannelAdapter(listenerContainer);
         adapter.setOutputChannel(inputChannel);
         return adapter;
@@ -55,7 +55,7 @@ public class EventHubIntegrationConfiguration {
      * @return {@link MessageChannel}
      */
     @Bean
-    public MessageChannel input() {
+    MessageChannel input() {
         return new DirectChannel();
     }
 

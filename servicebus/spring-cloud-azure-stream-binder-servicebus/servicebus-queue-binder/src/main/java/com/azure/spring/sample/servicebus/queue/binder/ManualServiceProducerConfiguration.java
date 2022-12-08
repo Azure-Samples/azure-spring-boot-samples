@@ -21,12 +21,12 @@ public class ManualServiceProducerConfiguration {
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceBusQueueBinderApplication.class);
 
     @Bean
-    public Sinks.Many<Message<String>> many() {
+    Sinks.Many<Message<String>> many() {
         return Sinks.many().unicast().onBackpressureBuffer();
     }
 
     @Bean
-    public Supplier<Flux<Message<String>>> supply(Sinks.Many<Message<String>> many) {
+    Supplier<Flux<Message<String>>> supply(Sinks.Many<Message<String>> many) {
         return () -> many.asFlux()
                          .doOnNext(m -> LOGGER.info("Manually sending message {}", m))
                          .doOnError(t -> LOGGER.error("Error encountered", t));

@@ -12,17 +12,7 @@
     >
     > **spring-cloud-azure-starter-integration-servicebus**: The dependency that the sample depends on.
 
-## Branch Policy
-Before Spring Cloud Azure 4.5.0, we use `main` branch as the develop branch while setting the default branch as the latest released branch.
-Now we use main branch as the latest released branch and set as default branch.
-
-| Branch Name               | Default Branch | Branch type    |
-|---------------------------|----------------|----------------|
-| main                      | true           | release branch |
-
-## Current Branch Supported Versions
-- [spring-boot-dependencies:2.7.6](https://repo.maven.apache.org/maven2/org/springframework/boot/spring-boot-dependencies/2.7.6/spring-boot-dependencies-2.7.6.pom).
-- [spring-cloud-dependencies:2021.0.5](https://repo.maven.apache.org/maven2/org/springframework/cloud/spring-cloud-dependencies/2021.0.5/spring-cloud-dependencies-2021.0.5.pom).
+- The main branch is using the latest stable version of Spring Cloud Azure libraries. If you want to use another version, please checkout tag according to your required version.
 
 ## Running Samples With Terraform
 With [terraform](https://www.terraform.io/) scripts and [DefaultAzureCredential](https://microsoft.github.io/spring-cloud-azure/current/reference/html/index.html#defaultazurecredential), most samples in the project can be run with the same 4 steps below:

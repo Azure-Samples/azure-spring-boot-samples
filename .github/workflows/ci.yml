@@ -1,28 +1,25 @@
 # This workflow will build a Java project with Maven, and cache/restore any dependencies to improve the workflow execution time
 # For more information see: https://help.github.com/actions/language-and-framework-guides/building-and-testing-java-with-maven
 
-name: CI
+name: Build with maven
 
 on: [push, pull_request]
 
 jobs:
   java-ci-with-maven-adopt:
     runs-on: ubuntu-latest
+    name: Build Spring Cloud Azure Samples on Java ${{ matrix.Java }}
+    strategy:
+      matrix:
+        java: ['8', '11', '17']
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up JDK 11
-      uses: actions/setup-java@v2
+    - uses: actions/checkout@v3
+    - name: Set up Java
+      uses: actions/setup-java@v3
       with:
-        java-version: '11'
+        java-version: ${{ matrix.Java }}
         distribution: 'adopt'
         cache: maven
-    - name: Build with Maven - Java 11
+    - name: Build with Maven - Java ${{ matrix.Java }}
       run: mvn -f pom.xml --batch-mode --update-snapshots verify
-    - name: Set up JDK 8
-      uses: actions/setup-java@v2
-      with:
-        java-version: '8'
-        distribution: 'adopt'
-        cache: maven
-    - name: Build with Maven - Java 8
-      run: mvn -f pom.xml --batch-mode --update-snapshots verify
+

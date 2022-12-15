@@ -12,7 +12,6 @@ jobs:
     strategy:
       matrix:
         java-version: ['8', '11', '17']
-        spring-cloud-azure-version: ['4.x', '6.x']
     steps:
     - uses: actions/checkout@v3
     - name: Set up Java
@@ -21,6 +20,8 @@ jobs:
         java-version: ${{ matrix.java-version }}
         distribution: 'adopt'
         cache: maven
-    - name: Build with Maven - Java ${{ matrix.java-version }}
-      run: mvn -f azure-spring-boot-samples-${{ matrix.spring-cloud-azure-version }}-pom.xml --batch-mode --update-snapshots verify
+    - name: Build azure-spring-boot-samples-4.x with Maven - Java ${{ matrix.java-version }}
+      run: mvn -f azure-spring-boot-samples-4.x-pom.xml --batch-mode --update-snapshots verify
+    - name: Build azure-spring-boot-samples-6.x with Maven - Java 17
+      run: mvn -f azure-spring-boot-samples-6.x-pom.xml --batch-mode --update-snapshots verify
 

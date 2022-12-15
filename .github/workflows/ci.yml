@@ -6,12 +6,12 @@ name: Build with maven
 on: [push, pull_request]
 
 jobs:
-  java-ci-with-maven-adopt:
-    runs-on: ubuntu-latest
-    name: Build Spring Cloud Azure Samples on Java ${{ matrix.Java }}
+  build-with-maven:
     strategy:
       matrix:
         java-version: ['8', '11', '17']
+    runs-on: ubuntu-latest
+    name: Build with Java ${{ matrix.Java }}
     steps:
     - uses: actions/checkout@v3
     - name: Set up Java

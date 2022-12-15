@@ -11,7 +11,7 @@ jobs:
       matrix:
         java-version: ['8', '11', '17']
     runs-on: ubuntu-latest
-    name: Build with Java ${{ matrix.Java }}
+    name: Build with Java ${{ matrix.java-version }}
     steps:
     - uses: actions/checkout@v3
     - name: Set up Java

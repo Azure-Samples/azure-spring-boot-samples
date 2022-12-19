@@ -11,11 +11,11 @@
   </parent>
 
   <groupId>com.azure.spring</groupId>
-  <artifactId>azure-spring-boot-samples</artifactId>
+  <artifactId>azure-spring-boot-samples-4.x</artifactId>
   <packaging>pom</packaging>
   <version>1.0.0</version>
 
-  <name>Azure Spring Boot Samples</name>
+  <name>Azure Spring Boot Samples for Spring Cloud Azure 4.x</name>
 
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -73,7 +73,6 @@
     <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation</module>
     <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration</module>
     <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-client</module>
-    <module>spring-native/storage-blob-native</module>
     <module>spring-petclinic-microservices</module>
   </modules>
 
@@ -201,6 +200,7 @@
         </plugins>
       </build>
     </profile>
+
     <profile>
       <id>native</id>
       <properties>
@@ -312,4 +312,5 @@
       </snapshots>
     </pluginRepository>
   </pluginRepositories>
+
 </project>

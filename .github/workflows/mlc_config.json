@@ -23,6 +23,9 @@
     },
     {
       "pattern": "^https://www.microsoft.com/edge"
+    },
+    {
+      "pattern": "^https://dev.mysql.com/downloads/shell/"
     }
   ],
   "aliveStatusCodes": [200]

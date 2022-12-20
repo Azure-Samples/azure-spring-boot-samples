@@ -2,7 +2,7 @@
 
 ## 1.1 Update the pom parent
    
-   Note: The pom parent of the samples should point to *azure-spring-boot-samples-6.x-pom.xml*。
+   Note: The pom parent of the samples should point to *azure-spring-boot-samples-6.x-pom.xml*.
 
 ## 1.2 Update dependencies(optional)
 

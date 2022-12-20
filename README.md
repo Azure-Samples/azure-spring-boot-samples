@@ -10,6 +10,8 @@
 ## Run Samples Based On Spring Native in Spring Boot 2
 Two Maven profiles have been defined in this project to support compiling Spring applications to native executables: `buildpack` and `native`. The `buildpack` profile will use [Buildpacks](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-buildpacks) and the `native` profile will use [Native Build Tools](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-build-tools). Please follow the [storage-blob-native sample](spring-native/storage-blob-native) for more details.
 
+**Note**: This section is only suitable for Spring Native in Spring Boot 2.
+
 ## Samples for Spring Boot 3
 
 To get samples for Spring Boot 3, please refer to the content in each sample's *README.md* like this:

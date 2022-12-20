@@ -96,9 +96,11 @@ spring:
       active-directory:
         b2c:
           enabled: true
-          tenant-id: ${AZURE_TENANT_ID}
+          profile:
+            tenant-id: ${AZURE_TENANT_ID}
+          credential:
+            client-id: ${AZURE_CLIENT_ID}           # If you are using v2.0 token, please configure client-id for `aud` verification
           app-id-uri: ${APP_ID_URI}         # If you are using v1.0 token, please configure app-id-uri for `aud` verification
-          client-id: ${AZURE_CLIENT_ID}           # If you are using v2.0 token, please configure client-id for `aud` verification
           base-uri: ${AZURE_AD_BASE_URI}             # Such as: https://xxxxb2c.b2clogin.com
           user-flows:
             sign-up-or-sign-in: ${SIGN_UP_OR_SIGN_IN_USER_FLOW_NAME}

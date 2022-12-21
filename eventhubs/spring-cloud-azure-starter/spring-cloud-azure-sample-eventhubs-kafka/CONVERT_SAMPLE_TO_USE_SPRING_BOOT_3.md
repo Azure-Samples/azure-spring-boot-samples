@@ -1,0 +1,43 @@
+# 1 Convert sample to use Spring Boot 3
+
+## 1.1 Update your infra
+
+- [JDK17](https://www.oracle.com/java/technologies/downloads/).
+
+## 1.2 Update the pom parent
+
+Update the pom parent file:
+
+Current for Spring Boot 2:
+   ```xml
+   <parent>
+     <groupId>com.azure.spring</groupId>
+     <artifactId>azure-spring-boot-samples-4.x</artifactId>
+     <version>1.0.0</version>
+     <relativePath>../../../azure-spring-boot-samples-4.x-pom.xml</relativePath>
+   </parent>
+   ```
+
+Updated for Spring Boot 3 to the following:
+   ```xml
+   <parent>
+     <groupId>com.azure.spring</groupId>
+     <artifactId>azure-spring-boot-samples-6.x</artifactId>
+     <version>1.0.0</version>
+     <relativePath>../../../azure-spring-boot-samples-6.x-pom.xml</relativePath>
+   </parent>
+   ```
+
+If you want to build from the root pom file *azure-spring-boot-samples-6.x-pom.xml*, add this sample as a submodule like below:
+
+   ```xml
+   <modules>
+     <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
+   </modules>
+   ```
+
+## 1.3 Update configuration
+
+```properties
+spring.cloud.stream.binders.kafka.environment.spring.main.sources=com.azure.spring.cloud.autoconfigure.implementation.eventhubs.kafka.AzureEventHubsKafkaAutoConfiguration
+```

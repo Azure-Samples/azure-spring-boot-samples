@@ -24,7 +24,7 @@ You will build an application to store and retrieve information in Azure Databas
 - [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
 - [Maven](https://maven.apache.org/)
 - [cURL](https://curl.se/) or a similar HTTP utility to test functionality.
-- [MySQL command line client](http://www.mysql.com)
+- [MySQL command line client](https://dev.mysql.com/downloads/shell/)
 - You can also import the code straight into your IDE:
     - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 

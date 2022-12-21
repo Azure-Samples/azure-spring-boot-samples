@@ -167,6 +167,10 @@ INFO 17464 --- [           main] c.a.s.s.s.queue.StorageQueueApplication  : Send
 INFO 17464 --- [           main] c.a.s.s.s.queue.StorageQueueApplication  : Received message: test
 ```
 
+## Run with Spring Boot 3
+Current sample is using Spring Cloud Azure 4.x (which is compatible with Spring Boot 2.x).
+If you want sample about Spring Cloud Azure 6.x (which is compatible with Spring Boot 3.x),
+please refer to [CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md](./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md)
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.

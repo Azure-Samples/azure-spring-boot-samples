@@ -1,4 +1,4 @@
-# 1 Convert sample to use Spring Boot 3?
+# 1 Convert sample to use Spring Boot 3
 
 ## 1.1 Update your infra
 

@@ -42,6 +42,11 @@ mvn spring-boot:run
 
 See [Check the authentication and authorization of Web Application] or [Check the authentication and authorization of Resource Server] for more information about checking.
 
+## Run with Spring Boot 3
+Current sample is using Spring Cloud Azure 4.x (which is compatible with Spring Boot 2.x).
+If you want sample about Spring Cloud Azure 6.x (which is compatible with Spring Boot 3.x),
+please refer to [CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md](./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md)
+
 ## Troubleshooting
 ## Next steps
 ## Contributing

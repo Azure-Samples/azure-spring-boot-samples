@@ -14,7 +14,6 @@ This sample illustrates how to protect a Java web API by restricting access to i
 
 ## Getting started
 
-
 ### Configure Web API
 1. In this section, you register your web API in App registrations in the Azure portal.
 1. Search for and select your tenant in **Azure Active Directory**.
@@ -99,6 +98,11 @@ curl localhost:8082/user -H "Authorization: Bearer <access-token>" -I
 ```text
 error:401
 ```
+
+## Run with Spring Boot 3
+Current sample is using Spring Cloud Azure 4.x (which is compatible with Spring Boot 2.x).
+If you want sample about Spring Cloud Azure 6.x (which is compatible with Spring Boot 3.x),
+please refer to [CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md](./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md)
 
 ## Troubleshooting
 

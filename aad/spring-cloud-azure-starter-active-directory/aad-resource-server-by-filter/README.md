@@ -137,6 +137,11 @@ redirectUriTemplate: xxxxxx-your-redirect-uri-xxxxxx
 * If running locally, browse to `http://localhost:8080` and click `Login` or `Todo List`, your browser will be redirected to `https://login.microsoftonline.com/` for authentication.
 * Upon successful login, `Todo List` will give you a default item and you can perform add, update or delete operation. The backend RESTful API will accept or deny your request based on authenticated user roles.
 
+## Run with Spring Boot 3
+Current sample is using Spring Cloud Azure 4.x (which is compatible with Spring Boot 2.x).
+If you want sample about Spring Cloud Azure 6.x (which is compatible with Spring Boot 3.x),
+please refer to [CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md](./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md)
+
 ## Troubleshooting
 ## Next steps
 ## Contributing

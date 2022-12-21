@@ -6,9 +6,9 @@
 
   <parent>
     <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-boot-samples</artifactId>
+    <artifactId>azure-spring-boot-samples-4.x</artifactId>
     <version>1.0.0</version>
-    <relativePath>../../../pom.xml</relativePath>
+    <relativePath>../../../azure-spring-boot-samples-4.x-pom.xml</relativePath>
   </parent>
 
   <artifactId>spring-cloud-azure-starter-active-directory-resource-server-by-filter-stateless</artifactId>

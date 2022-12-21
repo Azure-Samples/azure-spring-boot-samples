@@ -9,3 +9,16 @@
 
 ## Run Samples Based On Spring Native in Spring Boot 2
 Two Maven profiles have been defined in this project to support compiling Spring applications to native executables: `buildpack` and `native`. The `buildpack` profile will use [Buildpacks](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-buildpacks) and the `native` profile will use [Native Build Tools](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-build-tools). Please follow the [storage-blob-native sample](spring-native/storage-blob-native) for more details.
+
+**Note**: This section is only suitable for Spring Native in Spring Boot 2.
+
+## Samples for Spring Boot 3
+
+To get samples for Spring Boot 3, please refer to the content in each sample's *README.md* like this:
+> Current sample is using Spring Cloud Azure 4.x (which is compatible with Spring Boot 2.x). 
+> If you want sample about Spring Cloud Azure 6.x (which is compatible with Spring Boot 3.x), 
+> please refer to [CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md](./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md).
+
+If you're adding a new example, here's a template that converts the example to support Spring Boot 3: [./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md](CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md).
+
+**Note**: This section is used to convert the samples to run in Spring Boot 3, the branch `feature/spring-boot-3` is no longer maintained.

@@ -144,6 +144,9 @@
 
         <profile>
             <id>spring-cloud-azure-6.x</id>
+            <modules>
+                <module>spring-native/storage-blob-native</module>
+            </modules>
             <properties>
                 <java.version>17</java.version>
                 <version.spring.cloud>2022.0.0-RC2</version.spring.cloud>

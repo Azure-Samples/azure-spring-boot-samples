@@ -14,10 +14,34 @@ Two Maven profiles have been defined in this project to support compiling Spring
 
 ## Samples for Spring Boot 3
 
+### Run samples with Maven command
+
+Use below command to enable the profile for Spring Cloud Azure 6.x.
+
+```shell
+mvn clean spring-boot:run -P spring-cloud-azure-6.x
+```
+
+### Run samples with IDE
+
+Activate the profile Spring Cloud Azure 6.x by default, then you can run in your IDE tool.
+
+Remove the below activation for `spring-cloud-azure-4.x`, and add it to profile `spring-cloud-azure-6.x`:
+
+```xml
+<activation>
+  <activeByDefault>true</activeByDefault>
+</activation>
+```
+
+### Convert samples to use Spring Boot 3
+
 To get samples for Spring Boot 3, please refer to the content in each sample's *README.md* like this:
-> Current sample is using Spring Cloud Azure 4.x (which is compatible with Spring Boot 2.x). 
-> If you want sample about Spring Cloud Azure 6.x (which is compatible with Spring Boot 3.x), 
+> Current sample is using Spring Cloud Azure 4.x (which is compatible with Spring Boot 2.x).
+> If you want sample about Spring Cloud Azure 6.x (which is compatible with Spring Boot 3.x),
 > please refer to [CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md](./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md).
+
+If there is no such instruction, the example can directly activate the profile of Spring Cloud Azure 6.x to run.
 
 If you're adding a new example, here's a template that converts the example to support Spring Boot 3: [./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md](CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md).
 

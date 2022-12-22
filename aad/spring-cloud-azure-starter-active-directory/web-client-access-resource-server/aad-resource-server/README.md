@@ -14,7 +14,6 @@ This sample illustrates how to protect a Java web API by restricting access to i
 
 ## Getting started
 
-
 ### Configure Web API
 1. In this section, you register your web API in App registrations in the Azure portal.
 1. Search for and select your tenant in **Azure Active Directory**.

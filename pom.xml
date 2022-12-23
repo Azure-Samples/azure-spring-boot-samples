@@ -71,6 +71,7 @@
       <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <spring.boot.version>2.7.6</spring.boot.version>
         <version.guava>31.1-jre</version.guava>
         <version.spring.cloud>2021.0.5</version.spring.cloud>
         <version.spring.cloud.azure>4.5.0</version.spring.cloud.azure>
@@ -85,7 +86,7 @@
           <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-dependencies</artifactId>
-            <version>2.7.6</version>
+            <version>${spring.boot.version}</version>
             <type>pom</type>
             <scope>import</scope>
           </dependency>
@@ -140,6 +141,7 @@
           <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>${spring.boot.version}</version>
           </plugin>
         </plugins>
       </build>
@@ -186,6 +188,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <java.version>17</java.version>
+        <spring.boot.version>3.0.0-RC2</spring.boot.version>
         <version.spring.cloud>2022.0.0-RC2</version.spring.cloud>
         <version.spring.cloud.azure>6.0.0-beta.4</version.spring.cloud.azure>
         <version.thymeleaf-extras-springsecurity6>3.1.1.RELEASE</version.thymeleaf-extras-springsecurity6>
@@ -196,7 +199,7 @@
           <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-dependencies</artifactId>
-            <version>3.0.0-RC2</version>
+            <version>${spring.boot.version}</version>
             <type>pom</type>
             <scope>import</scope>
           </dependency>
@@ -226,6 +229,7 @@
           <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>${spring.boot.version}</version>
           </plugin>
         </plugins>
       </build>
@@ -282,6 +286,7 @@
           <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>${spring.boot.version}</version>
             <configuration>
               <classifier>${repackage.classifier}</classifier>
               <image>
@@ -347,6 +352,7 @@
           <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>${spring.boot.version}</version>
             <configuration>
               <classifier>${repackage.classifier}</classifier>
             </configuration>
@@ -409,6 +415,7 @@
             <plugin>
               <groupId>org.springframework.boot</groupId>
               <artifactId>spring-boot-maven-plugin</artifactId>
+              <version>${spring.boot.version}</version>
               <configuration>
                 <image>
                   <builder>paketobuildpacks/builder:tiny</builder>
@@ -463,6 +470,7 @@
           <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
+            <version>${spring.boot.version}</version>
             <executions>
               <execution>
                 <id>process-test-aot</id>

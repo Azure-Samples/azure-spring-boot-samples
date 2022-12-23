@@ -24,13 +24,12 @@ public class AzureActiveDirectoryCertificateSignedAssertionFactoryTest {
     }
 
     // TODO support pem file.
-    // Build error with Github workflow, ignore it
-    // @Disabled("Pem file is not supported now.")
-    // @Test
+     @Disabled("Pem file is not supported now.")
+     @Test
     public void testPem() throws AzureActiveDirectoryAssertionException {
-        test(new AzureActiveDirectoryCertificateSignedJwtAssertionFactory(
-            "src/test/resources/encrypted-private-key-and-certificate.pem", "myPassword1", TEST_TENANT_ID,
-            TEST_CLIENT_ID));
+//        test(new AzureActiveDirectoryCertificateSignedJwtAssertionFactory(
+//            "src/test/resources/encrypted-private-key-and-certificate.pem", "myPassword1", TEST_TENANT_ID,
+//            TEST_CLIENT_ID));
     }
 
     public void test(AzureActiveDirectoryCertificateSignedJwtAssertionFactory factory)

@@ -149,7 +149,7 @@ curl -H "Content-Type: application/x-www-form-urlencoded" -d 'grant_type=client_
 ```
 2. Access endpoint by access-token:
 ```shell script
-curl localhost:8080/log -H "Authorization: Bearer <access_token> -I"
+curl localhost:8080/log -H "Authorization: Bearer <access_token>" -I
 ```
 3. Verify response:
 ```text

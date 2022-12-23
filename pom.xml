@@ -78,6 +78,7 @@
         <version.spring-cloud-appconfiguration-starter>2.10.0</version.spring-cloud-appconfiguration-starter>
         <version.spring-cloud-feature-management>2.9.0</version.spring-cloud-feature-management>
         <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>
+        <mockito.version>4.5.1</mockito.version>
       </properties>
       <dependencyManagement>
         <dependencies>
@@ -187,6 +188,7 @@
         <version.spring.cloud>2022.0.0-RC2</version.spring.cloud>
         <version.spring.cloud.azure>6.0.0-beta.4</version.spring.cloud.azure>
         <version.thymeleaf-extras-springsecurity6>3.1.1.RELEASE</version.thymeleaf-extras-springsecurity6>
+        <mockito.version>4.8.1</mockito.version>
       </properties>
       <dependencyManagement>
         <dependencies>

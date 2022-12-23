@@ -14,6 +14,19 @@ Two Maven profiles have been defined in this project to support compiling Spring
 
 ## Samples for Spring Boot 3
 
+### Convert samples to use Spring Boot 3
+
+To get samples for Spring Boot 3, please refer to the content in each sample's *README.md* like this:
+> Current sample is using Spring Cloud Azure 4.x (which is compatible with Spring Boot 2.x).
+> If you want sample about Spring Cloud Azure 6.x (which is compatible with Spring Boot 3.x),
+> please refer to [CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md](./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md).
+
+If there is no such instruction, the example can directly activate the profile of Spring Cloud Azure 6.x to run.
+
+If you're adding a new example, here's a template that converts the example to support Spring Boot 3: [./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md](CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md).
+
+**Note**: This section is used to convert the samples to run in Spring Boot 3, the branch `feature/spring-boot-3` is no longer maintained.
+
 ### Run samples with Maven command
 
 Use below command to enable the profile for Spring Cloud Azure 6.x.
@@ -34,15 +47,3 @@ Remove the below activation for `spring-cloud-azure-4.x`, and add it to profile 
 </activation>
 ```
 
-### Convert samples to use Spring Boot 3
-
-To get samples for Spring Boot 3, please refer to the content in each sample's *README.md* like this:
-> Current sample is using Spring Cloud Azure 4.x (which is compatible with Spring Boot 2.x).
-> If you want sample about Spring Cloud Azure 6.x (which is compatible with Spring Boot 3.x),
-> please refer to [CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md](./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md).
-
-If there is no such instruction, the example can directly activate the profile of Spring Cloud Azure 6.x to run.
-
-If you're adding a new example, here's a template that converts the example to support Spring Boot 3: [./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md](CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md).
-
-**Note**: This section is used to convert the samples to run in Spring Boot 3, the branch `feature/spring-boot-3` is no longer maintained.

@@ -147,18 +147,9 @@
     <profile>
       <id>spring-cloud-azure-6.x</id>
       <modules>
-        <module>aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server</module>
-        <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter</module>
-        <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless</module>
-        <module>aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server</module>
-        <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application</module>
-        <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server</module>
-        <module>aad/spring-security</module>
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
         <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
         <module>cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample</module>
-        <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account</module>
-        <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>
         <module>eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration</module>
         <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
         <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>
@@ -180,6 +171,16 @@
         <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration</module>
         <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-client</module>
         <module>spring-native/storage-blob-native</module>
+        <!--        Add modules here if you want try Spring Cloud Azure 6.x-->
+<!--        <module>aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server</module>-->
+<!--        <module>aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server</module>-->
+<!--        <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application</module>-->
+<!--        <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account</module>-->
+<!--        <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>-->
+<!--        <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter</module>-->
+<!--        <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless</module>-->
+<!--        <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server</module>-->
+<!--        <module>aad/spring-security</module>-->
       </modules>
       <properties>
         <maven.compiler.source>17</maven.compiler.source>

@@ -279,7 +279,6 @@
           <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>${version.spring.boot}</version>
             <configuration>
               <classifier>${repackage.classifier}</classifier>
               <image>
@@ -345,7 +344,6 @@
           <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>${version.spring.boot}</version>
             <configuration>
               <classifier>${repackage.classifier}</classifier>
             </configuration>
@@ -408,7 +406,6 @@
             <plugin>
               <groupId>org.springframework.boot</groupId>
               <artifactId>spring-boot-maven-plugin</artifactId>
-              <version>${version.spring.boot}</version>
               <configuration>
                 <image>
                   <builder>paketobuildpacks/builder:tiny</builder>
@@ -463,7 +460,6 @@
           <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>${version.spring.boot}</version>
             <executions>
               <execution>
                 <id>process-test-aot</id>

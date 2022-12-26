@@ -124,11 +124,6 @@ mvn spring-boot:run -Dspring-boot.run.profiles=default,conditional-access
 8. Access `Obo Client` link: access token for `webapiA` will be acquired, the success or failure of accessing `webapiA` will be displayed.
 9. Access `Client Credential Client` link: success.
 
-## Run with Spring Boot 3
-Current sample is using Spring Cloud Azure 4.x (which is compatible with Spring Boot 2.x).
-If you want sample about Spring Cloud Azure 6.x (which is compatible with Spring Boot 3.x),
-please refer to [CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md](./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md)
-
 ## Troubleshooting
 ### If registered application is multi-tenanted, how to run this sample?
 In your application.yml file:

@@ -105,6 +105,7 @@
         <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration</module>
         <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-client</module>
         <module>spring-petclinic-microservices</module>
+        <module>spring-native/storage-blob-native</module>
       </modules>
       <activation>
         <activeByDefault>true</activeByDefault>
@@ -157,6 +158,26 @@
           </dependency>
         </dependencies>
       </dependencyManagement>
+      <repositories>
+        <repository>
+          <id>spring-release</id>
+          <name>Spring release</name>
+          <url>https://repo.spring.io/release</url>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </repository>
+      </repositories>
+      <pluginRepositories>
+        <pluginRepository>
+          <id>spring-release</id>
+          <name>Spring release</name>
+          <url>https://repo.spring.io/release</url>
+          <snapshots>
+            <enabled>false</enabled>
+          </snapshots>
+        </pluginRepository>
+      </pluginRepositories>
     </profile>
     <profile>
       <id>spring-cloud-azure-6.x</id>
@@ -184,17 +205,6 @@
         <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation</module>
         <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration</module>
         <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-client</module>
-        <module>spring-native/storage-blob-native</module>
-        <!--        Add modules here if you want try Spring Cloud Azure 6.x-->
-<!--        <module>aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server</module>-->
-<!--        <module>aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server</module>-->
-<!--        <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application</module>-->
-<!--        <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account</module>-->
-<!--        <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>-->
-<!--        <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter</module>-->
-<!--        <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless</module>-->
-<!--        <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server</module>-->
-<!--        <module>aad/spring-security</module>-->
       </modules>
       <properties>
         <maven.compiler.source>17</maven.compiler.source>
@@ -238,7 +248,7 @@
       </pluginRepositories>
     </profile>
     <profile>
-      <id>buildpack-4x</id>
+      <id>buildpack-4.x</id>
       <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
@@ -303,7 +313,7 @@
       </build>
     </profile>
     <profile>
-      <id>native-4x</id>
+      <id>native-4.x</id>
       <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>

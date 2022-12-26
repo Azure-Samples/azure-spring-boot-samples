@@ -15,8 +15,6 @@ This sample illustrates how to use `spring-cloud-azure-starter-active-directory-
 
 ## Getting started
 
-
-
 ### Create your Azure Active Directory B2C tenant
 
 Follow the guide of [AAD B2C tenant creation](https://docs.microsoft.com/azure/active-directory-b2c/tutorial-create-tenant).
@@ -85,11 +83,6 @@ mvn spring-boot:run
 4. Password reset.
 5. Log out.
 6. Sign in.
-
-## Run with Spring Boot 3
-Current sample is using Spring Cloud Azure 4.x (which is compatible with Spring Boot 2.x).
-If you want sample about Spring Cloud Azure 6.x (which is compatible with Spring Boot 3.x),
-please refer to [CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md](./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md)
 
 ## Troubleshooting
 - `Missing attribute 'name' in attributes `

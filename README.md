@@ -89,6 +89,13 @@
 | [storage-queue-operation](storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation)     | ✅                              | ✅                              |
 | [storage-blob-native](spring-native/storage-blob-native)                                                            | ✅                              | ❌                              |
 
+
+### Spring PetClinic
+
+| Sample Project                                                                                                      | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 
+|---------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
+| [spring-petclinic-microservices](spring-petclinic-microservices)                                                    | ✅                              | ❌                              | 
+
 ## Getting Help
 - If you have any question about using these samples, please [create an new issue](https://github.com/Azure-Samples/azure-spring-boot-samples/issues/new/choose).
 

@@ -23,7 +23,7 @@ To get samples for Spring Boot 3, please refer to the content in each sample's *
 > If you want sample about Spring Cloud Azure 6.x (which is compatible with Spring Boot 3.x),
 > please refer to [CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md](./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md).
 
-If there is no such instruction, the example can directly activate the profile of Spring Cloud Azure 6.x to run.
+Mostly samples can work with both Spring Cloud Azure 4.x and Spring Cloud Azure 6.x, you can directly activate the profile of Spring Cloud Azure 6.x to run.
 
 If you're adding a new example, here's a template that converts the example to support Spring Boot 3: [./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md](CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md).
 

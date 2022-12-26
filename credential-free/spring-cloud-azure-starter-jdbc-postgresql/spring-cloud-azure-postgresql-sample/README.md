@@ -3,14 +3,14 @@ page_type: sample
 languages:
 - java
 products:
-- azure-blob-storage
+- azure-database-postgresql
 name: Store and retrieve information in Azure Database for PostgreSQL in Spring Boot Application
-description: This sample demonstrates how to store and retrieve information in Azure Database for PostgreSQL in Spring Boot application.
+description: This example demonstrates how to use passwordless connections to store and retrieve information in Azure Database for PostgreSQL in a Spring Boot application.
 ---
 
 # Store and retrieve information in Azure Database for PostgreSQL in Spring Boot Application
 
-This code sample demonstrates how to store and retrieve information in Azure Database for PostgreSQL using the Spring Cloud Azure PostgreSQL starter.
+This code sample demonstrates how to use passwordless connections to store and retrieve information in Azure Database for PostgreSQL using the Spring Cloud Azure PostgreSQL starter.
 
 ## What You Will Build
 
@@ -182,10 +182,13 @@ You can debug your sample by adding the saved output values to the tool's enviro
 
 ## Verify This Sample
 
-1.1 create a new "todo" item in the database.
+1.1 Create a new "todo" item in the database.
 
 ```bash
-curl -XPOST http://127.0.0.1:8080/created
+curl --header "Content-Type: application/json" \
+    --request POST \
+    --data '{"description":"configuration","details":"congratulations, you have set up JDBC correctly!","done": "true"}' \
+    http://127.0.0.1:8080
 ``````
 
 1.2 Retrieve the data by using a new cURL request as follows.

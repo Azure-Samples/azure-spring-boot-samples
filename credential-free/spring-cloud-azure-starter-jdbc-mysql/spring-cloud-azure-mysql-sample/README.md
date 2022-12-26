@@ -3,14 +3,14 @@ page_type: sample
 languages:
 - java
 products:
-- azure-blob-storage
+- azure-database-mysql
 name: Store and retrieve information in Azure Database for MySQL in Spring Boot Application
-description: This sample demonstrates how to store and retrieve information in Azure Database for MySQL in Spring Boot application.
+description: This example demonstrates how to use passwordless connections to store and retrieve information in Azure Database for MySQL in a Spring Boot application.
 ---
 
 # Store and retrieve information in Azure Database for MySQL in Spring Boot Application
 
-This code sample demonstrates how to store and retrieve information in Azure Database for MySQL using the Spring Cloud Azure MySQL starter.
+This code sample demonstrates how to use passwordless connections to store and retrieve information in Azure Database for MySQL using the Spring Cloud Azure MySQL starter.
 
 ## What You Will Build
 
@@ -124,7 +124,7 @@ Apply complete! Resources: 8 added, 0 changed, 0 destroyed.
 
 You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
 
-### Set up Azure AD user
+### Create a MySQL non-admin user and grant permission
 
 run the following command:
 
@@ -184,10 +184,13 @@ You can debug your sample by adding the saved output values to the tool's enviro
 
 ## Verify This Sample 
 
-1.1 create a new "todo" item in the database.
+1.1 Create a new "todo" item in the database.
 
-```bash
-curl -XPOST http://127.0.0.1:8080/created
+```shell
+curl --header "Content-Type: application/json" \
+    --request POST \
+    --data '{"description":"configuration","details":"congratulations, you have set up JDBC correctly!","done": "true"}' \
+    http://127.0.0.1:8080
 ```
 
 1.2 Retrieve the data by using a new cURL request as follows.  

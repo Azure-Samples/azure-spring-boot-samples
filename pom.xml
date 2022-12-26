@@ -37,6 +37,21 @@
     </dependencies>
   </dependencyManagement>
 
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${version.spring.boot}</version>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>${version.maven-surefire-plugin}</version>
+      </plugin>
+    </plugins>
+  </build>
+
   <profiles>
     <profile>
       <id>spring-cloud-azure-4.x</id>
@@ -105,6 +120,7 @@
         <version.spring-cloud-appconfiguration-starter>2.10.0</version.spring-cloud-appconfiguration-starter>
         <version.spring-cloud-feature-management>2.9.0</version.spring-cloud-feature-management>
         <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>
+        <version.maven-surefire-plugin>2.22.0</version.maven-surefire-plugin>
         <mockito.version>4.5.1</mockito.version>
       </properties>
       <dependencyManagement>
@@ -141,15 +157,6 @@
           </dependency>
         </dependencies>
       </dependencyManagement>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>${version.spring.boot}</version>
-          </plugin>
-        </plugins>
-      </build>
     </profile>
     <profile>
       <id>spring-cloud-azure-6.x</id>
@@ -197,6 +204,7 @@
         <version.spring.cloud>2022.0.0-RC2</version.spring.cloud>
         <version.spring.cloud.azure>6.0.0-beta.4</version.spring.cloud.azure>
         <version.thymeleaf-extras-springsecurity6>3.1.1.RELEASE</version.thymeleaf-extras-springsecurity6>
+        <version.maven-surefire-plugin>2.22.0</version.maven-surefire-plugin>
         <mockito.version>4.8.1</mockito.version>
       </properties>
       <dependencyManagement>
@@ -208,15 +216,6 @@
           </dependency>
         </dependencies>
       </dependencyManagement>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>${version.spring.boot}</version>
-          </plugin>
-        </plugins>
-      </build>
       <repositories>
         <repository>
           <id>spring-milestones</id>

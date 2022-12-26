@@ -14,6 +14,8 @@ Two Maven profiles have been defined in this project to support compiling Spring
 
 ## Samples for Spring Boot 3
 
+**Note**: This section is used to convert the samples to run in Spring Boot 3, the branch `feature/spring-boot-3` is no longer maintained.
+
 ### Convert samples to use Spring Boot 3
 
 To get samples for Spring Boot 3, please refer to the content in each sample's *README.md* like this:
@@ -24,8 +26,6 @@ To get samples for Spring Boot 3, please refer to the content in each sample's *
 If there is no such instruction, the example can directly activate the profile of Spring Cloud Azure 6.x to run.
 
 If you're adding a new example, here's a template that converts the example to support Spring Boot 3: [./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md](CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md).
-
-**Note**: This section is used to convert the samples to run in Spring Boot 3, the branch `feature/spring-boot-3` is no longer maintained.
 
 ### Run samples with Maven command
 

@@ -21,7 +21,7 @@ jobs:
         distribution: 'adopt'
         cache: maven
     - name: Build azure-spring-boot-samples-4.x with Maven - Java ${{ matrix.java-version }}
-      run: mvn -f pom.xml -P spring-cloud-azure-4.x --batch-mode --update-snapshots verify
+      run: mvn -f pom.xml --batch-mode --update-snapshots verify
     - if: ${{ (matrix.java-version == '17') }}
       name: Build azure-spring-boot-samples-6.x with Maven - ${{ matrix.java-version }}
       run: mvn -f pom.xml -P spring-cloud-azure-6.x --batch-mode --update-snapshots verify

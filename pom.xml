@@ -11,6 +11,32 @@
 
   <name>Azure Spring Boot Samples for Spring Cloud Azure</name>
 
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${version.spring.boot}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${version.spring.cloud}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.azure.spring</groupId>
+        <artifactId>spring-cloud-azure-dependencies</artifactId>
+        <version>${version.spring.cloud.azure}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
   <profiles>
     <profile>
       <id>spring-cloud-azure-4.x</id>
@@ -71,7 +97,7 @@
       <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <spring.boot.version>2.7.6</spring.boot.version>
+        <version.spring.boot>2.7.6</version.spring.boot>
         <version.guava>31.1-jre</version.guava>
         <version.spring.cloud>2021.0.5</version.spring.cloud>
         <version.spring.cloud.azure>4.5.0</version.spring.cloud.azure>
@@ -83,27 +109,6 @@
       </properties>
       <dependencyManagement>
         <dependencies>
-          <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-dependencies</artifactId>
-            <version>${spring.boot.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-          </dependency>
-          <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-dependencies</artifactId>
-            <version>${version.spring.cloud}</version>
-            <type>pom</type>
-            <scope>import</scope>
-          </dependency>
-          <dependency>
-            <groupId>com.azure.spring</groupId>
-            <artifactId>spring-cloud-azure-dependencies</artifactId>
-            <version>${version.spring.cloud.azure}</version>
-            <type>pom</type>
-            <scope>import</scope>
-          </dependency>
           <dependency>
             <groupId>com.azure.spring</groupId>
             <artifactId>azure-spring-cloud-appconfiguration-config</artifactId>
@@ -141,7 +146,7 @@
           <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>${spring.boot.version}</version>
+            <version>${version.spring.boot}</version>
           </plugin>
         </plugins>
       </build>
@@ -188,7 +193,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <java.version>17</java.version>
-        <spring.boot.version>3.0.0-RC2</spring.boot.version>
+        <version.spring.boot>3.0.0-RC2</version.spring.boot>
         <version.spring.cloud>2022.0.0-RC2</version.spring.cloud>
         <version.spring.cloud.azure>6.0.0-beta.4</version.spring.cloud.azure>
         <version.thymeleaf-extras-springsecurity6>3.1.1.RELEASE</version.thymeleaf-extras-springsecurity6>
@@ -196,27 +201,6 @@
       </properties>
       <dependencyManagement>
         <dependencies>
-          <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-dependencies</artifactId>
-            <version>${spring.boot.version}</version>
-            <type>pom</type>
-            <scope>import</scope>
-          </dependency>
-          <dependency>
-            <groupId>org.springframework.cloud</groupId>
-            <artifactId>spring-cloud-dependencies</artifactId>
-            <version>${version.spring.cloud}</version>
-            <type>pom</type>
-            <scope>import</scope>
-          </dependency>
-          <dependency>
-            <groupId>com.azure.spring</groupId>
-            <artifactId>spring-cloud-azure-dependencies</artifactId>
-            <version>${version.spring.cloud.azure}</version>
-            <type>pom</type>
-            <scope>import</scope>
-          </dependency>
           <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity6</artifactId>
@@ -229,7 +213,7 @@
           <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>${spring.boot.version}</version>
+            <version>${version.spring.boot}</version>
           </plugin>
         </plugins>
       </build>
@@ -286,7 +270,7 @@
           <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>${spring.boot.version}</version>
+            <version>${version.spring.boot}</version>
             <configuration>
               <classifier>${repackage.classifier}</classifier>
               <image>
@@ -352,7 +336,7 @@
           <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>${spring.boot.version}</version>
+            <version>${version.spring.boot}</version>
             <configuration>
               <classifier>${repackage.classifier}</classifier>
             </configuration>
@@ -415,7 +399,7 @@
             <plugin>
               <groupId>org.springframework.boot</groupId>
               <artifactId>spring-boot-maven-plugin</artifactId>
-              <version>${spring.boot.version}</version>
+              <version>${version.spring.boot}</version>
               <configuration>
                 <image>
                   <builder>paketobuildpacks/builder:tiny</builder>
@@ -470,7 +454,7 @@
           <plugin>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-maven-plugin</artifactId>
-            <version>${spring.boot.version}</version>
+            <version>${version.spring.boot}</version>
             <executions>
               <execution>
                 <id>process-test-aot</id>

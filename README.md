@@ -99,11 +99,17 @@
 ## Getting Help
 - If you have any question about using these samples, please [create an new issue](https://github.com/Azure-Samples/azure-spring-boot-samples/issues/new/choose).
 
-## Introduction to maven profiles 
+## Introduction to Maven profiles 
 
-This project uses one pom file to manage the samples for Spring Cloud Azure 4.x and Spring Cloud Azure 6.x. 
-The profiles end with `-4.x` are used to run the samples with Spring Cloud Azure 4.x and Spring Boot 2;
-the profiles end with `-6.x` are used to run the samples with Spring Cloud Azure 6.x and Spring Boot 3, they cannot be mixed.
+This project uses one pom file to manage the samples for Spring Cloud Azure 4.x and Spring Cloud Azure 6.x, the profile `spring-cloud-azure-4.x` is activated by default.
+
+The profile names ending with `-4.x` are used to run the samples with Spring Cloud Azure 4.x and Spring Boot 2;
+the profile names ending with `-6.x` are used to run the samples with Spring Cloud Azure 6.x and Spring Boot 3. The profile names ending with `4.x` and `6.x` cannot be mixed at the same time.
+
+**Note**: 
+- Profiles `native-4.x` and `buildpack-4.x` are used to build executables based on Spring Native of Spring Boot 2. If you want to use this profile, please use it with the profile `spring-cloud-azure-4.x`, such as `mvn -P spring-cloud-azure-4.x,native-4.x -DskipTests package`.
+- Profiles `native-6.x` and `nativeTest-6.x` are variants of the two profiles `native` and `nativeTest` provided by `spring-boot-starter-parent` of Spring Boot 3, and they have the same function. If you want to use this profile, please use it with the profile `spring-cloud-azure-6.x`, such as `mvn -P spring-cloud-azure-6.x,native-6.x native:compile`.
+
 
 ## Run Samples Based On Spring Native in Spring Boot 2
 Two Maven profiles have been defined in this project to support compiling Spring applications to native executables: `buildpack-4.x` and `native-4.x`. The `buildpack-4.x` profile will use [Buildpacks](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-buildpacks) and the `native-4.x` profile will use [Native Build Tools](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#getting-started-native-build-tools). Please follow the [storage-blob-native sample](spring-native/storage-blob-native) for more details.

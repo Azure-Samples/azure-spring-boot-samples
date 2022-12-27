@@ -6,9 +6,9 @@
 
   <parent>
     <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-boot-samples-4.x</artifactId>
+    <artifactId>azure-spring-boot-samples</artifactId>
     <version>1.0.0</version>
-    <relativePath>../../../azure-spring-boot-samples-4.x-pom.xml</relativePath>
+    <relativePath>../../../pom.xml</relativePath>
   </parent>
 
   <artifactId>spring-cloud-azure-sample-stream-binder-servicebus-queue</artifactId>

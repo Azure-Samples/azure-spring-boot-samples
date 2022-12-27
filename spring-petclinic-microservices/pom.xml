@@ -5,9 +5,9 @@
 
   <parent>
     <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-boot-samples-4.x</artifactId>
+    <artifactId>azure-spring-boot-samples</artifactId>
     <version>1.0.0</version>
-    <relativePath>../azure-spring-boot-samples-4.x-pom.xml</relativePath>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <groupId>org.springframework.samples</groupId>
@@ -38,6 +38,8 @@
     <webjars-jquery.version>3.1.1-1</webjars-jquery.version>
     <webjars-angular.version>1.6.4</webjars-angular.version>
     <webjars-angular-ui-router.version>1.0.30</webjars-angular-ui-router.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
   </properties>
 
   <dependencyManagement>

@@ -154,10 +154,10 @@ NOTE: If you want to build a lightweight container containing a native executabl
 
 Add the `spring.cloud.azure.storage.blob.account-key` configuration, and replace the relevant values in *application.yml* according to the saved output variable value. You can find these values in the temp file *terraform/terraform.tfstate*, or you can visit the Azure portal to get them.
 
-Run `mvn -Pbuildpack package spring-boot:build-image`, see [Build the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_build_the_native_application) for more details.
+Run `mvn -P spring-cloud-azure-4.x,buildpack-4.x package spring-boot:build-image`, see [Build the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_build_the_native_application) for more details.
 
 ```shell
-mvn -Pbuildpack package spring-boot:build-image
+mvn -P spring-cloud-azure-4.x,buildpack-4.x package spring-boot:build-image
 ```
 
 - Run the native application
@@ -175,10 +175,10 @@ GraalVM `native-image` compiler should be installed, see [System Requirements](h
 
 - Build the native application
 
-Run `mvn -Pnative -DskipTests package` command using `x64 Native Tools Command Prompt`, see [Build the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_build_the_native_application_2) for more details.
+Run `mvn -P spring-cloud-azure-4.x,native-4.x -DskipTests package` command using `x64 Native Tools Command Prompt`, see [Build the native application](https://docs.spring.io/spring-native/docs/current/reference/htmlsingle/#_build_the_native_application_2) for more details.
 
 ```shell
-mvn -Pnative -DskipTests package
+mvn -P spring-cloud-azure-4.x,native-4.x -DskipTests package
 ```
 
 - Run the native application

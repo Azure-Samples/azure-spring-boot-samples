@@ -105,7 +105,6 @@ curl localhost:8081/webapiA/webapiB -H "Authorization: Bearer <access-token>"
 webapiB response success.
 ```
 
-
 ## Troubleshooting
 
 ## Next steps

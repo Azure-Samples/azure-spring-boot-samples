@@ -10,7 +10,7 @@ description: This example demonstrates how to use passwordless connections to st
 
 # Store and retrieve information in Azure Database for MySQL in Spring Boot Application
 
-This code sample demonstrates how to use passwordless connections to store and retrieve information in Azure Database for MySQL using the Spring Cloud Azure MySQL starter.
+This code sample demonstrates how to use [passwordless connections](https://learn.microsoft.com/azure/developer/intro/passwordless-overview) to store and retrieve information in [Azure Database for MySQL](https://azure.microsoft.com/products/mysql/) using the Spring Cloud Azure MySQL starter.
 
 ## What You Will Build
 
@@ -206,7 +206,7 @@ Will return the list of "todo" items, including the item you've created, as foll
 ```
 
 ## Clean Up Resources
-After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
+After running the sample, if you don't want to run the sample anymore, remember to destroy the Azure resources you created to avoid unnecessary billing.
 
 The terraform destroy command terminates resources managed by your Terraform project.   
 To destroy the resources you created.

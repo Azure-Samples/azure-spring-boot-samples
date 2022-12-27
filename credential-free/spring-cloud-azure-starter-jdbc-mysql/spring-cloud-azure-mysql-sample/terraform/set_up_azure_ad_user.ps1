@@ -1,4 +1,4 @@
-echo "Prepare the working environment..."
+echo "Set up environment variables..."
 
 $env:AZ_RESOURCE_GROUP=$(terraform -chdir=terraform output -raw resource_group_name)
 $env:AZ_MYSQL_SERVER_NAME=$(terraform -chdir=terraform output -raw azure_mysql_server_name)

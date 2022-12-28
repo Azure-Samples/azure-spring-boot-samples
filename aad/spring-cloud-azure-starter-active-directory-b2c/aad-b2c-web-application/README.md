@@ -15,8 +15,6 @@ This sample illustrates how to use `spring-cloud-azure-starter-active-directory-
 
 ## Getting started
 
-
-
 ### Create your Azure Active Directory B2C tenant
 
 Follow the guide of [AAD B2C tenant creation](https://docs.microsoft.com/azure/active-directory-b2c/tutorial-create-tenant).

@@ -14,7 +14,6 @@ This sample illustrates how to protect a Java web API by restricting access to i
 
 ## Getting started
 
-
 ### Configure Web API
 1. In this section, you register your web API in App registrations in the Azure portal.
 1. Search for and select your tenant in **Azure Active Directory**.
@@ -45,9 +44,9 @@ See [Expose scoped permission to web api] for more information about web api.
 ## Examples
 ### Configure application.yml
 ```yaml
-#If we configure the spring.cloud.azure.active-directory.client-id or spring.cloud.azure.active-directory.app-id-uri will be to check the audience.
-#In v2.0 tokens, this is always client id of the app, while in v1.0 tokens it can be the client id or the application id url used in the request.
-#If you are using v1.0 tokens, configure both to properly complete the audience validation.
+# If we configure the spring.cloud.azure.active-directory.credential.client-id or spring.cloud.azure.active-directory.app-id-uri, then will check the audience.
+# In v2.0 tokens, this is always the client ID of the API, while in v1.0 tokens it can be the client ID or the resource URI used in the request.
+# If you are using v1.0 tokens, configure both to properly complete the audience validation.
 
 spring:
   cloud:
@@ -56,7 +55,7 @@ spring:
         enabled: true
         credential:
           client-id: ${AZURE_CLIENT_ID}
-          app-id-uri: ${APP_ID_URI}
+        app-id-uri: ${APP_ID_URI}
 ```
 
 ### Run with Maven

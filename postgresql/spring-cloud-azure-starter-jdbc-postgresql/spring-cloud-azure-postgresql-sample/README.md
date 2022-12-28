@@ -10,7 +10,7 @@ description: This example demonstrates how to use passwordless connections to st
 
 # Store and retrieve data in Azure Database for PostgreSQL in Spring Boot Application
 
-This code sample demonstrates how to use [passwordless connections](https://learn.microsoft.com/azure/developer/intro/passwordless-overview) to store and retrieve data in [Azure Database for PostgreSQL](https://azure.microsoft.com/products/postgresql/) using the [Spring Cloud Azure Starter JDBC PostgreSQL](https://mvnrepository.com/artifact/com.azure.spring/spring-cloud-azure-starter-jdbc-postgresql).
+This code sample demonstrates how to use [passwordless connections](https://learn.microsoft.com/azure/developer/intro/passwordless-overview) to store and retrieve data in [Azure Database for PostgreSQL](https://azure.microsoft.com/products/postgresql/) using the [Spring Cloud Azure Starter JDBC PostgreSQL](https://learn.microsoft.com/azure/developer/java/spring-framework/spring-cloud-azure?tabs=maven#postgresql-support).
 
 ## What You Will Build
 

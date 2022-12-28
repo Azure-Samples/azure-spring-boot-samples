@@ -10,7 +10,7 @@ description: This example demonstrates how to use passwordless connections to st
 
 # Store and retrieve data in Azure Database for MySQL in Spring Boot Application
 
-This code sample demonstrates how to use [passwordless connections](https://learn.microsoft.com/azure/developer/intro/passwordless-overview) to store and retrieve data in [Azure Database for MySQL](https://azure.microsoft.com/products/mysql/) using the [Spring Cloud Azure Starter JDBC MySQL](https://mvnrepository.com/artifact/com.azure.spring/spring-cloud-azure-starter-jdbc-mysql).
+This code sample demonstrates how to use [passwordless connections](https://learn.microsoft.com/azure/developer/intro/passwordless-overview) to store and retrieve data in [Azure Database for MySQL](https://azure.microsoft.com/products/mysql/) using the [Spring Cloud Azure Starter JDBC MySQL](https://learn.microsoft.com/azure/developer/java/spring-framework/spring-cloud-azure?tabs=maven#mysql-support).
 
 ## What You Will Build
 

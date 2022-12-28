@@ -69,13 +69,13 @@
 
 | Sample Project                                                                                                        | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 
 |-----------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
-| [spring-cloud-azure-mysql-sample](passwordless/spring-cloud-azure-starter-jdbc-mysql/spring-cloud-azure-mysql-sample) | ✅                             | ✅                              | 
+| [spring-cloud-azure-mysql-sample](mysql/spring-cloud-azure-starter-jdbc-mysql/spring-cloud-azure-mysql-sample) | ✅                             | ✅                              | 
 
 ### Azure Database for PostgreSQL
 
 | Sample Project                                                                                                                       | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 
 |--------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
-| [spring-cloud-azure-postgresql-sample](passwordless/spring-cloud-azure-starter-jdbc-postgresql/spring-cloud-azure-postgresql-sample) | ✅                             | ✅                              |
+| [spring-cloud-azure-postgresql-sample](postgresql/spring-cloud-azure-starter-jdbc-postgresql/spring-cloud-azure-postgresql-sample) | ✅                             | ✅                              |
 
 ### Azure Service Bus
 

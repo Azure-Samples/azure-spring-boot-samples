@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    generate-ddl: true
+  datasource:
+    azure:
+      passwordless-enabled: true
+    url: jdbc:mysql://${AZ_DATABASE_SERVER_NAME}.mysql.database.azure.com:3306/${AZ_DATABASE_NAME}?serverTimezone=UTC
+    username: ${AZ_MYSQL_AD_NON_ADMIN_USERNAME}
+  sql:
+    init:
+      mode: always

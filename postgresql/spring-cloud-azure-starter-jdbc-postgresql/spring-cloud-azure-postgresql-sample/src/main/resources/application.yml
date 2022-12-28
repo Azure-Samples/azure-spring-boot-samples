@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    generate-ddl: true
+  datasource:
+    azure:
+      passwordless-enabled: true
+    url: jdbc:postgresql://${AZ_DATABASE_SERVER_NAME}.postgres.database.azure.com:5432/${AZ_DATABASE_NAME}?sslmode=require
+    username: ${AZ_POSTGRESQL_AD_NON_ADMIN_USERNAME}
+  sql:
+    init:
+      mode: always

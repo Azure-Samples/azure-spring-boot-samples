@@ -65,6 +65,18 @@
 | [property-source](keyvault/spring-cloud-azure-starter-keyvault-secrets/property-source)                                         | ✅                              | ✅                              | 
 | [secret-client](keyvault/spring-cloud-azure-starter-keyvault-secrets/secret-client)                                             | ✅                              | ✅                              |
 
+### Azure Database for MySQL
+
+| Sample Project                                                                                                        | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 
+|-----------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
+| [spring-cloud-azure-mysql-sample](mysql/spring-cloud-azure-starter-jdbc-mysql/spring-cloud-azure-mysql-sample) | ✅                             | ✅                              | 
+
+### Azure Database for PostgreSQL
+
+| Sample Project                                                                                                                       | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 
+|--------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
+| [spring-cloud-azure-postgresql-sample](postgresql/spring-cloud-azure-starter-jdbc-postgresql/spring-cloud-azure-postgresql-sample) | ✅                             | ✅                              |
+
 ### Azure Service Bus
 
 | Sample Project                                                                                                    | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 

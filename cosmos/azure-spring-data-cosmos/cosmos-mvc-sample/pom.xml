@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <parent>
     <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-boot-samples-4.x</artifactId>
+    <artifactId>azure-spring-boot-samples</artifactId>
     <version>1.0.0</version>
-    <relativePath>../../../azure-spring-boot-samples-4.x-pom.xml</relativePath>
+    <relativePath>../../../pom.xml</relativePath>
   </parent>
+
   <groupId>com.spring.cosmos.ebookstore</groupId>
   <artifactId>EBookStoreSpringBootMVC</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>EBookStoreSpringBootMVC</name>
   <description>Sample EBook Store Application using Spring data cosmos repository</description>
+
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>

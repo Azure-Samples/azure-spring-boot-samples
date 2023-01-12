@@ -13,7 +13,7 @@
 
   <groupId>com.azure</groupId>
   <artifactId>cosmos-spring-aad-sample</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0</version>
 
   <properties>
     <spring.boot.version>2.7.1</spring.boot.version>

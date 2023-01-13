@@ -34,13 +34,7 @@ public class SampleApplicationConfiguration {
 
     @Bean
     public RestTemplate restTemplateWithTLS() throws Exception {
-        KeyStore azureKeyVaultKeyStore = KeyStore.getInstance("AzureKeyVault");
-        KeyVaultLoadStoreParameter parameter = new KeyVaultLoadStoreParameter(
-            System.getProperty("azure.keyvault.uri"),
-            System.getProperty("azure.keyvault.tenant-id"),
-            System.getProperty("azure.keyvault.client-id"),
-            System.getProperty("azure.keyvault.client-secret"));
-        azureKeyVaultKeyStore.load(parameter);
+        KeyStore azureKeyVaultKeyStore = buildAzureKeyVaultKeyStore();
         SSLContext sslContext = SSLContexts.custom()
                                            .loadTrustMaterial(azureKeyVaultKeyStore, null)
                                            .build();
@@ -56,13 +50,7 @@ public class SampleApplicationConfiguration {
 
     @Bean
     public RestTemplate restTemplateWithMTLS() throws Exception {
-        KeyStore azureKeyVaultKeyStore = KeyStore.getInstance("AzureKeyVault");
-        KeyVaultLoadStoreParameter parameter = new KeyVaultLoadStoreParameter(
-            System.getProperty("azure.keyvault.uri"),
-            System.getProperty("azure.keyvault.tenant-id"),
-            System.getProperty("azure.keyvault.client-id"),
-            System.getProperty("azure.keyvault.client-secret"));
-        azureKeyVaultKeyStore.load(parameter);
+        KeyStore azureKeyVaultKeyStore = buildAzureKeyVaultKeyStore();
         SSLContext sslContext = SSLContexts.custom()
                                            .loadTrustMaterial(azureKeyVaultKeyStore, null)
                                            .loadKeyMaterial(azureKeyVaultKeyStore, "".toCharArray(), new ClientPrivateKeyStrategy())
@@ -79,18 +67,12 @@ public class SampleApplicationConfiguration {
 
     @Bean
     public WebClient webClientWithTLS() throws Exception {
-        KeyStore azureKeyVaultKeyStore = KeyStore.getInstance("AzureKeyVault");
-        KeyVaultLoadStoreParameter parameter = new KeyVaultLoadStoreParameter(
-                System.getProperty("azure.keyvault.uri"),
-                System.getProperty("azure.keyvault.tenant-id"),
-                System.getProperty("azure.keyvault.client-id"),
-                System.getProperty("azure.keyvault.client-secret"));
-        azureKeyVaultKeyStore.load(parameter);
+        KeyStore azureKeyVaultKeyStore = buildAzureKeyVaultKeyStore();
         TrustManagerFactory instance = InsecureTrustManagerFactory.INSTANCE;
         instance.init(azureKeyVaultKeyStore);
         SslContext context = SslContextBuilder.forClient()
-                .trustManager(instance)
-                .build();
+                                              .trustManager(instance)
+                                              .build();
         HttpClient httpClient = HttpClient.create().secure(t -> t.sslContext(context));
         return WebClient
                 .builder()
@@ -100,6 +82,20 @@ public class SampleApplicationConfiguration {
 
     @Bean
     public WebClient webClientWithMTLS() throws Exception {
+        KeyStore azureKeyVaultKeyStore = buildAzureKeyVaultKeyStore();
+        TrustManagerFactory instance = InsecureTrustManagerFactory.INSTANCE;
+        instance.init(azureKeyVaultKeyStore);
+        SslContext context = SslContextBuilder.forClient()
+                                              .keyManager((PrivateKey) azureKeyVaultKeyStore.getKey(ALIAS, "".toCharArray()))
+                                              .trustManager(instance)
+                                              .build();
+        HttpClient httpClient = HttpClient.create().secure(t -> t.sslContext(context));
+        return WebClient
+                .builder()
+                .clientConnector(new ReactorClientHttpConnector(httpClient)).build();
+    }
+
+    private static KeyStore buildAzureKeyVaultKeyStore() throws Exception {
         KeyStore azureKeyVaultKeyStore = KeyStore.getInstance("AzureKeyVault");
         KeyVaultLoadStoreParameter parameter = new KeyVaultLoadStoreParameter(
                 System.getProperty("azure.keyvault.uri"),
@@ -107,16 +103,7 @@ public class SampleApplicationConfiguration {
                 System.getProperty("azure.keyvault.client-id"),
                 System.getProperty("azure.keyvault.client-secret"));
         azureKeyVaultKeyStore.load(parameter);
-        TrustManagerFactory instance = InsecureTrustManagerFactory.INSTANCE;
-        instance.init(azureKeyVaultKeyStore);
-        SslContext context = SslContextBuilder.forClient()
-                .keyManager((PrivateKey) azureKeyVaultKeyStore.getKey(ALIAS, "".toCharArray()))
-                .trustManager(instance)
-                .build();
-        HttpClient httpClient = HttpClient.create().secure(t -> t.sslContext(context));
-        return WebClient
-                .builder()
-                .clientConnector(new ReactorClientHttpConnector(httpClient)).build();
+        return azureKeyVaultKeyStore;
     }
 
     private static class ClientPrivateKeyStrategy implements PrivateKeyStrategy {

@@ -18,6 +18,8 @@ public class Customer {
     private Address address;
     private Contact contact;
     private CreditCard creditCard;
+    public Customer() {
+    }
     public Customer(String id, String password, Name name) {
         this.id = id;
         this.password = password;

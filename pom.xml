@@ -76,10 +76,14 @@
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
         <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
         <module>cloudfoundry/azure-cloud-foundry-service-sample</module>
+        <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-aks-sample</module>
         <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample</module>
         <module>cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample</module>
+        <module>cosmos/azure-spring-data-cosmos/cosmos-aad-sample</module>
         <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account</module>
         <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>
+        <module>cosmos/azure-spring-data-cosmos/cosmos-mvc-sample</module>
+        <module>cosmos/azure-spring-data-cosmos/cosmos-quickstart-samples</module>
         <module>eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration</module>
         <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
         <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>

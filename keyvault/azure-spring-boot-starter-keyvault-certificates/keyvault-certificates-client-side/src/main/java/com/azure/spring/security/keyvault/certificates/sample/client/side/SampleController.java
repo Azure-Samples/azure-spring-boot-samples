@@ -22,14 +22,14 @@ public class SampleController {
 
     @GetMapping("/tls")
     public String tls() {
-        return String.format("Response from \"%s\": %s",
+        return String.format("Response from tls \"%s\": %s",
             SERVER_SIDE_ENDPOINT,
             restTemplateWithTLS.getForObject(SERVER_SIDE_ENDPOINT, String.class));
     }
 
     @GetMapping("/mtls")
     public String mtls() {
-        return String.format("Response from \"%s\": %s",
+        return String.format("Response from mtls \"%s\": %s",
             SERVER_SIDE_ENDPOINT,
             restTemplateWithMTLS.getForObject(SERVER_SIDE_ENDPOINT, String.class));
     }

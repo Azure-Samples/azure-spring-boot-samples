@@ -8,7 +8,7 @@
 
 ### Azure Active Directory
 
-| Sample Project                                                                                                                     | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 
+| Sample Project                                                                                                                     | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
 |------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
 | [aad-b2c-resource-server](aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server)                             | ✅                              | ❌                              | 
 | [aad-b2c-web-application](aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application)                             | ✅                              | ❌                              | 
@@ -19,7 +19,7 @@
 
 ### Azure App Configuration
 
-| Sample Project                                                                                                                                                                                                                                                 | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 
+| Sample Project                                                                                                                                                                                                                                                 | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
 |----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
 | [azure-spring-cloud-appconfiguration-config-convert-sample-complete](appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-convert-sample/azure-spring-cloud-appconfiguration-config-convert-sample-complete) | ✅                              | ❌                              |
 | [azure-spring-cloud-appconfiguration-config-sample](appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-sample)                                                                                             | ✅                              | ❌                              |
@@ -31,13 +31,13 @@
 
 ### Azure Cache
 
-| Sample Project                                                                                      | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 
+| Sample Project                                                                                      | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
 |-----------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
 | [azure-spring-cloud-sample-cache](cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache) | ✅                              | ✅                              |
 
 ### Azure Cosmos DB
 
-| Sample Project                                                                                                               | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 
+| Sample Project                                                                                                               | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
 |------------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
 | [cosmos-multi-database-multi-account](cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account)                   | ✅                              | ❌                              | 
 | [cosmos-multi-database-single-account](cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account)                 | ✅                              | ❌                              | 
@@ -46,7 +46,7 @@
 
 ### Azure Event Hubs
 
-| Sample Project                                                                                                              | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 
+| Sample Project                                                                                                              | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
 |-----------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
 | [spring-cloud-azure-sample-eventhubs-kafka](eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka) | ✅                              | ✅                              | 
 | [eventhubs-integration](eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration)                   | ✅                              | ✅                              | 
@@ -56,7 +56,7 @@
 
 ### Azure Key Vault
 
-| Sample Project                                                                                                                  | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 
+| Sample Project                                                                                                                  | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
 |---------------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
 | [keyvault-certificates-client-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side) | ✅                              | ❌                              | 
 | [keyvault-certificates-server-side](keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side) | ✅                              | ❌                              | 
@@ -67,19 +67,19 @@
 
 ### Azure Database for MySQL
 
-| Sample Project                                                                                                        | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 
+| Sample Project                                                                                                        | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
 |-----------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
 | [spring-cloud-azure-mysql-sample](mysql/spring-cloud-azure-starter-jdbc-mysql/spring-cloud-azure-mysql-sample) | ✅                             | ✅                              | 
 
 ### Azure Database for PostgreSQL
 
-| Sample Project                                                                                                                       | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 
+| Sample Project                                                                                                                       | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
 |--------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
 | [spring-cloud-azure-postgresql-sample](postgresql/spring-cloud-azure-starter-jdbc-postgresql/spring-cloud-azure-postgresql-sample) | ✅                             | ✅                              |
 
 ### Azure Service Bus
 
-| Sample Project                                                                                                    | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 
+| Sample Project                                                                                                    | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
 |-------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
 | [servicebus-jms-queue](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue)                 | ✅                              | ✅                              | 
 | [servicebus-jms-topic](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-topic)                 | ✅                              | ✅                              | 
@@ -92,7 +92,7 @@
 
 ### Azure Storage
 
-| Sample Project                                                                                                      | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 
+| Sample Project                                                                                                      | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
 |---------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
 | [storage-blob-sample](storage/spring-cloud-azure-starter-storage-blob/storage-blob-sample)                          | ✅                              | ✅                              | 
 | [storage-file-sample](storage/spring-cloud-azure-starter-storage-file-share/storage-file-sample)                    | ✅                              | ✅                              | 
@@ -103,7 +103,7 @@
 
 ### Spring PetClinic
 
-| Sample Project                                                                                                      | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 6.x | 
+| Sample Project                                                                                                      | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
 |---------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
 | [spring-petclinic-microservices](spring-petclinic-microservices)                                                    | ✅                              | ❌                              | 
 
@@ -112,13 +112,13 @@
 
 ## Introduction to Maven profiles 
 
-This project uses one pom file to manage the samples for Spring Cloud Azure 4.x and Spring Cloud Azure 6.x, the profile `spring-cloud-azure-4.x` is activated by default.
+This project uses one pom file to manage the samples for Spring Cloud Azure 4.x and Spring Cloud Azure 5.x, the profile `spring-cloud-azure-4.x` is activated by default.
 
 The profile names ending with `-4.x` are used to run the samples with Spring Cloud Azure 4.x and Spring Boot 2;
-the profile names ending with `-6.x` are used to run the samples with Spring Cloud Azure 6.x and Spring Boot 3. The profile names ending with `4.x` and `6.x` cannot be mixed at the same time.
+the profile names ending with `-5.x` are used to run the samples with Spring Cloud Azure 5.x and Spring Boot 3. The profile names ending with `4.x` and `5.x` cannot be mixed at the same time.
 
 **Note**: 
-- Profiles `native-6.x` and `nativeTest-6.x` are variants of the two profiles `native` and `nativeTest` provided by `spring-boot-starter-parent` of Spring Boot 3, and they have the same function. If you want to use this profile, please use it with the profile `spring-cloud-azure-6.x`, such as `mvn -P spring-cloud-azure-6.x,native-6.x native:compile`.
+- Profiles `native-5.x` and `nativeTest-5.x` are variants of the two profiles `native` and `nativeTest` provided by `spring-boot-starter-parent` of Spring Boot 3, and they have the same function. If you want to use this profile, please use it with the profile `spring-cloud-azure-5.x`, such as `mvn -P spring-cloud-azure-5.x,native-5.x native:compile`.
 
 
 ## Samples for Spring Boot 3
@@ -129,26 +129,26 @@ the profile names ending with `-6.x` are used to run the samples with Spring Clo
 
 To get samples for Spring Boot 3, please refer to the content in each sample's *README.md* like this:
 > Current sample is using Spring Cloud Azure 4.x (which is compatible with Spring Boot 2.x).
-> If you want sample about Spring Cloud Azure 6.x (which is compatible with Spring Boot 3.x),
+> If you want sample about Spring Cloud Azure 5.x (which is compatible with Spring Boot 3.x),
 > please refer to [CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md](./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md).
 
-Mostly samples can work with both Spring Cloud Azure 4.x and Spring Cloud Azure 6.x, you can directly activate the profile of Spring Cloud Azure 6.x to run.
+Mostly samples can work with both Spring Cloud Azure 4.x and Spring Cloud Azure 5.x, you can directly activate the profile of Spring Cloud Azure 5.x to run.
 
 If you're adding a new example, here's a template that converts the example to support Spring Boot 3: [./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md](CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md).
 
 ### Run samples with Maven command
 
-Use below command to enable the profile for Spring Cloud Azure 6.x.
+Use below command to enable the profile for Spring Cloud Azure 5.x.
 
 ```shell
-mvn clean spring-boot:run -P spring-cloud-azure-6.x
+mvn clean spring-boot:run -P spring-cloud-azure-5.x
 ```
 
 ### Run samples with IDE
 
-Activate the profile Spring Cloud Azure 6.x by default, then you can run in your IDE tool.
+Activate the profile Spring Cloud Azure 5.x by default, then you can run in your IDE tool.
 
-Remove the below activation for `spring-cloud-azure-4.x`, and add it to profile `spring-cloud-azure-6.x`:
+Remove the below activation for `spring-cloud-azure-4.x`, and add it to profile `spring-cloud-azure-5.x`:
 
 ```xml
 <activation>

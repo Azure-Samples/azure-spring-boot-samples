@@ -30,19 +30,13 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
 
     Then you will get
     ```text
-    Response from "https://localhost:8443/": Hello World
+    Response from restTemplate tls "https://localhost:8443/": Hello World
     ```
 
 #### Using mTLS with service principal created via App registration.
-1. In the sample `ApplicationConfiguration.class`, change the `self-signed` to your certificate alias.
-    <!-- embedme ../azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side/src/main/java/com/azure/spring/security/keyvault/certificates/sample/client/side/SampleApplicationConfiguration.java#L70-L75 -->
+1. In the sample `RestTemplateConfiguration.java`, change the `self-signed` to your certificate alias.
     ```java
-    private static class ClientPrivateKeyStrategy implements PrivateKeyStrategy {
-        @Override
-        public String chooseAlias(Map<String, PrivateKeyDetails> map, Socket socket) {
-            return "self-signed"; // It should be your certificate alias used in client-side
-        }
-    }
+    private static final String CLIENT_ALIAS = "self-signed";
     ``` 
 1. Add properties in application.yml of `server side` on the base of current configuration:
     ```yaml
@@ -59,7 +53,7 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
 
     Then you will get
     ```text
-    Response from "https://localhost:8443/": Hello World
+    Response from restTemplate mtls "https://localhost:8443/": Hello World
     ```
 
 ### Run sample with managed identity
@@ -78,8 +72,7 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
    ```
 
 #### Using TLS with managed identity
-1. Replace the `restTemplateWithTLS` bean in `SampleApplicationConfiguration.java` as
-    <!-- embedme ../azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side/src/main/java/com/azure/spring/security/keyvault/KeyVaultJcaManagedIdentitySample.java#L22-L40 -->
+1. Replace the `restTemplateWithTLS` bean in `RestTemplateConfiguration.java` as
     ```java
     @Bean
     public RestTemplate restTemplateWithTLS() throws Exception {
@@ -104,8 +97,7 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
 1. Follow the above step of [Using TLS with service principal](#using-tls-with-service-principal).
 
 #### Using mTLS with managed identity
-1. Replace the `restTemplateWithMTLS` bean in `SampleApplicationConfiguration.java` as
-    <!-- embedme ../azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side/src/main/java/com/azure/spring/security/keyvault/KeyVaultJcaManagedIdentitySample.java#L42-L61 -->
+1. Replace the `restTemplateWithMTLS` bean in `RestTemplateConfiguration.java` as
     ```java
     @Bean
     public RestTemplate restTemplateWithMTLS() throws Exception {

@@ -10,14 +10,14 @@ import org.springframework.web.reactive.function.client.WebClient;
 
 @RestController
 @Profile("webclient")
-public class WebClientSampleController {
+public class WebClientController {
 
     private static final String SERVER_SIDE_ENDPOINT = "https://localhost:8443/";
 
     final WebClient webClientWithTLS;
     final WebClient webClientWithMTLS;
 
-    public WebClientSampleController(WebClient webClientWithTLS, WebClient webClientWithMTLS) {
+    public WebClientController(WebClient webClientWithTLS, WebClient webClientWithMTLS) {
         this.webClientWithTLS = webClientWithTLS;
         this.webClientWithMTLS = webClientWithMTLS;
     }

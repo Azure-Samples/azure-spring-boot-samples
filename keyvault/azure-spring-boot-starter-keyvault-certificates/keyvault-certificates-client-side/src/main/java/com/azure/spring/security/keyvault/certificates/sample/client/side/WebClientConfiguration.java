@@ -23,9 +23,9 @@ import java.security.UnrecoverableKeyException;
 
 @Configuration
 @Profile("webclient")
-public class WebClientApplicationConfiguration {
+public class WebClientConfiguration {
 
-    private static final String ALIAS = "self-signed";    // It should be your certificate alias used in client-side
+    private static final String CLIENT_ALIAS = "self-signed";    // It should be your certificate alias used in client-side
 
     @Bean
     public WebClient webClientWithTLS() throws Exception {
@@ -33,8 +33,8 @@ public class WebClientApplicationConfiguration {
         TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
         trustManagerFactory.init(azureKeyVaultKeyStore);
         SslContext context = SslContextBuilder.forClient()
-                                              .trustManager(trustManagerFactory)
-                                              .build();
+                .trustManager(trustManagerFactory)
+                .build();
         HttpClient httpClient = HttpClient.create().secure(t -> t.sslContext(context));
         return WebClient
                 .builder()
@@ -47,12 +47,12 @@ public class WebClientApplicationConfiguration {
         TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
         trustManagerFactory.init(azureKeyVaultKeyStore);
 
-        KeyManager keyManager = buildKeyManager(azureKeyVaultKeyStore, ALIAS);
+        KeyManager keyManager = buildKeyManager(azureKeyVaultKeyStore, CLIENT_ALIAS);
 
         SslContext context = SslContextBuilder.forClient()
-                                              .keyManager(keyManager)
-                                              .trustManager(trustManagerFactory)
-                                              .build();
+                .keyManager(keyManager)
+                .trustManager(trustManagerFactory)
+                .build();
 
         HttpClient httpClient = HttpClient.create().secure(sslSpec -> sslSpec.sslContext(context));
 
@@ -82,5 +82,4 @@ public class WebClientApplicationConfiguration {
         azureKeyVaultKeyStore.load(parameter);
         return azureKeyVaultKeyStore;
     }
-
 }

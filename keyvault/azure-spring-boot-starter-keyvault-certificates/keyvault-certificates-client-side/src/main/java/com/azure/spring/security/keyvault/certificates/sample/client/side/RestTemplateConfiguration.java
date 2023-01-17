@@ -20,9 +20,9 @@ import java.security.KeyStore;
 import java.util.Map;
 
 @Configuration
-public class SampleApplicationConfiguration {
+public class RestTemplateConfiguration {
 
-    private static final String ALIAS = "self-signed";             // It should be your certificate alias used in client-side
+    private static final String CLIENT_ALIAS = "self-signed";             // It should be your certificate alias used in client-side
 
     @Bean
     public RestTemplate restTemplateWithTLS() throws Exception {
@@ -71,7 +71,7 @@ public class SampleApplicationConfiguration {
     private static class ClientPrivateKeyStrategy implements PrivateKeyStrategy {
         @Override
         public String chooseAlias(Map<String, PrivateKeyDetails> map, Socket socket) {
-            return ALIAS;
+            return CLIENT_ALIAS;
         }
     }
 }

@@ -11,43 +11,43 @@ import java.security.PrivateKey;
 import java.security.cert.X509Certificate;
 
 final class ConfigurableAliasKeyManager extends X509ExtendedKeyManager {
-        private final X509ExtendedKeyManager delegate;
-        private final String alias;
+    private final X509ExtendedKeyManager delegate;
+    private final String alias;
 
-        public ConfigurableAliasKeyManager(X509ExtendedKeyManager keyManager, String alias) {
-            this.delegate = keyManager;
-            this.alias = alias;
-        }
-
-        public String chooseEngineClientAlias(String[] strings, Principal[] principals, SSLEngine sslEngine) {
-            return alias;
-        }
-
-        public String chooseEngineServerAlias(String s, Principal[] principals, SSLEngine sslEngine) {
-            return alias;
-        }
-
-        public String chooseClientAlias(String[] keyType, Principal[] issuers, Socket socket) {
-            return alias;
-        }
-
-        public String chooseServerAlias(String keyType, Principal[] issuers, Socket socket) {
-            return alias;
-        }
-
-        public X509Certificate[] getCertificateChain(String alias) {
-            return this.delegate.getCertificateChain(alias);
-        }
-
-        public String[] getClientAliases(String keyType, Principal[] issuers) {
-            return this.delegate.getClientAliases(keyType, issuers);
-        }
-
-        public PrivateKey getPrivateKey(String alias) {
-            return this.delegate.getPrivateKey(alias);
-        }
-
-        public String[] getServerAliases(String keyType, Principal[] issuers) {
-            return this.delegate.getServerAliases(keyType, issuers);
-        }
+    public ConfigurableAliasKeyManager(X509ExtendedKeyManager keyManager, String alias) {
+        this.delegate = keyManager;
+        this.alias = alias;
     }
+
+    public String chooseEngineClientAlias(String[] strings, Principal[] principals, SSLEngine sslEngine) {
+        return alias;
+    }
+
+    public String chooseEngineServerAlias(String s, Principal[] principals, SSLEngine sslEngine) {
+        return alias;
+    }
+
+    public String chooseClientAlias(String[] keyType, Principal[] issuers, Socket socket) {
+        return alias;
+    }
+
+    public String chooseServerAlias(String keyType, Principal[] issuers, Socket socket) {
+        return alias;
+    }
+
+    public X509Certificate[] getCertificateChain(String alias) {
+        return this.delegate.getCertificateChain(alias);
+    }
+
+    public String[] getClientAliases(String keyType, Principal[] issuers) {
+        return this.delegate.getClientAliases(keyType, issuers);
+    }
+
+    public PrivateKey getPrivateKey(String alias) {
+        return this.delegate.getPrivateKey(alias);
+    }
+
+    public String[] getServerAliases(String keyType, Principal[] issuers) {
+        return this.delegate.getServerAliases(keyType, issuers);
+    }
+}

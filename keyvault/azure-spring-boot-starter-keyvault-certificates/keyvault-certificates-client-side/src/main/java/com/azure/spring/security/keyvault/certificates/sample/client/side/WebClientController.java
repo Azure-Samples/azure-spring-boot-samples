@@ -24,14 +24,14 @@ public class WebClientController {
 
     @GetMapping("webclient/tls")
     public String webclientTls() {
-        return String.format("Response from webclientTls \"%s\": %s",
+        return String.format("Response from webclient tls \"%s\": %s",
                 SERVER_SIDE_ENDPOINT,
                 webClientWithTLS.get().uri(SERVER_SIDE_ENDPOINT).retrieve().bodyToMono(String.class).block());
     }
 
     @GetMapping("webclient/mtls")
     public String webclientMtls() {
-        return String.format("Response from webclientMtls \"%s\": %s",
+        return String.format("Response from webclient mtls \"%s\": %s",
                 SERVER_SIDE_ENDPOINT,
                 webClientWithMTLS.get().uri(SERVER_SIDE_ENDPOINT).retrieve().bodyToMono(String.class).block()
         );

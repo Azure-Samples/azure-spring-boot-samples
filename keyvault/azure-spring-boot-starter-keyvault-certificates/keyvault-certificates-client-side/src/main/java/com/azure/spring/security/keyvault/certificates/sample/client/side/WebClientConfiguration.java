@@ -3,7 +3,6 @@
 package com.azure.spring.security.keyvault.certificates.sample.client.side;
 
 import com.azure.security.keyvault.jca.KeyVaultKeyManager;
-import com.azure.security.keyvault.jca.KeyVaultLoadStoreParameter;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import org.springframework.context.annotation.Bean;
@@ -21,6 +20,8 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 
+import static com.azure.spring.security.keyvault.certificates.sample.client.side.RestTemplateConfiguration.buildAzureKeyVaultKeyStore;
+
 @Configuration
 @Profile("webclient")
 public class WebClientConfiguration {
@@ -29,26 +30,20 @@ public class WebClientConfiguration {
 
     @Bean
     public WebClient webClientWithTLS() throws Exception {
-        KeyStore azureKeyVaultKeyStore = buildAzureKeyVaultKeyStore();
-        TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
-        trustManagerFactory.init(azureKeyVaultKeyStore);
-        SslContext context = SslContextBuilder.forClient()
-                .trustManager(trustManagerFactory)
-                .build();
-        HttpClient httpClient = HttpClient.create().secure(t -> t.sslContext(context));
-        return WebClient
-                .builder()
-                .clientConnector(new ReactorClientHttpConnector(httpClient)).build();
+        return buildWebClientEnableTls(false);
     }
 
     @Bean
     public WebClient webClientWithMTLS() throws Exception {
+        return buildWebClientEnableTls(true);
+    }
+
+    private WebClient buildWebClientEnableTls(boolean enableMtls) throws Exception {
         KeyStore azureKeyVaultKeyStore = buildAzureKeyVaultKeyStore();
         TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance(TrustManagerFactory.getDefaultAlgorithm());
         trustManagerFactory.init(azureKeyVaultKeyStore);
 
-        KeyManager keyManager = buildKeyManager(azureKeyVaultKeyStore, CLIENT_ALIAS);
-
+        KeyManager keyManager = enableMtls ? buildKeyManager(azureKeyVaultKeyStore, CLIENT_ALIAS) : null;
         SslContext context = SslContextBuilder.forClient()
                 .keyManager(keyManager)
                 .trustManager(trustManagerFactory)
@@ -72,14 +67,5 @@ public class WebClientConfiguration {
         return null;
     }
 
-    private static KeyStore buildAzureKeyVaultKeyStore() throws Exception {
-        KeyStore azureKeyVaultKeyStore = KeyStore.getInstance("AzureKeyVault");
-        KeyVaultLoadStoreParameter parameter = new KeyVaultLoadStoreParameter(
-                System.getProperty("azure.keyvault.uri"),
-                System.getProperty("azure.keyvault.tenant-id"),
-                System.getProperty("azure.keyvault.client-id"),
-                System.getProperty("azure.keyvault.client-secret"));
-        azureKeyVaultKeyStore.load(parameter);
-        return azureKeyVaultKeyStore;
-    }
+
 }

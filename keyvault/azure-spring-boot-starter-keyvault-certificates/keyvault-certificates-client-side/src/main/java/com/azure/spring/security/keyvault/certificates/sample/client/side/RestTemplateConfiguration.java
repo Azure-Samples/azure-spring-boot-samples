@@ -11,7 +11,6 @@ import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.ssl.SSLContexts;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Profile;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,13 +18,11 @@ import java.net.Socket;
 import java.security.KeyStore;
 import java.util.Map;
 
+import static com.azure.spring.security.keyvault.certificates.sample.client.side.common.AzureKeyVaultKeyStoreUtil.CLIENT_ALIAS;
 import static com.azure.spring.security.keyvault.certificates.sample.client.side.common.AzureKeyVaultKeyStoreUtil.buildAzureKeyVaultKeyStore;
 
-@Profile("!webclient")
 @Configuration
 public class RestTemplateConfiguration {
-
-    private static final String CLIENT_ALIAS = "self-signed";             // It should be your certificate alias used in client-side
 
     @Bean
     public RestTemplate restTemplateWithTLS() throws Exception {

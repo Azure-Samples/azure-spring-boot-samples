@@ -3,16 +3,14 @@
 
 package com.azure.spring.security.keyvault.certificates.sample.client.side;
 
-import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
-@Profile("!webclient")
+import static com.azure.spring.security.keyvault.certificates.sample.client.side.common.AzureKeyVaultKeyStoreUtil.SERVER_SIDE_ENDPOINT;
+
 @RestController
 public class RestTemplateController {
-
-    private static final String SERVER_SIDE_ENDPOINT = "https://localhost:8443/";
 
     final RestTemplate restTemplateWithTLS;
     final RestTemplate restTemplateWithMTLS;
@@ -22,14 +20,14 @@ public class RestTemplateController {
         this.restTemplateWithMTLS = restTemplateWithMTLS;
     }
 
-    @GetMapping("/tls")
+    @GetMapping("/resttemplate/tls")
     public String tls() {
         return String.format("Response from restTemplate tls \"%s\": %s",
             SERVER_SIDE_ENDPOINT,
             restTemplateWithTLS.getForObject(SERVER_SIDE_ENDPOINT, String.class));
     }
 
-    @GetMapping("/mtls")
+    @GetMapping("/resttemplate/mtls")
     public String mtls() {
         return String.format("Response from restTemplate mtls \"%s\": %s",
             SERVER_SIDE_ENDPOINT,

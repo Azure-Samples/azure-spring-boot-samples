@@ -21,45 +21,28 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
    > Key Permissions: configure with **get** permission.  
    > Secret Permissions: configure with **get** permission.
 
-#### Using TLS with service principal and RestTemplate
+#### Using TLS with service principal with RestTemplate and WebClient
 1. Start azure-spring-boot-sample-keyvault-certificates-client-side's SampleApplication by running command:
    ```
    mvn spring-boot:run
    ```
-1. Access http://localhost:8080/tls
+1. To use RestTemplate, access http://localhost:8080/resttemplate/tls
 
     Then you will get
     ```text
     Response from restTemplate tls "https://localhost:8443/": Hello World
     ```
-
-#### Using TLS with service principal and WebClient
-
-1. Add below properties to the `application.yml` of client side:
-
-   ```yaml
-   spring:
-     profiles:
-       active: webclient
-   ```
-
-1. Start azure-spring-boot-sample-keyvault-certificates-client-side's SampleApplication by running command:
-
-   ```
-   mvn spring-boot:run
-   ```
-
-1. Access http://localhost:8080/webclient/tls
+1. To use WebClient, access http://localhost:8080/webclient/tls
 
    Then you will get
 
    ```text
-   Response from webclient tls "https://localhost:8443/": Hello World
+   Response from webClient tls "https://localhost:8443/": Hello World
    ```
 
-#### Using mTLS with service principal and RestTemplate
+#### Using mTLS with service principal with RestTemplate and WebClient
 
-1. In the sample `RestTemplateConfiguration.java`, change the `self-signed` to your certificate alias.
+1. In the sample `AzureKeyVaultKeyStoreUtil.java`, change the `self-signed` to your certificate alias.
     ```java
     private static final String CLIENT_ALIAS = "self-signed";
     ```
@@ -75,53 +58,21 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
    ```
    mvn spring-boot:run
    ```
-1. When the mTLS server starts, `tls endpoint`(http://localhost:8080/tls) will not be able to access the resource. Access http://localhost:8080/mtls
+1. When the mTLS server starts, `restTemplate tls endpoint`(http://localhost:8080/resttemplate/tls) and `webClient tls endpoint`(http://localhost:8080/webclient/tls) will not be able to access the resource. 
+2. To use RestTemplate, access http://localhost:8080/resttemplate/mtls
 
     Then you will get
     ```text
     Response from restTemplate mtls "https://localhost:8443/": Hello World
     ```
-
-#### Using mTLS with service principal and WebClient
-
-1. In the sample `WebClientConfiguration.java`, change the `self-signed` to your certificate alias.
-
-   ```java
-   private static final String CLIENT_ALIAS = "self-signed";
-   ```
-
-1. Add below properties to the `application.yml` of client side:
-
-   ```yaml
-   spring:
-     profiles:
-       active: webclient
-   ```
-
-1. Add properties in application.yml of `server side` on the base of current configuration:
-
-   ```yaml
-   server:
-     ssl:
-       client-auth: need        # Used for mTLS
-       trust-store-type: AzureKeyVault   # Used for mTLS   
-   ```
-
-1. Start azure-spring-boot-sample-keyvault-certificates-client-side's SampleApplication by running command:
-
-   ```
-   mvn spring-boot:run
-   ```
-
-1. When the mTLS server starts, `tls endpoint`(http://localhost:8080/webclient/tls) will not be able to access the resource. Access http://localhost:8080/webclient/mtls
+1. To use WebClient, access http://localhost:8080/webclient/mtls
 
    Then you will get
 
    ```text
-   Response from webclient mtls "https://localhost:8443/": Hello World
+   Response from webClient mtls "https://localhost:8443/": Hello World
    ```
 
-### 
 
 ### Run sample with managed identity
 
@@ -146,7 +97,6 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
     ```
 1. Follow the above step of [Using TLS with service principal](#using-tls-with-service-principal) to use TLS.
 1. Follow the above step of [Using mTLS with service principal](#using-mtls-with-service-principal) to use mTLS.
-
 
 
 

@@ -1,7 +1,7 @@
 // Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License.
 
-package com.azure.spring.security.keyvault.certificates.sample.client.side;
+package com.azure.spring.security.keyvault.certificates.sample.client.side.common;
 
 import javax.net.ssl.SSLEngine;
 import javax.net.ssl.X509ExtendedKeyManager;
@@ -10,7 +10,7 @@ import java.security.Principal;
 import java.security.PrivateKey;
 import java.security.cert.X509Certificate;
 
-final class ConfigurableAliasKeyManager extends X509ExtendedKeyManager {
+public final class ConfigurableAliasKeyManager extends X509ExtendedKeyManager {
     private final X509ExtendedKeyManager delegate;
     private final String alias;
 

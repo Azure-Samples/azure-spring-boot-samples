@@ -2,7 +2,6 @@
 // Licensed under the MIT License.
 package com.azure.spring.security.keyvault.certificates.sample.client.side;
 
-import com.azure.security.keyvault.jca.KeyVaultLoadStoreParameter;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -20,12 +19,13 @@ import java.net.Socket;
 import java.security.KeyStore;
 import java.util.Map;
 
+import static com.azure.spring.security.keyvault.certificates.sample.client.side.common.AzureKeyVaultKeyStoreUtil.buildAzureKeyVaultKeyStore;
+
 @Profile("!webclient")
 @Configuration
 public class RestTemplateConfiguration {
 
     private static final String CLIENT_ALIAS = "self-signed";             // It should be your certificate alias used in client-side
-    private static final CredentialType CREDENTIALTYPE = CredentialType.ServicePrinciple;
 
     @Bean
     public RestTemplate restTemplateWithTLS() throws Exception {
@@ -54,24 +54,6 @@ public class RestTemplateConfiguration {
         return new RestTemplate(requestFactory);
     }
 
-    static KeyStore buildAzureKeyVaultKeyStore() throws Exception {
-        KeyStore azureKeyVaultKeyStore = KeyStore.getInstance("AzureKeyVault");
-        KeyVaultLoadStoreParameter parameter = null;
-        if (CredentialType.ServicePrinciple.equals(CREDENTIALTYPE)) {
-            parameter = new KeyVaultLoadStoreParameter(
-                    System.getProperty("azure.keyvault.uri"),
-                    System.getProperty("azure.keyvault.tenant-id"),
-                    System.getProperty("azure.keyvault.client-id"),
-                    System.getProperty("azure.keyvault.client-secret"));
-        } else if (CredentialType.ManagedIdentity.equals(CREDENTIALTYPE)) {
-            parameter = new KeyVaultLoadStoreParameter(
-                    System.getProperty("azure.keyvault.uri"),
-                    System.getProperty("azure.keyvault.managed-identity"));
-        }
-        azureKeyVaultKeyStore.load(parameter);
-        return azureKeyVaultKeyStore;
-    }
-
     private static class ClientPrivateKeyStrategy implements PrivateKeyStrategy {
         @Override
         public String chooseAlias(Map<String, PrivateKeyDetails> map, Socket socket) {
@@ -79,8 +61,4 @@ public class RestTemplateConfiguration {
         }
     }
 
-    enum CredentialType {
-        ServicePrinciple,
-        ManagedIdentity
-    }
 }

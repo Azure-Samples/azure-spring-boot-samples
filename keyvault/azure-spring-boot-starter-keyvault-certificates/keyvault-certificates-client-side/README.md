@@ -140,7 +140,7 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
    ```
 
 #### Using TLS/mTLS with managed identity
-1. Replace the `CREDENTIALTYPE` value in `RestTemplateConfiguration.java` as
+1. Replace the `CREDENTIAL_TYPE` value in `AzureKeyVaultKeyStoreUtil.java` as
     ```java
     private static final CredentialType CREDENTIALTYPE = CredentialType.ManagedIdentity;
     ```

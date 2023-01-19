@@ -3,6 +3,7 @@
 package com.azure.spring.security.keyvault.certificates.sample.client.side;
 
 import com.azure.security.keyvault.jca.KeyVaultKeyManager;
+import com.azure.spring.security.keyvault.certificates.sample.client.side.common.ConfigurableAliasKeyManager;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import org.springframework.context.annotation.Bean;
@@ -20,7 +21,7 @@ import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.UnrecoverableKeyException;
 
-import static com.azure.spring.security.keyvault.certificates.sample.client.side.RestTemplateConfiguration.buildAzureKeyVaultKeyStore;
+import static com.azure.spring.security.keyvault.certificates.sample.client.side.common.AzureKeyVaultKeyStoreUtil.buildAzureKeyVaultKeyStore;
 
 @Configuration
 @Profile("webclient")
@@ -66,6 +67,5 @@ public class WebClientConfiguration {
         }
         return null;
     }
-
 
 }

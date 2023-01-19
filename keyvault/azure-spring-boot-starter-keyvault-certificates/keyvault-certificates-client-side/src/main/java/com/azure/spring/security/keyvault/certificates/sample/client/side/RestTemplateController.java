@@ -3,10 +3,12 @@
 
 package com.azure.spring.security.keyvault.certificates.sample.client.side;
 
+import org.springframework.context.annotation.Profile;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
+@Profile("!webclient")
 @RestController
 public class RestTemplateController {
 

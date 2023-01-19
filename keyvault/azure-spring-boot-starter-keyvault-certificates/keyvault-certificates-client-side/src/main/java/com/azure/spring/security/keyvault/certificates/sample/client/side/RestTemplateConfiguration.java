@@ -12,6 +12,7 @@ import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.ssl.SSLContexts;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Profile;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,6 +20,7 @@ import java.net.Socket;
 import java.security.KeyStore;
 import java.util.Map;
 
+@Profile("!webclient")
 @Configuration
 public class RestTemplateConfiguration {
 

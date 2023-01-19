@@ -21,7 +21,7 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
    > Key Permissions: configure with **get** permission.  
    > Secret Permissions: configure with **get** permission.
 
-#### Using TLS with service principal with RestTemplate and WebClient
+#### Using TLS with service principal 
 1. Start azure-spring-boot-sample-keyvault-certificates-client-side's SampleApplication by running command:
    ```
    mvn spring-boot:run
@@ -40,7 +40,7 @@ This sample should work together with [azure-spring-boot-sample-keyvault-certifi
    Response from webClient tls "https://localhost:8443/": Hello World
    ```
 
-#### Using mTLS with service principal with RestTemplate and WebClient
+#### Using mTLS with service principal 
 
 1. In the sample `AzureKeyVaultKeyStoreUtil.java`, change the `self-signed` to your certificate alias.
     ```java

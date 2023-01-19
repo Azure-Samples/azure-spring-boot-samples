@@ -13,8 +13,6 @@ public final class AzureKeyVaultKeyStoreUtil {
     private static final CredentialType CREDENTIAL_TYPE = CredentialType.ServicePrinciple;
     private static KeyStore azureKeyVaultKeyStore;
 
-    private static KeyStore azureKeyVaultKeyStore;
-
     public static KeyStore buildAzureKeyVaultKeyStore() throws Exception {
         if (azureKeyVaultKeyStore == null) {
             azureKeyVaultKeyStore = KeyStore.getInstance("AzureKeyVault");

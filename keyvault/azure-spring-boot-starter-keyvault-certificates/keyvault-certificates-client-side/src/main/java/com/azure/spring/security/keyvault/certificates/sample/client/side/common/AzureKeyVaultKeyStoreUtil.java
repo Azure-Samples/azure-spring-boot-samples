@@ -9,21 +9,25 @@ import java.security.KeyStore;
 public final class AzureKeyVaultKeyStoreUtil {
     private static final CredentialType CREDENTIAL_TYPE = CredentialType.ServicePrinciple;
 
+    private static KeyStore azureKeyVaultKeyStore;
+
     public static KeyStore buildAzureKeyVaultKeyStore() throws Exception {
-        KeyStore azureKeyVaultKeyStore = KeyStore.getInstance("AzureKeyVault");
-        KeyVaultLoadStoreParameter parameter = null;
-        if (CredentialType.ServicePrinciple.equals(CREDENTIAL_TYPE)) {
-            parameter = new KeyVaultLoadStoreParameter(
-                    System.getProperty("azure.keyvault.uri"),
-                    System.getProperty("azure.keyvault.tenant-id"),
-                    System.getProperty("azure.keyvault.client-id"),
-                    System.getProperty("azure.keyvault.client-secret"));
-        } else if (CredentialType.ManagedIdentity.equals(CREDENTIAL_TYPE)) {
-            parameter = new KeyVaultLoadStoreParameter(
-                    System.getProperty("azure.keyvault.uri"),
-                    System.getProperty("azure.keyvault.managed-identity"));
+        if (azureKeyVaultKeyStore == null) {
+            azureKeyVaultKeyStore = KeyStore.getInstance("AzureKeyVault");
+            KeyVaultLoadStoreParameter parameter = null;
+            if (CredentialType.ServicePrinciple.equals(CREDENTIAL_TYPE)) {
+                parameter = new KeyVaultLoadStoreParameter(
+                        System.getProperty("azure.keyvault.uri"),
+                        System.getProperty("azure.keyvault.tenant-id"),
+                        System.getProperty("azure.keyvault.client-id"),
+                        System.getProperty("azure.keyvault.client-secret"));
+            } else if (CredentialType.ManagedIdentity.equals(CREDENTIAL_TYPE)) {
+                parameter = new KeyVaultLoadStoreParameter(
+                        System.getProperty("azure.keyvault.uri"),
+                        System.getProperty("azure.keyvault.managed-identity"));
+            }
+            azureKeyVaultKeyStore.load(parameter);
         }
-        azureKeyVaultKeyStore.load(parameter);
         return azureKeyVaultKeyStore;
     }
 

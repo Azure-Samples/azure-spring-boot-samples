@@ -127,14 +127,14 @@ the profile names ending with `-5.x` are used to run the samples with Spring Clo
 
 ### Convert sample to use Spring Boot 3
 
-1. Some samples can work with both Spring Boot 2 and Spring Boot 3 without any modification.
-2. Some samples can only work for Spring Boot 2. Some modification is necessary to make the sample work with Spring Boot 3. In this case, the sample's `README.md` should contain contents like this:
+In a sample's `README.md`, you may see content like this:
 
 > Current sample is using Spring Cloud Azure 4.x (which is compatible with Spring Boot 2.x).
 > If you want sample about Spring Cloud Azure 5.x (which is compatible with Spring Boot 3.x),
 > please refer to [CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md](./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md).
 
-If a sample's `README.md` doesn't contain above content, it means the sample can work with both `Spring Boot 2.x` and `Spring Boot 3.x` without code change.
+1. If a sample's `README.md` contains above contents, it means the sample can only work for `Spring Boot 2`. Some modification is necessary to make the sample work with `Spring Boot 3`. Just follow the instructions to convert the sample to use `Spring Boot 3`.
+2. If a sample's `README.md` doesn't contain above content, it means the sample can work with both `Spring Boot 2` and `Spring Boot 3` without any modification.
 
 ### Run samples with Maven command
 

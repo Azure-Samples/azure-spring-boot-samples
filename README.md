@@ -123,18 +123,18 @@ the profile names ending with `-5.x` are used to run the samples with Spring Clo
 
 ## Samples for Spring Boot 3
 
-**Note**: This section is used to convert the samples to run in Spring Boot 3, the branch `feature/spring-boot-3` is no longer maintained.
+**Note**: This section is about samples for Spring Boot 3, the branch `feature/spring-boot-3` is no longer maintained.
 
-### Convert samples to use Spring Boot 3
+### Convert sample to use Spring Boot 3
 
-To get samples for Spring Boot 3, please refer to the content in each sample's *README.md* like this:
+1. Some samples can work with both Spring Boot 2 and Spring Boot 3 without any modification.
+2. Some samples can only work for Spring Boot 2. Some modification is necessary to make the sample work with Spring Boot 3. In this case, the sample's `README.md` should contain contents like this:
+
 > Current sample is using Spring Cloud Azure 4.x (which is compatible with Spring Boot 2.x).
 > If you want sample about Spring Cloud Azure 5.x (which is compatible with Spring Boot 3.x),
 > please refer to [CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3.md](./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md).
 
-Mostly samples can work with both Spring Cloud Azure 4.x and Spring Cloud Azure 5.x, you can directly activate the profile of Spring Cloud Azure 5.x to run.
-
-If you're adding a new example, here's a template that converts the example to support Spring Boot 3: [./CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md](CONVERT_SAMPLE_TO_USE_SPRING_BOOT_3_TEMPLATE.md).
+If a sample's `README.md` doesn't contain above content, it means the sample can work with both `Spring Boot 2.x` and `Spring Boot 3.x` without code change.
 
 ### Run samples with Maven command
 

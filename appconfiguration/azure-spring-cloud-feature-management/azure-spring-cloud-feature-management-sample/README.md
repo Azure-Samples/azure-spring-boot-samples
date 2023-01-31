@@ -47,13 +47,13 @@ It will have you confirm the feature flag before loading it.
 
 #### Updating the application
 
-1. Add the azure-spring-cloud-appconfiguration-config dependency,
+1. Add the `azure-spring-cloud-appconfiguration-config` dependency,
 
 ```xml
 <dependency>
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-cloud-appconfiguration-config</artifactId>
-    <version>2.8.0</version>
+    <version>2.11.0</version>
 </dependency>
 ```
 

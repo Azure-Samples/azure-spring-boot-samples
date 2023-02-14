@@ -1,6 +1,7 @@
 spring:
   jms:
     servicebus:
-      connection-string: ${SERVICEBUS_NAMESPACE_CONNECTION_STRING}
+      endpoint: ${SERVICEBUS_FULL_QUALIFIED_DOMAIN_NAME}
+      passwordless-enabled: true
       pricing-tier: ${PRICING_TIER}
       topic-client-id: topic-client-id

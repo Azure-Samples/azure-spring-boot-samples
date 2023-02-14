@@ -66,3 +66,12 @@ resource "azurerm_servicebus_queue" "queue" {
   requires_session      = false
   default_message_ttl   = "P14D"
 }
+
+data "azurerm_client_config" "current" {
+}
+
+resource "azurerm_role_assignment" "role_servicebus_data_owner" {
+  scope                = azurerm_servicebus_namespace.servicebus_namespace.id
+  role_definition_name = "Azure Service Bus Data Owner"
+  principal_id         = data.azurerm_client_config.current.object_id
+}

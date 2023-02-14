@@ -66,3 +66,13 @@ resource "azurerm_servicebus_subscription" "application" {
 
   max_delivery_count  = 1
 }
+
+
+data "azurerm_client_config" "current" {
+}
+
+resource "azurerm_role_assignment" "role_servicebus_data_owner" {
+  scope                = azurerm_servicebus_namespace.servicebus_namespace.id
+  role_definition_name = "Azure Service Bus Data Owner"
+  principal_id         = data.azurerm_client_config.current.object_id
+}

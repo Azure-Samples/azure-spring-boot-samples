@@ -1,4 +1,4 @@
-output "SERVICEBUS_FULL_QUALIFIED_DOMAIN_NAME" {
+output "SERVICEBUS_NAMESPACE_NAME" {
   value       = azurerm_servicebus_namespace.servicebus_namespace.name
   description = "The name of Service Bus namespace."
 }

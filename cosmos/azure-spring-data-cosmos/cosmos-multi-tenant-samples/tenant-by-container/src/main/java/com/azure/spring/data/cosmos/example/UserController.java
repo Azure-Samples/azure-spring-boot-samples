@@ -14,7 +14,6 @@ import java.util.stream.StreamSupport;
 
 @PropertySource("classpath:application.yaml")
 @Controller
-@ContextConfiguration(classes = AppConfiguration.class)
 @RequestMapping(path = "/users")
 public class UserController {
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
@@ -27,13 +26,15 @@ public class UserController {
     public @ResponseBody String createUser(@RequestBody User user) {
         UUID uuid = UUID.randomUUID();
         user.setId(String.valueOf(uuid));
+        user.setType("user");
         userRepository.save(user);
         return String.format("Added %s.", user);
     }
 
     @GetMapping
     public @ResponseBody String getAllUsers() {
-        Iterable<User> iter = userRepository.findAll();
+        //get users with custom query based on "type" since entities are colocated
+        Iterable<User> iter = userRepository.getAllUsers();
         return StreamSupport.stream(iter.spliterator(), true)
                 .map(User::toString)
                 .collect(Collectors.joining(" , "));

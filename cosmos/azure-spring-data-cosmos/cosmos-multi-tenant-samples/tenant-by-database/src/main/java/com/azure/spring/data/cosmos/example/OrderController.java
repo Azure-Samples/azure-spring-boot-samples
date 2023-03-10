@@ -22,7 +22,6 @@ import java.util.stream.StreamSupport;
 
 @PropertySource("classpath:application.yaml")
 @Controller
-@ContextConfiguration(classes = AppConfiguration.class)
 @RequestMapping(path = "/orders")
 public class OrderController {
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);

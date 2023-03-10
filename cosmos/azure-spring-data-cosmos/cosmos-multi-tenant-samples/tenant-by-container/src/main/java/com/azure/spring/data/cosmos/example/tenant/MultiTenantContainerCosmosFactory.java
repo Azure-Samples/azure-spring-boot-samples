@@ -21,8 +21,6 @@ public class MultiTenantContainerCosmosFactory extends CosmosFactory {
         super(cosmosAsyncClient, databaseName);
         this.client = cosmosAsyncClient;
         this.env = env;
-        this.tenantId = databaseName;
-        logger.info("************tenant id is: "+ this.tenantId);
     }
 
     @Override
@@ -33,6 +31,7 @@ public class MultiTenantContainerCosmosFactory extends CosmosFactory {
             //if it exists, it returns the id, and no further action taken.
             //If not, it will create the tenant container resource on the fly
             this.tenantId = tenantStorage.getTenant(tenantId);
+            logger.info("************tenant id is: "+ this.tenantId);
             return tenantId;
         }
         else {

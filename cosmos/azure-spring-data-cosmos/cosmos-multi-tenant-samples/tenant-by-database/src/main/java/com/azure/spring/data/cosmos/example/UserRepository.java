@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.test.context.ContextConfiguration;
 
 @Repository
-@ContextConfiguration(classes = AppConfiguration.class)
 public interface UserRepository extends CosmosRepository<User, String> {
 
 }

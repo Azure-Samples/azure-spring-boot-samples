@@ -4,12 +4,13 @@ package com.azure.spring.data.cosmos.example;
 
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
+import org.springframework.data.annotation.Id;
 
 // Container names will be created/referenced dynamically using tenant id from TenantInterceptor,
 @Container(autoCreateContainer = true)
 public class Order {
+    @Id
     private String id;
-
     private String orderDetail;
     @PartitionKey
     private String lastName;

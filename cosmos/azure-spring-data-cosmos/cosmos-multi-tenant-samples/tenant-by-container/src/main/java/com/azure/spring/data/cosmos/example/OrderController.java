@@ -22,7 +22,6 @@ import java.util.stream.StreamSupport;
 
 @PropertySource("classpath:application.yaml")
 @Controller
-@ContextConfiguration(classes = AppConfiguration.class)
 @RequestMapping(path = "/orders")
 public class OrderController {
     private static final Logger logger = LoggerFactory.getLogger(OrderController.class);
@@ -32,16 +31,18 @@ public class OrderController {
     }
 
     @PostMapping
-    public @ResponseBody String createUser(@RequestBody Order order) {
+    public @ResponseBody String createOrder(@RequestBody Order order) {
         UUID uuid = UUID.randomUUID();
         order.setId(String.valueOf(uuid));
+        order.setType("order");
         orderRepository.save(order);
         return String.format("Added %s.", order);
     }
 
     @GetMapping
     public @ResponseBody String getAllOrders() {
-        Iterable<Order> iter = orderRepository.findAll();
+        //get orders with custom query based on "type" since entities are colocated
+        Iterable<Order> iter = orderRepository.getAllOrders();
         return StreamSupport.stream(iter.spliterator(), true)
                 .map(Order::toString)
                 .collect(Collectors.joining(" , "));

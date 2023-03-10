@@ -2,9 +2,25 @@
 // Licensed under the MIT License.
 package com.azure.spring.data.cosmos.example;
 
+import com.azure.core.http.rest.Page;
 import com.azure.spring.data.cosmos.repository.CosmosRepository;
+import com.azure.spring.data.cosmos.repository.Query;
+import com.azure.spring.data.cosmos.repository.ReactiveCosmosRepository;
+import com.fasterxml.jackson.databind.JsonNode;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Slice;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import reactor.core.publisher.Flux;
+
+import java.util.List;
 
 @Repository
 public interface UserRepository extends CosmosRepository<User, String> {
+
+    @Query(value = "SELECT c.id, c.firstName, c.lastName, c.orderDetail FROM c")
+    Slice<JsonNode> getOrdersAndUsers(Pageable pageable);
+
+    @Query(value = "SELECT c.id, c.firstName, c.lastName FROM c where c.type = 'user'")
+    List<User> getAllUsers();
 }

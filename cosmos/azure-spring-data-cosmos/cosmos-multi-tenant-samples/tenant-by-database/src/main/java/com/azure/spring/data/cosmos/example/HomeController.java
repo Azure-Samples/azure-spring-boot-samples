@@ -14,7 +14,6 @@ import java.util.stream.StreamSupport;
 
 @PropertySource("classpath:application.yaml")
 @Controller
-@ContextConfiguration(classes = AppConfiguration.class)
 @RequestMapping(path = "/all")
 public class HomeController {
     private static final Logger logger = LoggerFactory.getLogger(HomeController.class);

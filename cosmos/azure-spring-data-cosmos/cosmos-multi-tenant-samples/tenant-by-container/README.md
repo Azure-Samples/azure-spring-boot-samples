@@ -10,7 +10,7 @@ Spring Data sample for a multi-tenanted app where each tenant has its own Azure 
 - The application uses `WebRequestInterceptor` to capture a http request header of `TenantTier`. This is used to determine whether to set dedicated throughput for the container ("premium") or use the shared throughput for the database. 
 - If a tenant container does not exist, the `MultiTenantContainerCosmosFactory` class overrides `overrideContainerName()` in `CosmosFactory` (see PR https://github.com/Azure/azure-sdk-for-java/pull/33400) to allow different tenant containers to be created and/or referenced on the fly, while still allowing native Spring Repository APIs to query the tenant container.
 - The methods in `TenantStorage` are used to retrieve the appropriate tenant id from `tenantList`, or create a tenant container, and add its name to the list of existing tenants.
-- CRUD operations are performed in `UserController` and `OrderController` using corresponding Spring `Repository` APIs.
+- CRUD operations are performed in `UserController` and `OrderController` using corresponding Spring `Repository` APIs. The two entities `Order` and `User` are co-located in the same container, and differentiated using a `type` field in the record.
 
 ## Multi-tenancy considerations
 

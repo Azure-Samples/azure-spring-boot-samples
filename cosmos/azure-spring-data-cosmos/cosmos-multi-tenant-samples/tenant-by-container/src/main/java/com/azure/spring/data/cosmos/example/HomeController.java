@@ -39,18 +39,10 @@ public class HomeController {
 
     @GetMapping
     public @ResponseBody String getAllTenantUsersAndOrders() {
-        String tenantId = TenantStorage.getCurrentTenant();
-        //retrieve string container name from list  (if it does not exist yet, create it).
-        String tenantContainer = tenantStorage.getTenant(tenantId);
-
-        logger.info("database: "+env.getProperty("spring.data.cosmos.databaseName"));
-        logger.info("container: "+tenantContainer);
-
         //because order and user types are colocated with same partition key, we can hit the container once for both
         //and return the results in a single json object (can split into entities based on type later if needed)
         final PageRequest cosmosPageRequest = CosmosPageRequest.of(0, 10);
         List<JsonNode> json = userRepository.getOrdersAndUsers(cosmosPageRequest).toList();
-
         return json.toString();
     }
 

@@ -124,7 +124,7 @@
         <version.spring-cloud-appconfiguration-starter>2.11.0</version.spring-cloud-appconfiguration-starter>
         <version.spring-cloud-feature-management>2.10.0</version.spring-cloud-feature-management>
         <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>
-        <version.maven-surefire-plugin>2.22.2</version.maven-surefire-plugin>
+        <version.maven-surefire-plugin>3.0.0</version.maven-surefire-plugin>
         <mockito.version>4.11.0</mockito.version>
       </properties>
       <dependencyManagement>

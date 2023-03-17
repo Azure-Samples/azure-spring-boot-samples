@@ -4,12 +4,17 @@ package com.azure.spring.data.cosmos.example;
 
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
+import com.azure.spring.data.cosmos.example.tenant.TenantInterceptor;
 import org.springframework.data.annotation.Id;
 
 // Container names will be created/referenced dynamically using tenant id from TenantInterceptor,
+
+/**
+ * Define the Order container. Set "autoCreateContainer" to false so that container name
+ * can be created/referenced dynamically using tenant id from {@link TenantInterceptor}
+ */
 @Container(autoCreateContainer = false)
 public class Order {
-
     @Id
     private String id;
     private String orderDetail;
@@ -27,7 +32,7 @@ public class Order {
 
     @Override
     public String toString() {
-        return String.format("com.azure.spring.data.cosmos.Order: %s, %s, %s", orderDetail, lastName, id, type);
+        return String.format("com.azure.spring.data.cosmos.example.Order: %s, %s, %s, %s", orderDetail, lastName, id, type);
     }
     public String getId() {
         return id;

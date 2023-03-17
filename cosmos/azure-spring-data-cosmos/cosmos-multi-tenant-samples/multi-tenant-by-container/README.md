@@ -23,7 +23,7 @@ This sample application fetches the value of the tenant from request header (Ten
 1. start the application: `mvn spring-boot:run`
 1. Send a request to the web service from a linux based command line (or you can use [postman](https://www.postman.com/downloads/)): `curl -s -d '{"firstName":"Theo","lastName":"van Kraay"}' -H "Content-Type: application/json" -H "TenantId: theo" -H "TenantTier: standard" -X POST http://localhost:8080/users`
 1. Create an Order: `curl -s -d '{"orderDetail":"Order no.1","lastName":"Brown"}' -H "Content-Type: application/json" -H "TenantId: mark" -H "TenantTier: premium" -X POST http://localhost:8080/orders`
-1. You should see containers named by each tenant created in Cosmos DB, with colocated entities of `User` and `Order`, identifiable by a `type` field in the document.
+1. You should see containers named by each tenant created in Cosmos DB, with co-located entities of `User` and `Order`, identifiable by a `type` field in the document.
 
 ## Sample investigation
 - The application is a simple CRUD REST web service which creates `User` and `Order` entries in each tenant (`colocated` in the same container), and makes use of  `azure-spring-data-cosmos` for Azure Cosmos DB [NoSQL](https://learn.microsoft.com/azure/cosmos-db/nosql/) API.

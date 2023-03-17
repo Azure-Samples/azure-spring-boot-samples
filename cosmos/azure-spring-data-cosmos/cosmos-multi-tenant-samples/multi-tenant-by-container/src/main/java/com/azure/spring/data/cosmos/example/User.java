@@ -28,7 +28,7 @@ public class User {
 
     @Override
     public String toString() {
-        return String.format("com.azure.spring.data.cosmos.User: %s %s, %s", firstName, lastName, id, type);
+        return String.format("com.azure.spring.data.cosmos.example.User: %s %s, %s, %s", firstName, lastName, id, type);
     }
     public String getId() {
         return id;

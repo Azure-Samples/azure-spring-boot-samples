@@ -20,7 +20,6 @@ import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-@PropertySource("classpath:application.yaml")
 @Controller
 @RequestMapping(path = "/orders")
 public class OrderController {

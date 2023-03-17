@@ -1,22 +1,13 @@
 package com.azure.spring.data.cosmos.example;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.stereotype.Controller;
-import org.springframework.test.context.ContextConfiguration;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-
+import org.springframework.web.bind.annotation.RestController;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
-@PropertySource("classpath:application.yaml")
-@Controller
-@RequestMapping(path = "/all")
+@RestController
 public class HomeController {
-    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
     private final OrderRepository orderRepository;
     private final UserRepository userRepository;
 
@@ -25,7 +16,7 @@ public class HomeController {
         this.userRepository = userRepository;
     }
 
-    @GetMapping
+    @GetMapping(path = "/all")
     public @ResponseBody String getAllTenantUsersAndOrders() {
         Iterable<Order> iterOrder = orderRepository.findAll();
         Iterable<User> iterUser = userRepository.findAll();

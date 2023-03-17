@@ -9,8 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 
 public class MultiTenantContainerCosmosFactory extends CosmosFactory {
-
-    private static final Logger logger = LoggerFactory.getLogger(MultiTenantContainerCosmosFactory.class);
     private CosmosAsyncClient client;
     private Environment env;
     @Autowired
@@ -31,7 +29,6 @@ public class MultiTenantContainerCosmosFactory extends CosmosFactory {
             //if it exists, it returns the id, and no further action taken.
             //If not, it will create the tenant container resource on the fly
             this.tenantId = tenantStorage.getTenant(tenantId);
-            logger.info("************tenant id is: "+ this.tenantId);
             return tenantId;
         }
         else {

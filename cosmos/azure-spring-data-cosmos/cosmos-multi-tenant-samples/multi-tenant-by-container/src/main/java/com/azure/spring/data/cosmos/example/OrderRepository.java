@@ -12,6 +12,7 @@ import java.util.List;
 
 @Repository
 public interface OrderRepository extends CosmosRepository<Order, String> {
+    //get orders with custom query filtering by type since entities are co-located in same container
     @Query(value = "SELECT c.id, c.orderDetail, c.lastName FROM c where c.type = 'order'")
     List<Order> getAllOrders();
 }

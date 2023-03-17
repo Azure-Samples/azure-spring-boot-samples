@@ -7,8 +7,6 @@ import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
 import com.azure.spring.data.cosmos.example.tenant.TenantInterceptor;
 import org.springframework.data.annotation.Id;
 
-// Container names will be created/referenced dynamically using tenant id from TenantInterceptor,
-
 /**
  * Define the Order container. Set "autoCreateContainer" to false so that container name
  * can be created/referenced dynamically using tenant id from {@link TenantInterceptor}

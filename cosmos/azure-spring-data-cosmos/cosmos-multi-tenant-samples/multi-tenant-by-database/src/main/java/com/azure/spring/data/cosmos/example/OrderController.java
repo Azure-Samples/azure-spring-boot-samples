@@ -48,7 +48,7 @@ public class OrderController {
     @GetMapping("/{id}")
     public @ResponseBody String getOrder(@PathVariable UUID id) {
         Order order = orderRepository.findById(id.toString()).get();
-        String response = "no orders found for this tenant!";
+        String response = "No orders found for this tenant!";
         if(order != null){
             logger.info("user: "+ order.getLastName());
             response = "first name: "+order.getOrderDetail() +", lastName: "+order.getLastName()+ ", id: "+order.getId();
@@ -65,7 +65,7 @@ public class OrderController {
             return "Deleted " + id;
         }
         else{
-            return "no orders found for this tenant!";
+            return "No orders found for this tenant!";
         }
     }
 }

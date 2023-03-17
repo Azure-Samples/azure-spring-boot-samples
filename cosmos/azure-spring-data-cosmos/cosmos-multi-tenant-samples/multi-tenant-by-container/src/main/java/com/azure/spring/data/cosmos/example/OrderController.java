@@ -1,8 +1,6 @@
 package com.azure.spring.data.cosmos.example;
 
 import com.azure.cosmos.models.PartitionKey;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.NoSuchElementException;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
@@ -19,7 +18,6 @@ import java.util.stream.StreamSupport;
 @RestController
 @RequestMapping(path = "/orders")
 public class OrderController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(OrderController.class);
     private final OrderRepository orderRepository;
     public OrderController(OrderRepository orderRepository) {
         this.orderRepository = orderRepository;
@@ -36,7 +34,6 @@ public class OrderController {
 
     @GetMapping
     public @ResponseBody String getAllOrders() {
-        //get orders with custom query based on "type" since entities are colocated
         Iterable<Order> iter = orderRepository.getAllOrders();
         return StreamSupport.stream(iter.spliterator(), true)
                 .map(Order::toString)
@@ -45,24 +42,24 @@ public class OrderController {
 
     @GetMapping("/{id}")
     public @ResponseBody String getOrder(@PathVariable UUID id) {
-        Order order = orderRepository.findById(id.toString()).get();
-        String response = "no orders found for this tenant!";
-        if(order != null){
-            LOGGER.info("user: "+ order.getLastName());
-            response = "first name: "+order.getOrderDetail() +", lastName: "+order.getLastName()+ ", id: "+order.getId();
+        try {
+            Order order = orderRepository.findById(id.toString()).get();
+            return order.toString();
         }
-        return response;
+        catch (NoSuchElementException e){
+            return "No orders found for this tenant!";
+        }
     }
 
     @DeleteMapping("/{id}")
     public @ResponseBody String deleteOrder(@PathVariable UUID id) {
-        Order order = orderRepository.findById(id.toString()).get();
-        if(order != null){
+        try {
+            Order order = orderRepository.findById(id.toString()).get();
             orderRepository.deleteById(id.toString(), new PartitionKey(order.getLastName()));
-            return "Deleted " + id;
+            return "Deleted order:" + id;
         }
-        else{
-            return "no orders found for this tenant!";
+        catch (NoSuchElementException e){
+            return "No orders found for this tenant!";
         }
     }
 }

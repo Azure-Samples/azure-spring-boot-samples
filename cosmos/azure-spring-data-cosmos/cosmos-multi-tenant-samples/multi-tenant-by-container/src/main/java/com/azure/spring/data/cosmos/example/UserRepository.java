@@ -21,6 +21,7 @@ public interface UserRepository extends CosmosRepository<User, String> {
     @Query(value = "SELECT c.id, c.firstName, c.lastName, c.orderDetail FROM c")
     Slice<JsonNode> getOrdersAndUsers(Pageable pageable);
 
+    //get orders with custom query filtering by type since entities are co-located in same container
     @Query(value = "SELECT c.id, c.firstName, c.lastName FROM c where c.type = 'user'")
     List<User> getAllUsers();
 }

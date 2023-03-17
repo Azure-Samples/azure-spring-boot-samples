@@ -15,7 +15,7 @@ import org.springframework.core.env.Environment;
  * Extend CosmosFactory to allow mutli-tenancy at the database level
  */
 public class MultiTenantDBCosmosFactory extends CosmosFactory {
-    private static final Logger logger = LoggerFactory.getLogger(MultiTenantDBCosmosFactory.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(MultiTenantDBCosmosFactory.class);
     private CosmosAsyncClient client;
     private Environment env;
     @Autowired
@@ -34,7 +34,7 @@ public class MultiTenantDBCosmosFactory extends CosmosFactory {
         this.client = cosmosAsyncClient;
         this.env = env;
         this.tenantId = databaseName;
-        logger.info("************tenant id is: "+ this.tenantId);
+        LOGGER.info("************tenant id is: "+ this.tenantId);
     }
 
     @Override
@@ -44,7 +44,8 @@ public class MultiTenantDBCosmosFactory extends CosmosFactory {
             //the getTenant method will first check if the tenant exists in a thread-safe list of tenant ids
             //if it exists, it returns the id, and no further action taken.
             //If not, it will create the tenant database resources on the fly, using the default database as a model
-            this.tenantId = tenantStorage.getTenant(tenantId);
+            this.tenantId = tenantId;
+            tenantStorage.createTenantSpecificDatabaseIfNotExists(tenantId);
             return tenantId;
         }
         else {

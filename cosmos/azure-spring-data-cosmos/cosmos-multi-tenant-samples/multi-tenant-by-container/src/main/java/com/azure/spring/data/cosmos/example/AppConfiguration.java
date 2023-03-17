@@ -59,7 +59,7 @@ public class AppConfiguration extends AbstractCosmosConfiguration {
 
     @Bean
     public MultiTenantContainerCosmosFactory cosmosFactory(CosmosAsyncClient cosmosAsyncClient) {
-        return new MultiTenantContainerCosmosFactory(cosmosAsyncClient, getDatabaseName(), env);
+        return new MultiTenantContainerCosmosFactory(cosmosAsyncClient, getDatabaseName(), properties);
     }
 
     @Override

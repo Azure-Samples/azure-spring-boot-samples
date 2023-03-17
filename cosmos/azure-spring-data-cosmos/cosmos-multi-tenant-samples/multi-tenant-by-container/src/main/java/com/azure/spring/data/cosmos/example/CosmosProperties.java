@@ -9,7 +9,13 @@ public class CosmosProperties {
     private String uri;
     private String key;
     private String databaseName;
+    private String partitionKeyPath;
     private boolean queryMetricsEnabled;
+
+    public String getPartitionKeyPath() { return partitionKeyPath; }
+
+    public void setPartitionKeyPath(String partitionKeyPath) { this.partitionKeyPath = partitionKeyPath; }
+
     public void setDatabaseName(String databaseName) {
         this.databaseName = databaseName;
     }

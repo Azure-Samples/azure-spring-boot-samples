@@ -6,6 +6,7 @@ import com.azure.cosmos.models.CosmosContainerProperties;
 import com.azure.cosmos.models.CosmosDatabaseResponse;
 import com.azure.cosmos.models.ThroughputProperties;
 import com.azure.cosmos.util.CosmosPagedFlux;
+import com.azure.spring.data.cosmos.example.CosmosProperties;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -14,13 +15,78 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
+
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Component
-@PropertySource("classpath:application.yaml")
 public class TenantStorage implements CommandLineRunner {
-    private static ThreadLocal<String> currentTenant = new ThreadLocal<>();
-    private static ThreadLocal<String> currentTenantTier = new ThreadLocal<>();
+    private static final ThreadLocal<String> currentTenant = new ThreadLocal<>();
+    private static final ThreadLocal<String> currentTenantTier = new ThreadLocal<>();
+    private static final Logger LOGGER = LoggerFactory.getLogger(TenantStorage.class);
+    private CosmosProperties properties;
+    private ApplicationContext applicationContext;
+    public CosmosAsyncClient client;
+    private CosmosAsyncDatabase database;
+    Set<String> containerIds = ConcurrentHashMap.newKeySet();
+    CosmosPagedFlux<CosmosContainerProperties> containers;
+
+    public TenantStorage(CosmosProperties properties,ApplicationContext applicationContext){
+        this.properties = properties;
+        this.applicationContext = applicationContext;
+
+        //access the existing CosmosAsyncClient from the bean already created by Cosmos Spring Data Client Library
+        client = applicationContext.getBean(CosmosAsyncClient.class);
+
+        //get tenants database, and create it if it does not already exist
+        CosmosDatabaseResponse databaseResponse = client.createDatabaseIfNotExists(properties.getDatabaseName(), ThroughputProperties.createAutoscaledThroughput(4000)).block();
+        database = client.getDatabase(databaseResponse.getProperties().getId());
+    }
+
+    public static void clear() {
+        currentTenant.remove();
+        currentTenantTier.remove();
+    }
+
+    @Override
+    public void run(String...args) throws Exception {
+        containers = database.readAllContainers();
+        containers.byPage(100).flatMap(response -> {
+            LOGGER.info("Read {} containers(s) with request charge of {}", response.getResults().size(),response.getRequestCharge());
+            for (CosmosContainerProperties properties : response.getResults()) {
+                String tenantId = properties.getId();
+                LOGGER.info("adding {} to tenant list", tenantId);
+                containerIds.add(tenantId);
+            }
+            return Flux.empty();
+        }).blockLast();
+    }
+
+    /**
+     * Create tenant specific container if not exists.
+     * @param tenantId The tenant id to check whether tenant specific container exists.
+     */
+    public void createTenantSpecificContainerIfNotExists(String tenantId, String partitionKeyPath) {
+        if(!containerIds.contains(tenantId)){
+            createTieredTenantContainerIfNotExist(tenantId, getCurrentTenantTier(), partitionKeyPath);
+        }
+    }
+
+    /**
+     * Create container using CosmosAsyncClient, if it does not already exist in tenant list,
+     * and set dedicated throughput if premium tier
+     */
+    private void createTieredTenantContainerIfNotExist(String tenantId, String tier, String partitionKeyPath){
+        CosmosContainerProperties containerProperties = new CosmosContainerProperties(tenantId, partitionKeyPath);
+        if (tier.equals("premium")) {
+            database.createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(4000)).block();
+        } else {
+            database.createContainerIfNotExists(containerProperties).block();
+        }
+        containerIds.add(tenantId);
+    }
+
     public static void setCurrentTenant(String tenantId) {
         currentTenant.set(tenantId);
     }
@@ -34,63 +100,5 @@ public class TenantStorage implements CommandLineRunner {
 
     public static String getCurrentTenantTier() {
         return currentTenantTier.get();
-    }
-    public static void clear() {
-        currentTenant.remove();
-    }
-    private static final Logger logger = LoggerFactory.getLogger(TenantStorage.class);
-    private Environment env;
-    private ApplicationContext applicationContext;
-    public CosmosAsyncClient client;
-    private CosmosAsyncDatabase database;
-    ConcurrentLinkedQueue<String> tenantList = new ConcurrentLinkedQueue<String>();
-    CosmosPagedFlux<CosmosContainerProperties> containers;
-    public TenantStorage(Environment env,ApplicationContext applicationContext){
-        this.env = env;
-        this.applicationContext = applicationContext;
-
-        //access the existing CosmosAsyncClient from the bean already created by Cosmos Spring Data Client Library
-        client = applicationContext.getBean(CosmosAsyncClient.class);
-
-        //get tenants database, and create it if it does not already exist
-        CosmosDatabaseResponse databaseResponse = client.createDatabaseIfNotExists(env.getProperty("spring.data.cosmos.databaseName"), ThroughputProperties.createAutoscaledThroughput(4000)).block();
-        database = client.getDatabase(databaseResponse.getProperties().getId());
-    }
-    public String getTenant(String tenantId){
-        //create container using CosmosAsyncClient, if it does not already exist in tenant list, and set dedicated throughput if premium tier
-        Boolean tenant = tenantList.contains(tenantId);
-        if(!tenant){
-            createTieredTenantContainer(tenantId, getCurrentTenantTier());
-        }
-        return tenantId;
-    }
-
-    public void createTieredTenantContainer(String tenantId, String tier){
-        CosmosContainerProperties containerProperties = new CosmosContainerProperties(tenantId, "/lastName");
-        //create container using CosmosAsyncClient, if it does not already exist in tenant list, and set dedicated throughput if premium tier
-        if (tier.equals("premium")) {
-            client.getDatabase(database.getId()).createContainerIfNotExists(containerProperties, ThroughputProperties.createManualThroughput(4000)).block();
-        } else {
-            client.getDatabase(database.getId()).createContainerIfNotExists(containerProperties).block();
-        }
-        client.getDatabase(database.getId()).createContainerIfNotExists(containerProperties).block();
-        tenantList.add(tenantId);
-
-    }
-
-    @Override
-    public void run(String...args) throws Exception {
-        containers = database.readAllContainers();
-        String msg="Listing containers in tenants database:\n";
-        containers.byPage(100).flatMap(readAllContainersResponse -> {
-            logger.info("read {} containers(s) with request charge of {}", readAllContainersResponse.getResults().size(),readAllContainersResponse.getRequestCharge());
-            for (CosmosContainerProperties response : readAllContainersResponse.getResults()) {
-                String tenantId = response.getId();
-                logger.info("container tenant id: {}", tenantId);
-                logger.info("adding {} to tenant list", tenantId);
-                tenantList.add(tenantId);
-            }
-            return Flux.empty();
-        }).blockLast();
     }
 }

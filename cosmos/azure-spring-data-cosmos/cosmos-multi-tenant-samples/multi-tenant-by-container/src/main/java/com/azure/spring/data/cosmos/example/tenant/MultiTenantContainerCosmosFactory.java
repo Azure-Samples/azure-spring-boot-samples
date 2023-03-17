@@ -1,41 +1,32 @@
 package com.azure.spring.data.cosmos.example.tenant;
 
 import com.azure.cosmos.CosmosAsyncClient;
-import com.azure.cosmos.models.ThroughputProperties;
 import com.azure.spring.data.cosmos.CosmosFactory;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import com.azure.spring.data.cosmos.example.CosmosProperties;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.env.Environment;
 
 public class MultiTenantContainerCosmosFactory extends CosmosFactory {
-    private CosmosAsyncClient client;
-    private Environment env;
     @Autowired
     private TenantStorage tenantStorage;
+
+    private CosmosProperties properties;
     public String tenantId;
 
-    public MultiTenantContainerCosmosFactory(CosmosAsyncClient cosmosAsyncClient, String databaseName, Environment env) {
+    public MultiTenantContainerCosmosFactory(CosmosAsyncClient cosmosAsyncClient, String databaseName, CosmosProperties properties) {
         super(cosmosAsyncClient, databaseName);
-        this.client = cosmosAsyncClient;
-        this.env = env;
+        this.properties = properties;
     }
 
     @Override
     public String overrideContainerName() {
         String tenantId = TenantStorage.getCurrentTenant();
         if (tenantId !=null){
-            //the getTenant method will first check if the tenant exists in a thread-safe list of tenant ids
-            //if it exists, it returns the id, and no further action taken.
-            //If not, it will create the tenant container resource on the fly
-            this.tenantId = tenantStorage.getTenant(tenantId);
+            this.tenantId = tenantId;
+            tenantStorage.createTenantSpecificContainerIfNotExists(tenantId, properties.getPartitionKeyPath());
             return tenantId;
         }
         else {
             return "default";
         }
     }
-
-
-
 }

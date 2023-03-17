@@ -15,26 +15,20 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Component;
 import reactor.core.publisher.Flux;
+
+import java.util.Set;
+import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 @Component
 @PropertySource("classpath:application.yaml")
 public class TenantStorage implements CommandLineRunner {
-    private static ThreadLocal<String> currentTenant = new ThreadLocal<>();
-    public static void setCurrentTenant(String tenantId) {
-        currentTenant.set(tenantId);
-    }
-    public static String getCurrentTenant() {
-        return currentTenant.get();
-    }
-    public static void clear() {
-        currentTenant.remove();
-    }
-    private static final Logger logger = LoggerFactory.getLogger(TenantStorage.class);
+    private static final ThreadLocal<String> currentTenant = new ThreadLocal<>();
+    private static final Logger LOGGER = LoggerFactory.getLogger(TenantStorage.class);
     private Environment env;
     private ApplicationContext applicationContext;
     private CosmosAsyncClient client;
-    ConcurrentLinkedQueue<String> tenantList = new ConcurrentLinkedQueue<String>();
+    Set<String> databaseIds = ConcurrentHashMap.newKeySet();
     CosmosPagedFlux<CosmosDatabaseProperties> tenantDatabases;
     public TenantStorage(Environment env,ApplicationContext applicationContext){
         this.env = env;
@@ -43,10 +37,14 @@ public class TenantStorage implements CommandLineRunner {
         //access the existing CosmosAsyncClient from the bean already created by Cosmos Spring Data Client Library
         client = applicationContext.getBean(CosmosAsyncClient.class);
     }
-    public String getTenant(String tenantId){
+    public static void clear() {
+        currentTenant.remove();
+    }
+
+    public void createTenantSpecificDatabaseIfNotExists(String tenantId){
         //create database and containers for the tenant based on the default database
-        Boolean tenant = tenantList.contains(tenantId);
-        if(!tenant){
+        Boolean tenantExists = databaseIds.contains(tenantId);
+        if(!tenantExists){
             this.client.createDatabaseIfNotExists(tenantId, ThroughputProperties.createAutoscaledThroughput(1000)).block();
             CosmosPagedFlux<CosmosContainerProperties> containers = this.client.getDatabase(env.getProperty("spring.data.cosmos.databaseName")).readAllContainers();
             containers.byPage(100).flatMap(readAllContainersResponse -> {
@@ -57,9 +55,8 @@ public class TenantStorage implements CommandLineRunner {
                 }
                 return Flux.empty();
             }).blockLast();
-            tenantList.add(tenantId);
+            databaseIds.add(tenantId);
         }
-        return tenantId;
     }
 
     @Override
@@ -67,17 +64,23 @@ public class TenantStorage implements CommandLineRunner {
         tenantDatabases = client.readAllDatabases();
         String msg="Listing databases in the cosmos db account:\n";
         tenantDatabases.byPage(100).flatMap(readAllDatabasesResponse -> {
-            logger.info("read {} databases(s) with request charge of {}", readAllDatabasesResponse.getResults().size(),readAllDatabasesResponse.getRequestCharge());
+            LOGGER.info("read {} databases(s) with request charge of {}", readAllDatabasesResponse.getResults().size(),readAllDatabasesResponse.getRequestCharge());
             for (CosmosDatabaseProperties response : readAllDatabasesResponse.getResults()) {
                 String tenantId = response.getId();
                 //adding tenants to the list at startup (no need to add the default database)
                 if(!tenantId.equals(env.getProperty("spring.data.cosmos.databaseName"))){
-                    logger.info("database tenant id: {}", tenantId);
-                    logger.info("adding {} to tenant database list", tenantId);
-                    tenantList.add(tenantId);
+                    LOGGER.info("database tenant id: {}", tenantId);
+                    LOGGER.info("adding {} to tenant database list", tenantId);
+                    databaseIds.add(tenantId);
                 }
             }
             return Flux.empty();
         }).blockLast();
+    }
+    public static void setCurrentTenant(String tenantId) {
+        currentTenant.set(tenantId);
+    }
+    public static String getCurrentTenant() {
+        return currentTenant.get();
     }
 }

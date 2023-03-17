@@ -5,12 +5,13 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.context.request.WebRequestInterceptor;
 
+/**
+ * Capture a particular http request header to be used as the tenant identifier.
+ * We are defining the header as "TenantId"
+ * Also capture Tenant tier to be used for determining the level of throughput to be used.
+ */
 @Component
 public class TenantInterceptor implements WebRequestInterceptor {
-
-    // Capture a particular http request header to be used as the tenant identifier.
-    // We are defining the header as "TenantId"
-    // Also capture Tenant tier to be used for determining the level of throughput to be used.
     private static final String TENANT_HEADER = "TenantId";
     private static final String TENANT_TIER_HEADER = "TenantTier";
 

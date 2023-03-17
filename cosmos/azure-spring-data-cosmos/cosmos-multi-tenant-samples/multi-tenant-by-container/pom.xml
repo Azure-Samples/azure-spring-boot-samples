@@ -12,7 +12,7 @@
     </parent>
 
     <groupId>com.azure</groupId>
-    <artifactId>cosmos-spring-tenant-by-database-sample</artifactId>
+    <artifactId>multi-tenant-by-container</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
@@ -32,10 +32,10 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
-         <dependency>
+        <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-spring-data-cosmos</artifactId>
-             <version>LATEST</version>
+            <version>LATEST</version>
         </dependency>
         <dependency>
             <groupId>org.springframework</groupId>

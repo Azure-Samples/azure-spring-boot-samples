@@ -1,4 +1,4 @@
-# Azure Cosmos DB Spring Data - Tenant by Container
+# Azure Cosmos DB Spring Data - Multi Tenant by Container
 
 Spring Data sample for a multi-tenanted app where each tenant has its own Azure Cosmos DB `container`.
 

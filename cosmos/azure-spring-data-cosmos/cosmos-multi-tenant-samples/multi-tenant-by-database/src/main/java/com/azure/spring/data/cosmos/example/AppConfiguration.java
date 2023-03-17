@@ -19,26 +19,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.lang.Nullable;
 
-@org.springframework.context.annotation.Configuration
+@Configuration
 @EnableConfigurationProperties(CosmosProperties.class)
 @EnableCosmosRepositories
 @EnableReactiveCosmosRepositories
-@PropertySource("classpath:application.yaml")
 public class AppConfiguration extends AbstractCosmosConfiguration {
-    private static final Logger logger = LoggerFactory.getLogger(AppConfiguration.class);
-    @Autowired
-    private CosmosProperties properties;
+    private static final Logger LOGGER = LoggerFactory.getLogger(AppConfiguration.class);
+    private final CosmosProperties properties;
+    private final Environment env;
+    private final ApplicationContext applicationContext;
 
-    @Autowired
-    Environment env;
-
-    @Autowired
-    private ApplicationContext applicationContext;
-
+    public AppConfiguration(CosmosProperties properties, Environment env, ApplicationContext applicationContext ){
+        this.env = env;
+        this.properties = properties;
+        this.applicationContext = applicationContext;
+    }
     private CosmosAsyncClient client;
 
     @Bean
@@ -68,8 +67,8 @@ public class AppConfiguration extends AbstractCosmosConfiguration {
         String databaseName;
         databaseName =  properties.getDatabaseName();
         client = applicationContext.getBean(CosmosAsyncClient.class);
-        client.createDatabaseIfNotExists(env.getProperty("spring.data.cosmos.databaseName"), ThroughputProperties.createAutoscaledThroughput(4000));
-        logger.info("config databaseName result: "+databaseName);
+        client.createDatabaseIfNotExists(databaseName, ThroughputProperties.createAutoscaledThroughput(4000));
+        LOGGER.info("config databaseName result: "+databaseName);
         return databaseName;
     }
 
@@ -77,6 +76,7 @@ public class AppConfiguration extends AbstractCosmosConfiguration {
 
         @Override
         public void processResponseDiagnostics(@Nullable ResponseDiagnostics responseDiagnostics) {
+            //uncomment this line to see the full response diagnostics
             //logger.info("Response Diagnostics {}", responseDiagnostics);
         }
     }

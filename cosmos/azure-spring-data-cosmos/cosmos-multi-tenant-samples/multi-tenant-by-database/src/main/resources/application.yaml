@@ -3,6 +3,5 @@ spring:
     cosmos:
       uri: ${ACCOUNT_HOST}
       key: ${ACCOUNT_KEY}
-      secondaryKey: ${SECONDARY_ACCOUNT_KEY}
       databaseName: default
       queryMetricsEnabled: true

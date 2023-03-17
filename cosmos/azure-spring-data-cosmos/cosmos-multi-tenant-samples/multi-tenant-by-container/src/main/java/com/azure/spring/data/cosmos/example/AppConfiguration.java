@@ -11,7 +11,6 @@ import com.azure.spring.data.cosmos.config.CosmosConfig;
 import com.azure.spring.data.cosmos.core.ResponseDiagnostics;
 import com.azure.spring.data.cosmos.core.ResponseDiagnosticsProcessor;
 import com.azure.spring.data.cosmos.example.tenant.MultiTenantContainerCosmosFactory;
-import com.azure.spring.data.cosmos.example.tenant.TenantStorage;
 import com.azure.spring.data.cosmos.repository.config.EnableCosmosRepositories;
 import com.azure.spring.data.cosmos.repository.config.EnableReactiveCosmosRepositories;
 import org.slf4j.Logger;
@@ -20,30 +19,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.PropertySource;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.lang.Nullable;
 
-@org.springframework.context.annotation.Configuration
+@Configuration
 @EnableConfigurationProperties(CosmosProperties.class)
 @EnableCosmosRepositories
 @EnableReactiveCosmosRepositories
-@PropertySource("classpath:application.yaml")
 public class AppConfiguration extends AbstractCosmosConfiguration {
     private static final Logger logger = LoggerFactory.getLogger(AppConfiguration.class);
-    private CosmosProperties properties;
+    private final CosmosProperties properties;
+    private final ApplicationContext applicationContext;
+    private final Environment env;
 
-    //@Autowired
-    //private TenantStorage tenantStorage;
-
-    @Autowired
-    Environment env;
-    public AppConfiguration(CosmosProperties properties){
+    public AppConfiguration(CosmosProperties properties, Environment env, ApplicationContext applicationContext ){
+        this.env = env;
         this.properties = properties;
+        this.applicationContext = applicationContext;
     }
-
-    @Autowired
-    private ApplicationContext applicationContext;
     private CosmosAsyncClient client;
 
     @Bean
@@ -73,7 +67,7 @@ public class AppConfiguration extends AbstractCosmosConfiguration {
         String databaseName;
         databaseName =  properties.getDatabaseName();
         client = applicationContext.getBean(CosmosAsyncClient.class);
-        client.createDatabaseIfNotExists(env.getProperty("spring.data.cosmos.databaseName"), ThroughputProperties.createAutoscaledThroughput(4000));
+        client.createDatabaseIfNotExists(databaseName, ThroughputProperties.createAutoscaledThroughput(4000));
         logger.info("config databaseName result: "+databaseName);
         return databaseName;
     }
@@ -82,6 +76,7 @@ public class AppConfiguration extends AbstractCosmosConfiguration {
 
         @Override
         public void processResponseDiagnostics(@Nullable ResponseDiagnostics responseDiagnostics) {
+            //uncomment this line to see the full response diagnostics
             //logger.info("Response Diagnostics {}", responseDiagnostics);
         }
     }

@@ -1,10 +1,10 @@
 # Azure Cosmos DB Spring Data - Multi Tenant by Database
 
-Spring Data sample for a multi-tenanted app where each tenant has its own Azure Cosmos DB `database`.
+[Spring Data Cosmos](https://aka.ms/SpringDataCosmos) sample for a multi-tenanted app where each tenant has its own [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/introduction) [database](https://learn.microsoft.com/azure/cosmos-db/resource-model#azure-cosmos-db-databases).
 
 ## Features
 
-- The application is a simple CRUD REST web service which creates `User` and `Order` entries in each tenant, and makes use of  `azure-spring-data-cosmos` for Azure Cosmos DB SQL API.
+- The application is a simple CRUD REST web service which creates `User` and `Order` entries in each tenant, and makes use of  `azure-spring-data-cosmos` for Azure Cosmos DB [NoSQL](https://learn.microsoft.com/azure/cosmos-db/nosql/) API.
 - At first startup, a `default` database is created which is used as the model for each new tenant.
 - At subsequent startups, all the names of any existing databases in the Cosmos DB account (excluding the `default` database) are retrieved and stored in `tenantList` from `TenantStorage` class. This class also handles creating Cosmos databases named by `tenantId`. 
 - The application uses `WebRequestInterceptor` to capture a http request header of `TenantId`. This is used to check if the corresponding tenant database exists in `tenantList`.

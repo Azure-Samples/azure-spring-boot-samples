@@ -1,11 +1,12 @@
 # Azure Cosmos DB Spring Data - Multi Tenant by Container
 
-Spring Data sample for a multi-tenanted app where each tenant has its own Azure Cosmos DB `container`.
+[Spring Data Cosmos](https://aka.ms/SpringDataCosmos) sample for a multi-tenanted app where each tenant has its own [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/introduction) [container](https://learn.microsoft.com/azure/cosmos-db/resource-model#azure-cosmos-db-containers).
 
 ## Features
 
-- The application is a simple CRUD REST web service which creates `User` and `Order` entries in each tenant (colocated in the same container), and makes use of  `azure-spring-data-cosmos` for Azure Cosmos DB SQL API.
-- At application startup, all the names of existing containers in the `tenants` database are retrieved and stored in `tenantList` in `TenantStorage` class. This class also contains resources to create Cosmos containers named by `tenantId` dynamically. The `tenants` database is created if it does not exist.
+- The application is a simple CRUD REST web service which creates `User` and `Order` entries in each tenant (`colocated` in the same container), and makes use of  `azure-spring-data-cosmos` for Azure Cosmos DB [NoSQL](https://learn.microsoft.com/azure/cosmos-db/nosql/) API.
+- The `tenants` database is created if it does not exist. It will be used to store all containers created for each tenant.
+- At application startup, all the names of any existing containers in the `tenants` database are retrieved and stored in `tenantList` in `TenantStorage` class. This class also contains resources to create Cosmos containers named by `tenantId` dynamically. The `tenants` database is created if it does not exist.
 - The application uses `WebRequestInterceptor` to capture a http request header of `TenantId`. This is used to check if the corresponding tenant id exists in `tenantList`. If it does not, the container will be created.
 - The application uses `WebRequestInterceptor` to capture a http request header of `TenantTier`. This is used to determine whether to set dedicated throughput for the container ("premium") or use the shared throughput for the database. 
 - If a tenant container does not exist, the `MultiTenantContainerCosmosFactory` class overrides `overrideContainerName()` in `CosmosFactory` (see PR https://github.com/Azure/azure-sdk-for-java/pull/33400) to allow different tenant containers to be created and/or referenced on the fly, while still allowing native Spring Repository APIs to query the tenant container.

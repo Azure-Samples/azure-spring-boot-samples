@@ -7,9 +7,9 @@
 - The application is a simple CRUD REST web service which creates `User` and `Order` entries in each tenant, and makes use of  `azure-spring-data-cosmos` for Azure Cosmos DB [NoSQL](https://learn.microsoft.com/azure/cosmos-db/nosql/) API.
 - At first startup, a `default` database is created which is used as the model for each new tenant.
 - At subsequent startups, all the names of any existing databases in the Cosmos DB account (excluding the `default` database) are retrieved and stored in `tenantList` from `TenantStorage` class. This class also handles creating Cosmos databases named by `tenantId`. 
-- The application uses `WebRequestInterceptor` to capture a http request header of `TenantId`. This is used to check if the corresponding tenant database exists in `tenantList`.
+- The application uses [WebRequestInterceptor](https://docs.spring.io/spring-framework/docs/current/javadoc-api/org/springframework/web/context/request/WebRequestInterceptor.html) to capture a http request header of `TenantId`. This is used to check if the corresponding tenant database exists in `tenantList`.
 - If a tenant database does not exist, the `TenantCosmosFactory` class overrides `getDatabaseName()` in `CosmosFactory` (see PR https://github.com/Azure/azure-sdk-for-java/pull/32516) to allow different tenant databases to be created and/or referenced on the fly, while still allowing native Spring Repository APIs to query their entities. 
-- The methods in `TenantStorage` are used to retrieve the appropriate tenant id from `tenantList`, or create a tenant database, and add its name to the list of existing tenants.
+- The methods in [TenantStorage](/src/main/java/com/azure/spring/data/cosmos/example/tenant/TenantStorage.java) are used to retrieve the appropriate tenant id from `tenantList`, or create a tenant database, and add its name to the list of existing tenants.
 - CRUD operations are performed in `UserController` and `OrderController` using corresponding Spring `Repository` APIs.
 
 

@@ -116,7 +116,7 @@
       <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <version.spring.boot>2.7.9</version.spring.boot>
+        <version.spring.boot>3.0.5</version.spring.boot>
         <version.guava>31.1-jre</version.guava>
         <version.spring.cloud>2021.0.5</version.spring.cloud>
         <version.spring.cloud.azure>4.6.0</version.spring.cloud.azure>

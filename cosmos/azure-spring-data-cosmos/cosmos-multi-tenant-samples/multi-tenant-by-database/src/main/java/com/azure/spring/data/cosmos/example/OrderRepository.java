@@ -4,7 +4,6 @@ package com.azure.spring.data.cosmos.example;
 
 import com.azure.spring.data.cosmos.repository.CosmosRepository;
 import org.springframework.stereotype.Repository;
-import org.springframework.test.context.ContextConfiguration;
 
 @Repository
 public interface OrderRepository extends CosmosRepository<Order, String> {

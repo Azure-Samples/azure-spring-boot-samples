@@ -2,16 +2,12 @@
 // Licensed under the MIT License.
 package com.azure.spring.data.cosmos.example;
 
-import com.azure.core.http.rest.Page;
 import com.azure.spring.data.cosmos.repository.CosmosRepository;
 import com.azure.spring.data.cosmos.repository.Query;
-import com.azure.spring.data.cosmos.repository.ReactiveCosmosRepository;
 import com.fasterxml.jackson.databind.JsonNode;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Slice;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import reactor.core.publisher.Flux;
 
 import java.util.List;
 

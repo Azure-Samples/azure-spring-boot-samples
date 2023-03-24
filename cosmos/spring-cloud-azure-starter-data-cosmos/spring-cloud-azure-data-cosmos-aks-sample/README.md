@@ -15,7 +15,7 @@ In this tutorial, you will setup and build a Spring Boot application to perform 
 ## Pre-requisites
 
 - An Azure account with an active subscription. Create a [free account](https://azure.microsoft.com/free/?ref=microsoft.com&utm_source=microsoft.com&utm_medium=docs&utm_campaign=visualstudio) or [try Azure Cosmos DB for free](https://azure.microsoft.com/try/cosmosdb/) without an Azure subscription.
-- [Java Development Kit (JDK) 8](https://www.azul.com/downloads/azure-only/zulu/?&version=java-8-lts&architecture=x86-64-bit&package=jdk). Point your `JAVA_HOME` environment variable to the path where the JDK is installed.
+- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli) to provision Azure services.
 - [Docker](https://docs.docker.com/engine/install/) to manage images and containers.
 - A recent version of [Maven](https://maven.apache.org/download.cgi).

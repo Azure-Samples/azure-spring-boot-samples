@@ -26,10 +26,10 @@ This sample application fetches the value of the tenant from request header (Ten
 1. You should see containers named by each tenant created in Cosmos DB, with co-located entities of `User` and `Order`, identifiable by a `type` field in the document.
 
 ## Sample investigation
-- The application is a simple CRUD REST web service which creates `User` and `Order` entries in each tenant (`colocated` in the same container), and makes use of  `azure-spring-data-cosmos` for Azure Cosmos DB [NoSQL](https://learn.microsoft.com/azure/cosmos-db/nosql/) API.
+- The application is a simple CRUD REST web service which creates `User` and `Order` entries in each tenant (co-located in the same container), and makes use of  `azure-spring-data-cosmos` for Azure Cosmos DB [NoSQL](https://learn.microsoft.com/azure/cosmos-db/nosql/) API.
 - The application captures a http request header of `TenantId`. This is used to check if the corresponding tenant id exists. If it does not, the container will be created.
 - The application also captures a http request header of `TenantTier`. This is used to determine whether to set dedicated throughput for the container ("premium") or use the shared throughput for the database.
-- The functionality for marshalling use of `TenantId` and `TenantTier` is in the [TenantStorage](./src/main/java/com/azure/spring/data/cosmos/example/tenant/TenantStorage.java) class.
+- The Java classes with functionality for capturing `TenantId` and `TenantTier`, and referencing and/or creating tenant containers by `TenantId`, are in the [tenant folder](./src/main/java/com/azure/spring/data/cosmos/example/tenant).
 - CRUD operations are performed in `UserController` and `OrderController` using corresponding Spring `Repository` APIs. The two entities `Order` and `User` are co-located in the same container, and differentiated using a `type` field in the record.
 
 ## Next steps

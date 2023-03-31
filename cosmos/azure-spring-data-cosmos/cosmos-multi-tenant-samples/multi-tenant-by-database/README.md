@@ -26,7 +26,7 @@ This sample application fetches the value of the tenant from request header (Ten
 
 ## Sample Investigation
 - The application is a simple CRUD REST web service which creates `User` and `Order` entries in each tenant, and makes use of  `azure-spring-data-cosmos` for Azure Cosmos DB [NoSQL](https://learn.microsoft.com/azure/cosmos-db/nosql/) API.
-- The application captures a http request header of `TenantId`. This is used to check if the corresponding tenant database exists, or needs to be created. The functionality for marshalling all this is in the [TenantStorage](./src/main/java/com/azure/spring/data/cosmos/example/tenant/TenantStorage.java) class.
+- The application captures a http request header of `TenantId`. This is used to check if the corresponding tenant database exists, or needs to be created. The Java classes with functionality for capturing tenant id, and referencing and/or creating tenant databases by tenant id, are in the [tenant folder](./src/main/java/com/azure/spring/data/cosmos/example/tenant).
 - If a tenant database does not exist, the [MultiTenantDBCosmosFactory](./src/main/java/com/azure/spring/data/cosmos/example/tenant/MultiTenantDBCosmosFactory.java) class overrides `getDatabaseName()` in `CosmosFactory` to allow different tenant databases to be created and/or referenced on the fly, while still allowing native Spring Repository APIs to query their entities.
 - CRUD operations are performed in `UserController` and `OrderController` using corresponding Spring `Repository` APIs.
 

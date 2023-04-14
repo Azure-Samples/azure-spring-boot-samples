@@ -18,7 +18,6 @@ import java.util.Set;
 import java.util.concurrent.ConcurrentHashMap;
 
 @Component
-@PropertySource("classpath:application.yaml")
 public class TenantStorage implements CommandLineRunner {
     private static final ThreadLocal<String> currentTenant = new ThreadLocal<>();
     private static final Logger LOGGER = LoggerFactory.getLogger(TenantStorage.class);

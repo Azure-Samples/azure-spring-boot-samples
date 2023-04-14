@@ -12,9 +12,6 @@
     <groupId>com.azure</groupId>
     <artifactId>multi-tenant-by-database</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <properties>
-        <azure.spring.data.cosmos.version>LATEST</azure.spring.data.cosmos.version>
-    </properties>
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>

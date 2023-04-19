@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 package com.azure.spring.data.cosmos.example;
 import com.azure.cosmos.models.PartitionKey;
 import com.azure.spring.data.cosmos.example.tenant.TenantStorage;

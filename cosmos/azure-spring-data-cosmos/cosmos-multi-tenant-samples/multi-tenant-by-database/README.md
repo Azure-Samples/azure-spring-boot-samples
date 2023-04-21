@@ -17,7 +17,7 @@ This sample application fetches the value of the tenant from request header (Ten
 1. The app uses environment variables `ACCOUNT_HOST` and `ACCOUNT_KEY`. Make sure these environment variables exist, and are set to your Azure Cosmos DB account `URI` and `PRIMARY KEY` respectively.
 
 ## Run application
-1. git clone -b cosmos-spring-multi-tenant-samples https://github.com/TheovanKraay/azure-spring-boot-samples.git
+1. git clone https://github.com/Azure-Samples/azure-spring-boot-samples.git
 1. cd cosmos/azure-spring-data-cosmos/cosmos-multi-tenant-samples/tenant-by-database
 1. start the application: `mvn spring-boot:run`
 1. Send a request to the web service from a linux based command line to create a user, setting the value of `TenantId` differently for each tenant (or you can use [postman](https://www.postman.com/downloads/)): `curl -s -d '{"firstName":"Theo","lastName":"van Kraay"}' -H "Content-Type: application/json" -H "TenantId: theo" -X POST http://localhost:8080/users`

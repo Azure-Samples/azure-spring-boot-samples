@@ -1,0 +1,8 @@
+spring:
+  data:
+    cosmos:
+      uri: ${ACCOUNT_HOST}
+      key: ${ACCOUNT_KEY}
+      databaseName: tenants
+      partitionKeyPath: /lastName
+      queryMetricsEnabled: true

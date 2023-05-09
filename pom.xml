@@ -64,15 +64,15 @@
         <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server</module>
         <module>aad/spring-security</module>
         <module>
-          appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-convert-sample/azure-spring-cloud-appconfiguration-config-convert-sample-complete
+          appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-complete
         </module>
         <module>
-          appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-convert-sample/azure-spring-cloud-appconfiguration-config-convert-sample-initial
+          appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-initial
         </module>
-        <module>appconfiguration/azure-spring-cloud-appconfiguration-config/azure-spring-cloud-appconfiguration-config-sample</module>
-        <module>appconfiguration/azure-spring-cloud-feature-management-web/azure-spring-cloud-feature-management-web-sample</module>
-        <module>appconfiguration/azure-spring-cloud-feature-management/azure-spring-cloud-feature-management-sample</module>
-        <module>appconfiguration/azure-spring-cloud-starter-appconfiguration-config/azure-spring-cloud-starter-appconfiguration-config-sample</module>
+        <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-sample</module>
+        <module>appconfiguration/spring-cloud-azure-feature-management-web/spring-cloud-azure-feature-management-web-sample</module>
+        <module>appconfiguration/spring-cloud-azure-feature-management/spring-cloud-azure-feature-management-sample</module>
+        <module>appconfiguration/spring-cloud-azure-starter-appconfiguration-config/spring-cloud-azure-starter-appconfiguration-config-sample</module>
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
         <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
         <module>cloudfoundry/azure-cloud-foundry-service-sample</module>
@@ -120,35 +120,12 @@
         <version.guava>31.1-jre</version.guava>
         <version.spring.cloud>2021.0.5</version.spring.cloud>
         <version.spring.cloud.azure>4.7.0</version.spring.cloud.azure>
-        <version.spring-cloud-appconfiguration-config>2.11.0</version.spring-cloud-appconfiguration-config>
-        <version.spring-cloud-appconfiguration-starter>2.11.0</version.spring-cloud-appconfiguration-starter>
-        <version.spring-cloud-feature-management>2.10.0</version.spring-cloud-feature-management>
         <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>
         <version.maven-surefire-plugin>3.0.0</version.maven-surefire-plugin>
         <mockito.version>4.11.0</mockito.version>
       </properties>
       <dependencyManagement>
         <dependencies>
-          <dependency>
-            <groupId>com.azure.spring</groupId>
-            <artifactId>azure-spring-cloud-appconfiguration-config</artifactId>
-            <version>${version.spring-cloud-appconfiguration-config}</version>
-          </dependency>
-          <dependency>
-            <groupId>com.azure.spring</groupId>
-            <artifactId>azure-spring-cloud-starter-appconfiguration-config</artifactId>
-            <version>${version.spring-cloud-appconfiguration-starter}</version>
-          </dependency>
-          <dependency>
-            <groupId>com.azure.spring</groupId>
-            <artifactId>azure-spring-cloud-feature-management</artifactId>
-            <version>${version.spring-cloud-feature-management}</version>
-          </dependency>
-          <dependency>
-            <groupId>com.azure.spring</groupId>
-            <artifactId>azure-spring-cloud-feature-management-web</artifactId>
-            <version>${version.spring-cloud-feature-management}</version>
-          </dependency>
           <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
@@ -165,6 +142,16 @@
     <profile>
       <id>spring-cloud-azure-5.x</id>
       <modules>
+        <module>
+          appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-complete
+        </module>
+        <module>
+          appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-initial
+        </module>
+        <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-sample</module>
+        <module>appconfiguration/spring-cloud-azure-feature-management-web/spring-cloud-azure-feature-management-web-sample</module>
+        <module>appconfiguration/spring-cloud-azure-feature-management/spring-cloud-azure-feature-management-sample</module>
+        <module>appconfiguration/spring-cloud-azure-starter-appconfiguration-config/spring-cloud-azure-starter-appconfiguration-config-sample</module>
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
         <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
         <module>cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample</module>

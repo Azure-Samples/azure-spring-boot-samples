@@ -11,7 +11,7 @@
 
   <modelVersion>4.0.0</modelVersion>
 
-  <artifactId>azure-spring-cloud-starter-appconfiguration-config-sample</artifactId>
+  <artifactId>spring-cloud-azure-starter-appconfiguration-config-sample</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
   <name>Azure App Configuration Refresh Sample</name>
@@ -27,7 +27,7 @@
     </dependency>
     <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>azure-spring-cloud-starter-appconfiguration-config</artifactId>
+      <artifactId>spring-cloud-azure-starter-appconfiguration-config</artifactId>
     </dependency>
 
     <!-- Adds the Ability to Push Refresh -->

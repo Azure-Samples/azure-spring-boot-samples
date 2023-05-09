@@ -10,7 +10,7 @@ description: This sample demonstrates how to load configuration properties from 
 
 # Loading Configuration Properties From App Configuration in Spring Boot Application
 
-This sample describes how to use [azure-spring-cloud-starter-appconfiguration-config](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-starter-appconfiguration-config_2.8.0/sdk/appconfiguration/azure-spring-cloud-starter-appconfiguration-config) to load configuration properties from App Configuration Service to Spring Environment.
+This sample describes how to use [spring-cloud-azure-starter-appconfiguration-config](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-appconfiguration-config/README.md) to load configuration properties from App Configuration Service to Spring Environment.
 
 ## Key concepts
 ## Getting started
@@ -58,7 +58,7 @@ mvn -Dspring.application.name=foo -Dspring.profiles.active=dev spring-boot:run
 
 ### More details
 
-Please refer to this [README](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-cloud-starter-appconfiguration-config_2.8.0/sdk/appconfiguration/azure-spring-cloud-starter-appconfiguration-config/README.md) about more usage details. 
+Please refer to this [README](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-appconfiguration-config/README.md) about more usage details. 
 
 ## Deploy to Azure Spring Apps
 

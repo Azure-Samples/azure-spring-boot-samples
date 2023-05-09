@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -8,24 +9,24 @@
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-boot-samples</artifactId>
     <version>1.0.0</version>
-    <relativePath>../../../pom.xml</relativePath>
+    <relativePath>../../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>azure-spring-cloud-appconfiguration-config-sample</artifactId>
+  <artifactId>spring-cloud-azure-appconfiguration-config-convert-sample-initial</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>Load Configuration Properties From App Configuration to Spring Environment</name>
-
+  <name>Convert Cosmos DB Application Using App Configuration and Key Vault Initial</name>
+  <description>Sample project to show conversion to Azure App Configuration</description>
 
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>azure-spring-cloud-appconfiguration-config</artifactId>
+      <artifactId>spring-cloud-azure-starter-data-cosmos</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
+      <groupId>com.google.guava</groupId>
+      <artifactId>guava</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>

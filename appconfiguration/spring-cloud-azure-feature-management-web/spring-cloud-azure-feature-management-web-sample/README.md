@@ -10,7 +10,7 @@ description: This sample demonstrates how to manage features and how to get conf
 
 # Managing Features and Get Configurations From App Configuration in Spring Boot Web Application
 
-This sample describes how to use [azure-spring-cloud-feature-management](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-cloud-feature-management_2.7.0/sdk/appconfiguration/azure-spring-cloud-feature-management/README.md) to manage features and how to get configurations from App Configuration Service to Spring Environment.
+This sample describes how to use [spring-cloud-azure-feature-management](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-feature-management/README.md) to manage features and how to get configurations from App Configuration Service to Spring Environment.
 
 ## Key concepts
 ## Getting started
@@ -64,7 +64,7 @@ mvn -Dspring.application.name=foo -Dspring.profiles.active=dev spring-boot:run
 
 ### More details
 
-Please refer to this [README](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-cloud-starter-appconfiguration-config_2.8.0/sdk/appconfiguration/azure-spring-cloud-starter-appconfiguration-config/README.md) about more usage details. 
+Please refer to this [README](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-appconfiguration-config/README.md) about more usage details. 
 
 ## Deploy to Azure Spring Apps
 

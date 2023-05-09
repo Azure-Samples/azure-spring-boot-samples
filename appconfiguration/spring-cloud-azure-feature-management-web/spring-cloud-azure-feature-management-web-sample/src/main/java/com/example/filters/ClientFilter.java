@@ -4,8 +4,8 @@ package com.example.filters;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.azure.spring.cloud.feature.manager.FeatureFilter;
-import com.azure.spring.cloud.feature.manager.entities.FeatureFilterEvaluationContext;
+import com.azure.spring.cloud.feature.management.filters.FeatureFilter;
+import com.azure.spring.cloud.feature.management.models.FeatureFilterEvaluationContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;

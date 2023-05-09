@@ -2,9 +2,9 @@
 // Licensed under the MIT License.
 package com.example;
 
-import com.azure.spring.cloud.feature.manager.FeatureGate;
-import com.azure.spring.cloud.feature.manager.FeatureManager;
-import com.azure.spring.cloud.feature.manager.FeatureManagerSnapshot;
+import com.azure.spring.cloud.feature.management.FeatureManager;
+import com.azure.spring.cloud.feature.management.web.FeatureGate;
+import com.azure.spring.cloud.feature.management.web.FeatureManagerSnapshot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

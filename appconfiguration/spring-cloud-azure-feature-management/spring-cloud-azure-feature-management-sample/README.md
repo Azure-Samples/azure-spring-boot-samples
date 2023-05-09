@@ -10,12 +10,12 @@ description: This sample demonstrates how to manage features and how to get conf
 
 # Managing Features and Get Configurations From App Configuration in Spring Boot Application
 
-This sample describes how to use [azure-spring-cloud-feature-management](https://github.com/Azure/azure-sdk-for-java/tree/azure-spring-cloud-feature-management_2.7.0/sdk/appconfiguration/azure-spring-cloud-feature-management/README.md) to manage features and how to get configurations from App Configuration Service to Spring Environment.
+This sample describes how to use [spring-cloud-azure-feature-management](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-feature-management/README.md) to manage features and how to get configurations from App Configuration Service to Spring Environment.
 
 ## Key concepts
 ## Getting started
 
-`azure-spring-cloud-feature-management` doesn't require use of the App Configuration service, but can be integrated with it. The next section shows how to use the library without the App Configuration service, the section after shows how to update the example to use it with the App Configuration service.
+`spring-cloud-azure-feature-management` doesn't require use of the App Configuration service, but can be integrated with it. The next section shows how to use the library without the App Configuration service, the section after shows how to update the example to use it with the App Configuration service.
 
 ### How to run without App Configuration Service
 Start the application and check the resulting console output to check the returned value.
@@ -47,13 +47,13 @@ It will have you confirm the feature flag before loading it.
 
 #### Updating the application
 
-1. Add the azure-spring-cloud-appconfiguration-config dependency,
+1. Add the spring-cloud-azure-appconfiguration-config dependency,
 
 ```xml
 <dependency>
     <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-cloud-appconfiguration-config</artifactId>
-    <version>2.8.0</version>
+    <artifactId>spring-cloud-azure-appconfiguration-config</artifactId>
+    <version>4.7.0</version>
 </dependency>
 ```
 
@@ -82,7 +82,7 @@ mvn spring-boot:run
 
 ### More details
 
-Please refer to this [README](https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-cloud-starter-appconfiguration-config_2.8.0/sdk/appconfiguration/azure-spring-cloud-starter-appconfiguration-config/README.md) about more usage details. 
+Please refer to this [README](https://github.com/Azure/azure-sdk-for-java/blob/main/sdk/spring/spring-cloud-azure-starter-appconfiguration-config/README.md) about more usage details. 
 
 ## Deploy to Azure Spring Apps
 

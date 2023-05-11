@@ -15,7 +15,7 @@ Azure [Spring Data](https://spring.io/projects/spring-data) [Azure Cosmos DB](ht
  
 ## Features
 
-Basic sample code for getting started with [azure-spring-data-cosmos](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cosmos/azure-spring-data-cosmos) for Azure Cosmos DB SQL API.
+Basic sample code for getting started with [azure-spring-data-cosmos](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/azure-spring-data-cosmos) for Azure Cosmos DB SQL API.
 
 ## Getting Started
 
@@ -37,7 +37,7 @@ Basic sample code for getting started with [azure-spring-data-cosmos](https://gi
 
 ## Resources
 
-Please refer to azure spring data cosmos for sql api [azure-spring-data-cosmos source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cosmos/azure-spring-data-cosmos) for more information.
+Please refer to azure spring data cosmos for sql api [azure-spring-data-cosmos source code](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/azure-spring-data-cosmos) for more information.
 
 ## Deploy to Azure Spring Apps
 

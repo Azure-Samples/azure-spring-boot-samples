@@ -139,7 +139,7 @@ Next we need to create a role that can access your Cosmos DB account appropriate
 
 ## Resources
 
-Please refer to [azure spring data cosmos for sql api](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cosmos/azure-spring-data-cosmos) for more information.
+Please refer to [azure spring data cosmos for sql api](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/azure-spring-data-cosmos) for more information.
 
 ## Deploy to Azure Spring Apps
 

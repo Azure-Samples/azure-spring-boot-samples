@@ -9,7 +9,7 @@ description: This sample demonstrates how to use Azure Cosmos DB in Spring Boot 
 ---
 
 # Using Azure Cosmos DB in Spring Boot (MVC On Servlet) Application
- This sample demonstrates how to use [Spring Data Cosmos Client Library](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/cosmos/azure-spring-data-cosmos) for [Azure Cosmos DB SQL API](https://learn.microsoft.com/azure/cosmos-db/introduction) in Spring Boot (MVC on servlet stack) application.
+ This sample demonstrates how to use [Spring Data Cosmos Client Library](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/azure-spring-data-cosmos) for [Azure Cosmos DB SQL API](https://learn.microsoft.com/azure/cosmos-db/introduction) in Spring Boot (MVC on servlet stack) application.
 
 ![Image](BookStore.png)
 

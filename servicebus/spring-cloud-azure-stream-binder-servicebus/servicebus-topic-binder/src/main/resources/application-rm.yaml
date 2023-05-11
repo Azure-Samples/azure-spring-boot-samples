@@ -7,9 +7,9 @@ spring:
         namespace: ${AZURE_SERVICEBUS_NAMESPACE}
         resource:
           resource-group: ${AZURE_SERVICEBUS_RESOURCE_GROUP}
+    function:
+      definition: consume;supply
     stream:
-      function:
-        definition: consume;supply
       bindings:
         consume-in-0:
           destination: ${AZURE_SERVICEBUS_TOPIC_NAME}

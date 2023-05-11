@@ -3,9 +3,9 @@ spring:
     azure:
       servicebus:
         namespace: ${AZURE_SERVICEBUS_NAMESPACE}
+    function:
+      definition: consume;supply
     stream:
-      function:
-        definition: consume;supply
       bindings:
         consume-in-0:
           destination: ${AZURE_SERVICEBUS_QUEUE_NAME}

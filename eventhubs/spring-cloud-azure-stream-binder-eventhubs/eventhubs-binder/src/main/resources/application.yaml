@@ -7,9 +7,9 @@ spring:
           checkpoint-store:
             container-name: ${AZURE_STORAGE_CONTAINER_NAME}
             account-name:  ${AZURE_STORAGE_ACCOUNT_NAME}
+    function:
+      definition: consume;supply
     stream:
-      function:
-        definition: consume;supply
       bindings:
         consume-in-0:
           destination: ${AZURE_EVENTHUB_NAME}

@@ -4,12 +4,14 @@
 package com.azure.spring.sample.aad.b2c.security;
 
 import com.azure.spring.cloud.autoconfigure.aadb2c.AadB2cOidcLoginConfigurer;
+
+import org.springframework.context.annotation.Bean;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
-public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfiguration {
 
     private final AadB2cOidcLoginConfigurer configurer;
 
@@ -17,13 +19,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         this.configurer = configurer;
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        // @formatter:off
-        http.authorizeRequests()
-                .anyRequest().authenticated()
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .anyRequest()
+                .authenticated()
                 .and()
-            .apply(configurer);
-        // @formatter:on
+                .apply(configurer)
+        ;
+        return http.build();
     }
 }

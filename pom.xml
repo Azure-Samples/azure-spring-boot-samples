@@ -183,7 +183,7 @@
         <java.version>17</java.version>
         <version.spring.boot>3.0.5</version.spring.boot>
         <version.spring.cloud>2022.0.2</version.spring.cloud>
-        <version.spring.cloud.azure>5.1.0</version.spring.cloud.azure>
+        <version.spring.cloud.azure>5.2.0</version.spring.cloud.azure>
         <version.thymeleaf-extras-springsecurity6>3.1.1.RELEASE</version.thymeleaf-extras-springsecurity6>
         <version.maven-surefire-plugin>2.22.0</version.maven-surefire-plugin>
         <mockito.version>4.8.1</mockito.version>
@@ -194,26 +194,6 @@
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity6</artifactId>
             <version>${version.thymeleaf-extras-springsecurity6}</version>
-          </dependency>
-          <dependency>
-            <groupId>com.azure.spring</groupId>
-            <artifactId>spring-cloud-azure-appconfiguration-config</artifactId>
-            <version>5.1.0</version>
-          </dependency>
-          <dependency>
-            <groupId>com.azure.spring</groupId>
-            <artifactId>spring-cloud-azure-starter-appconfiguration-config</artifactId>
-            <version>5.1.0</version>
-          </dependency>
-          <dependency>
-            <groupId>com.azure.spring</groupId>
-            <artifactId>spring-cloud-azure-feature-management</artifactId>
-            <version>5.1.0</version>
-          </dependency>
-          <dependency>
-            <groupId>com.azure.spring</groupId>
-            <artifactId>spring-cloud-azure-feature-management-web</artifactId>
-            <version>5.1.0</version>
           </dependency>
         </dependencies>
       </dependencyManagement>

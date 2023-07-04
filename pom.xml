@@ -142,13 +142,12 @@
     <profile>
       <id>spring-cloud-azure-5.x</id>
       <modules>
-<!--will be open after spring-data-cosmos supported-->
-<!--        <module>-->
-<!--          appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-complete-->
-<!--        </module>-->
-<!--        <module>-->
-<!--          appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-initial-->
-<!--        </module>-->
+        <module>
+          appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-complete
+        </module>
+        <module>
+          appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-initial
+        </module>
         <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-sample</module>
         <module>appconfiguration/spring-cloud-azure-feature-management-web/spring-cloud-azure-feature-management-web-sample</module>
         <module>appconfiguration/spring-cloud-azure-feature-management/spring-cloud-azure-feature-management-sample</module>

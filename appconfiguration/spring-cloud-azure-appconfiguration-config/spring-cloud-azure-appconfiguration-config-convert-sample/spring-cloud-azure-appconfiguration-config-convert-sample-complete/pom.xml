@@ -24,10 +24,6 @@
       <artifactId>spring-cloud-azure-starter-data-cosmos</artifactId>
     </dependency>
     <dependency>
-      <groupId>com.google.guava</groupId>
-      <artifactId>guava</artifactId>
-    </dependency>
-    <dependency>
       <groupId>com.azure.spring</groupId>
       <artifactId>spring-cloud-azure-appconfiguration-config</artifactId>
     </dependency>

@@ -181,6 +181,7 @@
         <maven.compiler.target>17</maven.compiler.target>
         <java.version>17</java.version>
         <version.spring.boot>3.0.5</version.spring.boot>
+        <version.guava>31.1-jre</version.guava>
         <version.spring.cloud>2022.0.2</version.spring.cloud>
         <version.spring.cloud.azure>5.3.0</version.spring.cloud.azure>
         <version.thymeleaf-extras-springsecurity6>3.1.1.RELEASE</version.thymeleaf-extras-springsecurity6>
@@ -189,6 +190,11 @@
       </properties>
       <dependencyManagement>
         <dependencies>
+          <dependency>
+            <groupId>com.google.guava</groupId>
+            <artifactId>guava</artifactId>
+            <version>${version.guava}</version>
+          </dependency>
           <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity6</artifactId>

@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 package spring.cloud.azure.starter.data.cosmos.sample;
 
 import org.slf4j.Logger;

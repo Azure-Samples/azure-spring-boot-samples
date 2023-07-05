@@ -1,7 +1,4 @@
-// Copyright (c) Microsoft Corporation. All rights reserved.
-// Licensed under the MIT License.
-
-package com.azure.spring.sample.cosmos;
+package spring.cloud.azure.starter.data.cosmos.sample;
 
 import com.azure.spring.data.cosmos.core.mapping.Container;
 import com.azure.spring.data.cosmos.core.mapping.PartitionKey;
@@ -10,29 +7,29 @@ import org.springframework.data.annotation.Id;
 @Container(containerName = "users")
 public class User {
     @Id
-    private String id;
-    private String firstName;
     @PartitionKey
+    private String email;
+    private String firstName;
     private String lastName;
-    private String address;
+    private String city;
 
     public User() {
 
     }
 
-    public User(String id, String firstName, String lastName, String address) {
-        this.id = id;
+    public User(String email, String firstName, String lastName, String city) {
+        this.email = email;
         this.firstName = firstName;
         this.lastName = lastName;
-        this.address = address;
+        this.city = city;
     }
 
-    public String getId() {
-        return id;
+    public String getEmail() {
+        return email;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public String getFirstName() {
@@ -51,17 +48,17 @@ public class User {
         this.lastName = lastName;
     }
 
-    public String getAddress() {
-        return address;
+    public String getCity() {
+        return city;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
+    public void setCity(String city) {
+        this.city = city;
     }
 
     @Override
     public String toString() {
-        return String.format("%s %s, %s", firstName, lastName, address);
+        return "User [city=" + city + ", email=" + email + ", firstName=" + firstName + ", lastName=" + lastName + "]";
     }
-}
 
+}

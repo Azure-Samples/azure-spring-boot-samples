@@ -97,7 +97,7 @@ az acr create --resource-group cosmosdb-springboot-aks-rg --location eastus \
     ```bash
     git clone https://github.com/Azure-Samples/azure-spring-boot-samples.git
     
-    cd cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-aks-sample
+    cd cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample
     ```
 
 1. Use Maven to build the application.

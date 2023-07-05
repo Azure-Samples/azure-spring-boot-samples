@@ -1,4 +1,4 @@
-package spring.cloud.azure.starter.data.cosmos.sample.aks;
+package spring.cloud.azure.starter.data.cosmos.sample;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

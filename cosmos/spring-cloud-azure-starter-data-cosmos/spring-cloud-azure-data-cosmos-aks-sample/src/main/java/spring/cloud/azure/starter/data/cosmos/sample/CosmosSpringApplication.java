@@ -12,14 +12,14 @@ import org.springframework.util.Assert;
 import java.util.Optional;
 
 @SpringBootApplication
-public class CosmosdbSpringApplication implements CommandLineRunner {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CosmosdbSpringApplication.class);
+public class CosmosSpringApplication implements CommandLineRunner {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CosmosSpringApplication.class);
 
     @Autowired
     private UserRepository repository;
 
     public static void main(String[] args) {
-        SpringApplication.run(CosmosdbSpringApplication.class, args);
+        SpringApplication.run(CosmosSpringApplication.class, args);
     }
 
     @Override
@@ -42,7 +42,7 @@ public class CosmosdbSpringApplication implements CommandLineRunner {
         Assert.state(result.getLastName().equals(testUser.getLastName()), "query result lastName doesn't match!");
 
         LOGGER.info("findOne in User collection get result: {}", result.toString());
-        LOGGER.info("spring-cloud-azure-data-cosmos-sample-aks successfully run.");
+        LOGGER.info("spring-cloud-azure-data-cosmos-sample successfully run.");
     }
 }
 

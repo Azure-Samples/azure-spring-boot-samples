@@ -11,6 +11,7 @@ public class CosmosProperties {
     private String defaultScope;
     private String tenantId;
     private String clientId;
+    private String managedIdentityId;
     private String clientSecret;
     private String databaseName;
     private boolean queryMetricsEnabled;
@@ -45,6 +46,14 @@ public class CosmosProperties {
 
     public void setClientId(String clientId) {
         this.clientId = clientId;
+    }
+
+    public String getManagedIdentityId() {
+        return managedIdentityId;
+    }
+
+    public void setManagedIdentityId(String managedIdentityId) {
+        this.managedIdentityId = managedIdentityId;
     }
 
     public String getClientSecret() {

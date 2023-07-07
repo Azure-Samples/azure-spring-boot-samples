@@ -1,0 +1,13 @@
+azure:
+  keyvault:
+    uri: https://15e79c92-0ee0-4-231-b9ee.documents.azure.com:443/                # The URI to the Azure Key Vault used
+    tenant-id: 4d73bed9-4fa9-4bf8-805a-c42d66a667a0          # The Tenant ID for your Azure Key Vault (needed if you are not using managed identity).
+    client-id: 11dc62e3-77dc-4ef5-a46b-480ec6caa8fe          # (service principal application id)The Client ID that has been setup with access to your Azure Key Vault (needed if you are not using managed identity).
+    client-secret: Vmc7cqAdSUDzSoE6B9eNsfF79ijjL0Lh8biUcFQlnJtPZlrKkmqyCJRYiiDOzNk1heTWZkShN0OcACDbWQplLQ==      # (client secret value)The Client Secret that will be used for accessing your Azure Key Vault (needed if you are not using managed identity).
+    # managed-identity:  # client-id of the user-assigned managed identity to use.
+    # If the above 4 properties are empty, then system-assigned managed identity will be used.
+  #cert-path:
+    #well-known:  # Optional local certificates path. Your local path that holds the well-known certificates.
+    #custom: # Optional local certificates path. Your local path that holds your customized certificates.
+server:
+  port: 8080

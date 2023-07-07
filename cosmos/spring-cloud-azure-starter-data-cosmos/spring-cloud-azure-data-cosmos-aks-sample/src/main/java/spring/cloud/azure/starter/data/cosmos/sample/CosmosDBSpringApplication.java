@@ -12,14 +12,14 @@ import org.springframework.util.Assert;
 import java.util.Optional;
 
 @SpringBootApplication
-public class CosmosSpringApplication implements CommandLineRunner {
-    private static final Logger LOGGER = LoggerFactory.getLogger(CosmosSpringApplication.class);
+public class CosmosDBSpringApplication implements CommandLineRunner {
+    private static final Logger LOGGER = LoggerFactory.getLogger(CosmosDBSpringApplication.class);
 
     @Autowired
     private UserRepository repository;
 
     public static void main(String[] args) {
-        SpringApplication.run(CosmosSpringApplication.class, args);
+        SpringApplication.run(CosmosDBSpringApplication.class, args);
     }
 
     @Override

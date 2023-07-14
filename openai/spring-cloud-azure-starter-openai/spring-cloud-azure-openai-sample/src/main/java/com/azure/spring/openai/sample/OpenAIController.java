@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
@@ -26,15 +25,14 @@ public class OpenAIController {
     private OpenAIClient client;
 
     @PostMapping("/prompt")
-    @ResponseBody
     public String send(@RequestBody String prompt) {
         List<String> prompts = Arrays.asList(prompt);
         Completions completions = client.getCompletions(deploymentOrModelId, new CompletionsOptions(prompts));
+        String text = null;
         for (Choice choice : completions.getChoices()) {
-            String text = choice.getText();
+            text = choice.getText();
             logger.info("Text: {}.", text);
-            return String.format("{\"Index\": \"%s\", \"Text\": \"%s\"}", choice.getIndex(), text);
         }
-        return "error";
+        return String.format("{\"Text\": \"%s\"}", text);
     }
 }

@@ -8,7 +8,6 @@ import com.azure.ai.openai.models.Completions;
 import com.azure.ai.openai.models.CompletionsOptions;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,8 +20,12 @@ public class OpenAIController {
 
     private static final Logger logger = LoggerFactory.getLogger(OpenAIController.class);
     public static final String deploymentOrModelId = "gpt-35-turbo";
-    @Autowired
-    private OpenAIClient client;
+
+    private final OpenAIClient client;
+
+    public OpenAIController(OpenAIClient client) {
+        this.client = client;
+    }
 
     @PostMapping("/prompt")
     public String send(@RequestBody String prompt) {

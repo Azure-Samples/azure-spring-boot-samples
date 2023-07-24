@@ -1,0 +1,7 @@
+spring:
+  data:
+    cosmos:
+      uri: ${ACCOUNT_HOST}
+      key: ${ACCOUNT_KEY}
+      databaseName: default
+      queryMetricsEnabled: true

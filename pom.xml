@@ -79,11 +79,11 @@
         <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-aks-sample</module>
         <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample</module>
         <module>cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample</module>
-        <module>cosmos/azure-spring-data-cosmos/cosmos-aad-sample</module>
-        <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account</module>
-        <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>
-        <module>cosmos/azure-spring-data-cosmos/cosmos-mvc-sample</module>
-        <module>cosmos/azure-spring-data-cosmos/cosmos-quickstart-samples</module>
+        <module>cosmos/azure-spring-data-cosmos/spring2-samples/cosmos-aad-sample</module>
+        <module>cosmos/azure-spring-data-cosmos/spring2-samples/cosmos-multi-database-multi-account</module>
+        <module>cosmos/azure-spring-data-cosmos/spring2-samples/cosmos-multi-database-single-account</module>
+        <module>cosmos/azure-spring-data-cosmos/spring2-samples/cosmos-mvc-sample</module>
+        <module>cosmos/azure-spring-data-cosmos/spring2-samples/cosmos-quickstart-samples</module>
         <module>eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration</module>
         <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
         <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>
@@ -95,7 +95,6 @@
         <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side</module>
         <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/property-source</module>
         <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/secret-client</module>
-        <module>openai/spring-cloud-azure-starter-openai/spring-cloud-azure-openai-sample</module>
         <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue</module>
         <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-topic</module>
         <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder</module>
@@ -157,6 +156,11 @@
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
         <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
         <module>cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample</module>
+        <module>cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-aad-sample</module>
+        <module>cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-multi-database-multi-account</module>
+        <module>cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-multi-database-single-account</module>
+        <module>cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-mvc-sample</module>
+        <module>cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-quickstart-samples</module>
         <module>eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration</module>
         <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
         <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>

@@ -1,0 +1,12 @@
+spring:
+  data:
+    cosmos:
+      uri: ${ACCOUNT_HOST}
+      key: ${ACCOUNT_KEY}
+      secondaryKey: ${SECONDARY_ACCOUNT_KEY}
+      databaseName: testdb
+      # Set to true to populate query metrics -
+      # NOTE: this will NOT give request information about point reads (only queries)
+      # See https://aka.ms/PointReadsInSpring for more information on the difference between point reads and queries.
+      queryMetricsEnabled: false
+

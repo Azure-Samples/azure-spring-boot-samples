@@ -1,22 +1,22 @@
 azure:
   cosmos:
     primary:
-      uri: https://cosmos-azure-data-cosmos-bdpir.documents.azure.com:443/
-      key: s2tQcctpSHP08uwLcd6VeMXJo8T5JYh0m24YeQxsvoJVi1GsnXQ7Ktr5lDJD7GghVG4fS0R3rx5BACDbeAskRQ==
-      secondary-key: m7c8NcE5KglzNebXkoLVEjvONlY91YFkCzs3t0B8VYxpGiR21WbkDGiLMCSiTyoVnzaCm9XU1z85ACDbmnEpVg==
-      database: cosmos-database
+      uri: ${AZURE_COSMOS_URI_1}
+      key: ${AZURE_COSMOS_KEY_1}
+      secondary-key: ${AZURE_COSMOS_SECONDARY_KEY_1}
+      database: ${AZURE_COSMOS_DATABASE_1}
       populate-query-metrics: if-populate-query-metrics
     secondary:
-      uri: https://cosmos-azure-data-cosmos-erem.documents.azure.com:443/
-      key: 3d2crICHKNtAYV6FtMlavy82JkzLXcbx8V9nLhkw4qvRcP6Q6dtChO0k5veeKH2xcxQD5zp3QfphACDbZQf6VQ==
-      secondary-key: SgBQpPUiTrKvdohq3C4LBJi6fF1q6aNXpNJkpiLyDiCcSCf4Mdwr3Gjh04BHSbuWDtdA5xLPBozyACDbbJ5uUg==
-      database: cosmos-database
+      uri: ${AZURE_COSMOS_URI_2}
+      key: ${AZURE_COSMOS_KEY_2}
+      secondary-key: ${AZURE_COSMOS_SECONDARY_KEY_2}
+      database: ${AZURE_COSMOS_DATABASE_2}
       populate-query-metrics: if-populate-query-metrics
 spring:
   datasource:
-    username: mysql-admin-bd@mysql-azure-data-cosmos-bdpir
-    password: d7Y1cgtKZ1GNyBtR
-    url: jdbc:mysql://mysql-azure-data-cosmos-bdpir.mysql.database.azure.com:3306/db_example
+    username: ${AZURE_MYSQL_USERNAME}@${AZURE_MYSQL_HOST}
+    password: ${AZURE_MYSQL_PASSWORD}
+    url: jdbc:mysql://${AZURE_MYSQL_HOST}.mysql.database.azure.com:3306/db_example
   jpa:
     hibernate:
       ddl-auto: update

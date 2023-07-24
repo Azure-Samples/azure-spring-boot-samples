@@ -4,9 +4,9 @@ server:
 azure:
   cosmos:
     bookstore:
-      uri: https://javasdktesting.documents.azure.com:443/
-      key: 5aPxEKDNkC3efc24X1GX9xt8IRpnAXI5Iac28iyTHliDopkw6vLDUZ8dIpBoOXiN4wgBNgmTLRAeACDbV8HNkQ==
-      secondaryKey: 5aPxEKDNkC3efc24X1GX9xt8IRpnAXI5Iac28iyTHliDopkw6vLDUZ8dIpBoOXiN4wgBNgmTLRAeACDbV8HNkQ==
+      uri:
+      key:
+      secondaryKey:
       storeDatabase: store
       securityDatabase: security
       populateQueryMetrics: if-populate-query-metrics

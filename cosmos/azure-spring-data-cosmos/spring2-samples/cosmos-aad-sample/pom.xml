@@ -15,11 +15,6 @@
   <artifactId>cosmos-spring-aad-sample</artifactId>
   <version>1.0.0</version>
 
-  <properties>
-    <spring.boot.version>2.7.1</spring.boot.version>
-    <azure.spring.data.cosmos.version>3.29.1</azure.spring.data.cosmos.version>
-  </properties>
-
   <dependencies>
     <dependency>
       <groupId>com.azure</groupId>

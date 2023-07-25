@@ -14,6 +14,7 @@ description: This sample demonstrate basic Spring Data code for Java SQL API to 
 
 ## Features
 
+* This sample only work with Spring Boot 3
 This sample demonstrate basic Spring Data code for Java SQL API to connect to Azure Cosmos DB using built-in role-based access control (RBAC), and authenticating using Azure AD. See instructions below on setting up the RBAC/Azure AD requirements to access your Cosmos DB account and run the app successfully.
 
 ## Getting Started

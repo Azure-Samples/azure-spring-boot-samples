@@ -10,6 +10,7 @@ description: This sample demonstrates how to use Azure Cosmos DB in Spring Boot 
 
 # Using Azure Cosmos DB By Spring Data in Spring Boot Application
 
+* This sample only work with Spring Boot 2
 Azure [Spring Data](https://spring.io/projects/spring-data) [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/introduction) Quickstart sample project.
 
  

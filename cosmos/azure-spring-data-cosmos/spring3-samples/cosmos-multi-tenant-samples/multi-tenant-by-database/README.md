@@ -2,6 +2,7 @@
 
 [Spring Data Cosmos](https://aka.ms/SpringDataCosmos) sample for a multi-tenanted app where each tenant has its own [Azure Cosmos DB](https://learn.microsoft.com/azure/cosmos-db/introduction) [database](https://learn.microsoft.com/azure/cosmos-db/resource-model#azure-cosmos-db-databases). 
 
+* This sample only work with Spring Boot 3
 This sample application fetches the value of the tenant from request header (TenantId). In a real-world application, it is up to you how to identify this while keeping your application secure. For example, you may want to fetch the identifier from a cookie, or other header name. The approach of assigning a database (or container) to each tenant may be useful if it is necessary to strictly isolate performance for each tenant. However, you should consider the trade-offs in taking this approach. Review our article on [Multitenancy and Azure Cosmos DB](https://learn.microsoft.com/azure/architecture/guide/multitenant/service/cosmos-db) for more guidance.
 
 **Note**: this is a contrived sample in terms of the data model, and does not reflect any recommendations for how to model any *application* in particular. It is intended purely to illustrate how to maintain a database-per-tenant isolation model using Spring Data for Azure Cosmos DB, where databases for each tenant are created/referenced dynamically (on-the-fly) rather than being hardcoded at project startup.

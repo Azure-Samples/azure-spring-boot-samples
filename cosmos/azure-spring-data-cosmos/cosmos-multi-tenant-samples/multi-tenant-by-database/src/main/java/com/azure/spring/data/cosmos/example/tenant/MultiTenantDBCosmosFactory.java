@@ -49,7 +49,6 @@ public class MultiTenantDBCosmosFactory extends CosmosFactory {
             return tenantId;
         }
         else {
-            this.client.createDatabaseIfNotExists(env.getProperty("spring.data.cosmos.databaseName"), ThroughputProperties.createAutoscaledThroughput(4000));
             return this.tenantId;
         }
     }

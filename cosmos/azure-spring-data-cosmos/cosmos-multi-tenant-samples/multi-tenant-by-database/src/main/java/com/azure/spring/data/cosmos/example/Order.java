@@ -10,9 +10,9 @@ import org.springframework.data.annotation.Id;
 @Container(autoCreateContainer = true)
 public class Order {
     @Id
+    @PartitionKey
     private String id;
     private String orderDetail;
-    @PartitionKey
     private String lastName;
     public Order() {
     }

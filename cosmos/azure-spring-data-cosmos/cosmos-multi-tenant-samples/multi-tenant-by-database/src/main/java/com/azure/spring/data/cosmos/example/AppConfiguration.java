@@ -65,9 +65,6 @@ public class AppConfiguration extends AbstractCosmosConfiguration {
     protected String getDatabaseName() {
         String databaseName;
         databaseName =  properties.getDatabaseName();
-        client = applicationContext.getBean(CosmosAsyncClient.class);
-        client.createDatabaseIfNotExists(databaseName, ThroughputProperties.createAutoscaledThroughput(4000));
-        LOGGER.info("config databaseName result: "+databaseName);
         return databaseName;
     }
 

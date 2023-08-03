@@ -79,11 +79,11 @@
         <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-aks-sample</module>
         <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample</module>
         <module>cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample</module>
-        <module>cosmos/azure-spring-data-cosmos/cosmos-aad-sample</module>
-        <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account</module>
-        <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>
-        <module>cosmos/azure-spring-data-cosmos/cosmos-mvc-sample</module>
-        <module>cosmos/azure-spring-data-cosmos/cosmos-quickstart-samples</module>
+        <module>cosmos/azure-spring-data-cosmos/spring2-samples/cosmos-aad-sample</module>
+        <module>cosmos/azure-spring-data-cosmos/spring2-samples/cosmos-multi-database-multi-account</module>
+        <module>cosmos/azure-spring-data-cosmos/spring2-samples/cosmos-multi-database-single-account</module>
+        <module>cosmos/azure-spring-data-cosmos/spring2-samples/cosmos-mvc-sample</module>
+        <module>cosmos/azure-spring-data-cosmos/spring2-samples/cosmos-quickstart-samples</module>
         <module>eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration</module>
         <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
         <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>
@@ -157,6 +157,11 @@
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
         <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
         <module>cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample</module>
+        <module>cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-aad-sample</module>
+        <module>cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-multi-database-multi-account</module>
+        <module>cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-multi-database-single-account</module>
+        <module>cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-mvc-sample</module>
+        <module>cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-quickstart-samples</module>
         <module>eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration</module>
         <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
         <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>
@@ -186,6 +191,8 @@
         <version.spring.cloud>2022.0.2</version.spring.cloud>
         <version.spring.cloud.azure>5.4.0</version.spring.cloud.azure>
         <version.thymeleaf-extras-springsecurity6>3.1.1.RELEASE</version.thymeleaf-extras-springsecurity6>
+        <version.jakarta-persistence>3.1.0</version.jakarta-persistence>
+
         <version.maven-surefire-plugin>2.22.0</version.maven-surefire-plugin>
         <mockito.version>4.8.1</mockito.version>
       </properties>
@@ -195,6 +202,11 @@
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity6</artifactId>
             <version>${version.thymeleaf-extras-springsecurity6}</version>
+          </dependency>
+          <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>${version.jakarta-persistence}</version>
           </dependency>
         </dependencies>
       </dependencyManagement>

@@ -20,7 +20,7 @@ You will build an application with Azure OpenAI to generate completions.
 - [An Azure subscription](https://azure.microsoft.com/free/)
 - [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
 - Maven
-- An Azure OpenAI instance. If you don't have one, see [Create a resource and deploy a model using Azure OpenAI](/azure/cognitive-services/openai/how-to/create-resource).
+- An Azure OpenAI instance. If you don't have one, see [Create a resource and deploy a model using Azure OpenAI](https://learn.microsoft.com/azure/cognitive-services/openai/how-to/create-resource).
 - You can also import the code straight into your IDE:
     - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 

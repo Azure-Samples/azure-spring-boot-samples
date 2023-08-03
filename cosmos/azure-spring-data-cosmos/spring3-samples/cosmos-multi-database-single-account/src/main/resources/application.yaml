@@ -1,0 +1,7 @@
+azure:
+  cosmos:
+    uri: ${AZURE_COSMOS_URI}
+    key: ${AZURE_COSMOS_KEY}
+    secondary-key: ${AZURE_COSMOS_SECONDARY_KEY}
+    database: ${AZURE_COSMOS_DATABASE}
+    populate-query-metrics: if-populate-query-metrics

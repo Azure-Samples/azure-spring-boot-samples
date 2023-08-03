@@ -1,0 +1,22 @@
+azure:
+  cosmos:
+    primary:
+      uri: ${AZURE_COSMOS_URI_1}
+      key: ${AZURE_COSMOS_KEY_1}
+      secondary-key: ${AZURE_COSMOS_SECONDARY_KEY_1}
+      database: ${AZURE_COSMOS_DATABASE_1}
+      populate-query-metrics: if-populate-query-metrics
+    secondary:
+      uri: ${AZURE_COSMOS_URI_2}
+      key: ${AZURE_COSMOS_KEY_2}
+      secondary-key: ${AZURE_COSMOS_SECONDARY_KEY_2}
+      database: ${AZURE_COSMOS_DATABASE_2}
+      populate-query-metrics: if-populate-query-metrics
+spring:
+  datasource:
+    username: ${AZURE_MYSQL_USERNAME}@${AZURE_MYSQL_HOST}
+    password: ${AZURE_MYSQL_PASSWORD}
+    url: jdbc:mysql://${AZURE_MYSQL_HOST}.mysql.database.azure.com:3306/db_example
+  jpa:
+    hibernate:
+      ddl-auto: update

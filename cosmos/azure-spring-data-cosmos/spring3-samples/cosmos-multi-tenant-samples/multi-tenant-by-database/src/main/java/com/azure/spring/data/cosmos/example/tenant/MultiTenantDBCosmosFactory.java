@@ -41,15 +41,14 @@ public class MultiTenantDBCosmosFactory extends CosmosFactory {
     public String getDatabaseName() {
         String tenantId = TenantStorage.getCurrentTenant();
         if (tenantId !=null && !tenantId.equals(env.getProperty("spring.data.cosmos.databaseName"))){
-            //the getTenant method will first check if the tenant exists in a thread-safe list of tenant ids
-            //if it exists, it returns the id, and no further action taken.
-            //If not, it will create the tenant database resources on the fly, using the default database as a model
             this.tenantId = tenantId;
+            //first check if the tenant exists in a thread-safe list of tenant ids
+            //if it exists, no further action taken.
+            //If not, create the tenant database resources on the fly, using the default database as a model
             tenantStorage.createTenantSpecificDatabaseIfNotExists(tenantId);
             return tenantId;
         }
         else {
-            this.client.createDatabaseIfNotExists(env.getProperty("spring.data.cosmos.databaseName"), ThroughputProperties.createAutoscaledThroughput(4000));
             return this.tenantId;
         }
     }

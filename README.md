@@ -39,8 +39,7 @@
 
 | Sample Project                                                                                                               | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
 |------------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
-| [cosmos-multi-database-multi-account](cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account)                   | ✅                              | ❌                              | 
-| [cosmos-multi-database-single-account](cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account)                 | ✅                              | ❌                              | 
+| [azure-spring-data-cosmos-sample](cosmos/azure-spring-data-cosmos)                                                           | ✅                              | ✅                              |
 | [spring-cloud-azure-data-cosmos-sample](cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample) | ✅                              | ✅                              | 
 | [spring-cloud-azure-cosmos-sample](cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample)                | ✅                              | ✅                              |
 

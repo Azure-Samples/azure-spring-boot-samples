@@ -29,7 +29,7 @@ public class OrderController {
     }
 
     @PostMapping
-    public @ResponseBody String createUser(@RequestBody Order order) {
+    public @ResponseBody String createOrder(@RequestBody Order order) {
         UUID uuid = UUID.randomUUID();
         order.setId(String.valueOf(uuid));
         orderRepository.save(order);

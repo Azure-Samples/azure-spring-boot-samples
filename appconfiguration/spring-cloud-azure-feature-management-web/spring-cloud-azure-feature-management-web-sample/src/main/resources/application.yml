@@ -9,7 +9,7 @@ spring:
           delay: 5s
 config:
   message: Hi
-feature-management::
+feature-management:
   beta: true
   dark-theme:
     enabled-for:

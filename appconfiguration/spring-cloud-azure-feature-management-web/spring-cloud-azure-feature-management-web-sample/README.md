@@ -33,7 +33,7 @@ mvn spring-boot:run
 
 1. Create a Configuration Store if not exist.
 
-2. Import the data file src/main/resources/data/sample-data.json into the Configuration Store created above. Under `For language` select `Other`. Under `File type` select `Yaml`.
+2. Import the data file src/main/resources/data/sample-data.yml into the Configuration Store created above. Under `For language` select `Other`. Under `File type` select `Yaml`.
 
 #### Configure the bootstrap.yaml
 

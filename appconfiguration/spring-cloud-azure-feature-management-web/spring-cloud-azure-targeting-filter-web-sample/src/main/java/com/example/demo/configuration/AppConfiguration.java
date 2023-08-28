@@ -4,13 +4,13 @@ import com.azure.spring.cloud.feature.management.targeting.TargetingEvaluationOp
 import com.example.demo.impl.TargetingContextImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Scope;
+import org.springframework.web.context.annotation.RequestScope;
 
 @Configuration
 public class AppConfiguration {
 
-    @Bean(name = "targetingFilter")
-    @Scope("request")
+    @Bean
+    @RequestScope
     public TargetingFilter targetingFilter(TargetingContextImpl context) {
         return new TargetingFilter(context, new TargetingEvaluationOptions().setIgnoreCase(true));
     }

@@ -78,7 +78,7 @@ curl http://localhost:8080/publish
 2. Verify in your app’s logs that similar messages were posted:
 
 ```text
-New message received: '"FirstName: John, LastName: James"'
+New event received: '"FirstName: John, LastName: James"'
 ```
 
 ## Deploy to Azure Spring Apps

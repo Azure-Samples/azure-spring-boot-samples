@@ -24,9 +24,9 @@ public class EventGridSampleApplication {
     @Bean
     public Consumer<Message<String>> consume() {
         return message -> {
-            List<EventGridEvent> eventDatas = EventGridEvent.fromString(message.getPayload());
-            eventDatas.forEach(eventData -> {
-                LOGGER.info("New message received: '{}'", eventData.getData());
+            List<EventGridEvent> eventData = EventGridEvent.fromString(message.getPayload());
+            eventData.forEach(event -> {
+                LOGGER.info("New event received: '{}'", event.getData());
             });
         };
     }

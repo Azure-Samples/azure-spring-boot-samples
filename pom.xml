@@ -84,6 +84,7 @@
         <module>cosmos/azure-spring-data-cosmos/spring2-samples/cosmos-multi-database-single-account</module>
         <module>cosmos/azure-spring-data-cosmos/spring2-samples/cosmos-mvc-sample</module>
         <module>cosmos/azure-spring-data-cosmos/spring2-samples/cosmos-quickstart-samples</module>
+        <module>eventgrid/spring-cloud-azure-starter-eventgrid/spring-cloud-azure-sample-eventgrid</module>
         <module>eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration</module>
         <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
         <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>
@@ -162,6 +163,7 @@
         <module>cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-multi-database-single-account</module>
         <module>cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-mvc-sample</module>
         <module>cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-quickstart-samples</module>
+        <module>eventgrid/spring-cloud-azure-starter-eventgrid/spring-cloud-azure-sample-eventgrid</module>
         <module>eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration</module>
         <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
         <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>

@@ -16,7 +16,7 @@ import java.util.function.Consumer;
 @SpringBootApplication
 public class EventGridSampleApplication {
 
-    public static final Logger LOGGER = LoggerFactory.getLogger(EventGridSampleApplication.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EventGridSampleApplication.class);
     public static void main(String[] args) {
         SpringApplication.run(EventGridSampleApplication.class, args);
     }

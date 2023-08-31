@@ -4,16 +4,16 @@ languages:
 - java
 products:
 - event-grid
-name: Use EventGrid to send EventGridEvent and use Service Bus Queue as Event Handlers to receive in a Spring Boot application.
-description: This sample demonstrates how to use EventGrid to send EventGridEvent and use Service Bus Queue as Event Handlers to receive in a Spring Boot application.
+name: Use EventGrid to send EventGridEvent and use Service Bus Queue as Event Handler to receive in a Spring Boot application.
+description: This sample demonstrates how to use EventGrid to send EventGridEvent and use Service Bus Queue as Event Handler to receive in a Spring Boot application.
 ---
 
-# Use EventGrid to send EventGridEvent and use Service Bus Queue as Event Handlers to receive in a Spring Boot application
+# Use EventGrid to send EventGridEvent and use Service Bus Queue as Event Handler to receive in a Spring Boot application
 
-This sample demonstrates how to use EventGrid to send EventGridEvent to a topic and use Service Bus Queue as Event Handlers to receive.
+This sample demonstrates how to use EventGrid to send EventGridEvent to a topic and use Service Bus Queue as Event Handler to receive.
 
 ## What You Will Build
-You will build an application with EventGrid to send EventGridEvent to a topic and use Service Bus Queue as Event Handlers to receive.
+You will build an application with EventGrid to send EventGridEvent to a topic and use Service Bus Queue as Event Handler to receive.
 
 ## What You Need
 

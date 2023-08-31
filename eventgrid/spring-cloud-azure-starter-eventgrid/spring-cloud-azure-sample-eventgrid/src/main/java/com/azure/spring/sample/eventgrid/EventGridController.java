@@ -24,6 +24,6 @@ public class EventGridController {
 
         client.sendEvent(event);
 
-        return "Publish success.";
+        return "Publishing succeeds.";
     }
 }

@@ -25,6 +25,15 @@ You will build an application with EventGrid to send EventGridEvent to a topic a
 - You can also import the code straight into your IDE:
     - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 
+## Subscribe to custom topic
+Create an Event Subscriptions to tell Event Grid to send events to Service Bus Queue.
+
+1. In the Azure portal, navigate to your Event Grid Topic instance.
+1. Select '+ Event Subscriptions' on the toolbar.
+1. On the 'Create Event Subscription page', enter a 'name' for the event subscription.
+1. Select 'Service Bus Queue' as the 'Endpoint Type'.
+1. Choose 'Select an endpoint' and select the Service Bus Queue instance you created earlier.
+
 ## Configure the sample
 
 ```yaml

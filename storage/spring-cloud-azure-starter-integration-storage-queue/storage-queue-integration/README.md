@@ -4,7 +4,7 @@ languages:
 - java
 products:
 - azure-queue-storage
-name: SEnding and Receiving Message by Azure Storage Queue and Spring Integration in Spring Boot Application
+name: Sending and Receiving Message by Azure Storage Queue and Spring Integration in Spring Boot Application
 description: This sample demonstrates how to send and receive message by Azure Storage Queue and Spring Integration in Spring Boot application.
 ---
 

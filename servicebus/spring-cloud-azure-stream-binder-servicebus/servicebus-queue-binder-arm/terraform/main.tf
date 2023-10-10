@@ -21,7 +21,7 @@ terraform {
 
 data "azuread_client_config" "current" {}
 
-# Configure the Azure Active Directory Provider
+# Configure the Microsoft Entra ID Provider
 provider "azuread" {
 }
 

@@ -27,7 +27,7 @@ Get samples applications from in GitHub: [login].
 # 3. Create resources in Azure
 
 ## 3.1. Create a tenant
-Read [document about creating an Azure AD tenant], create a new tenant. Get the tenant-id: **${TENANT_ID}**.  
+Read [document about creating a Microsoft Entra tenant], create a new tenant. Get the tenant-id: **${TENANT_ID}**.  
 > After creating a new tenant, You can refer to [README] if you want to start the sample without the knowledge of step by step.  
 
 ## 3.2. Add a new user
@@ -63,12 +63,12 @@ Read [document about adding a redirect URI], add redirect URI: **http://localhos
 
 
 
-[Azure Active Directory]: https://azure.microsoft.com/services/active-directory/
+[Microsoft Entra ID]: https://microsoft.com/security/business/identity-access/microsoft-entra-id
 [OAuth2]: https://oauth.net/2/
 [Spring Security]: https://spring.io/projects/spring-security
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [access token]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
-[document about creating an Azure AD tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant
+[document about creating a Microsoft Entra tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant
 [document about registering an application]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
 [document about adding users]: https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory
 [document about adding a client secret]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-client-secret

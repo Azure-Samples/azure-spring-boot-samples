@@ -43,13 +43,13 @@ public class SampleAppConfiguration extends AbstractCosmosConfiguration {
     public CosmosClientBuilder cosmosClientBuilder() {
         DirectConnectionConfig directConnectionConfig = DirectConnectionConfig.getDefaultConfig();
         TokenCredential servicePrincipal = new ClientSecretCredentialBuilder()
-                .authorityHost("https://login.microsoftonline.com") //this line is not required (is redundant) if connecting to AAD
+                .authorityHost("https://login.microsoftonline.com") //this line is not required (is redundant) if connecting to Microsoft Entra ID
                 .tenantId(properties.getTenantId())
                 .clientId(properties.getClientId())
                 .clientSecret(properties.getClientSecret())
                 .build();
 
-        //if this check fails, review error in logs and AAD setup as well as connectivity to AAD.
+        //if this check fails, review error in logs and Microsoft Entra setup as well as connectivity to Microsoft Entra ID.
         //If setup is correct and there are no errors, you can change spring.profiles.active=prod 
         //in application.yaml so that prod version is used which does not contain this check.
         checkAADSetup(servicePrincipal);
@@ -73,7 +73,7 @@ public class SampleAppConfiguration extends AbstractCosmosConfiguration {
         TokenRequestContext context = new TokenRequestContext();
         context.addScopes(properties.getDefaultScope());
         AccessToken token = servicePrincipal.getToken(context).block();
-        logger.info("Cosmos DB token successfully retrieved using AAD: " + token.getToken());
+        logger.info("Cosmos DB token successfully retrieved using Microsoft Entra ID: " + token.getToken());
     }
 
     @Override

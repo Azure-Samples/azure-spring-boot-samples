@@ -41,7 +41,7 @@ public class SampleAppConfigurationProd extends AbstractCosmosConfiguration {
     public CosmosClientBuilder cosmosClientBuilder() {
         DirectConnectionConfig directConnectionConfig = DirectConnectionConfig.getDefaultConfig();
         TokenCredential servicePrincipal = new ClientSecretCredentialBuilder()
-                .authorityHost("https://login.microsoftonline.com") //this line is not required (is redundant) if connecting to AAD
+                .authorityHost("https://login.microsoftonline.com") //this line is not required (is redundant) if connecting to Microsoft Entra ID
                 .tenantId(properties.getTenantId())
                 .clientId(properties.getClientId())
                 .clientSecret(properties.getClientSecret())
@@ -68,7 +68,7 @@ public class SampleAppConfigurationProd extends AbstractCosmosConfiguration {
         TokenRequestContext context = new TokenRequestContext();
         context.addScopes(properties.getDefaultScope());
         AccessToken token = servicePrincipal.getToken(context).block();
-        logger.info("Cosmos DB token successfully retrieved using AAD: " + token.getToken());
+        logger.info("Cosmos DB token successfully retrieved using Microsoft Entra ID: " + token.getToken());
     }
 
     @Override

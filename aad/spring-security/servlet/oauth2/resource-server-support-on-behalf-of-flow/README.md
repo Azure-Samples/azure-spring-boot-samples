@@ -4,11 +4,11 @@ languages:
 - java
 products:
 - azure-active-directory
-name: Developing a REST API that can require a new token to access another REST API protected by Azure Active Directory
-description: This sample demonstrates how to develop a REST API that can require a new token to access another REST API protected by Azure Active Directory.
+name: Developing a REST API that can require a new token to access another REST API protected by Microsoft Entra ID
+description: This sample demonstrates how to develop a REST API that can require a new token to access another REST API protected by Microsoft Entra ID.
 ---
 
-# Developing a REST API That Can Require a New Token to Access Another REST API Protected by Azure Active Directory
+# Developing a REST API That Can Require a New Token to Access Another REST API Protected by Microsoft Entra ID
 
 ## What You Need
 

@@ -4,11 +4,11 @@ languages:
 - java
 products:
 - azure-active-directory
-name: Developing a Spring Boot Web Application That Can Access Multiple Resource-Servers Protected by Azure Active Directory
-description: This sample demonstrates how to develop a Spring Boot web application that can access multiple resource-servers protected by Azure Active Directory.
+name: Developing a Spring Boot Web Application That Can Access Multiple Resource-Servers Protected by Microsoft Entra ID
+description: This sample demonstrates how to develop a Spring Boot web application that can access multiple resource-servers protected by Microsoft Entra ID.
 ---
 
-# Developing a Spring Boot Web Application That Can Access Multiple Resource-Servers Protected by Azure Active Directory
+# Developing a Spring Boot Web Application That Can Access Multiple Resource-Servers Protected by Microsoft Entra ID
 
 ## What You Need
 

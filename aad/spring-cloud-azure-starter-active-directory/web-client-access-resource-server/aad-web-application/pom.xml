@@ -15,7 +15,7 @@
   <packaging>jar</packaging>
 
   <name>Spring-Cloud-Azure-Starter-Active-Directory Sample: Web Application</name>
-  <description>Azure AD Spring Security 5 OAuth2 Integration Spring Boot Sample</description>
+  <description>Microsoft Entra ID Spring Security 5 OAuth2 Integration Spring Boot Sample</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
 
   <dependencies>

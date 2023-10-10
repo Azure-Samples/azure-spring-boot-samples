@@ -1,17 +1,17 @@
-# Authentication filter sample for Azure AD Spring Boot Starter
+# Authentication filter sample for Microsoft Entra ID Spring Boot Starter
 
 ## Key concepts
-This sample illustrates how to use `spring-cloud-azure-starter-active-directory` package to plugin JWT token filter into Spring Security filter chain. The filter injects `UserPrincipal` object that is associated with the thread of the current user request. User's AAD membership info, along with token claimsset, JWS object etc. are accessible from the object which can be used for role based authorization. Methods like `isMemberOf` is also supported.
+This sample illustrates how to use `spring-cloud-azure-starter-active-directory` package to plugin JWT token filter into Spring Security filter chain. The filter injects `UserPrincipal` object that is associated with the thread of the current user request. User's Microsoft Entra membership info, along with token claimsset, JWS object etc. are accessible from the object which can be used for role based authorization. Methods like `isMemberOf` is also supported.
 
 ## Getting started
-The sample is composed of two layers: Angular JS client and Spring Boot RESTful Web Service. You need to make some changes to get it working with your Azure AD tenant on both sides.
+The sample is composed of two layers: Angular JS client and Spring Boot RESTful Web Service. You need to make some changes to get it working with your Microsoft Entra tenant on both sides.
 
 To run this sample, you'll need:
-- An Azure Active Directory (Azure AD) tenant. For more information on how to get an Azure AD tenant, see [How to get an Azure AD tenant](https://docs.microsoft.com/azure/active-directory/fundamentals/active-directory-how-to-find-tenant).
-- A user account in your Azure AD tenant. This sample will not work with a Personal Microsoft account (formerly Windows Live account). Therefore, if you signed in to the [Azure portal](https://portal.azure.com) with a Microsoft account and have never created a user account in your directory before, you need to do that now.
+- a Microsoft Entra tenant. For more information on how to get a Microsoft Entra tenant, see [How to get a Microsoft Entra tenant](https://docs.microsoft.com/azure/active-directory/fundamentals/active-directory-how-to-find-tenant).
+- A user account in your Microsoft Entra tenant. This sample will not work with a Personal Microsoft account (formerly Windows Live account). Therefore, if you signed in to the [Azure portal](https://portal.azure.com) with a Microsoft account and have never created a user account in your directory before, you need to do that now.
 - A [client secret](https://docs.microsoft.com/azure/active-directory/develop/howto-create-service-principal-portal#create-a-new-application-secret) for the registered application.
-- Configure groups in your Azure AD tenant with your users in that groups, see [how to create groups](https://docs.microsoft.com/azure/active-directory/fundamentals/active-directory-groups-create-azure-portal).
-- The sample retrieves user's group membership using Azure AD graph API which requires the registered app to have `Directory.Read.All` "Access the directory as the signed-in user" under `Delegated Permissions`. You need AAD admin privilege to be able to grant the permission in API ACCESS -> Required permission.
+- Configure groups in your Microsoft Entra tenant with your users in that groups, see [how to create groups](https://docs.microsoft.com/azure/active-directory/fundamentals/active-directory-groups-create-azure-portal).
+- The sample retrieves user's group membership using Microsoft Entra graph API which requires the registered app to have `Directory.Read.All` "Access the directory as the signed-in user" under `Delegated Permissions`. You need Microsoft Entra ID admin privilege to be able to grant the permission in API ACCESS -> Required permission.
 
 
 
@@ -33,17 +33,17 @@ git clone https://github.com/Azure/azure-sdk-for-java.git
 or download and extract the repository .zip file, and navigate to `spring-cloud-azure-sample-active-directory-resource-server-by-filter` from the list of samples.
 
 ---
-### Step 2:  Register the sample with your Azure Active Directory tenant
+### Step 2:  Register the sample with your Microsoft Entra tenant
 
 To register it follow the steps below or follow the guide [here](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app).
 
-#### Choose the Azure AD tenant where you want to create your applications
+#### Choose the Microsoft Entra tenant where you want to create your applications
 
 As a first step you'll need to:
 
 1. Sign in to the [Azure portal](https://portal.azure.com) using either a work or school account.
-1. If your account is present in more than one Azure AD tenant, select `your account name` at the top right corner in the menu on top of the page, and switch your portal session to the desired Azure AD tenant.   
-1. In the left-hand navigation pane, select the **Azure Active Directory** service, and then select **App registrations**
+1. If your account is present in more than one Microsoft Entra tenant, select `your account name` at the top right corner in the menu on top of the page, and switch your portal session to the desired Microsoft Entra tenant.   
+1. In the left-hand navigation pane, select the **Microsoft Entra ID** service, and then select **App registrations**
 
 #### Register the client app
 
@@ -75,12 +75,12 @@ As a first step you'll need to:
    Therefore no consent can be presented via a UI and accepted to use the service app. 
    Click the **Grant/revoke admin consent for {tenant}** button, and then select **Yes** when you are asked if you want to grant consent for the
    requested permissions for all account in the tenant. ![grant admin consent](docs/grant-admin-consent.png "grant admin consent")
-   You need to be an Azure AD tenant admin to do this.
+   You need to be a Microsoft Entra tenant admin to do this.
 
-1. Then back to **Azure Active Directory**, in the left-hand navigation pane, select **Groups**, and then set `user` as member of `group1`.
+1. Then back to **Microsoft Entra ID**, in the left-hand navigation pane, select **Groups**, and then set `user` as member of `group1`.
 
 ---
-### Step 3:  Configure the sample to use your Azure AD tenant
+### Step 3:  Configure the sample to use your Microsoft Entra tenant
 
 In the steps below, "client-id" is the same as "Application ID" or "AppId".
 
@@ -109,9 +109,9 @@ tenant-id: xxxxxx-your-client-id-xxxxxx
 client-id: xxxxxx-your-client-secret-xxxxxx
 ```
 
-2. List all the AAD groups `ActiveDirectoryGroups` that you want to have a Spring Security role object mapping to it. The role objects can then be used to manage access to resources that is behind Spring Security. e.g.
+2. List all the Microsoft Entra groups `ActiveDirectoryGroups` that you want to have a Spring Security role object mapping to it. The role objects can then be used to manage access to resources that is behind Spring Security. e.g.
 ```properties
-# groups that you created in your Azure AD tenant
+# groups that you created in your Microsoft Entra tenant
 allowed-group-names: group1,group2
 ```
 

@@ -15,7 +15,7 @@ output "resource_group_name" {
 
 output "aad_user_name" {
   value = "spring"
-  description = "The Azure Active Directory user name."
+  description = "The Microsoft Entra ID user name."
 }
 
 output "user_assigned_identity" {

@@ -98,7 +98,7 @@
       <artifactId>jakarta.persistence-api</artifactId>
     </dependency>
 
-    <!--   Dependencies for AAD # For sample only
+    <!--   Dependencies for Microsoft Entra ID # For sample only
      <dependency>
          <groupId>com.azure.spring</groupId>
          <artifactId>azure-spring-boot-starter-active-directory</artifactId>

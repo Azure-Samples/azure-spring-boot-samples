@@ -6,7 +6,7 @@
 
 ## All Samples in This Repo
 
-### Azure Active Directory
+### Microsoft Entra ID
 
 | Sample Project                                                                                                                     | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
 |------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|

@@ -219,12 +219,12 @@ You can then access petclinic here: http://localhost:8080/
 The application could be reached at http://localhost:8080
 ![](./media/petclinic.jpg)
 
-## Enabling Spring boot starter for Azure Active directory (Optional)
+## Enabling Spring boot starter for Microsoft Entra ID (Optional)
 
 To secure the Java applications in this sample please follow
-the [Spring Security Azure Active Directory tutorial](https://docs.microsoft.com/en-us/azure/developer/java/spring-framework/configure-spring-boot-starter-java-app-with-azure-active-directory)
+the [Spring Security Microsoft Entra ID tutorial](https://docs.microsoft.com/en-us/azure/developer/java/spring-framework/configure-spring-boot-starter-java-app-with-microsoft-entra-id)
 . After setting your Active directory you can enable security on Customers service by uncommenting
-the relevant AAD sample code.
+the relevant Microsoft Entra ID sample code.
 
 ## Next Steps
 

@@ -21,7 +21,7 @@
 
 # 1. About
 
-In [Azure Active Directory]'s [access token], the **aud** claim is a single string, not a list of strings. It means one [access token] can only been accepted for one resource server. And one **OAuth2AuthorizedClient** can only hold one access token. So, if one application want to access multiple resource servers, it must configure multiple **ClientRegistration**s.
+In [Microsoft Entra]'s [access token], the **aud** claim is a single string, not a list of strings. It means one [access token] can only been accepted for one resource server. And one **OAuth2AuthorizedClient** can only hold one access token. So, if one application want to access multiple resource servers, it must configure multiple **ClientRegistration**s.
 
 This section shows this scenario:
 1. One client application access multiple resource servers.
@@ -33,7 +33,7 @@ Get samples applications from in GitHub: [client-access-multiple-resource-server
 # 3. Create resources in Azure
 
 ## 3.1. Create a tenant
-Read [document about creating an Azure AD tenant], create a new tenant. Get the tenant-id: **${TENANT_ID}**.
+Read [document about creating a Microsoft Entra tenant], create a new tenant. Get the tenant-id: **${TENANT_ID}**.
 
 > After creating a new tenant, You can refer to [README.md](../../../servlet/oauth2/client-access-multiple-resource-server/README.md) if you want to start the sample without the knowledge of step by step.
 
@@ -86,13 +86,13 @@ Read [document about Application manifest], set `accessTokenAcceptedVersion` to 
 
 
 
-[Azure Active Directory]: https://azure.microsoft.com/services/active-directory/
+[Microsoft Entra ID]: https://microsoft.com/security/business/identity-access/microsoft-entra-id
 [OAuth2]: https://oauth.net/2/
 [Spring Security]: https://spring.io/projects/spring-security
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow
 [access token]: https://docs.microsoft.com/azure/active-directory/develop/access-tokens
 [client-access-multiple-resource-server]: ../../../servlet/oauth2/client-access-multiple-resource-server
-[document about creating an Azure AD tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant
+[document about creating a Microsoft Entra tenant]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant
 [document about registering an application]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
 [document about adding users]: https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory
 [document about adding a client secret]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app#add-a-client-secret

@@ -41,7 +41,7 @@ jdk 11.0.12 or above
     - java.security
     - run-with-command-line-server-side-1.0.0.jar
     - azure-security-keyvault-jca-2.7.0.jar
-1. Create the key vault and certificates, please refer to [create key vault and certificates][create_key_vault_and_certificates]. Create service principal and add a secret, please refer to [register app with AAD][register_app_with_AAD].
+1. Create the key vault and certificates, please refer to [create key vault and certificates][create_key_vault_and_certificates]. Create service principal and add a secret, please refer to [register app with Microsoft Entra ID][register_app_with_microsoft_entra_id].
 1. Create a new **Access policy** for the service principal created in the previous step, including the *Get* and *List* permissions of the **Secret permissions**, and the *Get* and *List* permissions of the **Certificate permissions**. 
 1. Replace properties `<yourAzureKeyVaultUri>`, `<yourTenantID>`, `<youClientID>`, `<yourSecretValue>`, `<yourCertificateName>` with your created resources in the following command, then open terminal and enter the directory sample_server, run the changed command:
    ```
@@ -87,5 +87,5 @@ Now that you have the Spring Boot application running locally, it's time to move
 <!-- LINKS -->
 [azure-security-keyvault-jca]: https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca
 [create_key_vault_and_certificates]: https://docs.microsoft.com/azure/key-vault/certificates/quick-create-portal
-[register_app_with_AAD]: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app
+[register_app_with_microsoft_entra_id]: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app
 [client sample]: ../run-with-command-line-client-side/README.md

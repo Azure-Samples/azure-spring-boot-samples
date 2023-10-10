@@ -15,7 +15,7 @@
   <version>1.0.0</version>
   <packaging>pom</packaging>
 
-  <name>Azure Active Directory Sample: On-Behalf-Of</name>
+  <name>Microsoft Entra ID Sample: On-Behalf-Of</name>
 
   <properties>
     <maven.compiler.source>11</maven.compiler.source>

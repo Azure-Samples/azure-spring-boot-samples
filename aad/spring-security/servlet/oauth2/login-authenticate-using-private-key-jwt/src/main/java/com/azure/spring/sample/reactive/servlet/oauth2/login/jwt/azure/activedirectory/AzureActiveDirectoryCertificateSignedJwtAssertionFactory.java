@@ -30,7 +30,7 @@ import java.util.Date;
 import java.util.UUID;
 
 /**
- * A factory used to create Azure AD JWT assertion signed with a certificate.
+ * A factory used to create Microsoft Entra JWT assertion signed with a certificate.
  *
  * @author Rujun Chen
  * @see <a href="https://docs.microsoft.com/azure/active-directory/develop/active-directory-certificate-credentials">
@@ -86,7 +86,7 @@ public class AzureActiveDirectoryCertificateSignedJwtAssertionFactory {
     }
 
     private JWSSigner createJWSSigner(PublicKey publicKey, PrivateKey privateKey) throws JOSEException {
-        // Azure AD currently supports only RSA.
+        // Microsoft Entra ID currently supports only RSA.
         // Refs: https://docs.microsoft.com/en-us/azure/active-directory/develop/howto-create-self-signed-certificate
         JWK jwk = new RSAKey.Builder((RSAPublicKey) publicKey)
             .privateKey(privateKey)

@@ -1,4 +1,4 @@
-# Azure OAuth 2.0 Sample for Azure AD Spring Boot Starter Resource Server Obo
+# Azure OAuth 2.0 Sample for Microsoft Entra ID Spring Boot Starter Resource Server Obo
 
 ## Key concepts
 [Resource server access other resources usage] is an extension scenario of the *aad-resource-server* sample. Similarly, this sample illustrates how to protect a Java web API by restricting access to its resources to authorized accounts, and the restricted resource will access other restricted resource, such as Graph API and Custom API.

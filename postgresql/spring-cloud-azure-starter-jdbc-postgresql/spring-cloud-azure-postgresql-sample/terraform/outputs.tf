@@ -15,5 +15,5 @@ output "resource_group_name" {
 
 output "aad_admin_user_name" {
   value = azurerm_postgresql_flexible_server_active_directory_administrator.current_aad_user_admin.principal_name
-  description = "The Azure AD admin name."
+  description = "The Microsoft Entra ID admin name."
 }

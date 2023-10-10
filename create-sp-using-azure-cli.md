@@ -50,7 +50,7 @@ First, use the following steps to authenticate using the Azure CLI.
 
 ### Create a service principal for use in by your app
 
-Azure AD *service principals* provide access to Azure resources within your subscription. You can think of a service principal as a user identity for a service.  "Service" is any application, service, or platform, including the sample app built in this tutorial, that needs to access Azure resources. You can configure a service principal with access rights scoped only to those resources you specify. Then, configure your application or service to use the service principal's credentials to access those resources.
+Microsoft Entra ID *service principals* provide access to Azure resources within your subscription. You can think of a service principal as a user identity for a service.  "Service" is any application, service, or platform, including the sample app built in this tutorial, that needs to access Azure resources. You can configure a service principal with access rights scoped only to those resources you specify. Then, configure your application or service to use the service principal's credentials to access those resources.
 
 Create a service principal with this command.
 

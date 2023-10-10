@@ -29,7 +29,7 @@ Get samples applications from in GitHub: [login-authenticate-using-private-key-j
 # 3. Create resources in Azure
 
 ## 3.1. Create a tenant
-Read [document about creating an Azure AD tenant](https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant), create a new tenant. Get the tenant-id: **${tenant-id}**.
+Read [document about creating a Microsoft Entra tenant](https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant), create a new tenant. Get the tenant-id: **${tenant-id}**.
 
 ## 3.2. Add a new user
 Read [document about adding users](https://docs.microsoft.com/azure/active-directory/fundamentals/add-users-azure-active-directory), add a new user: **user-1@${tenant-name}.com**. Get the user's password.

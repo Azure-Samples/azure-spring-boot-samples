@@ -1,4 +1,4 @@
-# Stateless authentication filter sample for Azure AD Spring Boot Starter
+# Stateless authentication filter sample for Microsoft Entra ID Spring Boot Starter
 
 ## Key concepts
 
@@ -10,18 +10,18 @@ This project is composed of a vue.js frontend and a simple backend with three en
 
 ## Getting started
 The sample is composed of two layers: vue.js client and Spring Boot RESTful Web Service. You need to make some changes 
-to get it working with your Azure AD tenant on both sides.
+to get it working with your Microsoft Entra tenant on both sides.
 
 
 
-### Register your application with your Azure Active Directory Tenant
+### Register your application with your Microsoft Entra Tenant
 
 Follow the guide [here](https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app).
 
 ### Configure appRoles
 
 In order to use only the `id_token` for our authentication and authorization purposes we will use the
-`appRoles` feature which AAD provides. Follow the guide 
+`appRoles` feature which Microsoft Entra ID provides. Follow the guide 
 [Add app roles in your application](https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps)
 
 For the test SPA provided with this example you should create the following roles in your manifest:
@@ -55,7 +55,7 @@ For the test SPA provided with this example you should create the following role
   ],
 ```
 
-After you've created the roles, go to **Azure Active Directory** and select **Users** to add two new users named "Admin" and "UserRule". Then back to select **Enterprise applications** in the left-hand navigation pane, click on your created application and select **Users and groups**, finally assign the new roles to your new Users (assignment of roles to groups is not available in the free tier of AAD).
+After you've created the roles, go to **Microsoft Entra ID** and select **Users** to add two new users named "Admin" and "UserRule". Then back to select **Enterprise applications** in the left-hand navigation pane, click on your created application and select **Users and groups**, finally assign the new roles to your new Users (assignment of roles to groups is not available in the free tier of Microsoft Entra ID).
 
 Furthermore enable the implicit flow in the manifest for the demo application 
 (or if you have SPAs calling you):

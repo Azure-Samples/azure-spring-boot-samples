@@ -1,4 +1,4 @@
-# OAuth 2.0 Sample for Azure AD Spring Boot Starter
+# OAuth 2.0 Sample for Microsoft Entra ID Spring Boot Starter
 
 ## Key concepts
 This sample illustrates how to use `spring-cloud-azure-starter-active-directory` package to work with OAuth 2.0 and OpenID Connect protocols on Azure. This sample will use Microsoft Graph API to retrieve user information.
@@ -7,7 +7,7 @@ This sample illustrates how to use `spring-cloud-azure-starter-active-directory`
 
 
 ### Configure web app
-1. Search for and select your tenant in **Azure Active Directory**.
+1. Search for and select your tenant in **Microsoft Entra ID**.
 1. Under Manage In the same tenant, select **App registrations** -> **New registration**.![Portal manage](docs/image-portal-manage.png "Portal manage")
 1. The registered application name is filled into `webapp`, select **Accounts in this organizational directory only**, click the **register** button.![Register a web app](docs/image-register-a-web-app.png "Register a web app")
 1. Under **webapp** application, select **Certificates & secrets** -> **new client secret**, click the **add** button.(Remember to save the secrets here and use them later.)![Create secrets](docs/image-create-app-secrets.png "Create secrets")![Create secrets](docs/image-secret-value.png "Create Secrets")
@@ -19,12 +19,12 @@ This sample illustrates how to use `spring-cloud-azure-starter-active-directory`
 See [Register app], [Grant scoped permission] for more information about web app.
 
 ### Configure groups for sign in user
-In order to try the authorization action with this sample with minimum effort, [configure the user and groups in Azure Active Directory], configure the user with `group1`.
+In order to try the authorization action with this sample with minimum effort, [configure the user and groups in Microsoft Entra ID], configure the user with `group1`.
 
 ## Advanced features
 
 ### Support access control by id token in web application 
-If you want to use `id_token` for authorization, the `appRoles` feature of AAD is supported which is presented in id_token's `roles` claim. By following below configurations, `GrantedAuthority` can be generated from `roles` claim. 
+If you want to use `id_token` for authorization, the `appRoles` feature of Microsoft Entra ID is supported which is presented in id_token's `roles` claim. By following below configurations, `GrantedAuthority` can be generated from `roles` claim. 
 
 Note:
  - The `roles` claim generated from `appRoles` is decorated with prefix `APPROLE_`.
@@ -55,7 +55,7 @@ Follow the guide to
          }
       ]
     ```
-1. After you've created the roles go to your Enterprise Application in Azure Portal, select "Users and groups" and assign the new roles to your Users (assignment of roles to groups is not available in the free tier of AAD).
+1. After you've created the roles go to your Enterprise Application in Azure Portal, select "Users and groups" and assign the new roles to your Users (assignment of roles to groups is not available in the free tier of Microsoft Entra ID).
 
 ### Support access other resources server
 This is an optional configuration. This guide is for accessing [Resource Server Obo].
@@ -109,7 +109,7 @@ spring:
 cd azure-spring-boot-samples/aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server/aad-web-application
 mvn spring-boot:run
 
-# Or use the below command to the AAD conditional access filter.
+# Or use the below command to the Microsoft Entra conditional access filter.
 mvn spring-boot:run -Dspring-boot.run.profiles=default,conditional-access
 ```
 
@@ -147,7 +147,7 @@ In Azure portal, app registration manifest page, configure `oauth2AllowImplicitF
 
 [Register app]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-register-app
 [Grant scoped permission]: https://docs.microsoft.com/azure/active-directory/develop/quickstart-configure-app-access-web-apis
-[configure the user and groups in Azure Active Directory]: https://docs.microsoft.com/azure/active-directory/active-directory-groups-create-azure-portal
+[configure the user and groups in Microsoft Entra ID]: https://docs.microsoft.com/azure/active-directory/active-directory-groups-create-azure-portal
 [this issue]: https://github.com/MicrosoftDocs/azure-docs/issues/8121#issuecomment-387090099
 [Resource Server]: ../aad-resource-server
 [Resource Server Obo]: ../aad-resource-server-obo

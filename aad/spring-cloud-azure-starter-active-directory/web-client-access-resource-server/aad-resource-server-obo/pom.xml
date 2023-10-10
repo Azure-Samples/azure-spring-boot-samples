@@ -15,7 +15,7 @@
   <packaging>jar</packaging>
 
   <name>Spring-Cloud-Azure-Starter-Active-Directory Sample: Resource Server with On-Behalf-Of Feature</name>
-  <description>Azure AD Spring Security Integration Spring Boot Resource Server OBO</description>
+  <description>Microsoft Entra ID Spring Security Integration Spring Boot Resource Server OBO</description>
 
   <dependencies>
     <dependency>

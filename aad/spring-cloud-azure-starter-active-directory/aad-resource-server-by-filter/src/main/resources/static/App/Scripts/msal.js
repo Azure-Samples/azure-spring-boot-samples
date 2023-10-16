@@ -918,7 +918,7 @@
         DEFAULT_AUTHORITY_HOST: "login.microsoftonline.com",
         // ADFS String
         ADFS: "adfs",
-        // Default AAD Instance Discovery Endpoint
+        // Default Microsoft Entra ID Instance Discovery Endpoint
         AAD_INSTANCE_DISCOVERY_ENDPT: "https://login.microsoftonline.com/common/discovery/instance?api-version=1.1&authorization_endpoint=",
         // Resource delimiter - used for certain cache entries
         RESOURCE_DELIM: "|",
@@ -966,7 +966,7 @@
         PersistentCacheKeys["ERROR_DESC"] = "error.description";
     })(PersistentCacheKeys || (PersistentCacheKeys = {}));
     /**
-     * String constants related to AAD Authority
+     * String constants related to Microsoft Entra Authority
      */
     var AADAuthorityConstants;
     (function (AADAuthorityConstants) {
@@ -975,7 +975,7 @@
         AADAuthorityConstants["CONSUMERS"] = "consumers";
     })(AADAuthorityConstants || (AADAuthorityConstants = {}));
     /**
-     * Keys in the hashParams sent by AAD Server
+     * Keys in the hashParams sent by Microsoft Entra Server
      */
     var AADServerParamKeys;
     (function (AADServerParamKeys) {
@@ -8166,7 +8166,7 @@
          * - authority: the authority URL for your application.
          * - redirect_uri: the uri of your application registered in the portal.
          *
-         * In Azure AD, authority is a URL indicating the Azure active directory that MSAL uses to obtain tokens.
+         * In Microsoft Entra ID, authority is a URL indicating the Microsoft Entra ID that MSAL uses to obtain tokens.
          * It is of the form https://login.microsoftonline.com/{Enter_the_Tenant_Info_Here}
          * If your application supports Accounts in one organizational directory, replace "Enter_the_Tenant_Info_Here" value with the Tenant Id or Tenant name (for example, contoso.microsoft.com).
          * If your application supports Accounts in any organizational directory, replace "Enter_the_Tenant_Info_Here" value with organizations.
@@ -8927,7 +8927,7 @@
          * - authority: the authority URL for your application.
          * - redirect_uri: the uri of your application registered in the portal.
          *
-         * In Azure AD, authority is a URL indicating the Azure active directory that MSAL uses to obtain tokens.
+         * In Microsoft Entra ID, authority is a URL indicating the Microsoft Entra ID that MSAL uses to obtain tokens.
          * It is of the form https://login.microsoftonline.com/{Enter_the_Tenant_Info_Here}
          * If your application supports Accounts in one organizational directory, replace "Enter_the_Tenant_Info_Here" value with the Tenant Id or Tenant name (for example, contoso.microsoft.com).
          * If your application supports Accounts in any organizational directory, replace "Enter_the_Tenant_Info_Here" value with organizations.

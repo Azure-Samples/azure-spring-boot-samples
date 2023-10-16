@@ -17,7 +17,7 @@
 
 
 # 1. About
-This repo demonstrates how to use [Azure Active Directory](https://azure.microsoft.com/services/active-directory/) in [Spring Boot](https://spring.io/projects/spring-boot) application by [spring-security](https://github.com/spring-projects/spring-security).
+This repo demonstrates how to use [Microsoft Entra ID](https://microsoft.com/security/business/identity-access/microsoft-entra-id) in [Spring Boot](https://spring.io/projects/spring-boot) application by [spring-security](https://github.com/spring-projects/spring-security).
 
 # 2. Ask for help
 If you have any question about these samples, please ask by [creating a new github issue](https://github.com/Azure-Samples/azure-spring-boot-samples/issues/new).

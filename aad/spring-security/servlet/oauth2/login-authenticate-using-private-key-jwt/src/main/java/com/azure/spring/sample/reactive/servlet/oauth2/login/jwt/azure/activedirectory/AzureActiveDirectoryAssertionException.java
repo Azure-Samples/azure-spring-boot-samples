@@ -1,7 +1,7 @@
 package com.azure.spring.sample.reactive.servlet.oauth2.login.jwt.azure.activedirectory;
 
 /**
- * This exception is thrown when failed to create Azure Active Directory jwt assertion.
+ * This exception is thrown when failed to create Microsoft Entra ID jwt assertion.
  *
  * @author Rujun Chen
  * @since 2022-02-23

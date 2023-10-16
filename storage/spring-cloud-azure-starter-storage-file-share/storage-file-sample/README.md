@@ -28,7 +28,7 @@ You will build an application that use Spring Resource abstraction to read and w
 ## Provision Azure Resources Required to Run This Sample
 This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
 > [!IMPORTANT]  
-> Storage File Share clients don't support authenticating using Azure AD service principals or managed identities.
+> Storage File Share clients don't support authenticating using Microsoft Entra ID service principals or managed identities.
 
 ### Authenticate Using the Azure CLI
 Terraform must authenticate to Azure to create infrastructure.

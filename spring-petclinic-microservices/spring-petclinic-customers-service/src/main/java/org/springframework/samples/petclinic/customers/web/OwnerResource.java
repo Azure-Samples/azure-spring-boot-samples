@@ -27,7 +27,7 @@ import org.springframework.samples.petclinic.customers.model.Pet;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
-// Required for AAD starter to work. For sample only
+// Required for Microsoft Entra ID starter to work. For sample only
 // import org.springframework.security.access.prepost.PreAuthorize;
 
 import javax.validation.Valid;
@@ -42,7 +42,7 @@ import java.util.Optional;
  * @author Michael Isvy
  * @author Maciej Szarlinski
  */
-// For AAD sample
+// For Microsoft Entra ID sample
 // @PreAuthorize("hasRole('ROLE_owners')")
 @RequestMapping("/owners")
 @RestController

@@ -41,7 +41,7 @@ public class AadWebApplicationAndResourceServerConfig {
         }
 
         /**
-         * This method is only used for AAD conditional access support and can be removed if this feature is not used.
+         * This method is only used for Microsoft Entra conditional access support and can be removed if this feature is not used.
          * {@inheritDoc}
          * @return the conditional access filter
          */

@@ -25,7 +25,7 @@ resource "random_uuid" "role-admin" {
 resource "random_uuid" "role-user" {
 }
 
-# Configure the Azure Active Directory Provider
+# Configure the Microsoft Entra ID Provider
 provider "azuread" {
 }
 

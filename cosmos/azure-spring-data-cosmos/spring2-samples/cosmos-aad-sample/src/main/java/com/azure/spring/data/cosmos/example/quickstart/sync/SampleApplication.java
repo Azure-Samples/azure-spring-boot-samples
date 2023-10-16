@@ -11,7 +11,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class SampleApplication implements CommandLineRunner {
 
-    //This is only a very basic sample app to demonstrate connection using Azure AD. 
+    //This is only a very basic sample app to demonstrate connection using Microsoft Entra ID.
     //For more extensive Spring Cosmos samples, check out: https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/cosmos/azure-spring-data-cosmos
 
     private static final Logger logger = LoggerFactory.getLogger(SampleApplication.class);

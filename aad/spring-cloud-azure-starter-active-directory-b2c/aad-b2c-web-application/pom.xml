@@ -15,7 +15,7 @@
   <packaging>jar</packaging>
 
   <name>Spring-Cloud-Azure-Starter-Active-Directory-B2C Sample: Web Application</name>
-  <description>Azure AD B2C Spring Security 5 OAuth2 Integration Spring Boot Sample</description>
+  <description>Azure Active Directory B2C Spring Security 5 OAuth2 Integration Spring Boot Sample</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
 
   <dependencies>

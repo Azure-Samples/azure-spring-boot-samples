@@ -35,7 +35,7 @@ resource "random_uuid" "resource-server-1-role-2" {
 
 data "azuread_client_config" "current" {}
 
-# Configure the Azure Active Directory Provider
+# Configure the Microsoft Entra ID Provider
 provider "azuread" {
 }
 

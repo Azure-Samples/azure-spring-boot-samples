@@ -1,4 +1,4 @@
-# Azure OAuth 2.0 Sample for Azure AD Spring Boot Starter Resource Server
+# Azure OAuth 2.0 Sample for Microsoft Entra ID Spring Boot Starter Resource Server
 
 ## Key concepts
 This sample illustrates how to protect a Java web API by restricting access to its resources to authorized accounts only.
@@ -16,7 +16,7 @@ This sample illustrates how to protect a Java web API by restricting access to i
 
 ### Configure Web API
 1. In this section, you register your web API in App registrations in the Azure portal.
-1. Search for and select your tenant in **Azure Active Directory**.
+1. Search for and select your tenant in **Microsoft Entra ID**.
 1. Under **Manage** In the same tenant, select **App registrations** -> **New registration**.![Protal manage](docs/image-protal-manage.png "Protal manage")
 1. The registered application name is filled into `webapiB`(For better distinguish between [Resource Server] and [Resource Server Obo], this application is named **webapiB**), select **Accounts in this organizational directory only**, click the **register** button.![Register a web api](docs/image-register-a-web-api.png "Register a web api")
 1. Under **webapiB** application, select **Certificates & secrets** -> **new client secret**, expires select **Never**, click the **add** button, remember to save the secrets here and use them later.![Creat secrets](docs/image-creat-secrets-api.png "Creat secrets")

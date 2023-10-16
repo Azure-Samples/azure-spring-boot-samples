@@ -1,4 +1,4 @@
-# Spring Boot application with Azure Active Directory
+# Spring Boot application with Microsoft Entra ID
 
 ## What You Need
 

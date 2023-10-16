@@ -24,7 +24,7 @@ variable "database_name" {
 
 variable "aad_administrator_name" {
   type        = string
-  description = "The Azure Active Directory administrator name."
+  description = "The Microsoft Entra ID administrator name."
   default     = "spring"
 }
 

@@ -23,7 +23,7 @@ This sample illustrates how to use `spring-cloud-azure-starter-active-directory-
 
 
 ### Create and consent Application and Delegated permissions 
-1. On the **Azure AD B2C** Portal, select the application that requires roles to be added, select **Manifest**.
+1. On the **Azure Active Directory B2C** Portal, select the application that requires roles to be added, select **Manifest**.
 2. Find the `appRoles` configuration item, and add the following configuration, then click the **Save** button.
 ```json
   {

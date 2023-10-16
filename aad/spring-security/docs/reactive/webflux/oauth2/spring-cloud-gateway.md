@@ -22,7 +22,7 @@ This section will demonstrate this scenario:
 
 ![image](https://user-images.githubusercontent.com/13167207/148503627-700f287c-ea93-4957-b811-ad8f7f8c5ed3.png)
 
-1. Client get [access token](https://docs.microsoft.com/azure/active-directory/develop/access-tokens) from [Azure Active Directory](https://azure.microsoft.com/services/active-directory/)
+1. Client get [access token](https://docs.microsoft.com/azure/active-directory/develop/access-tokens) from [Microsoft Entra ID](https://microsoft.com/security/business/identity-access/microsoft-entra-id)
 2. Client use the access token to access Gateway.
 3. Gateway validate the access token. If the access token is valid, use the access token to access the ResourceServer. There are 2 ResourceServers, which ResourceServer to access depends on the request URL, it's configured in Gateway's application.yml. Gateway is implemented by [spring-cloud-gateway](https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/)
 4. Gateway get the response from ResourceServer, then return to Client.
@@ -33,7 +33,7 @@ Get samples applications from in GitHub: [spring-cloud-gateway](../../../../reac
 # 3. Create resources in Azure
 
 ## 3.1. Create a tenant
-Read [document about creating an Azure AD tenant](https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant), create a new tenant. Get the tenant-id: **${TENANT_ID}**.  
+Read [document about creating a Microsoft Entra tenant](https://docs.microsoft.com/azure/active-directory/develop/quickstart-create-new-tenant#create-a-new-azure-ad-tenant), create a new tenant. Get the tenant-id: **${TENANT_ID}**.  
 > After creating a new tenant, You can refer to [README.md](../../../../reactive/webflux/oauth2/spring-cloud-gateway/README.md) if you want to start the sample without the knowledge of step by step.
 
 ## 3.2. Add a new user

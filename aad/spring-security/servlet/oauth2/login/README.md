@@ -4,11 +4,11 @@ languages:
 - java
 products:
 - azure-active-directory
-name: Developing a Spring Boot Web Application Supports Login by Azure Active Directory Account
-description: This sample demonstrates how to develop a Spring Boot web application supports login by Azure Active Directory account.
+name: Developing a Spring Boot Web Application Supports Login by Microsoft Entra ID Account
+description: This sample demonstrates how to develop a Spring Boot web application supports login by Microsoft Entra ID account.
 ---
 
-# Developing a Spring Boot Web Application Supports Login by Azure Active Directory Account
+# Developing a Spring Boot Web Application Supports Login by Microsoft Entra ID Account
 
 ## What You Need
 

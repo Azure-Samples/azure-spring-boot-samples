@@ -30,7 +30,7 @@ variable "database_name" {
 
 variable "aad_user_name" {
   type        = string
-  description = "The Azure Active Directory user name."
+  description = "The Microsoft Entra ID user name."
   default     = "spring"
 }
 

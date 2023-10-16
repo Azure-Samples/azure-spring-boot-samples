@@ -15,7 +15,7 @@ echo "Assign the identity to the MySQL server..."
 
 az mysql flexible-server identity assign --resource-group $env:AZ_RESOURCE_GROUP --server-name $env:AZ_MYSQL_SERVER_NAME --identity $env:AZ_USER_IDENTITY_NAME
 
-echo "Set the Azure AD admin user..."
+echo "Set the Microsoft Entra ID admin user..."
 
 az mysql flexible-server ad-admin create --resource-group $env:AZ_RESOURCE_GROUP --server-name $env:AZ_MYSQL_SERVER_NAME --display-name $env:ADMIN_USERNAME --object-id $env:ADMIN_USER_OBJECTID --identity $env:AZ_USER_IDENTITY_NAME
 

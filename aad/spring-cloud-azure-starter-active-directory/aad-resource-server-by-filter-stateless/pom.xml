@@ -16,7 +16,7 @@
   <packaging>jar</packaging>
 
   <name>Spring-Cloud-Azure-Starter-Active-Directory Sample: Stateless Resource Server by Filter</name>
-  <description>Sample project using the AAD stateless app-role filter for AAD integration in Spring Security</description>
+  <description>Sample project using the Microsoft Entra ID stateless app-role filter for Microsoft Entra ID integration in Spring Security</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
 
   <dependencies>

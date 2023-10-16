@@ -46,7 +46,7 @@ This sample can work together with [azure-spring-boot-sample-keyvault-certificat
 You can also create resources manually via Azure Portal. Please follow:
 1. Obtain a Service Principal. There are two ways to obtain a service principal:
    - Recommended: enable a managed identity for the application. For more information, see [the Managed identity overview][the_managed_identity_overview].
-   - If you cannot use managed identity, you can register your application with AAD, see [register app with AAD][register_app_with_AAD]. The registration also creates a second application object that identifies your app.
+   - If you cannot use managed identity, you can register your application with Microsoft Entra ID, see [register app with Microsoft Entra ID][register_app_with_microsoft_entra_id]. The registration also creates a second application object that identifies your app.
 2. Create the key vault and certificates. Please refer to [create key vault and certificates][create_key_vault_and_certificates]
 3. Make the key vault accessible to your service principal. Please refer to [assign key vault access policy][assign_key_vault_access_policy]
    > Attention: The service principal must be configured with permissions:   
@@ -146,6 +146,6 @@ Now that you have the Spring Boot application running locally, it's time to move
 [steps_to_store_certificate]: https://github.com/Azure/azure-sdk-for-java/blob/azure-spring-boot_3.14.0/sdk/spring/azure-spring-boot-starter-keyvault-certificates/README.md#create-an-azure-key-vault
 [azure-spring-boot-sample-keyvault-certificates-client-side]: https://github.com/Azure-Samples/azure-spring-boot-samples/blob/main/keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side
 [the_managed_identity_overview]: https://docs.microsoft.com/en-us/azure/active-directory/managed-identities-azure-resources/overview
-[register_app_with_AAD]: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app
+[register_app_with_microsoft_entra_id]: https://docs.microsoft.com/en-us/azure/active-directory/develop/quickstart-register-app
 [create_key_vault_and_certificates]: https://docs.microsoft.com/en-us/azure/key-vault/certificates/quick-create-portal
 [assign_key_vault_access_policy]: https://docs.microsoft.com/en-us/azure/key-vault/general/assign-access-policy?tabs=azure-portal

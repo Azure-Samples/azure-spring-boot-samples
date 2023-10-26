@@ -99,7 +99,7 @@ Read [document about exposing an api], pre-authorize resource-server-1 to access
 
 
 
-[Microsoft Entra ID]: https://microsoft.com/security/business/identity-access/microsoft-entra-id
+[Microsoft Entra ID]: https://azure.microsoft.com/services/active-directory
 [OAuth2]: https://oauth.net/2/
 [Spring Security]: https://spring.io/projects/spring-security
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow

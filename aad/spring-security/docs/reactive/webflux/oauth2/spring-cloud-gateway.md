@@ -22,7 +22,7 @@ This section will demonstrate this scenario:
 
 ![image](https://user-images.githubusercontent.com/13167207/148503627-700f287c-ea93-4957-b811-ad8f7f8c5ed3.png)
 
-1. Client get [access token](https://docs.microsoft.com/azure/active-directory/develop/access-tokens) from [Microsoft Entra ID](https://microsoft.com/security/business/identity-access/microsoft-entra-id)
+1. Client get [access token](https://docs.microsoft.com/azure/active-directory/develop/access-tokens) from [Microsoft Entra ID](https://azure.microsoft.com/services/active-directory)
 2. Client use the access token to access Gateway.
 3. Gateway validate the access token. If the access token is valid, use the access token to access the ResourceServer. There are 2 ResourceServers, which ResourceServer to access depends on the request URL, it's configured in Gateway's application.yml. Gateway is implemented by [spring-cloud-gateway](https://docs.spring.io/spring-cloud-gateway/docs/current/reference/html/)
 4. Gateway get the response from ResourceServer, then return to Client.

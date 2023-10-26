@@ -6,7 +6,7 @@ Please refer to [docs] to get more information about how to use the samples in t
 
 
 
-[Microsoft Entra ID]: https://microsoft.com/security/business/identity-access/microsoft-entra-id
+[Microsoft Entra ID]: https://azure.microsoft.com/services/active-directory
 [Spring Boot]: https://spring.io/projects/spring-boot
 [spring-security]: https://github.com/spring-projects/spring-security
 [docs]: docs

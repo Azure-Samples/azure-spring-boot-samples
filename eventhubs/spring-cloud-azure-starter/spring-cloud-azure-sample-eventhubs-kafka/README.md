@@ -31,7 +31,7 @@ You will build an application using the Spring Cloud Azure Starter and Spring Cl
 This sample will create Azure resources using Terraform. If you choose to run it without using Terraform to provision resources, please pay attention to:
 > [!IMPORTANT]  
 > If you choose to use a security principal to authenticate and authorize with Microsoft Entra ID for accessing an Azure resource
-> please refer to [Authorize access with Microsoft Entra ID](https://learn.microsoft.com/azure/developer/java/spring-framework/authorize-access-with-microsoft-entra-id) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
+> please refer to [Authorize access with Microsoft Entra ID](https://learn.microsoft.com/azure/developer/java/spring-framework/authentication#authorize-access-with-microsoft-entra-id) to make sure the security principal has been granted the sufficient permission to access the Azure resource.
 
 ### Authenticate Using the Azure CLI
 Terraform must authenticate to Azure to create infrastructure.

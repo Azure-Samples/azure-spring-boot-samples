@@ -222,7 +222,7 @@ The application could be reached at http://localhost:8080
 ## Enabling Spring boot starter for Microsoft Entra ID (Optional)
 
 To secure the Java applications in this sample please follow
-the [Spring Security Microsoft Entra ID tutorial](https://docs.microsoft.com/en-us/azure/developer/java/spring-framework/configure-spring-boot-starter-java-app-with-microsoft-entra-id)
+the [Spring Security Microsoft Entra ID tutorial](https://docs.microsoft.com/en-us/azure/developer/java/spring-framework/configure-spring-boot-starter-java-app-with-azure-active-directory)
 . After setting your Active directory you can enable security on Customers service by uncommenting
 the relevant Microsoft Entra ID sample code.
 

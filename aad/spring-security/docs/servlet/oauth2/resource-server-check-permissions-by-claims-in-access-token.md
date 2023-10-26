@@ -85,7 +85,7 @@ Read [document about assigning users and groups to roles], assign **user-1** to 
 
 
 
-[Microsoft Entra ID]: https://microsoft.com/security/business/identity-access/microsoft-entra-id
+[Microsoft Entra ID]: https://www.microsoft.com/security/business/identity-access/microsoft-entra-id
 [OAuth2]: https://oauth.net/2/
 [Spring Security]: https://spring.io/projects/spring-security
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow

@@ -63,7 +63,7 @@ Read [document about adding a redirect URI], add redirect URI: **http://localhos
 
 
 
-[Microsoft Entra ID]: https://azure.microsoft.com/services/active-directory
+[Microsoft Entra ID]: https://www.microsoft.com/security/business/identity-access/microsoft-entra-id
 [OAuth2]: https://oauth.net/2/
 [Spring Security]: https://spring.io/projects/spring-security
 [OAuth 2.0 authorization code flow]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth2-auth-code-flow

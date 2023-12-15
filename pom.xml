@@ -118,21 +118,15 @@
       <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
-        <version.spring.boot>2.7.17</version.spring.boot>
-        <version.guava>31.1-jre</version.guava>
+        <version.spring.boot>2.7.18</version.spring.boot>
         <version.spring.cloud>2021.0.8</version.spring.cloud>
-        <version.spring.cloud.azure>4.13.0</version.spring.cloud.azure>
+        <version.spring.cloud.azure>4.14.0</version.spring.cloud.azure>
         <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>
         <version.maven-surefire-plugin>3.0.0</version.maven-surefire-plugin>
         <mockito.version>4.11.0</mockito.version>
       </properties>
       <dependencyManagement>
         <dependencies>
-          <dependency>
-            <groupId>com.google.guava</groupId>
-            <artifactId>guava</artifactId>
-            <version>${version.guava}</version>
-          </dependency>
           <dependency>
             <groupId>com.azure.spring</groupId>
             <artifactId>azure-spring-boot-starter-keyvault-certificates</artifactId>
@@ -144,13 +138,12 @@
     <profile>
       <id>spring-cloud-azure-5.x</id>
       <modules>
-<!--will be open after spring-data-cosmos supported-->
-<!--        <module>-->
-<!--          appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-complete-->
-<!--        </module>-->
-<!--        <module>-->
-<!--          appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-initial-->
-<!--        </module>-->
+        <module>
+          appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-complete
+        </module>
+        <module>
+          appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-initial
+        </module>
         <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-sample</module>
         <module>appconfiguration/spring-cloud-azure-feature-management-web/spring-cloud-azure-feature-management-web-sample</module>
         <module>appconfiguration/spring-cloud-azure-feature-management/spring-cloud-azure-feature-management-sample</module>
@@ -189,9 +182,9 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <java.version>17</java.version>
-        <version.spring.boot>3.1.5</version.spring.boot>
-        <version.spring.cloud>2022.0.4</version.spring.cloud>
-        <version.spring.cloud.azure>5.7.0</version.spring.cloud.azure>
+        <version.spring.boot>3.2.0</version.spring.boot>
+        <version.spring.cloud>2023.0.0</version.spring.cloud>
+        <version.spring.cloud.azure>5.8.0</version.spring.cloud.azure>
         <version.thymeleaf-extras-springsecurity6>3.1.1.RELEASE</version.thymeleaf-extras-springsecurity6>
         <version.jakarta-persistence>3.1.0</version.jakarta-persistence>
 

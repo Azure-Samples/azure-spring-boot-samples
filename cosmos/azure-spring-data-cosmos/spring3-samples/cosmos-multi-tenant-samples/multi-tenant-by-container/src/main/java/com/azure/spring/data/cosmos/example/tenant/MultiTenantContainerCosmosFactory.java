@@ -24,6 +24,9 @@ public class MultiTenantContainerCosmosFactory extends CosmosFactory {
         String tenantId = TenantStorage.getCurrentTenant();
         if (tenantId !=null){
             this.tenantId = tenantId;
+            //first check if the tenant exists in a thread-safe list of tenant ids
+            //if it exists, no further action taken.
+            //If not, create the tenant container on the fly, using the default database as a model
             tenantStorage.createTenantSpecificContainerIfNotExists(tenantId, properties.getPartitionKeyPath());
             return tenantId;
         }

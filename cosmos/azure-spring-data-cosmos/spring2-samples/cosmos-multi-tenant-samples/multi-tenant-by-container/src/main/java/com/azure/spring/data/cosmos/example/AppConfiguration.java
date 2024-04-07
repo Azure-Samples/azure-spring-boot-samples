@@ -29,15 +29,12 @@ import org.springframework.lang.Nullable;
 public class AppConfiguration extends AbstractCosmosConfiguration {
     private static final Logger logger = LoggerFactory.getLogger(AppConfiguration.class);
     private final CosmosProperties properties;
-    private final ApplicationContext applicationContext;
     private final Environment env;
 
-    public AppConfiguration(CosmosProperties properties, Environment env, ApplicationContext applicationContext ){
+    public AppConfiguration(CosmosProperties properties, Environment env){
         this.env = env;
         this.properties = properties;
-        this.applicationContext = applicationContext;
     }
-    private CosmosAsyncClient client;
 
     @Bean
     public CosmosClientBuilder cosmosClientBuilder() {
@@ -65,9 +62,6 @@ public class AppConfiguration extends AbstractCosmosConfiguration {
     protected String getDatabaseName() {
         String databaseName;
         databaseName =  properties.getDatabaseName();
-        client = applicationContext.getBean(CosmosAsyncClient.class);
-        client.createDatabaseIfNotExists(databaseName, ThroughputProperties.createAutoscaledThroughput(4000));
-        logger.info("config databaseName result: "+databaseName);
         return databaseName;
     }
 

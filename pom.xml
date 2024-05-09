@@ -120,7 +120,7 @@
         <maven.compiler.target>1.8</maven.compiler.target>
         <version.spring.boot>2.7.18</version.spring.boot>
         <version.spring.cloud>2021.0.9</version.spring.cloud>
-        <version.spring.cloud.azure>4.17.0</version.spring.cloud.azure>
+        <version.spring.cloud.azure>4.18.0</version.spring.cloud.azure>
         <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>
         <version.maven-surefire-plugin>3.0.0</version.maven-surefire-plugin>
         <mockito.version>4.11.0</mockito.version>
@@ -182,9 +182,9 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <java.version>17</java.version>
-        <version.spring.boot>3.2.4</version.spring.boot>
-        <version.spring.cloud>2023.0.0</version.spring.cloud>
-        <version.spring.cloud.azure>5.11.0</version.spring.cloud.azure>
+        <version.spring.boot>3.2.5</version.spring.boot>
+        <version.spring.cloud>2023.0.1</version.spring.cloud>
+        <version.spring.cloud.azure>5.12.0</version.spring.cloud.azure>
         <version.thymeleaf-extras-springsecurity6>3.1.1.RELEASE</version.thymeleaf-extras-springsecurity6>
         <version.jakarta-persistence>3.1.0</version.jakarta-persistence>
 

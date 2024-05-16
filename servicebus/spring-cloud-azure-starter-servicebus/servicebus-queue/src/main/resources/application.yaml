@@ -1,0 +1,7 @@
+spring:
+  cloud:
+    azure:
+      servicebus:
+        namespace: ${SERVICEBUS_NAMESPACE}
+        entity-type: queue
+        entity-name: que001

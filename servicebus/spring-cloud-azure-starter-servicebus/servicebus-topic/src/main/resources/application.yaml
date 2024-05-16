@@ -1,0 +1,11 @@
+spring:
+  cloud:
+    azure:
+      servicebus:
+        namespace: ${SERVICEBUS_NAMESPACE}
+        entity-type: topic
+        entity-name: tpc001
+        processor:
+          subscription-name: sub001
+        consumer:
+          subscription-name: sub001

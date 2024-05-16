@@ -166,6 +166,8 @@
         <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders</module>
         <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/property-source</module>
         <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/secret-client</module>
+        <module>servicebus/spring-cloud-azure-starter-servicebus/servicebus-queue</module>
+        <module>servicebus/spring-cloud-azure-starter-servicebus/servicebus-topic</module>
         <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue</module>
         <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-topic</module>
         <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder</module>

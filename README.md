@@ -31,9 +31,9 @@
 
 ### Azure Cache
 
-| Sample Project                                                                                      | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
-|-----------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
-| [azure-spring-cloud-sample-cache](cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache) | ✅                              | ✅                              |
+| Sample Project                             | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
+|--------------------------------------------|--------------------------------|--------------------------------|
+| [azure-spring-cloud-sample-cache](cache)   | ✅                              | ✅                              |
 
 ### Azure Cosmos DB
 

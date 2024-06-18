@@ -74,7 +74,8 @@
         <module>appconfiguration/spring-cloud-azure-feature-management/spring-cloud-azure-feature-management-sample</module>
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration-config/spring-cloud-azure-starter-appconfiguration-config-sample</module>
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
-        <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
+        <module>cache/spring2-sample/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
+        <module>cache/spring2-sample/spring-cloud-azure-starter/spring-cloud-azure-sample-cache-passwordless</module>
         <module>cloudfoundry/azure-cloud-foundry-service-sample</module>
         <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-aks-sample</module>
         <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample</module>
@@ -151,7 +152,8 @@
         <module>appconfiguration/spring-cloud-azure-feature-management/spring-cloud-azure-feature-management-sample</module>
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration-config/spring-cloud-azure-starter-appconfiguration-config-sample</module>
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
-        <module>cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
+        <module>cache/spring3-sample/spring-cloud-azure-redis-sample</module>
+        <module>cache/spring3-sample/spring-cloud-azure-redis-sample-passwordless</module>
         <module>cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample</module>
         <module>cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-aad-sample</module>
         <module>cosmos/azure-spring-data-cosmos/spring3-samples/cosmos-multi-database-multi-account</module>

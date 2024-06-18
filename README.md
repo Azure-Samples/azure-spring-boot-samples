@@ -31,9 +31,9 @@
 
 ### Azure Cache
 
-| Sample Project                                                                                      | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
-|-----------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
-| [azure-spring-cloud-sample-cache](cache/spring-cloud-azure-starter/spring-cloud-azure-sample-cache) | ✅                              | ✅                              |
+| Sample Project                             | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
+|--------------------------------------------|--------------------------------|--------------------------------|
+| [azure-spring-cloud-sample-cache](cache)   | ✅                              | ✅                              |
 
 ### Azure Cosmos DB
 
@@ -78,15 +78,17 @@
 
 ### Azure Service Bus
 
-| Sample Project                                                                                                    | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
-|-------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
-| [servicebus-jms-queue](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue)                 | ✅                              | ✅                              | 
-| [servicebus-jms-topic](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-topic)                 | ✅                              | ✅                              | 
-| [single-namespace](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace)                 | ✅                              | ✅                              | 
-| [multiple-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces)           | ✅                              | ✅                              | 
-| [servicebus-queue-binder](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder)         | ✅                              | ✅                              | 
-| [servicebus-queue-multibinders](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-multibinders)   | ✅                              | ✅                              | 
-| [servicebus-topic-binder](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder)         | ✅                              | ✅                              | 
+| Sample Project                                                                                | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
+|-----------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
+| [servicebus-queue](servicebus/spring-cloud-azure-starter-servicebus/servicebus-queue)         | ✅                              | ✅                              | 
+| [servicebus-topic](servicebus/spring-cloud-azure-starter-servicebus/servicebus-topic)         | ✅                              | ✅                              | 
+| [servicebus-jms-queue](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue) | ✅                              | ✅                              | 
+| [servicebus-jms-topic](servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-topic) | ✅                              | ✅                              | 
+| [single-namespace](servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace) | ✅                              | ✅                              | 
+| [multiple-namespaces](servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces) | ✅                              | ✅                              | 
+| [servicebus-queue-binder](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder) | ✅                              | ✅                              | 
+| [servicebus-queue-multibinders](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-multibinders) | ✅                              | ✅                              | 
+| [servicebus-topic-binder](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder) | ✅                              | ✅                              | 
 | [servicebus-queue-binder-arm](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder-arm) | ✅                              | ✅                              |
 
 ### Azure Storage

@@ -117,7 +117,7 @@ You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser t
 
 ### Enable Microsoft Entra ID authentication on your cache
 
-Refer [Enable Microsoft Entra ID authentication on your cache](https://learn.microsoft.com/azure/azure-cache-for-redis/cache-azure-active-directory-for-authentication#enable-microsoft-entra-id-authentication-on-your-cache) and copy the value of username.
+Refer to [Enable Microsoft Entra ID authentication on your cache](https://learn.microsoft.com/azure/azure-cache-for-redis/cache-azure-active-directory-for-authentication) for more information.
 
 ### Export Output to Your Local Environment
 Running the command below to export environment values:
@@ -126,21 +126,19 @@ Running the command below to export environment values:
 
 ```shell
 source ./terraform/setup_env.sh
-export AZURE_CACHE_REDIS_USERNAME='<copied-username>'
 ```
 
 #### Run with Powershell
 
 ```shell
 terraform\setup_env.ps1
-$env:AZURE_CACHE_REDIS_USERNAME='<copied-username>'
 ```
 
 If you want to run the sample in debug mode, you can save the output value.
 
 ```shell
 AZURE_CACHE_REDIS_HOST=...
-AZURE_CACHE_REDIS_USERNAME=<copied-username>
+AZURE_CACHE_REDIS_USERNAME=...
 ```
 
 ## Run Locally

@@ -2,11 +2,11 @@ terraform {
   required_providers {
     azurerm = {
       source  = "hashicorp/azurerm"
-      version = "3.9.0"
+      version = "3.110.0"
     }
     azurecaf = {
       source  = "aztfmod/azurecaf"
-      version = "1.2.16"
+      version = "1.2.26"
     }
   }
 }
@@ -35,6 +35,7 @@ resource "azurerm_resource_group" "main" {
 
 # =================== redis ================
 data "azurerm_subscription" "current" { }
+data "azuread_client_config" "current" {}
 
 resource "azurecaf_name" "azurecaf_name_redis" {
   name          = var.application_name
@@ -54,5 +55,15 @@ resource "azurerm_redis_cache" "redis" {
   minimum_tls_version = "1.2"
 
   redis_configuration {
+    enable_authentication = true
+    active_directory_authentication_enabled = true
   }
+}
+
+resource "azurerm_redis_cache_access_policy_assignment" "current_user" {
+  name               = "current-user"
+  redis_cache_id     = azurerm_redis_cache.redis.id
+  access_policy_name = "Data Contributor"
+  object_id          = data.azuread_client_config.current.object_id
+  object_id_alias    = "current-user"
 }

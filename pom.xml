@@ -188,9 +188,9 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <java.version>17</java.version>
-        <version.spring.boot>3.3.0</version.spring.boot>
-        <version.spring.cloud>2023.0.1</version.spring.cloud>
-        <version.spring.cloud.azure>5.13.0</version.spring.cloud.azure>
+        <version.spring.boot>3.3.1</version.spring.boot>
+        <version.spring.cloud>2023.0.2</version.spring.cloud>
+        <version.spring.cloud.azure>5.14.0</version.spring.cloud.azure>
         <version.thymeleaf-extras-springsecurity6>3.1.1.RELEASE</version.thymeleaf-extras-springsecurity6>
         <version.jakarta-persistence>3.1.0</version.jakarta-persistence>
 

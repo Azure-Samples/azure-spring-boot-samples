@@ -11,3 +11,5 @@ jobs:
       with:
           reporter: github-pr-review
           config_file: '.github/workflows/.linkspector.yml'
+          level: error
+          fail_on_error: true

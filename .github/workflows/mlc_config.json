@@ -25,6 +25,15 @@
       "pattern": "^https://www.microsoft.com/edge"
     },
     {
+      "pattern": "^https://azure.microsoft.com/free/"
+    },
+    {
+      "pattern": "^https://azure.microsoft.com/products/container-registry/"
+    },
+    {
+      "pattern": "^https://azure.microsoft.com/products/mysql/"
+    },
+    {
       "pattern": "^https://dev.mysql.com/downloads/shell/"
     }
   ],

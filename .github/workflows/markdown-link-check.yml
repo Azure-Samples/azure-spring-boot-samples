@@ -7,8 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - uses: gaurav-nelson/github-action-markdown-link-check@1.0.15
+    - uses: umbrelladocs/action-linkspector@v1.1.3
       with:
-          use-quiet-mode: 'yes'
-          use-verbose-mode: 'yes'
-          config-file: '.github/workflows/mlc_config.json'
+          reporter: github-pr-review
+          config_file: '.github/workflows/.linkspector.yml'
+          level: error
+          fail_on_error: true

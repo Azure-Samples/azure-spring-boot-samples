@@ -1,0 +1,13 @@
+dirs:
+  - ./
+ignorePatterns:
+  - pattern: "^http://127.0.0.1"
+  - pattern: "^https://127.0.0.1"
+  - pattern: "^http://localhost"
+  - pattern: "^https://localhost"
+  - pattern: "^https://www.terraform.io"
+  - pattern: "^https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca"
+  - pattern: "^https://www.microsoft.com/edge"
+  - pattern: "^https://dev.mysql.com/downloads/shell/"
+aliveStatusCodes:
+  - 200

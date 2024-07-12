@@ -91,6 +91,7 @@
         <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>
         <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder</module>
         <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders</module>
+        <module>eventhubs/spring-messaging-azure-eventhubs/eventhubs-spring-messaging</module>
         <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side</module>
         <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side</module>
         <module>keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side</module>
@@ -108,11 +109,13 @@
         <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder-arm</module>
         <module>servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces</module>
         <module>servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace</module>
+        <module>servicebus/spring-messaging-azure-servicebus/servicebus-spring-messaging</module>
         <module>storage/spring-cloud-azure-starter-storage-blob/storage-blob-sample</module>
         <module>storage/spring-cloud-azure-starter-storage-file-share/storage-file-sample</module>
         <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation</module>
         <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration</module>
         <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-client</module>
+        <module>storage/spring-messaging-azure-storage-queue/storage-queue-spring-messaging</module>
         <module>spring-petclinic-microservices</module>
       </modules>
       <activation>
@@ -166,6 +169,7 @@
         <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>
         <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder</module>
         <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders</module>
+        <module>eventhubs/spring-messaging-azure-eventhubs/eventhubs-spring-messaging</module>
         <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/property-source</module>
         <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/secret-client</module>
         <module>servicebus/spring-cloud-azure-starter-servicebus/servicebus-queue</module>
@@ -178,11 +182,13 @@
         <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder-arm</module>
         <module>servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces</module>
         <module>servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace</module>
+        <module>servicebus/spring-messaging-azure-servicebus/servicebus-spring-messaging</module>
         <module>storage/spring-cloud-azure-starter-storage-blob/storage-blob-sample</module>
         <module>storage/spring-cloud-azure-starter-storage-file-share/storage-file-sample</module>
         <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation</module>
         <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration</module>
         <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-client</module>
+        <module>storage/spring-messaging-azure-storage-queue/storage-queue-spring-messaging</module>
       </modules>
       <properties>
         <maven.compiler.source>17</maven.compiler.source>

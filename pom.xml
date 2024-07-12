@@ -188,7 +188,7 @@
         <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation</module>
         <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration</module>
         <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-client</module>
-        <module>servicebus/spring-messaging-azure-servicebus/servicebus-spring-messaging</module>
+        <module>storage/spring-messaging-azure-storage-queue/storage-queue-spring-messaging</module>
       </modules>
       <properties>
         <maven.compiler.source>17</maven.compiler.source>

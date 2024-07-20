@@ -4,11 +4,11 @@ languages:
 - java
 products:
 - azure-service-bus
-name: Sending and Receiving Message by Azure Service Bus (Queue) And Jms in Spring Boot Application
-description: This sample demonstrates how to send and receive message by Azure Service Bus (queue) and JMS in Spring Boot application.
+name: Sending and Receiving Message by Azure Service Bus (Queue) And Jms in Spring Boot Application without Password
+description: This sample demonstrates how to send and receive message by Azure Service Bus (queue) and JMS in Spring Boot application without password.
 ---
 
-# Sending and Receiving Message by Azure Service Bus (Queue) And Jms in Spring Boot Application
+# Sending and Receiving Message by Azure Service Bus (Queue) And Jms in Spring Boot Application without Password
 
 This sample project demonstrates how to use Spring JMS for Azure Service Bus Queue via Spring Boot Starter `spring-cloud-azure-starter-servicebus-jms`.
 
@@ -140,7 +140,7 @@ terraform\setup_env.ps1
 If you want to run the sample in debug mode, you can save the output value.
 
 ```shell
-SERVICEBUS_NAMESPACE_CONNECTION_STRING=...
+SERVICEBUS_NAMESPACE_NAME=...
 PRICING_TIER=...
 ```
 

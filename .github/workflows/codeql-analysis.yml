@@ -46,6 +46,10 @@ jobs:
         repository: Azure/azure-sdk-for-java
         ref: main
         path: azure-sdk-for-java
+    - uses: actions/setup-java@v4
+      with:
+        distribution: 'oracle' # See 'Supported distributions' for available options
+        java-version: '17'
     - name: Build latest azure-sdk-for-java repository
       run: |
         cd azure-sdk-for-java

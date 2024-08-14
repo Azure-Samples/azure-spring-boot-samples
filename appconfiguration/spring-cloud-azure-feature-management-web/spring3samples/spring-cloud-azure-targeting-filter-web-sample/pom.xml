@@ -10,7 +10,7 @@
 		<relativePath>../../../../pom.xml</relativePath>
 	</parent>
 
-	<artifactId>spring-cloud-azure-feature-management-web-sample</artifactId>
+	<artifactId>spring-cloud-azure-targeting-filter-web-sample</artifactId>
 	<version>1.0.0</version>
 	<packaging>jar</packaging>
 

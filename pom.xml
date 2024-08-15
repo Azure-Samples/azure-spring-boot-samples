@@ -108,7 +108,7 @@
         <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-multibinders/spring2sample</module>
         <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder</module>
         <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder-arm</module>
-        <module>servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces</module>
+        <module>servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces/spring2sample</module>
         <module>servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace</module>
         <module>servicebus/spring-messaging-azure-servicebus/servicebus-spring-messaging</module>
         <module>storage/spring-cloud-azure-starter-storage-blob/storage-blob-sample</module>
@@ -179,7 +179,7 @@
         <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-multibinders/spring3sample</module>
         <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder</module>
         <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder-arm</module>
-        <module>servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces</module>
+        <module>servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces/spring3sample</module>
         <module>servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace</module>
         <module>servicebus/spring-messaging-azure-servicebus/servicebus-spring-messaging</module>
         <module>storage/spring-cloud-azure-starter-storage-blob/storage-blob-sample</module>

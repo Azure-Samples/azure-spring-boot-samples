@@ -1,3 +1,5 @@
+// Copyright (c) Microsoft Corporation. All rights reserved.
+// Licensed under the MIT License.
 package com.azure.spring.sample.servicebus;
 
 import com.azure.spring.integration.core.handler.DefaultMessageHandler;
@@ -11,7 +13,6 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.dsl.IntegrationFlow;
-import org.springframework.integration.dsl.IntegrationFlows;
 import org.springframework.integration.dsl.Pollers;
 import org.springframework.messaging.MessageHandler;
 
@@ -77,7 +78,7 @@ public class IntegrationFlowConfiguration {
 
     @Bean
     public IntegrationFlow sendFlow() {
-        return IntegrationFlows.fromSupplier(integerSource()::getAndIncrement,
+        return IntegrationFlow.fromSupplier(integerSource()::getAndIncrement,
                 c -> c.poller(Pollers.fixedRate(Duration.ofSeconds(10))))
                 .<Integer, Boolean>route(p -> p % 2 == 0, m
                         -> m.subFlowMapping(true, f -> f.handle(firstMessageHandler()))
@@ -87,7 +88,7 @@ public class IntegrationFlowConfiguration {
 
     @Bean
     public IntegrationFlow transformFlow() {
-        return IntegrationFlows.from(firstServiceBusInboundChannelAdapter())
+        return IntegrationFlow.from(firstServiceBusInboundChannelAdapter())
                 .transform(m -> {
                     LOGGER.info("Receive messages from the first queue: {}", m);
                     return "transformed from queue1, " + m;
@@ -98,7 +99,7 @@ public class IntegrationFlowConfiguration {
 
     @Bean
     public IntegrationFlow secondListenerFlow() {
-        return IntegrationFlows.from(secondServiceBusInboundChannelAdapter())
+        return IntegrationFlow.from(secondServiceBusInboundChannelAdapter())
                 .handle(m -> LOGGER.info("Receive messages from the second queue: {}", m.getPayload()))
                 .get();
     }

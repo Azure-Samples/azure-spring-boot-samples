@@ -1,0 +1,15 @@
+my.servicebus.namespaces[0]:
+  namespace: ${AZURE_SERVICEBUS_NAMESPACE_01}
+  entity-type: queue
+  entity-name: ${AZURE_SERVICEBUS_NAMESPACE_01_QUEUE_NAME}
+my.servicebus.namespaces[1]:
+  namespace: ${AZURE_SERVICEBUS_NAMESPACE_02}
+  entity-type: queue
+  entity-name: ${AZURE_SERVICEBUS_NAMESPACE_02_QUEUE_NAME}
+
+
+#reduce some noise
+logging.level:
+  com.azure.core: warn
+  com.azure.identity: warn
+  com.azure.messaging: warn

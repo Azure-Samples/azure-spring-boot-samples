@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -8,14 +9,14 @@
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-boot-samples</artifactId>
     <version>1.0.0</version>
-    <relativePath>../../../pom.xml</relativePath>
+    <relativePath>../../../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>spring-cloud-azure-sample-stream-binder-servicebus-multiple</artifactId>
+  <artifactId>eventhubs-multibinders</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>Communicate to Multiple Service Bus Namespaces via Spring Cloud Stream</name>
+  <name>Communicate to Multiple Event Hubs Namespaces via Spring Cloud Stream</name>
 
   <dependencies>
     <dependency>
@@ -24,16 +25,29 @@
     </dependency>
     <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>spring-cloud-azure-stream-binder-servicebus</artifactId>
+      <artifactId>spring-cloud-azure-stream-binder-eventhubs</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-logging</artifactId>
     </dependency>
     <dependency>
-      <groupId>org.hibernate.validator</groupId>
-      <artifactId>hibernate-validator</artifactId>
+      <groupId>jakarta.annotation</groupId>
+      <artifactId>jakarta.annotation-api</artifactId>
     </dependency>
-
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <compilerArgs>
+            <arg>-parameters</arg> <!-- https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-6.x#parameter-name-retention -->
+          </compilerArgs>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
 </project>

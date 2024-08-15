@@ -77,7 +77,8 @@
           appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-initial
         </module>
         <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-sample</module>
-        <module>appconfiguration/spring-cloud-azure-feature-management-web/spring-cloud-azure-feature-management-web-sample</module>
+        <module>appconfiguration/spring-cloud-azure-feature-management-web/spring2samples/spring-cloud-azure-feature-management-web-sample</module>
+        <module>appconfiguration/spring-cloud-azure-feature-management-web/spring2samples/spring-cloud-azure-targeting-filter-web-sample</module>
         <module>appconfiguration/spring-cloud-azure-feature-management/spring-cloud-azure-feature-management-sample</module>
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration-config/spring-cloud-azure-starter-appconfiguration-config-sample</module>
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
@@ -97,7 +98,7 @@
         <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
         <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>
         <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder</module>
-        <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders</module>
+        <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders/spring2sample</module>
         <module>eventhubs/spring-messaging-azure-eventhubs/eventhubs-spring-messaging</module>
         <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side</module>
         <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side</module>
@@ -111,10 +112,10 @@
         <module>servicebus/spring-cloud-azure-starter-servicebus/servicebus-topic</module>
         <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-topic</module>
         <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder</module>
-        <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-multibinders</module>
+        <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-multibinders/spring2sample</module>
         <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder</module>
         <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder-arm</module>
-        <module>servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces</module>
+        <module>servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces/spring2sample</module>
         <module>servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace</module>
         <module>servicebus/spring-messaging-azure-servicebus/servicebus-spring-messaging</module>
         <module>storage/spring-cloud-azure-starter-storage-blob/storage-blob-sample</module>
@@ -125,9 +126,6 @@
         <module>storage/spring-messaging-azure-storage-queue/storage-queue-spring-messaging</module>
         <module>spring-petclinic-microservices</module>
       </modules>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-      </activation>
       <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
@@ -158,7 +156,8 @@
           appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-initial
         </module>
         <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-sample</module>
-        <module>appconfiguration/spring-cloud-azure-feature-management-web/spring-cloud-azure-feature-management-web-sample</module>
+        <module>appconfiguration/spring-cloud-azure-feature-management-web/spring3samples/spring-cloud-azure-feature-management-web-sample</module>
+        <module>appconfiguration/spring-cloud-azure-feature-management-web/spring3samples/spring-cloud-azure-targeting-filter-web-sample</module>
         <module>appconfiguration/spring-cloud-azure-feature-management/spring-cloud-azure-feature-management-sample</module>
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration-config/spring-cloud-azure-starter-appconfiguration-config-sample</module>
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
@@ -175,7 +174,7 @@
         <module>eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka</module>
         <module>eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client</module>
         <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-binder</module>
-        <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders</module>
+        <module>eventhubs/spring-cloud-azure-stream-binder-eventhubs/eventhubs-multibinders/spring3sample</module>
         <module>eventhubs/spring-messaging-azure-eventhubs/eventhubs-spring-messaging</module>
         <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/property-source</module>
         <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/secret-client</module>
@@ -184,10 +183,10 @@
         <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue</module>
         <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-topic</module>
         <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder</module>
-        <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-multibinders</module>
+        <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-multibinders/spring3sample</module>
         <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-topic-binder</module>
         <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder-arm</module>
-        <module>servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces</module>
+        <module>servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces/spring3sample</module>
         <module>servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace</module>
         <module>servicebus/spring-messaging-azure-servicebus/servicebus-spring-messaging</module>
         <module>storage/spring-cloud-azure-starter-storage-blob/storage-blob-sample</module>
@@ -197,13 +196,16 @@
         <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-client</module>
         <module>storage/spring-messaging-azure-storage-queue/storage-queue-spring-messaging</module>
       </modules>
+      <activation>
+        <activeByDefault>true</activeByDefault>
+      </activation>
       <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <java.version>17</java.version>
-        <version.spring.boot>3.3.1</version.spring.boot>
-        <version.spring.cloud>2023.0.2</version.spring.cloud>
-        <version.spring.cloud.azure>5.14.0</version.spring.cloud.azure>
+        <version.spring.boot>3.3.2</version.spring.boot>
+        <version.spring.cloud>2023.0.3</version.spring.cloud>
+        <version.spring.cloud.azure>5.15.0</version.spring.cloud.azure>
         <version.thymeleaf-extras-springsecurity6>3.1.1.RELEASE</version.thymeleaf-extras-springsecurity6>
         <version.jakarta-persistence>3.1.0</version.jakarta-persistence>
 

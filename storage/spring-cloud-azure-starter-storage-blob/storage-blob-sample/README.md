@@ -199,6 +199,11 @@ terraform -chdir=./terraform destroy -auto-approve
 terraform -chdir=terraform destroy -auto-approve
 ```
 
+## Testcontainers Support
+Testcontainers is an open source framework for providing throwaway, lightweight instances of databases, message brokers, web browsers, or just about anything that can run in a Docker container.
+We also provide `spring-cloud-azure-testcontainers` library to support Testcontainers in Spring Cloud Azure. It allows you to write a test class that can start up a container before any of the tests run. Testcontainers is especially useful for writing integration tests that talk to a real backend service.
+Before running the test, you need to prepare a [Docker environment](https://java.testcontainers.org/supported_docker_environment/) supported by Testcontainers. Then you can run the `StorageBlobTestcontainersTest`.
+
 ## Deploy to Azure Spring Apps
 
 Now that you have the Spring Boot application running locally, it's time to move it to production. [Azure Spring Apps](https://learn.microsoft.com/azure/spring-apps/overview) makes it easy to deploy Spring Boot applications to Azure without any code changes. The service manages the infrastructure of Spring applications so developers can focus on their code. Azure Spring Apps provides lifecycle management using comprehensive monitoring and diagnostics, configuration management, service discovery, CI/CD integration, blue-green deployments, and more. To deploy your application to Azure Spring Apps, see [Deploy your first application to Azure Spring Apps](https://learn.microsoft.com/azure/spring-apps/quickstart?tabs=Azure-CLI).

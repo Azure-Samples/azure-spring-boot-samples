@@ -8,23 +8,40 @@
     <groupId>com.azure.spring</groupId>
     <artifactId>azure-spring-boot-samples</artifactId>
     <version>1.0.0</version>
-    <relativePath>../../../pom.xml</relativePath>
+    <relativePath>../../pom.xml</relativePath>
   </parent>
 
-  <artifactId>storage-blob-sample</artifactId>
+  <artifactId>spring-cloud-azure-testcontainers-for-storage-blob-sample</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
-  <name>Read and Write Blobs with the Spring Resource for Azure Storage Blob</name>
+  <name>TestContainers for Azure Storage Blob</name>
 
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>
       <artifactId>spring-cloud-azure-starter-storage-blob</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.azure.spring</groupId>
+      <artifactId>spring-cloud-azure-testcontainers</artifactId>
+      <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
+      <artifactId>spring-boot-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.assertj</groupId>
+      <artifactId>assertj-core</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 </project>

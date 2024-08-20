@@ -110,11 +110,11 @@
 
 ### TestContainers Support
 
-| Sample Project                                                                                                         | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
-|------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
-| [testContainers for Cosmos](cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample/src/test/java)   | ❌                              | ✅                              |
-| [testContainers for Storage Queue](storage/spring-cloud-azure-starter-storage-blob/storage-blob-sample/src/test/java)  | ❌                              | ✅                              |
-| [testContainers for Storage Blob](storage/spring-cloud-azure-starter-storage-queue/storage-queue-client/src/test/java) | ❌                              | ✅                              |
+| Sample Project                                                   | Support Spring Cloud Azure 4.x | Support Spring Cloud Azure 5.x | 
+|------------------------------------------------------------------|--------------------------------|--------------------------------|
+| [testContainers for Cosmos](testcontainers/cosmos)               | ❌                              | ✅                              |
+| [testContainers for Storage Blob](testcontainers/storage-blob)   | ❌                              | ✅                              |
+| [testContainers for Storage Queue](testcontainers/storage-queue) | ❌                              | ✅                              |
 
 ## Getting Help
 - If you have any question about using these samples, please [create an new issue](https://github.com/Azure-Samples/azure-spring-boot-samples/issues/new/choose).

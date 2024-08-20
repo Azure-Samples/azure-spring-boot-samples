@@ -195,6 +195,9 @@
         <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration</module>
         <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-client</module>
         <module>storage/spring-messaging-azure-storage-queue/storage-queue-spring-messaging</module>
+        <module>testcontainers/cosmos</module>
+        <module>testcontainers/storage-blob</module>
+        <module>testcontainers/storage-queue</module>
       </modules>
       <activation>
         <activeByDefault>true</activeByDefault>
@@ -208,7 +211,7 @@
         <version.spring.cloud.azure>5.15.0</version.spring.cloud.azure>
         <version.thymeleaf-extras-springsecurity6>3.1.1.RELEASE</version.thymeleaf-extras-springsecurity6>
         <version.jakarta-persistence>3.1.0</version.jakarta-persistence>
-
+        <version.testcontainers.azure>1.20.0</version.testcontainers.azure>
         <version.maven-surefire-plugin>2.22.0</version.maven-surefire-plugin>
         <mockito.version>4.11.0</mockito.version>
       </properties>
@@ -223,6 +226,11 @@
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
             <version>${version.jakarta-persistence}</version>
+          </dependency>
+          <dependency>
+            <groupId>org.testcontainers</groupId>
+            <artifactId>azure</artifactId>
+            <version>${version.testcontainers.azure}</version>
           </dependency>
         </dependencies>
       </dependencyManagement>

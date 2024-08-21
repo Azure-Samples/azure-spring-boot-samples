@@ -81,6 +81,7 @@
         <module>appconfiguration/spring-cloud-azure-feature-management-web/spring2samples/spring-cloud-azure-targeting-filter-web-sample</module>
         <module>appconfiguration/spring-cloud-azure-feature-management/spring-cloud-azure-feature-management-sample</module>
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration-config/spring-cloud-azure-starter-appconfiguration-config-sample</module>
+        <module>appconfiguration/spring-cloud-azure-starter-appconfiguration-config/spring-cloud-azure-starter-appconfiguration-config-entraid-sample</module>
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
         <module>cache/spring2-sample/spring-cloud-azure-starter/spring-cloud-azure-sample-cache</module>
         <module>cache/spring2-sample/spring-cloud-azure-starter/spring-cloud-azure-sample-cache-passwordless</module>
@@ -160,6 +161,7 @@
         <module>appconfiguration/spring-cloud-azure-feature-management-web/spring3samples/spring-cloud-azure-targeting-filter-web-sample</module>
         <module>appconfiguration/spring-cloud-azure-feature-management/spring-cloud-azure-feature-management-sample</module>
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration-config/spring-cloud-azure-starter-appconfiguration-config-sample</module>
+        <module>appconfiguration/spring-cloud-azure-starter-appconfiguration-config/spring-cloud-azure-starter-appconfiguration-config-entraid-sample</module>
         <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
         <module>cache/spring3-sample/spring-cloud-azure-redis-sample</module>
         <module>cache/spring3-sample/spring-cloud-azure-redis-sample-passwordless</module>

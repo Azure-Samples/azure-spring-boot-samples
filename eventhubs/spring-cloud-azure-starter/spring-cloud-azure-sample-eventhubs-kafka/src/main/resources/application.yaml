@@ -17,4 +17,7 @@ spring:
           environment:
             spring:
               main:
-                sources: com.azure.spring.cloud.autoconfigure.eventhubs.kafka.AzureEventHubsKafkaAutoConfiguration
+#                The AzureEventHubsKafkaAutoConfiguration package path is different in Spring Cloud Azure 4.x and 5.x versions:
+#                4.x: com.azure.spring.cloud.autoconfigure.eventhubs.kafka.AzureEventHubsKafkaAutoConfiguration
+#                5.x: com.azure.spring.cloud.autoconfigure.implementation.eventhubs.kafka.AzureEventHubsKafkaAutoConfiguration
+                sources: com.azure.spring.cloud.autoconfigure.implementation.eventhubs.kafka.AzureEventHubsKafkaAutoConfiguration

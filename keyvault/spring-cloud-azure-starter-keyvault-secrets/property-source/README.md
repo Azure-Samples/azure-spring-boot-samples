@@ -195,6 +195,14 @@ terraform -chdir=./terraform destroy -auto-approve
 terraform -chdir=terraform destroy -auto-approve
 ```
 
+## (Optional) Retrieve specific secrets
+
+If you don't want to load all secrets from Azure Key Vault. You can specify the secrets you want to load by setting the `spring.cloud.azure.keyvault.secret.property-sources.secret-keys=secret1,secret2...` property in the `application.yaml` file.
+
+For this sample, run locally with the command `mvn clean spring-boot:run -Dspring-boot.run.profiles=secrets` to activate the [application-secrets.yml](./src/main/resources/application-secrets.yml) profile file.
+
+[Verify This Sample](#verify-this-sample).
+
 ## Deploy to Azure Spring Apps
 
 Now that you have the Spring Boot application running locally, it's time to move it to production. [Azure Spring Apps](https://learn.microsoft.com/azure/spring-apps/overview) makes it easy to deploy Spring Boot applications to Azure without any code changes. The service manages the infrastructure of Spring applications so developers can focus on their code. Azure Spring Apps provides lifecycle management using comprehensive monitoring and diagnostics, configuration management, service discovery, CI/CD integration, blue-green deployments, and more. To deploy your application to Azure Spring Apps, see [Deploy your first application to Azure Spring Apps](https://learn.microsoft.com/azure/spring-apps/quickstart?tabs=Azure-CLI).

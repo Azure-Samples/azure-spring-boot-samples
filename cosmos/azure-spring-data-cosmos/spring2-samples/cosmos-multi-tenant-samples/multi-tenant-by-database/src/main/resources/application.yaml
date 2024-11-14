@@ -3,5 +3,5 @@ spring:
     cosmos:
       uri: ${ACCOUNT_HOST}
       key: ${ACCOUNT_KEY}
-      databaseName: default
+      databaseName: TenantTemplateDB
       queryMetricsEnabled: true

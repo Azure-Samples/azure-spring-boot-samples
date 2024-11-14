@@ -14,9 +14,9 @@ import org.springframework.data.annotation.Id;
 @Container(autoCreateContainer = false)
 public class User {
     @Id
+    @PartitionKey
     private String id;
     private String firstName;
-    @PartitionKey
     private String lastName;
     private String type;
     public User() {

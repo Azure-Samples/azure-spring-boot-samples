@@ -10,9 +10,9 @@ import org.springframework.data.annotation.Id;
 @Container(autoCreateContainer = true)
 public class User {
     @Id
+    @PartitionKey
     private String id;
     private String firstName;
-    @PartitionKey
     private String lastName;
     public User() {
     }

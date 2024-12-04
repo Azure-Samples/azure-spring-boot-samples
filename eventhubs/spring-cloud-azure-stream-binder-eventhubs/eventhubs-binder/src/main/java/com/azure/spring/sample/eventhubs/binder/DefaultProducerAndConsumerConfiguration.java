@@ -24,7 +24,7 @@ import static com.azure.spring.messaging.AzureHeaders.CHECKPOINTER;
 @Profile("default")
 public class DefaultProducerAndConsumerConfiguration {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EventHubBinderApplication.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DefaultProducerAndConsumerConfiguration.class);
 
     private int i = 0;
 

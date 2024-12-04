@@ -20,7 +20,7 @@ import java.util.function.Supplier;
 @Profile("batch")
 public class BatchProducerAndConsumerConfiguration {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EventHubBinderApplication.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(BatchProducerAndConsumerConfiguration.class);
 
     private int i = 0;
 

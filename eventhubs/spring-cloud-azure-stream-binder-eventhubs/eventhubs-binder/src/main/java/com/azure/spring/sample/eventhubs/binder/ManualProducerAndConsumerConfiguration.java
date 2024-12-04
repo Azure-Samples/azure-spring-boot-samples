@@ -24,7 +24,7 @@ import java.util.function.Supplier;
 @Profile("manual")
 public class ManualProducerAndConsumerConfiguration {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EventHubBinderApplication.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ManualProducerAndConsumerConfiguration.class);
 
     @Bean
     public Sinks.Many<Message<String>> many() {

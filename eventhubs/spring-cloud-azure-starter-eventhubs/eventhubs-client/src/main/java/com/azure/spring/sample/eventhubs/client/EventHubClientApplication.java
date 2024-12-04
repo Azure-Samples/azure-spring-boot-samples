@@ -40,12 +40,13 @@ public class EventHubClientApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        LOGGER.info("Event Hub producer client created");
-        producerClient.send(Arrays.asList(new EventData("Test event - graalvm")));
-        LOGGER.info("Sent message to Event Hub");
+        LOGGER.info("Sending message using Event Hub producer client.");
+        producerClient.send(Arrays.asList(new EventData("Test event")));
+        LOGGER.info("Sent message to Event Hub.");
         producerClient.close();
 
         TimeUnit.SECONDS.sleep(3);
+        LOGGER.info("Receiving message using Event Hub consumer client.");
         String PARTITION_ID = "0";
         IterableStream<PartitionEvent> partitionEvents = consumerClient.receiveFromPartition(PARTITION_ID, 1,
             EventPosition.earliest());
@@ -54,7 +55,7 @@ public class EventHubClientApplication implements CommandLineRunner {
             PartitionEvent pe = iterator.next();
             LOGGER.info("Received message: {}", pe.getData().getBodyAsString());
         } else {
-            LOGGER.warn("Failed to receive message.");
+            LOGGER.error("Failed to receive message.");
         }
     }
 }

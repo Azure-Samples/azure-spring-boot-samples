@@ -172,6 +172,9 @@ You can debug your sample by adding the saved output values to the tool's enviro
 1.  Verify in your app’s logs that similar messages were posted:
 
 ```shell
+Sending message using Event Hub producer client.
+Sent message to Event Hub.
+Receiving message using Event Hub consumer client.
 Received message: Test event
 ```
 

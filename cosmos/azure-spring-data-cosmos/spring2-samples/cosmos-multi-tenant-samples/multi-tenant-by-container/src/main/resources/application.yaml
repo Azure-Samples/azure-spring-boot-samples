@@ -4,5 +4,5 @@ spring:
       uri: ${ACCOUNT_HOST}
       key: ${ACCOUNT_KEY}
       databaseName: tenants
-      partitionKeyPath: /lastName
+      partitionKeyPath: /id
       queryMetricsEnabled: true

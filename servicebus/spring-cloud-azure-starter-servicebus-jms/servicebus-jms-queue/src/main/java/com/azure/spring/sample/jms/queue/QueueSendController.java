@@ -22,7 +22,7 @@ public class QueueSendController {
     private JmsTemplate jmsTemplate;
 
     @PostMapping("/queue")
-    public String postMessage(@RequestParam String message) {
+    public String postMessage(@RequestParam("message") String message) {
 
         LOGGER.info("Sending message");
 

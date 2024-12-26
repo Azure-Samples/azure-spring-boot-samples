@@ -15,20 +15,22 @@
     <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-complete</module>
     <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-initial</module>
     <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-sample</module>
+    <module>appconfiguration/spring-cloud-azure-feature-management/spring-cloud-azure-feature-management-sample</module>
     <module>appconfiguration/spring-cloud-azure-feature-management-web/spring-cloud-azure-feature-management-web-sample</module>
     <module>appconfiguration/spring-cloud-azure-feature-management-web/spring-cloud-azure-targeting-filter-web-sample</module>
-    <module>appconfiguration/spring-cloud-azure-feature-management/spring-cloud-azure-feature-management-sample</module>
+    <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
     <module>appconfiguration/spring-cloud-azure-starter-appconfiguration-config/spring-cloud-azure-starter-appconfiguration-config-sample</module>
     <module>appconfiguration/spring-cloud-azure-starter-appconfiguration-config/spring-cloud-azure-starter-appconfiguration-config-entraid-sample</module>
-    <module>appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client</module>
     <module>cache/spring-cloud-azure-redis-sample</module>
     <module>cache/spring-cloud-azure-redis-sample-passwordless</module>
-    <module>cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-aad-sample</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>
+    <module>cosmos/azure-spring-data-cosmos/cosmos-multi-tenant-samples/multi-tenant-by-container</module>
+    <module>cosmos/azure-spring-data-cosmos/cosmos-multi-tenant-samples/multi-tenant-by-database</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-mvc-sample</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-quickstart-samples</module>
+    <module>cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample</module>
     <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample</module>
     <module>eventgrid/spring-cloud-azure-starter-eventgrid/spring-cloud-azure-sample-eventgrid</module>
     <module>eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration</module>
@@ -52,14 +54,15 @@
     <module>servicebus/spring-cloud-azure-starter-integration-servicebus/multiple-namespaces</module>
     <module>servicebus/spring-cloud-azure-starter-integration-servicebus/single-namespace</module>
     <module>servicebus/spring-messaging-azure-servicebus/servicebus-spring-messaging</module>
+    <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration</module>
+    <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation</module>
     <module>storage/spring-cloud-azure-starter-storage-blob/storage-blob-sample</module>
     <module>storage/spring-cloud-azure-starter-storage-file-share/storage-file-sample</module>
-    <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation</module>
-    <module>storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-integration</module>
     <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-client</module>
     <module>storage/spring-messaging-azure-storage-queue/storage-queue-spring-messaging</module>
     <module>testcontainers/cosmos</module>
     <module>testcontainers/storage-blob</module>
     <module>testcontainers/storage-queue</module>
   </modules>
+
 </project>

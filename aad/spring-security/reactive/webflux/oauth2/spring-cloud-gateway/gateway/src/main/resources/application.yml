@@ -1,0 +1,33 @@
+# Please fill these placeholders before running this application:
+# 1. ${TENANT_ID}
+# 4. ${RESOURCE_SERVER_1_CLIENT_ID}
+# 5. ${RESOURCE_SERVER_2_CLIENT_ID}
+
+logging:
+  level:
+    root: DEBUG
+server:
+  port: 8083
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      routes:
+      - id: resource-server-1
+        uri: http://localhost:8081
+        predicates:
+        - Path=/resource-server-1
+      - id: resource-server-2
+        uri: http://localhost:8082
+        predicates:
+        - Path=/resource-server-2
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: https://login.microsoftonline.com/${TENANT_ID}/discovery/v2.0/keys
+          issuer-uri: https://login.microsoftonline.com/${TENANT_ID}/v2.0
+          audiences: ${RESOURCE_SERVER_1_CLIENT_ID}, ${RESOURCE_SERVER_2_CLIENT_ID}
+  profiles:
+    active: develop

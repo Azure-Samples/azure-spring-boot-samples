@@ -12,6 +12,10 @@
   <name>Azure Spring Boot Samples for Spring Cloud Azure</name>
 
   <modules>
+    <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter</module>
+    <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless</module>
+    <module>aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server</module>
+<!--    <module>aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server/</module>-->
     <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-complete</module>
     <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-initial</module>
     <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-sample</module>

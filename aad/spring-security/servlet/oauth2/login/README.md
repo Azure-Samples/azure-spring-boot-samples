@@ -70,6 +70,18 @@ terraform -chdir=./terraform apply -auto-approve
 
 ```
 
+#### Run with Powershell
+
+```shell
+# In the root directory of the sample
+# Initialize your Terraform configuration
+terraform -chdir=terraform init
+
+# Apply your Terraform Configuration
+terraform -chdir=terraform apply -auto-approve
+
+```
+
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell
@@ -87,6 +99,12 @@ Running the command below to export environment values:
 
 ```shell
 source ./terraform/setup_env.sh
+```
+
+#### Run with Powershell
+
+```shell
+terraform\setup_env.ps1
 ```
 
 You will see output like below, save this output of `created user` to login.
@@ -108,7 +126,10 @@ In your current terminal, run `mvn clean spring-boot:run`.
 mvn clean spring-boot:run
 ```
 ## Verify This Sample
-
+If running locally, browse to http://localhost:8080 and your browser will be redirected to https://login.microsoftonline.com/ for authentication. Upon successful login you will see:
+```html
+Hello, this is client-1.
+```
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.
@@ -120,4 +141,10 @@ To destroy the resources you created.
 
 ```shell
 terraform -chdir=./terraform destroy -auto-approve
+```
+
+#### Run with Powershell
+
+```shell
+terraform -chdir=terraform destroy -auto-approve
 ```

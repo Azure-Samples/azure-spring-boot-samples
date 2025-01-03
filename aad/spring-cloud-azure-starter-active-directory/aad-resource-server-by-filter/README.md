@@ -61,23 +61,21 @@ As a first step you'll need to:
    - Type a key description (of instance `app secret`),
  ![create the secret](docs/create-secret.png "create the secret")
    - When you press the **Add** button, the key value will be displayed, copy, and save the value in a safe location. ![secret value](docs/secret-value.png "secret value")
-   - You'll need this key later to configure the project. This key value will not be displayed again, nor retrievable by any other means,
-   so record it as soon as it is visible from the Azure portal.   
-   
+   - You'll need this key later to configure the project. This key value will not be displayed again, nor retrievable by any other means, so record it as soon as it is visible from the Azure portal.   
+
 1. In the list of pages for the app, select **API permissions**
-   - Click the **Add a permission** button and then,
+   - Click the **Add a permission** button
    - Ensure that the **Microsoft APIs** tab is selected
    - In the *Commonly used Microsoft APIs* section, click on **Microsoft Graph**
    - In the **Delegated permissions** section, ensure that the right permissions are checked: **Directory.Read.All**
    - Select the **Add permissions** button ![add permissions](docs/add-permissions.png "add permissions")
    
 1. At this stage permissions are assigned correctly but the client app does not allow interaction. 
-   Therefore no consent can be presented via a UI and accepted to use the service app. 
-   Click the **Grant/revoke admin consent for {tenant}** button, and then select **Yes** when you are asked if you want to grant consent for the
-   requested permissions for all account in the tenant. ![grant admin consent](docs/grant-admin-consent.png "grant admin consent")
+   Therefore, no consent can be presented via a UI and accepted to use the service app. 
+   Click the **Grant/revoke admin consent for {tenant}** button, and then select **Yes** when you are asked if you want to grant consent for the requested permissions for all account in the tenant. ![grant admin consent](docs/grant-admin-consent.png "grant admin consent")
    You need to be a Microsoft Entra tenant admin to do this.
 
-1. Then back to **Microsoft Entra ID**, in the left-hand navigation pane, select **Groups**, and then set `user` as member of `group1`.
+1. Then back to **Microsoft Entra ID**, in the left-hand navigation pane, select **Groups**, and then create `group1` if not have, choose your tenant as **Owners** and set `user`(create one if not have) as **Members**.
 
 ---
 ### Step 3:  Configure the sample to use your Microsoft Entra tenant

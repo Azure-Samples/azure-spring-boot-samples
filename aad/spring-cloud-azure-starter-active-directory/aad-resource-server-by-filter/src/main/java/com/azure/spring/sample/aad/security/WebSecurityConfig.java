@@ -3,39 +3,50 @@
 
 package com.azure.spring.sample.aad.security;
 
-import com.azure.spring.cloud.autoconfigure.aad.filter.AadAuthenticationFilter;
+import com.azure.spring.cloud.autoconfigure.implementation.aad.filter.AadAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
+import org.springframework.security.web.csrf.CsrfTokenRequestHandler;
+import org.springframework.security.web.csrf.XorCsrfTokenRequestAttributeHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-@EnableGlobalMethodSecurity(securedEnabled = true,
-        prePostEnabled = true)
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+@Configuration
+@EnableMethodSecurity(securedEnabled = true)
+public class WebSecurityConfig {
 
     @Autowired
     private AadAuthenticationFilter aadAuthFilter;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.authorizeRequests()
-                .antMatchers("/home").permitAll()
-                .antMatchers("/api/**").authenticated()
-                .anyRequest().permitAll()
-                .and()
-            .csrf()
+        //see https://docs.spring.io/spring-security/reference/5.8/migration/servlet/exploits.html#_i_am_using_angularjs_or_another_javascript_framework
+        XorCsrfTokenRequestAttributeHandler delegate = new XorCsrfTokenRequestAttributeHandler();
+        delegate.setCsrfRequestAttributeName("_csrf");
+        CsrfTokenRequestHandler requestHandler = delegate::handle;
+
+        http.authorizeHttpRequests(requests -> requests
+                .requestMatchers("/home").permitAll()
+                .requestMatchers("/api/**").authenticated()
+                .anyRequest().permitAll())
+            .csrf(CsrfConfigurer::disable)
+            .csrf(configurer -> configurer
                 .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse())
-                .and()
-            .logout()
+                .csrfTokenRequestHandler(requestHandler))
+            .logout(configurer -> configurer
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .deleteCookies("JSESSIONID")
                 .logoutSuccessUrl("/")
-                .invalidateHttpSession(true)
-                .and()
+                .invalidateHttpSession(true))
             .addFilterBefore(aadAuthFilter, UsernamePasswordAuthenticationFilter.class);
+
+        return http.build();
     }
 }

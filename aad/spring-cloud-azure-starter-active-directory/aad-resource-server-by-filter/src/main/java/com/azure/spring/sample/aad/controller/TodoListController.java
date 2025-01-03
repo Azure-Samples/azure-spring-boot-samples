@@ -3,8 +3,8 @@
 
 package com.azure.spring.sample.aad.controller;
 
-import com.azure.spring.cloud.autoconfigure.aad.filter.UserPrincipal;
-import com.azure.spring.cloud.autoconfigure.aad.properties.AadAuthenticationProperties;
+import com.azure.spring.cloud.autoconfigure.implementation.aad.configuration.properties.AadAuthenticationProperties;
+import com.azure.spring.cloud.autoconfigure.implementation.aad.filter.UserPrincipal;
 import com.azure.spring.sample.aad.model.TodoItem;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

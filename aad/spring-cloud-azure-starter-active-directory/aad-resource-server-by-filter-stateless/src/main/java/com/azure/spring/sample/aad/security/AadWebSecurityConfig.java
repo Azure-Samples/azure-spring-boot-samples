@@ -3,34 +3,38 @@
 
 package com.azure.spring.sample.aad.security;
 
-import com.azure.spring.cloud.autoconfigure.aad.filter.AadAppRoleStatelessAuthenticationFilter;
+import com.azure.spring.cloud.autoconfigure.implementation.aad.filter.AadAppRoleStatelessAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.annotation.web.configurers.CsrfConfigurer;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class AadWebSecurityConfig extends WebSecurityConfigurerAdapter {
+@EnableMethodSecurity(prePostEnabled = true)
+@Configuration
+public class AadWebSecurityConfig {
 
     @Autowired
     private AadAppRoleStatelessAuthenticationFilter aadAuthFilter;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.NEVER);
+        http.csrf(CsrfConfigurer::disable)
+            .sessionManagement(configurer ->
+                configurer.sessionCreationPolicy(SessionCreationPolicy.NEVER))
+            .authorizeHttpRequests(request -> request
+                .requestMatchers("/admin/**").hasRole("Admin")
+                .requestMatchers("/", "/index.html", "/public").permitAll()
+                .anyRequest().authenticated())
+            .addFilterBefore(aadAuthFilter, UsernamePasswordAuthenticationFilter.class);
 
-        http.authorizeRequests()
-            .antMatchers("/admin/**").hasRole("Admin")
-            .antMatchers("/", "/index.html", "/public").permitAll()
-            .anyRequest().authenticated();
-
-        http.addFilterBefore(aadAuthFilter, UsernamePasswordAuthenticationFilter.class);
-
+        return http.build();
     }
 }

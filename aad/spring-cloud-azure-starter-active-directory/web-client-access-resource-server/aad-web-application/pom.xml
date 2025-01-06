@@ -5,9 +5,9 @@
 
   <parent>
     <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-boot-samples</artifactId>
+    <artifactId>azure-active-directory-sample-on-behalf-of</artifactId>
     <version>1.0.0</version>
-    <relativePath>../../../../pom.xml</relativePath>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <artifactId>spring-cloud-azure-starter-active-directory-webapp</artifactId>
@@ -50,7 +50,7 @@
     </dependency>
     <dependency>
       <groupId>org.thymeleaf.extras</groupId>
-      <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+      <artifactId>thymeleaf-extras-springsecurity6</artifactId>
     </dependency>
   </dependencies>
 

@@ -23,7 +23,7 @@ public class AadWebApplicationConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.with(AadWebApplicationHttpSecurityConfigurer.aadWebApplication(), securityConfigurer -> {})
+        http.with(AadWebApplicationHttpSecurityConfigurer.aadWebApplication(), configurer -> {})
             .authorizeHttpRequests(requests -> requests
             .requestMatchers("/login").permitAll()
             .anyRequest().authenticated());

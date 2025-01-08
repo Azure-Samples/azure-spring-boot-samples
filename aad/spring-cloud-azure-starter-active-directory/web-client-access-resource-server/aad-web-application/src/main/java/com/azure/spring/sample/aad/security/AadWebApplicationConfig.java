@@ -7,6 +7,7 @@ import com.azure.spring.cloud.autoconfigure.implementation.aad.security.AadWebAp
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,7 +24,7 @@ public class AadWebApplicationConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 
-        http.with(AadWebApplicationHttpSecurityConfigurer.aadWebApplication(), configurer -> {})
+        http.with(AadWebApplicationHttpSecurityConfigurer.aadWebApplication(), Customizer.withDefaults())
             .authorizeHttpRequests(requests -> requests
             .requestMatchers("/login").permitAll()
             .anyRequest().authenticated());

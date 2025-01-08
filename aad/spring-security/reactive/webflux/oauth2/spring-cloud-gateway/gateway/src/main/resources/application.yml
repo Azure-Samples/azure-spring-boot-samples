@@ -9,6 +9,9 @@ logging:
 server:
   port: 8083
 spring:
+  http:
+    client:
+      factory: jdk
   application:
     name: gateway
   cloud:
@@ -17,11 +20,11 @@ spring:
       - id: resource-server-1
         uri: http://localhost:8081
         predicates:
-        - Path=/resource-server-1
+          - Path=/resource-server-1
       - id: resource-server-2
         uri: http://localhost:8082
         predicates:
-        - Path=/resource-server-2
+          - Path=/resource-server-2
   security:
     oauth2:
       resourceserver:

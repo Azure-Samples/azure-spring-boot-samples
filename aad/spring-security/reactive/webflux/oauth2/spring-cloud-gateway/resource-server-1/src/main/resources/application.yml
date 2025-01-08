@@ -8,6 +8,9 @@ logging:
 server:
   port: 8081
 spring:
+  http:
+    client:
+      factory: jdk
   security:
     oauth2:
       resourceserver:

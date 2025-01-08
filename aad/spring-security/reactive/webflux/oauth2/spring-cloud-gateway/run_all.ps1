@@ -3,7 +3,7 @@
 . terraform\kill-port.ps1 8082
 . terraform\kill-port.ps1 8083
 
-mvn clean package spring-boot:repackage "-DskipTests -f ../../../../pom.xml -pl \
+mvn clean package spring-boot:repackage "-DskipTests -pl \
 com.azure.spring:spring-security-sample-reactive-webflux-oauth2-spring-cloud-gateway-client-application,\
 com.azure.spring:spring-security-sample-reactive-webflux-oauth2-spring-cloud-gateway-gateway-application,\
 com.azure.spring:spring-security-sample-reactive-webflux-oauth2-spring-cloud-gateway-resource-server-1-application,\

@@ -3,7 +3,7 @@
 kill -9 $(lsof -t -i tcp:8080)
 kill -9 $(lsof -t -i tcp:8081)
 
-mvn clean package spring-boot:repackage -DskipTests -f ../../../pom.xml -pl \
+mvn clean package spring-boot:repackage -DskipTests -pl \
 com.azure.spring:servlet-oauth2-client-access-resource-server-client-application,\
 com.azure.spring:servlet-oauth2-client-access-resource-server-resource-server-application
 

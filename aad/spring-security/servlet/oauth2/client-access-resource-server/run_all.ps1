@@ -1,7 +1,7 @@
 . terraform\kill-port.ps1 8080
 . terraform\kill-port.ps1 8081
 
-mvn clean package spring-boot:repackage "-DskipTests -f ../../../pom.xml -pl \
+mvn clean package spring-boot:repackage "-DskipTests -pl \
 com.azure.spring:servlet-oauth2-client-access-resource-server-client-application,\
 com.azure.spring:servlet-oauth2-client-access-resource-server-resource-server-application"
 

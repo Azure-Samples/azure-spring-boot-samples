@@ -3,13 +3,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
-  <parent>
-    <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-boot-samples</artifactId>
-    <version>1.0.0</version>
-    <relativePath>../../../pom.xml</relativePath>
-  </parent>
-
+  <groupId>com.azure.spring</groupId>
   <artifactId>spring-cloud-azure-starter-active-directory-b2c-oidc</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
@@ -17,6 +11,32 @@
   <name>Spring-Cloud-Azure-Starter-Active-Directory-B2C Sample: Web Application</name>
   <description>Azure Active Directory B2C Spring Security 5 OAuth2 Integration Spring Boot Sample</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <version.spring.boot>3.4.0</version.spring.boot>
+    <version.spring.cloud.azure>5.19.0</version.spring.cloud.azure>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-dependencies</artifactId>
+        <version>${version.spring.boot}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.azure.spring</groupId>
+        <artifactId>spring-cloud-azure-dependencies</artifactId>
+        <version>${version.spring.cloud.azure}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
@@ -41,7 +61,17 @@
 
     <dependency>
       <groupId>org.thymeleaf.extras</groupId>
-      <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+      <artifactId>thymeleaf-extras-springsecurity6</artifactId>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${version.spring.boot}</version>
+      </plugin>
+    </plugins>
+  </build>
 </project>

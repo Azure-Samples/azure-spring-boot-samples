@@ -6,9 +6,9 @@
 
   <parent>
     <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-boot-samples</artifactId>
+    <artifactId>servlet-oauth2-client-access-multiple-resource-server</artifactId>
     <version>1.0.0</version>
-    <relativePath>../../../../../../pom.xml</relativePath>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <artifactId>servlet-oauth2-client-access-multiple-resource-server-resource-server-1-application</artifactId>

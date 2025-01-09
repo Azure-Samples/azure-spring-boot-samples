@@ -237,11 +237,3 @@ resource "azuread_user" "user" {
   display_name        = "security"
   password            = "Azure123456@"
 }
-
-resource "null_resource" "set_env" {
-  depends_on = [azuread_service_principal.resource-server-2]
-
-  provisioner "local-exec" {
-    command = "/bin/bash set_identifier_uris.sh"
-  }
-}

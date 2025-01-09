@@ -174,11 +174,3 @@ resource "azuread_service_principal_delegated_permission_grant" "resource-server
   resource_service_principal_object_id = azuread_service_principal.resource-server-1.object_id
   claim_values                         = ["resource-server-1.scope-1"]
 }
-
-resource "null_resource" "set_env" {
-  depends_on = [azuread_service_principal.resource-server-1]
-
-  provisioner "local-exec" {
-    command = "/bin/bash set_identifier_uris.sh"
-  }
-}

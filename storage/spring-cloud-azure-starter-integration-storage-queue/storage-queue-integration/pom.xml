@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.azure.spring</groupId>
-  <artifactId>azure-spring-integration-sample-storage-queue</artifactId>
+  <artifactId>storage-queue-integration</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

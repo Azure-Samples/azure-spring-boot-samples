@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.azure.spring</groupId>
-  <artifactId>azure-spring-cloud-sample-storage-queue-operation</artifactId>
+  <artifactId>storage-queue-operation</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
   <name>Usage of Storage Queue Operation</name>

@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.azure.spring</groupId>
-  <artifactId>spring-cloud-azure-sample-servicebus-jms-queue</artifactId>
+  <artifactId>servicebus-jms-queue</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

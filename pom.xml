@@ -73,9 +73,9 @@
     <module>storage/spring-cloud-azure-starter-storage-file-share/storage-file-sample</module>
     <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-client</module>
     <module>storage/spring-messaging-azure-storage-queue/storage-queue-spring-messaging</module>
-    <module>testcontainers/cosmos</module>
-    <module>testcontainers/storage-blob</module>
-    <module>testcontainers/storage-queue</module>
+    <module>testcontainers/spring-cloud-azure-testcontainers-for-cosmos-sample</module>
+    <module>testcontainers/spring-cloud-azure-testcontainers-for-storage-blob-sample</module>
+    <module>testcontainers/spring-cloud-azure-testcontainers-for-storage-queue-sample</module>
   </modules>
 
 </project>

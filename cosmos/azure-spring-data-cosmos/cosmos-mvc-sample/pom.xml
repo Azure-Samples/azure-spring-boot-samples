@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.spring.cosmos.ebookstore</groupId>
-  <artifactId>EBookStoreSpringBootMVC</artifactId>
+  <artifactId>cosmos-mvc-sample</artifactId>
   <version>1.0.0</version>
   <name>EBookStoreSpringBootMVC</name>
   <description>Sample EBook Store Application using Spring data cosmos repository</description>

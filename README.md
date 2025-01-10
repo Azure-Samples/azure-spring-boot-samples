@@ -131,11 +131,11 @@
 
 ### TestContainers Support
 
-| Sample Project                   | Support Spring Cloud Azure 5.x    | Support Spring Cloud Azure 4.x | 
-|----------------------------------|-----------------------------------|--------------------------------|
-| testContainers for Cosmos        | [✅](testcontainers/cosmos)        | ❌                              |
-| testContainers for Storage Blob  | [✅](testcontainers/storage-blob)  | ❌                              |
-| testContainers for Storage Queue | [✅](testcontainers/storage-queue) | ❌                              |
+| Sample Project                   | Support Spring Cloud Azure 5.x                                                 | Support Spring Cloud Azure 4.x | 
+|----------------------------------|--------------------------------------------------------------------------------|--------------------------------|
+| testContainers for Cosmos        | [✅](testcontainers/spring-cloud-azure-testcontainers-for-cosmos-sample)        | ❌                              |
+| testContainers for Storage Blob  | [✅](testcontainers/spring-cloud-azure-testcontainers-for-storage-blob-sample)  | ❌                              |
+| testContainers for Storage Queue | [✅](testcontainers/spring-cloud-azure-testcontainers-for-storage-queue-sample) | ❌                              |
 
 ## Getting Help
 

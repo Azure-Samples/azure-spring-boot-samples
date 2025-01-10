@@ -15,7 +15,16 @@
     <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter</module>
     <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless</module>
     <module>aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server</module>
-<!--    <module>aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server/</module>-->
+    <module>aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server</module>
+    <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server</module>
+    <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application</module>
+    <module>aad/spring-security/reactive/webflux/oauth2/spring-cloud-gateway</module>
+    <module>aad/spring-security/servlet/oauth2/client-access-multiple-resource-server</module>
+    <module>aad/spring-security/servlet/oauth2/client-access-resource-server</module>
+    <module>aad/spring-security/servlet/oauth2/login</module>
+    <module>aad/spring-security/servlet/oauth2/login-authenticate-using-private-key-jwt</module>
+    <module>aad/spring-security/servlet/oauth2/resource-server-check-permissions-by-claims-in-access-token</module>
+    <module>aad/spring-security/servlet/oauth2/resource-server-support-on-behalf-of-flow</module>
     <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-complete</module>
     <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-initial</module>
     <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-sample</module>

@@ -16,14 +16,15 @@
 
 ### Microsoft Entra ID
 
-| Sample Project                                                                                                                     | Support Spring Cloud Azure 5.x | Support Spring Cloud Azure 4.x | 
-|------------------------------------------------------------------------------------------------------------------------------------|--------------------------------|--------------------------------|
-| [aad-b2c-resource-server](aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server)                             | ✅                              | ❌                              | 
-| [aad-b2c-web-application](aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application)                             | ✅                              | ❌                              | 
-| [aad-resource-server-by-filter-stateless](aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless) | ✅                              | ❌                              | 
-| [aad-resource-server-by-filter](aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter)                     | ✅                              | ❌                              | 
-| [web-client-access-resource-server](aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server)             | ✅                              | ❌                              | 
-| [aad-webapp-resource-server](aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server)              | ✅                              | ❌                              |
+| Sample Project                          | Support Spring Cloud Azure 5.x                                                              | Support Spring Cloud Azure 4.x | 
+|-----------------------------------------|---------------------------------------------------------------------------------------------|--------------------------------|
+| aad-resource-server-by-filter           | [✅](aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter)          | ❌                              | 
+| aad-resource-server-by-filter-stateless | [✅](aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless) | ❌                              | 
+| aad-web-application-and-resource-server | [✅](aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server) | ❌                              | 
+| web-client-access-resource-server       | [✅](aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server)      | ❌                              | 
+| aad-b2c-resource-server                 | [✅](aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server)            | ❌                              | 
+| aad-b2c-web-application                 | [✅](aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application)            | ❌                              | 
+| spring-security-samples                 | [✅](aad/spring-security)                                                                    | ❌                              |
 
 ### Azure App Configuration
 

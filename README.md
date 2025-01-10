@@ -8,23 +8,25 @@
 - The **main** branch is using the latest stable version of Spring Cloud Azure. If you want to find
   sample about specific version of Spring Cloud Azure, please switch to corresponding tag in this
   repository.
+
 > [!IMPORTANT]  
 > We removed the parent pom, so you can directly run each sample without opening the whole projects.
-> We removed all samples for Spring Cloud Azure 4.x from main branch, so if you still want to try, please use `Spring Cloud Azure 4.x` branch.
+> We removed all samples for Spring Cloud Azure 4.x from main branch, so if you still want to try,
+> please use `Spring Cloud Azure 4.x` branch.
 
 ## All Samples in This Repo
 
 ### Microsoft Entra ID
 
-| Sample Project                          | Support Spring Cloud Azure 5.x                                                              | Support Spring Cloud Azure 4.x | 
-|-----------------------------------------|---------------------------------------------------------------------------------------------|--------------------------------|
-| aad-resource-server-by-filter           | [✅](aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter)          | ❌                              | 
+| Sample Project                          | Support Spring Cloud Azure 5.x                                                               | Support Spring Cloud Azure 4.x | 
+|-----------------------------------------|----------------------------------------------------------------------------------------------|--------------------------------|
+| aad-resource-server-by-filter           | [✅](aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter)           | ❌                              | 
 | aad-resource-server-by-filter-stateless | [✅](aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless) | ❌                              | 
 | aad-web-application-and-resource-server | [✅](aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server) | ❌                              | 
-| web-client-access-resource-server       | [✅](aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server)      | ❌                              | 
-| aad-b2c-resource-server                 | [✅](aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server)            | ❌                              | 
-| aad-b2c-web-application                 | [✅](aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application)            | ❌                              | 
-| spring-security-samples                 | [✅](aad/spring-security)                                                                    | ❌                              |
+| web-client-access-resource-server       | [✅](aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server)       | ❌                              | 
+| aad-b2c-resource-server                 | [✅](aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server)             | ❌                              | 
+| aad-b2c-web-application                 | [✅](aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application)             | ❌                              | 
+| spring-security-samples                 | [✅](aad/spring-security)                                                                     | ❌                              |
 
 ### Azure App Configuration
 
@@ -144,9 +146,11 @@
 
 ## Work with Spring Native
 
-Since we removed the parent pom, the Profiles `native-5.x` and `nativeTest-5.x` are removed either. 
-They are variants of the two profiles `native` and `nativeTest` provided by `spring-boot-starter-parent` of Spring Boot 3, and they have the same function.
+Since we removed the parent pom, the Profiles `native-5.x` and `nativeTest-5.x` are removed either.
+They are variants of the two profiles `native` and `nativeTest` provided by
+`spring-boot-starter-parent` of Spring Boot 3, and they have the same function.
 So if you want to use them, just add them into your current pom:
+
 ```yaml
     <profile>
       <id>native-5.x</id>

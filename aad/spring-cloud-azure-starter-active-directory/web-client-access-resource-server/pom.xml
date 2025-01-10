@@ -5,7 +5,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.azure.spring</groupId>
-  <artifactId>azure-active-directory-sample-on-behalf-of</artifactId>
+  <artifactId>spring-azure-active-directory-sample-on-behalf-of</artifactId>
   <version>1.0.0</version>
   <packaging>pom</packaging>
 

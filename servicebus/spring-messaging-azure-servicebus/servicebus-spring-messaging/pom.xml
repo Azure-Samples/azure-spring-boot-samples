@@ -15,6 +15,7 @@
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
+    <version.spring.boot>3.4.0</version.spring.boot>
     <version.spring.cloud.azure>5.19.0</version.spring.cloud.azure>
   </properties>
 
@@ -40,4 +41,14 @@
       <artifactId>spring-cloud-azure-starter</artifactId>
     </dependency>
   </dependencies>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${version.spring.boot}</version>
+      </plugin>
+    </plugins>
+  </build>
 </project>

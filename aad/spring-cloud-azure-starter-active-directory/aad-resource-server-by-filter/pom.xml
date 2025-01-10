@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.azure.spring</groupId>
-  <artifactId>spring-cloud-azure-starter-active-directory-resource-server-by-filter</artifactId>
+  <artifactId>aad-resource-server-by-filter</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 

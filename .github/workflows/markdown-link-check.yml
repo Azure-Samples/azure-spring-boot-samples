@@ -7,7 +7,7 @@ jobs:
     runs-on: ubuntu-22.04 #workaround https://github.com/UmbrellaDocs/action-linkspector/issues/32
     steps:
     - uses: actions/checkout@master
-    - uses: umbrelladocs/action-linkspector@v1.2.4
+    - uses: umbrelladocs/action-linkspector@v1.1.3
       with:
           reporter: github-pr-review
           config_file: '.github/workflows/.linkspector.yml'

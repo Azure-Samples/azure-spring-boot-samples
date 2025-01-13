@@ -15,6 +15,7 @@
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
+    <version.maven>3.13.0</version.maven>
     <version.spring.boot>3.4.0</version.spring.boot>
     <version.spring.cloud.azure>5.19.0</version.spring.cloud.azure>
   </properties>
@@ -67,6 +68,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
+        <version>${version.maven}</version>
         <configuration>
           <compilerArgs>
             <arg>-parameters</arg> <!-- https://github.com/spring-projects/spring-framework/wiki/Upgrading-to-Spring-Framework-6.x#parameter-name-retention -->

@@ -42,7 +42,6 @@
          <dependency>
             <groupId>com.azure</groupId>
             <artifactId>azure-spring-data-cosmos</artifactId>
-             <version>LATEST</version>
         </dependency>
     </dependencies>
 

@@ -69,6 +69,7 @@
       <plugin>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-maven-plugin</artifactId>
+        <version>${version.spring.boot}</version>
         <configuration>
           <skip>true</skip>
         </configuration>

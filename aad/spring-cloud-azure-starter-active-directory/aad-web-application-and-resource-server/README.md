@@ -54,7 +54,7 @@ Now that you have the Spring Boot application running locally, it's time to move
 [Web application and Resource server in one application]: https://github.com/Azure/azure-sdk-for-java/tree/3b84b480a4e0284916da8fe96d4027fdb7262dd1/sdk/spring/azure-spring-boot-starter-active-directory#web-application-and-resource-server-in-one-application
 [Configure web application]: ../web-client-access-resource-server/aad-web-application/README.md#configure-web-app
 [Configure groups for sign in user]: ../web-client-access-resource-server/aad-web-application/README.md#configure-groups-for-sign-in-user
-[Configure your middle-tier Web API]: ../web-client-access-resource-server/aad-resource-server-obo#configure-your-middle-tier-web-api-a
-[Configure Web API]: ../web-client-access-resource-server/aad-resource-server#configure-web-api
+[Configure your middle-tier Web API]: ../web-client-access-resource-server/aad-resource-server-obo/README.md#configure-your-middle-tier-web-api-a
+[Configure Web API]: ../web-client-access-resource-server/aad-resource-server/README.md#configure-web-api
 [Check the authentication and authorization of Web Application]: ../web-client-access-resource-server/aad-web-application/README.md#check-the-authentication-and-authorization
 [Check the authentication and authorization of Resource Server]: ../web-client-access-resource-server/aad-resource-server/README.md#check-the-authentication-and-authorization

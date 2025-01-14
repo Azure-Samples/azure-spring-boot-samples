@@ -62,7 +62,7 @@
 | spring-cloud-azure-data-cosmos-sample | [✅](cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample)   | [✅](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/Spring-Cloud-Azure-4.19.0/cosmos/spring-cloud-azure-starter-data-cosmos)                                         | 
 | spring-cloud-azure-cosmos-sample      | [✅](cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample)             | [✅](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/Spring-Cloud-Azure-4.19.0/cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample)             |
 
-### Azure Event Hubs
+### Azure Event Grid
 
 | Sample Project                      | Support Spring Cloud Azure 5.x                                                          | Support Spring Cloud Azure 4.x | 
 |-------------------------------------|-----------------------------------------------------------------------------------------|--------------------------------|

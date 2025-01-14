@@ -42,7 +42,7 @@ This sample demonstrate basic Spring Data code for Java SQL API to connect to Az
 
 1. Search for your app in Azure Portal --> Microsoft Entra ID --> App Registrations. You should see information like the below:
 
-    ![app](media/aad-app.png?raw=true "aad app")
+    ![app](media/aad-app.png "aad app")
 
 1. Review `resources/application.yaml` in the repo you have cloned. 
     - Replace `<COSMOS_URI>` with the URI of your Cosmos DB account

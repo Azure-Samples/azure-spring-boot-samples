@@ -9,6 +9,6 @@ ignorePatterns:
   - pattern: "^https://mvnrepository.com/artifact/com.azure/azure-security-keyvault-jca"
   - pattern: "^https://www.microsoft.com/edge"
   - pattern: "^https://dev.mysql.com/downloads/shell/"
-  - pattern: "^media/aad-app.png?raw=true"
+  - pattern: "media/aad-app.png?raw=true"
 aliveStatusCodes:
   - 200

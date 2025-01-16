@@ -10,68 +10,7 @@
   <version>1.0.0</version>
 
   <name>Azure Spring Boot Samples for Spring Cloud Azure</name>
-  <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
-    <version.spring.boot>2.7.18</version.spring.boot>
-    <version.spring.cloud>2021.0.9</version.spring.cloud>
-    <version.spring.cloud.azure>4.19.0</version.spring.cloud.azure>
-    <version.azure-spring-boot-starter-keyvault-certificates>3.14.0</version.azure-spring-boot-starter-keyvault-certificates>
-    <version.maven-surefire-plugin>3.0.0</version.maven-surefire-plugin>
-    <mockito.version>4.11.0</mockito.version>
-  </properties>
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-dependencies</artifactId>
-        <version>${version.spring.boot}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>org.springframework.cloud</groupId>
-        <artifactId>spring-cloud-dependencies</artifactId>
-        <version>${version.spring.cloud}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.azure.spring</groupId>
-        <artifactId>spring-cloud-azure-dependencies</artifactId>
-        <version>${version.spring.cloud.azure}</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-      <dependency>
-        <groupId>com.azure.spring</groupId>
-        <artifactId>azure-spring-boot-starter-keyvault-certificates</artifactId>
-        <version>${version.azure-spring-boot-starter-keyvault-certificates}</version>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-maven-plugin</artifactId>
-        <version>${version.spring.boot}</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>repackage</goal>
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>${version.maven-surefire-plugin}</version>
-      </plugin>
-    </plugins>
-  </build>
   <modules>
     <module>aad/spring-cloud-azure-starter-active-directory/web-client-access-resource-server</module>
     <module>aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter</module>
@@ -79,13 +18,15 @@
     <module>aad/spring-cloud-azure-starter-active-directory/aad-web-application-and-resource-server</module>
     <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application</module>
     <module>aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-resource-server</module>
-    <module>aad/spring-security</module>
-    <module>
-      appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-complete
-    </module>
-    <module>
-      appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-initial
-    </module>
+    <module>aad/spring-security/reactive/webflux/oauth2/spring-cloud-gateway</module>
+    <module>aad/spring-security/servlet/oauth2/client-access-multiple-resource-server</module>
+    <module>aad/spring-security/servlet/oauth2/client-access-resource-server</module>
+    <module>aad/spring-security/servlet/oauth2/login</module>
+    <module>aad/spring-security/servlet/oauth2/login-authenticate-using-private-key-jwt</module>
+    <module>aad/spring-security/servlet/oauth2/resource-server-check-permissions-by-claims-in-access-token</module>
+    <module>aad/spring-security/servlet/oauth2/resource-server-support-on-behalf-of-flow</module>
+    <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-complete</module>
+    <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-initial</module>
     <module>appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-sample</module>
     <module>appconfiguration/spring-cloud-azure-feature-management-web/spring-cloud-azure-feature-management-web-sample</module>
     <module>appconfiguration/spring-cloud-azure-feature-management-web/spring-cloud-azure-targeting-filter-web-sample</module>
@@ -102,6 +43,8 @@
     <module>cosmos/azure-spring-data-cosmos/cosmos-aad-sample</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>
+    <module>cosmos/azure-spring-data-cosmos/cosmos-multi-tenant-samples/multi-tenant-by-container</module>
+    <module>cosmos/azure-spring-data-cosmos/cosmos-multi-tenant-samples/multi-tenant-by-database</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-mvc-sample</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-quickstart-samples</module>
     <module>eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration</module>

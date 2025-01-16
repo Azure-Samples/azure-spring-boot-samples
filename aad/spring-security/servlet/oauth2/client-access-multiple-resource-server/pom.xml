@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://maven.apache.org/POM/4.0.0"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
@@ -11,12 +12,11 @@
   </parent>
 
   <groupId>com.azure.spring</groupId>
-  <artifactId>spring-cloud-azure-cosmos-sample</artifactId>
+  <artifactId>servlet-oauth2-client-access-multiple-resource-server</artifactId>
   <version>1.0.0</version>
-  <packaging>jar</packaging>
+  <packaging>pom</packaging>
 
-  <name>Read and Write Data with Azure Cosmos DB Using CosmosClient</name>
-  <description>Sample project for Spring Cloud Azure Starter Cosmos</description>
+  <name>Spring-Security Sample: Servlet: OAuth2: Client Access Multiple Resource Server</name>
 
   <properties>
     <maven.compiler.source>1.8</maven.compiler.source>
@@ -36,15 +36,10 @@
     </dependencies>
   </dependencyManagement>
 
-  <dependencies>
-    <dependency>
-      <groupId>com.azure.spring</groupId>
-      <artifactId>spring-cloud-azure-starter-cosmos</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-web</artifactId>
-    </dependency>
-  </dependencies>
+  <modules>
+    <module>client</module>
+    <module>resource-server-1</module>
+    <module>resource-server-2</module>
+  </modules>
 
 </project>

@@ -151,4 +151,4 @@ In Azure portal, app registration manifest page, configure `oauth2AllowImplicitF
 [this issue]: https://github.com/MicrosoftDocs/azure-docs/issues/8121#issuecomment-387090099
 [Resource Server]: ../aad-resource-server
 [Resource Server Obo]: ../aad-resource-server-obo
-[config for resource server obo]: ../aad-resource-server-obo#configure-your-middle-tier-web-api-a
+[config for resource server obo]: ../aad-resource-server-obo/README.md#configure-your-middle-tier-web-api-a

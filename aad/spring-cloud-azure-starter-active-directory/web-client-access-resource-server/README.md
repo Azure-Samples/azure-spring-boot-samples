@@ -123,7 +123,7 @@ source run_all.sh
 .\run_all.ps1
 ```
 
-## [Check the authentication and authorization](./aad-web-application#Check-the-authentication-and-authorization)
+## [Check the authentication and authorization](./aad-web-application/README.md#check-the-authentication-and-authorization)
 
 ## Clean Up Resources
 After running the sample, if you don't want to run the sample, remember to destroy the Azure resources you created to avoid unnecessary billing.

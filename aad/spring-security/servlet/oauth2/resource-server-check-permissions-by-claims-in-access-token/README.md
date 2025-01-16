@@ -70,6 +70,18 @@ terraform -chdir=./terraform apply -auto-approve
 
 ```
 
+#### Run with Powershell
+
+```shell
+# Into the directory of resource-server-check-permissions-by-claims-in-access-token
+# Initialize your Terraform configuration
+terraform -chdir=terraform init
+
+# Apply your Terraform Configuration
+terraform -chdir=terraform apply -auto-approve
+
+```
+
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell
@@ -80,6 +92,11 @@ Apply complete! Resources: * added, * changed, * destroyed.
 
 You can go to [Azure portal](https://ms.portal.azure.com/) in your web browser to check the resources you created.
 
+### Additional Steps after Provisioning Resources
+1. Replace the `<resource-server-1-client-id>` with actual value in [CheckPermissionByScopeController](client/src/main/java/com/azure/spring/sample/active/directory/oauth2/servlet/sample02/client/controller/CheckPermissionByScopeController.java)
+
+2. Refer [document](https://learn.microsoft.com/en-us/entra/identity-platform/howto-add-app-roles-in-apps#assign-users-and-groups-to-microsoft-entra-roles) about assigning users and groups to roles, assign user-1 to resource-server-2-role-1.
+
 ### Export Output to Your Local Environment
 Running the command below to export environment values:
 
@@ -89,12 +106,26 @@ Running the command below to export environment values:
 source ./terraform/setup_env.sh
 ```
 
+#### Run with Powershell
+
+```shell
+. terraform\setup_env.ps1
+```
+
 ## Run Locally
 
-In your current terminal, run `source run_all.sh`.
+In your current terminal:
+
+#### Run with Bash
 
 ```shell
 source run_all.sh
+```
+
+#### Run with Powershell
+
+```shell
+.\run_all.ps1
 ```
 
 ## Verify This Sample
@@ -110,4 +141,10 @@ To destroy the resources you created.
 
 ```shell
 terraform -chdir=./terraform destroy -auto-approve
+```
+
+#### Run with Powershell
+
+```shell
+terraform -chdir=terraform destroy -auto-approve
 ```

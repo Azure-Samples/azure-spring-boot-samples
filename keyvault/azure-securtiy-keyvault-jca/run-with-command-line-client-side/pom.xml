@@ -5,22 +5,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>azure-spring-boot-samples</artifactId>
-        <groupId>com.azure.spring</groupId>
-        <version>1.0.0</version>
-        <relativePath>../../../pom.xml</relativePath>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-parent</artifactId>
+      <version>3.4.0</version>
+      <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
+    <groupId>com.azure.spring</groupId>
     <artifactId>run-with-command-line-client-side</artifactId>
     <version>1.0.0</version>
     <packaging>jar</packaging>
 
     <name>Azure-Security-Keyvault-JCA Sample: Run with Command Line: Client Side</name>
-    <description>Sample project for running an http client with Azure key vault via command line</description>
+    <description>Sample project for running a http client with Azure key vault via command line</description>
 
     <properties>
-        <maven.compiler.source>1.8</maven.compiler.source>
-        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>17</maven.compiler.source>
+        <maven.compiler.target>17</maven.compiler.target>
     </properties>
 
     <build>

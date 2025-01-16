@@ -1,7 +1,7 @@
 # Authentication filter sample for Microsoft Entra ID Spring Boot Starter
 
 ## Key concepts
-This sample illustrates how to use `spring-cloud-azure-starter-active-directory` package to plugin JWT token filter into Spring Security filter chain. The filter injects `UserPrincipal` object that is associated with the thread of the current user request. User's Microsoft Entra membership info, along with token claimsset, JWS object etc. are accessible from the object which can be used for role based authorization. Methods like `isMemberOf` is also supported.
+This sample illustrates how to use `spring-cloud-azure-starter-active-directory` package to plugin JWT token filter into Spring Security filter chain. The filter injects `UserPrincipal` object that is associated with the thread of the current user request. User's Microsoft Entra membership info, along with token claims set, JWS object etc. are accessible from the object which can be used for role based authorization. Methods like `isMemberOf` is also supported.
 
 ## Getting started
 The sample is composed of two layers: Angular JS client and Spring Boot RESTful Web Service. You need to make some changes to get it working with your Microsoft Entra tenant on both sides.
@@ -16,7 +16,7 @@ To run this sample, you'll need:
 
 
 #### Note
-- If you are not the admin, you need consent from your admin for the the `Directory.Read.All` permission. For details see [Directory Permissions](https://docs.microsoft.com/graph/permissions-reference#directory-permissions)
+- If you are not the admin, you need consent from your admin for the `Directory.Read.All` permission. For details see [Directory Permissions](https://docs.microsoft.com/graph/permissions-reference#directory-permissions)
 
 ## Running Sample With Terraform
 Please refer to [README.md](terraform/README.md) if you want to start the sample with Terraform in just a few steps.
@@ -42,7 +42,7 @@ To register it follow the steps below or follow the guide [here](https://docs.mi
 As a first step you'll need to:
 
 1. Sign in to the [Azure portal](https://portal.azure.com) using either a work or school account.
-1. If your account is present in more than one Microsoft Entra tenant, select `your account name` at the top right corner in the menu on top of the page, and switch your portal session to the desired Microsoft Entra tenant.   
+1. If your account is present in more than one Microsoft Entra tenant, select `your account name` in the top right corner in the menu on top of the page, and switch your portal session to the desired Microsoft Entra tenant.   
 1. In the left-hand navigation pane, select the **Microsoft Entra ID** service, and then select **App registrations**
 
 #### Register the client app
@@ -56,28 +56,26 @@ As a first step you'll need to:
    - Select **Register** to create the application. ![register_the application](docs/application-registration-1.png "register the application")![register_the application](docs/application-registration-2.png "register the application")
    - After creating the application, on the application **Overview** page, click the **Redirect URIs** to edit, select the **Access tokens** and **ID tokens**, and click **Save**. ![accept tokens](docs/tokens-to-accept.png "accept tokens")
 1. On the app **Overview** page, find the **Application (client) ID** value and record it for later. You'll need it to configure the application.properties file for this project.
-1. On selecting your application from the the registered applcations you can see **Certificates & secrets** in left navigation pane, go to that page and in the **Client secrets** section, choose **New client secret**:
+1. On selecting your application from the registered applications you can see **Certificates & secrets** in left navigation pane, go to that page and in the **Client secrets** section, choose **New client secret**:
 
    - Type a key description (of instance `app secret`),
  ![create the secret](docs/create-secret.png "create the secret")
    - When you press the **Add** button, the key value will be displayed, copy, and save the value in a safe location. ![secret value](docs/secret-value.png "secret value")
-   - You'll need this key later to configure the project. This key value will not be displayed again, nor retrievable by any other means,
-   so record it as soon as it is visible from the Azure portal.   
-   
+   - You'll need this key later to configure the project. This key value will not be displayed again, nor retrievable by any other means, so record it as soon as it is visible from the Azure portal.   
+
 1. In the list of pages for the app, select **API permissions**
-   - Click the **Add a permission** button and then,
+   - Click the **Add a permission** button
    - Ensure that the **Microsoft APIs** tab is selected
    - In the *Commonly used Microsoft APIs* section, click on **Microsoft Graph**
    - In the **Delegated permissions** section, ensure that the right permissions are checked: **Directory.Read.All**
    - Select the **Add permissions** button ![add permissions](docs/add-permissions.png "add permissions")
    
 1. At this stage permissions are assigned correctly but the client app does not allow interaction. 
-   Therefore no consent can be presented via a UI and accepted to use the service app. 
-   Click the **Grant/revoke admin consent for {tenant}** button, and then select **Yes** when you are asked if you want to grant consent for the
-   requested permissions for all account in the tenant. ![grant admin consent](docs/grant-admin-consent.png "grant admin consent")
+   Therefore, no consent can be presented via a UI and accepted to use the service app. 
+   Click the **Grant/revoke admin consent for {tenant}** button, and then select **Yes** when you are asked if you want to grant consent for the requested permissions for all account in the tenant. ![grant admin consent](docs/grant-admin-consent.png "grant admin consent")
    You need to be a Microsoft Entra tenant admin to do this.
 
-1. Then back to **Microsoft Entra ID**, in the left-hand navigation pane, select **Groups**, and then set `user` as member of `group1`.
+1. Then back to **Microsoft Entra ID**, in the left-hand navigation pane, select **Groups**, and then create `group1` if not have, choose your tenant as **Owners** and set `user`(create one if not have) as **Members**.
 
 ---
 ### Step 3:  Configure the sample to use your Microsoft Entra tenant

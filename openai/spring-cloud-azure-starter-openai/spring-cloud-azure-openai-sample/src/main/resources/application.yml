@@ -1,7 +1,0 @@
-spring:
-  cloud:
-    azure:
-      openai:
-        endpoint: ${AZURE_OPENAI_ENDPOINT}
-        service-version: ${AZURE_OPENAI_SERVICE_VERSION}
-        key: ${AZURE_OPENAI_KEY}

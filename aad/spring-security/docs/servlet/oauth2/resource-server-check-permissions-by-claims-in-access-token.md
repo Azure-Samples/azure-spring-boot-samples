@@ -63,7 +63,7 @@ Read [document about Application manifest], set `accessTokenAcceptedVersion` to 
 Read [document about declaring roles for an application], create 2 roles for resource-server-1: **resource-server-1-role-1** and **resource-server-1-role-2**.
 
 ## 3.10. Assign user-1 to resource-server-1-role-1
-Read [document about assigning users and groups to roles], assign **user-1** to **resource-server-2-role-1**.
+Read [document about assigning users and groups to roles], assign **user-1** to **resource-server-1-role-1**.
 
 # 4. Run sample applications
 1. Open sample application: [client], fill the placeholders in **application.yml** and **CheckPermissionByScopeController.java**, then run the application.

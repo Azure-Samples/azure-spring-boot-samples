@@ -4,19 +4,38 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-boot-samples</artifactId>
-    <version>1.0.0</version>
-    <relativePath>../../../pom.xml</relativePath>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.4.0</version>
+    <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
-  <artifactId>spring-cloud-azure-starter-active-directory-resource-server-by-filter</artifactId>
+  <groupId>com.azure.spring</groupId>
+  <artifactId>aad-resource-server-by-filter</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <name>Spring-Cloud-Azure-Starter-Active-Directory Sample: Resource Server by Filter</name>
   <description>Microsoft Entra ID Spring Security Integration Spring Boot Sample</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <version.spring.cloud.azure>5.19.0</version.spring.cloud.azure>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.azure.spring</groupId>
+        <artifactId>spring-cloud-azure-dependencies</artifactId>
+        <version>${version.spring.cloud.azure}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
@@ -40,5 +59,4 @@
       <artifactId>spring-security-oauth2-core</artifactId>
     </dependency>
   </dependencies>
-
 </project>

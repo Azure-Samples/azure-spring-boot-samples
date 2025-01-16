@@ -5,17 +5,23 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-boot-samples</artifactId>
-    <version>1.0.0</version>
-    <relativePath>../../../../../pom.xml</relativePath>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.4.0</version>
+    <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
+  <groupId>com.azure.spring</groupId>
   <artifactId>servlet-oauth2-login</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <name>Spring-Security Sample: Servlet: OAuth2: Login</name>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+  </properties>
 
   <dependencies>
     <dependency>
@@ -27,5 +33,4 @@
       <artifactId>spring-boot-starter-oauth2-client</artifactId>
     </dependency>
   </dependencies>
-
 </project>

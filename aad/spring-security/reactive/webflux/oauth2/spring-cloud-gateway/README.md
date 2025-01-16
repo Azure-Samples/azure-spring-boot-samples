@@ -70,6 +70,18 @@ terraform -chdir=./terraform apply -auto-approve
 
 ```
 
+#### Run with Powershell
+
+```shell
+# Into the directory of spring-cloud-gateway
+# Initialize your Terraform configuration
+terraform -chdir=terraform init
+
+# Apply your Terraform Configuration
+terraform -chdir=terraform apply -auto-approve
+
+```
+
 It may take a few minutes to run the script. After successful running, you will see prompt information like below:
 
 ```shell
@@ -89,12 +101,26 @@ Running the command below to export environment values:
 source ./terraform/setup_env.sh
 ```
 
+#### Run with Powershell
+
+```shell
+. terraform\setup_env.ps1
+```
+
 ## Run Locally
 
-In your current terminal, run `source run_all.sh`.
+In your current terminal:
+
+#### Run with Bash
 
 ```shell
 source run_all.sh
+```
+
+#### Run with Powershell
+
+```shell
+.\run_all.ps1
 ```
 
 ## Verify This Sample
@@ -110,4 +136,10 @@ To destroy the resources you created.
 
 ```shell
 terraform -chdir=./terraform destroy -auto-approve
+```
+
+#### Run with Powershell
+
+```shell
+terraform -chdir=terraform destroy -auto-approve
 ```

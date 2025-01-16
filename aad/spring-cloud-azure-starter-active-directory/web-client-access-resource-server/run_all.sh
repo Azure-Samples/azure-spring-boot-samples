@@ -4,7 +4,7 @@ kill -9 $(lsof -t -i tcp:8080)
 kill -9 $(lsof -t -i tcp:8081)
 kill -9 $(lsof -t -i tcp:8082)
 
-mvn clean package spring-boot:repackage -DskipTests -f ../../../pom.xml -pl \
+mvn clean package spring-boot:repackage -DskipTests -pl \
 com.azure.spring:spring-cloud-azure-starter-active-directory-resource-server,\
 com.azure.spring:spring-cloud-azure-starter-active-directory-resource-server-obo,\
 com.azure.spring:spring-cloud-azure-starter-active-directory-webapp

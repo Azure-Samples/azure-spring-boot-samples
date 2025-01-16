@@ -5,17 +5,36 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-boot-samples</artifactId>
-    <version>1.0.0</version>
-    <relativePath>../../../pom.xml</relativePath>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.4.0</version>
+    <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
+  <groupId>com.azure.spring</groupId>
   <artifactId>storage-blob-sample</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <name>Read and Write Blobs with the Spring Resource for Azure Storage Blob</name>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <version.spring.cloud.azure>5.19.0</version.spring.cloud.azure>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.azure.spring</groupId>
+        <artifactId>spring-cloud-azure-dependencies</artifactId>
+        <version>${version.spring.cloud.azure}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
@@ -27,4 +46,5 @@
       <artifactId>spring-boot-starter-web</artifactId>
     </dependency>
   </dependencies>
+
 </project>

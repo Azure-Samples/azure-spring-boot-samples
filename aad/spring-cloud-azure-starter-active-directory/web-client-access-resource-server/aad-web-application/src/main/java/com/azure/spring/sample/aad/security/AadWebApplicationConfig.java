@@ -3,27 +3,33 @@
 
 package com.azure.spring.sample.aad.security;
 
-import com.azure.spring.cloud.autoconfigure.aad.AadWebSecurityConfigurerAdapter;
+import com.azure.spring.cloud.autoconfigure.implementation.aad.security.AadWebApplicationHttpSecurityConfigurer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Profile;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.web.SecurityFilterChain;
 
-import javax.servlet.Filter;
+import jakarta.servlet.Filter;
 
 @Profile("conditional-access")
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class AadWebApplicationConfig extends AadWebSecurityConfigurerAdapter {
+@EnableMethodSecurity
+@Configuration
+public class AadWebApplicationConfig {
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
-        // @formatter:off
-        http.authorizeRequests()
-            .antMatchers("/login").permitAll()
-            .anyRequest().authenticated();
-        // @formatter:on
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+
+        http.with(AadWebApplicationHttpSecurityConfigurer.aadWebApplication(), Customizer.withDefaults())
+            .authorizeHttpRequests(requests -> requests
+            .requestMatchers("/login").permitAll()
+            .anyRequest().authenticated());
+
+        return http.build();
     }
 
     /**
@@ -31,8 +37,8 @@ public class AadWebApplicationConfig extends AadWebSecurityConfigurerAdapter {
      * {@inheritDoc}
      * @return the conditional access filter
      */
-    @Override
-    protected Filter conditionalAccessFilter() {
+    @Bean
+    public Filter conditionalAccessFilter() {
         return new AadConditionalAccessFilter();
     }
 }

@@ -3,14 +3,16 @@ package com.azure.spring.sample.reactive.servlet.oauth2.login.jwt.configuration;
 import com.azure.spring.sample.reactive.servlet.oauth2.login.jwt.azure.activedirectory.AzureActiveDirectoryAssertionException;
 import com.azure.spring.sample.reactive.servlet.oauth2.login.jwt.azure.activedirectory.AzureActiveDirectoryCertificateSignedJwtAssertionFactory;
 import com.azure.spring.sample.reactive.servlet.oauth2.login.jwt.azure.activedirectory.AzureActiveDirectoryJwtClientAuthenticationParametersConverter;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.oauth2.client.endpoint.DefaultAuthorizationCodeTokenResponseClient;
 import org.springframework.security.oauth2.client.endpoint.OAuth2AuthorizationCodeGrantRequestEntityConverter;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.util.StringUtils;
 
 import java.util.Collections;
@@ -21,7 +23,8 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 @EnableWebSecurity
-public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
+@Configuration
+public class WebSecurityConfiguration {
     private static final Pattern ISSUER_URI_PATTERN = Pattern.compile("https://login.microsoftonline.com/(.*?)/v2.0");
 
     private final Environment environment;
@@ -32,17 +35,14 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         this.repository = repository;
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        // @formatter:off
-        http.oauth2Login()
-                .tokenEndpoint()
-                    .accessTokenResponseClient(accessTokenResponseClient(Collections.singletonList("client-1"), repository))
-                    .and()
-                .and()
-            .authorizeRequests()
-                .anyRequest().authenticated();
-        // @formatter:off
+    @Bean
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+        DefaultAuthorizationCodeTokenResponseClient client =
+            accessTokenResponseClient(Collections.singletonList("client-1"), repository);
+        http.oauth2Login(o -> o.tokenEndpoint(t -> {
+                    t.accessTokenResponseClient(client);}))
+            .authorizeHttpRequests(a -> a.anyRequest().authenticated());
+        return http.build();
     }
 
     private DefaultAuthorizationCodeTokenResponseClient accessTokenResponseClient(

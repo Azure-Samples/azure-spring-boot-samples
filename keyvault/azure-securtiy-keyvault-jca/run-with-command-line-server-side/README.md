@@ -7,7 +7,7 @@ This sample illustrates how to use azure-security-keyvault-jca.jar via command l
 - This sample contains a simple and pure Spring Boot web application.
 
 ### Environment
-jdk 11.0.12 or above
+jdk 17 or above
 
 ### Run Spring Boot web server with Azure key vault via command line. 
 1. Open terminal and enter the folder where the pom.xml is and run `mvn package`. In the target
@@ -36,17 +36,17 @@ jdk 11.0.12 or above
    ```
 1. Get the azure-security-keyvault-jca.jar. You can download the latest published jar from maven
    repository [azure-security-keyvault-jca]. When this document is written, the latest jar is
-   azure-security-keyvault-jca-2.7.0.jar
+   azure-security-keyvault-jca-2.10.0.jar
 1. Make a directory, for example, sample_server. Then put the 3 files into sample_server folder
     - java.security
     - run-with-command-line-server-side-1.0.0.jar
-    - azure-security-keyvault-jca-2.7.0.jar
+    - azure-security-keyvault-jca-2.10.0.jar
 1. Create the key vault and certificates, please refer to [create key vault and certificates][create_key_vault_and_certificates]. Create service principal and add a secret, please refer to [register app with Microsoft Entra ID][register_app_with_microsoft_entra_id].
 1. Create a new **Access policy** for the service principal created in the previous step, including the *Get* and *List* permissions of the **Secret permissions**, and the *Get* and *List* permissions of the **Certificate permissions**. 
 1. Replace properties `<yourAzureKeyVaultUri>`, `<yourTenantID>`, `<youClientID>`, `<yourSecretValue>`, `<yourCertificateName>` with your created resources in the following command, then open terminal and enter the directory sample_server, run the changed command:
    ```
    java \
-   --module-path ./azure-security-keyvault-jca-2.7.0.jar \
+   --module-path ./azure-security-keyvault-jca-2.10.0.jar \
    --add-modules com.azure.security.keyvault.jca \
    -Dsecurity.overridePropertiesFile=true \
    -Djava.security.properties==./java.security \

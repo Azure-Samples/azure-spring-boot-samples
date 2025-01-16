@@ -2,7 +2,7 @@
 
 ## Key concepts
 
-This demo project  explains the usage of the stateless authentication filter `AadAppRoleStatelessAuthenticationFilter`.
+This demo project explains the usage of the stateless authentication filter `AadAppRoleStatelessAuthenticationFilter`.
 This project is composed of a vue.js frontend and a simple backend with three endpoints
 * `/public` (accessible by anyone)
 * `/authorized` (role "UserRule" required)
@@ -57,7 +57,7 @@ For the test SPA provided with this example you should create the following role
 
 After you've created the roles, go to **Microsoft Entra ID** and select **Users** to add two new users named "Admin" and "UserRule". Then back to select **Enterprise applications** in the left-hand navigation pane, click on your created application and select **Users and groups**, finally assign the new roles to your new Users (assignment of roles to groups is not available in the free tier of Microsoft Entra ID).
 
-Furthermore enable the implicit flow in the manifest for the demo application 
+Furthermore, enable the implicit flow in the manifest for the demo application 
 (or if you have SPAs calling you):
 
 ```

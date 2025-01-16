@@ -3,51 +3,51 @@
 
 package com.azure.spring.sample.aad.security;
 
-import com.azure.spring.cloud.autoconfigure.aad.AadResourceServerWebSecurityConfigurerAdapter;
-import com.azure.spring.cloud.autoconfigure.aad.AadWebSecurityConfigurerAdapter;
+import com.azure.spring.cloud.autoconfigure.implementation.aad.security.AadResourceServerHttpSecurityConfigurer;
+import com.azure.spring.cloud.autoconfigure.implementation.aad.security.AadWebApplicationHttpSecurityConfigurer;
+import jakarta.servlet.Filter;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.annotation.Order;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-
-import javax.servlet.Filter;
+import org.springframework.security.web.SecurityFilterChain;
 
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableMethodSecurity
+@Configuration
 public class AadWebApplicationAndResourceServerConfig {
 
+    @Bean
     @Order(1)
-    @Configuration
-    public static class ApiWebSecurityConfigurationAdapter extends AadResourceServerWebSecurityConfigurerAdapter {
-        protected void configure(HttpSecurity http) throws Exception {
-            super.configure(http);
-            http.antMatcher("/api/**")
-                .authorizeRequests().anyRequest().authenticated();
-        }
+    public SecurityFilterChain apiWebFilterChain(HttpSecurity http) throws Exception {
+        http.with(AadResourceServerHttpSecurityConfigurer.aadResourceServer(), Customizer.withDefaults())
+            .securityMatcher("/api/**").authorizeHttpRequests(requests -> requests
+                .anyRequest().authenticated());
+
+        return http.build();
     }
 
-    @Configuration
-    public static class HtmlWebSecurityConfigurerAdapter extends AadWebSecurityConfigurerAdapter {
+    @Bean
+    public SecurityFilterChain htmlWebFilterChain(HttpSecurity http) throws Exception {
+        http.with(AadWebApplicationHttpSecurityConfigurer.aadWebApplication(), Customizer.withDefaults())
+            .authorizeHttpRequests(requests -> requests
+            .requestMatchers("/login").permitAll()
+            .anyRequest().authenticated());
 
-        @Override
-        protected void configure(HttpSecurity http) throws Exception {
-            super.configure(http);
-            // @formatter:off
-            http.authorizeRequests()
-                    .antMatchers("/login").permitAll()
-                    .anyRequest().authenticated();
-            // @formatter:on
-        }
+        return http.build();
+    }
 
-        /**
-         * This method is only used for Microsoft Entra conditional access support and can be removed if this feature is not used.
-         * {@inheritDoc}
-         * @return the conditional access filter
-         */
-        @Override
-        protected Filter conditionalAccessFilter() {
-            return new AadConditionalAccessFilter();
-        }
+    /**
+     * This method is only used for Microsoft Entra conditional access support and can be removed if this feature is not
+     * used. {@inheritDoc}
+     *
+     * @return the conditional access filter
+     */
+    @Bean
+    public Filter conditionalAccessFilter() {
+        return new AadConditionalAccessFilter();
     }
 }

@@ -5,7 +5,7 @@ kill -9 $(lsof -t -i tcp:8081)
 kill -9 $(lsof -t -i tcp:8082)
 kill -9 $(lsof -t -i tcp:8083)
 
-mvn clean package spring-boot:repackage -DskipTests -f ../../../../pom.xml -pl \
+mvn clean package spring-boot:repackage -DskipTests -pl \
 com.azure.spring:spring-security-sample-reactive-webflux-oauth2-spring-cloud-gateway-client-application,\
 com.azure.spring:spring-security-sample-reactive-webflux-oauth2-spring-cloud-gateway-gateway-application,\
 com.azure.spring:spring-security-sample-reactive-webflux-oauth2-spring-cloud-gateway-resource-server-1-application,\

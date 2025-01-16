@@ -4,19 +4,38 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-boot-samples</artifactId>
-    <version>1.0.0</version>
-    <relativePath>../../../pom.xml</relativePath>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.4.0</version>
+    <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
-  <artifactId>spring-cloud-azure-starter-active-directory-b2c-oidc</artifactId>
+  <groupId>com.azure.spring</groupId>
+  <artifactId>aad-b2c-web-application</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <name>Spring-Cloud-Azure-Starter-Active-Directory-B2C Sample: Web Application</name>
   <description>Azure Active Directory B2C Spring Security 5 OAuth2 Integration Spring Boot Sample</description>
   <url>https://github.com/Azure/azure-sdk-for-java</url>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <version.spring.cloud.azure>5.19.0</version.spring.cloud.azure>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.azure.spring</groupId>
+        <artifactId>spring-cloud-azure-dependencies</artifactId>
+        <version>${version.spring.cloud.azure}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <dependency>
@@ -41,7 +60,7 @@
 
     <dependency>
       <groupId>org.thymeleaf.extras</groupId>
-      <artifactId>thymeleaf-extras-springsecurity5</artifactId>
+      <artifactId>thymeleaf-extras-springsecurity6</artifactId>
     </dependency>
   </dependencies>
 </project>

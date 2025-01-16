@@ -1,4 +1,7 @@
 spring:
+  http:
+    client:
+      factory: jdk
   cloud:
     azure:
 # Properties like spring.cloud.azure.credential.client-id are global properties.

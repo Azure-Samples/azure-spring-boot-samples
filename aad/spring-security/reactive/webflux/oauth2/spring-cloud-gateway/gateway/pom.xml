@@ -6,9 +6,9 @@
 
   <parent>
     <groupId>com.azure.spring</groupId>
-    <artifactId>azure-spring-boot-samples</artifactId>
+    <artifactId>spring-security-sample-reactive-webflux-oauth2-spring-cloud-gateway</artifactId>
     <version>1.0.0</version>
-    <relativePath>../../../../../../../pom.xml</relativePath>
+    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <artifactId>spring-security-sample-reactive-webflux-oauth2-spring-cloud-gateway-gateway-application</artifactId>

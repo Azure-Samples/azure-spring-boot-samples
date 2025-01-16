@@ -1,4 +1,0 @@
-.appconfig:
-  featureflag/beta: >-
-    {"id":"beta","description":"Test
-    Feature","enabled":true,"conditions":{"client_filters":[{"name":"targetingFilter","parameters":{"Audience":{"Users":["Jeff","Alicia"],"Groups":[{"Name":"Ring0","RolloutPercentage":100},{"Name":"Ring1","RolloutPercentage":100}],"DefaultRolloutPercentage":50,"Exclusion":{"Users":["Ross"],"Groups":["Ring2"]}}}}]}}

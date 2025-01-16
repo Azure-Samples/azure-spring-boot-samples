@@ -5,17 +5,44 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-      <groupId>com.azure.spring</groupId>
-      <artifactId>azure-spring-boot-samples</artifactId>
-      <version>1.0.0</version>
-    <relativePath>../../../pom.xml</relativePath>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>3.4.0</version>
+    <relativePath/> <!-- lookup parent from repository -->
   </parent>
 
+  <groupId>com.azure.spring</groupId>
   <artifactId>spring-cloud-azure-sample-eventhubs-kafka</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
   <name>Communicate to Event Hubs via Spring Cloud Stream Kafka Binder</name>
+
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <version.spring.cloud>2024.0.0</version.spring.cloud>
+    <version.spring.cloud.azure>5.19.0</version.spring.cloud.azure>
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-dependencies</artifactId>
+        <version>${version.spring.cloud}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+      <dependency>
+        <groupId>com.azure.spring</groupId>
+        <artifactId>spring-cloud-azure-dependencies</artifactId>
+        <version>${version.spring.cloud.azure}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
   <dependencies>
     <!-- Add the spring-cloud-azure-resourcemanager dependency when want to use the Azure Resource Manager to retrieve connection string   -->
@@ -38,4 +65,5 @@
       <artifactId>spring-cloud-starter-stream-kafka</artifactId>
     </dependency>
   </dependencies>
+
 </project>

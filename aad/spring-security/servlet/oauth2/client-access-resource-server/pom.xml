@@ -19,9 +19,9 @@
   <name>Spring-Security Sample: Servlet: OAuth2: Client Access Resource Server</name>
 
   <properties>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
-    <version.spring.cloud.azure>5.19.0</version.spring.cloud.azure>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+    <version.spring.cloud.azure>4.19.0</version.spring.cloud.azure>
   </properties>
 
   <dependencyManagement>

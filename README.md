@@ -5,17 +5,15 @@
 - The repository hold samples about
   using [Spring Cloud Azure](https://learn.microsoft.com/azure/developer/java/spring-framework/)
   libraries.
-- The **main** branch is using the latest stable version of Spring Cloud Azure. If you want to find
-  sample about specific version of Spring Cloud Azure, please switch to corresponding tag in this
-  repository.
 
-## All Samples in This Repo
+## 1. Branches and Tags
+- If you are using Spring Boot 3.x, you should choose Spring Cloud Azure 5.x. Related samples are in [main](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main) branch.
+- If you are using Spring Boot 2.x, you should choose Spring Cloud Azure 4.x. Related samples are in [spring-boot-2.x](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x) branch.
+- If you want to find sample about specific version of Spring Cloud Azure, please switch to corresponding tag in this repository.
 
-The samples for Spring Boot 3.x are in the main branch. The samples for Spring Boot 2.x are in the [spring-boot-2.x](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x) branch.
-> [!NOTE]  
-> Spring Boot 3.x using Spirng Cloud Azure 5.x, Spring Boot 2.x using Spring Cloud Azure 4.x.
+## 2. Sample List
 
-### Microsoft Entra ID
+### 2.1 Microsoft Entra ID
 
 | Sample Project                          | Spring Boot 3.x                                                               | Spring Boot 2.x                                                                                                                                                         | 
 |-----------------------------------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -27,7 +25,7 @@ The samples for Spring Boot 3.x are in the main branch. The samples for Spring B
 | aad-b2c-web-application                 | ✅[link](aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application)             | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/aad/spring-cloud-azure-starter-active-directory-b2c/aad-b2c-web-application)             | 
 | spring-security-samples                 | ✅[link](aad/spring-security)                                                                     | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/aad/spring-security)                                                                     |
 
-### Azure App Configuration
+### 2.2 Azure App Configuration
 
 | Sample Project                                                     | Spring Boot 3.x                                                                                                                                                                | Spring Boot 2.x                                                                                                                                                                                                                                                         | 
 |--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -41,14 +39,14 @@ The samples for Spring Boot 3.x are in the main branch. The samples for Spring B
 | spring-cloud-azure-starter-appconfiguration-config-entraid-sample  | ✅[link](appconfiguration/spring-cloud-azure-starter-appconfiguration-config/spring-cloud-azure-starter-appconfiguration-config-entraid-sample)                                                    | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/appconfiguration/spring-cloud-azure-starter-appconfiguration-config/spring-cloud-azure-starter-appconfiguration-config-entraid-sample)                                                   |
 | appconfiguration-client                                            | ✅[link](appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client)                                                                                                     | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/appconfiguration/spring-cloud-azure-starter-appconfiguration/appconfiguration-client)                                                                                                    |
 
-### Azure Cache
+### 2.3 Azure Cache
 
 | Sample Project                               | Spring Boot 3.x                          | Spring Boot 2.x                                                                                                                    | 
 |----------------------------------------------|---------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
 | spring-cloud-azure-cache-sample              | ✅[link](cache/spring-cloud-azure-redis-sample)              | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/cache/spring-cloud-azure-sample-cache)              |
 | spring-cloud-azure-cache-passwordless-sample | ✅[link](cache/spring-cloud-azure-redis-sample-passwordless) | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/cache/spring-cloud-azure-sample-cache-passwordless) |
 
-### Azure Cosmos DB
+### 2.4 Azure Cosmos DB
 
 | Sample Project                        | Spring Boot 3.x                                                             | Spring Boot 2.x                                                                                                                                                       | 
 |---------------------------------------|--------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -62,13 +60,13 @@ The samples for Spring Boot 3.x are in the main branch. The samples for Spring B
 | spring-cloud-azure-data-cosmos-sample | ✅[link](cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample)   | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/cosmos/spring-cloud-azure-starter-data-cosmos)                                         | 
 | spring-cloud-azure-cosmos-sample      | ✅[link](cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample)             | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample)             |
 
-### Azure Event Grid
+### 2.5 Azure Event Grid
 
 | Sample Project                      | Spring Boot 3.x                                                          | Spring Boot 2.x | 
 |-------------------------------------|-----------------------------------------------------------------------------------------|--------------------------------|
 | spring-cloud-azure-sample-eventgrid | ✅[link](eventgrid/spring-cloud-azure-starter-eventgrid/spring-cloud-azure-sample-eventgrid) | ❌                              | 
 
-### Azure Event Hubs
+### 2.6 Azure Event Hubs
 
 | Sample Project                            | Spring Boot 3.x                                                        | Spring Boot 2.x                                                                                                                                                  | 
 |-------------------------------------------|---------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -79,7 +77,7 @@ The samples for Spring Boot 3.x are in the main branch. The samples for Spring B
 | eventhubs-client                          | ✅[link](eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client)                  | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/eventhubs/spring-cloud-azure-starter-eventhubs/eventhubs-client)                  |
 | eventhubs-spring-messaging                | ✅[link](eventhubs/spring-messaging-azure-eventhubs/eventhubs-spring-messaging)            | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/eventhubs/spring-messaging-azure-eventhubs/eventhubs-spring-messaging)            |
 
-### Azure Key Vault
+### 2.7 Azure Key Vault
 
 | Sample Project                    | Spring Boot 3.x                                              | Spring Boot 2.x                                                                                                                                                                     | 
 |-----------------------------------|-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -90,19 +88,19 @@ The samples for Spring Boot 3.x are in the main branch. The samples for Spring B
 | property-source                   | ✅[link](keyvault/spring-cloud-azure-starter-keyvault-secrets/property-source)   | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/keyvault/spring-cloud-azure-starter-keyvault-secrets/property-source)                       | 
 | secret-client                     | ✅[link](keyvault/spring-cloud-azure-starter-keyvault-secrets/secret-client)     | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/keyvault/spring-cloud-azure-starter-keyvault-secrets/secret-client)                         |
 
-### Azure Database for MySQL
+### 2.8 Azure Database for MySQL
 
 | Sample Project                  | Spring Boot 3.x                                                   | Spring Boot 2.x                                                                                                                                             | 
 |---------------------------------|----------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | spring-cloud-azure-mysql-sample | ✅[link](mysql/spring-cloud-azure-starter-jdbc-mysql/spring-cloud-azure-mysql-sample) | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/mysql/spring-cloud-azure-starter-jdbc-mysql/spring-cloud-azure-mysql-sample) | 
 
-### Azure Database for PostgreSQL
+### 2.9 Azure Database for PostgreSQL
 
 | Sample Project                       | Spring Boot 3.x                                                                  | Spring Boot 2.x                                                                                                                                                            | 
 |--------------------------------------|-------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | spring-cloud-azure-postgresql-sample | ✅[link](postgresql/spring-cloud-azure-starter-jdbc-postgresql/spring-cloud-azure-postgresql-sample) | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/postgresql/spring-cloud-azure-starter-jdbc-postgresql/spring-cloud-azure-postgresql-sample) |
 
-### Azure Service Bus
+### 2.10 Azure Service Bus
 
 | Sample Project                | Spring Boot 3.x                                                          | Spring Boot 2.x                                                                                                                                                      | 
 |-------------------------------|-----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -118,7 +116,7 @@ The samples for Spring Boot 3.x are in the main branch. The samples for Spring B
 | servicebus-queue-binder-arm   | ✅[link](servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder-arm) | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder-arm)   |
 | servicebus-spring-messaging   | ✅[link](servicebus/spring-messaging-azure-servicebus/servicebus-spring-messaging)           | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/servicebus/spring-messaging-azure-servicebus/servicebus-spring-messaging)             |
 
-### Azure Storage
+### 2.11 Azure Storage
 
 | Sample Project                 | Spring Boot 3.x                                                              | Spring Boot 2.x                                                                                                                                                        | 
 |--------------------------------|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -129,13 +127,13 @@ The samples for Spring Boot 3.x are in the main branch. The samples for Spring B
 | storage-queue-operation        | ✅[link](storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation)   | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/storage/spring-cloud-azure-starter-integration-storage-queue/storage-queue-operation)   |
 | storage-queue-spring-messaging | ✅[link](storage/spring-messaging-azure-storage-queue/storage-queue-spring-messaging)            | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/storage/spring-messaging-azure-storage-queue/storage-queue-spring-messaging)            |
 
-### Spring PetClinic
+### 2.12 Spring PetClinic
 
 | Sample Project                 | Spring Boot 3.x | Spring Boot 2.x                                                                                                | 
 |--------------------------------|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
 | spring-petclinic-microservices | ❌                              | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/spring-petclinic-microservices) | 
 
-### TestContainers Support
+### 2.13 TestContainers Support
 
 | Sample Project                   | Spring Boot 3.x                                                 | Spring Boot 2.x | 
 |----------------------------------|--------------------------------------------------------------------------------|--------------------------------|

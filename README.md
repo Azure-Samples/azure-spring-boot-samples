@@ -9,15 +9,15 @@
   sample about specific version of Spring Cloud Azure, please switch to corresponding tag in this
   repository.
 
-> [!IMPORTANT]  
-> We removed the parent pom, so you can directly run each sample without opening the whole projects.
-> We removed all samples for Spring Boot 2.x (compatible with Spring Cloud Azure 4.x) from main branch. If you still want to try, please use [spring-boot-2.x](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x) branch.
-
 ## All Samples in This Repo
+
+The samples for Spring Boot 3.x are in the main branch. The samples for Spring Boot 2.x are in the spring-boot-2.x branch.
+> [!NOTE]  
+> Spring Boot 3.x using Spirng Cloud Azure 5.x, Spring Boot 2.x using Spring Cloud Azure 4.x.
 
 ### Microsoft Entra ID
 
-| Sample Project                          | Support Spring Cloud Azure 5.x                                                               | Support Spring Cloud Azure 4.x                                                                                                                                                         | 
+| Sample Project                          | Spring Boot 3.x                                                               | Spring Boot 2.x                                                                                                                                                         | 
 |-----------------------------------------|----------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | aad-resource-server-by-filter           | ✅[link](aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter)       | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter)           | 
 | aad-resource-server-by-filter-stateless | ✅[link](aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless) | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/aad/spring-cloud-azure-starter-active-directory/aad-resource-server-by-filter-stateless) | 
@@ -29,7 +29,7 @@
 
 ### Azure App Configuration
 
-| Sample Project                                                     | Support Spring Cloud Azure 5.x                                                                                                                                                                | Support Spring Cloud Azure 4.x                                                                                                                                                                                                                                                         | 
+| Sample Project                                                     | Spring Boot 3.x                                                                                                                                                                | Spring Boot 2.x                                                                                                                                                                                                                                                         | 
 |--------------------------------------------------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | spring-cloud-azure-appconfiguration-config-convert-sample-complete | ✅[link](appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-complete) | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-complete) |
 | spring-cloud-azure-appconfiguration-config-convert-sample-initial  | ✅[link](appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-initial)  | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/appconfiguration/spring-cloud-azure-appconfiguration-config/spring-cloud-azure-appconfiguration-config-convert-sample/spring-cloud-azure-appconfiguration-config-convert-sample-initial) |
@@ -43,14 +43,14 @@
 
 ### Azure Cache
 
-| Sample Project                               | Support Spring Cloud Azure 5.x                          | Support Spring Cloud Azure 4.x                                                                                                                    | 
+| Sample Project                               | Spring Boot 3.x                          | Spring Boot 2.x                                                                                                                    | 
 |----------------------------------------------|---------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------|
 | spring-cloud-azure-cache-sample              | ✅[link](cache/spring-cloud-azure-redis-sample)              | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/cache/spring-cloud-azure-sample-cache)              |
 | spring-cloud-azure-cache-passwordless-sample | ✅[link](cache/spring-cloud-azure-redis-sample-passwordless) | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/cache/spring-cloud-azure-sample-cache-passwordless) |
 
 ### Azure Cosmos DB
 
-| Sample Project                        | Support Spring Cloud Azure 5.x                                                             | Support Spring Cloud Azure 4.x                                                                                                                                                       | 
+| Sample Project                        | Spring Boot 3.x                                                             | Spring Boot 2.x                                                                                                                                                       | 
 |---------------------------------------|--------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | cosmos-aad-sample                     | ✅[link](cosmos/azure-spring-data-cosmos/cosmos-aad-sample)                                     | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/cosmos/azure-spring-data-cosmos/cosmos-aad-sample)                                     |
 | cosmos-multi-database-multi-account   | ✅[link](cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account)                   | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account)                   |
@@ -64,13 +64,13 @@
 
 ### Azure Event Grid
 
-| Sample Project                      | Support Spring Cloud Azure 5.x                                                          | Support Spring Cloud Azure 4.x | 
+| Sample Project                      | Spring Boot 3.x                                                          | Spring Boot 2.x | 
 |-------------------------------------|-----------------------------------------------------------------------------------------|--------------------------------|
 | spring-cloud-azure-sample-eventgrid | ✅[link](eventgrid/spring-cloud-azure-starter-eventgrid/spring-cloud-azure-sample-eventgrid) | ❌                              | 
 
 ### Azure Event Hubs
 
-| Sample Project                            | Support Spring Cloud Azure 5.x                                                        | Support Spring Cloud Azure 4.x                                                                                                                                                  | 
+| Sample Project                            | Spring Boot 3.x                                                        | Spring Boot 2.x                                                                                                                                                  | 
 |-------------------------------------------|---------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | spring-cloud-azure-sample-eventhubs-kafka | ✅[link](eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka)   | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/eventhubs/spring-cloud-azure-starter/spring-cloud-azure-sample-eventhubs-kafka)   | 
 | eventhubs-integration                     | ✅[link](eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration) | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/eventhubs/spring-cloud-azure-starter-integration-eventhubs/eventhubs-integration) | 
@@ -81,8 +81,8 @@
 
 ### Azure Key Vault
 
-| Sample Project                    | Support Spring Cloud Azure 4.x                                              | Support Spring Cloud Azure 5.x                                                                                                                                                            | 
-|-----------------------------------|-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| Sample Project                    | Spring Boot 3.x                                              | Spring Boot 2.x                                                                                                                                                                     | 
+|-----------------------------------|-----------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | keyvault-certificates-client-side | ❌                                                                           | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-client-side) | 
 | keyvault-certificates-server-side | ❌                                                                           | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/keyvault/azure-spring-boot-starter-keyvault-certificates/keyvault-certificates-server-side) | 
 | run-with-command-line-server-side | ✅[link](keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side) | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side)                     | 
@@ -92,19 +92,19 @@
 
 ### Azure Database for MySQL
 
-| Sample Project                  | Support Spring Cloud Azure 5.x                                                   | Support Spring Cloud Azure 4.x                                                                                                                                             | 
+| Sample Project                  | Spring Boot 3.x                                                   | Spring Boot 2.x                                                                                                                                             | 
 |---------------------------------|----------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | spring-cloud-azure-mysql-sample | ✅[link](mysql/spring-cloud-azure-starter-jdbc-mysql/spring-cloud-azure-mysql-sample) | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/mysql/spring-cloud-azure-starter-jdbc-mysql/spring-cloud-azure-mysql-sample) | 
 
 ### Azure Database for PostgreSQL
 
-| Sample Project                       | Support Spring Cloud Azure 5.x                                                                  | Support Spring Cloud Azure 4.x                                                                                                                                                            | 
+| Sample Project                       | Spring Boot 3.x                                                                  | Spring Boot 2.x                                                                                                                                                            | 
 |--------------------------------------|-------------------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | spring-cloud-azure-postgresql-sample | ✅[link](postgresql/spring-cloud-azure-starter-jdbc-postgresql/spring-cloud-azure-postgresql-sample) | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/postgresql/spring-cloud-azure-starter-jdbc-postgresql/spring-cloud-azure-postgresql-sample) |
 
 ### Azure Service Bus
 
-| Sample Project                | Support Spring Cloud Azure 5.x                                                          | Support Spring Cloud Azure 4.x                                                                                                                                                      | 
+| Sample Project                | Spring Boot 3.x                                                          | Spring Boot 2.x                                                                                                                                                      | 
 |-------------------------------|-----------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | servicebus-queue              | ✅[link](servicebus/spring-cloud-azure-starter-servicebus/servicebus-queue)                  | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/servicebus/spring-cloud-azure-starter-servicebus/servicebus-queue)                    | 
 | servicebus-topic              | ✅[link](servicebus/spring-cloud-azure-starter-servicebus/servicebus-topic)                  | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/servicebus/spring-cloud-azure-starter-servicebus/servicebus-topic)                    | 
@@ -120,7 +120,7 @@
 
 ### Azure Storage
 
-| Sample Project                 | Support Spring Cloud Azure 5.x                                                              | Support Spring Cloud Azure 4.x                                                                                                                                                        | 
+| Sample Project                 | Spring Boot 3.x                                                              | Spring Boot 2.x                                                                                                                                                        | 
 |--------------------------------|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | storage-blob-sample            | ✅[link](storage/spring-cloud-azure-starter-storage-blob/storage-blob-sample)                    | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/storage/spring-cloud-azure-starter-storage-blob/storage-blob-sample)                    | 
 | storage-file-sample            | ✅[link](storage/spring-cloud-azure-starter-storage-file-share/storage-file-sample)              | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/storage/spring-cloud-azure-starter-storage-file-share/storage-file-sample)              | 
@@ -131,13 +131,13 @@
 
 ### Spring PetClinic
 
-| Sample Project                 | Support Spring Cloud Azure 5.x | Support Spring Cloud Azure 4.x                                                                                                | 
+| Sample Project                 | Spring Boot 3.x | Spring Boot 2.x                                                                                                | 
 |--------------------------------|--------------------------------|-------------------------------------------------------------------------------------------------------------------------------|
 | spring-petclinic-microservices | ❌                              | ✅[link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/spring-petclinic-microservices) | 
 
 ### TestContainers Support
 
-| Sample Project                   | Support Spring Cloud Azure 5.x                                                 | Support Spring Cloud Azure 4.x | 
+| Sample Project                   | Spring Boot 3.x                                                 | Spring Boot 2.x | 
 |----------------------------------|--------------------------------------------------------------------------------|--------------------------------|
 | testContainers for Cosmos        | ✅[link](testcontainers/spring-cloud-azure-testcontainers-for-cosmos-sample)        | ❌                              |
 | testContainers for Storage Blob  | ✅[link](testcontainers/spring-cloud-azure-testcontainers-for-storage-blob-sample)  | ❌                              |

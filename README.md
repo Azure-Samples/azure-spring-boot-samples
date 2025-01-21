@@ -11,7 +11,7 @@
 
 ## All Samples in This Repo
 
-The samples for Spring Boot 3.x are in the main branch. The samples for Spring Boot 2.x are in the spring-boot-2.x branch.
+The samples for Spring Boot 3.x are in the main branch. The samples for Spring Boot 2.x are in the [spring-boot-2.x](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x) branch.
 > [!NOTE]  
 > Spring Boot 3.x using Spirng Cloud Azure 5.x, Spring Boot 2.x using Spring Cloud Azure 4.x.
 

@@ -2,7 +2,7 @@
 
 # Spring Cloud Azure Samples
 
-- The repository hold samples about
+- The repository holds samples about
   using [Spring Cloud Azure](https://learn.microsoft.com/azure/developer/java/spring-framework/)
   libraries.
 

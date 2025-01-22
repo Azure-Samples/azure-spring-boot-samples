@@ -141,12 +141,7 @@
 | testContainers for Storage Blob  | ✅[link](testcontainers/spring-cloud-azure-testcontainers-for-storage-blob-sample)  | ❌                              |
 | testContainers for Storage Queue | ✅[link](testcontainers/spring-cloud-azure-testcontainers-for-storage-queue-sample) | ❌                              |
 
-## Getting Help
-
-- If you have any question about using these samples,
-  please [create an new issue](https://github.com/Azure-Samples/azure-spring-boot-samples/issues/new/choose).
-
-## Work with Spring Native
+## 3. Work with Spring Native
 
 Since we removed the parent pom, the Profiles `native-5.x` and `nativeTest-5.x` are removed either.
 They are variants of the two profiles `native` and `nativeTest` provided by
@@ -249,3 +244,8 @@ So if you want to use them, just add them into your current pom:
     </profile>
   </profiles>
 ```
+
+## 4. Getting Help
+
+- If you have any question about using these samples,
+  please [create an new issue](https://github.com/Azure-Samples/azure-spring-boot-samples/issues/new/choose).

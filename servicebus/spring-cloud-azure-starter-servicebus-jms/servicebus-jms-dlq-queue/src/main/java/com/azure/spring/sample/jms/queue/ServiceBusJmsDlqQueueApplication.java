@@ -12,6 +12,6 @@ import org.springframework.jms.annotation.EnableJms;
 public class ServiceBusJmsDlqQueueApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(ServiceBusJMSDLQQueueApplication.class, args);
+        SpringApplication.run(ServiceBusJmsDlqQueueApplication.class, args);
     }
 }

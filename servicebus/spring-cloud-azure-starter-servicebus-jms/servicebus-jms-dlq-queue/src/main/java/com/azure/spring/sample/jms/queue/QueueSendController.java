@@ -9,6 +9,7 @@ import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.util.HtmlUtils;
 
 @RestController
 public class QueueSendController {
@@ -23,8 +24,9 @@ public class QueueSendController {
 
     @PostMapping("/queue")
     public String postMessage(@RequestParam("message") String message) {
-        LOGGER.info("Sending message: {}", message);
-        jmsTemplate.convertAndSend(QUEUE_NAME, new User(message));
-        return message;
+        String safeMessage = HtmlUtils.htmlEscape(message);
+        LOGGER.info("Sending message: {}", safeMessage);
+        jmsTemplate.convertAndSend(QUEUE_NAME, new User(safeMessage));
+        return safeMessage;
     }
 }

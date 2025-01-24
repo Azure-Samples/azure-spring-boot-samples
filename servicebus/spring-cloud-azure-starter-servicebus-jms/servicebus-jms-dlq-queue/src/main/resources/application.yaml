@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: servicebus-jms-dlq-queue
+  jms:
+    listener:
+      session:
+        acknowledge-mode: CLIENT
+        transacted: false
+    servicebus:
+      passwordless-enabled: true
+      namespace: ${SERVICEBUS_NAMESPACE_NAME_DLQ_QUQUE}
+      pricing-tier: ${PRICING_TIER}

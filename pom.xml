@@ -60,6 +60,7 @@
     <module>postgresql/spring-cloud-azure-starter-jdbc-postgresql/spring-cloud-azure-postgresql-sample</module>
     <module>servicebus/spring-cloud-azure-starter-servicebus/servicebus-queue</module>
     <module>servicebus/spring-cloud-azure-starter-servicebus/servicebus-topic</module>
+    <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-dlq-queue</module>
     <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-queue</module>
     <module>servicebus/spring-cloud-azure-starter-servicebus-jms/servicebus-jms-topic</module>
     <module>servicebus/spring-cloud-azure-stream-binder-servicebus/servicebus-queue-binder</module>

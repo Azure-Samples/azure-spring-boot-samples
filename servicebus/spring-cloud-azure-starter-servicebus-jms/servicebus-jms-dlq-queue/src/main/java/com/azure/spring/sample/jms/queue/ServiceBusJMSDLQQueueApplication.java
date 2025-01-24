@@ -9,7 +9,7 @@ import org.springframework.jms.annotation.EnableJms;
 
 @SpringBootApplication
 @EnableJms
-public class ServiceBusJMSDLQQueueApplication {
+public class ServiceBusJmsDlqQueueApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ServiceBusJMSDLQQueueApplication.class, args);

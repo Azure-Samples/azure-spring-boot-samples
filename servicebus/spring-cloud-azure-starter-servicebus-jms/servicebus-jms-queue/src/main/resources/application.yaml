@@ -1,5 +1,6 @@
 spring:
   jms:
     servicebus:
-      connection-string: ${SERVICEBUS_NAMESPACE_CONNECTION_STRING}
+      namespace: ${SERVICEBUS_NAMESPACE_NAME}
+      passwordless-enabled: true
       pricing-tier: ${PRICING_TIER}

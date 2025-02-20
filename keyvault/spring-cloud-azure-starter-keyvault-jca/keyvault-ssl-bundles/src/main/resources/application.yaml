@@ -1,0 +1,38 @@
+spring:
+  ssl:
+    bundle:
+      azure-keyvault:
+        keyVaultBundle:
+          key:
+            alias: self-signed
+          certificates-refresh-interval: 60s
+        keyVaultBundle2:
+          inherit: false
+          endpoint: ${KEY_VAULT_SSL_BUNDLE_KEYVAULT_URI_02}
+          profile:
+            tenant-id: ${KEY_VAULT_SSL_BUNDLE_TENANT_ID}
+          credential:
+            client-id: ${KEY_VAULT_SSL_BUNDLE_CLIENT_ID}
+            client-secret: ${KEY_VAULT_SSL_BUNDLE_CLIENT_SECRET}
+          key:
+            alias: tomcat
+        myLocalBundle:
+          inherit: false
+          certificate-paths:
+            custom: "classpath:local-custom"
+  cloud:
+    azure:
+      keyvault:
+        jca:
+          endpoint: ${KEY_VAULT_SSL_BUNDLE_KEYVAULT_URI_01}
+          profile:
+            tenant-id: ${KEY_VAULT_SSL_BUNDLE_TENANT_ID}
+          credential:
+            client-id: ${KEY_VAULT_SSL_BUNDLE_CLIENT_ID}
+            client-secret: ${KEY_VAULT_SSL_BUNDLE_CLIENT_SECRET}
+server:
+  port: 8443
+  ssl:
+    bundle: "keyVaultBundle"
+logging.level:
+  com.azure.security.keyvault.jca.KeyVaultKeyStore: debug

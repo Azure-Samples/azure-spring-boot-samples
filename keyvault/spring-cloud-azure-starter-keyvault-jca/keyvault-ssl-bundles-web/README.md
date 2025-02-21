@@ -8,9 +8,9 @@ name: Enable Server and Client SSL from Azure Key Vault SSL Bundles in Spring Bo
 description: This sample demonstrates how to enable Server and Client SSL via Azure KeyVault SSL bundles in Spring Boot application.
 ---
 
-# Enable Server and Client SSL from Azure Key Vault SSL Bundles in Spring Boot Application
+# Enable Server and Client SSL from Azure Key Vault SSL Bundles in Spring Boot Web Application
 
-This sample demonstrates how to enable Server and Client SSL via Azure KeyVault SSL bundles in Spring Boot application. [Link to reference doc](https://learn.microsoft.com/azure/developer/java/spring-framework).
+This sample demonstrates how to enable Server and Client SSL via Azure KeyVault SSL bundles in Spring Boot web application. [Link to reference doc](https://learn.microsoft.com/azure/developer/java/spring-framework).
 
 ## What You Will Build
 

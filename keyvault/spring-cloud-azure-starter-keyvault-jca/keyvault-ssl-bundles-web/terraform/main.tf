@@ -44,7 +44,7 @@ data "azurerm_client_config" "current" {
 }
 
 resource "azuread_application" "app" {
-  display_name = "Spring Cloud Azure sample - keyvault-ssl-bundles"
+  display_name = "Spring Cloud Azure sample - keyvault-ssl-bundles-web"
 }
 
 resource "azuread_service_principal" "service_principal" {
@@ -57,7 +57,7 @@ resource "azuread_application_password" "service_principal_password" {
 
 // ===========azurerm_key_vault_01===========
 resource "azurecaf_name" "azurecaf_name_kv_01" {
-  name          = "ssl-bundles-01"
+  name          = "ssl-bundles-web-01"
   resource_type = "azurerm_key_vault"
   random_length = 4
   clean_input   = true
@@ -157,7 +157,7 @@ resource "azurerm_key_vault_certificate" "self_signed" {
 
 // ===========azurerm_key_vault_02===========
 resource "azurecaf_name" "azurecaf_name_kv_02" {
-  name          = "ssl-bundles-02"
+  name          = "ssl-bundles-web-02"
   resource_type = "azurerm_key_vault"
   random_length = 4
 }

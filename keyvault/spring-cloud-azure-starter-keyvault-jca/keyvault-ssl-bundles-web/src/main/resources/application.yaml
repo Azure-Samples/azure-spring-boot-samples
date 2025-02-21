@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: keyvault-ssl-bundles-web
   ssl:
     bundle:
       azure-keyvault:
@@ -8,12 +10,12 @@ spring:
           certificates-refresh-interval: 60s
         keyVaultBundle2:
           inherit: false
-          endpoint: ${KEY_VAULT_SSL_BUNDLE_KEYVAULT_URI_02}
+          endpoint: ${KEY_VAULT_SSL_BUNDLES_WEB_KEYVAULT_URI_02}
           profile:
-            tenant-id: ${KEY_VAULT_SSL_BUNDLE_TENANT_ID}
+            tenant-id: ${KEY_VAULT_SSL_BUNDLES_WEB_TENANT_ID}
           credential:
-            client-id: ${KEY_VAULT_SSL_BUNDLE_CLIENT_ID}
-            client-secret: ${KEY_VAULT_SSL_BUNDLE_CLIENT_SECRET}
+            client-id: ${KEY_VAULT_SSL_BUNDLES_WEB_CLIENT_ID}
+            client-secret: ${KEY_VAULT_SSL_BUNDLES_WEB_CLIENT_SECRET}
           key:
             alias: tomcat
         myLocalBundle:
@@ -24,12 +26,12 @@ spring:
     azure:
       keyvault:
         jca:
-          endpoint: ${KEY_VAULT_SSL_BUNDLE_KEYVAULT_URI_01}
+          endpoint: ${KEY_VAULT_SSL_BUNDLES_WEB_KEYVAULT_URI_01}
           profile:
-            tenant-id: ${KEY_VAULT_SSL_BUNDLE_TENANT_ID}
+            tenant-id: ${KEY_VAULT_SSL_BUNDLES_WEB_TENANT_ID}
           credential:
-            client-id: ${KEY_VAULT_SSL_BUNDLE_CLIENT_ID}
-            client-secret: ${KEY_VAULT_SSL_BUNDLE_CLIENT_SECRET}
+            client-id: ${KEY_VAULT_SSL_BUNDLES_WEB_CLIENT_ID}
+            client-secret: ${KEY_VAULT_SSL_BUNDLES_WEB_CLIENT_SECRET}
 server:
   port: 8443
   ssl:

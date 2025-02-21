@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.azure.spring</groupId>
-	<artifactId>keyvault-ssl-bundles</artifactId>
+	<artifactId>keyvault-ssl-bundles-web</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
-	<name>keyvault-ssl-bundles</name>
-	<description>Spring Cloud Azure Starter Key Vault JCA: Enable Server SSL and Client SSL</description>
+	<name>keyvault-ssl-bundles-web</name>
+	<description>Spring Cloud Azure Starter Key Vault JCA: Enable Server SSL and Client SSL in Spring Boot Web application</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud-azure.version>5.21.0-beta.1</spring-cloud-azure.version>
@@ -22,10 +22,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.azure.spring</groupId>
-			<artifactId>spring-cloud-azure-starter</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>com.azure.spring</groupId>

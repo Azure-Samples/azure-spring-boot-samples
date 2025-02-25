@@ -1,18 +1,14 @@
 spring:
   application:
-    name: keyvault-ssl-bundles-web
+    name: keyvault-ssl-bundles-webflux
   ssl:
     bundle:
       azure-keyvault:
-        keyVaultBundle:
-          keyvault-ref: keyvault1
-          key:
-            alias: self-signed
-          certificates-refresh-interval: 120s
-        myLocalBundle:
-          keyvault-ref: keyvault2
-          certificate-paths:
-            custom: "classpath:local-custom"
+        myKeyVaultBundle:
+          keystore:
+            keyvault-ref: keyvault2
+          truststore:
+            keyvault-ref: keyvault1
   cloud:
     azure:
       keyvault:
@@ -28,9 +24,5 @@ spring:
             keyvault2:
               endpoint: ${KEY_VAULT_SSL_BUNDLES_KEYVAULT_URI_02}
 
-server:
-  port: 8444
-  ssl:
-    bundle: "keyVaultBundle"
 logging.level:
   com.azure.security.keyvault.jca.KeyVaultKeyStore: debug

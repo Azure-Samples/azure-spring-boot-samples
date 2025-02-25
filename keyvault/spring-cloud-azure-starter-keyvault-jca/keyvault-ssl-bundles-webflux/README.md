@@ -4,8 +4,8 @@ languages:
 - java
 products:
 - azure-key-vault
-name: Enable Server and Client SSL from Azure Key Vault SSL Bundles in Spring Boot Application
-description: This sample demonstrates how to enable Server and Client SSL via Azure KeyVault SSL bundles in Spring Boot application.
+name: Enable Server and Client SSL from Azure Key Vault SSL Bundles in Spring Boot webflux Application
+description: This sample demonstrates how to enable Server and Client SSL via Azure KeyVault SSL bundles in Spring Boot webflux application.
 ---
 
 # Enable Server and Client SSL from Azure Key Vault SSL Bundles in Spring Boot Web Application
@@ -164,29 +164,31 @@ You can debug your sample by adding the saved output values to the tool's enviro
 
 ## Verify This Sample
 
-1. Send below inbound HTTPS request:
+This sample required an SSL server, you can use sample [keyvault-ssl-bundles-web](../keyvault-ssl-bundles-web) as the target server, which means the https://localhost:8444/ssl-test is available.For Azure resource usage, you can share the output environment variable of [keyvault-ssl-bundles-web](../keyvault-ssl-bundles-web) or create the new resources and shared to [keyvault-ssl-bundles-web](../keyvault-ssl-bundles-web) as they use the same environment variables.
+
+1. Send below request to acquire a resource with TLS connection:
 
    ```bash
-   curl --insecure https://localhost:8444/ssl-test
+   curl http://localhost:8080/webclient/tls
    ```
    
    You will see the following in the console:
    
    ```console
-   Inbound TLS is working!
+   Response from webClient tls "https://localhost:8444/ssl-test": Inbound TLS is working!
    ```
 
-2. Send below outbound HTTPS request:
+2. Send below request to acquire a resource with mTLS connection:
 
    ```bash
    
-   curl --insecure https://localhost:8444/ssl-test-outbound
+   curl http://localhost:8080/webclient/mtls
    ```
    
    you will see console like this:
    
    ```console
-   Outbound TLS is working!
+   Response from webClient mtls "https://localhost:8444/ssl-test": Inbound TLS is working!
    ```
 
 ## Clean Up Resources

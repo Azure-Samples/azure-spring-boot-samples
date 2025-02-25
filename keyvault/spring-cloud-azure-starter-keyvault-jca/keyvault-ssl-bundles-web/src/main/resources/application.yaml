@@ -12,7 +12,7 @@ spring:
           truststore:
             keyvault-ref: keyvault1
             certificates-refresh-interval: 120s
-        myLocalBundle:
+        otherKeyVaultBundle:
           keystore:
             keyvault-ref: keyvault2
           truststore:

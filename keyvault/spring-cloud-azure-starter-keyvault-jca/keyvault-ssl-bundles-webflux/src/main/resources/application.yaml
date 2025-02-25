@@ -4,7 +4,7 @@ spring:
   ssl:
     bundle:
       azure-keyvault:
-        myKeyVaultBundle:
+        keyVaultBundle:
           keystore:
             keyvault-ref: keyvault2
           truststore:

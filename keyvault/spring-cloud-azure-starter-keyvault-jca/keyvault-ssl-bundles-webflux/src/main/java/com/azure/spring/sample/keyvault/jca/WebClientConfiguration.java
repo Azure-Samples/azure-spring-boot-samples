@@ -36,7 +36,7 @@ public class WebClientConfiguration {
     }
 
     private WebClient buildWebClientEnableTls(boolean enableMtls) throws Exception {
-        SslBundle sslBundle = sslBundles.getBundle("myKeyVaultBundle");
+        SslBundle sslBundle = sslBundles.getBundle("keyVaultBundle");
         KeyManager keyManager = enableMtls ? sslBundle.getManagers().getKeyManagers()[0] : null;
         SslContext sslContext = SslContextBuilder
             .forClient()

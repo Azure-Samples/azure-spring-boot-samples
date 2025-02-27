@@ -3,7 +3,6 @@
 
 package com.azure.spring.sample.keyvault.jca;
 
-import io.netty.handler.ssl.ClientAuth;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
 import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
@@ -39,7 +38,7 @@ public class WebClientConfiguration {
     }
 
     private WebClient buildWebClientEnableTls(boolean enableMtls) throws Exception {
-        SslBundle sslBundle = sslBundles.getBundle("keyVaultBundle");
+        SslBundle sslBundle = sslBundles.getBundle("clientBundle");
         KeyManager keyManager = enableMtls ? sslBundle.getManagers().getKeyManagers()[0] : null;
         TrustManagerFactory trustManagerFactory = InsecureTrustManagerFactory.INSTANCE;
         SslContext sslContext = SslContextBuilder

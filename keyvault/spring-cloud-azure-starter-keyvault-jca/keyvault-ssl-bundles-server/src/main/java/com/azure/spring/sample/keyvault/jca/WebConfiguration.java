@@ -14,6 +14,6 @@ class WebConfiguration {
 
     @Bean
     RestTemplate restTemplate(RestTemplateBuilder restTemplateBuilder, SslBundles sslBundles) {
-        return restTemplateBuilder.sslBundle(sslBundles.getBundle("keyVaultBundle")).build();
+        return restTemplateBuilder.sslBundle(sslBundles.getBundle("serverBundle")).build();
     }
 }

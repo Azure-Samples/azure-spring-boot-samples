@@ -7,10 +7,10 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class KeyVaultSslBundlesWebfluxApplication {
+public class KeyVaultSslBundlesClientApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(KeyVaultSslBundlesWebfluxApplication.class, args);
+		SpringApplication.run(KeyVaultSslBundlesClientApplication.class, args);
 	}
 
 }

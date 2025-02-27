@@ -19,6 +19,9 @@ provider "azurerm" {
   features {
     key_vault {
       purge_soft_delete_on_destroy = true  # Purge soft-deleted vaults when destroyed
+      purge_soft_deleted_certificates_on_destroy = true
+      purge_soft_deleted_keys_on_destroy = true
+      purge_soft_deleted_secrets_on_destroy = true
       recover_soft_deleted_key_vaults = false  # Don’t recover, we want to destroy
     }
   }
@@ -83,6 +86,9 @@ resource "azurerm_key_vault" "kv_account_01" {
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = azuread_service_principal.service_principal.object_id
 
+    secret_permissions = [
+      "Get"
+    ]
     certificate_permissions = [
       "Get",
       "List"
@@ -181,6 +187,9 @@ resource "azurerm_key_vault" "kv_account_02" {
     tenant_id = data.azurerm_client_config.current.tenant_id
     object_id = azuread_service_principal.service_principal.object_id
 
+    secret_permissions = [
+      "Get"
+    ]
     certificate_permissions = [
       "Get",
       "List"
@@ -251,7 +260,7 @@ resource "azurerm_key_vault_certificate" "tomcat" {
         "keyEncipherment",
       ]
 
-      subject            = "CN=localhost"
+      subject            = "CN=test"
       validity_in_months = 12
     }
   }

@@ -3,8 +3,10 @@ spring:
     name: keyvault-ssl-bundles-webflux
   ssl:
     bundle:
-      azure-keyvault:
+      keyvault:
         keyVaultBundle:
+          key:
+            alias: tomcat
           keystore:
             keyvault-ref: keyvault2
           truststore:
@@ -13,7 +15,7 @@ spring:
     azure:
       keyvault:
         jca:
-          connections:
+          vaults:
             keyvault1:
               endpoint: ${KEY_VAULT_SSL_BUNDLES_KEYVAULT_URI_01}
               profile:

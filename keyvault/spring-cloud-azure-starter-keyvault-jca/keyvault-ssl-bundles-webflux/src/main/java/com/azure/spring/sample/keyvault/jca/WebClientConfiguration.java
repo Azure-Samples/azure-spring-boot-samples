@@ -3,8 +3,10 @@
 
 package com.azure.spring.sample.keyvault.jca;
 
+import io.netty.handler.ssl.ClientAuth;
 import io.netty.handler.ssl.SslContext;
 import io.netty.handler.ssl.SslContextBuilder;
+import io.netty.handler.ssl.util.InsecureTrustManagerFactory;
 import org.springframework.boot.ssl.SslBundle;
 import org.springframework.boot.ssl.SslBundles;
 import org.springframework.context.annotation.Bean;
@@ -15,6 +17,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.netty.http.client.HttpClient;
 
 import javax.net.ssl.KeyManager;
+import javax.net.ssl.TrustManagerFactory;
 
 @Configuration
 public class WebClientConfiguration {
@@ -38,15 +41,16 @@ public class WebClientConfiguration {
     private WebClient buildWebClientEnableTls(boolean enableMtls) throws Exception {
         SslBundle sslBundle = sslBundles.getBundle("keyVaultBundle");
         KeyManager keyManager = enableMtls ? sslBundle.getManagers().getKeyManagers()[0] : null;
+        TrustManagerFactory trustManagerFactory = InsecureTrustManagerFactory.INSTANCE;
         SslContext sslContext = SslContextBuilder
             .forClient()
             .keyManager(keyManager)
-            .trustManager(sslBundle.getManagers().getTrustManagers()[0])
+            .trustManager(trustManagerFactory)
             .build();
         HttpClient httpClient = HttpClient.create()
                                           .secure(sslSpec -> sslSpec.sslContext(sslContext));
         ClientHttpConnector connector = new ReactorClientHttpConnector(httpClient);
-        return WebClient.builder()
+        return WebClient.builder().baseUrl("https://localhost:8444")
                         .clientConnector(connector)
                         .build();
     }

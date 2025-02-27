@@ -3,27 +3,20 @@ spring:
     name: keyvault-ssl-bundles-web
   ssl:
     bundle:
-      azure-keyvault:
+      keyvault:
         keyVaultBundle:
           key:
             alias: self-signed
           keystore:
             keyvault-ref: keyvault1
           truststore:
-            keyvault-ref: keyvault1
+            keyvault-ref: keyvault2
             certificates-refresh-interval: 120s
-        otherKeyVaultBundle:
-          keystore:
-            keyvault-ref: keyvault2
-          truststore:
-            keyvault-ref: keyvault2
-            certificate-paths:
-              custom: "classpath:local-custom"
   cloud:
     azure:
       keyvault:
         jca:
-          connections:
+          vaults:
             keyvault1:
               endpoint: ${KEY_VAULT_SSL_BUNDLES_KEYVAULT_URI_01}
               profile:
@@ -42,6 +35,6 @@ spring:
 server:
   port: 8444
   ssl:
-    bundle: "keyVaultBundle"
+    bundle: keyVaultBundle
 logging.level:
   com.azure.security.keyvault.jca.KeyVaultKeyStore: debug

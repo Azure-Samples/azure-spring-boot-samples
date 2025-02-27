@@ -9,11 +9,11 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.azure.spring</groupId>
-	<artifactId>keyvault-ssl-bundles-webflux</artifactId>
+	<artifactId>keyvault-ssl-bundles-client</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
-	<name>keyvault-ssl-bundles-webflux</name>
-	<description>Spring Cloud Azure Starter Key Vault JCA: Enable Server SSL and Client SSL in Spring Boot Webflux application</description>
+	<name>keyvault-ssl-bundles-client</name>
+	<description>Spring Cloud Azure Starter Key Vault JCA: Enable WebClient SSL in Spring Boot Webflux application</description>
 	<properties>
 		<java.version>17</java.version>
 		<spring-cloud-azure.version>5.21.0-beta.1</spring-cloud-azure.version>

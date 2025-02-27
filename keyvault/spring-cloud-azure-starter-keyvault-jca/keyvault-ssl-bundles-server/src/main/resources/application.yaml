@@ -1,10 +1,10 @@
 spring:
   application:
-    name: keyvault-ssl-bundles-web
+    name: keyvault-ssl-bundles-server
   ssl:
     bundle:
       keyvault:
-        keyVaultBundle:
+        serverBundle:
           key:
             alias: self-signed
           keystore:
@@ -35,6 +35,6 @@ spring:
 server:
   port: 8444
   ssl:
-    bundle: keyVaultBundle
+    bundle: serverBundle
 logging.level:
   com.azure.security.keyvault.jca.KeyVaultKeyStore: debug

@@ -1,12 +1,10 @@
 spring:
   application:
-    name: keyvault-ssl-bundles-webflux
+    name: keyvault-ssl-bundles-client
   ssl:
     bundle:
       keyvault:
-        keyVaultBundle:
-          key:
-            alias: tomcat
+        clientBundle:
           keystore:
             keyvault-ref: keyvault2
           truststore:

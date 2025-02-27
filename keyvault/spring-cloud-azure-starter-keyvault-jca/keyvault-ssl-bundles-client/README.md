@@ -4,13 +4,13 @@ languages:
 - java
 products:
 - azure-key-vault
-name: Enable Server and Client SSL from Azure Key Vault SSL Bundles in Spring Boot webflux Application
-description: This sample demonstrates how to enable Server and Client SSL via Azure KeyVault SSL bundles in Spring Boot webflux application.
+name: Enable Client SSL from Azure Key Vault SSL Bundles in Spring Boot webflux Application
+description: This sample demonstrates how to enable Client SSL via Azure KeyVault SSL bundles in Spring Boot webflux application.
 ---
 
-# Enable Server and Client SSL from Azure Key Vault SSL Bundles in Spring Boot Web Application
+# Enable Client SSL from Azure Key Vault SSL Bundles in Spring Boot Web Application
 
-This sample demonstrates how to enable Server and Client SSL via Azure KeyVault SSL bundles in Spring Boot web application. [Link to reference doc](https://learn.microsoft.com/azure/developer/java/spring-framework).
+This sample demonstrates how to enable Client SSL via Azure KeyVault SSL bundles in Spring Boot webflux application. [Link to reference doc](https://learn.microsoft.com/azure/developer/java/spring-framework).
 
 ## What You Will Build
 
@@ -164,7 +164,7 @@ You can debug your sample by adding the saved output values to the tool's enviro
 
 ## Verify This Sample
 
-This sample required an SSL server, you can use sample [keyvault-ssl-bundles-web](../keyvault-ssl-bundles-web) as the target server, which means the https://localhost:8444/ssl-test is available.For Azure resource usage, you can share the output environment variable of [keyvault-ssl-bundles-web](../keyvault-ssl-bundles-web) or create the new resources and shared to [keyvault-ssl-bundles-web](../keyvault-ssl-bundles-web) as they use the same environment variables.
+This sample required an SSL server, you can use sample [keyvault-ssl-bundles-web](../keyvault-ssl-bundles-server) as the target server, which means the https://localhost:8444/ssl-test is available.For Azure resource usage, you can share the output environment variable of [keyvault-ssl-bundles-web](../keyvault-ssl-bundles-server) or create the new resources and shared to [keyvault-ssl-bundles-web](../keyvault-ssl-bundles-server) as they use the same environment variables.
 
 1. Send below request to acquire a resource with TLS connection:
 

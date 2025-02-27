@@ -1,7 +1,7 @@
 variable "application_name" {
   type        = string
   description = "The name of your application."
-  default     = "keyvault-ssl-bundles-webflux"
+  default     = "keyvault-ssl-bundles-client"
 }
 
 variable "location" {

@@ -4,7 +4,13 @@ spring:
   ssl:
     bundle:
       keyvault:
-        clientBundle:
+        tlsClientBundle:
+          truststore:
+            keyvault-ref: keyvault1
+        mtlsClientBundle:
+          key:
+            alias: client
+          for-client-auth: true
           keystore:
             keyvault-ref: keyvault2
           truststore:

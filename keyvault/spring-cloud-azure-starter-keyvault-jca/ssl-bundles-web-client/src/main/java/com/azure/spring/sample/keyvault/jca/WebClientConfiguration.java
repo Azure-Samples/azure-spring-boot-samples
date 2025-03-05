@@ -8,24 +8,16 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
 
-@Configuration
+@Configuration(proxyBeanMethods = false)
 public class WebClientConfiguration {
 
     @Bean
-    public WebClient webClientWithTLS(WebClientSsl ssl) throws Exception {
-        return buildWebClientEnableTls(false, ssl);
+    public WebClient webClientWithTLS(WebClientSsl ssl) {
+        return WebClient.builder().apply(ssl.fromBundle("tlsClientBundle")).build();
     }
 
     @Bean
-    public WebClient webClientWithMTLS(WebClientSsl ssl) throws Exception {
-        return buildWebClientEnableTls(true, ssl);
+    public WebClient webClientWithMTLS(WebClientSsl ssl) {
+        return WebClient.builder().apply(ssl.fromBundle("mtlsClientBundle")).build();
     }
-
-    private WebClient buildWebClientEnableTls(boolean enableMtls, WebClientSsl ssl) throws Exception {
-        String sslBundleName = enableMtls ? "mtlsClientBundle" : "tlsClientBundle";
-        return WebClient.builder().baseUrl("https://localhost:8444")
-                .apply(ssl.fromBundle(sslBundleName))
-                .build();
-    }
-
 }

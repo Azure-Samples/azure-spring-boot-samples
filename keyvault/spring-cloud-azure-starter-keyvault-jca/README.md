@@ -5,13 +5,13 @@ This repo demonstrates how to use [Java Crypto Architecture (JCA) Provider] for 
 [Java Crypto Architecture (JCA) Provider]: https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/keyvault/azure-security-keyvault-jca
 [Spring Boot]: https://spring.io/projects/spring-boot
 
-## Server SSL and client SSL
+## Server SSL and RestTemplate SSL
 
 This is a scenario for enabling server SSL and `RestTemplate` SSL in a web application. It only requires running `ssl-bundles-server` independently. You can verify it by following the [ssl-bundles-server/README.md](ssl-bundles-server/README.md).
 
 ## mTLS for Server SSL and RestTemplate SSL
 
-This mTLS scenario uses a web app as Server that enabled server SSL and needed client auth, another web app enabled `RestTemplate` SSL. You need to use two sample `ssl-bundles-server` and `ssl-bundles-rest-template` together. Azure resources created by either of these two sample projects can be shared with each other, so you don't need to create both.
+This mTLS scenario uses a web app as Server that enabled server SSL and needs client auth, another web app enables `RestTemplate` SSL. You need to use the two samples `ssl-bundles-server` and `ssl-bundles-rest-template` together. Azure resources created by either of these two sample projects can be shared with each other, so you don't need to create both.
 
 ### Server side mTLS:
 
@@ -20,7 +20,7 @@ Please refer to the [ssl-bundles-server/README.md](ssl-bundles-server/README.md)
 Then run the following command to run Server side app locally:
 
 ```shell
-mvn clean spring-boot:run -DSERVER_SSL_CLIENT_AUTH=NEED
+mvn clean spring-boot:run -Dspring-boot.run.profiles=client-auth
 ```
 
 ### Client side mTLS
@@ -39,7 +39,7 @@ Use the following steps to set environment variables for `ssl-bundles-rest-templ
 
 ## mTLS for Server SSL and WebClient SSL
 
-This mTLS scenario uses a web app as Server that enabled server SSL and needed client auth, another reactive web app enabled `WebClient` SSL. You need to use two sample `ssl-bundles-server` and `ssl-bundles-web-client` together. Azure resources created by either of these two sample projects can be shared with each other, so you don't need to create both.
+This mTLS scenario uses a web app as Server that enabled server SSL and needs client auth, another reactive web app enables `WebClient` SSL. You need to use the two samples `ssl-bundles-server` and `ssl-bundles-web-client` together. Azure resources created by either of these two sample projects can be shared with each other, so you don't need to create both.
 
 ### Server side mTLS:
 
@@ -48,7 +48,7 @@ Please refer to the [ssl-bundles-server/README.md](ssl-bundles-server/README.md)
 Then run the following command to run Server side app locally:
 
 ```shell
-mvn clean spring-boot:run -DSERVER_SSL_CLIENT_AUTH=NEED
+mvn clean spring-boot:run -Dspring-boot.run.profiles=client-auth
 ```
 
 ### Client side mTLS

@@ -67,7 +67,7 @@ resource "azuread_application_password" "service_principal_password" {
 resource "azurecaf_name" "azurecaf_name_kv_01" {
   name          = "ssl-bundles-web-client-01"
   resource_type = "azurerm_key_vault"
-  random_length = 6
+  random_length = 12
   clean_input   = true
 }
 
@@ -115,7 +115,7 @@ resource "azurerm_key_vault" "kv_account_01" {
   }
 }
 
-resource "azurerm_key_vault_certificate" "self_signed" {
+resource "azurerm_key_vault_certificate" "server" {
   name         = "server"
   key_vault_id = azurerm_key_vault.kv_account_01.id
 
@@ -169,7 +169,7 @@ resource "azurerm_key_vault_certificate" "self_signed" {
 resource "azurecaf_name" "azurecaf_name_kv_02" {
   name          = "ssl-bundles-web-client-02"
   resource_type = "azurerm_key_vault"
-  random_length = 6
+  random_length = 12
 }
 
 resource "azurerm_key_vault" "kv_account_02" {
@@ -216,7 +216,7 @@ resource "azurerm_key_vault" "kv_account_02" {
   }
 }
 
-resource "azurerm_key_vault_certificate" "tomcat" {
+resource "azurerm_key_vault_certificate" "client" {
   name         = "client"
   key_vault_id = azurerm_key_vault.kv_account_02.id
 
@@ -260,7 +260,7 @@ resource "azurerm_key_vault_certificate" "tomcat" {
         "keyEncipherment",
       ]
 
-      subject            = "CN=test"
+      subject            = "CN=localhost"
       validity_in_months = 12
     }
   }

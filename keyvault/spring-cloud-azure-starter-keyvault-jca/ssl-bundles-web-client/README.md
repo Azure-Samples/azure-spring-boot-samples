@@ -166,7 +166,7 @@ You can debug your sample by adding the saved output values to the tool's enviro
 
 This sample required an SSL server, you can use sample [keyvault-ssl-bundles-server](../keyvault-ssl-bundles-server) as the target server, which means the https://localhost:8444/ssl-test is available.For Azure resource usage, you can share the output environment variable of [keyvault-ssl-bundles-server](../keyvault-ssl-bundles-server) or create the new resources and shared to [keyvault-ssl-bundles-server](../keyvault-ssl-bundles-server) as they use the same environment variables.
 
-1. Send below request to acquire a resource with TLS connection:
+1. Send below request to acquire a resource with TLS connection, the server side should not enable client-auth via property `server.ssl.client-auth=NEED`:
 
    ```bash
    curl http://localhost:8080/webclient/tls
@@ -178,7 +178,7 @@ This sample required an SSL server, you can use sample [keyvault-ssl-bundles-ser
    Response from webClient tls "https://localhost:8444/ssl-test": Inbound TLS is working!
    ```
 
-2. Send below request to acquire a resource with mTLS connection:
+2. Send below request to acquire a resource with mTLS connection, the server side should enable client-auth via property `server.ssl.client-auth=NEED`:
 
    ```bash
    

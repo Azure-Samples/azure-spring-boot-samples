@@ -11,25 +11,24 @@ import reactor.core.publisher.Mono;
 @RestController
 public class WebClientController {
 
-//    private final WebClient webClientWithTLS;
+    private final WebClient webClientWithTLS;
     private final WebClient webClientWithMTLS;
-
     private static final String SERVER_SIDE_ENDPOINT = "https://localhost:8444/ssl-test";
 
-    public WebClientController( WebClient webClientWithMTLS) {
-//        this.webClientWithTLS = webClientWithTLS;
+    public WebClientController(WebClient webClientWithTLS, WebClient webClientWithMTLS) {
+        this.webClientWithTLS = webClientWithTLS;
         this.webClientWithMTLS = webClientWithMTLS;
     }
 
-//    @GetMapping("/webclient/tls")
-//    public Mono<String> webclientTls() {
-//        return webClientWithTLS.get()
-//                               .uri(SERVER_SIDE_ENDPOINT)
-//                               .retrieve()
-//                               .bodyToMono(String.class)
-//                               .map(response -> String.format("Response from webClient tls \"%s\": %s", SERVER_SIDE_ENDPOINT, response))
-//                               .onErrorResume(e -> Mono.just(String.format("Error occurred: %s", e.getMessage())));
-//    }
+    @GetMapping("/webclient/tls")
+    public Mono<String> webclientTls() {
+        return webClientWithTLS.get()
+                               .uri(SERVER_SIDE_ENDPOINT)
+                               .retrieve()
+                               .bodyToMono(String.class)
+                               .map(response -> String.format("Response from webClient tls \"%s\": %s", SERVER_SIDE_ENDPOINT, response))
+                               .onErrorResume(e -> Mono.just(String.format("Error occurred: %s", e.getMessage())));
+    }
 
     @GetMapping("/webclient/mtls")
     public Mono<String> webclientMtls() {

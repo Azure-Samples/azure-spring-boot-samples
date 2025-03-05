@@ -15,11 +15,11 @@ public class RestTemplateConfiguration {
 
     @Bean
     RestTemplate restTemplateWithTLS(RestTemplateBuilder restTemplateBuilder, SslBundles sslBundles) {
-        return restTemplateBuilder.sslBundle(sslBundles.getBundle("tlsBundle")).build();
+        return restTemplateBuilder.sslBundle(sslBundles.getBundle("tlsClientBundle")).build();
     }
 
     @Bean
     RestTemplate restTemplateWithMTLS(RestTemplateBuilder restTemplateBuilder, SslBundles sslBundles) {
-        return restTemplateBuilder.sslBundle(sslBundles.getBundle("mtlsBundle")).build();
+        return restTemplateBuilder.sslBundle(sslBundles.getBundle("mtlsClientBundle")).build();
     }
 }

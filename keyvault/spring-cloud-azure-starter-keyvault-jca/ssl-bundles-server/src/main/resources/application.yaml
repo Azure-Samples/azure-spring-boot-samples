@@ -4,14 +4,17 @@ spring:
   ssl:
     bundle:
       keyvault:
-        serverBundle:
+        tlsServerBundle:
           key:
             alias: server
+#            alias: self-signed
           keystore:
             keyvault-ref: keyvault1
           truststore:
             keyvault-ref: keyvault2
-            certificates-refresh-interval: 120s
+        tlsClientBundle:
+          truststore:
+            keyvault-ref: keyvault1
   cloud:
     azure:
       keyvault:
@@ -35,7 +38,7 @@ spring:
 server:
   port: 8444
   ssl:
-    bundle: serverBundle
+    bundle: tlsServerBundle
     # comment out the following line to enable client authentication
 #    client-auth: NEED
 logging.level:

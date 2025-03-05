@@ -19,7 +19,7 @@ public class WebController {
 
     private final RestTemplate restTemplate;
 
-    @Value("${server.port:8443}")
+    @Value("${server.port:8444}")
     private int port;
 
     public WebController(RestTemplate restTemplate) {

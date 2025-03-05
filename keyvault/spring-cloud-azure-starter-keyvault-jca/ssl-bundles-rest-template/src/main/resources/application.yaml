@@ -35,5 +35,7 @@ spring:
                 client-id: ${KEY_VAULT_SSL_BUNDLES_CLIENT_ID}
                 client-secret: ${KEY_VAULT_SSL_BUNDLES_CLIENT_SECRET}
 
+server:
+  port: 8081
 logging.level:
   com.azure.security.keyvault.jca.KeyVaultKeyStore: debug

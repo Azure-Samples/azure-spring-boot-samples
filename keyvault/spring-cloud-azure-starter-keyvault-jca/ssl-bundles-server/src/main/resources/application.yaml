@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: ssl-bundles-server
+  ssl:
+    bundle:
+      keyvault:
+        serverBundle:
+          key:
+            alias: server
+          keystore:
+            keyvault-ref: keyvault1
+          truststore:
+            keyvault-ref: keyvault2
+            certificates-refresh-interval: 120s
+  cloud:
+    azure:
+      keyvault:
+        jca:
+          vaults:
+            keyvault1:
+              endpoint: ${KEY_VAULT_SSL_BUNDLES_KEYVAULT_URI_01}
+              profile:
+                tenant-id: ${KEY_VAULT_SSL_BUNDLES_TENANT_ID}
+              credential:
+                client-id: ${KEY_VAULT_SSL_BUNDLES_CLIENT_ID}
+                client-secret: ${KEY_VAULT_SSL_BUNDLES_CLIENT_SECRET}
+            keyvault2:
+              endpoint: ${KEY_VAULT_SSL_BUNDLES_KEYVAULT_URI_02}
+              profile:
+                tenant-id: ${KEY_VAULT_SSL_BUNDLES_TENANT_ID}
+              credential:
+                client-id: ${KEY_VAULT_SSL_BUNDLES_CLIENT_ID}
+                client-secret: ${KEY_VAULT_SSL_BUNDLES_CLIENT_SECRET}
+
+server:
+  port: 8444
+  ssl:
+    bundle: serverBundle
+    # comment out the following line to enable client authentication
+#    client-auth: NEED
+logging.level:
+  com.azure.security.keyvault.jca.KeyVaultKeyStore: debug

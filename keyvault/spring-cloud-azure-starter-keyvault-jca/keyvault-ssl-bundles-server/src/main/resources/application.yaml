@@ -36,5 +36,7 @@ server:
   port: 8444
   ssl:
     bundle: serverBundle
+    # comment out the following line to enable client authentication
+#    client-auth: NEED
 logging.level:
   com.azure.security.keyvault.jca.KeyVaultKeyStore: debug

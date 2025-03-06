@@ -7,11 +7,11 @@ This repo demonstrates how to use [Java Crypto Architecture (JCA) Provider] for 
 
 ## Server SSL and RestTemplate SSL
 
-This is a scenario for enabling server SSL and `RestTemplate` SSL in a web application. It only requires running `ssl-bundles-server` independently. You can verify it by following the [ssl-bundles-server/README.md](ssl-bundles-server/README.md).
+This is the scenario to enable server SSL and `RestTemplate` SSL in a web application. It only requires running `ssl-bundles-server` standalone. You can verify it by following [ssl-bundles-server/README.md](ssl-bundles-server/README.md).
 
 ## mTLS for Server SSL and RestTemplate SSL
 
-This mTLS scenario uses a web app as Server that enabled server SSL and needs client auth, another web app enables `RestTemplate` SSL. You need to use the two samples `ssl-bundles-server` and `ssl-bundles-rest-template` together. Azure resources created by either of these two sample projects can be shared with each other, so you don't need to create both.
+This mTLS scenario uses a web app as Server that enabled server SSL and needs client auth, and another web app with `RestTemplate` SSL enabled. You need to use the `ssl-bundles-server` and `ssl-bundles-rest-template` samples together. Azure resources created by either of these two sample projects can be shared with each other, so you don't need to create both.
 
 ### Server side mTLS:
 
@@ -34,12 +34,11 @@ Use the following steps to set environment variables for `ssl-bundles-rest-templ
    source ./terraform/setup_env.sh
    ```
 
-
 3. Change directory to `ssl-bundles-rest-template` project and follow [Run Locally](ssl-bundles-rest-template/README.md/#run-locally) to run and verify.
 
 ## mTLS for Server SSL and WebClient SSL
 
-This mTLS scenario uses a web app as Server that enabled server SSL and needs client auth, another reactive web app enables `WebClient` SSL. You need to use the two samples `ssl-bundles-server` and `ssl-bundles-web-client` together. Azure resources created by either of these two sample projects can be shared with each other, so you don't need to create both.
+This mTLS scenario uses a web app as Server that enabled server SSL and needs client auth, and another reactive web app with `WebClient` SSL enabled. You need to use the `ssl-bundles-server` and `ssl-bundles-web-client` samples together. Azure resources created by either of these two sample projects can be shared with each other, so you don't need to create both.
 
 ### Server side mTLS:
 
@@ -61,6 +60,5 @@ Use the following steps to set environment variables for `ssl-bundles-web-client
    ```shell
    source ./terraform/setup_env.sh
    ```
-
 
 3. Change directory to `ssl-bundles-web-client` project and follow [Run Locally](ssl-bundles-web-client/README.md/#run-locally) to run and verify.

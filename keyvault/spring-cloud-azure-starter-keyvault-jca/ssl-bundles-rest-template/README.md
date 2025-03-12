@@ -169,25 +169,25 @@ This sample requires an SSL server, you can use sample `spring-cloud-azure-start
 1. Send below request to acquire a resource with TLS connection, the server side should not enable client-auth via property `server.ssl.client-auth=NEED`:
 
    ```bash
-   curl http://localhost:8081/resttemplate/tls
+   curl http://localhost:8080/resttemplate/tls
    ```
    
    You will see the following in the console:
    
    ```console
-   Response from restTemplate tls "https://localhost:8444/ssl-test": Inbound TLS is working!
+   Response from restTemplate tls "https://localhost:8443/ssl-test": Inbound TLS is working!
    ```
 
 2. Send below request to acquire a resource with mTLS connection, the server side should enable client-auth via property `server.ssl.client-auth=NEED`:
 
    ```bash
-   curl http://localhost:8081/resttemplate/mtls
+   curl http://localhost:8080/resttemplate/mtls
    ```
    
    you will see console like this:
    
    ```console
-   Response from restTemplate mtls "https://localhost:8444/ssl-test": Inbound TLS is working!
+   Response from restTemplate mtls "https://localhost:8443/ssl-test": Inbound TLS is working!
    ```
 
 ## Clean Up Resources

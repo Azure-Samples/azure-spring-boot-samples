@@ -167,7 +167,7 @@ You can debug your sample by adding the saved output values to the tool's enviro
 1. Send below inbound HTTPS request:
 
    ```bash
-   curl --insecure https://localhost:8444/ssl-test
+   curl --insecure https://localhost:8443/ssl-test
    ```
    
    You will see the following in the console:
@@ -180,7 +180,7 @@ You can debug your sample by adding the saved output values to the tool's enviro
 
    ```bash
    
-   curl --insecure https://localhost:8444/ssl-test-outbound
+   curl --insecure https://localhost:8443/ssl-test-outbound
    ```
    
    you will see console like this:

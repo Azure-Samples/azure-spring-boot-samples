@@ -9,15 +9,15 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
 
 @Configuration(proxyBeanMethods = false)
-public class WebClientConfiguration {
+class WebClientConfiguration {
 
     @Bean
-    public WebClient webClientWithTLS(WebClientSsl ssl) {
+    WebClient webClientWithTLS(WebClientSsl ssl) {
         return WebClient.builder().apply(ssl.fromBundle("tlsClientBundle")).build();
     }
 
     @Bean
-    public WebClient webClientWithMTLS(WebClientSsl ssl) {
+    WebClient webClientWithMTLS(WebClientSsl ssl) {
         return WebClient.builder().apply(ssl.fromBundle("mtlsClientBundle")).build();
     }
 }

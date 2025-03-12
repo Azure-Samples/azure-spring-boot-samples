@@ -7,7 +7,6 @@ spring:
         tlsServerBundle:
           key:
             alias: server
-#            alias: self-signed
           keystore:
             keyvault-ref: keyvault1
           truststore:
@@ -36,7 +35,7 @@ spring:
                 client-secret: ${KEY_VAULT_SSL_BUNDLES_CLIENT_SECRET}
 
 server:
-  port: 8444
+  port: 8443
   ssl:
     bundle: tlsServerBundle
     # comment out the following line to enable client authentication

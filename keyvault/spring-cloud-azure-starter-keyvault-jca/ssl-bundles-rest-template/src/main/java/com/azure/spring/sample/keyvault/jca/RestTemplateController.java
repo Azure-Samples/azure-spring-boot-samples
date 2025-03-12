@@ -12,7 +12,7 @@ public class RestTemplateController {
 
     final RestTemplate restTemplateWithTLS;
     final RestTemplate restTemplateWithMTLS;
-    static final String SERVER_SIDE_ENDPOINT = "https://localhost:8444/ssl-test";
+    static final String SERVER_SIDE_ENDPOINT = "https://localhost:8443/ssl-test";
 
     public RestTemplateController(RestTemplate restTemplateWithTLS, RestTemplate restTemplateWithMTLS) {
         this.restTemplateWithTLS = restTemplateWithTLS;

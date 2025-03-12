@@ -13,7 +13,7 @@ public class WebClientController {
 
     private final WebClient webClientWithTLS;
     private final WebClient webClientWithMTLS;
-    private static final String SERVER_SIDE_ENDPOINT = "https://localhost:8444/ssl-test";
+    private static final String SERVER_SIDE_ENDPOINT = "https://localhost:8443/ssl-test";
 
     public WebClientController(WebClient webClientWithTLS, WebClient webClientWithMTLS) {
         this.webClientWithTLS = webClientWithTLS;

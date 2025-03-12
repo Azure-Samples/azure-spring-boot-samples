@@ -11,7 +11,7 @@ import org.springframework.web.client.RestTemplate;
 
 
 @Configuration(proxyBeanMethods = false)
-public class RestTemplateConfiguration {
+class RestTemplateConfiguration {
 
     @Bean
     RestTemplate restTemplateWithTLS(RestTemplateBuilder restTemplateBuilder, SslBundles sslBundles) {

@@ -22,7 +22,7 @@ You will build an application that use `spring-cloud-azure-starter-keyvault-jca`
 - [Terraform](https://www.terraform.io/)
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
 - [JDK 17](https://www.oracle.com/java/technologies/downloads/) or later
-- Maven
+- [Maven](https://maven.apache.org/download.cgi)
 - You can also import the code straight into your IDE:
     - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
 

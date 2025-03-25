@@ -10,7 +10,7 @@ description: This sample demonstrates how to enable Client SSL via Azure KeyVaul
 
 # Enable WebClient SSL from Azure Key Vault SSL Bundles in Spring Boot Reactive Web Application
 
-This sample demonstrates how to enable WebClient SSL via Azure KeyVault SSL bundles in Spring Boot Reactive Web application. [Link to reference doc](https://learn.microsoft.com/azure/developer/java/spring-framework).
+This sample demonstrates how to enable WebClient SSL via Azure KeyVault SSL bundles in Spring Boot Reactive Web application.
 
 ## What You Will Build
 
@@ -21,7 +21,7 @@ You will build an application that use `spring-cloud-azure-starter-keyvault-jca`
 - [An Azure subscription](https://azure.microsoft.com/free/)
 - [Terraform](https://www.terraform.io/)
 - [Azure CLI](https://docs.microsoft.com/cli/azure/install-azure-cli)
-- [JDK8](https://www.oracle.com/java/technologies/downloads/) or later
+- [JDK 17](https://www.oracle.com/java/technologies/downloads/) or later
 - Maven
 - You can also import the code straight into your IDE:
     - [IntelliJ IDEA](https://www.jetbrains.com/idea/download)
@@ -136,12 +136,12 @@ terraform\setup_env.ps1
 If you want to run the sample in debug mode, you can save the output value.
 
 ```shell
-KEY_VAULT_SSL_BUNDLE_CLIENT_ID=
-KEY_VAULT_SSL_BUNDLE_CLIENT_SECRET=
-KEY_VAULT_SSL_BUNDLE_KEYVAULT_URI_01=
-KEY_VAULT_SSL_BUNDLE_KEYVAULT_URI_02=
-KEY_VAULT_SSL_BUNDLE_RESOURCE_GROUP_NAME=
-KEY_VAULT_SSL_BUNDLE_TENANT_ID=
+KEY_VAULT_SSL_BUNDLES_CLIENT_ID=
+KEY_VAULT_SSL_BUNDLES_CLIENT_SECRET=
+KEY_VAULT_SSL_BUNDLES_KEYVAULT_URI_01=
+KEY_VAULT_SSL_BUNDLES_KEYVAULT_URI_02=
+KEY_VAULT_SSL_BUNDLES_RESOURCE_GROUP_NAME=
+KEY_VAULT_SSL_BUNDLES_TENANT_ID=
 ```
 
 ## Run Locally

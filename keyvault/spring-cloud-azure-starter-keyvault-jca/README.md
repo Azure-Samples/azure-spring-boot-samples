@@ -1,6 +1,6 @@
 # Spring Boot application with Azure Key Vault JCA
 
-This repo demonstrates how to use [Java Crypto Architecture (JCA) Provider] for Azure Key Vault in [Spring Boot] application by Spring SSL Bundles. We support using Key Vault SSL Bundles to enable embedded Web Server SSL, RestTemplate SSL, and WebClient SSL. There are three specific scenarios.
+This repo demonstrates how to use [Java Crypto Architecture (JCA) Provider] for Azure Key Vault in [Spring Boot] application by Spring Boot [SSL Bundles](https://docs.spring.io/spring-boot/reference/features/ssl.html). We support using Key Vault SSL Bundles to enable embedded Web Server SSL, RestTemplate SSL, and WebClient SSL. There are three specific scenarios.
 
 [Java Crypto Architecture (JCA) Provider]: https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/keyvault/azure-security-keyvault-jca
 [Spring Boot]: https://spring.io/projects/spring-boot

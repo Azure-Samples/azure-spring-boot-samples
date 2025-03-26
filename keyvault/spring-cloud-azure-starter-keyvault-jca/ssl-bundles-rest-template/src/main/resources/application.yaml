@@ -1,0 +1,38 @@
+spring:
+  application:
+    name: ssl-bundles-rest-template
+  ssl:
+    bundle:
+      keyvault:
+        tlsClientBundle:
+          truststore:
+            keyvault-ref: keyvault1
+        mtlsClientBundle:
+          key:
+            alias: client
+          for-client-auth: true
+          keystore:
+            keyvault-ref: keyvault2
+          truststore:
+            keyvault-ref: keyvault1
+  cloud:
+    azure:
+      keyvault:
+        jca:
+          vaults:
+            keyvault1:
+              endpoint: ${KEY_VAULT_SSL_BUNDLES_KEYVAULT_URI_01}
+              profile:
+                tenant-id: ${KEY_VAULT_SSL_BUNDLES_TENANT_ID}
+              credential:
+                client-id: ${KEY_VAULT_SSL_BUNDLES_CLIENT_ID}
+                client-secret: ${KEY_VAULT_SSL_BUNDLES_CLIENT_SECRET}
+            keyvault2:
+              endpoint: ${KEY_VAULT_SSL_BUNDLES_KEYVAULT_URI_02}
+              profile:
+                tenant-id: ${KEY_VAULT_SSL_BUNDLES_TENANT_ID}
+              credential:
+                client-id: ${KEY_VAULT_SSL_BUNDLES_CLIENT_ID}
+                client-secret: ${KEY_VAULT_SSL_BUNDLES_CLIENT_SECRET}
+logging.level:
+  com.azure.security.keyvault.jca.KeyVaultKeyStore: debug

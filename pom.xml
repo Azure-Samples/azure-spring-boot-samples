@@ -54,6 +54,9 @@
     <module>eventhubs/spring-messaging-azure-eventhubs/eventhubs-spring-messaging</module>
     <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-client-side</module>
     <module>keyvault/azure-securtiy-keyvault-jca/run-with-command-line-server-side</module>
+    <module>keyvault/spring-cloud-azure-starter-keyvault-jca/ssl-bundles-web-client</module>
+    <module>keyvault/spring-cloud-azure-starter-keyvault-jca/ssl-bundles-rest-template</module>
+    <module>keyvault/spring-cloud-azure-starter-keyvault-jca/ssl-bundles-server</module>
     <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/property-source</module>
     <module>keyvault/spring-cloud-azure-starter-keyvault-secrets/secret-client</module>
     <module>mysql/spring-cloud-azure-starter-jdbc-mysql/spring-cloud-azure-mysql-sample</module>

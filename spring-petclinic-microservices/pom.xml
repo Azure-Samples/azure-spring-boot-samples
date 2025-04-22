@@ -31,7 +31,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <version.spring.cloud>2021.0.9</version.spring.cloud>
-    <version.spring.cloud.azure>4.19.0</version.spring.cloud.azure>
+    <version.spring.cloud.azure>4.20.0</version.spring.cloud.azure>
     <docker.image.prefix>springcommunity</docker.image.prefix>
     <docker.image.exposed.port>9090</docker.image.exposed.port>
     <docker.image.dockerfile.dir>${basedir}</docker.image.dockerfile.dir>

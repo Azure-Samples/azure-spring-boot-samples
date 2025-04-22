@@ -21,7 +21,7 @@
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <version.maven-surefire-plugin>3.0.0</version.maven-surefire-plugin>
-    <version.spring.cloud.azure>4.19.0</version.spring.cloud.azure>
+    <version.spring.cloud.azure>4.20.0</version.spring.cloud.azure>
   </properties>
 
   <dependencyManagement>

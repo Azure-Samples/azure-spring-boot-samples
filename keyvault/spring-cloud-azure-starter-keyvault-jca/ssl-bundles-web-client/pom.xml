@@ -16,7 +16,7 @@
   <description>Spring Cloud Azure Starter Key Vault JCA: Enable WebClient SSL in Spring Boot Reactive Web application</description>
   <properties>
     <java.version>17</java.version>
-    <spring-cloud-azure.version>5.22.0</spring-cloud-azure.version>
+    <spring-cloud-azure.version>5.23.0</spring-cloud-azure.version>
   </properties>
   <dependencies>
     <dependency>

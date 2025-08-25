@@ -1,7 +1,6 @@
-output "SERVICEBUS_NAMESPACE_CONNECTION_STRING" {
-  value       = azurerm_servicebus_namespace.servicebus_namespace.default_primary_connection_string
-  description = "The connection_string of servicebus namespace."
-  sensitive   = true
+output "SERVICEBUS_NAMESPACE_NAME" {
+  value       = azurerm_servicebus_namespace.servicebus_namespace.name
+  description = "The name of Service Bus namespace."
 }
 
 output "PRICING_TIER" {

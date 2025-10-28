@@ -1,6 +1,10 @@
 feature-management:
-  beta:
-    enabled-for:
-      - name: Random
-        parameters:
-          chance: "80"
+  feature-flags:
+    - 
+      id: beta
+      enabled: true
+      conditions:
+        client-filters:
+          - name: Random
+            parameters:
+              chance: "80"

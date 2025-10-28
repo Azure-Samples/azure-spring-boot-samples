@@ -1,6 +1,8 @@
 # Use default application name and no profile configured
 # Keys starting with /application/ will be matched
 spring:
+  config:
+    import: azureAppConfiguration
   cloud:
     azure:
       appconfiguration:

@@ -31,6 +31,12 @@ description: This sample demonstrates how to refresh configuration properties fr
     az appconfig kv set --key /application/config.message --value testKey --name <name-of-your-new-store> --yes
     ```
 
+1. Create the feature flag in your new store:
+
+    ```azurecli
+    az appconfig feature set --feature alpha --name <name-of-your-new-store>
+    ```
+
 1. Create monitor trigger.
 
     ```azurecli
@@ -90,6 +96,28 @@ This value should match the `spring.cloud.azure.appconfiguration.stores[0].monit
 1. Refresh page, this will trigger the refresh update.
 
 1. After a couple seconds refresh again, this time the new value `updatedTestKey` will show.
+
+1. Go to `localhost:8080/feature-flag/alpha` which will display the status of the feature flag.
+
+1. Update the feature flag in your App Configuration store.
+
+    ```azurecli
+    az appconfig feature enable --feature alpha --name <name-of-your-new-store>
+    ```
+
+1. Refresh page, this will trigger the refresh update.
+
+1. After a couple seconds refresh again, this time the new value `updatedTestKey` will show.
+
+1. Go to `localhost:8080/feature-flag/alpha` which will display the status of the feature flag.
+
+1. Update the feature flag in your App Configuration store.
+
+    ```azurecli
+    az appconfig feature enable --feature alpha --name <name-of-your-new-store>
+    ```
+
+1. After a couple seconds refresh the page twice, this time the feature flag status will show as enabled.
 
 ## Deploy to Azure Spring Apps
 

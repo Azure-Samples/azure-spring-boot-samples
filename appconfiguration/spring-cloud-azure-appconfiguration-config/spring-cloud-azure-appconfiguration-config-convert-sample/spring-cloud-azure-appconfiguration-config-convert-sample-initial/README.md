@@ -179,11 +179,10 @@ In this section, you clone a containerized Spring Boot application and test it l
     az appconfig kv set-keyvault --name myConfigStoreName --key "/application/azure.cosmos.key" --secret-identifier https://myVaultName.vault.azure.net/secrets/COSMOSDB-KEY --yes
     ```
 
-1. Delete `application.propertes` from `src/main/resources`.
+1. Update the application.yml file to now include, removing the other values.
 
-1. Create a new file called `bootstrap.properties` in `src/main/resources`, and add the following.
-
-    ```properties
+    ```yaml
+    spring.config.import=azureAppConfiguration
     spring.cloud.azure.appconfiguration.stores[0].endpoint=https://{my-configstore-name}.azconfig.io
     ```
 

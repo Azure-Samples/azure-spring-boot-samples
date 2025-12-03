@@ -21,7 +21,7 @@
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
-    <version.maven-surefire-plugin>3.5.3</version.maven-surefire-plugin>
+    <version.maven-surefire-plugin>3.5.4</version.maven-surefire-plugin>
     <version.spring.cloud.azure>6.0.0</version.spring.cloud.azure>
   </properties>
 

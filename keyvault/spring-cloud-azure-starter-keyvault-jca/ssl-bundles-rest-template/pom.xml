@@ -16,7 +16,7 @@
   <description>Spring Cloud Azure Starter Key Vault JCA: Enable RestTemplate SSL in Spring Boot Web application</description>
   <properties>
     <java.version>17</java.version>
-    <spring-cloud-azure.version>6.0.0</spring-cloud-azure.version>
+    <spring-cloud-azure.version>6.1.0</spring-cloud-azure.version>
   </properties>
   <dependencies>
     <dependency>

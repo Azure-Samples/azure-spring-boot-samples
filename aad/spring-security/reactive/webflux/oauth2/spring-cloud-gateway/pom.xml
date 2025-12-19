@@ -21,7 +21,7 @@
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
-    <version.spring.cloud>2025.0.0</version.spring.cloud>
+    <version.spring.cloud>2025.1.0</version.spring.cloud>
     <version.spring.cloud.azure>6.1.0</version.spring.cloud.azure>
   </properties>
 

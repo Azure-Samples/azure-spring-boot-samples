@@ -7,6 +7,7 @@
   libraries.
 
 ## 1. Branches and Tags
+- If you are using Spring Boot 4.x, you should choose Spring Cloud Azure 7.x. Related samples are in [spring-boot-4.x](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-4.x) branch.
 - If you are using Spring Boot 3.x, you should choose Spring Cloud Azure 5.x. Related samples are in [main](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main) branch.
 - If you are using Spring Boot 2.x, you should choose Spring Cloud Azure 4.x. Related samples are in [spring-boot-2.x](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x) branch.
 - If you want to find sample about specific version of Spring Cloud Azure, please switch to corresponding tag in this repository.

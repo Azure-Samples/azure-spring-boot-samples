@@ -64,7 +64,7 @@
 
 | Sample Project                      | Spring Boot 4.x | Spring Boot 3.x                                                          | Spring Boot 2.x |
 |-------------------------------------|----------------|-----------------------------------------------------------------------------------------|--------------------------------|
-| spring-cloud-azure-sample-eventgrid |                | ✅ [link](eventgrid/spring-cloud-azure-starter-eventgrid/spring-cloud-azure-sample-eventgrid) | ❌                              |
+| spring-cloud-azure-sample-eventgrid | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-4.x/eventgrid/spring-cloud-azure-starter-eventgrid/spring-cloud-azure-sample-eventgrid) | ✅ [link](eventgrid/spring-cloud-azure-starter-eventgrid/spring-cloud-azure-sample-eventgrid) | ❌                              |
 
 ### 2.6 Azure Event Hubs
 

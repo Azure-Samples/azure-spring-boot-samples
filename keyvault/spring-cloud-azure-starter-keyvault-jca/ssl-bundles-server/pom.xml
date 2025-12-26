@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>3.5.5</version>
+    <version>4.0.0</version>
     <relativePath/> <!-- lookup parent from repository -->
   </parent>
   <groupId>com.azure.spring</groupId>
@@ -16,12 +16,16 @@
   <description>Spring Cloud Azure Starter Key Vault JCA: Enable Server SSL and RestTemplate SSL in Spring Boot Web application</description>
   <properties>
     <java.version>17</java.version>
-    <spring-cloud-azure.version>6.1.0</spring-cloud-azure.version>
+    <spring-cloud-azure.version>7.0.0-beta.1</spring-cloud-azure.version>
   </properties>
   <dependencies>
     <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-web</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-restclient</artifactId>
     </dependency>
     <dependency>
       <groupId>com.azure.spring</groupId>

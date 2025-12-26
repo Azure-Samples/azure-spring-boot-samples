@@ -13,7 +13,6 @@ import org.springframework.integration.annotation.MessagingGateway;
 import org.springframework.integration.annotation.ServiceActivator;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
-import org.springframework.util.concurrent.ListenableFutureCallback;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -45,15 +44,11 @@ public class SendController {
     @ServiceActivator(inputChannel = OUTPUT_CHANNEL)
     public MessageHandler messageSender(StorageQueueTemplate storageQueueTemplate) {
         DefaultMessageHandler handler = new DefaultMessageHandler(STORAGE_QUEUE_NAME, storageQueueTemplate);
-        handler.setSendCallback(new ListenableFutureCallback<Void>() {
-            @Override
-            public void onSuccess(Void result) {
-                LOGGER.info("Message was sent successfully.");
-            }
-
-            @Override
-            public void onFailure(Throwable ex) {
+        handler.setSendCallback((unused, throwable) -> {
+            if (throwable != null) {
                 LOGGER.info("There was an error sending the message.");
+            } else  {
+                LOGGER.info("Message was sent successfully.");
             }
         });
         return handler;

@@ -1,14 +1,14 @@
 package com.azure.spring.sample.active.directory.oauth2.servlet.sample04.resource.server1.configuration;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.security.oauth2.resource.OAuth2ResourceServerProperties;
+import org.springframework.boot.security.oauth2.server.resource.autoconfigure.OAuth2ResourceServerProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.oauth2.client.JwtBearerOAuth2AuthorizedClientProvider;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProvider;
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientProviderBuilder;
-import org.springframework.security.oauth2.client.endpoint.DefaultJwtBearerTokenResponseClient;
+import org.springframework.security.oauth2.client.endpoint.RestClientJwtBearerTokenResponseClient;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.oauth2.client.web.DefaultOAuth2AuthorizedClientManager;
 import org.springframework.security.oauth2.client.web.OAuth2AuthorizedClientRepository;
@@ -79,9 +79,9 @@ public class ApplicationConfiguration {
         return provider;
     }
 
-    private DefaultJwtBearerTokenResponseClient oAuth2AccessTokenResponseClient() {
-        DefaultJwtBearerTokenResponseClient client = new DefaultJwtBearerTokenResponseClient();
-        client.setRequestEntityConverter(new AadJwtBearerGrantRequestEntityConverter());
+    private RestClientJwtBearerTokenResponseClient oAuth2AccessTokenResponseClient() {
+        RestClientJwtBearerTokenResponseClient client = new RestClientJwtBearerTokenResponseClient();
+        client.setParametersConverter(new AadJwtBearerGrantRequestEntityConverter());
         return client;
     }
 

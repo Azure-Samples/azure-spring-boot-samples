@@ -3,9 +3,9 @@
 import com.azure.spring.cloud.autoconfigure.implementation.context.AzureGlobalPropertiesAutoConfiguration;
 import com.azure.spring.cloud.autoconfigure.implementation.storage.queue.AzureStorageQueueAutoConfiguration;
 import com.azure.storage.queue.QueueClient;
-import org.junit.BeforeClass;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,7 +13,7 @@ import org.springframework.boot.testcontainers.service.connection.ServiceConnect
 
 import org.springframework.test.context.TestPropertySource;
 
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
@@ -23,7 +23,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @SpringBootTest(classes = StorageQueueTestcontainersTest.class)
 @Testcontainers
 @TestPropertySource(properties = "spring.cloud.azure.storage.queue.queue-name=devstoreaccount1/tc-queue")
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ImportAutoConfiguration(classes = { AzureGlobalPropertiesAutoConfiguration.class, AzureStorageQueueAutoConfiguration.class})
 public class StorageQueueTestcontainersTest {
 
@@ -36,7 +36,7 @@ public class StorageQueueTestcontainersTest {
     @Autowired
     private QueueClient queueClient;
 
-    @BeforeClass
+    @BeforeAll
     public static void setup() {
         AZURITE_CONTAINER.start();
     }

@@ -5,6 +5,7 @@ package com.azure.spring.data.cosmos.sample.ebookstore.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -14,20 +15,16 @@ public class WebSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-                .csrf()
-                    .disable()
-                .authorizeRequests()
-                    .requestMatchers("/ebooks/login", "/ebooks/loginError", "/ebooks/createAccount", "/ebooks/user/createAccount")
-                        .permitAll()
-                    .requestMatchers("/css/**", "/fonts/**", "/js/**", "/plugins/**")
-                        .permitAll()
-                    .anyRequest()
-                        .authenticated()
-                    .and()
-                .formLogin()
-                    .loginPage("/ebooks/login")
+            .csrf(AbstractHttpConfigurer::disable)
+            .authorizeHttpRequests(requests ->
+                requests.requestMatchers("/ebooks/login", "/ebooks/loginError", "/ebooks/createAccount", "/ebooks/user/createAccount")
+                    .permitAll()
+                    .requestMatchers("/css/**", "/fonts/**", "/js/**", "/plugins/**").permitAll()
+                    .anyRequest().authenticated())
+            .formLogin(form ->
+                form.loginPage("/ebooks/login")
                     .successForwardUrl("/ebooks/index")
-                    .failureUrl("/ebooks/loginError");
+                    .failureUrl("/ebooks/loginError"));
         return http.build();
     }
     @Bean

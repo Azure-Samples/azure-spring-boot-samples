@@ -8,8 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
-import org.springframework.security.oauth2.client.endpoint.DefaultAuthorizationCodeTokenResponseClient;
-import org.springframework.security.oauth2.client.endpoint.OAuth2AuthorizationCodeGrantRequestEntityConverter;
+import org.springframework.security.oauth2.client.endpoint.RestClientAuthorizationCodeTokenResponseClient;
 import org.springframework.security.oauth2.client.registration.ClientRegistration;
 import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
 import org.springframework.security.web.SecurityFilterChain;
@@ -37,7 +36,7 @@ public class WebSecurityConfiguration {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        DefaultAuthorizationCodeTokenResponseClient client =
+        RestClientAuthorizationCodeTokenResponseClient client =
             accessTokenResponseClient(Collections.singletonList("client-1"), repository);
         http.oauth2Login(o -> o.tokenEndpoint(t -> {
                     t.accessTokenResponseClient(client);}))
@@ -45,15 +44,11 @@ public class WebSecurityConfiguration {
         return http.build();
     }
 
-    private DefaultAuthorizationCodeTokenResponseClient accessTokenResponseClient(
+    private RestClientAuthorizationCodeTokenResponseClient accessTokenResponseClient(
         List<String> registrationIds, ClientRegistrationRepository repository
     ) throws AzureActiveDirectoryAssertionException {
-        OAuth2AuthorizationCodeGrantRequestEntityConverter converter =
-            new OAuth2AuthorizationCodeGrantRequestEntityConverter();
-        converter.addParametersConverter(
-            new AzureActiveDirectoryJwtClientAuthenticationParametersConverter<>(createFactoryMap(registrationIds, repository)));
-        DefaultAuthorizationCodeTokenResponseClient client = new DefaultAuthorizationCodeTokenResponseClient();
-        client.setRequestEntityConverter(converter);
+        RestClientAuthorizationCodeTokenResponseClient client = new RestClientAuthorizationCodeTokenResponseClient();
+        client.addParametersConverter(new AzureActiveDirectoryJwtClientAuthenticationParametersConverter<>(createFactoryMap(registrationIds, repository)));
         return client;
     }
 

@@ -3,17 +3,17 @@
 import com.azure.spring.cloud.autoconfigure.implementation.context.AzureGlobalPropertiesAutoConfiguration;
 import com.azure.spring.cloud.autoconfigure.implementation.storage.blob.AzureStorageBlobAutoConfiguration;
 import com.azure.spring.cloud.autoconfigure.implementation.storage.blob.AzureStorageBlobResourceAutoConfiguration;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.ImportAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.WritableResource;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.util.StreamUtils;
 import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.junit.jupiter.Container;
@@ -26,7 +26,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest(classes = StorageBlobTestcontainersTest.class)
 @Testcontainers
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @ImportAutoConfiguration(classes = { AzureGlobalPropertiesAutoConfiguration.class, AzureStorageBlobAutoConfiguration.class, AzureStorageBlobResourceAutoConfiguration.class})
 public class StorageBlobTestcontainersTest {
     @Container
@@ -38,7 +38,7 @@ public class StorageBlobTestcontainersTest {
     @Value("azure-blob://testcontainers/message.txt")
     private Resource blobFile;
 
-    @BeforeClass
+    @BeforeAll
      public static void setup() {
         AZURITE_CONTAINER.start();
     }

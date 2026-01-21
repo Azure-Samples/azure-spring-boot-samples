@@ -1,38 +1,18 @@
 spring:
   thymeleaf:
     cache: false
+  config:
+    import: azureAppConfiguration
   cloud:
     azure:
       appconfiguration:
-        watch:
-          enabled: True
-          delay: 5s
-config:
-  message: Hi
-feature-management:
-  feature-flags:
-    -
-      id: beta
-      enabled: true
-    -
-      id: dark-theme
-      enabled: true
-      conditions:
-        client-filters:
-          -
-            name: Random
-            parameters:
-              chance: "50"
-    -
-      id: beta-ab
-      enabled: true
-      conditions:
-        client-filters:
-          -
-            name: Random
-            parameters:
-              chance: "50"
-          -
-            name: ClientFilter
-            parameters:
-              clientIp: 10.0.0.1 
+        stores:
+          - 
+            endpoint: ${CONFIGSTORE_ENDPOINT}
+            feature-flags:
+              enabled: true
+            monitoring:
+              enabled: true
+              triggers:
+                -
+                  key: sentinel

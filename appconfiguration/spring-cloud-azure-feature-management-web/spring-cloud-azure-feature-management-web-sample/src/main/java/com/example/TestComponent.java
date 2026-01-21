@@ -4,9 +4,10 @@ package com.example;
 
 import java.util.concurrent.ExecutionException;
 
-import com.azure.spring.cloud.feature.management.FeatureManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+
+import com.azure.spring.cloud.feature.management.FeatureManager;
 
 @Component
 public class TestComponent {
@@ -15,7 +16,7 @@ public class TestComponent {
     private FeatureManager featureManager;
 
     public String test() throws InterruptedException, ExecutionException {
-        if (featureManager.isEnabledAsync("Beta").block()) {
+        if (featureManager.isEnabled("beta")) {
             return "Beta";
         }
         return "Original";

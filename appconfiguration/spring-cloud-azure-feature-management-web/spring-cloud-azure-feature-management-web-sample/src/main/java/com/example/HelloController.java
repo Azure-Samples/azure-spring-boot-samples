@@ -2,22 +2,20 @@
 // Licensed under the MIT License.
 package com.example;
 
-import com.azure.spring.cloud.feature.management.FeatureManager;
-import com.azure.spring.cloud.feature.management.web.FeatureGate;
-import com.azure.spring.cloud.feature.management.web.FeatureManagerSnapshot;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.azure.spring.cloud.feature.management.FeatureManager;
+import com.azure.spring.cloud.feature.management.web.FeatureGate;
+import com.azure.spring.cloud.feature.management.web.FeatureManagerSnapshot;
+
 
 @Controller
 @ConfigurationProperties("controller")
 public class HelloController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(HelloController.class);
 
     @Autowired
     private FeatureManager featureManager;
@@ -27,10 +25,10 @@ public class HelloController {
 
     @GetMapping("/privacy")
     public String getRequestBased(Model model) {
-        model.addAttribute("Beta", featureManager.isEnabledAsync("beta").block());
-        model.addAttribute("isDarkThemeS1", featureManagerSnapshot.isEnabledAsync("dark-theme").block());
-        model.addAttribute("isDarkThemeS2", featureManagerSnapshot.isEnabledAsync("dark-theme").block());
-        model.addAttribute("isDarkThemeS3", featureManagerSnapshot.isEnabledAsync("dark-theme").block());
+        model.addAttribute("Beta", featureManager.isEnabled("beta"));
+        model.addAttribute("isDarkThemeS1", featureManagerSnapshot.isEnabled("dark-theme"));
+        model.addAttribute("isDarkThemeS2", featureManagerSnapshot.isEnabled("dark-theme"));
+        model.addAttribute("isDarkThemeS3", featureManagerSnapshot.isEnabled("dark-theme"));
         return "privacy";
     }
 
@@ -47,7 +45,7 @@ public class HelloController {
 
     @GetMapping(value = {"", "/", "/welcome"})
     public String mainWithParam(Model model) {
-        model.addAttribute("Beta", featureManager.isEnabledAsync("beta").block());
+        model.addAttribute("Beta", featureManager.isEnabled("beta"));
         return "welcome";
     }
 }

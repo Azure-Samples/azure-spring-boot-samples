@@ -1,4 +1,21 @@
-.appconfig:
-  featureflag/Beta: >-
-    {"id":"Beta","description":"Test
-    Feature","enabled":true,"conditions":{"client_filters":[{"name":"Random","parameters":{"chance":"50"}}]}}
+feature_management:
+  feature_flags:
+    - id: beta
+      enabled: true
+    - id: beta-ab
+      enabled: true
+      conditions:
+        client_filters:
+          - name: Random
+            parameters:
+              chance: '50'
+          - name: ClientFilter
+            parameters:
+              clientIp: 10.0.0.1
+    - id: dark-theme
+      enabled: true
+      conditions:
+        client_filters:
+          - name: Random
+            parameters:
+              chance: '50'

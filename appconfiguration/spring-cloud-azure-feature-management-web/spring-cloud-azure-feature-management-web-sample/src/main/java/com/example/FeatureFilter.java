@@ -4,18 +4,18 @@ package com.example;
 
 import java.io.IOException;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.azure.spring.cloud.feature.management.FeatureManager;
+
 import jakarta.servlet.Filter;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.ServletRequest;
 import jakarta.servlet.ServletResponse;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
 
 @Component
 public class FeatureFilter implements Filter {
@@ -28,7 +28,7 @@ public class FeatureFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
             throws IOException, ServletException {
-        if (!featureManager.isEnabledAsync("Beta").block()) {
+        if (!featureManager.isEnabled("beta")) {
             chain.doFilter(request, response);
             return;
         }

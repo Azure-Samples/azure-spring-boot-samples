@@ -191,72 +191,8 @@ In this section, you clone a containerized Spring Boot application and test it l
    <dependency>
      <groupId>com.azure.spring</groupId>
      <artifactId>spring-cloud-azure-appconfiguration-config</artifactId>
-     <version>4.19.0</version>
+     <version>6.1.0</version>
    </dependency>
-    ```
-    
-1. Create a new file called *AzureCredentials.java* and add the code below.
-
-    ```java
-    /*
-     * Copyright (c) Microsoft Corporation. All rights reserved.
-     * Licensed under the MIT License. See LICENSE in the project root for
-     * license information.
-     */
-    package sample.convert;
-
-    import com.azure.core.credential.TokenCredential;
-    import com.azure.identity.EnvironmentCredentialBuilder;
-    import com.microsoft.azure.spring.cloud.config.AppConfigurationCredentialProvider;
-    import com.microsoft.azure.spring.cloud.config.KeyVaultCredentialProvider;
-
-    public class AzureCredentials implements AppConfigurationCredentialProvider, KeyVaultCredentialProvider{
-
-        @Override
-        public TokenCredential getKeyVaultCredential(String uri) {
-            return getCredential();
-        }
-
-        @Override
-        public TokenCredential getAppConfigCredential(String uri) {
-            return getCredential();
-        }
-
-        private TokenCredential getCredential() {
-            return new EnvironmentCredentialBuilder().build();
-        }
-
-    }
-    ```
-
-    1. Create a new file called *AppConfiguration.java*. And add the code below.
-
-    ```java
-    /*
-     * Copyright (c) Microsoft Corporation. All rights reserved.
-     * Licensed under the MIT License. See LICENSE in the project root for
-     * license information.
-     */
-    package sample.convert;
-
-    import org.springframework.context.annotation.Bean;
-    import org.springframework.context.annotation.Configuration;
-
-    @Configuration
-    public class AppConfiguration {
-
-        @Bean
-        public AzureCredentials azureCredentials() {
-            return new AzureCredentials();
-        }
-    }
-    ```
-
-1. Create a new folder in your resources directory called META-INF. Then in that folder create a file called *spring.factories* and add.
-
-    ```factories
-    org.springframework.cloud.bootstrap.BootstrapConfiguration=\
-    sample.convert.AppConfiguration
     ```
 
 ### Run the updated sample

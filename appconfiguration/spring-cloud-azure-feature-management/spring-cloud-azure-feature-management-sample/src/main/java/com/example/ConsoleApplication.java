@@ -2,13 +2,14 @@
 // Licensed under the MIT License.
 package com.example;
 
-import com.azure.spring.cloud.feature.management.FeatureManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.azure.spring.cloud.feature.management.FeatureManager;
 
 @SpringBootApplication
 public class ConsoleApplication implements CommandLineRunner {
@@ -27,7 +28,7 @@ public class ConsoleApplication implements CommandLineRunner {
     public void run(String... args) throws Exception {
         LOGGER.info("EXECUTING : command line runner");
 
-        if (featureManager.isEnabledAsync("beta").block()) {
+        if (featureManager.isEnabled("beta")) {
             LOGGER.info("RUNNING : beta");
         } else {
             LOGGER.info("RUNNING : application");

@@ -4,23 +4,23 @@ package com.example.demo.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
 import com.azure.spring.cloud.feature.management.FeatureManager;
-import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
 public class HelloController {
 
-    private FeatureManager featureManager;
+    private final FeatureManager featureManager;
 
     public HelloController(FeatureManager featureManager) {
         this.featureManager = featureManager;
     }
 
-    @GetMapping("/welcome")
+    @GetMapping({"/", "/welcome"})
     public String mainWithParam(Model model) {
-        model.addAttribute("Beta", featureManager.isEnabledAsync("beta").block());
+        model.addAttribute("Beta", featureManager.isEnabled("Beta"));
         return "welcome";
     }
 }

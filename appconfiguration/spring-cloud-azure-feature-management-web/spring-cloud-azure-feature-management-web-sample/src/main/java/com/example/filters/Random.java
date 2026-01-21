@@ -2,9 +2,10 @@
 // Licensed under the MIT License.
 package com.example.filters;
 
+import org.springframework.stereotype.Component;
+
 import com.azure.spring.cloud.feature.management.filters.FeatureFilter;
 import com.azure.spring.cloud.feature.management.models.FeatureFilterEvaluationContext;
-import org.springframework.stereotype.Component;
 
 @Component("Random")
 public class Random implements FeatureFilter {

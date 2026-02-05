@@ -31,7 +31,8 @@ public class StorageQueueTestcontainersTest {
     @ServiceConnection
     private static final GenericContainer<?> AZURITE_CONTAINER = new GenericContainer<>(
         "mcr.microsoft.com/azure-storage/azurite:latest")
-        .withExposedPorts(10001);
+        .withExposedPorts(10001)
+        .withCommand("azurite-queue", "--queueHost", "0.0.0.0", "--skipApiVersionCheck");
 
     @Autowired
     private QueueClient queueClient;

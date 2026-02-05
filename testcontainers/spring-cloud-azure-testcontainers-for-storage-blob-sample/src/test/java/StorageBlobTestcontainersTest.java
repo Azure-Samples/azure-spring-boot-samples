@@ -33,7 +33,8 @@ public class StorageBlobTestcontainersTest {
     @ServiceConnection
     private static final GenericContainer<?> AZURITE_CONTAINER = new GenericContainer<>(
         "mcr.microsoft.com/azure-storage/azurite:latest")
-        .withExposedPorts(10000);
+        .withExposedPorts(10000)
+        .withCommand("azurite-blob", "--blobHost", "0.0.0.0", "--skipApiVersionCheck");
 
     @Value("azure-blob://testcontainers/message.txt")
     private Resource blobFile;

@@ -6,6 +6,7 @@ import com.azure.cosmos.models.CosmosDatabaseResponse;
 import com.azure.spring.cloud.autoconfigure.implementation.context.AzureGlobalPropertiesAutoConfiguration;
 import com.azure.spring.cloud.autoconfigure.implementation.cosmos.AzureCosmosAutoConfiguration;
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
@@ -30,6 +31,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Testcontainers
 @ExtendWith(SpringExtension.class)
 @ImportAutoConfiguration(classes = { AzureGlobalPropertiesAutoConfiguration.class, AzureCosmosAutoConfiguration.class})
+@Disabled("Cosmos DB emulator has SSL certificate issues in CI environments. See https://github.com/Azure/azure-cosmos-db-emulator-docker/issues/229")
 public class CosmosTestcontainersTest {
 
     @TempDir

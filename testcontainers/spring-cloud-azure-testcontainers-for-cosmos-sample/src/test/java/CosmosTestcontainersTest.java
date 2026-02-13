@@ -6,8 +6,9 @@ import com.azure.cosmos.models.CosmosDatabaseResponse;
 import com.azure.spring.cloud.autoconfigure.implementation.context.AzureGlobalPropertiesAutoConfiguration;
 import com.azure.spring.cloud.autoconfigure.implementation.cosmos.AzureCosmosAutoConfiguration;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.condition.EnabledOnOs;
+import org.junit.jupiter.api.condition.OS;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.jupiter.api.io.TempDir;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,20 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.testcontainers.service.connection.ServiceConnection;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.testcontainers.containers.CosmosDBEmulatorContainer;
+import org.testcontainers.containers.wait.strategy.Wait;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
 import org.testcontainers.utility.DockerImageName;
 
 import java.io.File;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.cert.CertificateException;
+import java.time.Duration;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -31,7 +38,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Testcontainers
 @ExtendWith(SpringExtension.class)
 @ImportAutoConfiguration(classes = { AzureGlobalPropertiesAutoConfiguration.class, AzureCosmosAutoConfiguration.class})
-@Disabled("Cosmos DB emulator has SSL certificate issues in CI environments. See https://github.com/Azure/azure-cosmos-db-emulator-docker/issues/229")
+@EnabledOnOs(OS.LINUX)
 public class CosmosTestcontainersTest {
 
     @TempDir
@@ -43,18 +50,15 @@ public class CosmosTestcontainersTest {
     @Container
     @ServiceConnection
     static CosmosDBEmulatorContainer cosmos = new CosmosDBEmulatorContainer(
-        DockerImageName.parse("mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator:latest"));
+        DockerImageName.parse("mcr.microsoft.com/cosmosdb/linux/azure-cosmos-emulator:latest"))
+        .waitingFor(Wait.forHttps("/_explorer/emulator.pem").forStatusCode(200).allowInsecure())
+        .withStartupTimeout(Duration.ofMinutes(3));
 
     @BeforeAll
-    public static void setup() {
-        cosmos.start();
+    public static void setup() throws IOException, CertificateException, KeyStoreException, NoSuchAlgorithmException {
         Path keyStoreFile = new File(tempFolder, "azure-cosmos-emulator.keystore").toPath();
         KeyStore keyStore = cosmos.buildNewKeyStore();
-        try {
-            keyStore.store(Files.newOutputStream(keyStoreFile.toFile().toPath()), cosmos.getEmulatorKey().toCharArray());
-        } catch (Exception e) {
-            throw new RuntimeException(e);
-        }
+        keyStore.store(Files.newOutputStream(keyStoreFile.toFile().toPath()), cosmos.getEmulatorKey().toCharArray());
 
         System.setProperty("javax.net.ssl.trustStore", keyStoreFile.toString());
         System.setProperty("javax.net.ssl.trustStorePassword", cosmos.getEmulatorKey());

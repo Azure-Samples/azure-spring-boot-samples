@@ -18,6 +18,8 @@
       echo "eng" >> .git/info/sparse-checkout
       echo "sdk/keyvault" >> .git/info/sparse-checkout
       echo "sdk/boms" >> .git/info/sparse-checkout
+      echo "sdk/tools/linting-extensions" >> .git/info/sparse-checkout
+      echo ".vscode/" >> .git/info/sparse-checkout
       git pull --depth=1 origin feature/azure-spring-cloud-4.0
       mvn clean install -Dmaven.javadoc.skip=true -DskipTests \
           -Dcheckstyle.skip=true \

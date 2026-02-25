@@ -21,7 +21,7 @@
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
-    <version.spring.cloud.azure>7.0.0</version.spring.cloud.azure>
+    <version.spring.cloud.azure>7.1.0-beta.1</version.spring.cloud.azure>
   </properties>
 
   <dependencyManagement>
@@ -59,6 +59,21 @@
     <dependency>
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.azure.spring</groupId>
+      <artifactId>spring-cloud-azure-autoconfigure</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.azure.spring</groupId>
+      <artifactId>spring-cloud-azure-docker-compose</artifactId>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 

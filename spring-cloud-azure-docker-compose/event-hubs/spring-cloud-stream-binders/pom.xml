@@ -18,7 +18,9 @@
   <packaging>jar</packaging>
 
   <properties>
-    <version.spring.cloud.azure>7.1.0-beta.1</version.spring.cloud.azure> <!--TODO: Change this version-->
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <version.spring.cloud.azure>7.1.0</version.spring.cloud.azure>
   </properties>
 
   <dependencyManagement>

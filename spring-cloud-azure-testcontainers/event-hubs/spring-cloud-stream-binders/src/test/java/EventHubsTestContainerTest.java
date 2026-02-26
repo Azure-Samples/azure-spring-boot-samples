@@ -70,7 +70,7 @@ class EventHubsTestContainerTest {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EventHubsTestContainerTest.class);
     private static final Set<String> RECEIVED_MESSAGES = ConcurrentHashMap.newKeySet();
-    private static final AtomicInteger messageSequence = new AtomicInteger(0);
+    private static final AtomicInteger MESSAGE_SEQUENCE = new AtomicInteger(0);
 
     @Test
     void supplierAndConsumerShouldWorkThroughEventHubs() {
@@ -110,7 +110,7 @@ class EventHubsTestContainerTest {
         @Bean
         public Supplier<Message<String>> supply() {
             return () -> {
-                int sequence = messageSequence.getAndIncrement();
+                int sequence = MESSAGE_SEQUENCE.getAndIncrement();
                 String payload = "Hello world, " + sequence;
                 LOGGER.info("[Supplier] Invoked - message sequence: {}", sequence);
                 return MessageBuilder.withPayload(payload).build();

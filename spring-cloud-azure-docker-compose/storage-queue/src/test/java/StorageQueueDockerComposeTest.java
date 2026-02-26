@@ -21,7 +21,7 @@ class StorageQueueDockerComposeTest {
     private QueueClient queueClient;
 
     @Test
-    void test() {
+    void queueClientShouldSendAndReceiveMessage() {
         String message = "Hello World!";
         this.queueClient.create();
         this.queueClient.sendMessage(message);

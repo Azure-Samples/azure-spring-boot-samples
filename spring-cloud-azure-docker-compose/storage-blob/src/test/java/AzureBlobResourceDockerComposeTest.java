@@ -27,7 +27,7 @@ public class AzureBlobResourceDockerComposeTest {
     private Resource blobFile;
 
     @Test
-    void test() throws IOException {
+    void queueClientShouldSendAndReceiveMessage() throws IOException {
         String originalContent = "Hello World!";
         try (OutputStream os = ((WritableResource) this.blobFile).getOutputStream()) {
             os.write(originalContent.getBytes());

@@ -82,6 +82,7 @@
     <module>spring-cloud-azure-docker-compose/service-bus/spring-cloud-stream-binders</module>
     <module>spring-cloud-azure-docker-compose/service-bus/spring-messaging</module>
     <module>spring-cloud-azure-docker-compose/storage-blob</module>
+    <module>spring-cloud-azure-docker-compose/storage-queue</module>
     <module>spring-cloud-azure-testcontainers/cosmos</module>
     <module>spring-cloud-azure-testcontainers/service-bus/spring-cloud-stream-binders</module>
     <module>spring-cloud-azure-testcontainers/service-bus/spring-messaging</module>

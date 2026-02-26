@@ -49,7 +49,7 @@ class EventHubsDockerComposeTest {
     private static final AtomicInteger MESSAGE_SEQUENCE = new AtomicInteger(0);
 
     @Test
-    void supplierAndConsumerShouldWorkThroughEventHubsQueue() {
+    void supplierAndConsumerShouldWorkThroughEventHub() {
         waitAtMost(Duration.ofSeconds(120))
                 .pollDelay(Duration.ofSeconds(2))
                 .pollInterval(Duration.ofSeconds(2))

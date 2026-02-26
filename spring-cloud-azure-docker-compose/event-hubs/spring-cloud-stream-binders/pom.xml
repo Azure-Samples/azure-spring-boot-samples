@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-parent</artifactId>
+    <version>4.0.3</version>
+    <relativePath/> <!-- lookup parent from repository -->
+  </parent>
+
+  <groupId>com.azure.spring</groupId>
+  <artifactId>spring-cloud-azure-docker-compose-for-event-hubs-spring-cloud-stream-sample</artifactId>
+  <version>1.0.0</version>
+  <packaging>jar</packaging>
+
+  <properties>
+    <version.spring.cloud.azure>7.1.0-beta.1</version.spring.cloud.azure> <!--TODO: Change this version-->
+  </properties>
+
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>com.azure.spring</groupId>
+        <artifactId>spring-cloud-azure-dependencies</artifactId>
+        <version>${version.spring.cloud.azure}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>com.azure</groupId>
+      <artifactId>azure-messaging-eventhubs</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>com.azure.spring</groupId>
+      <artifactId>spring-cloud-azure-stream-binder-eventhubs</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.azure.spring</groupId>
+      <artifactId>spring-cloud-azure-docker-compose</artifactId>
+      <scope>test</scope>
+    </dependency>
+  </dependencies>
+
+</project>

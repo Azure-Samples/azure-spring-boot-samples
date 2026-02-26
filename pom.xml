@@ -80,6 +80,7 @@
     <module>storage/spring-cloud-azure-starter-storage-queue/storage-queue-client</module>
     <module>storage/spring-messaging-azure-storage-queue/storage-queue-spring-messaging</module>
     <module>spring-cloud-azure-docker-compose/event-hubs/client</module>
+    <module>spring-cloud-azure-docker-compose/event-hubs/spring-cloud-stream-binders</module>
     <module>spring-cloud-azure-docker-compose/service-bus/spring-cloud-stream-binders</module>
     <module>spring-cloud-azure-docker-compose/service-bus/spring-messaging</module>
     <module>spring-cloud-azure-docker-compose/storage-blob</module>

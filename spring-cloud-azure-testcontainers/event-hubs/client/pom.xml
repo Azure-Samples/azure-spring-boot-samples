@@ -13,7 +13,7 @@
   </parent>
 
   <groupId>com.azure.spring</groupId>
-  <artifactId>spring-cloud-azure-docker-compose-for-event-hubs-client-sample</artifactId>
+  <artifactId>spring-cloud-azure-testcontainers-for-event-hubs-client-sample</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
@@ -44,8 +44,30 @@
       <scope>test</scope>
     </dependency>
     <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-testcontainers</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>azure</artifactId>
+      <version>1.21.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.testcontainers</groupId>
+      <artifactId>junit-jupiter</artifactId>
+      <version>1.21.3</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>spring-cloud-azure-docker-compose</artifactId>
+      <artifactId>spring-cloud-azure-testcontainers</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.awaitility</groupId>
+      <artifactId>awaitility</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

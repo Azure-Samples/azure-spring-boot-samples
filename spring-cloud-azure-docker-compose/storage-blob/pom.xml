@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -13,11 +12,15 @@
   </parent>
 
   <groupId>com.azure.spring</groupId>
-  <artifactId>spring-cloud-azure-testcontainers-for-service-bus-spring-cloud-stream-sample</artifactId>
+  <artifactId>spring-cloud-azure-docker-compose-for-storage-blob-sample</artifactId>
   <version>1.0.0</version>
   <packaging>jar</packaging>
 
+  <name>TestContainers for Azure Storage Blob</name>
+
   <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
     <version.spring.cloud.azure>7.1.0-beta.1</version.spring.cloud.azure> <!--TODO: Change this version-->
   </properties>
 
@@ -36,11 +39,7 @@
   <dependencies>
     <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>spring-cloud-azure-stream-binder-servicebus</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.azure.spring</groupId>
-      <artifactId>spring-cloud-azure-starter</artifactId>
+      <artifactId>spring-cloud-azure-starter-storage-blob</artifactId>
     </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -48,28 +47,8 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-testcontainers</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.testcontainers</groupId>
-      <artifactId>testcontainers-azure</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.testcontainers</groupId>
-      <artifactId>testcontainers-junit-jupiter</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
       <groupId>com.azure.spring</groupId>
-      <artifactId>spring-cloud-azure-testcontainers</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>com.microsoft.sqlserver</groupId>
-      <artifactId>mssql-jdbc</artifactId>
+      <artifactId>spring-cloud-azure-docker-compose</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>

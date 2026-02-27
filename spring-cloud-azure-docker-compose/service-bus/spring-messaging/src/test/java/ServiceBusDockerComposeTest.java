@@ -72,7 +72,8 @@ class ServiceBusDockerComposeTest {
         // Wait for Service Bus emulator to be fully ready and queue entity to be available
         // The emulator depends on SQL Edge and needs time to initialize the messaging entities
         waitAtMost(Duration.ofSeconds(120)).pollInterval(Duration.ofSeconds(2)).untilAsserted(() -> {
-            this.serviceBusTemplate.sendAsync("queue.1", MessageBuilder.withPayload("Hello from ServiceBusTemplate!").build()).block();
+            this.serviceBusTemplate.sendAsync("queue.1",
+                    MessageBuilder.withPayload("Hello from ServiceBusTemplate!").build()).block(Duration.ofSeconds(10));
         });
 
         waitAtMost(Duration.ofSeconds(30)).pollDelay(Duration.ofSeconds(5)).untilAsserted(() -> {

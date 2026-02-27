@@ -87,7 +87,8 @@ class ServiceBusTestContainerTest {
     void serviceBusTemplateCanSendMessage() {
         // Wait for Service Bus emulator to be fully ready and queue entity to be available
         waitAtMost(Duration.ofSeconds(120)).pollInterval(Duration.ofSeconds(2)).untilAsserted(() -> {
-            this.serviceBusTemplate.sendAsync("queue.1", MessageBuilder.withPayload("Hello from ServiceBusTemplate!").build()).block();
+            this.serviceBusTemplate.sendAsync("queue.1",
+                    MessageBuilder.withPayload("Hello from ServiceBusTemplate!").build()).block(Duration.ofSeconds(10));
         });
 
         waitAtMost(Duration.ofSeconds(30)).untilAsserted(() -> {

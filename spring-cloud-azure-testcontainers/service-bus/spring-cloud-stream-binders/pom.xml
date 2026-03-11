@@ -37,21 +37,8 @@
 
   <dependencies>
     <dependency>
-      <groupId>com.azure.spring</groupId>
-      <artifactId>spring-cloud-azure-stream-binder-servicebus</artifactId>
-    </dependency>
-    <dependency>
-      <groupId>com.azure.spring</groupId>
-      <artifactId>spring-cloud-azure-starter</artifactId>
-    </dependency>
-    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-test</artifactId>
-      <scope>test</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-testcontainers</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
@@ -62,6 +49,11 @@
     <dependency>
       <groupId>com.azure.spring</groupId>
       <artifactId>spring-cloud-azure-testcontainers</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>com.azure.spring</groupId>
+      <artifactId>spring-cloud-azure-stream-binder-servicebus</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>

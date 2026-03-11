@@ -22,7 +22,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringJUnitConfig
 @Testcontainers
-class AzureBlobResourceTestContainerTest {
+class StorageBlobTestcontainersTest {
     @Container
     @ServiceConnection
     private static final GenericContainer<?> AZURITE_CONTAINER = new GenericContainer<>(

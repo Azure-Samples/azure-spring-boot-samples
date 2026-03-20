@@ -17,10 +17,10 @@ import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit.jupiter.SpringJUnitConfig;
 import org.testcontainers.azure.ServiceBusEmulatorContainer;
-import org.testcontainers.containers.MSSQLServerContainer;
 import org.testcontainers.containers.Network;
 import org.testcontainers.junit.jupiter.Container;
 import org.testcontainers.junit.jupiter.Testcontainers;
+import org.testcontainers.mssqlserver.MSSQLServerContainer;
 import org.testcontainers.utility.MountableFile;
 
 import java.time.Duration;
@@ -38,7 +38,7 @@ class ServiceBusTestContainerTest {
 
     private static final Network NETWORK = Network.newNetwork();
 
-    private static final MSSQLServerContainer<?> SQLSERVER = new MSSQLServerContainer<>(
+    private static final MSSQLServerContainer SQLSERVER = new MSSQLServerContainer(
             "mcr.microsoft.com/mssql/server:2022-CU14-ubuntu-22.04")
             .acceptLicense()
             .withNetwork(NETWORK)

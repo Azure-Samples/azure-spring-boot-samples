@@ -19,7 +19,7 @@
   <properties>
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
-    <version.spring.cloud.azure>7.2.0</version.spring.cloud.azure>
+    <version.spring.cloud.azure>7.3.0</version.spring.cloud.azure>
   </properties>
 
   <dependencyManagement>

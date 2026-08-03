@@ -27,3 +27,23 @@ updates:
       - dependency-name: "org.springframework.cloud:spring-cloud-dependencies"
         versions: ["[2025.1.0,)"]
 
+  # Workflow actions are identical on both branches and are not tied to a Spring line,
+  # so both entries are unconstrained. Grouped to keep it to one pull request per branch.
+  - package-ecosystem: "github-actions"
+    directory: "/" # Dependabot scans `.github/workflows` from the repository root
+    schedule:
+      interval: "weekly"
+    target-branch: "main"
+    groups:
+      github-actions:
+        patterns: ["*"]
+
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    target-branch: "spring-boot-3.x"
+    groups:
+      github-actions:
+        patterns: ["*"]
+

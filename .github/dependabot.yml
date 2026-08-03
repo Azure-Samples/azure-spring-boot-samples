@@ -5,8 +5,25 @@
 
 version: 2
 updates:
+  # Samples on `main` track the latest Spring Cloud Azure 7.x / Spring Boot 4.x.
   - package-ecosystem: "maven" # See documentation for possible values
     directory: "/" # Location of package manifests
     schedule:
       interval: "daily"
-    target-branch: "main"  
+    target-branch: "main"
+
+  # Samples on `spring-boot-3.x` are pinned to Spring Cloud Azure 6.x / Spring Boot 3.x,
+  # so every dependency that already has a 7.x / 4.x line must be capped here.
+  - package-ecosystem: "maven"
+    directory: "/"
+    schedule:
+      interval: "daily"
+    target-branch: "spring-boot-3.x"
+    ignore:
+      - dependency-name: "com.azure.spring:spring-cloud-azure-dependencies"
+        versions: ["[7.0.0,)"]
+      - dependency-name: "org.springframework.boot:*"
+        versions: ["[4.0.0,)"]
+      - dependency-name: "org.springframework.cloud:spring-cloud-dependencies"
+        versions: ["[2025.1.0,)"]
+

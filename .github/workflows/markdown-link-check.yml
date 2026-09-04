@@ -6,8 +6,8 @@ jobs:
   markdown-link-check:
     runs-on: ubuntu-22.04 #workaround https://github.com/UmbrellaDocs/action-linkspector/issues/32
     steps:
-      - uses: actions/checkout@master
-      - uses: umbrelladocs/action-linkspector@v1.5.5
+      - uses: actions/checkout@61b9e3751b92087fd0b06925ba6dd6314e06f089 # master
+      - uses: umbrelladocs/action-linkspector@2a12cfec96d2840c6e5deecb7bfcd35cfb009683 # v1.5.5
         with:
           reporter: github-pr-review
           config_file: '.github/workflows/.linkspector.yml'

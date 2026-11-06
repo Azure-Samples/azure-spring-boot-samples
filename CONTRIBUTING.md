@@ -5,10 +5,15 @@
 
 1. Make your changes in a new git fork.
 2. Checkout a new  feature/bugfix branch from `main`.
-   > The `main` branch is a develop branch, the samples may depend on beta version libraries, which are not released to maven central.
+   > The samples currently use released Spring Cloud Azure dependencies from Maven Central. CodeQL builds the samples directly without building the Azure SDK repository.
 
 3. Develop in feature/bugfix branch.
-4. Build the unreleased dependency libraries in your local machine.
+4. Build and verify the samples with the JDK version specified in the CI workflow.
+   ```bash
+      mvn -f pom.xml --batch-mode --update-snapshots verify
+   ```
+
+   Only if you change a sample to use an unreleased dependency, build the matching Azure SDK source branch locally first. Set `SDK_BRANCH` to the branch that provides that dependency:
    ```bash
       git init azure-sdk-for-java
       cd azure-sdk-for-java
@@ -20,7 +25,7 @@
       echo "sdk/boms" >> .git/info/sparse-checkout
       echo "sdk/tools/linting-extensions" >> .git/info/sparse-checkout
       echo ".vscode/" >> .git/info/sparse-checkout
-      git pull --depth=1 origin feature/azure-spring-cloud-4.0
+      git pull --depth=1 origin "${SDK_BRANCH:?Set SDK_BRANCH to the matching Azure SDK branch}"
       mvn clean install -Dmaven.javadoc.skip=true -DskipTests \
           -Dcheckstyle.skip=true \
           -ntp \

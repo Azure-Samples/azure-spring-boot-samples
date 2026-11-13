@@ -9,20 +9,6 @@ This sample illustrates how to protect a Java web API by restricting access to i
 4. Extract information from JWT in `AadOAuth2AuthenticatedPrincipal` object after a successful verification.
 5. Save the `AADOAuth2AuthenticatedPrincipal` into SecurityContext.
 
-### Default authentication and method permissions
-
-This sample uses the default Microsoft Entra ID resource server security filter chain. In Spring Cloud Azure versions that include [Azure/azure-sdk-for-java#51207], the default chain requires a valid bearer token for every request. Method-level permissions are checked in addition to that authentication requirement.
-
-| Endpoint | Requirements with the SDK fix |
-| --- | --- |
-| `/webapiB` | A valid bearer token and `SCOPE_WebApiB.ExampleScope`. |
-| `/user` | A valid bearer token and `SCOPE_User.Read`. |
-| `/webapiB/clientCredential` | A valid bearer token, without an additional method-level scope or app-role check. |
-
-The absence of `@PreAuthorize` on `/webapiB/clientCredential` does not make it an anonymous endpoint when using a fixed SDK.
-
-**SDK version requirement:** The [parent POM](../pom.xml) currently pins Spring Cloud Azure `7.4.0`, which does not include this fix. Upgrade `version.spring.cloud.azure` to a released version containing the fix before running the default-authentication checks below. With `7.4.0`, an anonymous request can reach `/webapiB/clientCredential`; the method-level checks on the other two endpoints do not protect this unannotated method.
-
 ### Protocol diagram
 ![Aad resource server protocol diagram](docs/image-add-resource-server.png "Aad resource server protocol diagram")
 
@@ -83,37 +69,6 @@ mvn spring-boot:run
 We could use Postman to simulate a Web APP to send a request to a Web API.
 
 ### Check the authentication and authorization
-
-#### Verify default authentication (fixed SDK required)
-
-After upgrading the SDK as described above, send a request without an access token:
-
-```shell
-curl -i http://localhost:8082/webapiB/clientCredential
-```
-
-The request must be rejected before reaching the controller:
-
-```text
-HTTP/1.1 401
-```
-
-Then call the same endpoint with a valid access token for this API, obtained using the client credentials grant:
-
-```shell
-curl http://localhost:8082/webapiB/clientCredential -H "Authorization: Bearer <access-token>"
-```
-
-Expected response:
-
-```text
-Response from webApiB: clientCredential
-```
-
-This comparison verifies the default authentication requirement independently of method-level permissions. It does not verify an app-role policy, because this endpoint has no such policy.
-
-#### Verify method permissions
-
 - Web API B response successfully.
 
 1. Get access-token:
@@ -155,4 +110,3 @@ error:401
 [Resource Server Obo]: ../aad-resource-server-obo
 [resource server password credentials]: https://docs.microsoft.com/azure/active-directory/develop/v2-oauth-ropc
 [Example: Application app role]: https://docs.microsoft.com/azure/active-directory/develop/howto-add-app-roles-in-azure-ad-apps#example-application-app-role
-[Azure/azure-sdk-for-java#51207]: https://github.com/Azure/azure-sdk-for-java/pull/51207

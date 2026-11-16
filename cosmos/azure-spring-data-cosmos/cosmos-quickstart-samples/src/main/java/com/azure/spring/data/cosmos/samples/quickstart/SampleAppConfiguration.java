@@ -3,9 +3,7 @@
 package com.azure.spring.data.cosmos.samples.quickstart;
 
 import com.azure.cosmos.CosmosClientBuilder;
-import com.azure.cosmos.CosmosEndToEndOperationLatencyPolicyConfigBuilder;
 import com.azure.cosmos.DirectConnectionConfig;
-import com.azure.cosmos.ThresholdBasedAvailabilityStrategy;
 import com.azure.spring.data.cosmos.config.AbstractCosmosConfiguration;
 import com.azure.spring.data.cosmos.config.CosmosConfig;
 import com.azure.spring.data.cosmos.core.ResponseDiagnostics;
@@ -19,7 +17,6 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.Nullable;
-import org.springframework.util.Assert;
 
 @Configuration
 @EnableConfigurationProperties(CosmosProperties.class)
@@ -34,22 +31,10 @@ public class SampleAppConfiguration extends AbstractCosmosConfiguration {
     @Bean
     public CosmosClientBuilder cosmosClientBuilder() {
         DirectConnectionConfig directConnectionConfig = DirectConnectionConfig.getDefaultConfig();
-        CosmosClientBuilder builder = new CosmosClientBuilder()
+        return new CosmosClientBuilder()
             .endpoint(properties.getUri())
             .key(properties.getKey())
-            .directMode(directConnectionConfig)
-            .preferredRegions(properties.getPreferredRegions());
-
-        if (properties.getEndToEndTimeout() != null) {
-            Assert.isTrue(properties.getEndToEndTimeout().compareTo(properties.getAvailabilityThreshold()) > 0,
-                "endToEndTimeout must exceed availabilityThreshold");
-            builder.endToEndOperationLatencyPolicyConfig(
-                new CosmosEndToEndOperationLatencyPolicyConfigBuilder(properties.getEndToEndTimeout())
-                    .availabilityStrategy(new ThresholdBasedAvailabilityStrategy(
-                        properties.getAvailabilityThreshold(), properties.getAvailabilityThresholdStep()))
-                    .build());
-        }
-        return builder;
+            .directMode(directConnectionConfig);
     }
 
     @Bean

@@ -4,10 +4,6 @@ package com.azure.spring.data.cosmos.samples.quickstart;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-
 @ConfigurationProperties(prefix = "spring.data.cosmos")
 public class CosmosProperties {
 
@@ -20,14 +16,6 @@ public class CosmosProperties {
     private String databaseName;
 
     private boolean queryMetricsEnabled;
-
-    private List<String> preferredRegions = new ArrayList<>();
-
-    private Duration endToEndTimeout;
-
-    private Duration availabilityThreshold;
-
-    private Duration availabilityThresholdStep;
 
     public String getUri() {
         return uri;
@@ -67,37 +55,5 @@ public class CosmosProperties {
 
     public void setQueryMetricsEnabled(boolean enableQueryMetrics) {
         this.queryMetricsEnabled = enableQueryMetrics;
-    }
-
-    public List<String> getPreferredRegions() {
-        return preferredRegions;
-    }
-
-    public void setPreferredRegions(List<String> preferredRegions) {
-        this.preferredRegions = preferredRegions;
-    }
-
-    public Duration getEndToEndTimeout() {
-        return endToEndTimeout;
-    }
-
-    public void setEndToEndTimeout(Duration endToEndTimeout) {
-        this.endToEndTimeout = endToEndTimeout;
-    }
-
-    public Duration getAvailabilityThreshold() {
-        return availabilityThreshold;
-    }
-
-    public void setAvailabilityThreshold(Duration availabilityThreshold) {
-        this.availabilityThreshold = availabilityThreshold;
-    }
-
-    public Duration getAvailabilityThresholdStep() {
-        return availabilityThresholdStep;
-    }
-
-    public void setAvailabilityThresholdStep(Duration availabilityThresholdStep) {
-        this.availabilityThresholdStep = availabilityThresholdStep;
     }
 }

@@ -42,7 +42,6 @@
     <module>cosmos/azure-spring-data-cosmos/cosmos-multi-tenant-samples/multi-tenant-by-container</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-multi-tenant-samples/multi-tenant-by-database</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-mvc-sample</module>
-    <module>cosmos/azure-spring-data-cosmos/cosmos-query-availability-sample</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-quickstart-samples</module>
     <module>cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample</module>
     <module>cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample</module>

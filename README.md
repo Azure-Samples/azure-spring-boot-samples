@@ -61,10 +61,6 @@
 | spring-cloud-azure-data-cosmos-sample | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample)   | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-3.x/cosmos/spring-cloud-azure-starter-data-cosmos/spring-cloud-azure-data-cosmos-sample)   | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/cosmos/spring-cloud-azure-starter-data-cosmos)                                         |
 | spring-cloud-azure-cosmos-sample      | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample)             | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-3.x/cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample)             | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/cosmos/spring-cloud-azure-starter-cosmos/spring-cloud-azure-cosmos-sample)             |
 
-The [Cosmos query availability sample](cosmos/azure-spring-data-cosmos/cosmos-query-availability-sample)
-demonstrates Spring Boot 4 client-wide timeout and availability configuration with synchronous and reactive
-cross-partition queries.
-
 ### 2.5 Azure Event Grid
 
 | Sample Project                      | Spring Boot 4.x | Spring Boot 3.x                                                          | Spring Boot 2.x |

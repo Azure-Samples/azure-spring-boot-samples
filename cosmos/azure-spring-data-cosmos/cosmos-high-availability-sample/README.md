@@ -32,6 +32,10 @@ There is no fault-injection dependency or test framework in the application. The
 - JDK 17 or later and Maven.
 - An Azure Cosmos DB for NoSQL account using provisioned throughput, key-based authentication,
   and a global account endpoint.
+- An account default consistency of **Session or stronger** (Session, Bounded Staleness, or Strong).
+  The sample immediately queries its writes using the same client. Eventual and Consistent Prefix accounts
+  can temporarily return incomplete results even when healthy; setting Session only on the client does
+  not upgrade a weaker account. Verify this prerequisite before running the sample.
 - At least two readable account regions to benefit from regional hedging. A single-region account or
   trusted emulator can run the queries but cannot demonstrate regional redundancy.
 - Network access for Direct mode and HTTPS gateway metadata requests, including query-plan retrieval.
@@ -72,6 +76,9 @@ The sample creates the configured database and `highAvailabilityUsers` container
 400 RU/s for the container. It deletes only its own users; the database and container remain.
 Provisioned resources can incur charges after the application exits. Do not delete shared resources
 when cleaning up.
+Cleanup attempts both deletes even if a save fails, because a timed-out write may still have committed.
+Missing users are tolerated. Other cleanup errors are attached as suppressed exceptions to the original
+operation failure; if the operation succeeded, the first cleanup error is thrown with later errors suppressed.
 
 ## Timeout and availability settings
 

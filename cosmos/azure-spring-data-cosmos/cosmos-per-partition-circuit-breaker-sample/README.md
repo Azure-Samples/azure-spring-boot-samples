@@ -31,6 +31,10 @@ the unhealthy partition/region. Initial requests can still incur retries and tim
 
 - JDK 17 or later and Maven.
 - A provisioned-throughput Azure Cosmos DB for NoSQL account with key-based authentication and a global endpoint.
+- An account default consistency of **Session or stronger** (Session, Bounded Staleness, or Strong).
+  The sample immediately queries its writes using the same client. Eventual and Consistent Prefix accounts
+  can temporarily return incomplete results even when healthy; setting Session only on the client does
+  not upgrade a weaker account. Verify this prerequisite before running the sample.
 - For read and write regional recovery, use a multi-region write account with at least two writable regions.
   The client opts into multiple write regions; it does not change the account configuration.
 - Read-side recovery needs multiple eligible read regions in the SDK used by this sample. With no eligible
@@ -70,6 +74,9 @@ Reactive cross-partition query completed with 2 users.
 The sample creates the database and `circuitBreakerUsers` container if needed, provisioning 400 RU/s for
 the container. It attempts to delete only its own uniquely named users in `finally` and closes the client.
 The database/container remain and can incur charges; do not delete shared resources when cleaning up.
+Cleanup attempts both deletes even if a save fails, because a timed-out write may still have committed.
+Missing users are tolerated. Other cleanup errors are attached as suppressed exceptions to the original
+operation failure; if the operation succeeded, the first cleanup error is thrown with later errors suppressed.
 
 ## Circuit-breaker settings
 

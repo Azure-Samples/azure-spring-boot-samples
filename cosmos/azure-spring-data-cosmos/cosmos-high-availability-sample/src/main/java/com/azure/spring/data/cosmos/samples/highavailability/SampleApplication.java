@@ -3,6 +3,7 @@
 package com.azure.spring.data.cosmos.samples.highavailability;
 
 import com.azure.cosmos.models.PartitionKey;
+import com.azure.spring.data.cosmos.exception.CosmosNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.CommandLineRunner;
@@ -39,6 +40,7 @@ public class SampleApplication implements CommandLineRunner {
         User first = new User(firstName + "-one", firstName, "partition-one");
         User second = new User(firstName + "-two", firstName, "partition-two");
         Set<String> expectedIds = Set.of(first.getId(), second.getId());
+        Throwable primaryFailure = null;
 
         try {
             userRepository.save(first);
@@ -51,11 +53,35 @@ public class SampleApplication implements CommandLineRunner {
             List<User> reactiveUsers = reactiveUserRepository.findByFirstName(firstName).collectList().block();
             verifyResults(reactiveUsers, expectedIds);
             LOGGER.info("Reactive cross-partition query completed with {} users.", reactiveUsers.size());
+        } catch (RuntimeException | Error failure) {
+            primaryFailure = failure;
+            throw failure;
         } finally {
+            cleanUpUsers(primaryFailure, first, second);
+        }
+    }
+
+    private void cleanUpUsers(Throwable primaryFailure, User... users) {
+        Throwable failure = primaryFailure;
+        for (User user : users) {
             try {
-                userRepository.deleteById(first.getId(), new PartitionKey(first.getLastName()));
-            } finally {
-                userRepository.deleteById(second.getId(), new PartitionKey(second.getLastName()));
+                userRepository.deleteById(user.getId(), new PartitionKey(user.getLastName()));
+            } catch (CosmosNotFoundException alreadyAbsent) {
+                LOGGER.debug("Sample user {} is already absent during cleanup.", user.getId());
+            } catch (RuntimeException | Error cleanupFailure) {
+                if (failure == null) {
+                    failure = cleanupFailure;
+                } else if (failure != cleanupFailure) {
+                    failure.addSuppressed(cleanupFailure);
+                }
+            }
+        }
+        if (primaryFailure == null) {
+            if (failure instanceof RuntimeException runtimeFailure) {
+                throw runtimeFailure;
+            }
+            if (failure instanceof Error error) {
+                throw error;
             }
         }
     }

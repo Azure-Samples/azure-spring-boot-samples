@@ -9,6 +9,6 @@ spring:
       key: ${ACCOUNT_KEY}
       databaseName: ${COSMOS_DATABASE:cosmos-high-availability-sample}
       preferredRegions: ${PREFERRED_LOCATIONS:}
-      endToEndTimeout: ${COSMOS_END_TO_END_TIMEOUT:PT5S}
-      availabilityThreshold: ${COSMOS_AVAILABILITY_THRESHOLD:PT0.5S}
+      endToEndTimeout: ${COSMOS_END_TO_END_TIMEOUT:PT10S}
+      availabilityThreshold: ${COSMOS_AVAILABILITY_THRESHOLD:PT5S}
       availabilityThresholdStep: ${COSMOS_AVAILABILITY_THRESHOLD_STEP:PT0.1S}

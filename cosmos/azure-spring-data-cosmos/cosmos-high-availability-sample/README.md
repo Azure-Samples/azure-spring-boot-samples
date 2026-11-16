@@ -47,8 +47,8 @@ There is no fault-injection dependency or test framework in the application. The
    ACCOUNT_KEY=<account-key>
    COSMOS_DATABASE=cosmos-high-availability-sample
    PREFERRED_LOCATIONS=East US,West US
-   COSMOS_END_TO_END_TIMEOUT=PT5S
-   COSMOS_AVAILABILITY_THRESHOLD=PT0.5S
+   COSMOS_END_TO_END_TIMEOUT=PT10S
+   COSMOS_AVAILABILITY_THRESHOLD=PT5S
    COSMOS_AVAILABILITY_THRESHOLD_STEP=PT0.1S
    ```
 
@@ -77,7 +77,7 @@ when cleaning up.
 
 The values above are the sample defaults except that preferred regions are optional. Durations use
 ISO-8601 syntax, and the timeout must exceed the initial availability threshold.
-The same configured client serves both repositories. The initial hedging threshold is 500 ms;
+The same configured client serves both repositories. The initial hedging threshold is 5 seconds;
 further regions can be considered in 100 ms steps.
 
 Explicit preferred regions make routing order predictable, but are not generally required when

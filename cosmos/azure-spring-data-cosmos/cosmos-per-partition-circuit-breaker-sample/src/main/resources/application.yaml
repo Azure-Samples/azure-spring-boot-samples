@@ -1,0 +1,13 @@
+spring:
+  main:
+    web-application-type: none
+  config:
+    import: optional:file:${user.home}/cosmos-v4.properties
+  data:
+    cosmos:
+      uri: ${ACCOUNT_HOST}
+      key: ${ACCOUNT_KEY}
+      databaseName: ${COSMOS_DATABASE:cosmos-per-partition-circuit-breaker-sample}
+      preferredRegions: ${PREFERRED_LOCATIONS:}
+      readFailureThreshold: ${COSMOS_PPCB_READ_FAILURE_THRESHOLD:10}
+      writeFailureThreshold: ${COSMOS_PPCB_WRITE_FAILURE_THRESHOLD:5}

@@ -92,5 +92,6 @@ are not required for this example.
 
 ## Resources
 
+- [Per-partition circuit-breaker sample](../cosmos-per-partition-circuit-breaker-sample), which avoids unhealthy physical partitions rather than explicitly configuring threshold-based hedging.
 - [Threshold-based availability strategy](https://learn.microsoft.com/azure/cosmos-db/performance-tips-java-sdk-v4#threshold-based-availability-strategy)
 - [Azure Spring Data Cosmos](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/azure-spring-data-cosmos)

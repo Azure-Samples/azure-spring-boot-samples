@@ -38,7 +38,6 @@
     <module>cache/spring-cloud-azure-redis-sample-passwordless</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-aad-sample</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-high-availability-sample</module>
-    <module>cosmos/azure-spring-data-cosmos/cosmos-per-partition-circuit-breaker-sample</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account</module>
     <module>cosmos/azure-spring-data-cosmos/cosmos-multi-tenant-samples/multi-tenant-by-container</module>

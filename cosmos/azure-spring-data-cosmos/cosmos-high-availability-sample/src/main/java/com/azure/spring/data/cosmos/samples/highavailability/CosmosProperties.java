@@ -17,6 +17,8 @@ public class CosmosProperties {
     private Duration endToEndTimeout;
     private Duration availabilityThreshold;
     private Duration availabilityThresholdStep;
+    private int readFailureThreshold;
+    private int writeFailureThreshold;
 
     public String getUri() {
         return uri;
@@ -72,5 +74,21 @@ public class CosmosProperties {
 
     public void setAvailabilityThresholdStep(Duration availabilityThresholdStep) {
         this.availabilityThresholdStep = availabilityThresholdStep;
+    }
+
+    public int getReadFailureThreshold() {
+        return readFailureThreshold;
+    }
+
+    public void setReadFailureThreshold(int readFailureThreshold) {
+        this.readFailureThreshold = readFailureThreshold;
+    }
+
+    public int getWriteFailureThreshold() {
+        return writeFailureThreshold;
+    }
+
+    public void setWriteFailureThreshold(int writeFailureThreshold) {
+        this.writeFailureThreshold = writeFailureThreshold;
     }
 }

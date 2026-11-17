@@ -103,9 +103,11 @@ class GatewayRecoveryIT {
     })
     @Timeout(120)
     void recoversFromFirstRegionGatewayDelay(FaultInjectionServerErrorType delayType, RepositoryApi api) {
-        // This is a test allowance, not a full-query SDK deadline. Delay the first Gateway beyond it.
+        // This is a test allowance, not a full-query SDK deadline.
         Duration recoveryBudget = properties.getEndToEndTimeout().plusSeconds(5);
-        delayedRegion = rule(properties.getPreferredRegions().get(0), delayType, recoveryBudget.plusSeconds(10), true);
+        // Keep the requested outage delay far beyond recovery; SDK transport timeouts can end attempts earlier.
+        Duration outageDelay = recoveryBudget.plus(Duration.ofMinutes(5));
+        delayedRegion = rule(properties.getPreferredRegions().get(0), delayType, outageDelay, true);
         // A zero-delay probe records Gateway traffic to the healthy region without suppressing the service call.
         healthyRegionProbe = rule(properties.getPreferredRegions().get(1),
             FaultInjectionServerErrorType.RESPONSE_DELAY, Duration.ZERO, false);

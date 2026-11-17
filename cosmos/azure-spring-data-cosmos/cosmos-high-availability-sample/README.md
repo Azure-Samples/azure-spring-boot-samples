@@ -193,20 +193,25 @@ From this sample's directory, inspect the resolved versions before making change
 mvn dependency:tree "-Dincludes=com.azure:azure-spring-data-cosmos,com.azure:azure-cosmos"
 ```
 
-For a targeted reproduction, an explicit dependency can override the BOM-managed transitive SDK version.
-For example, to reproduce an application that uses Java SDK 4.80.0, add this entry to the existing
-`<dependencies>` section of the sample POM:
+For a targeted SDK upgrade or reproduction, an explicit dependency can override the BOM-managed
+transitive SDK version. To test Java SDK 4.83.0, add this entry to the existing `<dependencies>` section
+of the sample POM:
 
 ```xml
 <dependency>
     <groupId>com.azure</groupId>
     <artifactId>azure-cosmos</artifactId>
-    <version>4.80.0</version>
+    <version>4.83.0</version>
 </dependency>
 ```
 
-**This is an override example, not a recommendation to downgrade or a compatibility guarantee.**
-The sample's default BOM remains unchanged, and the 4.80.0 override has not been validated with it.
+**This is a tested override example, not a compatibility guarantee for arbitrary version combinations.**
+The sample's default BOM remains unchanged. The 4.83.0 override was tested with Spring Boot 4.1.1,
+Spring Cloud Azure BOM 7.4.0, and Spring Data Cosmos 7.4.0, on JDK 21 with a Java 17 compilation target.
+All eight regression tests passed, and the executable JAR was checked to contain only SDK 4.83.0.
+Synchronous and reactive queries each returned the two expected users against a live two-region account
+using key authentication, with hedging and PPCB configured together. This does not claim injected-outage
+coverage or live Entra ID validation.
 Public guidance recommends tested BOM-managed dependencies and cautions against SDK downgrades.
 Sharing the same SDK major version alone does not establish that the full dependency graph is compatible.
 

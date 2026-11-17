@@ -130,14 +130,6 @@ Override its defaults with environment variables or the external properties file
 Durations use ISO-8601 syntax. The timeout must exceed the initial threshold; PPCB counts must be at
 least 10 for reads and 5 for writes.
 
-For the queries in this sample, the **10-second timeout applies to retrieving a query page**, not to
-the entire `findByFirstName` repository call. Query-plan acquisition is outside this page timeout,
-and consuming multiple pages can make the total call take longer than 10 seconds. Apply an
-application-level deadline separately if the complete query must finish within a fixed time.
-
-The **5-second hedging threshold is not a timeout**: it determines when another eligible region can
-be tried in parallel, rather than cancelling the query after five seconds.
-
 The timeout and hedging portion of the builder, using these defaults:
 
 ```java

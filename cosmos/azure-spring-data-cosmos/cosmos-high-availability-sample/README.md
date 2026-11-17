@@ -204,8 +204,9 @@ Missing live prerequisites cause failures, not skips.
 
 Assertions require Gateway fault hits and traffic to the healthy second region, the expected user IDs
 and completion within the SDK timeout plus a five-second test allowance, and diagnostics identifying
-the selected SDK. The test logs the operation types observed in each region to show which Gateway calls
-participated in recovery. Faults affect only the test client and are disabled before cleanup.
+the selected SDK. The query's `CosmosDiagnosticsContext` must also record both preferred regions as
+contacted. The test logs these regions and the observed Gateway operation types to show the recovery
+path. Faults affect only the test client and are disabled before cleanup.
 The test library is test-scoped and excluded from the runnable application.
 
 These cases demonstrate the specified recovery scenarios, not every outage mode or PPCB opening.

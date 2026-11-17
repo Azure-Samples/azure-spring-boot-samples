@@ -3,6 +3,7 @@
 package com.azure.spring.data.cosmos.samples.highavailability;
 
 import com.azure.cosmos.CosmosDiagnostics;
+import com.azure.cosmos.CosmosDiagnosticsContext;
 import com.azure.cosmos.models.PartitionKey;
 import com.azure.cosmos.test.faultinjection.CosmosFaultInjectionHelper;
 import com.azure.cosmos.test.faultinjection.FaultInjectionConditionBuilder;
@@ -34,6 +35,7 @@ import org.springframework.test.annotation.DirtiesContext;
 import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 import java.util.concurrent.atomic.AtomicReference;
 
@@ -116,11 +118,19 @@ class GatewayRecoveryIT {
         CosmosDiagnostics queryDiagnostics = diagnostics.get();
         assertThat(queryDiagnostics).isNotNull();
         assertThat(queryDiagnostics.getUserAgent()).startsWith("azsdk-java-cosmos/" + expectedSdkVersion + " ");
+        CosmosDiagnosticsContext queryContext = queryDiagnostics.getDiagnosticsContext();
+        assertThat(queryContext).isNotNull();
+        assertThat(queryContext.getContactedRegionNames().stream()
+            .map(region -> region.toLowerCase(Locale.ROOT)).toList())
+            .as("The recovered query contacts both the delayed and healthy preferred regions")
+            .contains(properties.getPreferredRegions().get(0).toLowerCase(Locale.ROOT),
+                properties.getPreferredRegions().get(1).toLowerCase(Locale.ROOT));
         LOGGER.info("Gateway recovery verified: SDK {}, {} / {}, first region {}, healthy region {}",
             expectedSdkVersion, delayType, api, properties.getPreferredRegions().get(0),
             properties.getPreferredRegions().get(1));
         LOGGER.info("Gateway operations observed: delayed {}, healthy {}",
             delayedRegion.getHitCountDetails(), healthyRegionProbe.getHitCountDetails());
+        LOGGER.info("Query context contacted regions: {}", queryContext.getContactedRegionNames());
     }
 
     @AfterEach

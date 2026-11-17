@@ -177,6 +177,50 @@ timeout/cancellation. Observe actual results and terminal signals rather than re
 diagnostics success status. Cross-partition refers to logical partitions; multiple physical partitions
 are not required for this example.
 
+## SDK versions and explicit overrides
+
+`azure-spring-data-cosmos` and the underlying `azure-cosmos` Java SDK have separate versions.
+This sample uses the Spring Cloud Azure BOM to select them together. Prefer upgrading the supported
+Spring Cloud Azure/Spring Boot combination rather than independently changing the underlying SDK:
+
+- [Spring Cloud Azure dependency management](https://learn.microsoft.com/azure/developer/java/spring-framework/developer-guide-overview#setting-up-dependencies)
+- [Spring version mapping](https://github.com/Azure/azure-sdk-for-java/wiki/Spring-Versions-Mapping)
+- [Azure Java dependency-conflict guidance](https://learn.microsoft.com/azure/developer/java/sdk/troubleshooting-dependency-version-conflict#mitigate-version-mismatch-issues)
+
+From this sample's directory, inspect the resolved versions before making changes:
+
+```powershell
+mvn dependency:tree "-Dincludes=com.azure:azure-spring-data-cosmos,com.azure:azure-cosmos"
+```
+
+For a targeted reproduction, an explicit dependency can override the BOM-managed transitive SDK version.
+For example, to reproduce an application that uses Java SDK 4.80.0, add this entry to the existing
+`<dependencies>` section of the sample POM:
+
+```xml
+<dependency>
+    <groupId>com.azure</groupId>
+    <artifactId>azure-cosmos</artifactId>
+    <version>4.80.0</version>
+</dependency>
+```
+
+**This is an override example, not a recommendation to downgrade or a compatibility guarantee.**
+The sample's default BOM remains unchanged, and the 4.80.0 override has not been validated with it.
+Public guidance recommends tested BOM-managed dependencies and cautions against SDK downgrades.
+Sharing the same SDK major version alone does not establish that the full dependency graph is compatible.
+
+If an override is required for an application:
+
+1. Record its Spring Boot, Spring Cloud Azure/BOM, Spring Data Cosmos, and Java SDK versions.
+2. Re-run `mvn dependency:tree` and check for conflicting Azure Core, Reactor, Netty, and Jackson versions.
+3. Run `mvn clean verify` and exercise the sample against the intended account. Also run the application's
+   integration/resilience tests, including the query-plan behavior relevant to the incident.
+4. Confirm support for the exact combination before recommending it for production; a successful build
+   or healthy query alone does not prove outage behavior or establish support.
+
+Remove the explicit dependency after a reproduction to return to the BOM-managed version.
+
 ## Resources
 
 - [Microsoft Entra ID data-plane RBAC](https://learn.microsoft.com/azure/cosmos-db/how-to-connect-role-based-access-control)

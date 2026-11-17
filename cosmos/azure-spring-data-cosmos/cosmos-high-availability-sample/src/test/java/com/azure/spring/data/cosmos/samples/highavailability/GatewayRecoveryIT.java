@@ -42,9 +42,9 @@ import java.util.concurrent.atomic.AtomicReference;
 import static org.assertj.core.api.Assertions.assertThat;
 
 /**
- * Verifies real Spring Data queries recover when the first region's Gateway becomes unresponsive
- * after a healthy warm-up. Cases run serially with fresh clients to isolate routing and fault state.
- * Recovery may use hedging or ordinary retries; this does not prove that PPCB opened or test Direct TCP failure.
+ * Verifies synchronous and reactive queries recover from an outage of the first preferred region's Gateway path.
+ * Cases run serially with fresh clients, using fault hits, complete results and contacted-region diagnostics
+ * as recovery evidence.
  */
 @SpringBootTest(classes = {SampleAppConfiguration.class, GatewayRecoveryIT.LiveConfiguration.class},
     webEnvironment = SpringBootTest.WebEnvironment.NONE)
@@ -90,7 +90,7 @@ class GatewayRecoveryIT {
 
         // Establish a healthy baseline before simulating a Gateway outage during steady-state queries.
         assertResults(repository.findByFirstName(firstName));
-        // Warm-up diagnostics must not satisfy the assertions on the subsequent faulted query.
+        // Capture diagnostics from the recovery query only.
         diagnostics.set(null);
     }
 
@@ -103,16 +103,16 @@ class GatewayRecoveryIT {
     })
     @Timeout(120)
     void recoversFromFirstRegionGatewayDelay(FaultInjectionServerErrorType delayType, RepositoryApi api) {
-        // This is a test allowance, not a full-query SDK deadline.
+        // Allow the recovery query the configured timeout plus five seconds to complete.
         Duration recoveryBudget = properties.getEndToEndTimeout().plusSeconds(5);
-        // Keep the requested outage delay far beyond recovery; SDK transport timeouts can end attempts earlier.
+        // Request a first-region delay five minutes longer than the recovery allowance.
         Duration outageDelay = recoveryBudget.plus(Duration.ofMinutes(5));
         delayedRegion = rule(properties.getPreferredRegions().get(0), delayType, outageDelay, true);
-        // A zero-delay probe records Gateway traffic to the healthy region without suppressing the service call.
+        // Record Gateway traffic to the second region while allowing its normal service response.
         healthyRegionProbe = rule(properties.getPreferredRegions().get(1),
             FaultInjectionServerErrorType.RESPONSE_DELAY, Duration.ZERO, false);
 
-        // These rules affect only this client; no Azure account or service configuration is changed.
+        // Apply the regional fault and observation rules to this test's Cosmos client.
         CosmosFaultInjectionHelper.configureFaultInjectionRules(
             factory.getCosmosAsyncClient().getDatabase(factory.getDatabaseName()).getContainer("highAvailabilityUsers"),
             List.of(delayedRegion, healthyRegionProbe)).block();
@@ -121,18 +121,18 @@ class GatewayRecoveryIT {
         List<User> results = api == RepositoryApi.SYNCHRONOUS
             ? repository.findByFirstName(firstName)
             : reactiveRepository.findByFirstName(firstName).collectList().block(recoveryBudget);
-        // Require actual data and reactive completion: a success-shaped diagnostic alone is insufficient.
+        // Verify the completed query returns the expected users from both logical partitions.
         assertResults(results);
         assertThat(Duration.ofNanos(System.nanoTime() - start)).isLessThan(recoveryBudget);
 
-        // Prove the fault fired and the healthy region received Gateway traffic, not a cache-only success.
+        // Confirm the first region was delayed and the healthy region received Gateway requests.
         assertGatewayHit(delayedRegion);
         assertGatewayHit(healthyRegionProbe);
         CosmosDiagnostics queryDiagnostics = diagnostics.get();
         assertThat(queryDiagnostics).isNotNull();
-        // Check the SDK loaded at runtime, rather than assuming the requested build version was used.
+        // Validate the runtime SDK version reported by query diagnostics.
         assertThat(queryDiagnostics.getUserAgent()).startsWith("azsdk-java-cosmos/" + expectedSdkVersion + " ");
-        // Cross-region evidence comes from the query context itself, independently of fault-injection counters.
+        // Cross-region evidence: the query context must record both preferred regions as contacted.
         CosmosDiagnosticsContext queryContext = queryDiagnostics.getDiagnosticsContext();
         assertThat(queryContext).isNotNull();
         assertThat(queryContext.getContactedRegionNames().stream()
@@ -150,7 +150,7 @@ class GatewayRecoveryIT {
 
     @AfterEach
     void disableFaultsAndDeleteOwnUsers() {
-        // Remove the simulated outage before cleanup so it cannot interfere with the deletion requests.
+        // Disable the faults before deleting this run's users.
         if (delayedRegion != null) {
             delayedRegion.disable();
         }
@@ -180,7 +180,7 @@ class GatewayRecoveryIT {
                                    Duration delay, boolean suppressServiceRequests) {
         return new FaultInjectionRuleBuilder("gateway-" + UUID.randomUUID())
             .condition(new FaultInjectionConditionBuilder()
-                // No operation filter: all Gateway calls to this region can be delayed, including QueryPlan.
+                // Target Gateway requests to this region, including QueryPlan and other metadata operations.
                 .connectionType(FaultInjectionConnectionType.GATEWAY)
                 .region(region)
                 .build())
@@ -219,7 +219,7 @@ class GatewayRecoveryIT {
         @Bean
         @Primary
         CosmosConfig liveCosmosConfig() {
-            // Observe the real repositories' diagnostics without changing the production client configuration.
+            // Capture query diagnostics for the SDK-version and contacted-region assertions.
             return CosmosConfig.builder()
                 .responseDiagnosticsProcessor(response -> capturedDiagnostics().set(response.getCosmosDiagnostics()))
                 .build();

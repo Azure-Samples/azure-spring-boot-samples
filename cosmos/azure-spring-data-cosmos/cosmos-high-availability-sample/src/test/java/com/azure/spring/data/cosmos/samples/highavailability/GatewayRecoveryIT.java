@@ -41,6 +41,11 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+/**
+ * Verifies real Spring Data queries recover when the first region's Gateway becomes unresponsive
+ * after a healthy warm-up. Cases run serially with fresh clients to isolate routing and fault state.
+ * Recovery may use hedging or ordinary retries; this does not prove that PPCB opened or test Direct TCP failure.
+ */
 @SpringBootTest(classes = {SampleAppConfiguration.class, GatewayRecoveryIT.LiveConfiguration.class},
     webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
@@ -78,12 +83,14 @@ class GatewayRecoveryIT {
         assertThat(regions.get(1)).isNotEqualToIgnoringCase(regions.get(0));
 
         firstName = "gateway-it-" + UUID.randomUUID();
+        // lastName is the partition key; querying the shared firstName spans two logical partitions.
         users.add(new User(firstName + "-one", firstName, "partition-one"));
         users.add(new User(firstName + "-two", firstName, "partition-two"));
         users.forEach(repository::save);
 
         // Establish a healthy baseline before simulating a Gateway outage during steady-state queries.
         assertResults(repository.findByFirstName(firstName));
+        // Warm-up diagnostics must not satisfy the assertions on the subsequent faulted query.
         diagnostics.set(null);
     }
 
@@ -96,12 +103,14 @@ class GatewayRecoveryIT {
     })
     @Timeout(120)
     void recoversFromFirstRegionGatewayDelay(FaultInjectionServerErrorType delayType, RepositoryApi api) {
+        // This is a test allowance, not a full-query SDK deadline. Delay the first Gateway beyond it.
         Duration recoveryBudget = properties.getEndToEndTimeout().plusSeconds(5);
         delayedRegion = rule(properties.getPreferredRegions().get(0), delayType, recoveryBudget.plusSeconds(10), true);
         // A zero-delay probe records Gateway traffic to the healthy region without suppressing the service call.
         healthyRegionProbe = rule(properties.getPreferredRegions().get(1),
             FaultInjectionServerErrorType.RESPONSE_DELAY, Duration.ZERO, false);
 
+        // These rules affect only this client; no Azure account or service configuration is changed.
         CosmosFaultInjectionHelper.configureFaultInjectionRules(
             factory.getCosmosAsyncClient().getDatabase(factory.getDatabaseName()).getContainer("highAvailabilityUsers"),
             List.of(delayedRegion, healthyRegionProbe)).block();
@@ -110,14 +119,18 @@ class GatewayRecoveryIT {
         List<User> results = api == RepositoryApi.SYNCHRONOUS
             ? repository.findByFirstName(firstName)
             : reactiveRepository.findByFirstName(firstName).collectList().block(recoveryBudget);
+        // Require actual data and reactive completion: a success-shaped diagnostic alone is insufficient.
         assertResults(results);
         assertThat(Duration.ofNanos(System.nanoTime() - start)).isLessThan(recoveryBudget);
 
+        // Prove the fault fired and the healthy region received Gateway traffic, not a cache-only success.
         assertGatewayHit(delayedRegion);
         assertGatewayHit(healthyRegionProbe);
         CosmosDiagnostics queryDiagnostics = diagnostics.get();
         assertThat(queryDiagnostics).isNotNull();
+        // Check the SDK loaded at runtime, rather than assuming the requested build version was used.
         assertThat(queryDiagnostics.getUserAgent()).startsWith("azsdk-java-cosmos/" + expectedSdkVersion + " ");
+        // Cross-region evidence comes from the query context itself, independently of fault-injection counters.
         CosmosDiagnosticsContext queryContext = queryDiagnostics.getDiagnosticsContext();
         assertThat(queryContext).isNotNull();
         assertThat(queryContext.getContactedRegionNames().stream()
@@ -135,6 +148,7 @@ class GatewayRecoveryIT {
 
     @AfterEach
     void disableFaultsAndDeleteOwnUsers() {
+        // Remove the simulated outage before cleanup so it cannot interfere with the deletion requests.
         if (delayedRegion != null) {
             delayedRegion.disable();
         }
@@ -164,6 +178,7 @@ class GatewayRecoveryIT {
                                    Duration delay, boolean suppressServiceRequests) {
         return new FaultInjectionRuleBuilder("gateway-" + UUID.randomUUID())
             .condition(new FaultInjectionConditionBuilder()
+                // No operation filter: all Gateway calls to this region can be delayed, including QueryPlan.
                 .connectionType(FaultInjectionConnectionType.GATEWAY)
                 .region(region)
                 .build())
@@ -202,6 +217,7 @@ class GatewayRecoveryIT {
         @Bean
         @Primary
         CosmosConfig liveCosmosConfig() {
+            // Observe the real repositories' diagnostics without changing the production client configuration.
             return CosmosConfig.builder()
                 .responseDiagnosticsProcessor(response -> capturedDiagnostics().set(response.getCosmosDiagnostics()))
                 .build();

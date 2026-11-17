@@ -174,9 +174,7 @@ It uses the real sample configuration with a fresh client per case:
 | Connection delay | All Gateway requests to the first preferred region | Synchronous and reactive |
 | Response delay | All Gateway requests to the first preferred region | Synchronous and reactive |
 
-There is no operation-type filter: QueryPlan, metadata, or other Gateway traffic to that region can be
-affected. Direct TCP data requests are not faulted. This models an outage of the regional Gateway path,
-not loss of the entire region or recovery during cold client startup.
+This models an outage of the regional Gateway path.
 
 After completing setup, set `PREFERRED_LOCATIONS` to **exactly two distinct account regions** and run:
 

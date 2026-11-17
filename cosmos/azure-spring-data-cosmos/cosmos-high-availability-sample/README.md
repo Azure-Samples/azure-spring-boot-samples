@@ -191,20 +191,14 @@ not loss of the entire region or recovery during cold client startup.
 After completing setup, set `PREFERRED_LOCATIONS` to **exactly two distinct account regions** and run:
 
 ```powershell
-# SDK 4.83.0: unit tests plus four live fault cases.
 mvn verify -P live-tests
-
-# Compare with the current BOM baseline.
-mvn verify -P live-tests "-Dcosmos.test.sdk-version=4.81.0"
 ```
 
-Failsafe runs these tests only with `live-tests`, which explicitly selects SDK 4.83.0 by default.
-`cosmos.test.sdk-version` changes that selection; confirm the baseline after a BOM upgrade.
-Missing live prerequisites cause failures, not skips.
+Failsafe runs these tests only with `live-tests`. Missing live prerequisites cause failures, not skips.
 
 Assertions require Gateway fault hits and traffic to the healthy second region, the expected user IDs
 and completion within the SDK timeout plus a five-second test allowance, and diagnostics identifying
-the selected SDK. The query's `CosmosDiagnosticsContext` must also record both preferred regions as
+the runtime SDK. The query's `CosmosDiagnosticsContext` must also record both preferred regions as
 contacted. The test logs these regions and the observed Gateway operation types to show the recovery
 path. Faults affect only the test client and are disabled before cleanup.
 The test library is test-scoped and excluded from the runnable application.
@@ -212,33 +206,6 @@ The test library is test-scoped and excluded from the runnable application.
 These cases demonstrate the specified recovery scenarios, not every outage mode or PPCB opening.
 They do not distinguish hedging from ordinary retry-based recovery. Live Entra ID execution has not
 been validated; configuration/authentication selection is covered by unit tests.
-
-## Advanced: override the Java SDK version
-
-Spring Data Cosmos and its underlying Java SDK have separate versions. The Spring Cloud Azure BOM
-selects the default combination; the live-test profile offers a targeted override for comparison.
-Inspect the resolved versions with:
-
-```powershell
-mvn dependency:tree "-Dincludes=com.azure:azure-spring-data-cosmos,com.azure:azure-cosmos"
-```
-
-For an application build outside that profile, add an explicit dependency to the existing
-`<dependencies>` section of the sample POM:
-
-```xml
-<dependency>
-    <groupId>com.azure</groupId>
-    <artifactId>azure-cosmos</artifactId>
-    <version>4.83.0</version>
-</dependency>
-```
-
-An override is **not a compatibility or support guarantee**. Prefer the supported BOM-managed
-combination and avoid SDK downgrades. For a required override, inspect the full dependency tree
-(including Azure Core, Reactor, Netty, and Jackson), rebuild, and run application integration/resilience
-tests against the intended account. Confirm support for that exact combination before production use.
-Remove the explicit dependency to return to the BOM-managed version.
 
 ## Cleanup
 
@@ -253,6 +220,3 @@ charges. Remove only dedicated sample resources, never shared data.
 - [Azure Identity and DefaultAzureCredential](https://learn.microsoft.com/java/api/overview/azure/identity-readme)
 - [Partition-level circuit breaker](https://learn.microsoft.com/azure/cosmos-db/performance-tips-java-sdk-v4#partition-level-circuit-breaker)
 - [Threshold-based availability strategy](https://learn.microsoft.com/azure/cosmos-db/performance-tips-java-sdk-v4#threshold-based-availability-strategy)
-- [Spring Cloud Azure dependency management](https://learn.microsoft.com/azure/developer/java/spring-framework/developer-guide-overview#setting-up-dependencies)
-- [Spring version mapping](https://github.com/Azure/azure-sdk-for-java/wiki/Spring-Versions-Mapping)
-- [Azure Java dependency-conflict guidance](https://learn.microsoft.com/azure/developer/java/sdk/troubleshooting-dependency-version-conflict#mitigate-version-mismatch-issues)

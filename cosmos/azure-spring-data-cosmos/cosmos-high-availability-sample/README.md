@@ -173,15 +173,20 @@ creating any clients, not per request. To experiment without explicit PPCB, omit
   not only a diagnostics success status.
 - Logical partitions can share a physical partition; this dataset does not prove physical-partition isolation.
 
-## Test regional QueryPlan recovery
+## Test regional Gateway recovery
 
-The opt-in [QueryPlanAvailabilityIT.java](src/test/java/com/azure/spring/data/cosmos/samples/highavailability/QueryPlanAvailabilityIT.java)
-uses the real sample configuration with a fresh client per case:
+The opt-in [GatewayRecoveryIT.java](src/test/java/com/azure/spring/data/cosmos/samples/highavailability/GatewayRecoveryIT.java)
+establishes healthy queries, then simulates a Gateway outage during steady-state operation.
+It uses the real sample configuration with a fresh client per case:
 
 | Injected fault | Target | Repository APIs |
 | --- | --- | --- |
-| Connection delay | QueryPlan calls in the first preferred region only | Synchronous and reactive |
-| Response delay | QueryPlan calls in the first preferred region only | Synchronous and reactive |
+| Connection delay | All Gateway requests to the first preferred region | Synchronous and reactive |
+| Response delay | All Gateway requests to the first preferred region | Synchronous and reactive |
+
+There is no operation-type filter: QueryPlan, metadata, or other Gateway traffic to that region can be
+affected. Direct TCP data requests are not faulted. This models an outage of the regional Gateway path,
+not loss of the entire region or recovery during cold client startup.
 
 After completing setup, set `PREFERRED_LOCATIONS` to **exactly two distinct account regions** and run:
 
@@ -197,9 +202,10 @@ Failsafe runs these tests only with `live-tests`, which explicitly selects SDK 4
 `cosmos.test.sdk-version` changes that selection; confirm the baseline after a BOM upgrade.
 Missing live prerequisites cause failures, not skips.
 
-Assertions require QueryPlan-only fault hits and traffic to the healthy second region, the expected
-user IDs and completion within the SDK timeout plus a five-second test allowance, and diagnostics
-identifying the selected SDK. Faults affect only the test client and are disabled before cleanup.
+Assertions require Gateway fault hits and traffic to the healthy second region, the expected user IDs
+and completion within the SDK timeout plus a five-second test allowance, and diagnostics identifying
+the selected SDK. The test logs the operation types observed in each region to show which Gateway calls
+participated in recovery. Faults affect only the test client and are disabled before cleanup.
 The test library is test-scoped and excluded from the runnable application.
 
 These cases demonstrate the specified recovery scenarios, not every outage mode or PPCB opening.

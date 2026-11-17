@@ -7,7 +7,6 @@ import com.azure.cosmos.models.PartitionKey;
 import com.azure.cosmos.test.faultinjection.CosmosFaultInjectionHelper;
 import com.azure.cosmos.test.faultinjection.FaultInjectionConditionBuilder;
 import com.azure.cosmos.test.faultinjection.FaultInjectionConnectionType;
-import com.azure.cosmos.test.faultinjection.FaultInjectionOperationType;
 import com.azure.cosmos.test.faultinjection.FaultInjectionResultBuilders;
 import com.azure.cosmos.test.faultinjection.FaultInjectionRule;
 import com.azure.cosmos.test.faultinjection.FaultInjectionRuleBuilder;
@@ -40,12 +39,12 @@ import java.util.concurrent.atomic.AtomicReference;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@SpringBootTest(classes = {SampleAppConfiguration.class, QueryPlanAvailabilityIT.LiveConfiguration.class},
+@SpringBootTest(classes = {SampleAppConfiguration.class, GatewayRecoveryIT.LiveConfiguration.class},
     webEnvironment = SpringBootTest.WebEnvironment.NONE)
 @DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 @Execution(ExecutionMode.SAME_THREAD)
-class QueryPlanAvailabilityIT {
-    private static final Logger LOGGER = LoggerFactory.getLogger(QueryPlanAvailabilityIT.class);
+class GatewayRecoveryIT {
+    private static final Logger LOGGER = LoggerFactory.getLogger(GatewayRecoveryIT.class);
 
     @Autowired
     private UserRepository repository;
@@ -76,17 +75,17 @@ class QueryPlanAvailabilityIT {
         assertThat(regions).as("Configure exactly two account regions using PREFERRED_LOCATIONS").hasSize(2);
         assertThat(regions.get(1)).isNotEqualToIgnoringCase(regions.get(0));
 
-        firstName = "query-plan-it-" + UUID.randomUUID();
+        firstName = "gateway-it-" + UUID.randomUUID();
         users.add(new User(firstName + "-one", firstName, "partition-one"));
         users.add(new User(firstName + "-two", firstName, "partition-two"));
         users.forEach(repository::save);
 
-        // Cross-partition plans are not cached by this SDK path; warm only unrelated routing metadata.
+        // Establish a healthy baseline before simulating a Gateway outage during steady-state queries.
         assertResults(repository.findByFirstName(firstName));
         diagnostics.set(null);
     }
 
-    @ParameterizedTest(name = "{1} query recovers from first-region QueryPlan {0}")
+    @ParameterizedTest(name = "{1} query recovers from first-region Gateway {0}")
     @CsvSource({
         "CONNECTION_DELAY,SYNCHRONOUS",
         "RESPONSE_DELAY,SYNCHRONOUS",
@@ -94,10 +93,10 @@ class QueryPlanAvailabilityIT {
         "RESPONSE_DELAY,REACTIVE"
     })
     @Timeout(120)
-    void recoversFromFirstRegionQueryPlanDelay(FaultInjectionServerErrorType delayType, RepositoryApi api) {
+    void recoversFromFirstRegionGatewayDelay(FaultInjectionServerErrorType delayType, RepositoryApi api) {
         Duration recoveryBudget = properties.getEndToEndTimeout().plusSeconds(5);
         delayedRegion = rule(properties.getPreferredRegions().get(0), delayType, recoveryBudget.plusSeconds(10), true);
-        // A zero-delay probe records QueryPlan traffic to the healthy region without suppressing the service call.
+        // A zero-delay probe records Gateway traffic to the healthy region without suppressing the service call.
         healthyRegionProbe = rule(properties.getPreferredRegions().get(1),
             FaultInjectionServerErrorType.RESPONSE_DELAY, Duration.ZERO, false);
 
@@ -112,14 +111,16 @@ class QueryPlanAvailabilityIT {
         assertResults(results);
         assertThat(Duration.ofNanos(System.nanoTime() - start)).isLessThan(recoveryBudget);
 
-        assertQueryPlanHit(delayedRegion);
-        assertQueryPlanHit(healthyRegionProbe);
+        assertGatewayHit(delayedRegion);
+        assertGatewayHit(healthyRegionProbe);
         CosmosDiagnostics queryDiagnostics = diagnostics.get();
         assertThat(queryDiagnostics).isNotNull();
         assertThat(queryDiagnostics.getUserAgent()).startsWith("azsdk-java-cosmos/" + expectedSdkVersion + " ");
-        LOGGER.info("QueryPlan recovery verified: SDK {}, {} / {}, first region {}, healthy region {}",
+        LOGGER.info("Gateway recovery verified: SDK {}, {} / {}, first region {}, healthy region {}",
             expectedSdkVersion, delayType, api, properties.getPreferredRegions().get(0),
             properties.getPreferredRegions().get(1));
+        LOGGER.info("Gateway operations observed: delayed {}, healthy {}",
+            delayedRegion.getHitCountDetails(), healthyRegionProbe.getHitCountDetails());
     }
 
     @AfterEach
@@ -151,9 +152,8 @@ class QueryPlanAvailabilityIT {
 
     private FaultInjectionRule rule(String region, FaultInjectionServerErrorType type,
                                    Duration delay, boolean suppressServiceRequests) {
-        return new FaultInjectionRuleBuilder("query-plan-" + UUID.randomUUID())
+        return new FaultInjectionRuleBuilder("gateway-" + UUID.randomUUID())
             .condition(new FaultInjectionConditionBuilder()
-                .operationType(FaultInjectionOperationType.METADATA_REQUEST_QUERY_PLAN)
                 .connectionType(FaultInjectionConnectionType.GATEWAY)
                 .region(region)
                 .build())
@@ -165,10 +165,10 @@ class QueryPlanAvailabilityIT {
             .build();
     }
 
-    private static void assertQueryPlanHit(FaultInjectionRule rule) {
+    private static void assertGatewayHit(FaultInjectionRule rule) {
         assertThat(rule.getRegionEndpoints()).hasSize(1);
         assertThat(rule.getHitCount()).isPositive();
-        assertThat(rule.getHitCountDetails()).containsOnlyKeys("QueryPlan-Document");
+        assertThat(rule.getHitCountDetails()).isNotEmpty();
     }
 
     private void assertResults(List<User> results) {

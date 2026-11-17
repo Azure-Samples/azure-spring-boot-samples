@@ -150,6 +150,32 @@ Durations use ISO-8601 syntax, and the timeout must exceed the initial availabil
 The same configured client serves both repositories. The initial hedging threshold is 5 seconds;
 further regions can be considered in 100 ms steps.
 
+The timeout and hedging portion of the `CosmosClientBuilder` configuration looks like this with the
+sample defaults:
+
+```java
+import com.azure.cosmos.CosmosClientBuilder;
+import com.azure.cosmos.CosmosEndToEndOperationLatencyPolicyConfigBuilder;
+import com.azure.cosmos.ThresholdBasedAvailabilityStrategy;
+import com.azure.identity.DefaultAzureCredentialBuilder;
+import java.time.Duration;
+
+CosmosClientBuilder builder = new CosmosClientBuilder()
+    .endpoint(System.getenv("ACCOUNT_HOST"))
+    .credential(new DefaultAzureCredentialBuilder().build())
+    .directMode()
+    .endToEndOperationLatencyPolicyConfig(
+        new CosmosEndToEndOperationLatencyPolicyConfigBuilder(Duration.ofSeconds(10))
+            .availabilityStrategy(new ThresholdBasedAvailabilityStrategy(
+                Duration.ofSeconds(5), Duration.ofMillis(100)))
+            .build());
+```
+
+Return the configured builder from the Spring `@Bean` method rather than building another client.
+This excerpt shows timeout and hedging only; the full
+[SampleAppConfiguration.java](src/main/java/com/azure/spring/data/cosmos/samples/highavailability/SampleAppConfiguration.java)
+also sets preferred regions, selects authentication, and enables PPCB before constructing the client.
+
 PPCB tracks terminal failures for a **physical partition in a region** and routes subsequent eligible
 data requests away from unhealthy locations. Failure thresholds default to 10 for reads and 5 for writes;
 the sample rejects smaller values rather than triggering the SDK's default fallback.

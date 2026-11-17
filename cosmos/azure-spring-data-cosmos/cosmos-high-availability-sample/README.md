@@ -10,44 +10,27 @@ description: Configure timeout and availability policies for cross-partition Spr
 
 # High availability with Spring Data Cosmos
 
-This Spring Boot 4 sample enables both **threshold-based availability (hedging)** and the
-**per-partition circuit breaker (PPCB)** on the same Cosmos client, with an end-to-end operation latency
-policy. Both synchronous and reactive repositories execute a cross-partition `findByFirstName` query.
+This Spring Boot 4 sample enables **threshold-based availability (hedging)** and the **per-partition
+circuit breaker (PPCB)** on one Cosmos client. It saves users with different `lastName` partition keys,
+runs synchronous and reactive cross-partition queries by `firstName`, verifies the results, and deletes
+only its own users.
 
-## Features
-
-- Configure the client in [SampleAppConfiguration.java](src/main/java/com/azure/spring/data/cosmos/samples/highavailability/SampleAppConfiguration.java)
-  using the existing `CosmosProperties` and `application.yaml` pattern.
-- Use Microsoft Entra ID (AAD) with `DefaultAzureCredential`, or optional account-key authentication.
-- Enable PPCB before client construction and use it alongside the client-level hedging policy.
-- Save two uniquely named users with different `lastName` partition-key values, query both by their
-  common `firstName`, and verify complete results.
-- Clean up only this run's users and close the client when the sample finishes.
-
-There is no fault-injection dependency or test framework in the application. The general
-[Cosmos quickstart](../cosmos-quickstart-samples) is unchanged.
-
-## Getting started
+## Set up and run
 
 ### Prerequisites
 
 - JDK 17 or later and Maven.
-- An Azure Cosmos DB for NoSQL account and a global account endpoint.
-- An account default consistency of **Session or stronger** (Session, Bounded Staleness, or Strong).
-  The sample immediately queries its writes using the same client. Eventual and Consistent Prefix accounts
-  can temporarily return incomplete results even when healthy; setting Session only on the client does
-  not upgrade a weaker account. Verify this prerequisite before running the sample.
-- At least two readable account regions to benefit from regional hedging. A single-region account or
-  trusted emulator can run the queries but cannot demonstrate regional redundancy.
-- To benefit from write-side PPCB, use a multi-region write account with at least two writable regions.
-  The client opts into multiple write regions; it does not change the account configuration.
-- Network access for Direct mode and HTTPS gateway metadata requests, including query-plan retrieval.
-- Azure CLI for the resource and local Entra ID setup below.
+- An Azure Cosmos DB for NoSQL account, its global endpoint, and Direct-mode/HTTPS connectivity.
+- **Session-or-stronger account consistency**: Session, Bounded Staleness, or Strong. Immediate queries
+  can miss recent writes on Eventual or Consistent Prefix accounts; a client setting cannot upgrade
+  weaker account consistency.
+- Multiple readable regions for regional read recovery; multiple writable regions for write-side PPCB.
+  The client does not change the account's regional configuration.
+- Azure CLI for resource provisioning and local Microsoft Entra ID (AAD) authentication.
 
-### Create the database and container
+### 1. Create the database and container
 
-Create these resources once using the Azure portal or Azure CLI before running with either authentication
-method. The application does not create resources, so its identity only needs data-plane permissions:
+Provision the resources once with an administrative identity. The application does not create them:
 
 ```powershell
 az login
@@ -62,14 +45,28 @@ az cosmosdb sql container create --resource-group $resourceGroup --account-name 
     --database-name $databaseName --name highAvailabilityUsers --partition-key-path /lastName --throughput 400
 ```
 
-For a serverless account, omit `--throughput`. Creating resources requires management-plane permissions;
-an administrator can perform this step separately from running the application.
+For a serverless account, omit `--throughput`. An administrator can perform this management-plane step
+separately from running the application.
 
-### Microsoft Entra ID (AAD), recommended
+### 2. Configure the account and authentication
 
-With no account key configured, the application uses `DefaultAzureCredential`. For local development,
-the Azure CLI login above supplies the identity. Assign that identity the **Cosmos DB Built-in Data
-Contributor** data-plane role on the sample container:
+Set these environment variables, or put the same names in `cosmos-v4.properties` in your user home
+directory, outside the checkout. Environment variables override the imported file.
+
+```properties
+ACCOUNT_HOST=https://<account-name>.documents.azure.com:443/
+COSMOS_DATABASE=cosmos-high-availability-sample
+PREFERRED_LOCATIONS=East US,West US
+```
+
+Replace the account and region names with your own. Preferred regions control routing order; they are
+optional for the application, but the live test below requires exactly two distinct regions.
+
+#### Microsoft Entra ID (recommended)
+
+With no account key configured, the application uses `DefaultAzureCredential`, which can use the
+Azure CLI login from step 1. Assign the application's identity the **Cosmos DB Built-in Data Contributor**
+data-plane role on the sample container:
 
 ```powershell
 $principalId = az ad signed-in-user show --query id -o tsv
@@ -77,40 +74,27 @@ az cosmosdb sql role assignment create --resource-group $resourceGroup --account
     --principal-id $principalId `
     --role-definition-id "$accountId/sqlRoleDefinitions/00000000-0000-0000-0000-000000000002" `
     --scope "$accountId/dbs/$databaseName/colls/highAvailabilityUsers"
-
-$env:ACCOUNT_HOST = "https://<account-name>.documents.azure.com:443/"
-$env:COSMOS_DATABASE = $databaseName
-$env:PREFERRED_LOCATIONS = "East US,West US"
-$env:ACCOUNT_KEY = ""
 ```
 
-Replace placeholders and region names with your own. Creating a role assignment requires appropriate
-management-plane permissions; ask an administrator if needed, and allow time for propagation.
-Azure management-plane Contributor alone does not grant data-plane item/query access.
-Use the object ID of the actual application identity when running as a service principal or managed
-identity in Azure, rather than the signed-in developer. `DefaultAzureCredential` supports those identities too.
+Role assignment requires management-plane permissions and can take time to propagate. Azure
+management-plane Contributor alone does not grant item/query access. For a service principal or managed
+identity, use that identity's object ID instead of the developer's. `DefaultAzureCredential` supports both.
 
-Remove `ACCOUNT_KEY` from the external properties file below when using Entra ID. A nonempty key takes
-precedence over `DefaultAzureCredential`. The pre-created container and `autoCreateContainer=false`
-avoid database/container creation calls that a data-plane role does not authorize.
+Remove `ACCOUNT_KEY` from both the environment and imported file: a nonempty key takes precedence.
+The pre-created container and `autoCreateContainer=false` avoid resource-creation calls that this
+data-plane role does not authorize.
 
-### Optional account-key authentication
+#### Account key (optional)
 
-For an existing key-authenticated development setup, enable key authentication on the account and set
-`ACCOUNT_HOST` and `ACCOUNT_KEY`, or create `cosmos-v4.properties` in your user home directory outside
-the checkout:
+If key authentication is enabled on the account, add this value to the external file or environment:
 
 ```properties
-ACCOUNT_HOST=https://<account-name>.documents.azure.com:443/
 ACCOUNT_KEY=<account-key>
-COSMOS_DATABASE=cosmos-high-availability-sample
-PREFERRED_LOCATIONS=East US,West US
 ```
 
-Environment variables override the imported file. Never commit credentials or pass keys in command-line
-arguments. This file is optional for passwordless authentication.
+Never commit credentials or pass keys in command-line arguments.
 
-### Build and run
+### 3. Build and run
 
 From `cosmos/azure-spring-data-cosmos/cosmos-high-availability-sample`:
 
@@ -126,32 +110,27 @@ Synchronous cross-partition query returned 2 users.
 Reactive cross-partition query completed with 2 users.
 ```
 
-The sample uses the existing database and `highAvailabilityUsers` container with partition key `/lastName`.
-It deletes only its own users; the database and container remain.
-Provisioned resources can incur charges after the application exits. Do not delete shared resources
-when cleaning up.
-Cleanup attempts both deletes even if a save fails, because a timed-out write may still have committed.
-Missing users are tolerated. Other cleanup errors are attached as suppressed exceptions to the original
-operation failure; if the operation succeeded, the first cleanup error is thrown with later errors suppressed.
+`mvn clean verify` runs only credential-free unit tests. The application waits for both query results,
+then closes its Spring context and Cosmos client. See [cleanup](#cleanup) for resource ownership.
 
-## Combined availability settings
+## Configure availability
 
-Set these environment variables, or add them to the optional external properties file to override the defaults:
+Both repositories share the client configured in
+[SampleAppConfiguration.java](src/main/java/com/azure/spring/data/cosmos/samples/highavailability/SampleAppConfiguration.java).
+Override its defaults with environment variables or the external properties file:
 
-```properties
-COSMOS_END_TO_END_TIMEOUT=PT10S
-COSMOS_AVAILABILITY_THRESHOLD=PT5S
-COSMOS_AVAILABILITY_THRESHOLD_STEP=PT0.1S
-COSMOS_PPCB_READ_FAILURE_THRESHOLD=10
-COSMOS_PPCB_WRITE_FAILURE_THRESHOLD=5
-```
+| Setting | Variable | Default |
+| --- | --- | --- |
+| SDK operation timeout | `COSMOS_END_TO_END_TIMEOUT` | `PT10S` |
+| Initial hedging threshold | `COSMOS_AVAILABILITY_THRESHOLD` | `PT5S` |
+| Subsequent hedging step | `COSMOS_AVAILABILITY_THRESHOLD_STEP` | `PT0.1S` |
+| PPCB read failure count | `COSMOS_PPCB_READ_FAILURE_THRESHOLD` | `10` |
+| PPCB write failure count | `COSMOS_PPCB_WRITE_FAILURE_THRESHOLD` | `5` |
 
-Durations use ISO-8601 syntax, and the timeout must exceed the initial availability threshold.
-The same configured client serves both repositories. The initial hedging threshold is 5 seconds;
-further regions can be considered in 100 ms steps.
+Durations use ISO-8601 syntax. The timeout must exceed the initial threshold; PPCB counts must be at
+least 10 for reads and 5 for writes.
 
-The timeout and hedging portion of the `CosmosClientBuilder` configuration looks like this with the
-sample defaults:
+The timeout and hedging portion of the builder, using these defaults:
 
 ```java
 import com.azure.cosmos.CosmosClientBuilder;
@@ -171,100 +150,74 @@ CosmosClientBuilder builder = new CosmosClientBuilder()
             .build());
 ```
 
-Return the configured builder from the Spring `@Bean` method rather than building another client.
-This excerpt shows timeout and hedging only; the full
-[SampleAppConfiguration.java](src/main/java/com/azure/spring/data/cosmos/samples/highavailability/SampleAppConfiguration.java)
-also sets preferred regions, selects authentication, and enables PPCB before constructing the client.
+Return this builder from the Spring `@Bean` rather than building another client. The full configuration
+also sets preferred regions, selects authentication, and enables PPCB before client construction.
 
-PPCB tracks terminal failures for a **physical partition in a region** and routes subsequent eligible
-data requests away from unhealthy locations. Failure thresholds default to 10 for reads and 5 for writes;
-the sample rejects smaller values rather than triggering the SDK's default fallback.
-Initial requests can still fail before the circuit opens, and the SDK manages recovery.
-PPCB's `COSMOS.PARTITION_LEVEL_CIRCUIT_BREAKER_CONFIG` JVM setting is **process-wide** and must be set
-before constructing any Cosmos clients. In a multi-client application, configure it centrally rather
-than toggling it per request.
+| Mechanism | Behavior |
+| --- | --- |
+| Hedging | Starts parallel requests in alternate eligible regions after a threshold; can add RU/network cost. |
+| PPCB | Tracks terminal failures for a physical partition in a region and avoids unhealthy locations on subsequent requests; initial requests can still fail. |
 
-Both mechanisms are enabled by default because they complement each other. To experiment with hedging
-without explicitly enabling PPCB, omit the `enablePartitionLevelCircuitBreaker()` call before client
-construction. To omit the explicit hedging/timeout policy, remove the
-`endToEndOperationLatencyPolicyConfig(...)` builder call instead. Other SDK features/defaults still apply.
+PPCB's `COSMOS.PARTITION_LEVEL_CIRCUIT_BREAKER_CONFIG` setting is **process-wide**: configure it before
+creating any clients, not per request. To experiment without explicit PPCB, omit
+`enablePartitionLevelCircuitBreaker()`; to omit the explicit hedging/timeout policy, remove
+`endToEndOperationLatencyPolicyConfig(...)`. Other SDK defaults can still apply.
 
-Explicit preferred regions make routing order predictable, but are not generally required when
-endpoint discovery supplies multiple eligible regions. A healthy run demonstrates configuration and
-query results; it does not prove that hedging occurred, force a circuit to open, or simulate an outage.
-Read-side PPCB needs multiple eligible read regions; write-side PPCB needs multiple writable regions.
-**PPCB excludes QueryPlan requests in the SDK used here.** Hedging is therefore still relevant for
-regional query-plan failures even when PPCB is enabled. Two logical partitions can share a physical
-partition; this dataset does not demonstrate physical-partition isolation.
+### Important limits
 
-The SDK query-page timeout is not a deadline for query-plan acquisition plus complete multi-page
-consumption. Applications requiring that broader deadline must also implement application-level
-timeout/cancellation. Observe actual results and terminal signals rather than relying only on a
-diagnostics success status. Cross-partition refers to logical partitions; multiple physical partitions
-are not required for this example.
+- **PPCB excludes QueryPlan requests in this SDK.** Hedging remains relevant to regional query-plan
+  failures. Metadata requests still use the HTTPS gateway in Direct mode.
+- **SDK query-page timeout is not a full-query deadline**, including planning and all pages. Handle
+  application-level timeout/cancellation separately.
+- A healthy run does not demonstrate hedging or circuit opening. Observe actual results and completion,
+  not only a diagnostics success status.
+- Logical partitions can share a physical partition; this dataset does not prove physical-partition isolation.
 
-## Opt-in QueryPlan fault-injection test
+## Test regional QueryPlan recovery
 
-[QueryPlanAvailabilityIT.java](src/test/java/com/azure/spring/data/cosmos/samples/highavailability/QueryPlanAvailabilityIT.java)
-starts the real sample configuration without running the command-line application. It runs four cases:
-connection and response delays against QueryPlan calls in the **first preferred region only**, through
-both synchronous and reactive repositories. The other region receives only a zero-delay observation rule
-that permits the actual service request.
+The opt-in [QueryPlanAvailabilityIT.java](src/test/java/com/azure/spring/data/cosmos/samples/highavailability/QueryPlanAvailabilityIT.java)
+uses the real sample configuration with a fresh client per case:
 
-The test seeds users in two logical partitions, warms routing metadata, and verifies fresh
-`QueryPlan-Document` fault hits in the delayed and healthy regions. Each query must return exactly the
-expected users within the recovery budget (the SDK timeout plus a five-second test allowance).
-Query diagnostics must identify the SDK version selected by the profile. A fresh client is used per
-case; faults are disabled before deleting only test-owned users.
+| Injected fault | Target | Repository APIs |
+| --- | --- | --- |
+| Connection delay | QueryPlan calls in the first preferred region only | Synchronous and reactive |
+| Response delay | QueryPlan calls in the first preferred region only | Synchronous and reactive |
 
-Connection delays are transport-scoped in the fault-injection library. The test therefore fails if the
-rule also hits unrelated gateway operations, rather than silently accepting a different failure scenario.
-These cases prove recovery for the injected QueryPlan failures; they do not prove that PPCB opened
-(QueryPlan is outside PPCB's scope), or distinguish hedging from ordinary retry-based recovery.
-
-The test is **not run by default** and needs the pre-created resources and authentication described above,
-plus **exactly two distinct account regions** in `PREFERRED_LOCATIONS`. It fails rather than skips when
-these live-test prerequisites are missing. Fault injection is test-scoped and affects this test client
-only; no account failover or service outage is performed.
-
-From the sample directory:
+After completing setup, set `PREFERRED_LOCATIONS` to **exactly two distinct account regions** and run:
 
 ```powershell
-# Select SDK 4.83.0 for the sample and run unit tests plus all four live fault cases.
+# SDK 4.83.0: unit tests plus four live fault cases.
 mvn verify -P live-tests
 
-# Compare with the BOM-selected SDK used by this sample at the time of writing.
+# Compare with the current BOM baseline.
 mvn verify -P live-tests "-Dcosmos.test.sdk-version=4.81.0"
 ```
 
-The `live-tests` profile defaults to `cosmos.test.sdk-version=4.83.0` and uses Failsafe for `*IT` tests.
-The profile explicitly overrides the sample's SDK dependency; without it, the BOM continues to select
-the normal version, and `mvn clean verify` runs only the credential-free unit tests. Verify the resolved
-version after a BOM upgrade before choosing the baseline comparison value.
-The `azure-cosmos-test` dependency is test-scoped and excluded from the runnable application.
-All four live cases were validated with SDK 4.83.0 and the 4.81.0 baseline against a two-region
-multi-writer account using key authentication. The eight credential-free regression tests also passed
-with each version. Live Entra ID execution was not validated in that run.
+Failsafe runs these tests only with `live-tests`, which explicitly selects SDK 4.83.0 by default.
+`cosmos.test.sdk-version` changes that selection; confirm the baseline after a BOM upgrade.
+Missing live prerequisites cause failures, not skips.
 
-## SDK versions and explicit overrides
+Assertions require QueryPlan-only fault hits and traffic to the healthy second region, the expected
+user IDs and completion within the SDK timeout plus a five-second test allowance, and diagnostics
+identifying the selected SDK. Faults affect only the test client and are disabled before cleanup.
+The test library is test-scoped and excluded from the runnable application.
 
-`azure-spring-data-cosmos` and the underlying `azure-cosmos` Java SDK have separate versions.
-This sample uses the Spring Cloud Azure BOM to select them together. Prefer upgrading the supported
-Spring Cloud Azure/Spring Boot combination rather than independently changing the underlying SDK:
+These cases demonstrate the specified recovery scenarios, not every outage mode or PPCB opening.
+They do not distinguish hedging from ordinary retry-based recovery. Live Entra ID execution has not
+been validated; configuration/authentication selection is covered by unit tests.
 
-- [Spring Cloud Azure dependency management](https://learn.microsoft.com/azure/developer/java/spring-framework/developer-guide-overview#setting-up-dependencies)
-- [Spring version mapping](https://github.com/Azure/azure-sdk-for-java/wiki/Spring-Versions-Mapping)
-- [Azure Java dependency-conflict guidance](https://learn.microsoft.com/azure/developer/java/sdk/troubleshooting-dependency-version-conflict#mitigate-version-mismatch-issues)
+## Advanced: override the Java SDK version
 
-From this sample's directory, inspect the resolved versions before making changes:
+Spring Data Cosmos and its underlying Java SDK have separate versions. The Spring Cloud Azure BOM
+selects the default combination; the live-test profile offers a targeted override for comparison.
+Inspect the resolved versions with:
 
 ```powershell
 mvn dependency:tree "-Dincludes=com.azure:azure-spring-data-cosmos,com.azure:azure-cosmos"
 ```
 
-For a targeted SDK upgrade or reproduction outside the `live-tests` profile, an explicit dependency
-can override the BOM-managed transitive SDK version. To use Java SDK 4.83.0 in a normal application build,
-add this entry to the existing `<dependencies>` section of the sample POM:
+For an application build outside that profile, add an explicit dependency to the existing
+`<dependencies>` section of the sample POM:
 
 ```xml
 <dependency>
@@ -274,27 +227,18 @@ add this entry to the existing `<dependencies>` section of the sample POM:
 </dependency>
 ```
 
-**This is a tested override example, not a compatibility guarantee for arbitrary version combinations.**
-The sample's default BOM remains unchanged. The 4.83.0 override was tested with Spring Boot 4.1.1,
-Spring Cloud Azure BOM 7.4.0, and Spring Data Cosmos 7.4.0, on JDK 21 with a Java 17 compilation target.
-All eight regression tests passed, and the executable JAR was checked to contain only SDK 4.83.0.
-Synchronous and reactive queries each returned the two expected users against a live two-region account
-using key authentication, with hedging and PPCB configured together. The opt-in tests above additionally
-exercise first-region QueryPlan connection and response delays. This is coverage of those specific
-failure scenarios, not every outage mode or live Entra ID validation.
-Public guidance recommends tested BOM-managed dependencies and cautions against SDK downgrades.
-Sharing the same SDK major version alone does not establish that the full dependency graph is compatible.
+An override is **not a compatibility or support guarantee**. Prefer the supported BOM-managed
+combination and avoid SDK downgrades. For a required override, inspect the full dependency tree
+(including Azure Core, Reactor, Netty, and Jackson), rebuild, and run application integration/resilience
+tests against the intended account. Confirm support for that exact combination before production use.
+Remove the explicit dependency to return to the BOM-managed version.
 
-If an override is required for an application:
+## Cleanup
 
-1. Record its Spring Boot, Spring Cloud Azure/BOM, Spring Data Cosmos, and Java SDK versions.
-2. Re-run `mvn dependency:tree` and check for conflicting Azure Core, Reactor, Netty, and Jackson versions.
-3. Run `mvn clean verify` and exercise the sample against the intended account. Also run the application's
-   integration/resilience tests, including the query-plan behavior relevant to the incident.
-4. Confirm support for the exact combination before recommending it for production; a successful build
-   or healthy query alone does not prove outage behavior or establish support.
-
-Remove the explicit dependency after a reproduction to return to the BOM-managed version.
+The application and live tests delete only their uniquely named users, tolerate missing items, and
+preserve original failures if cleanup also fails. Both deletes are attempted even after an ambiguous
+write. The application closes the client, but the pre-created database/container remain and can incur
+charges. Remove only dedicated sample resources, never shared data.
 
 ## Resources
 
@@ -302,4 +246,6 @@ Remove the explicit dependency after a reproduction to return to the BOM-managed
 - [Azure Identity and DefaultAzureCredential](https://learn.microsoft.com/java/api/overview/azure/identity-readme)
 - [Partition-level circuit breaker](https://learn.microsoft.com/azure/cosmos-db/performance-tips-java-sdk-v4#partition-level-circuit-breaker)
 - [Threshold-based availability strategy](https://learn.microsoft.com/azure/cosmos-db/performance-tips-java-sdk-v4#threshold-based-availability-strategy)
-- [Azure Spring Data Cosmos](https://github.com/Azure/azure-sdk-for-java/tree/main/sdk/spring/azure-spring-data-cosmos)
+- [Spring Cloud Azure dependency management](https://learn.microsoft.com/azure/developer/java/spring-framework/developer-guide-overview#setting-up-dependencies)
+- [Spring version mapping](https://github.com/Azure/azure-sdk-for-java/wiki/Spring-Versions-Mapping)
+- [Azure Java dependency-conflict guidance](https://learn.microsoft.com/azure/developer/java/sdk/troubleshooting-dependency-version-conflict#mitigate-version-mismatch-issues)

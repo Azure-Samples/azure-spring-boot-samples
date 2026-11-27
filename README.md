@@ -52,6 +52,7 @@
 | Sample Project                        | Spring Boot 4.x                                                                                                                                                                 | Spring Boot 3.x                                                             | Spring Boot 2.x                                                                                                                                                       |
 |---------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | cosmos-aad-sample                     | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/cosmos/azure-spring-data-cosmos/cosmos-aad-sample)                                     | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-3.x/cosmos/azure-spring-data-cosmos/cosmos-aad-sample)                                     | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/cosmos/azure-spring-data-cosmos/cosmos-aad-sample)                                     |
+| cosmos-high-availability-sample      | ✅ [link](cosmos/azure-spring-data-cosmos/cosmos-high-availability-sample) | ❌ | ❌ |
 | cosmos-multi-database-multi-account   | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account)                   | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-3.x/cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account)                   | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/cosmos/azure-spring-data-cosmos/cosmos-multi-database-multi-account)                   |
 | cosmos-multi-database-single-account  | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account)                  | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-3.x/cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account)                  | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/cosmos/azure-spring-data-cosmos/cosmos-multi-database-single-account)                  |
 | cosmos-multi-tenant-by-container      | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/cosmos/azure-spring-data-cosmos/cosmos-multi-tenant-samples/multi-tenant-by-container) | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-3.x/cosmos/azure-spring-data-cosmos/cosmos-multi-tenant-samples/multi-tenant-by-container) | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-2.x/cosmos/azure-spring-data-cosmos/cosmos-multi-tenant-samples/multi-tenant-by-container) |
@@ -146,109 +147,42 @@
 | testContainers for Storage Blob  | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/testcontainers/spring-cloud-azure-testcontainers-for-storage-blob-sample)  | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-3.x/testcontainers/spring-cloud-azure-testcontainers-for-storage-blob-sample)  | ❌                              |
 | testContainers for Storage Queue | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/main/testcontainers/spring-cloud-azure-testcontainers-for-storage-queue-sample) | ✅ [link](https://github.com/Azure-Samples/azure-spring-boot-samples/tree/spring-boot-3.x/testcontainers/spring-cloud-azure-testcontainers-for-storage-queue-sample) | ❌                              |
 
-## 3. Work with Spring Native
+## 3. Build a Native Executable
 
-Since we removed the parent pom, the Profiles `native-5.x` and `nativeTest-5.x` are removed either.
-They are variants of the two profiles `native` and `nativeTest` provided by
-`spring-boot-starter-parent` of Spring Boot 3, and they have the same function.
-So if you want to use them, just add them into your current pom:
+For a Spring Cloud Azure application using Spring Boot 4's `spring-boot-starter-parent`,
+use its `native` profile to configure Spring AOT processing and native build defaults.
+Declare both plugins in the application module's `pom.xml` if they are not already present:
 
-```yaml
-    <profile>
-      <id>native-5.x</id>
-      <build>
-        <pluginManagement>
-          <plugins>
-            <plugin>
-              <groupId>org.springframework.boot</groupId>
-              <artifactId>spring-boot-maven-plugin</artifactId>
-              <configuration>
-                <image>
-                  <builder>paketobuildpacks/builder:tiny</builder>
-                  <env>
-                    <BP_NATIVE_IMAGE>true</BP_NATIVE_IMAGE>
-                  </env>
-                </image>
-              </configuration>
-              <executions>
-                <execution>
-                  <id>process-aot</id>
-                  <goals>
-                    <goal>process-aot</goal>
-                  </goals>
-                </execution>
-              </executions>
-            </plugin>
-            <plugin>
-              <groupId>org.graalvm.buildtools</groupId>
-              <artifactId>native-maven-plugin</artifactId>
-              <configuration>
-                <classesDirectory>${project.build.outputDirectory}</classesDirectory>
-                <metadataRepository>
-                  <enabled>true</enabled>
-                </metadataRepository>
-                <requiredVersion>22.3</requiredVersion>
-              </configuration>
-              <executions>
-                <execution>
-                  <id>add-reachability-metadata</id>
-                  <goals>
-                    <goal>add-reachability-metadata</goal>
-                  </goals>
-                </execution>
-              </executions>
-            </plugin>
-          </plugins>
-        </pluginManagement>
-      </build>
-    </profile>
-    <profile>
-      <id>nativeTest-5.x</id>
-      <dependencies>
-        <dependency>
-          <groupId>org.junit.platform</groupId>
-          <artifactId>junit-platform-launcher</artifactId>
-          <scope>test</scope>
-        </dependency>
-      </dependencies>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>process-test-aot</id>
-                <goals>
-                  <goal>process-test-aot</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-          <plugin>
-            <groupId>org.graalvm.buildtools</groupId>
-            <artifactId>native-maven-plugin</artifactId>
-            <configuration>
-              <classesDirectory>${project.build.outputDirectory}</classesDirectory>
-              <metadataRepository>
-                <enabled>true</enabled>
-              </metadataRepository>
-              <requiredVersion>22.3</requiredVersion>
-            </configuration>
-            <executions>
-              <execution>
-                <id>native-test</id>
-                <goals>
-                  <goal>test</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
+```xml
+<build>
+  <plugins>
+    <plugin>
+      <groupId>org.graalvm.buildtools</groupId>
+      <artifactId>native-maven-plugin</artifactId>
+    </plugin>
+    <plugin>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-maven-plugin</artifactId>
+    </plugin>
+  </plugins>
+</build>
 ```
+
+Install a compatible GraalVM JDK and native toolchain, configure the application,
+and run from the application module:
+
+```shell
+mvn -B -ntp -Pnative -DskipTests clean native:compile
+```
+
+Run the executable generated in `target` and verify the application's Azure
+operations. Spring AOT evaluates bean conditions at build time, so provide the
+relevant configuration during the build as well as at runtime. Application-specific
+types used dynamically may require additional runtime hints.
+
+For prerequisites, other build configurations, and runtime hints, see the
+[Spring Boot native image documentation](https://docs.spring.io/spring-boot/reference/packaging/native-image/index.html)
+and [Maven AOT documentation](https://docs.spring.io/spring-boot/maven-plugin/aot.html).
 
 ## 4. Getting Help
 

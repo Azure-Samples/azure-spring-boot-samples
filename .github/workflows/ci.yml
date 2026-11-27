@@ -18,7 +18,7 @@ jobs:
       uses: actions/setup-java@d1374f8ac74474200d16ef8ecee22c7ae7a51880 # v6.3.0
       with:
         java-version: ${{ matrix.java-version }}
-        distribution: 'adopt'
+        distribution: 'temurin'
         cache: maven
     - name: Build azure-spring-boot-samples 5.x with Maven - ${{ matrix.java-version }}
       run: mvn -f pom.xml --batch-mode --update-snapshots verify
